@@ -1,0 +1,40 @@
+{
+  "name": "designer",
+  "version": "1.0.0",
+  "main": "server/index.ts",
+  "babel": [
+    "@babel/preset-typescript",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ],
+  "scripts": {
+    "build": "NODE_ENV=production webpack",
+    "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect --respawn --transpile-only index.ts",
+    "start:local2": "babel-node ./server/index.ts",
+    "start:local3": "tsc && node ./dist/server/index.ts",
+    "start": "NODE_ENV=development nodemon server/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "typescript": "next"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/node": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@tsconfig/recommended": "^1.0.6",
+    "@types/node": "^20.14.8",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^2.0.0",
+    "ts-node-dev": "^2.0.0"
+  }
+}

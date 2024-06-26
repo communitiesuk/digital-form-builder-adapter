@@ -1,2 +1,1 @@
-# digital-form-builder-adapter
-adapter for the gov forms builder
+# digital-form-builder-dluhc-adapter

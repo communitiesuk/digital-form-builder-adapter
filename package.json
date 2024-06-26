@@ -1,0 +1,16 @@
+{
+  "name": "digital-form-builder-dluhc-adapter",
+  "private": true,
+  "workspaces": [
+    "model",
+    "runner",
+    "designer"
+  ],
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "setup": "yarn && yarn build"
+  },
+  "author": "",
+  "license": "ISC"
+}
