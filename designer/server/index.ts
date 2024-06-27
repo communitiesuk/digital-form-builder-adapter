@@ -1,4 +1,5 @@
-import { createServer } from "../digital-form-builder/designer/server/createServer";
+// @ts-ignore
+import { createServer } from "../../digital-form-builder/designer/server/createServer";
 
 createServer()
   .then((server) => server.start())
