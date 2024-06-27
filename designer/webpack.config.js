@@ -19,7 +19,10 @@ const client = {
   target: "web",
   mode: environment,
   watch: devMode,
-  entry: path.resolve(__dirname, "../digital-form-builder/designer/client", "index.tsx"),
+  entry: {
+    "digital-form-builder": path.resolve(__dirname, "../digital-form-builder/designer/client", "index.tsx"),
+    "digital-form-builder-adapter": path.resolve(__dirname, "client", "custom-index.tsx")
+  },
   output: {
     path: path.resolve(__dirname, "dist", "client"),
     filename: "assets/[name].js",
@@ -27,7 +30,9 @@ const client = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
-    modules: [path.resolve(__dirname, "../digital-form-builder/node_modules")],
+    modules: [
+      path.resolve(__dirname, "../digital-form-builder/node_modules")
+    ],
   },
   node: {
     __dirname: false,
