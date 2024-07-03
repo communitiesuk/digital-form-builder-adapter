@@ -9,6 +9,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "preinstall": "node update-package.js",
+    "revertinstall": "node revert-package.js",
     "setup": "yarn && yarn build"
   },
   "author": "",

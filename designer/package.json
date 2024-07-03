@@ -4,52 +4,13 @@
   "main": "server/index.ts",
   "scripts": {
     "build": "NODE_ENV=production webpack",
-    "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect --respawn --transpile-only server/index.ts"
+    "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect --respawn --transpile-only server/index.ts",
+    "init-submodule": "cd ../digital-form-builder && pwd && yarn",
+    "install": "yarn install && init-submodule"
   },
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
-    "@xgovformbuilder/govuk-react-jsx": "7.1.2",
-    "govuk-frontend": "^4.8.0",
-    "typescript": "4.9.5"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.23.3",
-    "@babel/node": "^7.22.19",
-    "@babel/plugin-proposal-export-default-from": "^7.23.3",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-class-properties": "^7.23.3",
-    "@babel/plugin-transform-logical-assignment-operators": "^7.23.4",
-    "@babel/plugin-transform-nullish-coalescing-operator": "^7.23.4",
-    "@babel/plugin-transform-optional-chaining": "^7.23.3",
-    "@babel/plugin-transform-private-methods": "^7.23.3",
-    "@babel/plugin-transform-runtime": "^7.23.3",
-    "@babel/preset-env": "^7.23.3",
-    "@babel/preset-react": "^7.23.3",
-    "@babel/preset-typescript": "^7.23.3",
-    "@tsconfig/recommended": "^1.0.6",
-    "@types/node": "^20.14.8",
-    "autoprefixer": "^10.4.2",
-    "babel-loader": "^8.3.0",
-    "babel-plugin-module-resolver": "^4.1.0",
-    "babel-preset-env": "^1.7.0",
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^6.1.1",
-    "css-loader": "^4.3.0",
-    "file-loader": "^6.2.0",
-    "html-webpack-plugin": "^4.5.2",
-    "mini-css-extract-plugin": "^0.11.2",
-    "nodemon": "^2.0.20",
-    "postcss": "^8.2.4",
-    "postcss-loader": "^4.1.0",
-    "sass": "^1.26.11",
-    "sass-loader": "^10.0.2",
-    "ts-node-dev": "^1.1.8",
-    "webpack": "^4.44.2",
-    "webpack-bundle-analyzer": "^4.3.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-node-externals": "^2.5.2"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

@@ -1,0 +1,8 @@
+services:
+  fsd-self-serve:
+    build:
+      context: .
+      target: self-serve-dev
+    volumes:
+      - .:/self-serve:cached
+    command: sleep infinity

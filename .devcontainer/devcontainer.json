@@ -1,0 +1,17 @@
+{
+    "name": "form-designer-adapter",
+    "dockerComposeFile": [
+      "../docker-compose.yml"
+    ],
+    "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "service": "fsd-self-serve",
+    "shutdownAction": "none",
+    "extensions": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode"
+    ],
+    "workspaceFolder": "/self-serve",
+    "initializeCommand": "sh delete_node_dir.sh && sh .devcontainer/setup.sh"
+}

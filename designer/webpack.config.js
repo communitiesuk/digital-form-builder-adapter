@@ -160,7 +160,7 @@ const server = {
   },
   externals: [
     nodeExternals({
-      modulesDir: path.resolve(__dirname, "../digital-form-builder/node_modules"),
+      modulesDir: path.resolve(__dirname, "../digital-form-builder/node_modules")
     }),
   ],
 };
