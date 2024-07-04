@@ -5,3 +5,4 @@
 ###############################################################################
 
 FROM node:20-alpine3.20 as self-serve-dev
+RUN apk --no-cache add git

@@ -1,6 +1,6 @@
 {
   "baseUrl": ".",
-  "extends": "../digital-form-builder/runner/tsconfig.json",
+  "extends": "../digital-form-builder/model/tsconfig.json",
   "paths": {
     "*": ["node_modules/*", "../node_modules"]
   }

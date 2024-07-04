@@ -1,7 +1,7 @@
 services:
   fsd-self-serve:
     build:
-      context: .
+      context: .devcontainer
       target: self-serve-dev
     volumes:
       - .:/self-serve:cached

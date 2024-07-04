@@ -7,12 +7,10 @@
     "designer"
   ],
   "version": "1.0.0",
-  "description": "",
+  "description": "Mono repo for communitiesuk's designer, model and runner adapter for xgovformbuilder",
   "scripts": {
-    "preinstall": "node update-package.js",
-    "revertinstall": "node revert-package.js",
     "setup": "yarn && yarn build"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Communities UK",
+  "license": "MIT"
 }

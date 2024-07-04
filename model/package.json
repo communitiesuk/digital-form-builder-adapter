@@ -1,11 +1,11 @@
 {
-  "name": "@communitiesuk/runner",
+  "name": "@communitiesuk/model",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Communities UK",
   "license": "SEE LICENSE IN LICENSE",
-  "description": "Digital forms runner adapter"
+  "description": "A hapi plugin providing the model for XGov digital form builder based adapter applications"
 }
