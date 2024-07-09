@@ -11,7 +11,6 @@ package-lock.json
 */test-results/*
 */test-coverage/*
 /runner/tmp.pdf
-/model/module/
 /model/dist/
 smoke-tests/designer/reports/
 */dist/
@@ -32,5 +31,4 @@ docs/**/typedoc
 /e2e/cypress/screenshots/
 .env_mysql
 /queue-model/dist
-/queue-model/module
 /queue-model/src/prisma/generated
