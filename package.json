@@ -7,12 +7,13 @@
     "designer",
     "digital-form-builder/model",
     "digital-form-builder/queue-model",
-    "digital-form-builder/designer"
+    "digital-form-builder/designer",
+    "digital-form-builder/runner"
   ],
   "version": "1.0.0",
   "description": "Mono repo for communitiesuk's designer, model and runner adapter for xgovformbuilder",
   "scripts": {
-    "setup": "yarn && yarn build",
+    "setup": "node update-package.js && yarn",
     "runner": "yarn workspace @communitiesuk/runner",
     "designer": "yarn workspace @communitiesuk/designer",
     "model": "yarn workspace @communitiesuk/model"

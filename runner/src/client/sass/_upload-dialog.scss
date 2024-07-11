@@ -1,0 +1,9 @@
+@import "govuk-frontend/govuk/helpers/colour";
+
+.upload-dialog {
+  display: none;
+}
+
+.govuk-border-green {
+  border-color: govuk-colour("green");
+}
