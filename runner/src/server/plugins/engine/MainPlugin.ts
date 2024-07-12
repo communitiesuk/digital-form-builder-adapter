@@ -12,7 +12,7 @@ import { PluginSpecificConfiguration } from "@hapi/hapi";
 import { FormPayload } from "../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import { shouldLogin } from "../../../../../digital-form-builder/runner/src/server/plugins/auth";
 import config from "../../../../../digital-form-builder/runner/src/server/config";
-import { FormModel } from "./models/FormModel";
+import { AdapterFormModel } from "./models/AdapterFormModel";
 
 configure([
     // Configure Nunjucks to allow rendering of content that is revealed conditionally.
@@ -32,7 +32,7 @@ function getStartPageRedirect(
     request: HapiRequest,
     h: HapiResponseToolkit,
     id: string,
-    model: FormModel
+    model: AdapterFormModel
 ) {
     const startPage = normalisePath(model.def.startPage ?? "");
     let startPageRedirect: any;
@@ -64,7 +64,7 @@ export const plugin = {
         // @ts-ignore
         const forms = server.app.forms;
         configs.forEach((config) => {
-            forms[config.id] = new FormModel(config.configuration, {
+            forms[config.id] = new AdapterFormModel(config.configuration, {
                 ...modelOptions,
                 basePath: config.id
             });
@@ -100,7 +100,7 @@ export const plugin = {
                     typeof configuration === "string"
                         ? JSON.parse(configuration)
                         : configuration;
-                forms[id] = new FormModel(parsedConfiguration, {
+                forms[id] = new AdapterFormModel(parsedConfiguration, {
                     ...modelOptions,
                     basePath: id
                 });

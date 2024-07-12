@@ -1,0 +1,91 @@
+{
+  "metadata": {},
+  "startPage": "/applicant-information",
+  "pages": [
+    {
+      "title": "Applicant information",
+      "path": "/applicant-information",
+      "components": [
+        {
+          "name": "IxjdZq",
+          "options": {},
+          "type": "Para",
+          "content": "<label>In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>lead contact’s name</li>\n<li>lead contact’s job title</li>\n<li>lead contact’s email address</li>\n<li>lead contact’s telephone number</li>\n</ul>"
+        }
+      ],
+      "next": [
+        {
+          "path": "/who-should-we-contact-about-this-application"
+        }
+      ],
+      "controller": "./pages/start.js"
+    },
+    {
+      "path": "/who-should-we-contact-about-this-application",
+      "title": "Who should we contact about this application?",
+      "components": [
+        {
+          "name": "OkKkMd",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "TextField",
+          "title": "Full name",
+          "hint": "<label class=\"govuk-label\" for=\"OkKkMd\">Full name</label>"
+        },
+        {
+          "name": "Lwkcam",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "TextField",
+          "hint": "<label class=\"govuk-label\" for=\"Lwkcam\">Job title</label>",
+          "title": "Job title"
+        },
+        {
+          "name": "XfiUqN",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "EmailAddressField",
+          "title": "Email address",
+          "hint": "<label class=\"govuk-label\" for=\"XfiUqN\">Email address</label>"
+        },
+        {
+          "name": "DlZjvr",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "TelephoneNumberField",
+          "title": "Telephone number",
+          "hint": "<label class=\"govuk-label\" for=\"DlZjvr\">Telephone number</label>"
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "bnfUAs"
+    },
+    {
+      "title": "Check your answers",
+      "path": "/summary",
+      "controller": "./pages/summary.js",
+      "components": [],
+      "next": []
+    }
+  ],
+  "lists": [],
+  "sections": [
+    {
+      "name": "bnfUAs",
+      "title": "Applicant information"
+    }
+  ],
+  "conditions": [],
+  "fees": [],
+  "version": 2,
+  "skipSummary": false,
+  "name": "Apply for funding to cover the cost of delivering a high street rental auction"
+}
