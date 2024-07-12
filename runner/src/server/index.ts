@@ -7,7 +7,7 @@ import Schmervice from "schmervice";
 import blipp from "blipp";
 import config from "../../../digital-form-builder/runner/src/server/config";
 
-import { configureEnginePlugin } from "../../../digital-form-builder/runner/src/server/plugins/engine";
+import { ConfigureFormsPlugin } from "./plugins/ConfigureFormsPlugin";
 import { configureRateLimitPlugin } from "../../../digital-form-builder/runner/src/server/plugins/rateLimit";
 import { configureBlankiePlugin } from "../../../digital-form-builder/runner/src/server/plugins/blankie";
 import { configureCrumbPlugin } from "../../../digital-form-builder/runner/src/server/plugins/crumb";
@@ -177,8 +177,9 @@ async function createServer(routeConfig: RouteConfig) {
   await server.register(pluginLocale);
   // @ts-ignore
   await server.register(pluginViews);
+  console.log(` Form name: ${formFileName} Form path: ${formFilePath} Other options: ${options}`)
   await server.register(// @ts-ignore
-    configureEnginePlugin(formFileName, formFilePath, options)
+    ConfigureFormsPlugin(formFileName, formFilePath, options)
   );
   await server.register(pluginApplicationStatus);
   await server.register(pluginRouter);

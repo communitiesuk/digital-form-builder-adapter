@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "yarn babel-build && yarn babel-build:adapter && npm run package-json:copy && yarn static-content:dist-push && yarn scss:build",
+    "build": "yarn clean:build && yarn babel-build && yarn babel-build:adapter && npm run package-json:copy && yarn static-content:dist-push && yarn scss:build",
     "babel-build": "babel --config-file ../digital-form-builder/runner/.babelrc --extensions '.ts' ../digital-form-builder/runner/src -d dist/digital-form-builder/runner/src --copy-files -s inline",
     "babel-build:adapter": "babel --config-file ../runner/.babelrc --extensions '.ts' ../runner/src -d dist/digital-form-builder-adapter/runner --copy-files -s inline",
     "package-json:copy": "cp package.json dist/digital-form-builder/runner && cp package.json dist/digital-form-builder-adapter",
     "static-content:dist-push": "cp -r public/static dist/digital-form-builder/runner/public",
     "scss:build": "node compile-scss.js",
+    "clean:build": "rm -rf dist",
     "dev": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js"
   },
   "author": "Communities UK",
