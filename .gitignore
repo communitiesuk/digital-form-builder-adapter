@@ -33,6 +33,7 @@ docs/**/typedoc
 /queue-model/dist
 /queue-model/src/prisma/generated
 
+/digital-form-builder
 /digital-form-builder/*
 /digital-form-builder/runner/*
 /digital-form-builder/designer/*
