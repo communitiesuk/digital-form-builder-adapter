@@ -1,7 +1,14 @@
 #!/bin/bash
 
+echo "--  Git submodule initialize into local  --"
+git submodule update --init
+
 echo "--  Pulling git submodules into local  --"
 git pull --recurse-submodules
+
+echo "--  Installing digital-form-builder-adapter locally  --"
+node update-package.js
+yarn install
 
 echo "--  Building digital-form-builder-adapter locally  --"
 yarn setup
