@@ -16,9 +16,6 @@ import {
     StartPageController
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
 import {
-    SummaryPageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
-import {
     PageControllerBase
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
 import {
@@ -33,6 +30,7 @@ import {
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers/MultiStartPageController";
 import { ContinuePageController } from "./ContinuePageController";
 import { ConfirmPageController } from "./ConfirmPageController";
+import { SummaryPageController } from "./SummaryPageController";
 
 const PageControllers = {
     DobPageController,
