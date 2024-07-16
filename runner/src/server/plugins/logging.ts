@@ -1,5 +1,6 @@
 import config from "../../../../digital-form-builder/runner/src/server/config";
 import pino from "hapi-pino";
+
 export default {
   plugin: pino,
   options: {

@@ -30,7 +30,7 @@ import {
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers/MultiStartPageController";
 import { ContinuePageController } from "./ContinuePageController";
 import { ConfirmPageController } from "./ConfirmPageController";
-import { SummaryPageController } from "./SummaryPageController";
+import {AdapterSummaryPageController} from "./AdapterSummaryPageController";
 
 const PageControllers = {
     DobPageController,
@@ -40,7 +40,7 @@ const PageControllers = {
     PageController,
     StartDatePageController,
     StartPageController,
-    SummaryPageController,
+    AdapterSummaryPageController,
     PageControllerBase,
     RepeatingFieldPageController,
     UploadPageController,

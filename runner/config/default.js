@@ -1,9 +1,9 @@
 const nanoid = require("nanoid");
 const minute = 60 * 1000;
-const { deferConfig } = require("config/defer");
+const {deferConfig} = require("config/defer");
 const dotEnv = require("dotenv");
 if (process.env.NODE_ENV !== "test") {
-  dotEnv.config({ path: ".env" });
+  dotEnv.config({path: ".env"});
 }
 
 module.exports = {
@@ -129,7 +129,7 @@ module.exports = {
    */
   logLevel: "info", // Accepts "trace" | "debug" | "info" | "warn" |"error"
   logPrettyPrint: true,
-  logRedactPaths: ["req.headers['x-forwarded-for']"], // You should check your privacy policy before disabling this. Check https://getpino.io/#/docs/redaction on how to configure redaction paths
+  logRedactPaths: ["req.headers"], // You should check your privacy policy before disabling this. Check https://getpino.io/#/docs/redaction on how to configure redaction paths
 
   safelist: ["61bca17e-fe74-40e0-9c15-a901ad120eca.mock.pstmn.io"],
 

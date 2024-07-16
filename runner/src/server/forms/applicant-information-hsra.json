@@ -71,7 +71,7 @@
     {
       "title": "Check your answers",
       "path": "/summary",
-      "controller": "./pages/summary.js",
+      "controller": "./pages/adapterSummary.js",
       "components": [],
       "next": []
     }
@@ -85,6 +85,7 @@
   ],
   "conditions": [],
   "fees": [],
+  "outputs": [],
   "version": 2,
   "skipSummary": false,
   "name": "Apply for funding to cover the cost of delivering a high street rental auction"
