@@ -3,7 +3,7 @@ import {Page} from "@xgovformbuilder/model";
 import {
     PageControllerBase
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
-import {getPageController} from "../page-controllers/helpers";
+import {ControllerNameResolver} from "../page-controllers/ControllerNameResolver";
 
 export class AdapterFormModel extends FormModel {
 
@@ -16,7 +16,7 @@ export class AdapterFormModel extends FormModel {
      */
     makePage(pageDef: Page) {
         if (pageDef.controller) {
-            const PageController = getPageController(pageDef.controller);
+            const PageController = ControllerNameResolver.getPageController(pageDef.controller);
 
             if (!PageController) {
                 throw new Error(`PageController for ${pageDef.controller} not found`);

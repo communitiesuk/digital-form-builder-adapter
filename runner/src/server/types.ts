@@ -1,77 +1,78 @@
 import yar from "@hapi/yar";
 import {
-  Request,
-  ResponseToolkit,
-  Server,
-  ResponseObject,
-  Lifecycle,
+    Request,
+    ResponseToolkit,
+    Server,
+    ResponseObject,
+    Lifecycle,
 } from "@hapi/hapi";
-import { Logger } from "pino";
+import {Logger} from "pino";
 
-import { RateOptions } from "../../../digital-form-builder/runner/src/server/plugins/rateLimit";
+import {RateOptions} from "../../../digital-form-builder/runner/src/server/plugins/rateLimit";
 import {
-  CacheService,
-  NotifyService,
-  PayService,
-  StatusService,
-  UploadService,
-  WebhookService,
+    CacheService,
+    NotifyService,
+    PayService,
+    StatusService,
+    UploadService,
+    WebhookService,
 } from "../../../digital-form-builder/runner/src/server/services";
-import { QueueStatusService } from "../../../digital-form-builder/runner/src/server/services/queueStatusService";
-import { QueueService } from ".../../../digital-form-builder/runner/src/server/services/QueueService";
+import {QueueStatusService} from "../../../digital-form-builder/runner/src/server/services/queueStatusService";
+import {QueueService} from ".../../../digital-form-builder/runner/src/server/services/QueueService";
 
 type Services = (
-  services: string[]
+    services: string[]
 ) => {
-  cacheService: CacheService;
-  notifyService: NotifyService;
-  payService: PayService;
-  uploadService: UploadService;
-  webhookService: WebhookService;
-  statusService: StatusService;
-  queueService: QueueService;
-  queueStatusService: QueueStatusService;
+    cacheService: CacheService;
+    notifyService: NotifyService;
+    payService: PayService;
+    uploadService: UploadService;
+    webhookService: WebhookService;
+    statusService: StatusService;
+    queueService: QueueService;
+    queueStatusService: QueueStatusService;
 };
 
 export type RouteConfig = {
-  rateOptions?: RateOptions;
-  formFileName?: string;
-  formFilePath?: string;
-  enforceCsrf?: boolean;
+    rateOptions?: RateOptions;
+    formFileName?: string;
+    formFilePath?: string;
+    enforceCsrf?: boolean;
 };
 
 declare module "@hapi/hapi" {
-  // Here we are decorating Hapi interface types with
-  // props from plugins which doesn't export @types
-  interface Request {
-    services: Services; // plugin schmervice
-    i18n: {
-      // plugin locale
-      setLocale(lang: string): void;
-      getLocale(request: Request): void;
-      getDefaultLocale(): string;
-      getLocales(): string[];
-    };
-    logger: Logger;
-    yar: yar.Yar;
-  }
+    // Here we are decorating Hapi interface types with
+    // props from plugins which doesn't export @types
+    interface Request {
+        services: Services; // plugin schmervice
+        i18n: {
+            // plugin locale
+            setLocale(lang: string): void;
+            getLocale(request: Request): void;
+            getDefaultLocale(): string;
+            getLocales(): string[];
+        };
+        logger: Logger;
+        yar: yar.Yar;
+    }
 
-  interface Response {}
+    interface Response {
+    }
 
-  interface Server {
-    logger: Logger;
-    services: Services; // plugin schmervice
-    registerService: (services: any[]) => void; // plugin schmervice
-    yar: yar.ServerYar;
-  }
+    interface Server {
+        logger: Logger;
+        services: Services; // plugin schmervice
+        registerService: (services: any[]) => void; // plugin schmervice
+        yar: yar.ServerYar;
+    }
 
-  interface ResponseToolkit {
-    view: (viewName: string, data?: { [prop: string]: any }) => any; // plugin view
-  }
+    interface ResponseToolkit {
+        view: (viewName: string, data?: { [prop: string]: any }) => any; // plugin view
+    }
 
-  interface RequestApplicationState {
-    location: string;
-  }
+    interface RequestApplicationState {
+        location: string;
+    }
 }
 
 export type HapiRequest = Request;
