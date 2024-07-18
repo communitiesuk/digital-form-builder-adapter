@@ -99,11 +99,7 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(pluginPulse);
     await server.register(inert);
     await server.register(Scooter);
-    await server.register(
-        configureInitialiseSessionPlugin({
-            safelist: config.safelist,
-        })
-    );
+    await server.register(configureInitialiseSessionPlugin({safelist: config.safelist,}));
     // @ts-ignore
     await server.register(configureBlankiePlugin(config));
     // @ts-ignore
@@ -111,25 +107,16 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(Schmervice);
     await server.register(pluginAuth);
 
-    server.registerService([
-        CacheService,
-        NotifyService,
-        PayService,
-        WebhookService,
-        AddressService,
-    ]);
+    server.registerService([CacheService, NotifyService, PayService, WebhookService, AddressService]);
     if (!config.documentUploadApiUrl) {
-        server.registerService([
-            Schmervice.withName("uploadService", MockUploadService),
-        ]);
+        server.registerService([Schmervice.withName("uploadService", MockUploadService),]);
     } else {
         server.registerService([UploadService]);
     }
 
     if (config.enableQueueService) {
         const queueType = config.queueType;
-        const queueService =
-            queueType === "PGBOSS" ? PgBossQueueService : MySqlQueueService;
+        const queueService = queueType === "PGBOSS" ? PgBossQueueService : MySqlQueueService;
         server.registerService([
             Schmervice.withName("queueService", queueService),
             Schmervice.withName("statusService", QueueStatusService),
@@ -176,13 +163,12 @@ async function createServer(routeConfig: RouteConfig) {
         return h.continue;
     });
 
+
     await server.register(pluginLocale);
     // @ts-ignore
     await server.register(pluginViews);
-    console.log(` Form name: ${formFileName} Form path: ${formFilePath} Other options: ${options}`)
-    await server.register(// @ts-ignore
-        ConfigureFormsPlugin(formFileName, formFilePath, options)
-    );
+    // @ts-ignore
+    await server.register(ConfigureFormsPlugin(formFileName, formFilePath, options));
     await server.register(pluginApplicationStatus);
     await server.register(pluginRouter);
     await server.register(pluginErrorPages);

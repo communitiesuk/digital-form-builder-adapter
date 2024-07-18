@@ -55,8 +55,11 @@ export class ControllerNameResolver {
         const controllerName = isPath
             ? ControllerNameResolver.controllerNameFromPath(nameOrPath)
             : nameOrPath;
-
-        return ControllerNameResolver.pageControllers[controllerName ?? "PageControllerBase"];
+        let pageController = ControllerNameResolver.pageControllers[controllerName ?? "PageControllerBase"];
+        if (pageController == undefined) {
+            pageController = ControllerNameResolver.pageControllers["Adapter" + controllerName ?? "PageControllerBase"];
+        }
+        return pageController;
     };
 
 }

@@ -20,9 +20,7 @@ import {
 import {QueueStatusService} from "../../../digital-form-builder/runner/src/server/services/queueStatusService";
 import {QueueService} from ".../../../digital-form-builder/runner/src/server/services/QueueService";
 
-type Services = (
-    services: string[]
-) => {
+export type Services = (services: string[]) => {
     cacheService: CacheService;
     notifyService: NotifyService;
     payService: PayService;

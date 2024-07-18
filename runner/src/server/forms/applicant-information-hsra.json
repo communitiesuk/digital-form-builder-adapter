@@ -71,7 +71,7 @@
     {
       "title": "Check your answers",
       "path": "/summary",
-      "controller": "./pages/adapterSummary.js",
+      "controller": "./pages/summary.js",
       "components": [],
       "next": []
     }

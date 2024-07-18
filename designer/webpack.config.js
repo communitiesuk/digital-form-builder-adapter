@@ -21,7 +21,7 @@ const client = {
   watch: devMode,
   entry: {
     "digital-form-builder": path.resolve(__dirname, "../digital-form-builder/designer/client", "index.tsx"),
-    "digital-form-builder-adapter": path.resolve(__dirname, "client", "custom-index.tsx")
+    "digital-form-builder-adapter": path.resolve(__dirname, "client", "index.tsx")
   },
   output: {
     path: path.resolve(__dirname, "dist", "client"),
@@ -113,8 +113,8 @@ const client = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: "../digital-form-builder/designer/client/i18n/translations", to: "assets/translations" },
-        { from: "../digital-form-builder/designer/server/views", to: "views" },
+        {from: "../digital-form-builder/designer/client/i18n/translations", to: "assets/translations"},
+        {from: "../digital-form-builder/designer/server/views", to: "views"},
       ],
     }),
     new BundleAnalyzerPlugin({
@@ -124,10 +124,7 @@ const client = {
     }),
     reactEnvVariables,
   ],
-  externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
-  },
+  externals: {},
 };
 
 const server = {
