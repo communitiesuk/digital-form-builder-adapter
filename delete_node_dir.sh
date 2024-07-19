@@ -8,6 +8,15 @@ delete_node_modules() {
         rm -rf "$dir_to_delete"
     done
 }
+
+delete_build_dir() {
+    local dir="$1"
+    local dist_dirs=$(find "$dir" -type d -name "dist")
+    for dir_to_delete in $dist_dirs; do
+        echo "Deleting $dir_to_delete"
+        rm -rf "$dir_to_delete"
+    done
+}
 # Check if a directory is provided as an argument, otherwise use the current directory
 if [ $# -eq 1 ]; then
     directory="$1"
@@ -15,3 +24,4 @@ else
     directory="."
 fi
 delete_node_modules "$directory"
+delete_build_dir "$directory"

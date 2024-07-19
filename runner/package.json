@@ -16,7 +16,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "description": "Digital forms runner adapter",
   "dependencies": {
-    "joi": "17.2.1"
+    "joi": "17.13.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.3",

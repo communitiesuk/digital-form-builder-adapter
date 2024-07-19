@@ -1,7 +1,19 @@
 {
-  "baseUrl": ".",
-  "extends": "../digital-form-builder/model/tsconfig.json",
-  "paths": {
-    "*": ["node_modules/*", "../node_modules"]
-  }
+  "extends": "../tsconfig.json",
+  "baseUrl": "./src",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "composite": true,
+    "declaration": true,
+    "skipLibCheck": true
+  },
+  "include": ["./src"],
+  "exclude": [
+    "../node_modules",
+    "node_modules",
+    "**/*.test.ts",
+    "test-coverage",
+    "test-results"
+  ]
 }

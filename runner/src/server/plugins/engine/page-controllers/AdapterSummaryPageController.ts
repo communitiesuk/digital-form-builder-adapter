@@ -7,7 +7,9 @@ import {AdapterFormModel} from "../models/AdapterFormModel";
 export class AdapterSummaryPageController extends SummaryPageController {
 
     constructor(model: AdapterFormModel, pageDef: any) {
+        // @ts-ignore
         super(model, pageDef);
+        // @ts-ignore
         this.model = model;
     }
 

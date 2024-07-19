@@ -55,6 +55,7 @@
   "outputs": [],
   "version": 2,
   "skipSummary": false,
+  "markAsComplete": false,
   "name": "Apply for funding to cover the cost of delivering a high street rental auction",
   "feedback": {
     "feedbackForm": false,
