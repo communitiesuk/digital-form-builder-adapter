@@ -13,7 +13,6 @@ pluginViews.options.path = [
     `${path.join(__dirname, "engine", "views")}`,
     `${path.join(xGovFormsPath, "digital-form-builder/runner/src/server/views")}`,
     `${path.join(xGovFormsPath, "digital-form-builder/runner/src/server/plugins/engine/views")}`,
-    `${path.join(xGovFormsPath, "digital-form-builder/runner/src/server/plugins/engine/views")}`,
     `${path.dirname(resolve.sync("govuk-frontend", {basedir}))}`,
     `${path.dirname(resolve.sync("govuk-frontend", {basedir}))}/components`,
     `${path.dirname(resolve.sync("hmpo-components"))}/components`,
