@@ -235,8 +235,16 @@ export class AdapterFormModel {
         return parser.parse(conditions.toExpression());
     }
 
+    get conditionOptions() {
+        return {allowUnknown: true, presence: "required"};
+    }
+
     getList(name: string): List | [] {
         return this.lists.find((list) => list.name === name) ?? [];
+    }
+
+    getContextState(state: FormSubmissionState) {
+        return this.fieldsForContext.getFormDataFromState(state);
     }
 
     getRelevantPages(state: FormSubmissionState) {

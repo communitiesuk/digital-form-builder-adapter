@@ -18,8 +18,7 @@ import {
 import pluginLocale from "../../../digital-form-builder/runner/src/server/plugins/locale";
 import pluginSession from "../../../digital-form-builder/runner/src/server/plugins/session";
 import pluginAuth from "../../../digital-form-builder/runner/src/server/plugins/auth";
-import pluginViews from "../../../digital-form-builder/runner/src/server/plugins/views";
-import pluginApplicationStatus from "../../../digital-form-builder/runner/src/server/plugins/applicationStatus";
+import pluginApplicationStatus from "./plugins/engine/application-status";
 import pluginRouter from "../../../digital-form-builder/runner/src/server/plugins/router";
 import pluginErrorPages from "../../../digital-form-builder/runner/src/server/plugins/errorPages";
 import pluginLogging from "./plugins/logging";
@@ -41,6 +40,7 @@ import {pluginQueue} from "../../../digital-form-builder/runner/src/server/plugi
 import {QueueStatusService} from "../../../digital-form-builder/runner/src/server/services/queueStatusService";
 import {MySqlQueueService} from "../../../digital-form-builder/runner/src/server/services/mySqlQueueService";
 import {PgBossQueueService} from "../../../digital-form-builder/runner/src/server/services/pgBossQueueService";
+import {ViewLoaderPlugin} from "./plugins/ViewLoaderPlugin";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -166,7 +166,7 @@ async function createServer(routeConfig: RouteConfig) {
 
     await server.register(pluginLocale);
     // @ts-ignore
-    await server.register(pluginViews);
+    await server.register(ViewLoaderPlugin);
     // @ts-ignore
     await server.register(ConfigureFormsPlugin(formFileName, formFilePath, options));
     await server.register(pluginApplicationStatus);
