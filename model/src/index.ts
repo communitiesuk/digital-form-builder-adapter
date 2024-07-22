@@ -1,0 +1,1 @@
+export { AdapterSchema } from "./schema";

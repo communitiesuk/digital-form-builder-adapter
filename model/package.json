@@ -1,9 +1,15 @@
 {
   "name": "@communitiesuk/model",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "dist/module/index.js",
+  "browser": "./dist/browser/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "yarn run build:types && yarn run build:node && yarn run build:browser",
+    "build:types": "yarn run build:types:node && yarn run build:types:browser",
+    "build:types:node": "tsc --emitDeclarationOnly --declarationDir ./dist/module ",
+    "build:types:browser": "tsc --emitDeclarationOnly --declarationDir dist/browser ",
+    "build:node": "BABEL_ENV=node babel --extensions '.ts' src --out-dir dist/module",
+    "build:browser": "BABEL_ENV=browser babel --extensions '.ts' src --out-dir dist/browser"
   },
   "author": "Communities UK",
   "license": "SEE LICENSE IN LICENSE",

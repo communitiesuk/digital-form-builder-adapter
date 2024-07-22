@@ -7,5 +7,5 @@ export interface RegisterApi {
      * @param server hapi server instance
      * @param options
      */
-    register(server: HapiServer, options: Options): void;
+    register(server: HapiServer, options?: Options): void;
 }
