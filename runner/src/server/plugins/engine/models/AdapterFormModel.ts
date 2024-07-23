@@ -12,7 +12,6 @@ import {
 
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {
-    PageController,
     PageControllerBase
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
 import {
@@ -28,6 +27,7 @@ import {AdapterSchema} from "@communitiesuk/model";
 import {AdapterSummaryPageController} from "../page-controllers/AdapterSummaryPageController";
 import {ControllerNameResolver} from "../page-controllers/ControllerNameResolver";
 import {EvaluationContext} from "./EvaluationContext";
+import {DefaultPageController} from "../page-controllers/DefaultPageController";
 
 
 export class AdapterFormModel {
@@ -43,7 +43,6 @@ export class AdapterFormModel {
     options: any;
     name: any;
     values: any;
-    DefaultPageController: any = PageController;
     /** the id of the form used for the first url parameter eg localhost:3009/test */
     basePath: string;
     conditions: Record<string, ExecutableCondition> | {};
@@ -90,12 +89,6 @@ export class AdapterFormModel {
         this.options = options;
         this.name = def.name;
         this.values = result.value;
-
-        if (options.defaultPageController) {
-            this.DefaultPageController = ControllerNameResolver.getPageController(
-                options.defaultPageController
-            );
-        }
 
         this.basePath = options.basePath;
 
@@ -171,16 +164,9 @@ export class AdapterFormModel {
             if (!PageController) {
                 throw new Error(`PageController for ${pageDef.controller} not found`);
             }
-
             return new PageController(this, pageDef);
         }
-
-        if (this.DefaultPageController) {
-            const DefaultPageController = this.DefaultPageController;
-            return new DefaultPageController(this, pageDef);
-        }
-        // @ts-ignore
-        return new PageControllerBase(this, pageDef);
+        return new DefaultPageController(this, pageDef);
     }
 
     /**
