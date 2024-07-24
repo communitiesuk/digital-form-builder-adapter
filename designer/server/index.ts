@@ -1,10 +1,10 @@
 // @ts-ignore
-import { createServer } from "../../digital-form-builder/designer/server/createServer";
+import {createServer} from "./createServer";
 
 createServer()
-  .then((server) => server.start())
-  .then(() => process.send && process.send("online"))
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+    .then((server) => server.start())
+    .then(() => process.send && process.send("online"))
+    .catch((err) => {
+        console.error(err);
+        process.exit(1);
+    });

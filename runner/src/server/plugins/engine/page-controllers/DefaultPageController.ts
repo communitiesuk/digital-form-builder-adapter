@@ -19,7 +19,9 @@ export class DefaultPageController extends PageController {
             const {cacheService, statusService} = request.services([]);
             //@ts-ignore
             const state = await cacheService.getState(request);
-            state.metadata.isSummaryPageSubmit = false;
+            if (state.metadata) {
+                state.metadata.isSummaryPageSubmit = false;
+            }
             const model = this.model;
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request);
