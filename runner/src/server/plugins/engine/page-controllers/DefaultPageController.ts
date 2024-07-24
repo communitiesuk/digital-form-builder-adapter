@@ -29,8 +29,15 @@ export class DefaultPageController extends PageController {
             let relevantState = this.getConditionEvaluationContext(this.model, savedState);
             //@ts-ignore
             await cacheService.mergeState(request, {webhookData: summaryViewModel.validatedWebhookData,});
-            //@ts-ignore
-            await statusService.outputRequests(request);
+
+            const startPage = this.model.def.startPage;
+            const isStartPage = this.path === startPage;
+
+            if (!isStartPage) {
+                //@ts-ignore
+                await statusService.outputRequests(request);
+            }
+
             return this.proceed(request, h, relevantState);
         };
     }
