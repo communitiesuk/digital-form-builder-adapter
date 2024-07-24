@@ -67,6 +67,9 @@ export class AdapterSummaryPageController extends SummaryPageController {
             const model = this.model;
             //@ts-ignore
             const state = await cacheService.getState(request);
+            state.metadata.isSummaryPageSubmit = true;
+            //@ts-ignore
+            await cacheService.mergeState(request, { ...state });
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request);
             this.setFeedbackDetails(summaryViewModel, request);
