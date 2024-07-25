@@ -1,6 +1,4 @@
-import {
-    PageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
+import {PageController} from "./PageController";
 
 
 export class ContinuePageController extends PageController {

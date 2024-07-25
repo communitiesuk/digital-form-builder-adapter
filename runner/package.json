@@ -7,7 +7,7 @@
     "babel-build": "babel --config-file ../digital-form-builder/runner/.babelrc --extensions '.ts' ../digital-form-builder/runner/src -d dist/digital-form-builder/runner/src --copy-files -s inline",
     "babel-build:adapter": "babel --config-file ../runner/.babelrc --extensions '.ts' ../runner/src -d dist/digital-form-builder-adapter/runner --copy-files -s inline",
     "package-json:copy": "cp package.json dist/digital-form-builder/runner && cp package.json dist/digital-form-builder-adapter",
-    "static-content:dist-push": "cp -r public/static dist/digital-form-builder/runner/public",
+    "static-content:dist-push": "cp -r public/static dist/digital-form-builder-adapter/runner/public && cp -r ../digital-form-builder/runner/public/static dist/digital-form-builder-adapter/runner/public",
     "scss:build": "node compile-scss.js",
     "clean:build": "rm -rf dist",
     "dev": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js"
@@ -16,7 +16,8 @@
   "license": "SEE LICENSE IN LICENSE",
   "description": "Digital forms runner adapter",
   "dependencies": {
-    "joi": "17.13.3"
+    "joi": "17.13.3",
+    "tinymce": "^6.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.3",
