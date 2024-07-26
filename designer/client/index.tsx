@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Designer from "../../digital-form-builder/designer/client/designer";
 import {LandingChoice, NewConfig} from "../../digital-form-builder/designer/client/pages/LandingPage";
 import {SaveError} from "../../digital-form-builder/designer/client/pages/ErrorPages";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { ViewFundForms } from "./pages/LandingPage";
-import {initI18n} from "../../digital-form-builder/designer/client/i18n";
+import AdapterDesigner from "./AdapterDesigner";
+import {adapterInitI18n} from "./i18n";
 
-initI18n();
+adapterInitI18n();
 
 function NoMatch() {
     return <div>404 Not found</div>;
@@ -19,7 +19,7 @@ export class CustomApp extends React.Component {
             <Router basename="/app">
                 <div id="app">
                     <Switch>
-                        <Route path="/designer/:id" component={Designer}/>
+                        <Route path="/designer/:id" component={AdapterDesigner}/>
                         <Route path="/" exact>
                             <LandingChoice/>
                         </Route>

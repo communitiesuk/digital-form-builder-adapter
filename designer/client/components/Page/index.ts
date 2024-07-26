@@ -1,0 +1,1 @@
+export { AdapterPage } from "./AdapterPage";

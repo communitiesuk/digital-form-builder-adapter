@@ -1,6 +1,7 @@
-import {ComponentDef, ComponentTypes} from "@xgovformbuilder/model";
+import {ComponentTypes} from "@xgovformbuilder/model";
+import {AdapterComponentDef} from "./types";
 
-const NewComponents: ComponentDef[] = [
+const NewComponents: AdapterComponentDef[] = [
     {
         name: "FreeTextField",
         //@ts-ignore
@@ -13,4 +14,4 @@ const NewComponents: ComponentDef[] = [
     }
 ]
 
-export const AdapterComponentTypes: ComponentDef[] = [...ComponentTypes, ...NewComponents]
+export const AdapterComponentTypes: AdapterComponentDef[] = [...ComponentTypes, ...NewComponents]
