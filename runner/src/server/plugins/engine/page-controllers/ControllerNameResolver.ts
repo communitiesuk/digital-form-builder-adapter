@@ -1,44 +1,23 @@
 import path from "path";
 import {camelCase, upperFirst} from "lodash";
-import {
-    HomePageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
-import {
-    PageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
-import {
-    StartPageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
-import {
-    PageControllerBase
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
-import {
-    RepeatingFieldPageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers/RepeatingFieldPageController";
-import {Page} from "@xgovformbuilder/model";
-import {
-    UploadPageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers/UploadPageController";
-import {
-    MultiStartPageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers/MultiStartPageController";
 import {ContinuePageController} from "./ContinuePageController";
 import {ConfirmPageController} from "./ConfirmPageController";
-import {AdapterSummaryPageController} from "./AdapterSummaryPageController";
+import {SummaryPageController} from "./SummaryPageController";
+import {StartPageController} from "./StartPageController";
+import {PageController} from "./PageController";
+import {PageControllerBase} from "./PageControllerBase";
+import {AdapterPage} from "@communitiesuk/model";
 
 export class ControllerNameResolver {
 
     private static pageControllers = {
-        HomePageController,
         ContinuePageController,
         ConfirmPageController,
         PageController,
         StartPageController,
-        AdapterSummaryPageController,
+        AdapterSummaryPageController: SummaryPageController,
         PageControllerBase,
-        RepeatingFieldPageController,
-        UploadPageController,
-        MultiStartPageController
+        SummaryPageController,
     };
 
 
@@ -50,16 +29,12 @@ export class ControllerNameResolver {
     /**
      * Gets the class for the controller defined in a {@link Page}
      */
-    public static getPageController = (nameOrPath: Page["controller"]) => {
+    public static getPageController = (nameOrPath: AdapterPage["controller"]) => {
         const isPath = !!path.extname(nameOrPath);
         const controllerName = isPath
             ? ControllerNameResolver.controllerNameFromPath(nameOrPath)
             : nameOrPath;
-        let pageController = ControllerNameResolver.pageControllers[controllerName ?? "PageControllerBase"];
-        if (pageController == undefined) {
-            pageController = ControllerNameResolver.pageControllers["Adapter" + controllerName ?? "PageControllerBase"];
-        }
-        return pageController;
+        return ControllerNameResolver.pageControllers[controllerName ?? "PageControllerBase"];
     };
 
 }

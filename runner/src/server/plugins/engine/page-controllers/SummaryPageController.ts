@@ -1,6 +1,3 @@
-import {
-    SummaryPageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
 import {AdapterFormModel} from "../models/AdapterFormModel";
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
 import {AdapterSummaryViewModel} from "../models/AdapterSummaryViewModel";
@@ -8,9 +5,11 @@ import {redirectTo, redirectUrl} from "../../../../../../digital-form-builder/ru
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {FeesModel} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/models/submission";
 import config from "../../../../../../digital-form-builder/runner/src/server/config";
+import {PageController} from "./PageController";
+import {isMultipleApiKey} from "@xgovformbuilder/model";
 
 
-export class AdapterSummaryPageController extends SummaryPageController {
+export class SummaryPageController extends PageController {
 
     constructor(model: AdapterFormModel, pageDef: any) {
         // @ts-ignore
@@ -67,9 +66,11 @@ export class AdapterSummaryPageController extends SummaryPageController {
             const model = this.model;
             //@ts-ignore
             const state = await cacheService.getState(request);
-            state.metadata.isSummaryPageSubmit = true;
+            if (state.metadata) {
+                state.metadata.isSummaryPageSubmit = true;
+            }
             //@ts-ignore
-            await cacheService.mergeState(request, { ...state });
+            await cacheService.mergeState(request, {...state});
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request);
             this.setFeedbackDetails(summaryViewModel, request);
@@ -239,5 +240,17 @@ export class AdapterSummaryPageController extends SummaryPageController {
             return false;
         })[0];
         return {iteration, pageWithError};
+    }
+
+
+    get payApiKey(): string {
+        const modelDef = this.model.def;
+        //@ts-ignore
+        const payApiKey = modelDef.feeOptions?.payApiKey ?? def.payApiKey;
+
+        if (isMultipleApiKey(payApiKey)) {
+            return payApiKey[config.apiEnv] ?? payApiKey.test ?? payApiKey.production;
+        }
+        return payApiKey;
     }
 }

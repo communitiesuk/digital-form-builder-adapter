@@ -1,7 +1,7 @@
-import {PageController} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
 import {AdapterFormModel} from "../models/AdapterFormModel";
 import {AdapterSummaryViewModel} from "../models/AdapterSummaryViewModel";
+import {PageController} from "./PageController";
 
 export class DefaultPageController extends PageController {
 
@@ -19,7 +19,9 @@ export class DefaultPageController extends PageController {
             const {cacheService, statusService} = request.services([]);
             //@ts-ignore
             const state = await cacheService.getState(request);
-            state.metadata.isSummaryPageSubmit = false;
+            if (state.metadata) {
+                state.metadata.isSummaryPageSubmit = false;
+            }
             const model = this.model;
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request);
@@ -33,7 +35,7 @@ export class DefaultPageController extends PageController {
             const startPage = this.model.def.startPage;
             const isStartPage = this.path === startPage;
 
-            if (!isStartPage) {
+            if (!isStartPage && state.metadata && state.metadata.webhookData) {
                 //@ts-ignore
                 await statusService.outputRequests(request);
             }

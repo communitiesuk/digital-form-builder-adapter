@@ -4,7 +4,6 @@ import {Parser} from "expr-eval";
 import {
     clone,
     ConditionsModel,
-    FormDefinition,
     Page,
     ConditionRawData,
     List,
@@ -24,10 +23,11 @@ import {
     ContextComponentCollection
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/ContextComponentCollection";
 import {AdapterSchema} from "@communitiesuk/model";
-import {AdapterSummaryPageController} from "../page-controllers/AdapterSummaryPageController";
+import {SummaryPageController} from "../page-controllers/SummaryPageController";
 import {ControllerNameResolver} from "../page-controllers/ControllerNameResolver";
 import {EvaluationContext} from "./EvaluationContext";
 import {DefaultPageController} from "../page-controllers/DefaultPageController";
+import {AdapterFormDefinition} from "@communitiesuk/model";
 
 
 export class AdapterFormModel {
@@ -36,10 +36,10 @@ export class AdapterFormModel {
      */
 
     /** the entire form JSON as an object */
-    def: FormDefinition;
+    def: AdapterFormDefinition;
 
-    lists: FormDefinition["lists"];
-    sections: FormDefinition["sections"] = [];
+    lists: AdapterFormDefinition["lists"];
+    sections: AdapterFormDefinition["sections"] = [];
     options: any;
     name: any;
     values: any;
@@ -51,8 +51,8 @@ export class AdapterFormModel {
     pages: any;
     startPage: any;
 
-    feeOptions: FormDefinition["feeOptions"];
-    specialPages: FormDefinition["specialPages"];
+    feeOptions: AdapterFormDefinition["feeOptions"];
+    specialPages: AdapterFormDefinition["specialPages"];
 
     constructor(def, options) {
         //@ts-ignore
@@ -243,7 +243,7 @@ export class AdapterFormModel {
                 relevantPages.push(nextPage);
             } else if (
                 !nextPage.hasNext &&
-                !(nextPage instanceof AdapterSummaryPageController)
+                !(nextPage instanceof SummaryPageController)
             ) {
                 endPage = nextPage;
             }

@@ -6,7 +6,7 @@ async function compileScss() {
   try {
     console.log(`*** Start compiling scss files`);
     const nodeModulePath = path.join(__dirname.replace("runner", ""));
-    const compileCSSDirPath = path.join(__dirname, "dist/digital-form-builder/runner/public/build/stylesheets");
+    const compileCSSDirPath = path.join(__dirname, "dist/digital-form-builder-adapter/runner/public/build/stylesheets");
     const scssDirPath = path.join(__dirname, "src/client/sass");
     console.log(`*** Main Directory path [${__dirname}]`);
     console.log("*** node_modules path [" + nodeModulePath + "node_modules" + "]");

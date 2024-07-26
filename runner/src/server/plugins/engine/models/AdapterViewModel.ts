@@ -4,7 +4,7 @@ import {
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {HapiRequest} from "../../../../../../digital-form-builder/runner/src/server/types";
 import {AdapterFormModel} from "./AdapterFormModel";
-import {AdapterSummaryPageController} from "../page-controllers/AdapterSummaryPageController";
+import {SummaryPageController} from "../page-controllers/SummaryPageController";
 
 export class AdapterViewModel extends SummaryViewModel {
 
@@ -24,7 +24,7 @@ export class AdapterViewModel extends SummaryViewModel {
                 relevantPages.push(nextPage);
             } else if (
                 !nextPage.hasNext &&
-                !(nextPage instanceof AdapterSummaryPageController)
+                !(nextPage instanceof SummaryPageController)
             ) {
                 endPage = nextPage;
             }

@@ -1,0 +1,11 @@
+{% macro componentList(components) %}
+    {% for component in components %}
+        {% if component.type.toLowerCase() == 'freetextfield' %}
+            {% import "../components/" + component.type.toLowerCase() + ".html" as view with context %}
+            {{ view[component.type](component) }}
+        {% else %}
+            {% import "" + component.type.toLowerCase() + ".html" as view with context %}
+            {{ view[component.type](component) }}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}

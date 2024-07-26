@@ -1709,6 +1709,7 @@ __metadata:
     joi: 17.13.3
     prisma: ^5.1.1
     sass: ^1.49.9
+    tinymce: ^6.3.2
   languageName: unknown
   linkType: soft
 
@@ -19890,6 +19891,13 @@ __metadata:
   version: 1.0.3
   resolution: "tiny-warning@npm:1.0.3"
   checksum: da62c4acac565902f0624b123eed6dd3509bc9a8d30c06e017104bedcf5d35810da8ff72864400ad19c5c7806fc0a8323c68baf3e326af7cb7d969f846100d71
+  languageName: node
+  linkType: hard
+
+"tinymce@npm:^6.3.2":
+  version: 6.8.4
+  resolution: "tinymce@npm:6.8.4"
+  checksum: cfdec91cd88abe509c78a4e8bf8661f0a850e6c75b5dad3b97cf18974f46f93fcb612291d7aa63c28a1db08da259c35d20dbc5c79052d9567edb8101bde67986
   languageName: node
   linkType: hard
 
