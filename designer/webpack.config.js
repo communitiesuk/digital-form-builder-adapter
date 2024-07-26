@@ -15,6 +15,13 @@ const logLevel = process.env.REACT_LOG_LEVEL || (prodMode ? "warn" : "debug");
 const reactEnvVariables = new webpack.DefinePlugin({
   ["REACT_LOG_LEVEL"]: JSON.stringify(`${logLevel}`),
 });
+console.log("****************** building client ******************")
+console.log(`application entry : [${path.resolve(__dirname, "../digital-form-builder/designer/client", "index.tsx")}]\n`)
+console.log(`adapter application entry : [${path.resolve(__dirname, "client", "index.tsx")}]\n`)
+console.log(`application output : [${path.resolve(__dirname, "dist", "client")}]\n`)
+console.log(`application node_modules : [${path.resolve(__dirname, "../digital-form-builder/node_modules")}]\n`)
+console.log(`adapter application node_modules : [${path.resolve(__dirname, "../digital-form-builder-adapter/node_modules")}\n]`)
+
 const client = {
   target: "web",
   mode: environment,
@@ -31,7 +38,8 @@ const client = {
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
     modules: [
-      path.resolve(__dirname, "../digital-form-builder/node_modules")
+      path.resolve(__dirname, "../digital-form-builder/node_modules"),
+      path.resolve(__dirname, "../node_modules")
     ],
   },
   node: {
@@ -113,7 +121,7 @@ const client = {
     }),
     new CopyPlugin({
       patterns: [
-        {from: "../digital-form-builder/designer/client/i18n/translations", to: "assets/translations"},
+        {from: "../designer/client/i18n/translations", to: "assets/translations"},
         {from: "../digital-form-builder/designer/server/views", to: "views"},
       ],
     }),
@@ -126,19 +134,22 @@ const client = {
   ],
   externals: {},
 };
-
+console.log("****************** building server ******************")
 const server = {
   target: "node",
   mode: environment,
   watch: devMode,
-  entry: path.resolve(__dirname, "../digital-form-builder/designer/server", "index.ts"),
+  entry: path.resolve(__dirname, "../designer/server", "index.ts"),
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "server.js",
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
-    modules: [path.resolve(__dirname, "../digital-form-builder/node_modules")],
+    modules: [
+      path.resolve(__dirname, "../digital-form-builder/node_modules"),
+      path.resolve(__dirname, "../node_modules")
+    ],
   },
   node: {
     __dirname: false,
@@ -157,7 +168,10 @@ const server = {
   },
   externals: [
     nodeExternals({
-      modulesDir: path.resolve(__dirname, "../digital-form-builder/node_modules")
+      modulesDir: path.resolve(__dirname, "../digital-form-builder/node_modules"),
+    }),
+    nodeExternals({
+      modulesDir: path.resolve(__dirname, "../digital-form-builder-adapter/node_modules"),
     }),
   ],
 };
