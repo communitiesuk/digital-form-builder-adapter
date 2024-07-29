@@ -38,7 +38,6 @@ const client = {
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
     modules: [
-      path.resolve(__dirname, "../digital-form-builder/node_modules"),
       path.resolve(__dirname, "../node_modules")
     ],
   },
@@ -147,7 +146,6 @@ const server = {
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
     modules: [
-      path.resolve(__dirname, "../digital-form-builder/node_modules"),
       path.resolve(__dirname, "../node_modules")
     ],
   },
