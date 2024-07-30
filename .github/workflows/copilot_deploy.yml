@@ -114,7 +114,7 @@ jobs:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     with:
       environment: dev
-      app_name: "form-runner"
+      app_name: "form-runner-adapter"
       version: sha-${{ github.sha }}
 
   post_dev_deploy_tests:
@@ -145,7 +145,7 @@ jobs:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     with:
       environment: "test"
-      app_name: "form-runner"
+      app_name: "form-runner-adapter"
       version: sha-${{ github.sha }}
 
   post_test_deploy_tests:
@@ -185,7 +185,7 @@ jobs:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     with:
       environment: "uat"
-      app_name: "form-runner"
+      app_name: "form-runner-adapter"
       version: sha-${{ github.sha }}
 
   post_uat_deploy_tests:
@@ -234,5 +234,5 @@ jobs:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     with:
       environment: "prod"
-      app_name: "form-runner"
+      app_name: "form-runner-adapter"
       version: sha-${{ github.sha }}
