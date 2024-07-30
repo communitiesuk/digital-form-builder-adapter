@@ -4,7 +4,9 @@
   "main": "server/index.ts",
   "scripts": {
     "dev": "yarn start:local",
+    "production": "yarn start:prod",
     "build": "NODE_ENV=production webpack",
+    "start:prod": "NODE_ENV=production nodemon dist/server.js",
     "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect --respawn --transpile-only server/index.ts"
   },
   "author": "Communities UK",

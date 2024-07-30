@@ -1,14 +1,14 @@
 import hapi from "@hapi/hapi";
 import inert from "@hapi/inert";
 import Scooter from "@hapi/scooter";
-import logging from "../../../digital-form-builder/designer/server/plugins/logging";
-import router from "../../../digital-form-builder/designer/server/plugins/router";
-import {viewPlugin} from "../../../digital-form-builder/designer/server/plugins/view";
+import logging from "../../digital-form-builder/designer/server/plugins/logging";
+import router from "../../digital-form-builder/designer/server/plugins/router";
+import {viewPlugin} from "../../digital-form-builder/designer/server/plugins/view";
 import Schmervice from "schmervice";
-import config from "../../../digital-form-builder/designer/server/config";
-import {determinePersistenceService} from "../../../digital-form-builder/designer/server/lib/persistence";
-import {configureBlankiePlugin} from "../../../digital-form-builder/designer/server/plugins/blankie";
-import {configureYarPlugin} from "../../../digital-form-builder/designer/server/plugins/session";
+import config from "../../digital-form-builder/designer/server/config";
+import {determinePersistenceService} from "../../digital-form-builder/designer/server/lib/persistence";
+import {configureBlankiePlugin} from "../../digital-form-builder/designer/server/plugins/blankie";
+import {configureYarPlugin} from "../../digital-form-builder/designer/server/plugins/session";
 import {designerPlugin} from "./plugins/DesignerRouteRegister";
 
 const serverOptions = () => {

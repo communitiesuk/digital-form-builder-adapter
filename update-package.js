@@ -30,4 +30,4 @@ console.log('runner package.json updated successfully model:['
 
 // Write package.json back to file
 fs.writeFileSync(packageModelPath, JSON.stringify(packageJsonModel, null, 2));
-console.log('model package.json updated successfully joi:[' + packageJsonModel.version + ']');
+console.log('model package.json updated successfully joi:[' +  packageAdapterRunnerJson.dependencies.joi + ']');
