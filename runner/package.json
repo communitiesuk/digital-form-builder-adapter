@@ -10,7 +10,8 @@
     "static-content:dist-push": "cp -r public/static dist/digital-form-builder-adapter/runner/public && cp -r ../digital-form-builder/runner/public/static dist/digital-form-builder-adapter/runner/public",
     "scss:build": "node compile-scss.js",
     "clean:build": "rm -rf dist",
-    "dev": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js"
+    "dev": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js",
+    "production": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js"
   },
   "author": "Communities UK",
   "license": "SEE LICENSE IN LICENSE",
