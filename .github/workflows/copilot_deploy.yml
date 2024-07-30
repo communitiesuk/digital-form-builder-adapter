@@ -97,7 +97,7 @@ jobs:
           tags: ${{ steps.metadata.outputs.tags}}
           labels: ${{ steps.metadata.outputs.labels }}
           push: true
-          file: ./fsd_config/Dockerfile
+          file: ./runner/Dockerfile
           build-args: |
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'
