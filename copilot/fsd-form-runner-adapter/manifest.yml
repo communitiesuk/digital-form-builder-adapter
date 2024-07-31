@@ -1,7 +1,7 @@
 # The manifest for the "form-runner" service.
 # Read the full specification for the "Load Balanced Web Service" type at:
 #  https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/
-name: "fsd-form-runner"
+name: "fsd-form-runner-adapter"
 type: "Load Balanced Web Service"
 
 # Distribute traffic to your service.
