@@ -1,12 +1,13 @@
 import {AdapterFormModel} from "../models/AdapterFormModel";
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
 import {AdapterSummaryViewModel} from "../models/AdapterSummaryViewModel";
-import {redirectTo, redirectUrl} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
+import {redirectUrl} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {FeesModel} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/models/submission";
 import {PageController} from "./PageController";
 import {isMultipleApiKey} from "@xgovformbuilder/model";
 import {config} from "../../utils/AdapterConfigurationSchema";
+import {redirectTo} from "../util/helper";
 
 
 export class SummaryPageController extends PageController {
@@ -22,7 +23,7 @@ export class SummaryPageController extends PageController {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             this.langFromRequest(request);
 
-            const {cacheService} = request.services([]);
+            const {adapterCacheService} = request.services([]);
             const model = this.model;
 
             // @ts-ignore - ignoring so docs can be generated. Remove when properly typed
@@ -30,7 +31,7 @@ export class SummaryPageController extends PageController {
                 return this.makePostRouteHandler()(request, h);
             }
             //@ts-ignore
-            const state = await cacheService.getState(request);
+            const state = await adapterCacheService.getState(request);
             //@ts-ignore
             const viewModel = new AdapterSummaryViewModel(this.title, model, state, request);
             if (viewModel.endPage) {
@@ -62,15 +63,15 @@ export class SummaryPageController extends PageController {
     makePostRouteHandler() {
 
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
-            const {payService, cacheService} = request.services([]);
+            const {payService, adapterCacheService} = request.services([]);
             const model = this.model;
             //@ts-ignore
-            const state = await cacheService.getState(request);
+            const state = await adapterCacheService.getState(request);
             if (state.metadata) {
                 state.metadata.isSummaryPageSubmit = true;
             }
             //@ts-ignore
-            await cacheService.mergeState(request, {...state});
+            await adapterCacheService.mergeState(request, {...state});
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request);
             this.setFeedbackDetails(summaryViewModel, request);
@@ -125,14 +126,14 @@ export class SummaryPageController extends PageController {
 
             // merge the changes into state and update status of the form section
             //@ts-ignore
-            await cacheService.mergeState(request,
+            await adapterCacheService.mergeState(request,
                 {outputs: summaryViewModel.outputs, userCompletedSummary: true,});
 
             request.logger.info(["Webhook data", "before send", request.yar.id],
                 JSON.stringify(summaryViewModel.validatedWebhookData));
 
             //@ts-ignore
-            await cacheService.mergeState(request, {
+            await adapterCacheService.mergeState(request, {
                 webhookData: summaryViewModel.validatedWebhookData,
             });
 
@@ -174,10 +175,10 @@ export class SummaryPageController extends PageController {
 
             request.yar.set("basePath", model.basePath);
             //@ts-ignore
-            await cacheService.mergeState(request, payState);
+            await adapterCacheService.mergeState(request, payState);
             summaryViewModel.webhookDataPaymentReference = res.reference;
             //@ts-ignore
-            await cacheService.mergeState(request, {webhookData: summaryViewModel.validatedWebhookData,});
+            await adapterCacheService.mergeState(request, {webhookData: summaryViewModel.validatedWebhookData,});
 
 
             const payRedirectUrl = payState.pay.next_url;
@@ -187,11 +188,11 @@ export class SummaryPageController extends PageController {
             if (skipPayment === "true" && showPaymentSkippedWarningPage) {
                 payState.pay.meta.attempts = 0;
                 //@ts-ignore
-                await cacheService.mergeState(request, payState);
+                await adapterCacheService.mergeState(request, payState);
                 return h.redirect(`/${request.params.id}/status/payment-skip-warning`).takeover();
             }
             //@ts-ignore
-            await cacheService.mergeState(request, payState);
+            await adapterCacheService.mergeState(request, payState);
             return h.redirect(payRedirectUrl);
         };
     }

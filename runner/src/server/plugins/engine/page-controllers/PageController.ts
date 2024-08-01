@@ -42,9 +42,9 @@ export class PageController extends PageControllerBase {
             ext: {
                 onPreHandler: {
                     method: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                        const {uploadService} = request.services([]);
+                        const {adapterUploadService} = request.services([]);
                         //@ts-ignore
-                        return uploadService.handleUploadRequest(request, h, this.pageDef);
+                        return adapterUploadService.handleUploadRequest(request, h, this.pageDef);
                     },
                 },
                 onPostHandler: {

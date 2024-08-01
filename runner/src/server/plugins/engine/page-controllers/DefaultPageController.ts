@@ -16,9 +16,9 @@ export class DefaultPageController extends PageController {
             if (response?.source?.context?.errors) {
                 return response;
             }
-            const {cacheService, statusService} = request.services([]);
+            const {adapterCacheService, adapterStatusService} = request.services([]);
             //@ts-ignore
-            const state = await cacheService.getState(request);
+            const state = await adapterCacheService.getState(request);
             if (state.metadata) {
                 state.metadata.isSummaryPageSubmit = false;
             }
@@ -26,18 +26,18 @@ export class DefaultPageController extends PageController {
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request);
             //@ts-ignore
-            const savedState = await cacheService.getState(request);
+            const savedState = await adapterCacheService.getState(request);
             //This is required to ensure we don't navigate to an incorrect page based on stale state values
             let relevantState = this.getConditionEvaluationContext(this.model, savedState);
             //@ts-ignore
-            await cacheService.mergeState(request, {webhookData: summaryViewModel.validatedWebhookData,});
+            await adapterCacheService.mergeState(request, {webhookData: summaryViewModel.validatedWebhookData,});
 
             const startPage = this.model.def.startPage;
             const isStartPage = this.path === startPage;
 
             if (!isStartPage && state.metadata && state.metadata.webhookData) {
                 //@ts-ignore
-                await statusService.outputRequests(request);
+                await adapterStatusService.outputRequests(request);
             }
 
             return this.proceed(request, h, relevantState);

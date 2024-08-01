@@ -10,23 +10,23 @@ import {Logger} from "pino";
 
 import {RateOptions} from "../../../digital-form-builder/runner/src/server/plugins/rateLimit";
 import {
-    CacheService,
     NotifyService,
     PayService,
-    StatusService,
-    UploadService,
     WebhookService,
 } from "../../../digital-form-builder/runner/src/server/services";
 import {QueueStatusService} from "../../../digital-form-builder/runner/src/server/services/queueStatusService";
 import {QueueService} from ".../../../digital-form-builder/runner/src/server/services/QueueService";
+import {AdapterCacheService} from "./services";
+import {AdapterStatusService} from "./services";
+import {AdapterUploadService} from "./services";
 
 export type Services = (services: string[]) => {
-    cacheService: CacheService;
+    adapterCacheService: AdapterCacheService;
     notifyService: NotifyService;
     payService: PayService;
-    uploadService: UploadService;
+    adapterUploadService: AdapterUploadService;
     webhookService: WebhookService;
-    statusService: StatusService;
+    adapterStatusService: AdapterStatusService;
     queueService: QueueService;
     queueStatusService: QueueStatusService;
 };

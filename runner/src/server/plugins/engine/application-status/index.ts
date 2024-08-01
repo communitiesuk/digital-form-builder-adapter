@@ -18,13 +18,13 @@ const index = {
                         preHandlers.checkUserCompletedSummary,
                     ],
                     handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                        const {statusService, cacheService} = request.services([]);
+                        const {adapterStatusService, adapterCacheService} = request.services([]);
                         const {params} = request;
                         const form = server.app.forms[params.id];
                         //@ts-ignore
-                        const state = await cacheService.getState(request);
+                        const state = await adapterCacheService.getState(request);
                         //@ts-ignore
-                        const {reference: newReference} = await statusService.outputRequests(request);
+                        const {reference: newReference} = await adapterStatusService.outputRequests(request);
 
                         if (state.callback?.skipSummary?.redirectUrl || state.callback?.returnUrl) {
                             let redirectUrl = state.callback?.skipSummary?.redirectUrl;
@@ -37,18 +37,18 @@ const index = {
                                 to ${redirectUrl} and clearing state`
                             );
                             //@ts-ignore
-                            await cacheService.setConfirmationState(request, {redirectUrl,});
+                            await adapterCacheService.setConfirmationState(request, {redirectUrl,});
                             //@ts-ignore
-                            await cacheService.clearState(request);
+                            await adapterCacheService.clearState(request);
 
                             return h.redirect(redirectUrl);
                         }
 
-                        const viewModel = statusService.getViewModel(state, form, newReference);
+                        const viewModel = adapterStatusService.getViewModel(state, form, newReference);
                         //@ts-ignore
-                        await cacheService.setConfirmationState(request, {confirmation: viewModel,});
+                        await adapterCacheService.setConfirmationState(request, {confirmation: viewModel,});
                         //@ts-ignore
-                        await cacheService.clearState(request);
+                        await adapterCacheService.clearState(request);
                         return h.view("confirmation", viewModel);
                     },
                 },

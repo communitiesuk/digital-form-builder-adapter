@@ -2,10 +2,10 @@ import {RegisterApi} from "./RegisterApi";
 import {HapiRequest, HapiResponseToolkit} from "../../../../../../digital-form-builder/runner/src/server/types";
 import Joi from "joi";
 import getRequestInfo from "../../../../../../digital-form-builder/runner/src/server/utils/getRequestInfo";
-import {redirectTo} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {healthCheckRoute} from "../../../../../../digital-form-builder/runner/src/server/routes";
 import path from "path";
 import {config} from "../../utils/AdapterConfigurationSchema";
+import {redirectTo} from "../util/helper";
 
 enum CookieValue {
     Accept = "accept",
@@ -149,6 +149,7 @@ export class RegisterPublicApi implements RegisterApi {
                     request.yar.reset();
                 }
                 const {redirect} = request.query;
+                //@ts-ignore
                 return redirectTo(request, h, (redirect as string) || "/");
             },
         });

@@ -1,6 +1,6 @@
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
 import {AdapterFormModel} from "../models/AdapterFormModel";
-import {redirectTo} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
+import {redirectTo} from "./helper";
 
 export class PluginUtil {
 

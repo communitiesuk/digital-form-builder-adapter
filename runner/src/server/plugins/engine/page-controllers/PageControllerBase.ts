@@ -5,9 +5,7 @@ import {
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers/validationOptions";
 
 import {
-    feedbackReturnInfoKey,
-    proceed,
-    redirectTo
+    feedbackReturnInfoKey
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
 import {
     decodeFeedbackContextInfo,
@@ -33,6 +31,7 @@ import nunjucks from "nunjucks";
 import {AdapterFormModel} from "../models/AdapterFormModel";
 import {ComponentCollection} from "../components/ComponentCollection";
 import {config} from "../../utils/AdapterConfigurationSchema";
+import {proceed, redirectTo} from "../util/helper";
 
 const FORM_SCHEMA = Symbol("FORM_SCHEMA");
 const STATE_SCHEMA = Symbol("STATE_SCHEMA");
@@ -443,10 +442,10 @@ export class PageControllerBase {
 
     makeGetRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
-            const {cacheService} = request.services([]);
+            const {adapterCacheService} = request.services([]);
             const lang = this.langFromRequest(request);
             //@ts-ignore
-            const state = await cacheService.getState(request);
+            const state = await adapterCacheService.getState(request);
             const progress = state.progress || [];
             const {num} = request.query;
             const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
@@ -545,7 +544,7 @@ export class PageControllerBase {
                 }
             }
             //@ts-ignore
-            await cacheService.mergeState(request, {progress});
+            await adapterCacheService.mergeState(request, {progress});
 
             viewModel.backLink =
                 progress[progress.length - 2] ?? this.backLinkFallback;
@@ -569,13 +568,13 @@ export class PageControllerBase {
             modifyUpdate?: <T>(value: T) => any;
         } = {}
     ) {
-        const {cacheService} = request.services([]);
+        const {adapterCacheService} = request.services([]);
         const hasFilesizeError = request.payload === null;
         const preHandlerErrors = request.pre.errors;
         const payload = (request.payload || {}) as FormData;
         const formResult: any = this.validateForm(payload);
         //@ts-ignore
-        const state = await cacheService.getState(request);
+        const state = await adapterCacheService.getState(request);
         const originalFilenames = (state || {}).originalFilenames || {};
         const fileFields = this.getViewModel(formResult)
             .components.filter((component) => component.type === "FileUploadField")
@@ -624,7 +623,7 @@ export class PageControllerBase {
             update = modifyUpdate(update);
         }
         //@ts-ignore
-        await cacheService.mergeState(request, update, nullOverride, arrayMerge);
+        await adapterCacheService.mergeState(request, update, nullOverride, arrayMerge);
     }
 
     private validatingForErrors(hasFilesizeError: boolean, fileFields, formResult: any, preHandlerErrors) {
@@ -681,9 +680,9 @@ export class PageControllerBase {
             if (response?.source?.context?.errors) {
                 return response;
             }
-            const {cacheService} = request.services([]);
+            const {adapterCacheService} = request.services([]);
             //@ts-ignore
-            const savedState = await cacheService.getState(request);
+            const savedState = await adapterCacheService.getState(request);
             //This is required to ensure we don't navigate to an incorrect page based on stale state values
             let relevantState = this.getConditionEvaluationContext(
                 this.model,
