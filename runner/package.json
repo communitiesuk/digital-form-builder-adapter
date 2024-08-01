@@ -7,7 +7,7 @@
     "babel-build": "babel --config-file ../digital-form-builder/runner/.babelrc --extensions '.ts' ../digital-form-builder/runner/src -d dist/digital-form-builder/runner/src --copy-files -s inline",
     "babel-build:adapter": "babel --config-file ../runner/.babelrc --extensions '.ts' ../runner/src -d dist/digital-form-builder-adapter/runner --copy-files -s inline",
     "package-json:copy": "cp package.json dist/digital-form-builder/runner && cp package.json dist/digital-form-builder-adapter",
-    "static-content:dist-push": "cp -r public/static dist/digital-form-builder-adapter/runner/public && cp -r ../digital-form-builder/runner/public/static dist/digital-form-builder-adapter/runner/public",
+    "static-content:dist-push": "mkdir -p dist/digital-form-builder-adapter/runner/public/static && cp -r ../digital-form-builder/runner/public/static dist/digital-form-builder-adapter/runner/public",
     "scss:build": "node compile-scss.js",
     "clean:build": "rm -rf dist",
     "dev": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js",
@@ -35,6 +35,7 @@
     "@types/hoek": "^4.1.4",
     "babel-eslint": "^10.1.0",
     "babel-plugin-module-name-mapper": "^1.2.0",
+    "hapi-auth-jwt2": "10.2.0",
     "prisma": "^5.1.1",
     "sass": "^1.49.9"
   },

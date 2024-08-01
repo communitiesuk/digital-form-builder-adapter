@@ -43,7 +43,7 @@ on:
 
 env:
   DOCKER_REGISTRY: ghcr.io
-  IMAGE_NAME: "funding-service-design-adapter-form-runner"
+  IMAGE_NAME: "funding-service-design-form-runner-adapter"
   IMAGE_REPO_PATH: "ghcr.io/${{github.repository_owner}}"
 
 jobs:
