@@ -1,9 +1,9 @@
 const nanoid = require("nanoid");
 const minute = 60 * 1000;
-const { deferConfig } = require("config/defer");
+const {deferConfig} = require("config/defer");
 const dotEnv = require("dotenv");
 if (process.env.NODE_ENV !== "test") {
-  dotEnv.config({ path: ".env" });
+  dotEnv.config({path: ".env"});
 }
 
 module.exports = {
@@ -117,8 +117,11 @@ module.exports = {
   // authClientAuthUrl: "", // oAuth client secret
   // authClientTokenUrl: "", // oAuth client token endpoint
   // authClientProfileUrl: "" // oAuth client user profile endpoint
+  jwtAuthEnabled: true,
+  jwtAuthCookieName: "fsd_user_token",
+  jwtRedirectToAuthenticationUrl: "http://localhost:3004/sessions/sign-out",
   logoutUrl: "/logout",
-  multifundDashboard: "/account", //This is used to to redirect to the multifund dashboard
+  multifundDashboard: "/account", //This is used to redirect to the multifund dashboard
   basicAuthOn: false,
   overwriteInitialisedSession: true,
 

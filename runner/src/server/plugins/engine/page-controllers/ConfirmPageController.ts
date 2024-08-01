@@ -1,7 +1,7 @@
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
 import {redirectTo} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
-import config from "../../../../../../digital-form-builder/runner/src/server/config";
 import {PageController} from "./PageController";
+import {config} from "../../utils/AdapterConfigurationSchema";
 
 export class ConfirmPageController extends PageController {
     // Controller to add confirm and continue button

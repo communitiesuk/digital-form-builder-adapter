@@ -29,10 +29,10 @@ import {
     ComponentCollectionViewModel
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/types";
 import {format, parseISO} from "date-fns";
-import config from "../../../../../../digital-form-builder/runner/src/server/config";
 import nunjucks from "nunjucks";
 import {AdapterFormModel} from "../models/AdapterFormModel";
 import {ComponentCollection} from "../components/ComponentCollection";
+import {config} from "../../utils/AdapterConfigurationSchema";
 
 const FORM_SCHEMA = Symbol("FORM_SCHEMA");
 const STATE_SCHEMA = Symbol("STATE_SCHEMA");

@@ -5,7 +5,6 @@ import Scooter from "@hapi/scooter";
 import inert from "@hapi/inert";
 import Schmervice from "schmervice";
 import blipp from "blipp";
-import config from "../../../digital-form-builder/runner/src/server/config";
 
 import {ConfigureFormsPlugin} from "./plugins/ConfigureFormsPlugin";
 import {configureRateLimitPlugin} from "../../../digital-form-builder/runner/src/server/plugins/rateLimit";
@@ -17,9 +16,8 @@ import {
 
 import pluginLocale from "../../../digital-form-builder/runner/src/server/plugins/locale";
 import pluginSession from "../../../digital-form-builder/runner/src/server/plugins/session";
-import pluginAuth from "../../../digital-form-builder/runner/src/server/plugins/auth";
+import pluginAuth from "./plugins/engine/Auth";
 import pluginApplicationStatus from "./plugins/engine/application-status";
-import pluginErrorPages from "../../../digital-form-builder/runner/src/server/plugins/errorPages";
 import pluginPulse from "../../../digital-form-builder/runner/src/server/plugins/pulse";
 import {
     AddressService,
@@ -41,6 +39,8 @@ import {PgBossQueueService} from "../../../digital-form-builder/runner/src/serve
 import {ViewLoaderPlugin} from "./plugins/ViewLoaderPlugin";
 import {pluginLog} from "./plugins/logging";
 import publicRouterPlugin from "./plugins/engine/PublicRouterPlugin";
+import {config} from "./plugins/utils/AdapterConfigurationSchema";
+import errorHandlerPlugin from "./plugins/ErrorHandlerPlugin";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -171,7 +171,7 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(ConfigureFormsPlugin(formFileName, formFilePath, options));
     await server.register(pluginApplicationStatus);
     await server.register(publicRouterPlugin);
-    await server.register(pluginErrorPages);
+    await server.register(errorHandlerPlugin);
     await server.register(blipp);
 
     server.state("cookies_policy", {

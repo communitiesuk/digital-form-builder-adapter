@@ -4,9 +4,9 @@ import {AdapterSummaryViewModel} from "../models/AdapterSummaryViewModel";
 import {redirectTo, redirectUrl} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {FeesModel} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/models/submission";
-import config from "../../../../../../digital-form-builder/runner/src/server/config";
 import {PageController} from "./PageController";
 import {isMultipleApiKey} from "@xgovformbuilder/model";
+import {config} from "../../utils/AdapterConfigurationSchema";
 
 
 export class SummaryPageController extends PageController {

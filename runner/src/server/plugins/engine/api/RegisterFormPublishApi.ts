@@ -3,15 +3,15 @@ import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
 import {Options} from "../types/PluginOptions";
 import {FormPayload} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import Boom from "boom";
-import config from "../../../../../../digital-form-builder/runner/src/server/config";
 import {AdapterFormModel} from "../models/AdapterFormModel";
 import {FormConfiguration} from "@xgovformbuilder/model";
 import {PluginUtil} from "../util/PluginUtil";
 import {
     getValidStateFromQueryParameters
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
-import {shouldLogin} from "../../../../../../digital-form-builder/runner/src/server/plugins/auth";
 import {PluginSpecificConfiguration} from "@hapi/hapi";
+import {jwtAuthStrategyName, shouldLogin} from "../Auth";
+import {config} from "../../utils/AdapterConfigurationSchema";
 
 
 export class RegisterFormPublishApi implements RegisterApi {
@@ -201,7 +201,8 @@ export class RegisterFormPublishApi implements RegisterApi {
                     {
                         method: queryParamPreHandler
                     }
-                ]
+                ],
+                auth: jwtAuthStrategyName,
             },
             handler: (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {path, id} = request.params;
@@ -211,13 +212,9 @@ export class RegisterFormPublishApi implements RegisterApi {
                 );
                 if (page) {
                     // NOTE: Start pages should live on gov.uk, but this allows prototypes to include signposting about having to log in.
-                    if (
-                        page.pageDef.controller !== "./pages/start.js" &&
-                        shouldLogin(request)
-                    ) {
+                    if (page.pageDef.controller !== "./pages/start.js" && shouldLogin(request)) {
                         return h.redirect(`/login?returnUrl=${request.path}`);
                     }
-
                     return page.makeGetRouteHandler()(request, h);
                 }
                 if (PluginUtil.normalisePath(path) === "") {
@@ -280,7 +277,8 @@ export class RegisterFormPublishApi implements RegisterApi {
                     }
                 },
                 pre: [{method: handleFiles}],
-                handler: postHandler
+                handler: postHandler,
+                auth: jwtAuthStrategyName,
             }
         });
 
