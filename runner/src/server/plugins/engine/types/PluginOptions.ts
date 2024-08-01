@@ -4,4 +4,5 @@ export type Options = {
     configs: any[];
     previewMode: boolean;
     forms?: any;
+    safelist?: any;
 };

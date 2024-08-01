@@ -6,9 +6,10 @@ import {idFromFilename} from "../../../../digital-form-builder/runner/src/server
 import {
     FormConfiguration
 } from "../../../../../digital-form-builder/runner/src/server/plugins/engine/services/configurationService";
-import config from "../../../../digital-form-builder/runner/src/server/config";
+
 import {EngineOptions} from "./engine/types/EngineOptions";
 import {ConfigureEnginePluginType} from "./engine/types/ConfigureEnginePluginType";
+import {config} from "./utils/AdapterConfigurationSchema";
 
 const relativeTo = __dirname;
 

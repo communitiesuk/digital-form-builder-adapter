@@ -3,15 +3,15 @@ import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
 import {Options} from "../types/PluginOptions";
 import {FormPayload} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import Boom from "boom";
-import config from "../../../../../../digital-form-builder/runner/src/server/config";
 import {AdapterFormModel} from "../models/AdapterFormModel";
 import {FormConfiguration} from "@xgovformbuilder/model";
 import {PluginUtil} from "../util/PluginUtil";
 import {
     getValidStateFromQueryParameters
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
-import {shouldLogin} from "../../../../../../digital-form-builder/runner/src/server/plugins/auth";
 import {PluginSpecificConfiguration} from "@hapi/hapi";
+import {jwtAuthStrategyName} from "../Auth";
+import {config} from "../../utils/AdapterConfigurationSchema";
 
 
 export class RegisterFormPublishApi implements RegisterApi {
@@ -157,16 +157,16 @@ export class RegisterFormPublishApi implements RegisterApi {
             ) {
                 return h.continue;
             }
-            const {cacheService} = request.services([]);
+            const {adapterCacheService} = request.services([]);
             // @ts-ignore
-            const state = await cacheService.getState(request);
+            const state = await adapterCacheService.getState(request);
             const newValues = getValidStateFromQueryParameters(
                 prePopFields,
                 query,
                 state
             );
             // @ts-ignore
-            await cacheService.mergeState(request, newValues);
+            await adapterCacheService.mergeState(request, newValues);
             if (Object.keys(newValues).length > 0) {
                 h.request.pre.hasPrepopulatedSessionFromQueryParameter = true;
             }
@@ -201,7 +201,8 @@ export class RegisterFormPublishApi implements RegisterApi {
                     {
                         method: queryParamPreHandler
                     }
-                ]
+                ],
+                auth: jwtAuthStrategyName,
             },
             handler: (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {path, id} = request.params;
@@ -210,14 +211,6 @@ export class RegisterFormPublishApi implements RegisterApi {
                     (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
                 );
                 if (page) {
-                    // NOTE: Start pages should live on gov.uk, but this allows prototypes to include signposting about having to log in.
-                    if (
-                        page.pageDef.controller !== "./pages/start.js" &&
-                        shouldLogin(request)
-                    ) {
-                        return h.redirect(`/login?returnUrl=${request.path}`);
-                    }
-
                     return page.makeGetRouteHandler()(request, h);
                 }
                 if (PluginUtil.normalisePath(path) === "") {
@@ -227,7 +220,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             }
         });
 
-        const {uploadService} = server.services([]);
+        const {adapterUploadService} = server.services([]);
 
         const handleFiles = (request: HapiRequest, h: HapiResponseToolkit) => {
             const {path, id} = request.params;
@@ -236,7 +229,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                 (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
             );
             // @ts-ignore
-            return uploadService.handleUploadRequest(request, h, page.pageDef);
+            return adapterUploadService.handleUploadRequest(request, h, page.pageDef);
         };
 
         const postHandler = async (
@@ -272,7 +265,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                     output: "stream",
                     parse: true,
                     multipart: {output: "stream"},
-                    maxBytes: uploadService.fileSizeLimit,
+                    maxBytes: adapterUploadService.fileSizeLimit,
                     failAction: async (request: HapiRequest, h: HapiResponseToolkit) => {
                         // @ts-ignore
                         request.server.plugins.crumb.generate?.(request, h);
@@ -280,7 +273,8 @@ export class RegisterFormPublishApi implements RegisterApi {
                     }
                 },
                 pre: [{method: handleFiles}],
-                handler: postHandler
+                handler: postHandler,
+                auth: jwtAuthStrategyName,
             }
         });
 

@@ -5,30 +5,22 @@ import Scooter from "@hapi/scooter";
 import inert from "@hapi/inert";
 import Schmervice from "schmervice";
 import blipp from "blipp";
-import config from "../../../digital-form-builder/runner/src/server/config";
 
 import {ConfigureFormsPlugin} from "./plugins/ConfigureFormsPlugin";
 import {configureRateLimitPlugin} from "../../../digital-form-builder/runner/src/server/plugins/rateLimit";
 import {configureBlankiePlugin} from "../../../digital-form-builder/runner/src/server/plugins/blankie";
 import {configureCrumbPlugin} from "../../../digital-form-builder/runner/src/server/plugins/crumb";
-import {
-    configureInitialiseSessionPlugin
-} from "../../../digital-form-builder/runner/src/server/plugins/initialiseSession/configurePlugin";
 
 import pluginLocale from "../../../digital-form-builder/runner/src/server/plugins/locale";
 import pluginSession from "../../../digital-form-builder/runner/src/server/plugins/session";
-import pluginAuth from "../../../digital-form-builder/runner/src/server/plugins/auth";
+import pluginAuth from "./plugins/engine/Auth";
 import pluginApplicationStatus from "./plugins/engine/application-status";
-import pluginErrorPages from "../../../digital-form-builder/runner/src/server/plugins/errorPages";
 import pluginPulse from "../../../digital-form-builder/runner/src/server/plugins/pulse";
 import {
     AddressService,
-    CacheService,
     catboxProvider,
     NotifyService,
     PayService,
-    StatusService,
-    UploadService,
     MockUploadService,
     WebhookService,
 } from "../../../digital-form-builder/runner/src/server/services";
@@ -41,6 +33,12 @@ import {PgBossQueueService} from "../../../digital-form-builder/runner/src/serve
 import {ViewLoaderPlugin} from "./plugins/ViewLoaderPlugin";
 import {pluginLog} from "./plugins/logging";
 import publicRouterPlugin from "./plugins/engine/PublicRouterPlugin";
+import {config} from "./plugins/utils/AdapterConfigurationSchema";
+import errorHandlerPlugin from "./plugins/ErrorHandlerPlugin";
+import {AdapterCacheService} from "./services";
+import {AdapterStatusService} from "./services";
+import {configureInitialiseSessionPlugin} from "./plugins/initialize-session/SessionManagementPlugin";
+import {AdapterUploadService} from "./services/AdapterUploadService";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -107,11 +105,11 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(Schmervice);
     await server.register(pluginAuth);
 
-    server.registerService([CacheService, NotifyService, PayService, WebhookService, AddressService]);
+    server.registerService([AdapterCacheService, NotifyService, PayService, WebhookService, AddressService]);
     if (!config.documentUploadApiUrl) {
         server.registerService([Schmervice.withName("uploadService", MockUploadService),]);
     } else {
-        server.registerService([UploadService]);
+        server.registerService([AdapterUploadService]);
     }
 
     if (config.enableQueueService) {
@@ -123,7 +121,7 @@ async function createServer(routeConfig: RouteConfig) {
         ]);
     } else {
         // @ts-ignore
-        server.registerService(StatusService);
+        server.registerService(AdapterStatusService);
     }
 
     server.ext(
@@ -171,7 +169,7 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(ConfigureFormsPlugin(formFileName, formFilePath, options));
     await server.register(pluginApplicationStatus);
     await server.register(publicRouterPlugin);
-    await server.register(pluginErrorPages);
+    await server.register(errorHandlerPlugin);
     await server.register(blipp);
 
     server.state("cookies_policy", {

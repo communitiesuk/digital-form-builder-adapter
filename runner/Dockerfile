@@ -2,7 +2,7 @@
 # Stage 1
 # Base image contains the node version and app user creation
 # It also configures the non-root user that will be given permission to copied files/folders in every subsequent stages
-FROM node:16-alpine AS base-image
+FROM node:20-alpine AS base-image
 RUN mkdir -p /usr/src/app/digital-form-builder-adapter/runner/public/static && \
     addgroup -g 1001 appuser && \
     adduser -S -u 1001 -G appuser appuser && \

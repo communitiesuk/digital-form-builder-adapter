@@ -2,18 +2,14 @@ import {RegisterApi} from "./RegisterApi";
 import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
 import {Options} from "../types/PluginOptions";
 import Joi from "joi";
-import {redirectTo} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
+import {redirectTo} from "../util/helper";
+import {retryPay} from "../application-status/RetryPay";
+import {handleUserWithConfirmationViewModel} from "../application-status/HandleUserWithConfirmationViewModel";
+import {checkUserCompletedSummary} from "../application-status/CheckUserCompletedSummary";
 import {
     continueToPayAfterPaymentSkippedWarning,
     paymentSkippedWarning
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/applicationStatus/paymentSkippedWarning";
-import {retryPay} from "../../../../../../digital-form-builder/runner/src/server/plugins/applicationStatus/retryPay";
-import {
-    handleUserWithConfirmationViewModel
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/applicationStatus/handleUserWithConfirmationViewModel";
-import {
-    checkUserCompletedSummary
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/applicationStatus/checkUserCompletedSummary";
+} from "../application-status/PaymentSkippedWarning";
 
 export class RegisterApplicationStatusApi implements RegisterApi {
 
@@ -24,14 +20,14 @@ export class RegisterApplicationStatusApi implements RegisterApi {
             method: "post",
             path: "/{id}/status",
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {payService, cacheService} = request.services([]);
+                const {payService, adapterCacheService} = request.services([]);
                 //@ts-ignore
-                const {pay} = await cacheService.getState(request);
+                const {pay} = await adapterCacheService.getState(request);
                 const {meta} = pay;
                 meta.attempts++;
                 const res = await payService.payRequestFromMeta(meta);
                 //@ts-ignore
-                await cacheService.mergeState(request, {
+                await adapterCacheService.mergeState(request, {
                     webhookData: {
                         fees: {
                             paymentReference: res.reference,
