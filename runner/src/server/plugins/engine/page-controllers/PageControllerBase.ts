@@ -28,7 +28,7 @@ import {
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/types";
 import {format, parseISO} from "date-fns";
 import nunjucks from "nunjucks";
-import {AdapterFormModel} from "../models/AdapterFormModel";
+import {AdapterFormModel} from "../models";
 import {ComponentCollection} from "../components/ComponentCollection";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {proceed, redirectTo} from "../util/helper";
@@ -546,8 +546,8 @@ export class PageControllerBase {
             //@ts-ignore
             await adapterCacheService.mergeState(request, {progress});
 
-            viewModel.backLink =
-                progress[progress.length - 2] ?? this.backLinkFallback;
+            viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
+            console.log(`Following is the back link ${viewModel.backLink}`);
             return h.view(this.viewName, viewModel);
         };
     }

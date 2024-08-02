@@ -1,5 +1,5 @@
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
-import {AdapterFormModel} from "../models/AdapterFormModel";
+import {AdapterFormModel} from "../models";
 import {redirectTo} from "./helper";
 
 export class PluginUtil {

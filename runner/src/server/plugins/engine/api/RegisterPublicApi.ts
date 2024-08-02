@@ -21,7 +21,7 @@ interface CookiePayload {
 }
 
 const adapterRunnerFolder = path.join(__dirname, "..", "..", "..", "..");
-const rootNodeModules = path.join(adapterRunnerFolder, "..", "..", "..", "..",  "node_modules");
+const rootNodeModules = path.join(adapterRunnerFolder, "..", "..", "..", "..", "node_modules");
 
 export class RegisterPublicApi implements RegisterApi {
     register(server: any): void {
@@ -32,6 +32,7 @@ export class RegisterPublicApi implements RegisterApi {
                 method: "GET",
                 path: "/assets/{path*}",
                 options: {
+                    description: "See API-README.md file in the runner/src/server/plugins/engine/api",
                     handler: {
                         directory: {
                             path: [
@@ -52,6 +53,9 @@ export class RegisterPublicApi implements RegisterApi {
             {
                 method: "get",
                 path: "/help/privacy",
+                options: {
+                    description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                },
                 handler: async (_request: HapiRequest, h: HapiResponseToolkit) => {
                     if (config.privacyPolicyUrl) {
                         return h.redirect(config.privacyPolicyUrl);
@@ -62,6 +66,9 @@ export class RegisterPublicApi implements RegisterApi {
             {
                 method: "get",
                 path: "/help/cookies",
+                options: {
+                    description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                },
                 handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                     const cookiesPolicy = request.state.cookies_policy;
                     let analytics =
@@ -74,6 +81,7 @@ export class RegisterPublicApi implements RegisterApi {
             {
                 method: "post",
                 options: {
+                    description: "See API-README.md file in the runner/src/server/plugins/engine/api",
                     payload: {
                         parse: true,
                         multipart: true,
@@ -128,6 +136,9 @@ export class RegisterPublicApi implements RegisterApi {
         server.route({
             method: "get",
             path: "/help/terms-and-conditions",
+            options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+            },
             handler: async (_request: HapiRequest, h: HapiResponseToolkit) => {
                 return h.view("help/terms-and-conditions");
             },
@@ -136,6 +147,9 @@ export class RegisterPublicApi implements RegisterApi {
         server.route({
             method: "get",
             path: "/help/accessibility-statement",
+            options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+            },
             handler: async (_request: HapiRequest, h: HapiResponseToolkit) => {
                 return h.view("help/accessibility-statement");
             },
@@ -144,6 +158,9 @@ export class RegisterPublicApi implements RegisterApi {
         server.route({
             method: "get",
             path: "/clear-session",
+            options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+            },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 if (request.yar) {
                     request.yar.reset();
@@ -157,6 +174,9 @@ export class RegisterPublicApi implements RegisterApi {
         server.route({
             method: "get",
             path: "/timeout",
+            options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+            },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 if (request.yar) {
                     request.yar.reset();

@@ -1,6 +1,6 @@
-import {AdapterFormModel} from "../models/AdapterFormModel";
+import {AdapterFormModel} from "../models";
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
-import {AdapterSummaryViewModel} from "../models/AdapterSummaryViewModel";
+import {AdapterSummaryViewModel} from "../models";
 import {redirectUrl} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {FeesModel} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/models/submission";
@@ -182,15 +182,7 @@ export class SummaryPageController extends PageController {
 
 
             const payRedirectUrl = payState.pay.next_url;
-            const {showPaymentSkippedWarningPage} = this.model.feeOptions;
-            //@ts-ignore
-            const {skipPayment} = request.payload;
-            if (skipPayment === "true" && showPaymentSkippedWarningPage) {
-                payState.pay.meta.attempts = 0;
-                //@ts-ignore
-                await adapterCacheService.mergeState(request, payState);
-                return h.redirect(`/${request.params.id}/status/payment-skip-warning`).takeover();
-            }
+
             //@ts-ignore
             await adapterCacheService.mergeState(request, payState);
             return h.redirect(payRedirectUrl);

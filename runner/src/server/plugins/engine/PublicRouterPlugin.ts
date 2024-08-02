@@ -1,4 +1,4 @@
-import {RegisterPublicApi} from "./api/RegisterPublicApi";
+import {RegisterPublicApi} from "./api";
 
 export default {
     plugin: {

@@ -26,10 +26,6 @@ import {
 } from "../../../digital-form-builder/runner/src/server/services";
 import {HapiRequest, HapiResponseToolkit, RouteConfig} from "./types";
 import getRequestInfo from "../../../digital-form-builder/runner/src/server/utils/getRequestInfo";
-import {pluginQueue} from "../../../digital-form-builder/runner/src/server/plugins/queue";
-import {QueueStatusService} from "../../../digital-form-builder/runner/src/server/services/queueStatusService";
-import {MySqlQueueService} from "../../../digital-form-builder/runner/src/server/services/mySqlQueueService";
-import {PgBossQueueService} from "../../../digital-form-builder/runner/src/server/services/pgBossQueueService";
 import {ViewLoaderPlugin} from "./plugins/ViewLoaderPlugin";
 import {pluginLog} from "./plugins/logging";
 import publicRouterPlugin from "./plugins/engine/PublicRouterPlugin";
@@ -38,7 +34,7 @@ import errorHandlerPlugin from "./plugins/ErrorHandlerPlugin";
 import {AdapterCacheService} from "./services";
 import {AdapterStatusService} from "./services";
 import {configureInitialiseSessionPlugin} from "./plugins/initialize-session/SessionManagementPlugin";
-import {AdapterUploadService} from "./services/AdapterUploadService";
+import {AdapterUploadService} from "./services";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -85,6 +81,7 @@ const serverOptions = (): ServerOptions => {
 };
 
 async function createServer(routeConfig: RouteConfig) {
+    console.log("SERVER CREATING")
     const server = hapi.server(serverOptions());
     // @ts-ignore
     const {formFileName, formFilePath, options} = routeConfig;
@@ -112,17 +109,8 @@ async function createServer(routeConfig: RouteConfig) {
         server.registerService([AdapterUploadService]);
     }
 
-    if (config.enableQueueService) {
-        const queueType = config.queueType;
-        const queueService = queueType === "PGBOSS" ? PgBossQueueService : MySqlQueueService;
-        server.registerService([
-            Schmervice.withName("queueService", queueService),
-            Schmervice.withName("statusService", QueueStatusService),
-        ]);
-    } else {
-        // @ts-ignore
-        server.registerService(AdapterStatusService);
-    }
+    // @ts-ignore
+    server.registerService(AdapterStatusService);
 
     server.ext(
         "onPreResponse",
@@ -175,9 +163,6 @@ async function createServer(routeConfig: RouteConfig) {
     server.state("cookies_policy", {
         encoding: "base64json",
     });
-
-    await server.register(pluginQueue);
-
     return server;
 }
 

@@ -1,7 +1,7 @@
 import {PageControllerBase} from "./PageControllerBase";
 
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
-import {AdapterFormModel} from "../models/AdapterFormModel";
+import {AdapterFormModel} from "../models";
 
 export class PageController extends PageControllerBase {
     constructor(model: AdapterFormModel, pageDef: any) {

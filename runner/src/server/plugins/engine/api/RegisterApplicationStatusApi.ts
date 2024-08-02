@@ -1,15 +1,9 @@
 import {RegisterApi} from "./RegisterApi";
 import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
 import {Options} from "../types/PluginOptions";
-import Joi from "joi";
-import {redirectTo} from "../util/helper";
 import {retryPay} from "../application-status/RetryPay";
 import {handleUserWithConfirmationViewModel} from "../application-status/HandleUserWithConfirmationViewModel";
 import {checkUserCompletedSummary} from "../application-status/CheckUserCompletedSummary";
-import {
-    continueToPayAfterPaymentSkippedWarning,
-    paymentSkippedWarning
-} from "../application-status/PaymentSkippedWarning";
 
 export class RegisterApplicationStatusApi implements RegisterApi {
 
@@ -17,56 +11,52 @@ export class RegisterApplicationStatusApi implements RegisterApi {
     register(server: HapiServer, options?: Options): void {
 
         server.route({
-            method: "post",
-            path: "/{id}/status",
-            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {payService, adapterCacheService} = request.services([]);
-                //@ts-ignore
-                const {pay} = await adapterCacheService.getState(request);
-                const {meta} = pay;
-                meta.attempts++;
-                const res = await payService.payRequestFromMeta(meta);
-                //@ts-ignore
-                await adapterCacheService.mergeState(request, {
-                    webhookData: {
-                        fees: {
-                            paymentReference: res.reference,
-                        },
-                    },
-                    pay: {
-                        payId: res.payment_id,
-                        reference: res.reference,
-                        self: res._links.self.href,
-                        meta,
-                    },
-                });
-                return redirectTo(request, h, res._links.next_url.href);
-            },
-        });
-
-        server.route({
             method: "get",
-            path: "/{id}/status/payment-skip-warning",
+            path: "/{id}/status",
             options: {
-                pre: [preHandlers.checkUserCompletedSummary],
-                handler: paymentSkippedWarning,
-            },
-        });
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                pre: [
+                    preHandlers.retryPay,
+                    preHandlers.handleUserWithConfirmationViewModel,
+                    preHandlers.checkUserCompletedSummary,
+                ],
+                handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                    const {adapterStatusService, adapterCacheService} = request.services([]);
+                    const {params} = request;
+                    //@ts-ignore
+                    const form = server.app.forms[params.id];
+                    //@ts-ignore
+                    const state = await adapterCacheService.getState(request);
+                    //@ts-ignore
+                    const {reference: newReference} = await adapterStatusService.outputRequests(request);
 
-        server.route({
-            method: "post",
-            path: "/{id}/status/payment-skip-warning",
-            options: {
-                handler: continueToPayAfterPaymentSkippedWarning,
-                validate: {
-                    payload: Joi.object({
-                        action: Joi.string().valid("pay").required(),
-                        crumb: Joi.string(),
-                    }),
+                    if (state.callback?.skipSummary?.redirectUrl || state.callback?.returnUrl) {
+                        let redirectUrl = state.callback?.skipSummary?.redirectUrl;
+                        if (redirectUrl == undefined && state.callback?.returnUrl != undefined) {
+                            redirectUrl = state.callback?.returnUrl;
+                        }
+                        request.logger.info(
+                            ["applicationStatus"],
+                            `Callback skipSummary detected, redirecting ${request.yar.id} 
+                                to ${redirectUrl} and clearing state`
+                        );
+                        //@ts-ignore
+                        await adapterCacheService.setConfirmationState(request, {redirectUrl,});
+                        //@ts-ignore
+                        await adapterCacheService.clearState(request);
+
+                        return h.redirect(redirectUrl);
+                    }
+
+                    const viewModel = adapterStatusService.getViewModel(state, form, newReference);
+                    //@ts-ignore
+                    await adapterCacheService.setConfirmationState(request, {confirmation: viewModel,});
+                    //@ts-ignore
+                    await adapterCacheService.clearState(request);
+                    return h.view("confirmation", viewModel);
                 },
             },
         });
-
     }
 
 }

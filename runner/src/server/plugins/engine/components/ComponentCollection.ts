@@ -4,7 +4,7 @@ import * as Components from "./index";
 
 
 import {merge} from "@hapi/hoek";
-import {AdapterFormModel} from "../models/AdapterFormModel";
+import {AdapterFormModel} from "../models";
 import {AdapterComponentDef} from "@communitiesuk/model";
 import {
     ComponentCollectionViewModel

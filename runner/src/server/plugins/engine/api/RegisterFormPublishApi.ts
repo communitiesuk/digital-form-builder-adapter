@@ -3,7 +3,7 @@ import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
 import {Options} from "../types/PluginOptions";
 import {FormPayload} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import Boom from "boom";
-import {AdapterFormModel} from "../models/AdapterFormModel";
+import {AdapterFormModel} from "../models";
 import {FormConfiguration} from "@xgovformbuilder/model";
 import {PluginUtil} from "../util/PluginUtil";
 import {
@@ -26,13 +26,15 @@ export class RegisterFormPublishApi implements RegisterApi {
      */
     register(server: HapiServer, options: Options) {
         const {modelOptions, previewMode, forms} = options;
-        const enabledString = config.previewMode ? `[ENABLED]` : `[DISABLED]`;
         const disabledRouteDetailString =
             "A request was made however previewing is disabled. See environment variable details in runner/README.md if this error is not expected.";
 
         server.route({
             method: "post",
             path: "/publish",
+            options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+            },
             handler: (request: HapiRequest, h: HapiResponseToolkit) => {
                 if (!previewMode) {
                     request.logger.error(
@@ -53,15 +55,15 @@ export class RegisterFormPublishApi implements RegisterApi {
                     basePath: id
                 });
                 return h.response({}).code(204);
-            },
-            options: {
-                description: `${enabledString} Allows a form to be persisted (published) on the runner server. Requires previewMode to be set to true. See runner/README.md for details on environment variables`
             }
         });
 
         server.route({
             method: "get",
             path: "/published/{id}",
+            options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+            },
             handler: (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
                 if (!previewMode) {
@@ -79,15 +81,15 @@ export class RegisterFormPublishApi implements RegisterApi {
 
                 const {values} = forms[id];
                 return h.response(JSON.stringify({id, values})).code(200);
-            },
-            options: {
-                description: `${enabledString} Gets a published form, by form id. Requires previewMode to be set to true. See runner/README.md for details on environment variables`
             }
         });
 
         server.route({
             method: "get",
             path: "/published",
+            options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+            },
             handler: (request: HapiRequest, h: HapiResponseToolkit) => {
                 if (!previewMode) {
                     request.logger.error(
@@ -111,15 +113,15 @@ export class RegisterFormPublishApi implements RegisterApi {
                         )
                     )
                     .code(200);
-            },
-            options: {
-                description: `${enabledString} Gets all published forms. Requires previewMode to be set to true. See runner/README.md for details on environment variables`
             }
         });
 
         server.route({
             method: "get",
             path: "/",
+            options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+            },
             handler: (request: HapiRequest, h: HapiResponseToolkit) => {
                 const keys = Object.keys(forms);
                 let id = "";
@@ -177,6 +179,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             method: "get",
             path: "/{id}",
             options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
                 pre: [
                     {
                         method: queryParamPreHandler
@@ -197,6 +200,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             method: "get",
             path: "/{id}/{path*}",
             options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
                 pre: [
                     {
                         method: queryParamPreHandler
@@ -256,6 +260,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             method: "post",
             path: "/{id}/{path*}",
             options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
                 plugins: <PluginSpecificConfiguration>{
                     "hapi-rate-limit": {
                         userPathLimit: 10

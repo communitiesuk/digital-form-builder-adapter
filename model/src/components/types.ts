@@ -1,4 +1,4 @@
-import {TextFieldBase} from "./ITextFieldBase";
+import {TextFieldBase} from "./TextFieldBase";
 import {ComponentDef, InputFieldsComponentsDef} from "@xgovformbuilder/model";
 
 
