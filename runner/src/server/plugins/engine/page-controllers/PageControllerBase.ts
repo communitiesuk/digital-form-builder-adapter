@@ -32,6 +32,7 @@ import {AdapterFormModel} from "../models";
 import {ComponentCollection} from "../components/ComponentCollection";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {proceed, redirectTo} from "../util/helper";
+import {UtilHelper} from "../../utils/UtilHelper";
 
 const FORM_SCHEMA = Symbol("FORM_SCHEMA");
 const STATE_SCHEMA = Symbol("STATE_SCHEMA");
@@ -128,6 +129,8 @@ export class PageControllerBase {
         isStartPage: boolean;
         startPage?: HapiResponseObject;
         backLink?: string;
+        backLinkText?: string;
+        continueButtonText?: string;
         phaseTag?: string | undefined;
     } {
         let showTitle = true;
@@ -546,8 +549,15 @@ export class PageControllerBase {
             //@ts-ignore
             await adapterCacheService.mergeState(request, {progress});
 
-            viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
-            console.log(`Following is the back link ${viewModel.backLink}`);
+            if (state.callback?.returnUrl) {
+                viewModel.backLink = state.callback?.returnUrl;
+                viewModel.backLinkText = UtilHelper.getBackLinkText(false, false);
+            } else {
+                viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
+            }
+
+            viewModel.continueButtonText = "Save and continue"
+
             return h.view(this.viewName, viewModel);
         };
     }
