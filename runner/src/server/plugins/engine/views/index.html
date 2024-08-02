@@ -19,7 +19,7 @@
             {% include "heading.html" %}
 
             {% if page.hasNext %}
-                {% include "form.html" %}
+                {% include "partials/form.html" %}
             {% else %}
                 {{ componentList(components) }}
             {% endif %}
