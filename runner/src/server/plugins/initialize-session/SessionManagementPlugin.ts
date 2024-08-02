@@ -1,4 +1,4 @@
-import {RegisterSessionApi} from "../engine/api/RegisterSessionApi";
+import {RegisterSessionApi} from "../engine/api";
 
 export function configureInitialiseSessionPlugin(options: { safelist: string[]; }) {
     return {

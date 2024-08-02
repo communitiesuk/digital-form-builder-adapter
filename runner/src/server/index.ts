@@ -38,7 +38,7 @@ import errorHandlerPlugin from "./plugins/ErrorHandlerPlugin";
 import {AdapterCacheService} from "./services";
 import {AdapterStatusService} from "./services";
 import {configureInitialiseSessionPlugin} from "./plugins/initialize-session/SessionManagementPlugin";
-import {AdapterUploadService} from "./services/AdapterUploadService";
+import {AdapterUploadService} from "./services";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -85,6 +85,7 @@ const serverOptions = (): ServerOptions => {
 };
 
 async function createServer(routeConfig: RouteConfig) {
+    console.log("SERVER CREATING")
     const server = hapi.server(serverOptions());
     // @ts-ignore
     const {formFileName, formFilePath, options} = routeConfig;

@@ -4,7 +4,7 @@ import {
     FormSubmissionErrors
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import Joi, {Schema, StringSchema} from "joi";
-import {AdapterFormModel} from "../models/AdapterFormModel";
+import {AdapterFormModel} from "../models";
 import {AdapterDataType, FreeTextFieldViewModel} from "./types";
 //@ts-ignore
 import {FreeTextFieldComponent} from "@communitiesuk/model";

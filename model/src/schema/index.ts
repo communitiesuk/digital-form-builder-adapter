@@ -1,1 +1,1 @@
-export { AdapterSchema } from "./adapter-schema";
+export { AdapterSchema } from "./AdapterSchema";

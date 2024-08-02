@@ -26,3 +26,10 @@ To learn more about workspaces, check these links:
   `$ yarn [runner|designer|model] name-of-script`
 
   eg.: `yarn designer build` or `yarn runner dev`
+
+
+### Runner API Documentation
+
+[API Documentation and registration](runner/src/server/plugins/engine/api/API-README.md)
+
+

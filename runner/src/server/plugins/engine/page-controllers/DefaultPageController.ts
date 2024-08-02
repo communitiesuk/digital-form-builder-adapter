@@ -1,6 +1,6 @@
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
-import {AdapterFormModel} from "../models/AdapterFormModel";
-import {AdapterSummaryViewModel} from "../models/AdapterSummaryViewModel";
+import {AdapterFormModel} from "../models";
+import {AdapterSummaryViewModel} from "../models";
 import {PageController} from "./PageController";
 
 export class DefaultPageController extends PageController {
@@ -18,7 +18,7 @@ export class DefaultPageController extends PageController {
             }
             const {adapterCacheService, adapterStatusService} = request.services([]);
             //@ts-ignore
-            const state = await adapterCacheService.getState(request);
+            let state = await adapterCacheService.getState(request);
             if (state.metadata) {
                 state.metadata.isSummaryPageSubmit = false;
             }
@@ -30,12 +30,17 @@ export class DefaultPageController extends PageController {
             //This is required to ensure we don't navigate to an incorrect page based on stale state values
             let relevantState = this.getConditionEvaluationContext(this.model, savedState);
             //@ts-ignore
-            await adapterCacheService.mergeState(request, {webhookData: summaryViewModel.validatedWebhookData,});
+            await adapterCacheService.mergeState(request, {
+                ...state,
+                webhookData: summaryViewModel.validatedWebhookData,
+            });
+            //@ts-ignore
+            state = await adapterCacheService.getState(request);
 
             const startPage = this.model.def.startPage;
             const isStartPage = this.path === startPage;
 
-            if (!isStartPage && state.metadata && state.metadata.webhookData) {
+            if (!isStartPage && state.metadata && state.webhookData) {
                 //@ts-ignore
                 await adapterStatusService.outputRequests(request);
             }

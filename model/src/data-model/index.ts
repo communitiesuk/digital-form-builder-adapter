@@ -1,1 +1,1 @@
-export {AdapterFormDefinition, AdapterPage} from "./adapter-types"
+export {AdapterFormDefinition, AdapterPage} from "./AdapterTypes"

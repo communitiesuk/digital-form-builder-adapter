@@ -4,7 +4,7 @@ import {
     ContentComponentsDef,
 } from "@xgovformbuilder/model";
 import {AdapterInputFieldsComponentsDef, AdapterComponentDef} from "@communitiesuk/model";
-import {AdapterFormModel} from "../models/AdapterFormModel";
+import {AdapterFormModel} from "../models";
 import {FormSubmissionErrors} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {AdapterDataType} from "./types";
 import {ViewModel} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/types";

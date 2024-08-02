@@ -55,7 +55,7 @@ export class RegisterSessionApi implements RegisterApi {
                 return h.redirect(redirect);
             },
             options: {
-                description: `Activates a session initialised from POST /session/{formId}. Redirects a user to the {formId} stored within the token.`,
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
             },
         });
 
@@ -63,8 +63,7 @@ export class RegisterSessionApi implements RegisterApi {
             method: "POST",
             path: "/session/{formId}",
             options: {
-                description: `Accepts JSON object conforming to type InitialiseSessionSchema. Creates a session and returns JSON containing a JWT Token {"token": "example.jwt.token"}. 
-                You must configure the callback safelist in runner/config/{environment}.json. ${pluginOptions.safelist}`,
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
                 plugins: {
                     crumb: false,
                 },

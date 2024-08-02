@@ -1,9 +1,9 @@
 import path from "path";
 import {configure} from "nunjucks";
-import {AdapterFormModel} from "./models/AdapterFormModel";
+import {AdapterFormModel} from "./models";
 import {Options} from "./types/PluginOptions";
 import {HapiServer} from "../../types";
-import {RegisterFormPublishApi} from "./api/RegisterFormPublishApi";
+import {RegisterFormPublishApi} from "./api";
 
 configure([
     // Configure Nunjucks to allow rendering of content that is revealed conditionally.
