@@ -15,9 +15,21 @@ export interface FreeTextFieldComponent extends TextFieldBase {
     };
 }
 
-export type AdapterComponentDef = ComponentDef | FreeTextFieldComponent;
+export interface MultiInputFieldComponent extends TextFieldBase {
+    type: "MultiInputField";
+    options: TextFieldBase["options"] & {
+        textFieldTitle?: string;
+        numberFieldTitle?: string;
+        columnTitles?: string[];
+    };
+}
 
-export type AdapterInputFieldsComponentsDef = InputFieldsComponentsDef | FreeTextFieldComponent;
+export type AdapterComponentDef = ComponentDef | FreeTextFieldComponent | MultiInputFieldComponent;
+
+export type AdapterInputFieldsComponentsDef =
+    InputFieldsComponentsDef
+    | FreeTextFieldComponent
+    | MultiInputFieldComponent;
 
 export enum AdapterComponentTypeEnum {
     TextField = "TextField",
@@ -46,4 +58,5 @@ export enum AdapterComponentTypeEnum {
     List = "List",
     ContextComponent = "ContextComponent",
     FreeTextField = "FreeTextField",
+    MultiInputField = "MultiInputField",
 }

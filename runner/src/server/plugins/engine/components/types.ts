@@ -10,4 +10,4 @@ export type FreeTextFieldViewModel = {
 } & ViewModel;
 
 
-export type AdapterDataType = DataType | "freeText"
+export type AdapterDataType = DataType | "freeText" | "multiInput";

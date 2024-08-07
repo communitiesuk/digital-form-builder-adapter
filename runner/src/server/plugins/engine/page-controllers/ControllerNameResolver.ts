@@ -7,6 +7,8 @@ import {StartPageController} from "./StartPageController";
 import {PageController} from "./PageController";
 import {PageControllerBase} from "./PageControllerBase";
 import {AdapterPage} from "@communitiesuk/model";
+import {RepeatingFieldPageController} from "./RepeatingFieldPageController";
+import {RepeatingSummaryPageController} from "./RepeatingSummaryPageController";
 
 export class ControllerNameResolver {
 
@@ -18,6 +20,8 @@ export class ControllerNameResolver {
         AdapterSummaryPageController: SummaryPageController,
         PageControllerBase,
         SummaryPageController,
+        RepeatingFieldPageController,
+        RepeatingSummaryPageController
     };
 
 

@@ -11,6 +11,16 @@ const NewComponents: AdapterComponentDef[] = [
         hint: "",
         options: {},
         schema: {},
+    },
+    {
+        name: "MultiInputField",
+        type: "MultiInputField",
+        title: "Multi input field",
+        subType: "field",
+        hint: "",
+        options: {},
+        schema: {},
+        children: []
     }
 ]
 
