@@ -1,5 +1,4 @@
 import React, {useContext} from "react";
-import {ComponentTypes} from "@xgovformbuilder/model";
 import {TextFieldEdit} from "../../digital-form-builder/designer/client/components/FieldEditors/text-field-edit";
 import {MultilineTextFieldEdit} from "../../digital-form-builder/designer/client/multiline-text-field-edit";
 import {NumberFieldEdit} from "../../digital-form-builder/designer/client/components/FieldEditors/number-field-edit";
@@ -9,9 +8,10 @@ import DetailsEdit from "../../digital-form-builder/designer/client/components/F
 import {ParaEdit} from "../../digital-form-builder/designer/client/components/FieldEditors/para-edit";
 import {FileUploadFieldEdit} from "../../digital-form-builder/designer/client/file-upload-field-edit";
 import {DateFieldEdit} from "../../digital-form-builder/designer/client/components/FieldEditors/date-field-edit";
-import {ComponentContext} from "../../digital-form-builder/designer/client/reducers/component/componentReducer";
 import FieldEdit from "../../digital-form-builder/designer/client/field-edit";
 import {FreeTextFieldEdit} from "./FreeTextFieldEdit";
+import {AdapterComponentContext} from "./reducers/component/AdapterComponentReducer";
+import {AdapterComponentTypes} from "@communitiesuk/model";
 
 export const componentTypeEditors: any = {
     TextField: TextFieldEdit,
@@ -39,11 +39,11 @@ export const componentTypeEditors: any = {
 };
 
 export const AdapterComponentTypeEdit = (props) => {
-    const {context = ComponentContext, page} = props;
+    const {context = AdapterComponentContext, page} = props;
     // @ts-ignore
     const {state} = useContext(context);
     const {selectedComponent} = state;
-    const type = ComponentTypes.find(
+    const type = AdapterComponentTypes.find(
         (t) => t.name === selectedComponent?.type ?? ""
     );
 

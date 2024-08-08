@@ -7,6 +7,8 @@ import {Actions} from "../../digital-form-builder/designer/client/reducers/compo
 import {updateComponent} from "../../digital-form-builder/designer/client/data";
 import ErrorSummary from "../../digital-form-builder/designer/client/error-summary";
 import {AdapterComponentTypeEdit} from "./AdapterComponentTypeEdit";
+import {AdapterComponentContext} from "./reducers/component/AdapterComponentReducer";
+import {AdapterDataContext} from "./context/AdapterDataContext";
 
 
 const LIST_TYPES = [
@@ -19,8 +21,8 @@ const LIST_TYPES = [
 ];
 
 const AdapterComponentEdit = (props) => {
-    const {data, save} = useContext(DataContext);
-    const {state, dispatch} = useContext(ComponentContext);
+    const {data, save} = useContext(AdapterDataContext);
+    const {state, dispatch} = useContext(AdapterComponentContext);
     //@ts-ignore
     const {selectedComponent, initialName, errors = {}, hasValidated, selectedListName} = state;
     const {page, toggleShowEditor} = props;

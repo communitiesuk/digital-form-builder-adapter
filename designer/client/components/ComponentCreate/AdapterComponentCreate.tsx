@@ -6,8 +6,6 @@ import React, {
     FormEvent,
 } from "react";
 import "../../../../digital-form-builder/designer/client/components/ComponentCreate/ComponentCreate.scss";
-import {DataContext} from "../../../../digital-form-builder/designer/client/context";
-import {ComponentContext} from "../../../../digital-form-builder/designer/client/reducers/component/componentReducer";
 import {hasValidationErrors} from "../../../../digital-form-builder/designer/client/validations";
 import {Actions} from "../../../../digital-form-builder/designer/client/reducers/component/types";
 import logger from "../../../../digital-form-builder/designer/client/plugins/logger";
@@ -18,11 +16,13 @@ import {BackLink} from "../../../../digital-form-builder/designer/client/compone
 import ErrorSummary from "../../../../digital-form-builder/designer/client/error-summary";
 import {AdapterComponentCreateList} from "./AdapterComponentCreateList";
 import AdapterComponentEdit from "../../AdapterComponentEdit";
+import {AdapterDataContext} from "../../context/AdapterDataContext";
+import {AdapterComponentContext} from "../../reducers/component/AdapterComponentReducer";
 
 const useComponentCreate = (props) => {
     const [renderTypeEdit, setRenderTypeEdit] = useState<boolean>(false);
-    const {data, save} = useContext(DataContext);
-    const {state, dispatch} = useContext(ComponentContext);
+    const {data, save} = useContext(AdapterDataContext);
+    const {state, dispatch} = useContext(AdapterComponentContext);
     // @ts-ignore
     const {selectedComponent, errors = {}, hasValidated} = state;
     const {

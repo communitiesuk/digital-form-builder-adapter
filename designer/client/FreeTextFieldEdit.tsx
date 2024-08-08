@@ -1,10 +1,10 @@
 import React, {useContext} from "react";
-import {ComponentContext} from "../../digital-form-builder/designer/client/reducers/component/componentReducer";
 import {i18n} from "../../digital-form-builder/designer/client/i18n";
 import {Actions} from "../../digital-form-builder/designer/client/reducers/component/types";
+import {AdapterComponentContext} from "./reducers/component/AdapterComponentReducer";
 
 
-export const FreeTextFieldEdit: any = ({context = ComponentContext}) => {
+export const FreeTextFieldEdit: any = ({context = AdapterComponentContext}) => {
     const {state, dispatch} = useContext(context);
     const {selectedComponent} = state;
     const {options = {}} = selectedComponent;
