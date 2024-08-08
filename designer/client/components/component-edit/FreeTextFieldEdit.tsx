@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
-import {i18n} from "../../digital-form-builder/designer/client/i18n";
-import {Actions} from "../../digital-form-builder/designer/client/reducers/component/types";
-import {AdapterComponentContext} from "./reducers/component/AdapterComponentReducer";
+import {i18n} from "../../../../digital-form-builder/designer/client/i18n";
+import {Actions} from "../../../../digital-form-builder/designer/client/reducers/component/types";
+import {AdapterComponentContext} from "../../reducers/component/AdapterComponentReducer";
 
 
 export const FreeTextFieldEdit: any = ({context = AdapterComponentContext}) => {

@@ -3,7 +3,7 @@ import {componentTypes} from "../../../digital-form-builder/designer/client/comp
 import {Flyout} from "../../../digital-form-builder/designer/client/components/Flyout";
 import {i18n} from "../i18n";
 import {AdapterComponentContextProvider} from "../reducers/component/AdapterComponentReducer";
-import AdapterComponentEdit from "../AdapterComponentEdit";
+import AdapterComponentEdit from "./component-edit/AdapterComponentEdit";
 
 export const adapterComponentTypes: any = {
     ...componentTypes,

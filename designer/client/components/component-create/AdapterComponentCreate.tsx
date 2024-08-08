@@ -15,7 +15,7 @@ import {i18n} from "../../../../digital-form-builder/designer/client/i18n";
 import {BackLink} from "../../../../digital-form-builder/designer/client/components/BackLink";
 import ErrorSummary from "../../../../digital-form-builder/designer/client/error-summary";
 import {AdapterComponentCreateList} from "./AdapterComponentCreateList";
-import AdapterComponentEdit from "../../AdapterComponentEdit";
+import AdapterComponentEdit from "../component-edit/AdapterComponentEdit";
 import {AdapterDataContext} from "../../context/AdapterDataContext";
 import {AdapterComponentContext} from "../../reducers/component/AdapterComponentReducer";
 

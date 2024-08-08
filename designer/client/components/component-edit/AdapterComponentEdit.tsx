@@ -1,14 +1,12 @@
 import React, {memo, useContext, useLayoutEffect} from "react";
 import {AdapterComponentTypeEnum as Types} from "@communitiesuk/model";
-import {DataContext} from "../../digital-form-builder/designer/client/context";
-import {ComponentContext} from "../../digital-form-builder/designer/client/reducers/component/componentReducer";
-import {hasValidationErrors} from "../../digital-form-builder/designer/client/validations";
-import {Actions} from "../../digital-form-builder/designer/client/reducers/component/types";
-import {updateComponent} from "../../digital-form-builder/designer/client/data";
-import ErrorSummary from "../../digital-form-builder/designer/client/error-summary";
+import {hasValidationErrors} from "../../../../digital-form-builder/designer/client/validations";
+import {Actions} from "../../../../digital-form-builder/designer/client/reducers/component/types";
+import {updateComponent} from "../../../../digital-form-builder/designer/client/data";
+import ErrorSummary from "../../../../digital-form-builder/designer/client/error-summary";
 import {AdapterComponentTypeEdit} from "./AdapterComponentTypeEdit";
-import {AdapterComponentContext} from "./reducers/component/AdapterComponentReducer";
-import {AdapterDataContext} from "./context/AdapterDataContext";
+import {AdapterComponentContext} from "../../reducers/component/AdapterComponentReducer";
+import {AdapterDataContext} from "../../context/AdapterDataContext";
 
 
 const LIST_TYPES = [
