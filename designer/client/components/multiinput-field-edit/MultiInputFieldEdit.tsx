@@ -45,6 +45,9 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
     const [selectedChildComponents, setSelectedChildComponents] = useState(selectedComponent.children ? selectedComponent.children : []);
     const [selectedComponentType, setSelectedComponentType] = useState("");
     const [selectedSubComponent, setSelectedSubComponent] = useState<MultiInputFieldTypes>();
+    const [tableTitle, setTableTitle] = useState<string>("");
+    //@ts-ignore
+    const [tableTitles, setTableTitles] = useState<string[]>(options.columnTitles ? options.columnTitles : []);
 
     const [showEditor, setShowEditor] = useState(false);
     const subComponentRef = useRef(null);
@@ -545,7 +548,7 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         if (selectedChildComponents && selectedChildComponents.length > 0) {
             return (
                 <table className="govuk-table">
-                    <caption className="govuk-table__caption govuk-table__caption--m">
+                    <caption className="govuk-table__caption govuk-table__caption--s">
                         Sub Components list
                     </caption>
                     <thead className="govuk-table__head">
@@ -592,8 +595,73 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         }
     }
 
+
+    const handleTableTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault()
+        setTableTitle(event.target.value)
+    }
+
+    const handleAddTableTitles = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault()
+        setTableTitles([...tableTitles, tableTitle])
+        //@ts-ignore
+        selectedComponent.options.columnTitles = tableTitles
+    }
+
+    const handleDeleteTitle = (_tableTitle: string, event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault()
+        let restTitle = tableTitles.filter(title => _tableTitle !== title);
+        setTableTitles(restTitle)
+        //@ts-ignore
+        selectedComponent.options.columnTitles = restTitle
+    }
+
     return (
         <>
+            <div className="govuk-form-group">
+                <label className="govuk-label govuk-label--s" htmlFor="location">
+                    Table title names
+                </label>
+                <input className="govuk-input" id="titleName" name="titleName" type="text" onChange={handleTableTitle}/>
+            </div>
+            <div className="govuk-form-group">
+                <button type="button" className="govuk-button govuk-button--secondary"
+                        data-module="govuk-button"
+                        onClick={
+                            //@ts-ignore
+                            (event) => handleAddTableTitles(event)}>
+                    Add
+                </button>
+            </div>
+            <div className="govuk-form-group">
+                <table className="govuk-table">
+                    <thead className="govuk-table__head">
+                    <tr className="govuk-table__row">
+                        <th scope="col" className="govuk-table__header" key={"componentType"}>Title</th>
+                        <th scope="col" className="govuk-table__header" key={"actionCol"}></th>
+                    </tr>
+                    </thead>
+                    <tbody className="govuk-table__body">
+                    {//@ts-ignore
+                        tableTitles.map((tableTitle) => (
+                            <tr className="govuk-table__row" key={tableTitle}>
+                                <td className="govuk-table__cell table__cell__noborder">
+                                    {tableTitle}
+                                </td>
+                                <td className="govuk-table__cell table__cell__noborder">
+                                    <button type="button" className="govuk-button govuk-button--warning"
+                                            data-module="govuk-button"
+                                            onClick={
+                                                //@ts-ignore
+                                                (event) => handleDeleteTitle(tableTitle, event)}>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <div className="govuk-form-group">
                 <label className="govuk-label govuk-label--s" htmlFor="location">
                     Add child component

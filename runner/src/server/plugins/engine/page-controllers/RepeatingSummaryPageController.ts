@@ -91,7 +91,7 @@ export class RepeatingSummaryPageController extends PageController {
         return {
             ...baseViewModel,
             customText: this.options.customText,
-            details: {rows},
+            details: {rows, headings: this.inputComponent.options.columnTitles},
         };
     }
 

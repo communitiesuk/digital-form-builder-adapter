@@ -73,7 +73,7 @@
     {
       "path": "/capital-costs-for-your-project",
       "title": "Capital costs for your project",
-      "controller": "./pages/repeatingField.js",
+      "controller": "RepeatingFieldPageController",
       "options": {
         "summaryDisplayMode": {
           "samePage": true,
@@ -197,7 +197,7 @@
     {
       "path": "/secured-match-funding",
       "title": "Secured match funding",
-      "controller": "./pages/repeatingField.js",
+      "controller": "RepeatingFieldPageController",
       "options": {
         "summaryDisplayMode": {
           "samePage": true,
@@ -280,7 +280,7 @@
     {
       "path": "/unsecured-match-funding",
       "title": "Unsecured match funding",
-      "controller": "./pages/repeatingField.js",
+      "controller": "RepeatingFieldPageController",
       "options": {
         "summaryDisplayMode": {
           "samePage": true,
@@ -367,7 +367,7 @@
     {
       "path": "/revenue-costs-optional",
       "title": "Revenue costs (optional)",
-      "controller": "./pages/repeatingField.js",
+      "controller": "RepeatingFieldPageController",
       "options": {
         "summaryDisplayMode": {
           "samePage": true,
