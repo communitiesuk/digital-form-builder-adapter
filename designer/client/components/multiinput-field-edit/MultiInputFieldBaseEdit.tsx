@@ -1,8 +1,8 @@
-import {renderFieldEdit} from "./components/component-edit/AdapterFieldEdit";
-import {Actions} from "../../digital-form-builder/designer/client/reducers/component/types";
+import {renderFieldEdit} from "../component-edit/AdapterFieldEdit";
+import {Actions} from "../../../../digital-form-builder/designer/client/reducers/component/types";
 import {useState} from "react";
 import React from "react";
-import {MultiInputFieldTypes} from "./components/component-edit/MultiInputFieldEdit";
+import {MultiInputFieldTypes} from "./MultiInputFieldEdit";
 
 
 export const MultiInputFieldBaseEdit = React.forwardRef((props, ref: any) => {

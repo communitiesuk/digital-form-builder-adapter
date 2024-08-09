@@ -1,5 +1,5 @@
 import React, {memo, useContext, useLayoutEffect} from "react";
-import {AdapterComponentTypeEnum as Types} from "@communitiesuk/model";
+import {AdapterComponentDef, AdapterComponentTypeEnum as Types} from "@communitiesuk/model";
 import {hasValidationErrors} from "../../../../digital-form-builder/designer/client/validations";
 import {Actions} from "../../../../digital-form-builder/designer/client/reducers/component/types";
 import {updateComponent} from "../../../../digital-form-builder/designer/client/data";
@@ -46,6 +46,7 @@ const AdapterComponentEdit = (props) => {
             return;
         }
 
+        //@ts-ignore
         if (LIST_TYPES.includes(selectedComponent.type)) {
             if (selectedListName !== "static") {
                 // @ts-ignore
@@ -67,6 +68,16 @@ const AdapterComponentEdit = (props) => {
         toggleShowEditor();
     };
 
+    const removeComponent = (copy, indexOfComponent: number, indexOfPage: number) => {
+        let selectedPage = copy.pages[indexOfPage];
+        const selectedComponent: AdapterComponentDef = selectedPage.components[indexOfComponent];
+        copy.pages[indexOfPage].components.splice(indexOfComponent, 1);
+        if (selectedComponent.type == Types.MultiInputField) {
+            delete copy.pages[indexOfPage].controller
+        }
+        return copy;
+    }
+
     const handleDelete = async (e) => {
         e.preventDefault();
         const copy = {...data};
@@ -76,8 +87,8 @@ const AdapterComponentEdit = (props) => {
             (component) => component.name === selectedComponent.name
         );
         // @ts-ignore
-        copy.pages[indexOfPage].components.splice(indexOfComponent, 1);
-        await save(copy);
+        const updatedDefinition = removeComponent(copy, indexOfComponent, indexOfPage);
+        await save(updatedDefinition);
         toggleShowEditor();
     };
 

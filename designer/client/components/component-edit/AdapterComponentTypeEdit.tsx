@@ -14,7 +14,7 @@ import {DateFieldEdit} from "../../../../digital-form-builder/designer/client/co
 import {FreeTextFieldEdit} from "./FreeTextFieldEdit";
 import {AdapterComponentContext} from "../../reducers/component/AdapterComponentReducer";
 import {AdapterComponentTypes} from "@communitiesuk/model";
-import {MultiInputFieldEdit} from "./MultiInputFieldEdit";
+import {MultiInputFieldEdit} from "../multiinput-field-edit/MultiInputFieldEdit";
 import AdapterFieldEdit from "./AdapterFieldEdit";
 
 export const componentTypeEditors: any = {
