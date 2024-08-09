@@ -22,6 +22,7 @@ export interface MultiInputFieldComponent extends TextFieldBase {
         numberFieldTitle?: string;
         columnTitles?: string[];
     };
+    chidren: []
 }
 
 export type AdapterComponentDef = ComponentDef | FreeTextFieldComponent | MultiInputFieldComponent;
@@ -60,3 +61,33 @@ export enum AdapterComponentTypeEnum {
     FreeTextField = "FreeTextField",
     MultiInputField = "MultiInputField",
 }
+
+export type AdapterComponentType =
+    | "TextField"
+    | "MultilineTextField"
+    | "YesNoField"
+    | "DateField"
+    | "TimeField"
+    | "DateTimeField"
+    | "MonthYearField"
+    | "DatePartsField"
+    | "DateTimePartsField"
+    | "SelectField"
+    | "AutocompleteField"
+    | "RadiosField"
+    | "CheckboxesField"
+    | "NumberField"
+    | "UkAddressField"
+    | "TelephoneNumberField"
+    | "EmailAddressField"
+    | "FileUploadField"
+    | "Para"
+    | "Html"
+    | "InsetText"
+    | "Details"
+    | "FlashCard"
+    | "List"
+    | "WebsiteField"
+    | "ContextComponent"
+    | "FreeTextField"
+    | "MultiInputField";

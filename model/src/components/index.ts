@@ -7,3 +7,4 @@ export {
     MultiInputFieldComponent
 } from "./types"
 export {AdapterComponentTypeEnum} from "./types"
+export {AdapterComponentType} from "./types"

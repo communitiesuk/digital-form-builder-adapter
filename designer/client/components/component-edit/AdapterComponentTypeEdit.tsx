@@ -1,17 +1,21 @@
 import React, {useContext} from "react";
 import {TextFieldEdit} from "../../../../digital-form-builder/designer/client/components/FieldEditors/text-field-edit";
 import {MultilineTextFieldEdit} from "../../../../digital-form-builder/designer/client/multiline-text-field-edit";
-import {NumberFieldEdit} from "../../../../digital-form-builder/designer/client/components/FieldEditors/number-field-edit";
+import {
+    NumberFieldEdit
+} from "../../../../digital-form-builder/designer/client/components/FieldEditors/number-field-edit";
 import ListFieldEdit from "../../../../digital-form-builder/designer/client/components/FieldEditors/list-field-edit";
-import SelectFieldEdit from "../../../../digital-form-builder/designer/client/components/FieldEditors/select-field-edit";
+import SelectFieldEdit
+    from "../../../../digital-form-builder/designer/client/components/FieldEditors/select-field-edit";
 import DetailsEdit from "../../../../digital-form-builder/designer/client/components/FieldEditors/details-edit";
 import {ParaEdit} from "../../../../digital-form-builder/designer/client/components/FieldEditors/para-edit";
 import {FileUploadFieldEdit} from "../../../../digital-form-builder/designer/client/file-upload-field-edit";
 import {DateFieldEdit} from "../../../../digital-form-builder/designer/client/components/FieldEditors/date-field-edit";
-import FieldEdit from "../../../../digital-form-builder/designer/client/field-edit";
 import {FreeTextFieldEdit} from "./FreeTextFieldEdit";
 import {AdapterComponentContext} from "../../reducers/component/AdapterComponentReducer";
 import {AdapterComponentTypes} from "@communitiesuk/model";
+import {MultiInputFieldEdit} from "./MultiInputFieldEdit";
+import AdapterFieldEdit from "./AdapterFieldEdit";
 
 export const componentTypeEditors: any = {
     TextField: TextFieldEdit,
@@ -36,6 +40,7 @@ export const componentTypeEditors: any = {
     DateTimePartsField: DateFieldEdit,
     DateField: DateFieldEdit,
     FreeTextField: FreeTextFieldEdit,
+    MultiInputField: MultiInputFieldEdit,
 };
 
 export const AdapterComponentTypeEdit = (props) => {
@@ -54,7 +59,7 @@ export const AdapterComponentTypeEdit = (props) => {
     return (
         <div>
             {needsFieldInputs && (
-                <FieldEdit
+                <AdapterFieldEdit
                     isContentField={type?.subType === "content"}
                     isListField={type?.subType === "listField"}
                 />

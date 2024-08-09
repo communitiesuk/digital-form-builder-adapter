@@ -10,10 +10,10 @@ import {PageLinkage} from "../../../../digital-form-builder/designer/client/comp
 import {i18n} from "../../../../digital-form-builder/designer/client/i18n";
 import {Flyout} from "../../../../digital-form-builder/designer/client/components/Flyout";
 import {PageEdit} from "../../../../digital-form-builder/designer/client/page-edit";
-import AdapterComponentCreate from "../ComponentCreate/AdapterComponentCreate";
 import {AdapterComponent} from "../AdapterComponent";
 import {AdapterDataContext} from "../../context/AdapterDataContext";
 import {AdapterComponentContextProvider} from "../../reducers/component/AdapterComponentReducer";
+import AdapterComponentCreate from "../component-create/AdapterComponentCreate";
 
 
 const SortableItem = SortableElement(({index, page, component, data}) => (
