@@ -22,7 +22,7 @@ export interface MultiInputFieldComponent extends TextFieldBase {
         numberFieldTitle?: string;
         columnTitles?: string[];
     };
-    chidren: []
+    children?: []
 }
 
 export type AdapterComponentDef = ComponentDef | FreeTextFieldComponent | MultiInputFieldComponent;
