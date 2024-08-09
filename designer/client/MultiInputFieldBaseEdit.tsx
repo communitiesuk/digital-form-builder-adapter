@@ -2,7 +2,6 @@ import {renderFieldEdit} from "./components/component-edit/AdapterFieldEdit";
 import {Actions} from "../../digital-form-builder/designer/client/reducers/component/types";
 import {useState} from "react";
 import React from "react";
-import randomId from "../../digital-form-builder/designer/client/randomId";
 import {MultiInputFieldTypes} from "./components/component-edit/MultiInputFieldEdit";
 
 
@@ -12,21 +11,8 @@ export const MultiInputFieldBaseEdit = React.forwardRef((props, ref: any) => {
         //@ts-ignore
         let oldName = ""
         //@ts-ignore
-        if (!props.selectedSubComponent) {
-            //@ts-ignore
-            selectedSubComponent = {
-                //@ts-ignore
-                type: props.selectedComponentType,
-                name: randomId(),
-                options: {},
-                title: "",
-                hint: "",
-                schema: ""
-            }
-        } else {
-            //@ts-ignore
-            oldName = props.selectedSubComponent.name
-        }
+        oldName = props.selectedSubComponent.name
+
         const [selectedSubComponentEdit, setSelectedSubComponentEdit] =
             //@ts-ignore
             useState<MultiInputFieldTypes>(selectedSubComponent);

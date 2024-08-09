@@ -2,7 +2,6 @@ import React, {useContext, useRef, useState} from "react";
 import {AdapterComponentContext} from "../../reducers/component/AdapterComponentReducer";
 import {Flyout} from "../../../../digital-form-builder/designer/client/components/Flyout";
 import {RenderInPortal} from "../../../../digital-form-builder/designer/client/components/RenderInPortal";
-import {componentTypeEditors} from "./AdapterComponentTypeEdit";
 import {MultiInputFieldBaseEdit} from "../../MultiInputFieldBaseEdit";
 import {
     DatePartsFieldFieldComponent,
@@ -10,6 +9,13 @@ import {
     UkAddressFieldComponent, WebsiteFieldComponent,
     YesNoFieldComponent
 } from "@xgovformbuilder/model";
+import {
+    NumberFieldEdit
+} from "../../../../digital-form-builder/designer/client/components/FieldEditors/number-field-edit";
+import ListFieldEdit from "../../../../digital-form-builder/designer/client/components/FieldEditors/list-field-edit";
+import {DateFieldEdit} from "../../../../digital-form-builder/designer/client/components/FieldEditors/date-field-edit";
+import randomId from "../../../../digital-form-builder/designer/client/randomId";
+import {TextFieldEdit} from "../../../../digital-form-builder/designer/client/components/FieldEditors/text-field-edit";
 
 export type MultiInputFieldTypes =
     YesNoFieldComponent
@@ -20,6 +26,13 @@ export type MultiInputFieldTypes =
     | NumberFieldComponent
     | WebsiteFieldComponent
     | RadiosFieldComponent;
+
+export const MoreSettingsEditorTypes: any = {
+    TextField: TextFieldEdit,
+    NumberField: NumberFieldEdit,
+    RadiosField: ListFieldEdit,
+    DatePartsField: DateFieldEdit,
+};
 
 export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) => {
     //@ts-ignore
@@ -43,6 +56,38 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         }
     };
 
+    const deleteComponentByName = (componentName: string) => {
+        //@ts-ignore
+        selectedComponent.children = selectedComponent.children.filter(component => component.name !== componentName);
+        setSelectedChildComponents([])
+        //@ts-ignore
+        setSelectedChildComponents(selectedComponent.children)
+    }
+
+    //@ts-ignore
+    if (selectedComponent.tempSubComponent) {
+        //@ts-ignore
+        if (selectedComponent.list) {
+            //@ts-ignore
+            let subComponent = selectedComponent.children.filter(component => component.name === selectedComponent.tempSubComponent.name);
+            if (subComponent.length > 0) {
+                //@ts-ignore
+                subComponent[0].list = selectedComponent.list
+                //@ts-ignore
+                deleteComponentByName(selectedComponent.tempSubComponent.name)
+                //@ts-ignore
+                delete selectedComponent.list
+                //@ts-ignore
+                delete selectedComponent.tempSubComponent
+                //@ts-ignore
+                selectedComponent.children = selectedChildComponents
+                setSelectedChildComponents([])
+                //@ts-ignore
+                setSelectedChildComponents(selectedComponent.children)
+            }
+        }
+    }
+
     const handleSubComponentSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         const selectedValue = e.currentTarget.value;
@@ -60,6 +105,17 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
             deleteComponentByName(updateStatus.name)
         }
         //@ts-ignore
+        if (!selectedComponent.tempSubComponent) {
+            //@ts-ignore
+            selectedComponent.tempSubComponent = {
+                //@ts-ignore
+                type: newSubComponent.type,
+                //@ts-ignore
+                name: newSubComponent.name,
+            }
+        }
+        deleteComponentByName(newSubComponent.name)
+        //@ts-ignore
         selectedComponent.children.push(newSubComponent)
         //@ts-ignore
         setSelectedChildComponents(selectedComponent.children)
@@ -75,19 +131,34 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
 
     const renderSelectedSubComponentConfigEdit = () => {
         if (selectedComponentType && selectedComponentType !== "Clear") {
-            const TagName = componentTypeEditors[selectedComponentType ?? ""];
+            let newSelectedSubComponent = undefined
+            if (!selectedSubComponent) {
+                // @ts-ignore
+                newSelectedSubComponent = {
+                    //@ts-ignore
+                    type: selectedComponentType,
+                    name: randomId(),
+                    options: {},
+                    title: "",
+                    hint: "",
+                    schema: ""
+                }
+            }
+
+            const MoreSettings = MoreSettingsEditorTypes[selectedComponentType ?? ""];
             return (
                 <RenderInPortal>
                     {showEditor && (
                         //@ts-ignore
-                        <Flyout title={`Add ${selectedComponentType}`} onHide={toggleShowEditor}>
+                        <Flyout title={`${selectedSubComponent ? "Edit" : "Add"} ${selectedComponentType}`}
+                                onHide={toggleShowEditor}>
                             <MultiInputFieldBaseEdit ref={subComponentRef}
                                                      sendDataToParent={handleDataFromChild}
                                                      selectedComponentType={selectedComponentType}
-                                                     selectedSubComponent={selectedSubComponent}/>
-                            {TagName && <TagName/>}
+                                                     selectedSubComponent={selectedSubComponent ? selectedSubComponent : newSelectedSubComponent}/>
+                            {MoreSettings && <MoreSettings/>}
                             <button className="govuk-button" type="button" onClick={handleClickInParent}>
-                                {selectedSubComponent ? "Update Component" : "Add Component"}
+                                {selectedSubComponent ? "Update" : "Add"}
                             </button>
                         </Flyout>
                     )}
@@ -104,19 +175,16 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         setSelectedComponentType(updateSubComponent.type)
         toggleShowEditor()
         setSelectedSubComponent(updateSubComponent)
+        if (updateSubComponent.type === "RadiosField" && updateSubComponent.list) {
+            //@ts-ignore
+            selectedComponent.list = updateSubComponent.list
+        }
     }
 
     //@ts-ignore
     const handleSubComponentDelete = (subComponent: MultiInputFieldTypes, event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault()
         deleteComponentByName(subComponent.name)
-    }
-
-    const deleteComponentByName = (componentName: string) => {
-        //@ts-ignore
-        selectedComponent.children = selectedComponent.children.filter(component => component.name !== componentName);
-        //@ts-ignore
-        setSelectedChildComponents(selectedComponent.children)
     }
 
     const renderAddedSubComponents = () => {
@@ -130,6 +198,7 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
                     <thead className="govuk-table__head">
                     <tr className="govuk-table__row">
                         <th scope="col" className="govuk-table__header" key={"componentType"}>Component Type</th>
+                        <th scope="col" className="govuk-table__header" key={"componentType"}>Component Title</th>
                         <th scope="col" className="govuk-table__header" key={"actionCol"}></th>
                     </tr>
                     </thead>
@@ -139,6 +208,9 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
                             <tr className="govuk-table__row" key={childComponent.name}>
                                 <td className="govuk-table__cell table__cell__noborder">
                                     {childComponent.type}
+                                </td>
+                                <td className="govuk-table__cell table__cell__noborder">
+                                    {childComponent.title}
                                 </td>
                                 <td className="govuk-table__cell table__cell__noborder">
                                     <button type="button" className="govuk-button govuk-button--secondary"
