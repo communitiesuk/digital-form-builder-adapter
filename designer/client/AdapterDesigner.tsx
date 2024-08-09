@@ -7,6 +7,7 @@ import {i18n} from "../../digital-form-builder/designer/client/i18n";
 import {Menu} from "../../digital-form-builder/designer/client/components/Menu";
 import {AdapterVisualisation} from "./components/Visualization";
 import {AdapterFormDefinition} from "@communitiesuk/model";
+import {AdapterDataContext} from "./context/AdapterDataContext";
 
 interface Props {
     match?: any;
@@ -98,18 +99,20 @@ export default class AdapterDesigner extends Component<Props, State> {
         const dataContextProviderValue = {data, save: this.save};
         return (
             <FeatureFlagProvider>
-                <DataContext.Provider value={dataContextProviderValue}>
-                    <FlyoutContext.Provider value={flyoutContextProviderValue}>
-                        <div id="designer">
-                            <Prompt when={!error} message={`${i18n("leaveDesigner")}`}/>
-                            <Menu id={this.id} updateDownloadedAt={this.updateDownloadedAt}
-                                  updatePersona={this.updatePersona}/>
-                            <AdapterVisualisation downloadedAt={this.state.downloadedAt}
-                                                  updatedAt={this.state.updatedAt} persona={this.state.persona}
-                                                  id={this.id} previewUrl={previewUrl}/>
-                        </div>
-                    </FlyoutContext.Provider>
-                </DataContext.Provider>
+                <AdapterDataContext.Provider value={dataContextProviderValue}>
+                    <DataContext.Provider value={dataContextProviderValue}>
+                        <FlyoutContext.Provider value={flyoutContextProviderValue}>
+                            <div id="designer">
+                                <Prompt when={!error} message={`${i18n("leaveDesigner")}`}/>
+                                <Menu id={this.id} updateDownloadedAt={this.updateDownloadedAt}
+                                      updatePersona={this.updatePersona}/>
+                                <AdapterVisualisation downloadedAt={this.state.downloadedAt}
+                                                      updatedAt={this.state.updatedAt} persona={this.state.persona}
+                                                      id={this.id} previewUrl={previewUrl}/>
+                            </div>
+                        </FlyoutContext.Provider>
+                    </DataContext.Provider>
+                </AdapterDataContext.Provider>
             </FeatureFlagProvider>
         );
     }

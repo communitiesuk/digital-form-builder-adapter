@@ -19,6 +19,7 @@ export interface TextFieldBase {
         min?: number;
         length?: number;
         regex?: string;
-        error?: any; // TODO: in same cases this is a function e.g. addressLine1 in ukaddress
+        error?: any;
     };
+    children?: TextFieldBase[];
 }

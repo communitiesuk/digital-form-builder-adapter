@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import * as formConfigurationApi from "../../../../digital-form-builder/designer/client/load-form-configurations";
-import {i18n} from "../../../../digital-form-builder/designer/client/i18n";
 import {withRouter} from "react-router-dom";
 import {BackLink} from "../../../../digital-form-builder/designer/client/components/BackLink";
 import "../../../../digital-form-builder/designer/client/pages/LandingPage/LandingPage.scss";
 import logger from "../../../../digital-form-builder/designer/client/plugins/logger";
+import {i18n} from "../../i18n";
 
 type Props = {
     history: any;
