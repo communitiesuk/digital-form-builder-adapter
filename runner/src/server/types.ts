@@ -16,7 +16,7 @@ import {
 } from "../../../digital-form-builder/runner/src/server/services";
 import {QueueStatusService} from "../../../digital-form-builder/runner/src/server/services/queueStatusService";
 import {QueueService} from ".../../../digital-form-builder/runner/src/server/services/QueueService";
-import {AdapterCacheService} from "./services";
+import {AdapterCacheService, S3UploadService} from "./services";
 import {AdapterStatusService} from "./services";
 import {AdapterUploadService} from "./services";
 
@@ -25,6 +25,7 @@ export type Services = (services: string[]) => {
     notifyService: NotifyService;
     payService: PayService;
     adapterUploadService: AdapterUploadService;
+    s3UploadService: S3UploadService;
     webhookService: WebhookService;
     adapterStatusService: AdapterStatusService;
     queueService: QueueService;

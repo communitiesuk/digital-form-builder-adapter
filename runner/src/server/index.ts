@@ -1,4 +1,6 @@
+// @ts-ignore
 import fs from "fs";
+// @ts-ignore
 import hapi, {ServerOptions} from "@hapi/hapi";
 
 import Scooter from "@hapi/scooter";
@@ -35,6 +37,8 @@ import {AdapterCacheService} from "./services";
 import {AdapterStatusService} from "./services";
 import {configureInitialiseSessionPlugin} from "./plugins/initialize-session/SessionManagementPlugin";
 import {AdapterUploadService} from "./services";
+import {S3UploadService} from "./services";
+import clientSideUploadPlugin from "./plugins/ClientSideUploadPlugin";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -106,7 +110,7 @@ async function createServer(routeConfig: RouteConfig) {
     if (!config.documentUploadApiUrl) {
         server.registerService([Schmervice.withName("uploadService", MockUploadService),]);
     } else {
-        server.registerService([AdapterUploadService]);
+        server.registerService([AdapterUploadService, S3UploadService]);
     }
 
     // @ts-ignore
@@ -123,6 +127,16 @@ async function createServer(routeConfig: RouteConfig) {
 
             if ("header" in response && response.header) {
                 response.header("X-Robots-Tag", "noindex, nofollow");
+
+                const existingHeaders = response.headers;
+                const existingCsp = existingHeaders["content-security-policy"] || "";
+                if (typeof existingCsp === "string") {
+                    const newCsp = existingCsp?.replace(
+                        /connect-src[^;]*/,
+                        `connect-src 'self' https://${config.awsBucketName}.s3.${config.awsRegion}.amazonaws.com/`
+                    );
+                    response.header("Content-Security-Policy", newCsp);
+                }
 
                 const WEBFONT_EXTENSIONS = /\.(?:eot|ttf|woff|svg|woff2)$/i;
                 if (!WEBFONT_EXTENSIONS.test(request.url.toString())) {
@@ -158,6 +172,7 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(pluginApplicationStatus);
     await server.register(publicRouterPlugin);
     await server.register(errorHandlerPlugin);
+    await server.register(clientSideUploadPlugin);
     await server.register(blipp);
 
     server.state("cookies_policy", {

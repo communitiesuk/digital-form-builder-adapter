@@ -8,7 +8,8 @@ import AdapterComponentEdit from "./component-edit/AdapterComponentEdit";
 export const adapterComponentTypes: any = {
     ...componentTypes,
     FreeTextField,
-    MultiInputField
+    MultiInputField,
+    ClientSideFileUploadField
 }
 
 export const Base = (props) => {
@@ -28,6 +29,14 @@ function FreeTextField() {
 }
 
 function MultiInputField() {
+    return (
+        <ComponentField>
+            <span className="box tall thick-top-border"/>
+        </ComponentField>
+    );
+}
+
+function ClientSideFileUploadField() {
     return (
         <ComponentField>
             <span className="box tall thick-top-border"/>

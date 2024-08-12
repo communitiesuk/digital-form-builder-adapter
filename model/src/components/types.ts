@@ -15,6 +15,23 @@ export interface FreeTextFieldComponent extends TextFieldBase {
     };
 }
 
+export interface ClientSideFileUploadFieldComponent {
+    subType?: "field";
+    type: "ClientSideFileUploadField";
+    name: string;
+    title: string;
+    hint: string;
+    options: {
+        dropzoneConfig?: object;
+        showNoScriptWarning?: boolean;
+        minimumRequiredFiles?: number;
+        totalOverallFilesize?: number;
+        required?: boolean; // these values are set dynamically based on
+        optionalText?: boolean; // minimumRequiredFiles being > 0
+    };
+    schema: {};
+}
+
 export interface MultiInputFieldComponent extends TextFieldBase {
     type: "MultiInputField";
     options: TextFieldBase["options"] & {
@@ -25,12 +42,17 @@ export interface MultiInputFieldComponent extends TextFieldBase {
     children?: []
 }
 
-export type AdapterComponentDef = ComponentDef | FreeTextFieldComponent | MultiInputFieldComponent;
+export type AdapterComponentDef =
+    ComponentDef
+    | FreeTextFieldComponent
+    | MultiInputFieldComponent
+    | ClientSideFileUploadFieldComponent;
 
 export type AdapterInputFieldsComponentsDef =
     InputFieldsComponentsDef
     | FreeTextFieldComponent
-    | MultiInputFieldComponent;
+    | MultiInputFieldComponent
+    | ClientSideFileUploadFieldComponent;
 
 export enum AdapterComponentTypeEnum {
     TextField = "TextField",
@@ -60,6 +82,7 @@ export enum AdapterComponentTypeEnum {
     ContextComponent = "ContextComponent",
     FreeTextField = "FreeTextField",
     MultiInputField = "MultiInputField",
+    ClientSideFileUploadField = "ClientSideFileUploadField",
 }
 
 export type AdapterComponentType =
@@ -90,4 +113,5 @@ export type AdapterComponentType =
     | "WebsiteField"
     | "ContextComponent"
     | "FreeTextField"
-    | "MultiInputField";
+    | "MultiInputField"
+    | "ClientSideFileUploadField";
