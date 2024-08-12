@@ -106,6 +106,7 @@ COPY --chown=appuser:appuser ../runner ./runner
 # It will re-run only if there is a designer change and a build change
 FROM digital-form-builder-adapter-runner-pre-build AS digital-form-builder-adapter-runner-build
 WORKDIR /usr/src/app/digital-form-builder-adapter
+COPY ../fsd_config .
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-build  \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-model-build  \
