@@ -1,6 +1,8 @@
 import {RepeatingFieldPageController} from "./RepeatingFieldPageController";
 import {HapiLifecycleMethod, HapiRequest, HapiResponseToolkit} from "../../../types";
 import {PageController} from "./PageController";
+import {format, parseISO} from "date-fns";
+import {AdapterSummaryViewModel} from "../models";
 
 export class RepeatingSummaryPageController extends PageController {
     private getRoute!: HapiLifecycleMethod;
@@ -12,6 +14,7 @@ export class RepeatingSummaryPageController extends PageController {
     hideRowTitles!: RepeatingFieldPageController["hideRowTitles"];
 
     inputComponent;
+    returnUrl;
 
     constructor(model, pageDef, inputComponent) {
         super(model, pageDef);
@@ -46,11 +49,22 @@ export class RepeatingSummaryPageController extends PageController {
             //@ts-ignore
             const state = await adapterCacheService.getState(request);
             const {progress = []} = state;
+            const {query} = request;
+            const {returnUrl} = query;
+            this.returnUrl = returnUrl;
+
             progress?.push(`/${this.model.basePath}${this.path}?view=summary`);
             //@ts-ignore
             await adapterCacheService.mergeState(request, {progress});
 
             const viewModel = this.getViewModel(state);
+            //@ts-ignore
+            viewModel.crumb = request.plugins.crumb;
+
+            viewModel.backLink =
+                state.callback?.returnUrl ?? progress[progress.length - 2];
+            //@ts-ignore
+            viewModel.backLinkText = this.model.def?.backLinkText ?? "Go back to application overview";
 
             return h.view("repeating-summary", viewModel);
         };
@@ -84,18 +98,50 @@ export class RepeatingSummaryPageController extends PageController {
 
     getViewModel(formData) {
         const baseViewModel = super.getViewModel(formData);
+        let rows;
         const answers = this.getPartialState(formData);
-        //@ts-ignore
-        const rows = this.getRowsFromAnswers(answers, "summary");
+        if (this.inputComponent.type === "MultiInputField") {
+            const orderedNames = this.inputComponent.children.items.map(
+                (x) => x.name
+            );
+            rows = this.buildTextFieldRows(
+                answers,
+                formData.metadata.form_session_identifier,
+                orderedNames
+            );
+            return {
+                ...baseViewModel,
+                customText: this.options.customText,
+                details: {rows, headings: this.inputComponent.options.columnTitles},
+            };
+        }
 
+        rows = this.getRowsFromAnswers(answers, "summary");
         return {
             ...baseViewModel,
             customText: this.options.customText,
-            details: {rows, headings: this.inputComponent.options.columnTitles},
+            details: {rows},
         };
     }
 
-    getRowsFromAnswers(answers, view = false) {
+    buildRows(state, response) {
+        let form_session_identifier =
+            response.request.query.form_session_identifier ?? "";
+
+        if (this.inputComponent.type === "MultiInputField") {
+            const orderedNames = this.inputComponent.children.items.map(
+                (x) => x.name
+            );
+            return this.buildTextFieldRows(
+                state,
+                form_session_identifier,
+                orderedNames
+            );
+        }
+        return this.getRowsFromAnswers(state, form_session_identifier);
+    }
+
+    getRowsFromAnswers(answers, form_session_identifier, view = false) {
         const {title = ""} = this.inputComponent;
         const listValueToText = this.inputComponent.list?.items?.reduce(
             (prev, curr) => ({...prev, [curr.value]: curr.text}),
@@ -120,13 +166,91 @@ export class RepeatingSummaryPageController extends PageController {
                 actions: {
                     items: [
                         {
-                            href: `?removeAtIndex=${i}${view ? `&view=${view}` : ``}`,
-                            text: "Remove",
+                            href: `?removeAtIndex=${i}${
+                                view ? `&view=${view}` : ``
+                            }${form_session_identifier}`,
+                            //@ts-ignore
+                            text: this.options.customText?.removeText ?? "Remove",
                             visuallyHiddenText: titleWithIteration,
                         },
                     ],
                 },
             };
+        });
+    }
+
+    isValidDate(dateString) {
+        const date = new Date(dateString);
+        return !isNaN(date.getTime());
+    }
+
+    _renderComponentByType(key, value) {
+        const componentType = this.inputComponent.getComponentType(key);
+
+        if (componentType == "DatePartsField") {
+            return format(parseISO(value), "d/MM/yyyy");
+        } else if (componentType == "MonthYearField") {
+            return value[`${key}__month`] + "/" + value[`${key}__year`];
+        } else if (componentType == "YesNoField") {
+            return value ? "Yes" : "No";
+        } else if (componentType == "UkAddressField") {
+            return value
+                ? [
+                    value.addressLine1,
+                    value.addressLine2,
+                    value.town,
+                    value.county,
+                    value.postcode,
+                ]
+                    .filter((p) => {
+                        return !!p;
+                    })
+                    .join(", ")
+                : "";
+        }
+
+        return `${this.inputComponent.getPrefix(key)}${value}`;
+    }
+
+    buildTextFieldRows(
+        answers,
+        form_session_identifier,
+        orderedNames,
+        view = false
+    ) {
+        const {title = ""} = this.inputComponent;
+
+        if (form_session_identifier) {
+            form_session_identifier = `&form_session_identifier=${form_session_identifier}`;
+        }
+
+        return answers?.map((answer, i) => {
+            const keyToRenderedValue = {};
+            for (const [key, value] of Object.entries(answer)) {
+                const renderedValue = this._renderComponentByType(key, value);
+                keyToRenderedValue[key] = renderedValue;
+            }
+
+            const row = {
+                action: {
+                    href: `?removeAtIndex=${i}${view ? `&view=${view}` : ``}${
+                        form_session_identifier ? form_session_identifier : ``
+                    }`,
+                    //@ts-ignore
+                    text: this.options.customText?.removeText ?? "Remove",
+                    visuallyHiddenText: title,
+                },
+                values: [],
+            };
+
+            for (const [i, name] of orderedNames.entries()) {
+                row.values.push({
+                    text: keyToRenderedValue[name],
+                    class: "govuk-table__cell",
+                } as never);
+            }
+
+            return row;
         });
     }
 
@@ -136,18 +260,52 @@ export class RepeatingSummaryPageController extends PageController {
      */
     makePostRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
-            const {adapterCacheService} = request.services([]);
-            //@ts-ignore
+            const {adapterCacheService, adapterStatusService} = request.services([]);
             const state = await adapterCacheService.getState(request);
+            const query = request.query;
+            let form_session_identifier = "";
+
+            if (query.form_session_identifier) {
+                form_session_identifier = `form_session_identifier=${query.form_session_identifier}`;
+            }
             //@ts-ignore
             if (request.payload?.next === "increment") {
                 const nextIndex = this.nextIndex(state);
+                let returnUrl =
+                    this.returnUrl !== undefined ? `&returnUrl=${this.returnUrl}` : "";
                 return h.redirect(
-                    `/${this.model.basePath}${this.path}?view=${nextIndex}`
+                    `/${this.model.basePath}${this.path}?view=${nextIndex}${returnUrl}&${form_session_identifier}`
                 );
             }
 
-            return h.redirect(this.getNext(request.payload));
+
+            const model = this.model;
+            //@ts-ignore
+            let savedState = await adapterCacheService.getState(request);
+            //@ts-ignore
+            const summaryViewModel = new AdapterSummaryViewModel(this.title, model, savedState, request);
+            //@ts-ignore
+            await adapterCacheService.mergeState(request, {
+                ...savedState,
+                webhookData: summaryViewModel.validatedWebhookData,
+            });
+            //@ts-ignore
+            savedState = await adapterCacheService.getState(request);
+
+            const startPage = this.model.def.startPage;
+            const isStartPage = this.path === startPage;
+
+            if (!isStartPage && savedState.metadata && savedState.webhookData) {
+                //@ts-ignore
+                await adapterStatusService.outputRequests(request);
+            }
+
+
+            if (typeof this.returnUrl !== "undefined") {
+                return h.redirect(this.returnUrl + `?${form_session_identifier}`);
+            }
+
+            return h.redirect(this.getNext(state) + `?${form_session_identifier}`);
         };
     }
 }

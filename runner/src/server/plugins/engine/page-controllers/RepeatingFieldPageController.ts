@@ -5,8 +5,7 @@ import {FormComponent} from "../components";
 
 import joi from "joi";
 import {reach} from "hoek";
-import {AdapterFormModel} from "../models";
-import {HapiRequest, HapiResponseToolkit} from "../../../types";
+import {AdapterFormModel, AdapterSummaryViewModel} from "../models";
 
 const contentTypes: Array<ComponentDef["type"]> = [
     "Para",
@@ -42,7 +41,6 @@ export class RepeatingFieldPageController extends PageController {
     isSamePageDisplayMode: boolean;
     isSeparateDisplayMode: boolean;
     hideRowTitles: boolean;
-
     noCostsTitle: string;
     noCostsText: string;
     saveText: string;
@@ -58,12 +56,22 @@ export class RepeatingFieldPageController extends PageController {
             );
         }
 
+        // @ts-ignore
         this.options = pageDef?.options ?? DEFAULT_OPTIONS;
         this.options.summaryDisplayMode ??= DEFAULT_OPTIONS.summaryDisplayMode;
-        //@ts-ignore
+        // @ts-ignore
         this.options.hideRowTitles ??= DEFAULT_OPTIONS.hideRowTitles;
         // @ts-ignore
         this.options.customText ??= DEFAULT_OPTIONS.customText;
+        //@ts-ignore
+        this.options.customText.columnOneTitle ??=
+            DEFAULT_OPTIONS.customText.columnOneTitle;
+        //@ts-ignore
+        this.options.customText.columnTwoTitle ??=
+            DEFAULT_OPTIONS.customText.columnTwoTitle;
+        //@ts-ignore
+        this.options.customText.columnThreeTitle ??=
+            DEFAULT_OPTIONS.customText.columnThreeTitle;
 
         this.isSamePageDisplayMode = this.options.summaryDisplayMode.samePage!;
         this.isSeparateDisplayMode = this.options.summaryDisplayMode.separatePage!;
@@ -81,21 +89,33 @@ export class RepeatingFieldPageController extends PageController {
         this.summary.removeAtIndex = this.removeAtIndex;
         this.summary.hideRowTitles = this.hideRowTitles;
 
+        this.summary.options = this.options;
+
         this.noCostsTitle = "You have not added any costs yet";
         this.noCostsText = "Each cost you add will be shown here";
         this.saveText = "Save and add another";
-
-        this.summary.options = this.options;
+        if (model?.def?.metadata?.isWelsh) {
+            this.noCostsTitle = "Nid ydych chi wedi ychwanegu unrhyw gostau eto";
+            this.noCostsText = "Bydd pob cost yr ychwanegwch yn cael ei dangos yma";
+            this.saveText = "Cadw ac ychwanegu un arall";
+        }
     }
 
     get stateSchema() {
         const name = this.inputComponent.name;
+        // @ts-ignore
         const parentSchema = super.stateSchema.fork([name], (schema) => {
             if (schema.type !== "array") {
-                return joi.array().items(schema).single().empty(null).default([]);
+                schema = joi.array().items(schema).single().empty(null).default([]);
             }
+            //@ts-ignore
+            if (this.inputComponent.options.required) {
+                schema = schema.required();
+            }
+
             return schema;
         });
+
         super.stateSchema = parentSchema;
         return parentSchema;
     }
@@ -103,16 +123,13 @@ export class RepeatingFieldPageController extends PageController {
     makeGetRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {query} = request;
-            //@ts-ignore
             const {removeAtIndex, view, returnUrl} = query;
             const {adapterCacheService} = request.services([]);
-
             let form_session_identifier = "";
 
             if (query.form_session_identifier) {
                 form_session_identifier = `form_session_identifier=${query.form_session_identifier}`;
             }
-
             //@ts-ignore
             let state = await adapterCacheService.getState(request);
             const partialState = this.getPartialState(state, view);
@@ -126,15 +143,16 @@ export class RepeatingFieldPageController extends PageController {
                 return this.removeAtIndex(request, h);
             }
 
-            if (view === "summary" || !this.isSamePageDisplayMode) {
+            if (view === "summary" && !this.isSamePageDisplayMode) {
                 return this.summary.getRouteHandler(request, h);
             }
 
             if ((view ?? false) || this.isSamePageDisplayMode) {
                 const response = await super.makeGetRouteHandler()(request, h);
-                //@ts-ignore
+                const {adapterCacheService} = request.services([]);
                 const state = await adapterCacheService.getState(request);
                 const partialState = this.getPartialState(state, view);
+
                 response.source.context.components &&= response.source.context.components.map(
                     (component) => {
                         const {model} = component;
@@ -153,8 +171,8 @@ export class RepeatingFieldPageController extends PageController {
                 return response;
             }
 
-
             if (removeAtIndex ?? false) {
+                const {adapterCacheService} = request.services([]);
                 //@ts-ignore
                 let state = await adapterCacheService.getState(request);
                 const key = this.inputComponent.name;
@@ -179,12 +197,13 @@ export class RepeatingFieldPageController extends PageController {
     }
 
     addRowsToViewContext(response, state) {
+        let rows = {};
         if (this.options!.summaryDisplayMode!.samePage) {
-            const rows = this.summary.getRowsFromAnswers(this.getPartialState(state));
+            rows = this.summary.buildRows(this.getPartialState(state), response);
             response.source.context.details = {
                 //@ts-ignore
                 headings: this.inputComponent.options.columnTitles,
-                rows
+                rows,
             };
         }
     }
@@ -195,40 +214,116 @@ export class RepeatingFieldPageController extends PageController {
         const {adapterCacheService} = request.services([]);
         let state = await adapterCacheService.getState(request);
         const key = this.inputComponent.name;
-        const answers = state[key];
-        answers?.splice(removeAtIndex, 1);
-        await adapterCacheService.mergeState(request, {[key]: answers});
-        if (state[key]?.length < 1) {
-            return h.redirect("?view=0");
+        let answers = state[key];
+
+        const sectionName =
+            this.pageDef.section === undefined ? "" : this.pageDef.section;
+
+        let form_session_identifier = "";
+
+        if (query.form_session_identifier) {
+            form_session_identifier = `&form_session_identifier=${query.form_session_identifier}`;
         }
 
-        return h.redirect(`?view=${view ?? 0}`);
+        if (sectionName) {
+            // Gets the answers from the correct section
+            answers = state[sectionName][key];
+            answers?.splice(removeAtIndex, 1);
+            answers = {[key]: answers};
+            await adapterCacheService.mergeState(request, {[sectionName]: answers});
+
+            //TODO: Quick fix but lets see if we can make the returing happen in one place
+            if (
+                state[sectionName][key] === undefined ||
+                state[sectionName][key]?.length < 1 ||
+                this.isSamePageDisplayMode
+            ) {
+                return h.redirect(`?view=0${form_session_identifier}`);
+            }
+            return h.redirect(`?view=${view ?? "summary"}${form_session_identifier}`);
+        } else {
+            answers?.splice(removeAtIndex, 1);
+            await adapterCacheService.mergeState(request, {[key]: answers});
+        }
+
+        if (
+            state[key] === undefined ||
+            state[key]?.length < 1 ||
+            this.isSamePageDisplayMode
+        ) {
+            return h.redirect(`?view=0${form_session_identifier}`);
+        }
+
+        return h.redirect(`?view=${view ?? "summary"}${form_session_identifier}`);
     }
 
     makePostRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {query} = request;
+            const {adapterCacheService, adapterStatusService} = request.services([]);
+            let form_session_identifier = "";
+
+            //TODO quick fix to get sessions working with add another. We should look at a better way of passing through the query
+            if (query.form_session_identifier) {
+                form_session_identifier = `form_session_identifier=${query.form_session_identifier}`;
+            }
+
+            let returnUrl = "";
+            if (query.returnUrl) {
+                returnUrl = `&returnUrl=${query.returnUrl}`;
+            }
 
             if (query.view === "summary") {
                 return this.summary.postRouteHandler(request, h);
             }
             //@ts-ignore
             if (request?.payload?.next === "continue") {
-                // @ts-ignore
+                //@ts-ignore
                 const {next, ...rest} = request.payload;
                 if (this.isSeparateDisplayMode) {
                     return h.redirect(`?view=summary`);
                 }
-                return h.redirect(this.getNext(rest));
+
+                const model = this.model;
+                //@ts-ignore
+                let savedState = await adapterCacheService.getState(request);
+                //@ts-ignore
+                const summaryViewModel = new AdapterSummaryViewModel(this.title, model, savedState, request);
+                //@ts-ignore
+                await adapterCacheService.mergeState(request, {
+                    ...savedState,
+                    webhookData: summaryViewModel.validatedWebhookData,
+                });
+                //@ts-ignore
+                savedState = await adapterCacheService.getState(request);
+
+                const startPage = this.model.def.startPage;
+                const isStartPage = this.path === startPage;
+
+                if (!isStartPage && savedState.metadata && savedState.webhookData) {
+                    //@ts-ignore
+                    await adapterStatusService.outputRequests(request);
+                }
+
+                if (typeof query.returnUrl !== "undefined") {
+                    return h.redirect(`${query.returnUrl}?${form_session_identifier}`);
+                }
+                return h.redirect(`${this.getNext(rest)}?${form_session_identifier}`);
             }
 
             const modifyUpdate = (update) => {
                 const key = this.inputComponent.name;
-                const value = update[key];
-                const wrappedValue = !Array.isArray(value) ? [value] : value;
-                return {
-                    [key]: [...new Set(wrappedValue)],
-                };
+                let value = update[key];
+                let wrappedValue = !Array.isArray(value) ? [value] : value;
+
+                if (this.section) {
+                    wrappedValue = update[this.section.name];
+                    return {
+                        [this.section.name]: wrappedValue,
+                    };
+                }
+                //@ts-ignore
+                return {[key]: [...new Set(wrappedValue)],};
             };
 
             const response = await this.handlePostRequest(request, h, {
@@ -244,16 +339,22 @@ export class RepeatingFieldPageController extends PageController {
                 return response;
             }
 
+            //TODO when the rework of add another is done we should look at changing this to use the redirect methods in the helpers class
             if (this.options!.summaryDisplayMode!.samePage) {
-                return h.redirect(`/${this.model.basePath}${this.path}`);
+                return h.redirect(
+                    `/${this.model.basePath}${this.path}?${form_session_identifier}`
+                );
             }
-            return h.redirect(`/${this.model.basePath}${this.path}?view=summary`);
+            return h.redirect(
+                `/${this.model.basePath}${this.path}?view=summary&${form_session_identifier}${returnUrl}`
+            );
         };
     }
 
     getPartialState(state, atIndex?: number) {
         const keyName = this.inputComponent.name;
-        const sectionName = this.pageDef.sectionName ?? "";
+        const sectionName =
+            this.pageDef.section === undefined ? "" : this.pageDef.section;
         const path = [sectionName, keyName].filter(Boolean).join(".");
         const partial = reach(state, path);
         if (atIndex ?? false) {
