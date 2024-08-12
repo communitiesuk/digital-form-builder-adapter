@@ -64,6 +64,9 @@ export class PageControllerBase {
     hasFormComponents: boolean;
     hasConditionalFormComponents: boolean;
     backLinkFallback?: string;
+    saveAndContinueText: string;
+    confirmAndContinueText: string;
+    continueText: string;
 
     // TODO: pageDef type
     constructor(model: AdapterFormModel, pageDef: { [prop: string]: any } = {}) {
@@ -106,6 +109,10 @@ export class PageControllerBase {
         this.components = components;
         this.hasFormComponents = !!components.formItems.length;
         this.hasConditionalFormComponents = !!conditionalFormComponents.length;
+
+        this.saveAndContinueText = "Save and continue";
+        this.confirmAndContinueText = "Confirm and continue";
+        this.continueText = "Continue";
 
         this[FORM_SCHEMA] = this.components.formSchema;
         this[STATE_SCHEMA] = this.components.stateSchema;

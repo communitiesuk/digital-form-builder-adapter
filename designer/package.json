@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server/index.ts",
   "scripts": {
-    "dev": "NODE_OPTIONS=--openssl-legacy-provider && yarn start:local",
+    "watch": "NODE_ENV=development webpack",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider && concurrently 'yarn watch' 'yarn start:local'",
     "production": "yarn start:prod",
     "build": "NODE_ENV=production && NODE_OPTIONS=--openssl-legacy-provider && webpack",
     "start:prod": "NODE_ENV=production nodemon dist/server.js",
@@ -37,6 +38,7 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^4.0.0",
+    "concurrently": "^7.0.0",
     "copy-webpack-plugin": "^6.1.1",
     "css-loader": "^4.3.0",
     "file-loader": "^6.2.0",

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {LandingChoice, NewConfig} from "../../digital-form-builder/designer/client/pages/LandingPage";
 import {SaveError} from "../../digital-form-builder/designer/client/pages/ErrorPages";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import { ViewFundForms } from "./pages/LandingPage";
+import { ViewFundForms } from "./pages/landing-page";
 import AdapterDesigner from "./AdapterDesigner";
 import {adapterInitI18n} from "./i18n";
 

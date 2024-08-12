@@ -32,3 +32,4 @@ docs/**/typedoc
 .env_mysql
 /queue-model/dist
 /queue-model/src/prisma/generated
+

@@ -1,13 +1,14 @@
 import React, {useState} from "react";
-import {componentTypes} from "../../digital-form-builder/designer/client/component";
-import {Flyout} from "../../digital-form-builder/designer/client/components/Flyout";
-import {ComponentContextProvider} from "../../digital-form-builder/designer/client/reducers/component";
-import {i18n} from "../../digital-form-builder/designer/client/i18n";
-import AdapterComponentEdit from "./AdapterComponentEdit";
+import {componentTypes} from "../../../digital-form-builder/designer/client/component";
+import {Flyout} from "../../../digital-form-builder/designer/client/components/Flyout";
+import {i18n} from "../i18n";
+import {AdapterComponentContextProvider} from "../reducers/component/AdapterComponentReducer";
+import AdapterComponentEdit from "./component-edit/AdapterComponentEdit";
 
 export const adapterComponentTypes: any = {
     ...componentTypes,
     FreeTextField,
+    MultiInputField
 }
 
 export const Base = (props) => {
@@ -19,6 +20,14 @@ export const ComponentField = (props) => {
 }
 
 function FreeTextField() {
+    return (
+        <ComponentField>
+            <span className="box tall thick-top-border"/>
+        </ComponentField>
+    );
+}
+
+function MultiInputField() {
     return (
         <ComponentField>
             <span className="box tall thick-top-border"/>
@@ -44,9 +53,9 @@ export const AdapterComponent = (props) => {
             </div>
             {showEditor && (
                 <Flyout title={editFlyoutTitle} show={true} onHide={toggleShowEditor}>
-                    <ComponentContextProvider pagePath={page.path} component={component}>
+                    <AdapterComponentContextProvider pagePath={page.path} component={component}>
                         <AdapterComponentEdit page={page} toggleShowEditor={toggleShowEditor}/>
-                    </ComponentContextProvider>
+                    </AdapterComponentContextProvider>
                 </Flyout>
             )}
         </div>
