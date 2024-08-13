@@ -1717,6 +1717,7 @@ __metadata:
     "@types/hoek": ^4.1.4
     babel-eslint: ^10.1.0
     babel-plugin-module-name-mapper: ^1.2.0
+    dropzone: 5.9.3
     hapi-auth-jwt2: 10.2.0
     joi: 17.13.3
     prisma: ^5.1.1
@@ -8991,6 +8992,13 @@ __metadata:
   version: 8.2.0
   resolution: "dotenv@npm:8.2.0"
   checksum: ad4c8e0df3e24b4811c8e93377d048a10a9b213dcd9f062483b4a2d3168f08f10ec9c618c23f5639060d230ccdb174c08761479e9baa29610aa978e1ee66df76
+  languageName: node
+  linkType: hard
+
+"dropzone@npm:5.9.3":
+  version: 5.9.3
+  resolution: "dropzone@npm:5.9.3"
+  checksum: 7fe7e32ff188ab38bb3ddd468938ef78c158ce4cada8b2184cdd78a1d52fd961af56f1f0bec11a7881aab6d43d7fc9f9a6dc6addbfbea93c1ad784dbc6444e4d
   languageName: node
   linkType: hard
 

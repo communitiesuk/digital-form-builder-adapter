@@ -1,7 +1,8 @@
 {% macro componentList(components) %}
     {% for component in components %}
         {% if component.type.toLowerCase() == 'freetextfield'
-            or component.type.toLowerCase() == 'multiinputfield' %}
+            or component.type.toLowerCase() == 'multiinputfield'
+            or component.type.toLowerCase() == 'clientsidefileuploadfield' %}
             {% import "../components/" + component.type.toLowerCase() + ".html" as view with context %}
             {{ view[component.type](component) }}
         {% else %}

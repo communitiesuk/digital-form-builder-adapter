@@ -4,7 +4,8 @@ export {
     AdapterComponentDef,
     AdapterInputFieldsComponentsDef,
     FreeTextFieldComponent,
-    MultiInputFieldComponent
+    MultiInputFieldComponent,
+    ClientSideFileUploadFieldComponent
 } from "./types"
 export {AdapterComponentTypeEnum} from "./types"
 export {AdapterComponentType} from "./types"

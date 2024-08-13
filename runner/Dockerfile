@@ -98,6 +98,7 @@ FROM digital-form-builder-adapter-model-build AS digital-form-builder-adapter-ru
 WORKDIR /usr/src/app/digital-form-builder-adapter
 USER 1001
 COPY --chown=appuser:appuser ../runner ./runner
+COPY --chown=appuser:appuser ../fsd_config ./fsd_config
 
 
 # ----------------------------

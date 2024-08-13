@@ -16,6 +16,7 @@ import {AdapterComponentContext} from "../../reducers/component/AdapterComponent
 import {AdapterComponentTypes} from "@communitiesuk/model";
 import {MultiInputFieldEdit} from "../multiinput-field-edit/MultiInputFieldEdit";
 import AdapterFieldEdit from "./AdapterFieldEdit";
+import {ClientSideFileUploadFieldEdit} from "./ClientSideFileUploadFieldEdit";
 
 export const componentTypeEditors: any = {
     TextField: TextFieldEdit,
@@ -41,6 +42,7 @@ export const componentTypeEditors: any = {
     DateField: DateFieldEdit,
     FreeTextField: FreeTextFieldEdit,
     MultiInputField: MultiInputFieldEdit,
+    ClientSideFileUploadField: ClientSideFileUploadFieldEdit,
 };
 
 export const AdapterComponentTypeEdit = (props) => {
