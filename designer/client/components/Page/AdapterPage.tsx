@@ -9,11 +9,11 @@ import {AdapterComponentTypes} from "@communitiesuk/model";
 import {PageLinkage} from "../../../../digital-form-builder/designer/client/components/PageLinkage";
 import {i18n} from "../../../../digital-form-builder/designer/client/i18n";
 import {Flyout} from "../../../../digital-form-builder/designer/client/components/Flyout";
-import {PageEdit} from "../../../../digital-form-builder/designer/client/page-edit";
 import {AdapterComponent} from "../AdapterComponent";
 import {AdapterDataContext} from "../../context/AdapterDataContext";
 import {AdapterComponentContextProvider} from "../../reducers/component/AdapterComponentReducer";
 import AdapterComponentCreate from "../component-create/AdapterComponentCreate";
+import {AdapterPageEdit} from "../component-edit/AdapterPageEdit";
 
 
 const SortableItem = SortableElement(({index, page, component, data}) => (
@@ -120,7 +120,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
             {isEditingPage && (
                 <Flyout title="Edit Page" onHide={setIsEditingPage}>
                     Inside the Page Edit
-                    <PageEdit page={page} onEdit={onEditEnd}/>
+                    <AdapterPageEdit page={page} onEdit={onEditEnd}/>
                 </Flyout>
             )}
 

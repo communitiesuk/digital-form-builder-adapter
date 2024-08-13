@@ -45,7 +45,11 @@ export class DefaultPageController extends PageController {
                 await adapterStatusService.outputRequests(request);
             }
 
+            //This is required to ensure we don't navigate to an incorrect page based on stale state values
+            relevantState = this.getConditionEvaluationContext(this.model, savedState);
+
             return this.proceed(request, h, relevantState);
+
         };
     }
 }

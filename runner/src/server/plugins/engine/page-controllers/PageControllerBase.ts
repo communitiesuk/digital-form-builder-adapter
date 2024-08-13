@@ -254,7 +254,8 @@ export class PageControllerBase {
             if (!condition) {
                 defaultLink = link;
             }
-            const conditionPassed = this.model.conditions[condition]?.fn?.(state);
+            const conditionPassed =
+                (this.model.conditions[condition] && (this.model.conditions[condition].fn(state) || this.model.conditions[condition].fn(state[this.section?.name])));
             if (conditionPassed) {
                 return link;
             }
