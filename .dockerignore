@@ -1,0 +1,14 @@
+.circleci
+.idea
+*/node_modules
+.env
+.gitignore
+*/Dockerfile
+*/README.md
+**/node_modules
+**/dist
+.yarn/cache
+.yarn/build-state.yml
+.yarn/install-state.gz
+.git
+.vscode
