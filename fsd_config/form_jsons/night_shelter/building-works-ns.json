@@ -432,7 +432,7 @@
         {
           "name": "NOMwBb",
           "options": {
-            "hideTitle": true,
+            "hideTitle": false,
             "dropzoneConfig": {
               "maxFiles": 1,
               "parallelUploads": 1,

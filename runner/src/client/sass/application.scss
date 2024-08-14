@@ -4,6 +4,8 @@
 @import "modal-dialog";
 @import "upload-dialog";
 
+$govuk-global-styles: true;
+
 .flash-card {
   .govuk-button {
     background: #fff;
@@ -73,31 +75,16 @@
   }
 }
 
-.govuk-button {
-  &--link {
-    @extend .govuk-link;
-    border: none;
-    color: $govuk-link-colour;
-    cursor: pointer;
-    background-color: transparent;
-    &:hover {
-      color: $govuk-link-hover-colour;
-    }
-  }
+.heading {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.red-border {
+  border: 1px solid red !important;
 }
 
 .govuk-list {
-  &--multi-start-page li {
-    list-style-type: none;
-    padding-left: 25px;
-    padding-right: 25px;
-    position: relative;
-    &:before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      width: 20px;
-      overflow: hidden;
-    }
-  }
+  list-style-type: revert;
+  padding-left: revert;
 }

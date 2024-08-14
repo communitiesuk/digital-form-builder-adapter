@@ -1,8 +1,5 @@
 import {merge, reach} from "@hapi/hoek";
 import * as querystring from "querystring";
-import {
-    validationOptions
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers/validationOptions";
 
 import {
     feedbackReturnInfoKey
@@ -33,6 +30,7 @@ import {ComponentCollection} from "../components/ComponentCollection";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {proceed, redirectTo} from "../util/helper";
 import {UtilHelper} from "../../utils/UtilHelper";
+import {validationOptions} from "./ValidationOptions";
 
 const FORM_SCHEMA = Symbol("FORM_SCHEMA");
 const STATE_SCHEMA = Symbol("STATE_SCHEMA");
