@@ -112,7 +112,7 @@
             },
             "showNoScriptWarning": false,
             "minimumRequiredFiles": 1,
-            "hideTitle": true
+            "hideTitle": false
           },
           "type": "ClientSideFileUploadField",
           "title": "Upload the initial notice you served the landlord",

@@ -63,7 +63,7 @@
               "acceptedFiles": "image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
             },
             "minimumRequiredFiles": "1",
-            "hideTitle": true
+            "hideTitle": false
           },
           "type": "ClientSideFileUploadField",
           "title": "Upload the independent survey of works",
@@ -84,7 +84,7 @@
         {
           "name": "xUgKLI",
           "options": {
-            "hideTitle": true,
+            "hideTitle": false,
             "dropzoneConfig": {
               "maxFiles": "10",
               "parallelUploads": "10",
