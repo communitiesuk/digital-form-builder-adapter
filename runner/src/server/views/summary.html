@@ -1,29 +1,37 @@
 {% from "partials/summary-detail.html" import summaryDetail %}
 {% from "components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "button/macro.njk" import govukButton %}
 {% extends 'layout.html' %}
 
+{% block beforeContent %}
+    {{ govukPhaseBanner({
+        tag: {
+            text: "beta"
+        },
+        html: "This is a new service."
+    }) }}
+    {% if page.isEligibility %}
+        {{ govukBackLink({
+            href: page.backLink,
+            text: page.backLinkText
+        }) }}
+    {% endif %}
+{% endblock %}
 {% block content %}
     <div class="govuk-main-wrapper">
         <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
-                <h1 class="govuk-heading-l">
-                    {% if callback and callback.title %}
-                        {{ callback.title }}
-                    {% else %}
-                        {{ pageTitle }}
-                    {% endif %}
-                </h1>
-
+            <div class="govuk-grid-column-full">
+                <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
                 {% if callback and callback.message %}
                     <div class="govuk-inset-text">
                         {{ callback.message }}
                     </div>
                 {% endif %}
-
-                {% if callback and callback.htmlMessage %}
-                    {{ callback.htmlMessage | safe }}
+                {% if containsFileType %}
+                    <div class="govuk-inset-text">
+                        Check your uploaded file is visible. If not, upload it again.
+                    </div>
                 {% endif %}
-
                 {% for detail in details %}
                     {{ summaryDetail(detail) }}
                 {% endfor %}
@@ -36,8 +44,6 @@
                         {% endfor %}
                     </ul>
                     <p class="govuk-body">Total cost: £{{ fees.total / 100 }}</p>
-                    <p class="govuk-body">You should not be charged an exchange fee if you pay with a UK credit or debit
-                        card.</p>
                 {% endif %}
 
                 {% if not result.error %}
@@ -64,7 +70,6 @@
                                 </div>
                             </div>
                         {% endif %}
-
 
                         {% if markAsCompleteComponent %}
                             <div class="govuk-form-group {{ 'govuk-form-group--error' if markAsCompleteError }}">
@@ -100,25 +105,15 @@
                                 </fieldset>
                             </div>
                         {% endif %}
-
-
-                        <button data-prevent-double-click="true" class="govuk-button" data-module="govuk-button">
-                            {% if fees and fees.details|length %}
-                                Submit and pay
+                        {% if fees and fees.details|length %}
+                            Submit and pay
+                        {% else %}
+                            {% if page.isEligibility %}
+                                {{ govukButton({ attributes: { id: "submit" }, text: page.confirmAndContinueText }) }}
                             {% else %}
-                                Save and continue
+                                {{ govukButton({ attributes: { id: "submit" }, text: page.saveAndContinueText }) }}
                             {% endif %}
-                        </button>
-
-                        {% if showPaymentSkippedWarningPage %}
-                            <div class="govuk-body">
-                                <button data-prevent-double-click="true" class="govuk-body govuk-button--link"
-                                        name="skipPayment" value="true" data-module="govuk-button">
-                                    Unable to pay online
-                                </button>
-                            </div>
                         {% endif %}
-
                     </form>
                 {% endif %}
             </div>

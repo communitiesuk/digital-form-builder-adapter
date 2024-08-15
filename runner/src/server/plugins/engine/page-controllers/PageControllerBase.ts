@@ -34,6 +34,9 @@ import {validationOptions} from "./ValidationOptions";
 
 const FORM_SCHEMA = Symbol("FORM_SCHEMA");
 const STATE_SCHEMA = Symbol("STATE_SCHEMA");
+const ADDITIONAL_VALIDATION_FUNCTIONS = Symbol(
+    "ADDITIONAL_VALIDATION_FUNCTIONS"
+);
 
 export class PageControllerBase {
     /**
@@ -65,6 +68,8 @@ export class PageControllerBase {
     saveAndContinueText: string;
     confirmAndContinueText: string;
     continueText: string;
+    backLink: string;
+    backLinkText: string;
 
     // TODO: pageDef type
     constructor(model: AdapterFormModel, pageDef: { [prop: string]: any } = {}) {
@@ -112,8 +117,19 @@ export class PageControllerBase {
         this.confirmAndContinueText = "Confirm and continue";
         this.continueText = "Continue";
 
+        if (this.model?.def?.metadata?.isWelsh) {
+            this.saveAndContinueText = "Cadw a pharhau";
+            this.confirmAndContinueText = "cadarnhau a pharhau";
+            this.continueText = "Parhau";
+        }
+
+        this.backLink = "";
+        this.backLinkText = this.model.def?.backLinkText ?? "Go back to application overview";
+
         this[FORM_SCHEMA] = this.components.formSchema;
         this[STATE_SCHEMA] = this.components.stateSchema;
+        this[ADDITIONAL_VALIDATION_FUNCTIONS] = this.components.additionalValidationFunctions;
+
     }
 
     getAdapterComponentCollection(pageDef: { [p: string]: any }, model: AdapterFormModel) {
@@ -180,7 +196,7 @@ export class PageControllerBase {
             showTitle,
             components,
             errors,
-            isStartPage: false,
+            isStartPage: false
         };
     }
 
@@ -265,6 +281,20 @@ export class PageControllerBase {
         }
 
         return nextLink?.page ?? defaultLink?.page;
+    }
+
+    async validateComponentFunctions(request, viewModel) {
+        let errors = [];
+        for (let func of this.additionalValidationFunctions) {
+            const errorList = await func(request, viewModel);
+            // @ts-ignore
+            errors.push(...errorList);
+        }
+        return errors;
+    }
+
+    get additionalValidationFunctions() {
+        return this[ADDITIONAL_VALIDATION_FUNCTIONS];
     }
 
     /**
@@ -470,6 +500,13 @@ export class PageControllerBase {
                 !isStartPage &&
                 !isInitialisedSession;
 
+            this.backLink = state.callback?.returnUrl ?? progress[progress.length - 2];
+            if (state["metadata"] && state["metadata"]["has_eligibility"]) {
+                this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+            } else {
+                this.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh);
+            }
+
             if (shouldRedirectToStartPage) {
                 // @ts-ignore
                 return startPage!.startsWith("http")
@@ -496,6 +533,7 @@ export class PageControllerBase {
 
             this.setPhaseTag(viewModel);
             this.setFeedbackDetails(viewModel, request);
+            await this.setExistingFilesToClientSideFileUpload(state, viewModel, currentPath, request);
 
             /**
              * Content components can be hidden based on a condition. If the condition evaluates to true, it is safe to be kept, otherwise discard it
@@ -557,7 +595,7 @@ export class PageControllerBase {
 
             if (state.callback?.returnUrl) {
                 viewModel.backLink = state.callback?.returnUrl;
-                viewModel.backLinkText = UtilHelper.getBackLinkText(false, false);
+                viewModel.backLinkText = UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh);
             } else {
                 viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
             }
@@ -566,6 +604,36 @@ export class PageControllerBase {
 
             return h.view(this.viewName, viewModel);
         };
+    }
+
+    private async setExistingFilesToClientSideFileUpload(state: FormSubmissionState, viewModel: any, currentPath: string, request: HapiRequest) {
+        const {s3UploadService} = request.services([]);
+        const form_session_identifier = state.metadata?.form_session_identifier ?? "";
+        if (form_session_identifier) {
+            const comp = viewModel.components.find((c) => c.type === "ClientSideFileUploadField");
+            if (comp) {
+                const pageAndForm = currentPath.includes("?") ? currentPath.split("?")[0] : currentPath;
+                comp.model.pageAndForm = pageAndForm;
+                const folderPath = `${form_session_identifier}${pageAndForm}/${comp.model.id}`;
+                const files = await s3UploadService.listFilesInBucketFolder(folderPath, form_session_identifier);
+                comp.model.existingFiles.push(...files);
+            }
+        }
+    }
+
+    async existingFilesToClientSideFileUpload(state: FormSubmissionState, viewModel: any, request: HapiRequest) {
+        const {s3UploadService} = request.services([]);
+        const form_session_identifier = state.metadata?.form_session_identifier ?? "";
+        if (form_session_identifier) {
+            for (const detail of viewModel.details) {
+                const comps = detail.items.filter((c) => c.type === "ClientSideFileUploadField");
+                for (const comp of comps) {
+                    const folderPath = `${comp.pageId}/${comp.name}`;
+                    const files = await s3UploadService.listFilesInBucketFolder(`${form_session_identifier}${folderPath}`, form_session_identifier);
+                    comp.value = {folderPath, files,};
+                }
+            }
+        }
     }
 
     /**
@@ -592,13 +660,32 @@ export class PageControllerBase {
         //@ts-ignore
         const state = await adapterCacheService.getState(request);
         const originalFilenames = (state || {}).originalFilenames || {};
-        const fileFields = this.getViewModel(formResult)
+        const viewModel = this.getViewModel(formResult)
+        const fileFields = viewModel
             .components.filter((component) => component.type === "FileUploadField")
             .map((component) => component.model);
         const progress = state.progress || [];
         const {num} = request.query;
 
         this.validatingForErrors(hasFilesizeError, fileFields, formResult, preHandlerErrors);
+
+        const additionalValidationErrors = await this.validateComponentFunctions(request, viewModel);
+        if (additionalValidationErrors.length > 0) {
+            if (
+                formResult.errors &&
+                "titleText" in formResult.errors &&
+                "errorList" in formResult.errors
+            ) {
+                formResult.errors.errorList = formResult.errors.errorList.concat(
+                    additionalValidationErrors
+                );
+            } else {
+                formResult.errors = {
+                    titleText: "There is a problem",
+                    errorList: additionalValidationErrors,
+                };
+            }
+        }
 
         Object.entries(payload).forEach(([key, value]) => {
             if (value && value === (originalFilenames[key] || {}).location) {
@@ -846,8 +933,8 @@ export class PageControllerBase {
 
     private renderWithErrors(request, h, payload, num, progress, errors) {
         const viewModel = this.getViewModel(payload, num, errors);
-
         viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
+        viewModel.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh);
         this.setPhaseTag(viewModel);
         this.setFeedbackDetails(viewModel, request);
 

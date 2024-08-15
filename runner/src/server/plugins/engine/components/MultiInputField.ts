@@ -1,7 +1,6 @@
 import {ComponentCollection} from "./ComponentCollection";
 import {Schema} from "joi";
 import {parseISO, format} from "date-fns";
-import {FormComponent} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components";
 import {AdapterDataType} from "./types";
 import {AdapterFormModel} from "../models";
 import {AdapterInputFieldsComponentsDef, MultiInputFieldComponent} from "@communitiesuk/model";
@@ -9,8 +8,9 @@ import {
     FormPayload, FormSubmissionErrors,
     FormSubmissionState
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
+import {AdapterFormComponent} from "./AdapterFormComponent";
 
-export class MultiInputField extends FormComponent {
+export class MultiInputField extends AdapterFormComponent {
     children: ComponentCollection;
     options: MultiInputFieldComponent["options"];
     //@ts-ignore

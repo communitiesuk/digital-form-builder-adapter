@@ -9,7 +9,6 @@ import {AdapterComponentDef} from "@communitiesuk/model";
 import {
     ComponentCollectionViewModel
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/types";
-import {FormComponent} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components";
 import {
     FormData,
     FormPayload,
@@ -17,13 +16,15 @@ import {
     FormSubmissionState
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {ComponentBase} from "./ComponentBase";
+import {AdapterFormComponent} from "./AdapterFormComponent";
 
 export class ComponentCollection {
-    items: (ComponentBase | ComponentCollection | FormComponent)[];
-    formItems: FormComponent /* | ConditionalFormComponent*/[];
+    items: (ComponentBase | ComponentCollection | AdapterFormComponent)[];
+    formItems: AdapterFormComponent /* | ConditionalFormComponent*/[];
     prePopulatedItems: Record<string, JoiSchema>;
     formSchema: JoiSchema;
     stateSchema: JoiSchema;
+    additionalValidationFunctions: Function[];
 
     constructor(adapterComponentDef: AdapterComponentDef[] = [], model: AdapterFormModel) {
         const components = this.mappingComponents(adapterComponentDef, model);
@@ -37,6 +38,7 @@ export class ComponentCollection {
         this.stateSchema = joi.object().keys(this.getStateSchemaKeys()).required();
         //@ts-ignore
         this.prePopulatedItems = this.getPrePopulatedItems();
+        this.additionalValidationFunctions = this.getAllAdditionalValidationFunctions();
     }
 
     mappingComponents(adapterComponentDef: AdapterComponentDef[], model: AdapterFormModel) {
@@ -65,6 +67,19 @@ export class ComponentCollection {
             Object.assign(keys, item.getStateSchemaKeys());
         });
         return keys;
+    }
+
+    getAllAdditionalValidationFunctions() {
+        const funcs = [];
+        this.formItems.forEach((item) => {
+            if (item.getAdditionalValidationFunctions) {
+                // @ts-ignore
+                const itemFuncs = item.getAdditionalValidationFunctions();
+                // @ts-ignore
+                funcs.push(...itemFuncs);
+            }
+        });
+        return funcs;
     }
 
     // @ts-ignore
