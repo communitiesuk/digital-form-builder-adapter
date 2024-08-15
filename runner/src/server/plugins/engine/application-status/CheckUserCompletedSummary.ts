@@ -11,8 +11,11 @@ export async function checkUserCompletedSummary(request: HapiRequest, h: HapiRes
             [`/${request.params.id}/status`],
             `${request.yar.id} user has incomplete state, redirecting to /summary`
         );
-        return h.redirect(`/${request.params.id}/summary`).takeover();
+        let form_session_identifier = "";
+        if (request.query.form_session_identifier) {
+            form_session_identifier = `?form_session_identifier=${request.query.form_session_identifier}`;
+        }
+        return h.redirect(`/${request.params.id}/summary${form_session_identifier}`).takeover();
     }
-
     return state.userCompletedSummary;
 }

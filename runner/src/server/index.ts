@@ -157,9 +157,8 @@ async function createServer(routeConfig: RouteConfig) {
     server.ext("onRequest", (request: HapiRequest, h: HapiResponseToolkit) => {
         // @ts-ignore
         const {pathname} = getRequestInfo(request);
-
+        //@ts-ignore
         request.app.location = pathname;
-
         return h.continue;
     });
 
