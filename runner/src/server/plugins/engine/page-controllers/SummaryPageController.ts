@@ -63,6 +63,7 @@ export class SummaryPageController extends PageController {
 
             }
             this.loadRequestErrors(request, viewModel);
+            await this.existingFilesToClientSideFileUpload(state, viewModel, request);
             return h.view("summary", viewModel);
         };
     }
