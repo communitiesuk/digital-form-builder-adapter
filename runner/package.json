@@ -20,7 +20,7 @@
   "dependencies": {
     "dropzone": "5.9.3",
     "joi": "17.13.3",
-    "tinymce": "^6.3.2"
+    "tinymce": "^7.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.3",

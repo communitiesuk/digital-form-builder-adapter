@@ -377,18 +377,21 @@ export class PageControllerBase {
 
             const errorList = validationResult.error.details.map((err) => {
                 const name = err.path
-                    .map((name: string, index: number) =>
-                        index > 0 ? `__${name}` : name
-                    )
+                    .map((name: string, index: number) => index > 0 ? `__${name}` : name)
                     .join("");
+
+
+                let errorMessage = err.message
+                    .replace(isoRegex, (text) => {
+                        return format(parseISO(text), "d MMMM yyyy");
+                    })
+                errorMessage = errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1);
 
                 return {
                     path: err.path.join("."),
                     href: `#${name}`,
                     name: name,
-                    text: err.message.replace(isoRegex, (text) => {
-                        return format(parseISO(text), "d MMMM yyyy");
-                    }),
+                    text: errorMessage,
                 };
             });
 

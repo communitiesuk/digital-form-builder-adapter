@@ -1,12 +1,9 @@
-import pkg from "../../package.json";
 import {newConfig, api, app} from "../../../digital-form-builder/designer/server/plugins/routes";
 import {envStore, flagg} from "flagg";
 import {putFormWithIdRouteRegister} from "./routes/PutFormWithIdRouteRegister";
 
 export const designerPlugin = {
     plugin: {
-        name: pkg.name,
-        version: pkg.version,
         multiple: true,
         dependencies: "vision",
         register: async (server) => {
