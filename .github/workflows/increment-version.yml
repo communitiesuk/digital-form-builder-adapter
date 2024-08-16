@@ -23,23 +23,14 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          npm install -g @angular/cli
-        working-directory: ${{ github.workspace }}
-
-      - name: Run semantics release
-        run: |
-          npx semantic-release
-        working-directory: ${{ github.workspace }}
 
       - name: Print package.json version (before)
         run: |
           echo "package.json version (before): $(jq -r .version package.json)"
-        working-directory: ${{ github.workspace }}
 
-      - name: Fetch Latest Commit
+      - name: Run semantics release
         run: |
-          git fetch
-          git reset --hard origin/main
+          npm version patch --no-git-tag-version
 
       - name: Print package.json version (after)
         run: |
