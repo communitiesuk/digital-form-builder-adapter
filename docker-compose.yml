@@ -4,7 +4,7 @@ version: "3.9"
 services:
   designer:
     container_name: designer
-    image: funding-service-design-form-designer-adapter
+    image: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:latest
     build:
       context: .
       dockerfile: ./designer/Dockerfile
@@ -27,7 +27,7 @@ services:
       - runner
   runner:
     container_name: runner
-    image: funding-service-design-form-runner-adapter
+    image: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:latest
     build:
       context: .
       dockerfile: ./runner/Dockerfile
