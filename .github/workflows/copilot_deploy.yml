@@ -44,6 +44,7 @@ on:
 env:
   DOCKER_REGISTRY: ghcr.io
   IMAGE_NAME: "funding-service-design-form-runner-adapter"
+  IMAGE_NAME_DESIGNER: "funding-service-design-form-designer-adapter"
   IMAGE_REPO_PATH: "ghcr.io/${{github.repository_owner}}"
 
 jobs:
@@ -54,7 +55,7 @@ jobs:
 
   docker-build:
     runs-on: ubuntu-latest
-    needs: [setup]
+    needs: [ setup ]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -74,6 +75,7 @@ jobs:
             type=sha,format=long
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=${{env.VERSION}},enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest
             type=ref,event=branch
 
       - name: Log in to the Container registry
@@ -102,11 +104,63 @@ jobs:
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'
 
+  docker-build-designer:
+    runs-on: ubuntu-latest
+    needs: [ setup ]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: "Set version in env"
+        id: set-version
+        run: |
+          source version
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Docker metadata
+        id: metadata
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{env.IMAGE_REPO_PATH}}/${{env.IMAGE_NAME_DESIGNER}}
+          tags: |
+            type=sha,format=long
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=${{env.VERSION}},enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest
+            type=ref,event=branch
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create .env for designer workspace
+        run: |
+          touch ./designer/.env
+          echo LAST_TAG_GH=designer >> ./designer/.env
+          echo LAST_COMMIT_GH=designer >> ./designer/.env
+          cat ./designer/.env
+
+      - name: Build and push docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          tags: ${{ steps.metadata.outputs.tags}}
+          labels: ${{ steps.metadata.outputs.labels }}
+          push: true
+          file: ./designer/Dockerfile
+          build-args: |
+            LAST_TAG='${{env.VERSION}}'
+            LAST_COMMIT='${{ github.sha }}'          
+  
+
   dev_deploy:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs: [docker-build, setup]
+    needs: [ docker-build, setup ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
 
     uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
@@ -118,7 +172,7 @@ jobs:
       version: sha-${{ github.sha }}
 
   post_dev_deploy_tests:
-    needs: [dev_deploy]
+    needs: [ dev_deploy ]
 
     secrets:
       FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
@@ -137,7 +191,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs: [setup, docker-build, dev_deploy, post_dev_deploy_tests]
+    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
 
     uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
@@ -149,7 +203,7 @@ jobs:
       version: sha-${{ github.sha }}
 
   post_test_deploy_tests:
-    needs: [setup, docker-build, dev_deploy, post_dev_deploy_tests, test_deploy]
+    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests, test_deploy ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
 
     secrets:
