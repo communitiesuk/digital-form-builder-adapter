@@ -9,9 +9,6 @@ on:
       - "python/**"
   workflow_dispatch:
 
-env:
-  IMAGE_NAME_STUB: "digital-form-builder-dluhc-"
-
 jobs:
   designer-scan:
     runs-on: ubuntu-latest
@@ -31,9 +28,9 @@ jobs:
           # see https://github.com/satackey/action-docker-layer-caching/issues/55
           # ATM solution is to change keys periodically to avoid the dangling layers
           # for that just increase the number you see in key and restore-keys below (same number in both keys).
-          key: digital-form-builder-2-{hash}
+          key: digital-form-builder-adapter-2-{hash}
           restore-keys: |
-            digital-form-builder-2
+            digital-form-builder-adapter-2
       - name: Docker compose build
         run: |
           LAST_TAG='${{ github.run_number }}-rc'
@@ -42,7 +39,7 @@ jobs:
       - name: Scan image
         uses: anchore/scan-action@v2
         with:
-          image: "${{ env.IMAGE_NAME_STUB }}designer:latest"
+          image: "funding-service-design-form-designer-adapter:latest"
           fail-build: false
           severity-cutoff: critical
       - name: Upload artifact
@@ -81,7 +78,7 @@ jobs:
       - name: Scan image
         uses: anchore/scan-action@v2
         with:
-          image: "${{ env.IMAGE_NAME_STUB }}runner:latest"
+          image: "funding-service-design-form-runner-adapter:latest"
           acs-report-enable: true
           fail-build: false
           severity-cutoff: critical
