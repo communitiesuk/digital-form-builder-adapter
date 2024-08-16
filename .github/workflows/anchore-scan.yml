@@ -17,7 +17,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Docker compose pull designer
-        run: docker compose pull designer
+        run: docker pull ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:latest
       - name: Docker layer caching
         uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
@@ -51,7 +51,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Docker compose pull runner
-        run: docker compose pull runner
+        run: docker pull ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:latest
       - name: Docker layer caching
         uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
