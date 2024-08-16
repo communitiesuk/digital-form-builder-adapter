@@ -56,7 +56,7 @@ export {TextField} from "../../../../../../digital-form-builder/runner/src/serve
 export {TimeField} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/TimeField";
 export {
     WebsiteField
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/WebsiteField";
+} from "./WebsiteField";
 export {
     YesNoField
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/YesNoField";

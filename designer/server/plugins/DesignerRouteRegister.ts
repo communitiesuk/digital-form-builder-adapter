@@ -4,6 +4,7 @@ import {putFormWithIdRouteRegister} from "./routes/PutFormWithIdRouteRegister";
 
 export const designerPlugin = {
     plugin: {
+        name: "designerPlugin",
         multiple: true,
         dependencies: "vision",
         register: async (server) => {
