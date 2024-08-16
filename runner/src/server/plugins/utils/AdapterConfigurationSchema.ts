@@ -13,6 +13,7 @@ export const ExtendedAdapterSchema: any = joi.object({
         then: joi.required(),
         otherwise: joi.optional(),
     }),
+    eligibilityResultUrl: joi.string().optional().allow(""),
 });
 
 export const AdapterConfigurationSchema: any = configSchema.concat(ExtendedAdapterSchema)

@@ -31,6 +31,7 @@ pluginViews.options.context = (request: HapiRequest) => ({
     analyticsAccount: config.analyticsAccount,
     gtmId1: config.gtmId1,
     gtmId2: config.gtmId2,
+    //@ts-ignore
     location: request?.app.location,
     matomoId: config.matomoId,
     matomoUrl: config.matomoUrl,

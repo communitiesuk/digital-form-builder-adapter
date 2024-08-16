@@ -1,6 +1,4 @@
-import {
-    SummaryViewModel
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/models";
+import {SummaryViewModel} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/models";
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {HapiRequest} from "../../../../../../digital-form-builder/runner/src/server/types";
 import {AdapterFormModel} from "./AdapterFormModel";
@@ -8,9 +6,25 @@ import {SummaryPageController} from "../page-controllers/SummaryPageController";
 
 export class AdapterViewModel extends SummaryViewModel {
 
+
     constructor(pageTitle: string, model: AdapterFormModel, state: FormSubmissionState, request: HapiRequest) {
         // @ts-ignore
         super(pageTitle, model, state, request);
+        if (this.details.length > 0) {
+            let notSuppliedText = "Not supplied";
+            let changeText = "Change";
+            if (model?.def?.metadata?.isWelsh) {
+                notSuppliedText = "Heb ei ddarparu";
+                changeText = "Newid";
+            }
+            this.details = this.details.map(detail => {
+                return {
+                    ...detail,
+                    notSuppliedText: notSuppliedText,
+                    changeText
+                };
+            });
+        }
     }
 
 

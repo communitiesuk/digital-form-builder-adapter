@@ -61,10 +61,8 @@ export class RepeatingSummaryPageController extends PageController {
             //@ts-ignore
             viewModel.crumb = request.plugins.crumb;
 
-            viewModel.backLink =
-                state.callback?.returnUrl ?? progress[progress.length - 2];
-            //@ts-ignore
-            viewModel.backLinkText = this.model.def?.backLinkText ?? "Go back to application overview";
+            this.backLink = state.callback?.returnUrl ?? progress[progress.length - 2];
+            this.backLinkText = this.model.def?.backLinkText ?? "Go back to application overview";
 
             return h.view("repeating-summary", viewModel);
         };
@@ -283,7 +281,7 @@ export class RepeatingSummaryPageController extends PageController {
             //@ts-ignore
             let savedState = await adapterCacheService.getState(request);
             //@ts-ignore
-            const summaryViewModel = new AdapterSummaryViewModel(this.title, model, savedState, request);
+            const summaryViewModel = new AdapterSummaryViewModel(this.title, model, savedState, request, this);
             //@ts-ignore
             await adapterCacheService.mergeState(request, {
                 ...savedState,

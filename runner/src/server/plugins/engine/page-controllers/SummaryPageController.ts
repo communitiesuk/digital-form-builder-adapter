@@ -8,9 +8,12 @@ import {PageController} from "./PageController";
 import {isMultipleApiKey} from "@xgovformbuilder/model";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {redirectTo} from "../util/helper";
+import {UtilHelper} from "../../utils/UtilHelper";
 
 
 export class SummaryPageController extends PageController {
+
+    isEligibility: boolean = false;
 
     constructor(model: AdapterFormModel, pageDef: any) {
         // @ts-ignore
@@ -32,8 +35,13 @@ export class SummaryPageController extends PageController {
             }
             //@ts-ignore
             const state = await adapterCacheService.getState(request);
+            if (state["metadata"]["has_eligibility"]) {
+                this.isEligibility = state["metadata"]["has_eligibility"];
+                this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+                this.backLink = state.callback?.returnUrl;
+            }
             //@ts-ignore
-            const viewModel = new AdapterSummaryViewModel(this.title, model, state, request);
+            const viewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             if (viewModel.endPage) {
                 return redirectTo(request, h, `/${model.basePath}${viewModel.endPage.path}`);
             }
@@ -55,7 +63,7 @@ export class SummaryPageController extends PageController {
 
             }
             this.loadRequestErrors(request, viewModel);
-
+            await this.existingFilesToClientSideFileUpload(state, viewModel, request);
             return h.view("summary", viewModel);
         };
     }
@@ -73,7 +81,7 @@ export class SummaryPageController extends PageController {
             //@ts-ignore
             await adapterCacheService.mergeState(request, {...state});
             //@ts-ignore
-            const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request);
+            const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             this.setFeedbackDetails(summaryViewModel, request);
 
             // redirect user to start page if there are incomplete form errors
