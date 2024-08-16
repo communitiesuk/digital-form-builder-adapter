@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Docker compose pull
-        run: docker compose build
+      - name: Docker compose pull designer
+        run: docker compose pull designer
       - name: Docker layer caching
         uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
@@ -31,15 +31,10 @@ jobs:
           key: digital-form-builder-adapter-2-{hash}
           restore-keys: |
             digital-form-builder-adapter-2
-      - name: Docker compose build
-        run: |
-          LAST_TAG='${{ github.run_number }}-rc'
-          LAST_COMMIT='${{ github.sha }}'
-          docker-compose build
       - name: Scan image
         uses: anchore/scan-action@v2
         with:
-          image: "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:latest"
+          image: "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:latest"
           fail-build: false
           severity-cutoff: critical
       - name: Upload artifact
@@ -55,8 +50,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Docker compose pull
-        run: docker compose build
+      - name: Docker compose pull runner
+        run: docker compose pull runner
       - name: Docker layer caching
         uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
@@ -70,15 +65,10 @@ jobs:
           key: digital-form-builder-2-{hash}
           restore-keys: |
             digital-form-builder-2
-      - name: Docker compose build
-        run: |
-          LAST_TAG='${{ github.run_number }}-rc'
-          LAST_COMMIT='${{ github.sha }}'
-          docker-compose build
       - name: Scan image
         uses: anchore/scan-action@v2
         with:
-          image: "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:latest"
+          image: "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:latest"
           acs-report-enable: true
           fail-build: false
           severity-cutoff: critical
