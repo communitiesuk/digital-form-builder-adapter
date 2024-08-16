@@ -39,7 +39,7 @@ jobs:
       - name: Scan image
         uses: anchore/scan-action@v2
         with:
-          image: "funding-service-design-form-designer-adapter:latest"
+          image: "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:latest"
           fail-build: false
           severity-cutoff: critical
       - name: Upload artifact
@@ -78,7 +78,7 @@ jobs:
       - name: Scan image
         uses: anchore/scan-action@v2
         with:
-          image: "funding-service-design-form-runner-adapter:latest"
+          image: "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:latest"
           acs-report-enable: true
           fail-build: false
           severity-cutoff: critical
