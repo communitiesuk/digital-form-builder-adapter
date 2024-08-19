@@ -35,7 +35,7 @@ export class SummaryPageController extends PageController {
             }
             //@ts-ignore
             const state = await adapterCacheService.getState(request);
-            if (state["metadata"]["has_eligibility"]) {
+            if (state["metadata"] && state["metadata"]["has_eligibility"]) {
                 this.isEligibility = state["metadata"]["has_eligibility"];
                 this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
                 this.backLink = state.callback?.returnUrl;
