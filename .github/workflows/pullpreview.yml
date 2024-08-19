@@ -24,3 +24,6 @@ jobs:
         aws-region: eu-west-2
     - uses: actions/checkout@v2
     - uses: pullpreview/action@v5.6.1
+      with:
+        ports: 3000/tcp,3009/tcp,
+        default_port: 3000
