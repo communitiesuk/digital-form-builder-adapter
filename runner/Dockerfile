@@ -51,7 +51,7 @@ FROM digital-form-builder-adapter-pre-build AS digital-form-builder-adapter-inst
 WORKDIR /usr/src/app/digital-form-builder-adapter
 USER 1001
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
-    node update-package.js && yarn setup && yarn install
+    node update-package.js && yarn setup && yarn install --frozen-lockfile
 
 
 # ----------------------------
