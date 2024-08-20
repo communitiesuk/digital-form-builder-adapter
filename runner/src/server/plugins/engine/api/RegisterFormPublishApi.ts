@@ -196,7 +196,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             }
         });
 
-        server.route({
+        const getOptions: any = {
             method: "get",
             path: "/{id}/{path*}",
             options: {
@@ -206,7 +206,6 @@ export class RegisterFormPublishApi implements RegisterApi {
                         method: queryParamPreHandler
                     }
                 ],
-                auth: jwtAuthStrategyName,
             },
             handler: (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {path, id} = request.params;
@@ -222,7 +221,13 @@ export class RegisterFormPublishApi implements RegisterApi {
                 }
                 throw Boom.notFound("No form or page found");
             }
-        });
+        }
+
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+            getOptions.options.auth = jwtAuthStrategyName
+        }
+
+        server.route(getOptions);
 
         const {adapterUploadService} = server.services([]);
 
@@ -256,7 +261,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             throw Boom.notFound("No form of path found");
         };
 
-        server.route({
+        let postConfig: any = {
             method: "post",
             path: "/{id}/{path*}",
             options: {
@@ -279,9 +284,12 @@ export class RegisterFormPublishApi implements RegisterApi {
                 },
                 pre: [{method: handleFiles}],
                 handler: postHandler,
-                auth: jwtAuthStrategyName,
             }
-        });
+        }
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+            postConfig.options.auth = jwtAuthStrategyName
+        }
+        server.route(postConfig);
 
     }
 

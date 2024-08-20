@@ -41,7 +41,9 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
                 //@ts-ignore
                 maxFilesize: selectedComponent.options.dropzoneConfig.parallelUploads ? selectedComponent.options.dropzoneConfig.parallelUploads : 0,
                 //@ts-ignore
-                acceptedFiles: selectedComponent.options.dropzoneConfig.acceptedFiles ? selectedComponent.options.dropzoneConfig.acceptedFiles.split(",") : []
+                acceptedFiles: selectedComponent.options.dropzoneConfig.acceptedFiles
+                    //@ts-ignore
+                && selectedComponent.options.dropzoneConfig.acceptedFiles.length > 0 ? selectedComponent.options.dropzoneConfig.acceptedFiles.split(",") : []
             }
         },
         //@ts-ignore

@@ -1,17 +1,15 @@
 import {RegisterApi} from "./RegisterApi";
 import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
 import {jwtAuthStrategyName} from "../Auth";
+import {config} from "../../utils/AdapterConfigurationSchema";
 
 
 export class RegisterS3FileUploadApi implements RegisterApi {
     register(server: HapiServer): void {
 
-        server.route({
+        const s3PresignUrlOption: any = {
             method: "POST",
             path: "/s3/{id}/{pageKey}/{componentKey}/create-pre-signed-url",
-            options: {
-                auth: jwtAuthStrategyName,
-            },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {query} = request;
                 const {s3UploadService, adapterCacheService} = request.services([]);
@@ -46,14 +44,20 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                 const url = await s3UploadService.getPreSignedUrlS3(key, metaData);
                 return {url};
             },
-        });
+        }
 
-        server.route({
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+            s3PresignUrlOption.options = {
+                auth: jwtAuthStrategyName
+            }
+        }
+
+        server.route(s3PresignUrlOption);
+
+
+        const s3GetDataOptions: any = {
             method: "GET",
             path: "/s3/{id}/{pageKey}/{componentKey}/download-file",
-            options: {
-                auth: jwtAuthStrategyName,
-            },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {query} = request;
                 const {s3UploadService, adapterCacheService} = request.services([]);
@@ -73,14 +77,19 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                 const url = await s3UploadService.getFileDownloadUrlS3(key);
                 return h.redirect(url);
             },
-        });
+        }
 
-        server.route({
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+            s3GetDataOptions.options = {
+                auth: jwtAuthStrategyName
+            }
+        }
+
+        server.route(s3GetDataOptions);
+
+        const deleteOptions: any = {
             method: "DELETE",
             path: "/s3/{id}/{pageKey}/{componentKey}/delete-file-by-key",
-            options: {
-                auth: jwtAuthStrategyName,
-            },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {query} = request;
                 const {s3UploadService, adapterCacheService} = request.services([]);
@@ -106,7 +115,15 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                     return h.response("Error deleting file from S3").code(500);
                 }
             },
-        });
+        }
+
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+            deleteOptions.options = {
+                auth: jwtAuthStrategyName
+            }
+        }
+
+        server.route(deleteOptions);
 
     }
 }
