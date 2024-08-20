@@ -31,6 +31,8 @@ USER 1001
 FROM yarn-build AS digital-form-builder-adapter-pre-build
 WORKDIR /usr/src/app/digital-form-builder-adapter
 USER 1001
+COPY --chown=appuser:appuser .git ./.git
+COPY --chown=appuser:appuser .gitmodules ./.gitmodules
 RUN git submodule update --init --recursive
 COPY --chown=appuser:appuser ../package.json package.json
 COPY --chown=appuser:appuser ../tsconfig.json tsconfig.json
