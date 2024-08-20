@@ -51,7 +51,7 @@ export default {
     plugin: {
         name: "auth",
         register: async (server: HapiServer) => {
-            if (config.jwtAuthEnabled && config.jwtAuthEnabled !== "false") {
+            if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
                 await server.register(JwtPlugin);
                 console.log(`JWT Authentication Enabled: ${config.jwtAuthEnabled}`);
                 console.log(`JWT Authentication cookie name: ${config.jwtAuthCookieName}`);

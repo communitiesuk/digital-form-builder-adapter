@@ -223,7 +223,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             }
         }
 
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled !== "false") {
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
             getOptions.options.auth = jwtAuthStrategyName
         }
 
@@ -286,7 +286,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                 handler: postHandler,
             }
         }
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled !== "false") {
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
             postConfig.options.auth = jwtAuthStrategyName
         }
         server.route(postConfig);
