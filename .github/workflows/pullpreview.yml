@@ -25,6 +25,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: pullpreview/action@v5.6.1
       with:
+        compose_files: docker-compose.pullpreview.yml
         ports: 3000/tcp,3009/tcp
         default_port: 3000
         admins: gidsg
