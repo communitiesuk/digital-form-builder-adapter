@@ -34,8 +34,6 @@ USER 1001
 COPY --chown=appuser:appuser .git ./.git
 COPY --chown=appuser:appuser .gitmodules ./.gitmodules
 RUN git submodule update --init --recursive
-RUN rm -rf .git
-RUN rm -rf digital-form-builder/.git
 COPY --chown=appuser:appuser ../package.json package.json
 COPY --chown=appuser:appuser ../tsconfig.json tsconfig.json
 COPY --chown=appuser:appuser ../update-package.js update-package.js
