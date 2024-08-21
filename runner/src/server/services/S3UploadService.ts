@@ -3,8 +3,15 @@ import {config} from "../plugins/utils/AdapterConfigurationSchema";
 // @ts-ignore
 import http from "http";
 import {get} from "../../../../digital-form-builder/runner/src/server/services/httpService";
-
-import S3 = require("aws-sdk/clients/s3");
+import {
+    DeleteObjectCommand,
+    GetObjectCommand,
+    ListObjectsCommand,
+    PutObjectCommand,
+    S3Client
+} from "@aws-sdk/client-s3";
+import {Upload} from "@aws-sdk/lib-storage";
+import {getSignedUrl} from "@aws-sdk/s3-request-presigner";
 
 type Payload = HapiRequest["payload"];
 
@@ -25,7 +32,7 @@ if (endpointUrl) {
     //@ts-ignore
     awsConfig.signatureVersion = process.env.AWS_SIGNATURE_VERSION || "v4";
 }
-const s3 = new S3(awsConfig);
+const s3 = new S3Client(awsConfig);
 
 const parsedError = (key: string, error?: string) => {
     return {
@@ -105,7 +112,7 @@ export class S3UploadService {
         await this.uploadFilesS3(locations, prefix, metadata).then((result) => {
             result.forEach((doc) => {
                 if (typeof doc.error !== "undefined") {
-                    error = "Failed to upload file to server: " + doc.error;
+                    error = "Failed to upload file to server:" + doc.error;
                 } else {
                     location = `${prefix}/${locations[0].hapi.filename}`;
                 }
@@ -357,10 +364,11 @@ export class S3UploadService {
                 ContentType: file.hapi.headers["content-type"],
                 Metadata: metadata,
             };
-
-            await s3
-                .upload(uploadParams)
-                .promise()
+            const command = new Upload({
+                client: s3,
+                params: uploadParams
+            })
+            await command.done()
                 .then(function (data) {
                     response.push({location: data.Location, error: undefined});
                 })
@@ -383,26 +391,33 @@ export class S3UploadService {
         folderPath: string,
         formSessionId: string
     ): Promise<S3Object[]> {
+        let response = new Array();
         const params = {
             Bucket: bucketName,
             Prefix: `${folderPath}/`,
         };
-
-        const response = await s3.listObjectsV2(params).promise();
-
-        if (!response.Contents || response.Contents.length === 0) {
-            return [];
-        }
-        //@ts-ignore
-        const files = response.Contents.filter((obj) => !obj.Key.endsWith("/")).map(
-            (obj) => ({
-                FormSessionId: formSessionId,
-                Key: obj.Key!.replace(`${folderPath}/`, ""),
-                Size: obj.Size!,
-            })
-        );
-
-        return files;
+        const command = new ListObjectsCommand(params);
+        await s3.send(command).then(function (result) {
+            if (!result.Contents || result.Contents.length === 0) {
+                response = [];
+            } else {
+                // @ts-ignore
+                response = result.Contents.filter((obj) => !obj.Key.endsWith("/")).map(
+                    (obj) => ({
+                        FormSessionId: formSessionId,
+                        Key: obj.Key!.replace(`${folderPath}/`, ""),
+                        Size: obj.Size!,
+                    })
+                );
+            }
+        }).catch((err) => {
+            response.push({
+                location: undefined,
+                error: `${err.code}: ${err.message}`,
+            });
+            this.logger.error(`Cannot get the list of files`, err);
+        });
+        return response;
     }
 
     async getFileDownloadUrlS3(key: string) {
@@ -410,18 +425,17 @@ export class S3UploadService {
             Bucket: bucketName,
             Key: key,
         };
-        const url = s3.getSignedUrl("getObject", params);
-        return url;
+        const command = new GetObjectCommand(params);
+        return getSignedUrl(s3, command);
     }
 
     async getPreSignedUrlS3(key: string) {
         const params = {
             Bucket: bucketName,
-            Key: key,
-            Expires: 60 * 60,
+            Key: key
         };
-
-        return await s3.getSignedUrlPromise("putObject", params);
+        const command = new PutObjectCommand(params);
+        return getSignedUrl(s3, command, {expiresIn: 60 * 60});
     }
 
     async deleteFileS3(key: string) {
@@ -429,9 +443,9 @@ export class S3UploadService {
             Bucket: bucketName,
             Key: key,
         };
-
         try {
-            await s3.deleteObject(params).promise();
+            const command = new DeleteObjectCommand(params);
+            await s3.send(command);
             return true;
         } catch (err) {
             console.error(`Issue when deleting file with key: ${key}`);
