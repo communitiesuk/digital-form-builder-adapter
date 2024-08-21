@@ -27,5 +27,5 @@ jobs:
       with:
         compose_files: docker-compose.pullpreview.yml
         ports: 3000/tcp,3009/tcp
-        default_port: 3009
+        default_port: 3000
         admins: gidsg
