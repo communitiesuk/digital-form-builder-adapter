@@ -34,6 +34,8 @@ USER 1001
 COPY --chown=appuser:appuser .git ./.git
 COPY --chown=appuser:appuser .gitmodules ./.gitmodules
 RUN git submodule update --init --recursive
+RUN rm -rf .git
+RUN rm -rf digital-form-builder/.git
 COPY --chown=appuser:appuser ../package.json package.json
 COPY --chown=appuser:appuser ../tsconfig.json tsconfig.json
 COPY --chown=appuser:appuser ../update-package.js update-package.js
@@ -51,7 +53,7 @@ FROM digital-form-builder-adapter-pre-build AS digital-form-builder-adapter-inst
 WORKDIR /usr/src/app/digital-form-builder-adapter
 USER 1001
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
-    node update-package.js && yarn setup && yarn install --frozen-lockfile
+    node update-package.js && yarn setup && yarn install
 
 
 # ----------------------------
