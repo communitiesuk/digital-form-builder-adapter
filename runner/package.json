@@ -18,9 +18,12 @@
   "license": "SEE LICENSE IN LICENSE",
   "description": "Digital forms runner adapter",
   "dependencies": {
+    "@aws-sdk/client-s3": "3.633.0",
+    "@aws-sdk/lib-storage": "3.633.0",
+    "@aws-sdk/s3-request-presigner": "3.633.0",
     "dropzone": "5.9.3",
     "joi": "17.13.3",
-    "tinymce": "^7.3.0"
+    "tinymce": "7.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.3",
