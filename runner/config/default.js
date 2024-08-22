@@ -125,6 +125,8 @@ module.exports = {
   basicAuthOn: false,
   overwriteInitialisedSession: true,
 
+  allowUserTemplates: true,
+
   /**
    * Logging
    */
