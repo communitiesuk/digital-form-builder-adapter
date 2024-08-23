@@ -2,12 +2,12 @@ import React, {useContext, useEffect, useRef, useState} from "react";
 
 
 import "../../../../digital-form-builder/designer/client/components/Visualisation/visualisation.scss";
-import {DataContext} from "../../../../digital-form-builder/designer/client/context";
 import {getLayout, Pos} from "../../../../digital-form-builder/designer/client/components/Visualisation/getLayout";
 import {AdapterPage} from "../Page";
-import {Lines} from "../../../../digital-form-builder/designer/client/components/Visualisation/Lines";
 import {Info} from "../../../../digital-form-builder/designer/client/components/Visualisation/Info";
 import {Minimap} from "../../../../digital-form-builder/designer/client/components/Visualisation/Minimap";
+import {AdapterDataContext} from "../../context/AdapterDataContext";
+import {AdapterLines} from "./AdapterLines";
 
 type Props = {
     updatedAt?: string;
@@ -18,7 +18,7 @@ type Props = {
 };
 
 export function useVisualisation(ref) {
-    const {data} = useContext(DataContext);
+    const {data} = useContext(AdapterDataContext);
     const [layout, setLayout] = useState<Pos>();
 
     useEffect(() => {
@@ -32,7 +32,7 @@ export function useVisualisation(ref) {
 export const AdapterVisualisation = (props: Props) => {
     const ref = useRef(null);
     const {layout} = useVisualisation(ref);
-    const {data} = useContext(DataContext);
+    const {data} = useContext(AdapterDataContext);
 
     const {updatedAt, downloadedAt, previewUrl, persona, id} = props;
     const {pages} = data;
@@ -57,7 +57,7 @@ export const AdapterVisualisation = (props: Props) => {
                             />
                         ))}
 
-                        {layout && <Lines layout={layout} data={data} persona={persona}/>}
+                        {layout && <AdapterLines layout={layout} data={data} persona={persona}/>}
                     </div>
                 </div>
 

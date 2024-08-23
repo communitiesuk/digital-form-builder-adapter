@@ -15,9 +15,44 @@ export interface FreeTextFieldComponent extends TextFieldBase {
     };
 }
 
-export type AdapterComponentDef = ComponentDef | FreeTextFieldComponent;
+export interface ClientSideFileUploadFieldComponent {
+    subType?: "field";
+    type: "ClientSideFileUploadField";
+    name: string;
+    title: string;
+    hint: string;
+    options: {
+        dropzoneConfig?: object;
+        showNoScriptWarning?: boolean;
+        minimumRequiredFiles?: number;
+        totalOverallFilesize?: number;
+        required?: boolean; // these values are set dynamically based on
+        optionalText?: boolean; // minimumRequiredFiles being > 0
+    };
+    schema: {};
+}
 
-export type AdapterInputFieldsComponentsDef = InputFieldsComponentsDef | FreeTextFieldComponent;
+export interface MultiInputFieldComponent extends TextFieldBase {
+    type: "MultiInputField";
+    options: TextFieldBase["options"] & {
+        textFieldTitle?: string;
+        numberFieldTitle?: string;
+        columnTitles?: string[];
+    };
+    children?: []
+}
+
+export type AdapterComponentDef =
+    ComponentDef
+    | FreeTextFieldComponent
+    | MultiInputFieldComponent
+    | ClientSideFileUploadFieldComponent;
+
+export type AdapterInputFieldsComponentsDef =
+    InputFieldsComponentsDef
+    | FreeTextFieldComponent
+    | MultiInputFieldComponent
+    | ClientSideFileUploadFieldComponent;
 
 export enum AdapterComponentTypeEnum {
     TextField = "TextField",
@@ -46,4 +81,37 @@ export enum AdapterComponentTypeEnum {
     List = "List",
     ContextComponent = "ContextComponent",
     FreeTextField = "FreeTextField",
+    MultiInputField = "MultiInputField",
+    ClientSideFileUploadField = "ClientSideFileUploadField",
 }
+
+export type AdapterComponentType =
+    | "TextField"
+    | "MultilineTextField"
+    | "YesNoField"
+    | "DateField"
+    | "TimeField"
+    | "DateTimeField"
+    | "MonthYearField"
+    | "DatePartsField"
+    | "DateTimePartsField"
+    | "SelectField"
+    | "AutocompleteField"
+    | "RadiosField"
+    | "CheckboxesField"
+    | "NumberField"
+    | "UkAddressField"
+    | "TelephoneNumberField"
+    | "EmailAddressField"
+    | "FileUploadField"
+    | "Para"
+    | "Html"
+    | "InsetText"
+    | "Details"
+    | "FlashCard"
+    | "List"
+    | "WebsiteField"
+    | "ContextComponent"
+    | "FreeTextField"
+    | "MultiInputField"
+    | "ClientSideFileUploadField";

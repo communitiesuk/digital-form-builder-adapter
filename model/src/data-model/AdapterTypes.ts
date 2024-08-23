@@ -9,6 +9,7 @@ import {AdapterComponentDef} from "../components";
 export type AdapterFormDefinition = FormDefinition & {
     pages: Array<AdapterPage | RepeatingFieldPage>;
     markAsComplete?: boolean | undefined;
+    backLinkText?: string;
 }
 
 

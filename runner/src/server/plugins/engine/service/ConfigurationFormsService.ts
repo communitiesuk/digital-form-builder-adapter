@@ -1,8 +1,10 @@
 import fs from "fs";
 import path from "path";
 
-import { idFromFilename } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
-import { FormConfiguration } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/services/configurationService";
+import {idFromFilename} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
+import {
+    FormConfiguration
+} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/services/configurationService";
 
 const FORMS_FOLDER = path.join(__dirname, "..", "..", "..", "forms");
 
@@ -14,11 +16,16 @@ export const loadForms = (): FormConfiguration[] => {
         .readdirSync(FORMS_FOLDER)
         .filter((filename: string) => filename.indexOf(".json") >= 0);
 
+    // @ts-ignore
     return configFiles.map((configFile) => {
         const dataFilePath = path.join(FORMS_FOLDER, configFile);
-        const configuration = require(dataFilePath);
-        const id = idFromFilename(configFile);
-        return { configuration, id };
+        try {
+            const configuration = require(dataFilePath);
+            const id = idFromFilename(configFile);
+            return {configuration, id};
+        } catch (e) {
+            console.error(`Failed to load configuration: filename: [${dataFilePath}] ${e}`);
+        }
     });
 };
 

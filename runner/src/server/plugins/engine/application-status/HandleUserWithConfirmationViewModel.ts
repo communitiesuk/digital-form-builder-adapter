@@ -12,12 +12,17 @@ export async function handleUserWithConfirmationViewModel(request: HapiRequest, 
 
     const {redirectUrl, confirmation} = confirmationViewModel;
 
+    let form_session_identifier = "";
+    if (request.query.form_session_identifier) {
+        form_session_identifier = `?form_session_identifier=${request.query.form_session_identifier}`;
+    }
+
     if (redirectUrl) {
         request.logger.info(
             [`/${request.params.id}/status`, request.yar.id],
             `confirmationViewModel.redirect detected. User will be redirected to ${redirectUrl}`
         );
-        return h.redirect(redirectUrl).takeover();
+        return h.redirect(`${redirectUrl}${form_session_identifier}`).takeover();
     }
 
     if (confirmation) {

@@ -4,16 +4,16 @@ import {
     SortableElement,
     arrayMove,
 } from "react-sortable-hoc";
-import {AdapterComponent} from "../../AdapterComponent";
-import {DataContext} from "../../../../digital-form-builder/designer/client/context";
 import {findPage} from "../../../../digital-form-builder/designer/client/data";
 import {AdapterComponentTypes} from "@communitiesuk/model";
 import {PageLinkage} from "../../../../digital-form-builder/designer/client/components/PageLinkage";
 import {i18n} from "../../../../digital-form-builder/designer/client/i18n";
 import {Flyout} from "../../../../digital-form-builder/designer/client/components/Flyout";
-import {PageEdit} from "../../../../digital-form-builder/designer/client/page-edit";
-import {ComponentContextProvider} from "../../../../digital-form-builder/designer/client/reducers/component";
-import AdapterComponentCreate from "../ComponentCreate/AdapterComponentCreate";
+import {AdapterComponent} from "../AdapterComponent";
+import {AdapterDataContext} from "../../context/AdapterDataContext";
+import {AdapterComponentContextProvider} from "../../reducers/component/AdapterComponentReducer";
+import AdapterComponentCreate from "../component-create/AdapterComponentCreate";
+import {AdapterPageEdit} from "../component-edit/AdapterPageEdit";
 
 
 const SortableItem = SortableElement(({index, page, component, data}) => (
@@ -41,7 +41,7 @@ const SortableList = SortableContainer(({page = {}, data}) => {
 });
 
 export const AdapterPage = ({page, previewUrl, id, layout}) => {
-    const {data, save} = useContext(DataContext);
+    const {data, save} = useContext(AdapterDataContext);
     const [isEditingPage, setIsEditingPage] = useState(false);
     const [isCreatingComponent, setIsCreatingComponent] = useState(false);
 
@@ -120,17 +120,17 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
             {isEditingPage && (
                 <Flyout title="Edit Page" onHide={setIsEditingPage}>
                     Inside the Page Edit
-                    <PageEdit page={page} onEdit={onEditEnd}/>
+                    <AdapterPageEdit page={page} onEdit={onEditEnd}/>
                 </Flyout>
             )}
 
             {isCreatingComponent && (
                 <Flyout show={true} onHide={setIsCreatingComponent}>
-                    <ComponentContextProvider>
+                    <AdapterComponentContextProvider>
                         <AdapterComponentCreate renderInForm={true} toggleAddComponent={() => {
                             setIsCreatingComponent(false);
                         }} page={page}/>
-                    </ComponentContextProvider>
+                    </AdapterComponentContextProvider>
                 </Flyout>
             )}
         </div>

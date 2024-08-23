@@ -1,4 +1,3 @@
-import {FormComponent} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components";
 import {
     FormData,
     FormSubmissionErrors
@@ -8,6 +7,7 @@ import {AdapterFormModel} from "../models";
 import {AdapterDataType, FreeTextFieldViewModel} from "./types";
 //@ts-ignore
 import {FreeTextFieldComponent} from "@communitiesuk/model";
+import {AdapterFormComponent} from "./AdapterFormComponent";
 
 // this must match the front-end, or we'll have discrepancies
 // runner\src\server\plugins\engine\views\components\freetextfield.html
@@ -23,7 +23,7 @@ function inputIsOverWordCount(input, maxWords) {
     return wordCount > maxWordCount;
 }
 
-export class FreeTextField extends FormComponent {
+export class FreeTextField extends AdapterFormComponent {
     //@ts-ignore
     formSchema: StringSchema;
     options: FreeTextFieldComponent["options"];

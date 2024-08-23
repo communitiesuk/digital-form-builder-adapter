@@ -14,9 +14,7 @@ import {
     PayService,
     WebhookService,
 } from "../../../digital-form-builder/runner/src/server/services";
-import {QueueStatusService} from "../../../digital-form-builder/runner/src/server/services/queueStatusService";
-import {QueueService} from ".../../../digital-form-builder/runner/src/server/services/QueueService";
-import {AdapterCacheService} from "./services";
+import {AdapterCacheService, S3UploadService} from "./services";
 import {AdapterStatusService} from "./services";
 import {AdapterUploadService} from "./services";
 
@@ -25,10 +23,9 @@ export type Services = (services: string[]) => {
     notifyService: NotifyService;
     payService: PayService;
     adapterUploadService: AdapterUploadService;
+    s3UploadService: S3UploadService;
     webhookService: WebhookService;
     adapterStatusService: AdapterStatusService;
-    queueService: QueueService;
-    queueStatusService: QueueStatusService;
 };
 
 export type RouteConfig = {
@@ -54,9 +51,6 @@ declare module "@hapi/hapi" {
         yar: yar.Yar;
     }
 
-    interface Response {
-    }
-
     interface Server {
         logger: Logger;
         services: Services; // plugin schmervice
@@ -68,9 +62,6 @@ declare module "@hapi/hapi" {
         view: (viewName: string, data?: { [prop: string]: any }) => any; // plugin view
     }
 
-    interface RequestApplicationState {
-        location: string;
-    }
 }
 
 export type HapiRequest = Request;

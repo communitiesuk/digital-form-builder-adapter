@@ -4,9 +4,10 @@ import {DesignerApi} from "../../digital-form-builder/designer/client/api/design
 import FeatureFlagProvider from "../../digital-form-builder/designer/client/context/FeatureFlagContext";
 import {DataContext, FlyoutContext} from "../../digital-form-builder/designer/client/context";
 import {i18n} from "../../digital-form-builder/designer/client/i18n";
-import {Menu} from "../../digital-form-builder/designer/client/components/Menu";
 import {AdapterVisualisation} from "./components/Visualization";
 import {AdapterFormDefinition} from "@communitiesuk/model";
+import {AdapterDataContext} from "./context/AdapterDataContext";
+import AdapterMenu from "./components/menu/AdapterMenu";
 
 interface Props {
     match?: any;
@@ -61,6 +62,7 @@ export default class AdapterDesigner extends Component<Props, State> {
             this.setState({data: toUpdate, updatedAt: new Date().toLocaleTimeString(), error: undefined,}, callback());
             return toUpdate;
         } catch (e) {
+            //@ts-ignore
             this.setState({error: e.message});
             this.props.history.push({
                 pathname: "/save-error",
@@ -98,18 +100,26 @@ export default class AdapterDesigner extends Component<Props, State> {
         const dataContextProviderValue = {data, save: this.save};
         return (
             <FeatureFlagProvider>
-                <DataContext.Provider value={dataContextProviderValue}>
-                    <FlyoutContext.Provider value={flyoutContextProviderValue}>
-                        <div id="designer">
-                            <Prompt when={!error} message={`${i18n("leaveDesigner")}`}/>
-                            <Menu id={this.id} updateDownloadedAt={this.updateDownloadedAt}
-                                  updatePersona={this.updatePersona}/>
-                            <AdapterVisualisation downloadedAt={this.state.downloadedAt}
-                                                  updatedAt={this.state.updatedAt} persona={this.state.persona}
-                                                  id={this.id} previewUrl={previewUrl}/>
-                        </div>
-                    </FlyoutContext.Provider>
-                </DataContext.Provider>
+                <AdapterDataContext.Provider value={dataContextProviderValue}>
+                    <DataContext.Provider value={dataContextProviderValue}>
+                        <FlyoutContext.Provider value={flyoutContextProviderValue}>
+                            <div id="designer">
+                                <Prompt when={!error} message={`${i18n("leaveDesigner")}`}
+                                    //@ts-ignore
+                                /><AdapterMenu id={this.id} updateDownloadedAt={this.updateDownloadedAt}
+                                               //@ts-ignore
+                                               updatePersona={this.updatePersona}/>
+                                <AdapterVisualisation downloadedAt={
+                                    //@ts-ignore
+                                    this.state.downloadedAt}
+                                                      updatedAt={
+                                                          //@ts-ignore
+                                                          this.state.updatedAt} persona={this.state.persona}
+                                                      id={this.id} previewUrl={previewUrl}/>
+                            </div>
+                        </FlyoutContext.Provider>
+                    </DataContext.Provider>
+                </AdapterDataContext.Provider>
             </FeatureFlagProvider>
         );
     }

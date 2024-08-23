@@ -11,6 +11,34 @@ const NewComponents: AdapterComponentDef[] = [
         hint: "",
         options: {},
         schema: {},
+    },
+    {
+        name: "MultiInputField",
+        type: "MultiInputField",
+        title: "Multi input field",
+        subType: "field",
+        hint: "",
+        options: {},
+        schema: {},
+        children: []
+    },
+    {
+        name: "ClientSideFileUploadField",
+        //@ts-ignore
+        type: "ClientSideFileUploadField",
+        title: "Client side file upload field",
+        subType: "field",
+        hint: "",
+        options: {
+            //@ts-ignore
+            dropzoneConfig: {},
+            showNoScriptWarning: false,
+            minimumRequiredFiles: 0,
+            totalOverallFilesize: 0,
+            required: false,
+            optionalText: false,
+        },
+        schema: {},
     }
 ]
 

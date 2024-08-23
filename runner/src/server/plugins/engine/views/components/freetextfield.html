@@ -76,7 +76,7 @@
     </head>
     <div class="govuk-form-group govuk-character-count {{ 'govuk-form-group--error' if component.model.errorMessage }}"
          data-module="govuk-character-count" data-maxwords="150">
-        <label class="govuk-label govuk-label--s" for={{ component.model.id }}>{{ component.model.label.text }}</label>
+        <label class="govuk-label govuk-label--l" for={{ component.model.id }}>{{ component.model.label.text }}</label>
         <div id="hint-{{ component.model.id }}" class="govuk-hint">{{ component.model.hint.html|safe }}</div>
         {% if component.model.errorMessage %}
             <span id="nationality-error" class="govuk-error-message">

@@ -214,7 +214,12 @@
     "WebsiteField": "Website",
     "WebsiteField_info": "A text box that users can enter a website into",
     "YesNoField": "YesNo",
-    "FreeTextField": "FreeTextField"
+    "FreeTextField": "Free Text Field",
+    "FreeTextField_info": "Rich text field",
+    "MultiInputField": "Multi Input Field",
+    "MultiInputField_info": "Combination of input fields such as TextField, DatePartsField, NumberField, RadiosField, MonthYearField, WebsiteField, UkAddressField, YesNoField",
+    "ClientSideFileUploadField": "Client Side File Upload Field",
+    "ClientSideFileUploadField_info": "Upload files from the client side"
   },
   "fileUploadFieldEditPage": {
     "multipleFilesOption": {
