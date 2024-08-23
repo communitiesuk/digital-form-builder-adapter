@@ -8,7 +8,6 @@ Feature: Initialise session - prepopulate a session
     And I go to the initialised session URL
     Then I see "Summary"
 
-
   Scenario: The configured message is displayed
     Given the form "initialiseSession" exists
     When the session is initialised with the options
@@ -43,7 +42,7 @@ Feature: Initialise session - prepopulate a session
       | form              | callbackUrl                                                | redirectPath | message | htmlMessage | title               | redirectUrl |
       | initialiseSession | https://61bca17e-fe74-40e0-9c15-a901ad120eca.mock.pstmn.io | /summary     |         |             | Update your details | http://localhost:3009/help/cookies |
     And I go to the initialised session URL
-    And I declare and continue
+    And I declare and continue with submit
     Then I see "Cookies are files saved on your phone"
     When  I revisit the status page
     Then I see "Cookies are files saved on your phone"

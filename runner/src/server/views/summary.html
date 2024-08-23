@@ -21,17 +21,30 @@
     <div class="govuk-main-wrapper">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-                <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+                <h1 class="govuk-heading-l">
+                    {% if callback and callback.title %}
+                        {{ callback.title }}
+                    {% else %}
+                        {{ pageTitle }}
+                    {% endif %}
+                </h1>
+
                 {% if callback and callback.message %}
                     <div class="govuk-inset-text">
                         {{ callback.message }}
                     </div>
                 {% endif %}
+
+                {% if callback and callback.htmlMessage %}
+                    {{ callback.htmlMessage | safe }}
+                {% endif %}
+
                 {% if containsFileType %}
                     <div class="govuk-inset-text">
                         Check your uploaded file is visible. If not, upload it again.
                     </div>
                 {% endif %}
+
                 {% for detail in details %}
                     {{ summaryDetail(detail) }}
                 {% endfor %}
@@ -44,6 +57,8 @@
                         {% endfor %}
                     </ul>
                     <p class="govuk-body">Total cost: £{{ fees.total / 100 }}</p>
+                    <p class="govuk-body">You should not be charged an exchange fee if you pay with a UK credit or debit
+                        card.</p>
                 {% endif %}
 
                 {% if not result.error %}
@@ -56,8 +71,7 @@
                             <div class="govuk-form-group {{ 'govuk-form-group--error' if declarationError }}">
                                 {% if declarationError %}
                                     <span id="nationality-error" class="govuk-error-message">
-                            <span class="govuk-visually-hidden">Error:</span> {{ declarationError }}
-                        </span>
+                                    <span class="govuk-visually-hidden">Error:</span> {{ declarationError }}</span>
                                 {% endif %}
                                 <div class="govuk-checkboxes">
                                     <div class="govuk-checkboxes__item">
@@ -75,8 +89,7 @@
                             <div class="govuk-form-group {{ 'govuk-form-group--error' if markAsCompleteError }}">
                                 {% if markAsCompleteError %}
                                     <span id="nationality-error" class="govuk-error-message">
-                            <span class="govuk-visually-hidden">Error:</span> {{ markAsCompleteError }}
-                        </span>
+                                    <span class="govuk-visually-hidden">Error:</span> {{ markAsCompleteError }}</span>
                                 {% endif %}
                                 <fieldset class="govuk-fieldset">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -105,6 +118,7 @@
                                 </fieldset>
                             </div>
                         {% endif %}
+
                         {% if fees and fees.details|length %}
                             Submit and pay
                         {% else %}
@@ -114,6 +128,16 @@
                                 {{ govukButton({ attributes: { id: "submit" }, text: page.saveAndContinueText }) }}
                             {% endif %}
                         {% endif %}
+
+                        {% if showPaymentSkippedWarningPage %}
+                            <div class="govuk-body">
+                                <button data-prevent-double-click="true" class="govuk-body govuk-button--link"
+                                        name="skipPayment" value="true" data-module="govuk-button">
+                                    Unable to pay online
+                                </button>
+                            </div>
+                        {% endif %}
+
                     </form>
                 {% endif %}
             </div>

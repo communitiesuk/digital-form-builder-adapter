@@ -43,8 +43,6 @@ export class RegisterApplicationStatusApi implements RegisterApi {
                         //@ts-ignore
                         await adapterCacheService.setConfirmationState(request, {redirectUrl,});
                         //@ts-ignore
-                        await adapterCacheService.clearState(request);
-
                         return h.redirect(redirectUrl);
                     }
 

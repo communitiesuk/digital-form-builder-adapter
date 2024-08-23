@@ -6,6 +6,7 @@ Feature: Exit
   Background:
     Given the form "exit-expiry" exists
 
+  @wip
   Scenario: Service can be exited with date displayed
     When I navigate to the "exit-expiry" form
     Then I see "Save and come back later"
@@ -16,15 +17,16 @@ Feature: Exit
     Then I see "9 July 2024"
     And I see "test@test.com"
 
-
+  @wip
   Scenario: A user can start exiting, then go back to the form
     When I navigate to the "exit-expiry" form
     Then I see "Save and come back later"
     When I choose "lisbon"
     And I select the button "Save and come back later"
-    And I go back adapter
+    And I go back to application overview
     Then I see "First page"
 
+  @wip
   Scenario: An initialised session can be exited
     Given the session is initialised for the exit form
     When I go to the initialised session URL
