@@ -247,7 +247,11 @@ export class AdapterFormModel {
             ) {
                 endPage = nextPage;
             }
-            nextPage = nextPage.getNextPage(state, true);
+            if (nextPage.getNextPage) {
+                nextPage = nextPage.getNextPage(state, true);
+            } else {
+                nextPage = null;
+            }
         }
 
         return {relevantPages, endPage};
