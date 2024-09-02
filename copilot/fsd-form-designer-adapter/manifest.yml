@@ -10,7 +10,7 @@ http:
   # To match all requests you can use the "/" path.
   path: "/"
   # You can specify a custom health check path. The default is "/".
-  #healthcheck: "/health-check"
+  healthcheck: "/health-check"
   #alias: forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk
 
 # Configuration for your containers and service.
@@ -18,7 +18,7 @@ image:
   # Docker build arguments. For additional overrides: https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/#image-build
   location: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-cccc66669421661022a707428d58d9eefb4c813c
   # Port exposed through your container to route traffic to it.
-  port: 3009
+  port: 3000
 
 # Valid values: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html
 # Number of CPU units for the task.
