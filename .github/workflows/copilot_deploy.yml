@@ -157,6 +157,13 @@ jobs:
   
 
   dev_deploy:
+    strategy:
+      matrix:
+        include:
+          - deployment: fsd-form-runner-adapter
+            command: svc
+          - deployment: fsd-form-designer-adapter
+            command: svc
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
