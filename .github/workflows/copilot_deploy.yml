@@ -168,7 +168,7 @@ jobs:
   e2e-test:
     needs: [ docker-build-designer, docker-build, setup ]
     runs-on: ubuntu-latest
-    name: build app and run e2e
+    name: run e2e
     outputs:
       tag: ${{ steps.hashFile.outputs.tag }}
       hash: ${{ steps.hashFile.outputs.hash }}
@@ -197,12 +197,16 @@ jobs:
             ${{ runner.os }}-yarn
 
       - name: Install e2e dependencies
-        run: yarn e2e-test install
+        run: |
+          yarn e2e-test install
+          pwd
+          ls
 
       - name: Inject env specific values into manifest
         run: |
           yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
           yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          cat docker-compose.e2e.yml
 
       - name: start containers
         run: |
