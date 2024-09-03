@@ -201,6 +201,7 @@ jobs:
           yarn e2e-test install
           pwd
           ls
+          ls digital-form-builder 
 
       - name: Inject env specific values into manifest
         run: |
