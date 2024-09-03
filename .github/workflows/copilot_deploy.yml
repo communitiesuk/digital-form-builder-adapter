@@ -202,10 +202,14 @@ jobs:
           git submodule update --init
           echo "--  Pulling git submodules into local  --"
           git pull --recurse-submodules
-          echo "--  Install dependencies  --"
-          yarn
+          echo "--  Installing digital-form-builder-adapter locally  --"
+          node update-package.js
+          yarn install
           echo "--  Install e2e dependencies  --"
           yarn e2e-test install
+          echo "--  Building digital-form-builder locally  --"
+          cd digital-form-builder
+          yarn
 
       - name: Inject env specific values into manifest
         run: |
