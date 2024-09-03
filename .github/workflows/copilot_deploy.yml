@@ -226,7 +226,7 @@ jobs:
         run: |
           docker compose logs runner
 
-      - name: run smoke tests
+      - name: run e2e tests
         run: yarn e2e-test cypress run
 
   dev_deploy:
