@@ -92,9 +92,6 @@ jobs:
             ${{ runner.os }}-yarn-e2e
             ${{ runner.os }}-yarn
 
-      - name: Install dependencies
-        run: yarn
-
       - name: Install e2e dependencies
         run: yarn e2e-test install
 
