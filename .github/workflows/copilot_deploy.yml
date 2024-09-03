@@ -161,8 +161,10 @@ jobs:
         include:
           - deployment: fsd-form-runner-adapter
             command: svc
+            appname: "form-runner-adapter"
           - deployment: fsd-form-designer-adapter
             command: svc
+            appname: "form-designer-adapter"
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
@@ -184,6 +186,7 @@ jobs:
         run: |
           yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
           yq -i '.image.location = "${{ inputs.image_location }}"' copilot/${{ matrix.deployment }}/manifest.yml
+          yq -i '.image.location = "ghcr.io/communitiesuk/funding-service-design-${{ matrix.appname }}:sha-${{ github.sha }}"'  copilot/fsd-${{ matrix.deployment }}/manifest.yml
 
       - name: Copilot deploy ${{ matrix.deployment }}
         run: |
