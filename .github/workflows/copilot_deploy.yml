@@ -65,7 +65,7 @@ jobs:
 
   e2e-test:
     runs-on: ubuntu-latest
-    name: build app ${{inputs.app}}
+    name: build app and run e2e
     outputs:
       tag: ${{ steps.hashFile.outputs.tag }}
       hash: ${{ steps.hashFile.outputs.hash }}
