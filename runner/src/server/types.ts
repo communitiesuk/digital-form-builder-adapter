@@ -16,13 +16,11 @@ import {
 } from "../../../digital-form-builder/runner/src/server/services";
 import {AdapterCacheService, S3UploadService} from "./services";
 import {AdapterStatusService} from "./services";
-import {AdapterUploadService} from "./services";
 
 export type Services = (services: string[]) => {
     adapterCacheService: AdapterCacheService;
     notifyService: NotifyService;
     payService: PayService;
-    adapterUploadService: AdapterUploadService;
     s3UploadService: S3UploadService;
     webhookService: WebhookService;
     adapterStatusService: AdapterStatusService;
