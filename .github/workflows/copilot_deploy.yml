@@ -63,86 +63,6 @@ jobs:
     with:
       environment: ${{ inputs.environment }}
 
-  e2e-test:
-    runs-on: ubuntu-latest
-    name: build app and run e2e
-    outputs:
-      tag: ${{ steps.hashFile.outputs.tag }}
-      hash: ${{ steps.hashFile.outputs.hash }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20.x"
-
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-e2e
-            ${{ runner.os }}-yarn
-
-      - name: Install e2e dependencies
-        run: yarn e2e-test install
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-        with:
-          install: true
-          config-inline: |
-            [registry."ghcr.io"]
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: load designer
-        uses: docker/build-push-action@v3
-        with:
-          file: designer/Dockerfile
-          load: true
-          context: .
-          tags: digital-form-builder-designer
-          cache-from: type=registry,ref=${{ inputs.designer-cache-ref }}
-
-      - name: load runner
-        uses: docker/build-push-action@v3
-        with:
-          file: runner/Dockerfile
-          context: .
-          load: true
-          tags: digital-form-builder-runner
-          cache-from: type=registry,ref=${{ inputs.runner-cache-ref }}
-
-      - name: check images
-        run: |
-          docker images
-
-      - name: start containers
-        run: |
-          docker compose -f docker-compose.smoke.yml up -d 
-          docker ps
-
-      - name: log
-        run: |
-          docker compose logs runner
-
-      - name: run smoke tests
-        run: yarn e2e-test cypress run
-
   docker-build:
     runs-on: ubuntu-latest
     needs: [ setup ]
@@ -243,7 +163,61 @@ jobs:
           file: ./designer/Dockerfile
           build-args: |
             LAST_TAG='${{env.VERSION}}'
-            LAST_COMMIT='${{ github.sha }}'          
+            LAST_COMMIT='${{ github.sha }}'    
+
+  e2e-test:
+    needs: [ docker-build-designer, docker-build, setup ]
+    runs-on: ubuntu-latest
+    name: build app and run e2e
+    outputs:
+      tag: ${{ steps.hashFile.outputs.tag }}
+      hash: ${{ steps.hashFile.outputs.hash }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - name: Get into the directory
+        id: yarn-cache-dir-path
+        run: cd digital-form-builder-adapter
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-e2e
+            ${{ runner.os }}-yarn
+
+      - name: Install e2e dependencies
+        run: yarn e2e-test install
+
+      - name: Inject env specific values into manifest
+        run: |
+          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+
+      - name: start containers
+        run: |
+          docker compose -f docker-compose.yml up -d 
+          docker ps
+
+      - name: log
+        run: |
+          docker compose logs runner
+
+      - name: run smoke tests
+        run: yarn e2e-test cypress run
 
   dev_deploy:
     strategy:
@@ -258,7 +232,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs: [ docker-build-designer, docker-build, setup ]
+    needs: [ docker-build-designer, docker-build, setup, e2e-test ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'dev' }}
@@ -308,7 +282,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests ]
+    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests, e2e-test ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'test' }}
@@ -332,7 +306,7 @@ jobs:
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
 
   post_test_deploy_tests:
-    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests, test_deploy ]
+    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests, test_deploy, e2e-test ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
 
     secrets:

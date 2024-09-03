@@ -1,0 +1,30 @@
+# This file only contains base configuration needed for CI build and test
+# For local development environment please see docker-compose.dev.yml
+version: "3.9"
+services:
+  designer:
+    container_name: designer
+    image: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - PREVIEW_URL=http://localhost:3009
+      - PUBLISH_URL=http://runner:3009
+      - LAST_COMMIT
+      - LAST_TAG
+    command: yarn designer production
+    depends_on:
+      - runner
+  runner:
+    container_name: runner
+    image: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:latest
+    ports:
+      - "3009:3009"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - PREVIEW_MODE=true
+      - LAST_COMMIT
+      - LAST_TAG
+      - JWT_AUTH_ENABLED=false
+    command: yarn runner production
