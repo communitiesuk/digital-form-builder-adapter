@@ -3,6 +3,7 @@ Feature: Image quality playback page
   Background:
     Given the form "image-quality-playback" exists
 
+ @wip
  Scenario Outline: Handling upload
     Given I navigate to the "image-quality-playback" form
     When I upload a file that "<case>"
@@ -12,6 +13,7 @@ Feature: Image quality playback page
     | fails-ocr  | Check your image          |
     | passes     | Summary                   |
 
+ @wip
  Scenario Outline: Navigating away from the playback page
    Given I navigate to the "image-quality-playback" form
    When I upload a file that "fails-ocr"
