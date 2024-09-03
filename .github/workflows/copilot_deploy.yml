@@ -154,7 +154,7 @@ jobs:
           build-args: |
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'          
-  
+
   dev_deploy:
     strategy:
       matrix:
@@ -188,7 +188,7 @@ jobs:
       - name: Copilot deploy ${{ matrix.deployment }}
         run: |
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
-    
+
   post_dev_deploy_tests:
     needs: [ dev_deploy ]
 
@@ -238,7 +238,7 @@ jobs:
       - name: Copilot deploy ${{ matrix.deployment }}
         run: |
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
-    
+
   post_test_deploy_tests:
     needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests, test_deploy ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
@@ -295,7 +295,7 @@ jobs:
       - name: Copilot deploy ${{ matrix.deployment }}
         run: |
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
-    
+
   post_uat_deploy_tests:
     needs:
       [
