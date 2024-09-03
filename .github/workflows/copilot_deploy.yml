@@ -194,18 +194,18 @@ jobs:
           key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
-            ${{ runner.os }}-yarn
+            ${{ runner.os }}-yarn           
 
-      - name: Install e2e dependencies
+      - name: Setup e2e dependencies
         run: |
-          yarn e2e-test install
-          pwd
-          ls
           echo "--  Git submodule initialize into local  --"
           git submodule update --init
           echo "--  Pulling git submodules into local  --"
           git pull --recurse-submodules
-          ls digital-form-builder 
+          echo "--  Install dependencies  --"
+          yarn
+          echo "--  Install e2e dependencies  --"
+          yarn e2e-test install
 
       - name: Inject env specific values into manifest
         run: |
