@@ -14,6 +14,7 @@ import {UtilHelper} from "../../utils/UtilHelper";
 export class SummaryPageController extends PageController {
 
     isEligibility: boolean = false;
+    isReadOnlySummary: boolean;
 
     constructor(model: AdapterFormModel, pageDef: any) {
         // @ts-ignore
@@ -46,6 +47,11 @@ export class SummaryPageController extends PageController {
             }
             if (state["metadata"] && state["metadata"]["has_eligibility"]) {
                 this.isEligibility = state["metadata"]["has_eligibility"];
+                this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+                this.backLink = state.callback?.returnUrl;
+            }
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                this.isReadOnlySummary = true;
                 this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
                 this.backLink = state.callback?.returnUrl;
             }

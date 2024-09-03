@@ -3,6 +3,8 @@
 {% from "button/macro.njk" import govukButton %}
 {% extends 'layout.html' %}
 
+{% set pageTitle = pageTitle if not page.isReadOnlySummary else "View your answers" %}
+
 {% block beforeContent %}
     {{ govukPhaseBanner({
         tag: {
@@ -10,10 +12,10 @@
         },
         html: "This is a new service."
     }) }}
-    {% if page.isEligibility %}
+    {% if page.isEligibility or page.isReadOnlySummary %}
         {{ govukBackLink({
             href: page.backLink,
-            text: page.backLinkText
+            text: page.backLinkText if not page.isReadOnlySummary else "Back to application for funding overview"
         }) }}
     {% endif %}
 {% endblock %}
@@ -21,6 +23,10 @@
     <div class="govuk-main-wrapper">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
+                {% set hasMultipleSections = (details and details.length > 1 and details[0].items[0] | isArray) %}
+                {% if not hasMultipleSections %}
+                <span class="govuk-caption-l">{{ details[0].title }}</span>
+                {% endif %}
                 <h1 class="govuk-heading-l">
                     {% if callback and callback.title %}
                         {{ callback.title }}
@@ -28,7 +34,6 @@
                         {{ pageTitle }}
                     {% endif %}
                 </h1>
-
                 {% if callback and callback.message %}
                     <div class="govuk-inset-text">
                         {{ callback.message }}
@@ -45,8 +50,12 @@
                     </div>
                 {% endif %}
 
+                {% if isReadOnlySummary %}
+                <p class="govuk-body">You cannot change your answers.</p>
+                {% endif %}
+
                 {% for detail in details %}
-                    {{ summaryDetail(detail) }}
+                    {{ summaryDetail(detail, page.isReadOnlySummary) }}
                 {% endfor %}
 
                 {% if fees and fees.details|length %}
@@ -61,7 +70,7 @@
                         card.</p>
                 {% endif %}
 
-                {% if not result.error %}
+                {% if not result.error and not page.isReadOnlySummary %}
                     <form method="post" enctype="multipart/form-data" autocomplete="off" novalidate>
                         <input type="hidden" name="crumb" value="{{ crumb }}"/>
 
