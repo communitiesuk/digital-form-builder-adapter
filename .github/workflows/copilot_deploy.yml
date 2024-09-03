@@ -154,7 +154,6 @@ jobs:
           build-args: |
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'          
-  
 
   dev_deploy:
     strategy:
@@ -162,15 +161,17 @@ jobs:
         include:
           - deployment: fsd-form-runner-adapter
             command: svc
+            appname: "form-runner-adapter"
           - deployment: fsd-form-designer-adapter
             command: svc
+            appname: "form-designer-adapter"
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
     needs: [ docker-build-designer, docker-build, setup ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.copilot_environment || 'test' }}
+    environment: ${{ inputs.environment || 'dev' }}
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -178,18 +179,18 @@ jobs:
       - name: Setup Copilot
         uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
         with:
-          copilot_environment: ${{ inputs.copilot_environment || 'test' }}
+          environment: ${{ inputs.environment || 'dev' }}
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
 
       - name: Inject env specific values into manifest
         run: |
           yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
-          yq -i '.image.location = "${{ inputs.image_location }}"' copilot/${{ matrix.deployment }}/manifest.yml
+          yq -i '.image.location = "ghcr.io/communitiesuk/funding-service-design-${{ matrix.appname }}:sha-${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
 
       - name: Copilot deploy ${{ matrix.deployment }}
         run: |
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
-    
+
   post_dev_deploy_tests:
     needs: [ dev_deploy ]
 
@@ -207,19 +208,38 @@ jobs:
       environment: dev
 
   test_deploy:
+    strategy:
+      matrix:
+        include:
+          - deployment: fsd-form-runner-adapter
+            command: svc
+          - deployment: fsd-form-designer-adapter
+            command: svc
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
     needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'test' }}
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
 
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
-    secrets:
-      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
-    with:
-      environment: "test"
-      app_name: "form-runner-adapter"
-      version: sha-${{ github.sha }}
+      - name: Setup Copilot
+        uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
+        with:
+          environment: ${{ inputs.environment || 'test' }}
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+
+      - name: Inject env specific values into manifest
+        run: |
+          yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+          yq -i '.image.location = "${{ inputs.image_location }}"' copilot/${{ matrix.deployment }}/manifest.yml
+
+      - name: Copilot deploy ${{ matrix.deployment }}
+        run: |
+          copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
 
   post_test_deploy_tests:
     needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests, test_deploy ]
@@ -239,6 +259,11 @@ jobs:
       environment: test
 
   uat_deploy:
+    strategy:
+      matrix:
+        include:
+          - deployment: fsd-form-runner-adapter
+            command: svc
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
@@ -252,14 +277,26 @@ jobs:
         post_test_deploy_tests,
       ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'uat') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'uat' }}
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
 
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
-    secrets:
-      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
-    with:
-      environment: "uat"
-      app_name: "form-runner-adapter"
-      version: sha-${{ github.sha }}
+      - name: Setup Copilot
+        uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
+        with:
+          environment: ${{ inputs.environment || 'uat' }}
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+
+      - name: Inject env specific values into manifest
+        run: |
+          yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+          yq -i '.image.location = "${{ inputs.image_location }}"' copilot/${{ matrix.deployment }}/manifest.yml
+
+      - name: Copilot deploy ${{ matrix.deployment }}
+        run: |
+          copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
 
   post_uat_deploy_tests:
     needs:
@@ -287,6 +324,11 @@ jobs:
       environment: uat
 
   prod_deploy:
+    strategy:
+      matrix:
+        include:
+          - deployment: fsd-form-runner-adapter
+            command: svc
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
@@ -302,10 +344,23 @@ jobs:
         post_uat_deploy_tests,
       ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'prod') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
-    secrets:
-      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
-    with:
-      environment: "prod"
-      app_name: "form-runner-adapter"
-      version: sha-${{ github.sha }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'uat' }}
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+
+      - name: Setup Copilot
+        uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
+        with:
+          environment: ${{ inputs.environment || 'uat' }}
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+
+      - name: Inject env specific values into manifest
+        run: |
+          yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+          yq -i '.image.location = "${{ inputs.image_location }}"' copilot/${{ matrix.deployment }}/manifest.yml
+
+      - name: Copilot deploy ${{ matrix.deployment }}
+        run: |
+          copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
