@@ -201,6 +201,10 @@ jobs:
           yarn e2e-test install
           pwd
           ls
+          echo "--  Git submodule initialize into local  --"
+          git submodule update --init
+          echo "--  Pulling git submodules into local  --"
+          git pull --recurse-submodules
           ls digital-form-builder 
 
       - name: Inject env specific values into manifest
