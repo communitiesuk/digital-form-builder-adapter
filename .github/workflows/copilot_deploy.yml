@@ -343,7 +343,7 @@ jobs:
       ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'prod') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment || 'uat' }}
+    environment: ${{ inputs.environment || 'prod' }}
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -351,7 +351,7 @@ jobs:
       - name: Setup Copilot
         uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
         with:
-          environment: ${{ inputs.environment || 'uat' }}
+          environment: ${{ inputs.environment || 'prod' }}
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
 
       - name: Inject env specific values into manifest
