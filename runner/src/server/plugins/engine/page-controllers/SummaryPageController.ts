@@ -50,15 +50,16 @@ export class SummaryPageController extends PageController {
                 this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
                 this.backLink = state.callback?.returnUrl;
             }
-            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
-                this.isReadOnlySummary = true;
-                this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
-                this.backLink = state.callback?.returnUrl;
-            }
             //@ts-ignore
             const viewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             if (viewModel.endPage) {
                 return redirectTo(request, h, `/${model.basePath}${viewModel.endPage.path}`);
+            }
+
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                viewModel.isReadOnlySummary = true;
+                viewModel.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+                viewModel.backLink = state.callback?.returnUrl;
             }
 
             /**

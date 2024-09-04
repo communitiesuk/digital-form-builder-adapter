@@ -3,7 +3,7 @@
 {% from "button/macro.njk" import govukButton %}
 {% extends 'layout.html' %}
 
-{% set pageTitle = pageTitle if not page.isReadOnlySummary else "View your answers" %}
+{% set pageTitle = pageTitle if not isReadOnlySummary else "View your answers" %}
 
 {% block beforeContent %}
     {{ govukPhaseBanner({
@@ -12,10 +12,10 @@
         },
         html: "This is a new service."
     }) }}
-    {% if page.isEligibility or page.isReadOnlySummary %}
+    {% if page.isEligibility or isReadOnlySummary %}
         {{ govukBackLink({
-            href: page.backLink,
-            text: page.backLinkText if not page.isReadOnlySummary else "Back to application for funding overview"
+            href: backLink or page.backLink,
+            text: (backLinkText or page.backLinkText) if not isReadOnlySummary else "Back to application for funding overview"
         }) }}
     {% endif %}
 {% endblock %}
@@ -55,7 +55,7 @@
                 {% endif %}
 
                 {% for detail in details %}
-                    {{ summaryDetail(detail, page.isReadOnlySummary) }}
+                    {{ summaryDetail(detail, isReadOnlySummary) }}
                 {% endfor %}
 
                 {% if fees and fees.details|length %}
@@ -70,7 +70,7 @@
                         card.</p>
                 {% endif %}
 
-                {% if not result.error and not page.isReadOnlySummary %}
+                {% if not result.error and not isReadOnlySummary %}
                     <form method="post" enctype="multipart/form-data" autocomplete="off" novalidate>
                         <input type="hidden" name="crumb" value="{{ crumb }}"/>
 
