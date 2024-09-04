@@ -124,7 +124,7 @@ export class PageControllerBase {
         }
 
         this.backLink = "";
-        this.backLinkText = this.model.def?.backLinkText ?? "Go back to application overview";
+        this.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh)
 
         this[FORM_SCHEMA] = this.components.formSchema;
         this[STATE_SCHEMA] = this.components.stateSchema;
@@ -487,7 +487,7 @@ export class PageControllerBase {
             const {adapterCacheService} = request.services([]);
             const lang = this.langFromRequest(request);
             //@ts-ignore
-            const state = await adapterCacheService.getState(request);
+            let state = await adapterCacheService.getState(request);
             const progress = state.progress || [];
             const {num} = request.query;
             const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
@@ -506,8 +506,6 @@ export class PageControllerBase {
             this.backLink = state.callback?.returnUrl ?? progress[progress.length - 2];
             if (state["metadata"] && state["metadata"]["has_eligibility"]) {
                 this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
-            } else {
-                this.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh);
             }
 
             if (shouldRedirectToStartPage) {
@@ -595,12 +593,14 @@ export class PageControllerBase {
             }
             //@ts-ignore
             await adapterCacheService.mergeState(request, {progress});
+            //@ts-ignore
+            state = await adapterCacheService.getState(request);
 
+            viewModel.backLinkText = this.backLinkText;
             if (state.callback?.returnUrl) {
                 viewModel.backLink = state.callback?.returnUrl;
-                viewModel.backLinkText = UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh);
             } else {
-                viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
+                this.backLink = viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
             }
 
             viewModel.continueButtonText = "Save and continue"

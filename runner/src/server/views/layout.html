@@ -180,10 +180,15 @@
             }) }}
         {% endif %}
     {% endif %}
-    {% if backLink %}
+    {% if page.backLink %}
         {{ govukBackLink({
             href: page.backLink,
             text: page.backLinkText
+        }) }}
+    {% else %}
+        {{ govukBackLink({
+            href: backLink,
+            text: backLinkText
         }) }}
     {% endif %}
 {% endblock %}

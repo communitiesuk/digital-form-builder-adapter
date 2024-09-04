@@ -36,7 +36,6 @@ import errorHandlerPlugin from "./plugins/ErrorHandlerPlugin";
 import {AdapterCacheService} from "./services";
 import {AdapterStatusService} from "./services";
 import {configureInitialiseSessionPlugin} from "./plugins/initialize-session/SessionManagementPlugin";
-import {AdapterUploadService} from "./services";
 import {S3UploadService} from "./services";
 import clientSideUploadPlugin from "./plugins/ClientSideUploadPlugin";
 
@@ -107,11 +106,8 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(pluginAuth);
 
     server.registerService([AdapterCacheService, NotifyService, PayService, WebhookService, AddressService]);
-    if (!config.documentUploadApiUrl) {
-        server.registerService([Schmervice.withName("uploadService", MockUploadService),]);
-    } else {
-        server.registerService([AdapterUploadService, S3UploadService]);
-    }
+    server.registerService([S3UploadService]);
+
 
     // @ts-ignore
     server.registerService(AdapterStatusService);
