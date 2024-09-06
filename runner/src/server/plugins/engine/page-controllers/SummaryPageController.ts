@@ -39,6 +39,7 @@ export class SummaryPageController extends PageController {
             if (!state.progress) {
                 const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
                 const progress = state.progress || [];
+                //@ts-ignore
                 progress.push(currentPath);
                 //@ts-ignore
                 await adapterCacheService.mergeState(request, {progress});
@@ -57,8 +58,11 @@ export class SummaryPageController extends PageController {
             }
 
             if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                //@ts-ignore
                 viewModel.isReadOnlySummary = true;
+                //@ts-ignore
                 viewModel.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+                //@ts-ignore
                 viewModel.backLink = state.callback?.returnUrl;
             }
 
@@ -80,6 +84,7 @@ export class SummaryPageController extends PageController {
             }
             this.loadRequestErrors(request, viewModel);
             await this.existingFilesToClientSideFileUpload(state, viewModel, request);
+
             return h.view("summary", viewModel);
         };
     }
