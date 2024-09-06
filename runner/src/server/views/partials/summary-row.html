@@ -24,21 +24,13 @@
                     {% endfor %}
                 {% endif %}
             {% elif item.type == 'FreeTextField' %}
-                <div id={{item.name}}></div>
-                <script>
-                    // Nunjucks automatically converts any html to escaped html to prevent cross-site scripting
-                    // This method bellow safely unescapes it so it can be rendered correctly.
-                    document.getElementById('{{item.name}}').innerHTML = unescapeHtml('{{item.value}}');
-
-                    function unescapeHtml(html) {
-                        var div = document.createElement('div');
-                        div.innerHTML = html;
-                        return div.textContent;
-                      }
-                </script>
-                <noscript>
-                    {{item.value}}
-                </noscript>
+                {% set decodedHtml = item.value | safe  %}
+                {% set pIndex = decodedHtml.indexOf('<p>')  %}
+                {% if pIndex < 0 %}
+                    {{ decodedHtml | replace('<ul', '<ul style="padding-left: 1.25rem;"') | replace('<ol', '<ul style="padding-left: 1.25rem;"') }}
+                {% else %}
+                    {{ decodedHtml }}
+                {% endif %}
             {% else %}
                 {{item.value}}
             {% endif %}
