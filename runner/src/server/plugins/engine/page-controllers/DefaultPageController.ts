@@ -27,7 +27,10 @@ export class DefaultPageController extends PageController {
                 state.metadata.isSummaryPageSubmit = false;
             }
             const model = this.model;
-            model.getRelevantPages = this.overrideGetRelevantPages
+            // We have overridden this because when we create an AdapterSummaryViewModel it tries
+            // to verify that all the conditions are met for an entire form journey,
+            // not to the point that we are in
+            model.getRelevantPages = this.retrievePagesUpToCurrent
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             //@ts-ignore
@@ -55,7 +58,11 @@ export class DefaultPageController extends PageController {
         };
     }
 
-    overrideGetRelevantPages = (state: FormSubmissionState) => {
+    /**
+     * In this method, it will get all the pages up to the current page & return the list of pages
+     * @param state
+     */
+    retrievePagesUpToCurrent = (state: FormSubmissionState) => {
         let nextPage = this.model.startPage;
         const relevantPages: any[] = [];
         let endPage = null;
