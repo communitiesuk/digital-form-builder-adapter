@@ -17,6 +17,7 @@ export class DefaultPageController extends PageController {
     makePostRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             const response = await this.handlePostRequest(request, h);
+            const {returnUrl} = request.query
             if (response?.source?.context?.errors) {
                 return response;
             }
@@ -27,10 +28,12 @@ export class DefaultPageController extends PageController {
                 state.metadata.isSummaryPageSubmit = false;
             }
             const model = this.model;
-            // We have overridden this because when we create an AdapterSummaryViewModel it tries
-            // to verify that all the conditions are met for an entire form journey,
-            // not to the point that we are in
-            model.getRelevantPages = this.retrievePagesUpToCurrent
+            if (!returnUrl) {
+                // We have overridden this because when we create an AdapterSummaryViewModel it tries
+                // to verify that all the conditions are met for an entire form journey,
+                // not to the point that we are in
+                model.getRelevantPages = this.retrievePagesUpToCurrent
+            }
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             //@ts-ignore

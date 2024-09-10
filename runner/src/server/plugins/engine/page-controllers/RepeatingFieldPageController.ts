@@ -1,11 +1,17 @@
 import {PageController} from "./PageController";
 import {RepeatingSummaryPageController} from "./RepeatingSummaryPageController";
 import {ComponentDef, RepeatingFieldPage} from "@xgovformbuilder/model";
-import {FormComponent} from "../components";
+import {AdapterFormComponent} from "../components";
 
+// @ts-ignore
 import joi from "joi";
 import {reach} from "hoek";
 import {AdapterFormModel, AdapterSummaryViewModel} from "../models";
+import {HapiRequest, HapiResponseToolkit} from "../../../types";
+import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
+import {
+    SummaryPageController
+} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
 
 const contentTypes: Array<ComponentDef["type"]> = [
     "Para",
@@ -36,7 +42,7 @@ const DEFAULT_OPTIONS = {
  */
 export class RepeatingFieldPageController extends PageController {
     summary: RepeatingSummaryPageController;
-    inputComponent: FormComponent;
+    inputComponent: AdapterFormComponent;
     isRepeatingFieldPageController = true;
     isSamePageDisplayMode: boolean;
     isSeparateDisplayMode: boolean;
@@ -77,7 +83,7 @@ export class RepeatingFieldPageController extends PageController {
         this.isSeparateDisplayMode = this.options.summaryDisplayMode.separatePage!;
         this.hideRowTitles = this.options.summaryDisplayMode.hideRowTitles!;
 
-        this.inputComponent = inputComponent as FormComponent;
+        this.inputComponent = inputComponent as AdapterFormComponent;
 
         this.summary = new RepeatingSummaryPageController(
             model,
@@ -115,7 +121,7 @@ export class RepeatingFieldPageController extends PageController {
 
             return schema;
         });
-
+        //@ts-ignore
         super.stateSchema = parentSchema;
         return parentSchema;
     }
@@ -123,7 +129,7 @@ export class RepeatingFieldPageController extends PageController {
     makeGetRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {query} = request;
-            const {removeAtIndex, view, returnUrl} = query;
+            const {removeAtIndex, view} = query;
             const {adapterCacheService} = request.services([]);
             let form_session_identifier = "";
 
@@ -150,6 +156,7 @@ export class RepeatingFieldPageController extends PageController {
             if ((view ?? false) || this.isSamePageDisplayMode) {
                 const response = await super.makeGetRouteHandler()(request, h);
                 const {adapterCacheService} = request.services([]);
+                //@ts-ignore
                 const state = await adapterCacheService.getState(request);
                 const partialState = this.getPartialState(state, view);
 
@@ -285,6 +292,12 @@ export class RepeatingFieldPageController extends PageController {
                 }
 
                 const model = this.model;
+                if (!returnUrl) {
+                    // We have overridden this because when we create an AdapterSummaryViewModel it tries
+                    // to verify that all the conditions are met for an entire form journey,
+                    // not to the point that we are in
+                    model.getRelevantPages = this.retrievePagesUpToCurrent
+                }
                 //@ts-ignore
                 let savedState = await adapterCacheService.getState(request);
                 //@ts-ignore
@@ -297,10 +310,7 @@ export class RepeatingFieldPageController extends PageController {
                 //@ts-ignore
                 savedState = await adapterCacheService.getState(request);
 
-                const startPage = this.model.def.startPage;
-                const isStartPage = this.path === startPage;
-
-                if (!isStartPage && savedState.metadata && savedState.webhookData) {
+                if (savedState.metadata && savedState.webhookData) {
                     //@ts-ignore
                     await adapterStatusService.outputRequests(request);
                 }
@@ -342,7 +352,7 @@ export class RepeatingFieldPageController extends PageController {
             //TODO when the rework of add another is done we should look at changing this to use the redirect methods in the helpers class
             if (this.options!.summaryDisplayMode!.samePage) {
                 return h.redirect(
-                    `/${this.model.basePath}${this.path}?${form_session_identifier}`
+                    `/${this.model.basePath}${this.path}?${form_session_identifier}${returnUrl}`
                 );
             }
             return h.redirect(
@@ -353,8 +363,7 @@ export class RepeatingFieldPageController extends PageController {
 
     getPartialState(state, atIndex?: number) {
         const keyName = this.inputComponent.name;
-        const sectionName =
-            this.pageDef.section === undefined ? "" : this.pageDef.section;
+        const sectionName = this.pageDef.section === undefined ? "" : this.pageDef.section;
         const path = [sectionName, keyName].filter(Boolean).join(".");
         const partial = reach(state, path);
         if (atIndex ?? false) {
@@ -390,5 +399,33 @@ export class RepeatingFieldPageController extends PageController {
             }
         }
         return answers;
+    }
+
+    /**
+     * In this method, it will get all the pages up to the current page & return the list of pages
+     * @param state
+     */
+    retrievePagesUpToCurrent = (state: FormSubmissionState) => {
+        let nextPage = this.model.startPage;
+        const relevantPages: any[] = [];
+        let endPage = null;
+
+        while (nextPage != null) {
+            if (nextPage.hasFormComponents) {
+                relevantPages.push(nextPage);
+            } else if (
+                !nextPage.hasNext &&
+                !(nextPage instanceof SummaryPageController)
+            ) {
+                endPage = nextPage;
+            }
+            if (nextPage.path === this.path) {
+                nextPage = null;
+            } else {
+                nextPage = nextPage.getNextPage(state, true);
+            }
+        }
+
+        return {relevantPages, endPage};
     }
 }
