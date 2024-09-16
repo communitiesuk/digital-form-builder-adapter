@@ -108,6 +108,7 @@ export class S3UploadService {
     async uploadDocuments(locations: any[], prefix: string, metadata) {
         let error: string | undefined;
         let location: string | undefined;
+        let originalFilename: string | undefined;
 
         await this.uploadFilesS3(locations, prefix, metadata).then((result) => {
             result.forEach((doc) => {
@@ -115,10 +116,11 @@ export class S3UploadService {
                     error = "Failed to upload file to server:" + doc.error;
                 } else {
                     location = `${prefix}/${locations[0].hapi.filename}`;
+                    originalFilename = `${locations[0].hapi.filename}`;
                 }
             });
         });
-        return {location, error};
+        return {location, error, originalFilename};
     }
 
     parsedDocumentUploadResponse(res: http.IncomingMessage) {
@@ -189,6 +191,10 @@ export class S3UploadService {
                 } else {
                     await this.deleteFileS3(`${delPath}/${filesToDelete}`);
                 }
+            }
+        } else {
+            if (request.payload !== null) {
+                files = this.fileStreamsFromPayload(request.payload);
             }
         }
 
@@ -283,7 +289,7 @@ export class S3UploadService {
 
             if (validFiles.length === values.length) {
                 try {
-                    const {error, location} = await this.uploadDocuments(
+                    const {error, location, originalFilename} = await this.uploadDocuments(
                         validFiles,
                         prefix,
                         metaData
@@ -291,6 +297,7 @@ export class S3UploadService {
                     if (location) {
                         request.payload[key] = location;
                         request.payload[`${key}__filename`] = location;
+                        originalFilenames[key] = {location, originalFilename};
                     }
                     if (error) {
                         request.pre.errors = [
