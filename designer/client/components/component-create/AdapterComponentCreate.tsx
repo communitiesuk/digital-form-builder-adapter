@@ -148,9 +148,6 @@ export const AdapterComponentCreate = (props) => {
             {type && renderTypeEdit && (
                 <form onSubmit={handleSubmit}>
                     {type && <AdapterComponentEdit/>}
-                    <button type="submit" className="govuk-button" disabled={isSaving}>
-                        Save
-                    </button>
                 </form>
             )}
         </div>

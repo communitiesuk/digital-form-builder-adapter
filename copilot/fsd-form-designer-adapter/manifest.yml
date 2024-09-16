@@ -83,6 +83,7 @@ environments:
       rolling: "recreate"
     count:
       spot: 2
+<<<<<<< HEAD
   uat:
     count:
       range: 2-4
@@ -103,6 +104,8 @@ environments:
           "forms.access-funding.levellingup.gov.uk",
         ]
       hosted_zone: Z0686469NF3ZJTU9I02M
+=======
+>>>>>>> origin
     variables:
       ACCESSIBILITY_STATEMENT_URL: "https://frontend.access-funding.levellingup.gov.uk/accessibility_statement"
       BASIC_AUTH_ON: false
@@ -115,6 +118,7 @@ environments:
       PRIVACY_POLICY_URL: "https://frontend.access-funding.levellingup.gov.uk/privacy"
       SERVICE_START_PAGE: "https://frontend.access-funding.levellingup.gov.uk/account"
       ELIGIBILITY_RESULT_URL: "https://frontend.access-funding.levellingup.gov.uk/eligibility-result"
+<<<<<<< HEAD
     count:
       range: 2-4
       cooldown:
@@ -127,3 +131,5 @@ environments:
       requests: 30
 
   
+=======
+>>>>>>> origin

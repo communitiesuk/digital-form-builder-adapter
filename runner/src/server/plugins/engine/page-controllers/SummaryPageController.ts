@@ -14,6 +14,7 @@ import {UtilHelper} from "../../utils/UtilHelper";
 export class SummaryPageController extends PageController {
 
     isEligibility: boolean = false;
+    isReadOnlySummary: boolean;
 
     constructor(model: AdapterFormModel, pageDef: any) {
         // @ts-ignore
@@ -34,7 +35,17 @@ export class SummaryPageController extends PageController {
                 return this.makePostRouteHandler()(request, h);
             }
             //@ts-ignore
-            const state = await adapterCacheService.getState(request);
+            let state = await adapterCacheService.getState(request);
+            if (!state.progress) {
+                const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
+                const progress = state.progress || [];
+                //@ts-ignore
+                progress.push(currentPath);
+                //@ts-ignore
+                await adapterCacheService.mergeState(request, {progress});
+                //@ts-ignore
+                state = await adapterCacheService.getState(request);
+            }
             if (state["metadata"] && state["metadata"]["has_eligibility"]) {
                 this.isEligibility = state["metadata"]["has_eligibility"];
                 this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
@@ -44,6 +55,15 @@ export class SummaryPageController extends PageController {
             const viewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             if (viewModel.endPage) {
                 return redirectTo(request, h, `/${model.basePath}${viewModel.endPage.path}`);
+            }
+
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                //@ts-ignore
+                viewModel.isReadOnlySummary = true;
+                //@ts-ignore
+                viewModel.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+                //@ts-ignore
+                viewModel.backLink = state.callback?.returnUrl;
             }
 
             /**
@@ -64,6 +84,7 @@ export class SummaryPageController extends PageController {
             }
             this.loadRequestErrors(request, viewModel);
             await this.existingFilesToClientSideFileUpload(state, viewModel, request);
+
             return h.view("summary", viewModel);
         };
     }

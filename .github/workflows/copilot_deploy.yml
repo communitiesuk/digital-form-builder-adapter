@@ -40,6 +40,16 @@ on:
         default: true
         type: boolean
         description: Run e2e tests (application)
+  workflow_call:
+    inputs:
+      runner-cache-ref:
+        description: cache ref for the runner app
+        required: true
+        type: string
+      designer-cache-ref:
+        description: cache ref for the designer app
+        required: true
+        type: string
 
 env:
   DOCKER_REGISTRY: ghcr.io
@@ -153,7 +163,75 @@ jobs:
           file: ./designer/Dockerfile
           build-args: |
             LAST_TAG='${{env.VERSION}}'
+<<<<<<< HEAD
             LAST_COMMIT='${{ github.sha }}'          
+=======
+            LAST_COMMIT='${{ github.sha }}'    
+
+  e2e-test:
+    needs: [ docker-build-designer, docker-build, setup ]
+    runs-on: ubuntu-latest
+    name: run e2e
+    outputs:
+      tag: ${{ steps.hashFile.outputs.tag }}
+      hash: ${{ steps.hashFile.outputs.hash }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - name: Get into the directory
+        id: change-dir
+        run: yarn config set enableImmutableInstalls false
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-e2e
+            ${{ runner.os }}-yarn           
+
+      - name: Setup e2e dependencies
+        run: |
+          echo "--  Git submodule initialize into local  --"
+          git submodule update --init
+          echo "--  Pulling git submodules into local  --"
+          git pull --recurse-submodules
+          echo "--  Installing digital-form-builder-adapter locally  --"
+          node update-package.js
+          yarn install
+          echo "--  Install e2e dependencies  --"
+          yarn e2e-test install
+          echo "--  Building digital-form-builder locally  --"
+          cd digital-form-builder
+          yarn
+
+      - name: Inject env specific values into manifest
+        run: |
+          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          cat docker-compose.e2e.yml
+
+      - name: start containers
+        run: |
+          docker compose -f docker-compose.yml up -d 
+          docker ps
+
+      - name: log
+        run: |
+          docker compose logs runner
+
+      - name: run e2e tests
+        run: yarn e2e-test cypress run
+>>>>>>> origin
 
   dev_deploy:
     strategy:
@@ -161,12 +239,23 @@ jobs:
         include:
           - deployment: fsd-form-runner-adapter
             command: svc
+<<<<<<< HEAD
           - deployment: fsd-form-designer-adapter
             command: svc
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
     needs: [ docker-build-designer, docker-build, setup ]
+=======
+            appname: "form-runner-adapter"
+          - deployment: fsd-form-designer-adapter
+            command: svc
+            appname: "form-designer-adapter"
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
+    needs: [ docker-build-designer, docker-build, setup, e2e-test ]
+>>>>>>> origin
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'dev' }}
@@ -183,7 +272,11 @@ jobs:
       - name: Inject env specific values into manifest
         run: |
           yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+<<<<<<< HEAD
           yq -i '.image.location = "${{ inputs.image_location }}"' copilot/${{ matrix.deployment }}/manifest.yml
+=======
+          yq -i '.image.location = "ghcr.io/communitiesuk/funding-service-design-${{ matrix.appname }}:sha-${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+>>>>>>> origin
 
       - name: Copilot deploy ${{ matrix.deployment }}
         run: |
@@ -216,7 +309,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests ]
+    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests, e2e-test ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'test' }}
@@ -240,7 +333,7 @@ jobs:
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
 
   post_test_deploy_tests:
-    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests, test_deploy ]
+    needs: [ setup, docker-build, dev_deploy, post_dev_deploy_tests, test_deploy, e2e-test ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
 
     secrets:
@@ -343,7 +436,11 @@ jobs:
       ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'prod') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
+<<<<<<< HEAD
     environment: ${{ inputs.environment || 'prod' }}
+=======
+    environment: ${{ inputs.environment || 'uat' }}
+>>>>>>> origin
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -351,7 +448,11 @@ jobs:
       - name: Setup Copilot
         uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
         with:
+<<<<<<< HEAD
           environment: ${{ inputs.environment || 'prod' }}
+=======
+          environment: ${{ inputs.environment || 'uat' }}
+>>>>>>> origin
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
 
       - name: Inject env specific values into manifest

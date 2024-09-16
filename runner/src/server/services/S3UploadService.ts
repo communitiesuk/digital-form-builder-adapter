@@ -168,35 +168,27 @@ export class S3UploadService {
         const applicationId = state.metadata?.applicationId ?? "";
 
         const {path} = request.params;
-        const page = form?.pages.find(
-            (page) => this.normalisePath(page.path) === this.normalisePath(path)
-        );
-
         let files: [string, any][] = [];
 
-        if (request.payload !== null) {
-            files = this.fileStreamsFromPayload(request.payload);
-        }
+        if (form?.pages) {
+            const page = form?.pages.find((page) => this.normalisePath(page.path) === this.normalisePath(path));
+            if (request.payload !== null) {
+                files = this.fileStreamsFromPayload(request.payload);
+            }
+            const clientSideUploadComponent = page.components.items.find((c) => c.type === "ClientSideFileUploadField");
+            if (clientSideUploadComponent && form_session_identifier && request.payload) {
+                const {id, path} = request.params;
+                const delPath = `${form_session_identifier}/${id}/${path}/${clientSideUploadComponent.name}`;
+                const filesToDelete =
+                    request.payload[`${clientSideUploadComponent.name}__delete[]`] || [];
 
-        const clientSideUploadComponent = page.components.items.find(
-            (c) => c.type === "ClientSideFileUploadField"
-        );
-        if (
-            clientSideUploadComponent &&
-            form_session_identifier &&
-            request.payload
-        ) {
-            const {id, path} = request.params;
-            const delPath = `${form_session_identifier}/${id}/${path}/${clientSideUploadComponent.name}`;
-            const filesToDelete =
-                request.payload[`${clientSideUploadComponent.name}__delete[]`] || [];
-
-            if (Array.isArray(filesToDelete)) {
-                for (const fileKeyToDelete of filesToDelete) {
-                    await this.deleteFileS3(`${delPath}/${fileKeyToDelete}`);
+                if (Array.isArray(filesToDelete)) {
+                    for (const fileKeyToDelete of filesToDelete) {
+                        await this.deleteFileS3(`${delPath}/${fileKeyToDelete}`);
+                    }
+                } else {
+                    await this.deleteFileS3(`${delPath}/${filesToDelete}`);
                 }
-            } else {
-                await this.deleteFileS3(`${delPath}/${filesToDelete}`);
             }
         }
 
@@ -265,28 +257,31 @@ export class S3UploadService {
                     })
                 )
             ).filter((value) => !!value);
-
-            let pageTitle = page.title;
-            let sectionTitle = page.section?.title ?? "";
-
-            if (page.def.metadata.isWelsh) {
-                pageTitle = encodeURI(pageTitle);
-                sectionTitle = encodeURI(sectionTitle);
-            }
-
-            const metaData = {
-                page: pageTitle,
-                section: sectionTitle,
+            let metaData = {
                 componentName: key,
-            };
-
-            if (validFiles.length === values.length) {
-                let prefix = applicationId;
+            }
+            let prefix = applicationId;
+            if (form?.pages) {
+                const page = form?.pages.find((page) => this.normalisePath(page.path) === this.normalisePath(path));
+                let pageTitle = page.title;
+                let sectionTitle = page.section?.title ?? "";
+                if (page.def.metadata.isWelsh) {
+                    pageTitle = encodeURI(pageTitle);
+                    sectionTitle = encodeURI(sectionTitle);
+                }
+                //@ts-ignore
+                metaData.page = pageTitle
+                //@ts-ignore
+                metaData.section = sectionTitle
+                const clientSideUploadComponent = page.components.items.find((c) => c.type === "ClientSideFileUploadField");
                 if (clientSideUploadComponent) {
                     const {id, path} = request.params;
                     prefix = `${form_session_identifier}/${id}/${path}/${clientSideUploadComponent.name}`;
                 }
+            }
 
+
+            if (validFiles.length === values.length) {
                 try {
                     const {error, location} = await this.uploadDocuments(
                         validFiles,

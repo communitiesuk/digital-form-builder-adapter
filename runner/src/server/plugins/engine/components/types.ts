@@ -20,6 +20,6 @@ export type ClientSideFileUploadFieldViewModel = {
 } & ViewModel;
 
 
-export type AdapterDataType = DataType | "freeText" | "multiInput";
+export type AdapterDataType = DataType;
 
 

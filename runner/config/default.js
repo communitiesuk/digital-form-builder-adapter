@@ -11,7 +11,7 @@ module.exports = {
    * Initialised sessions
    * Allows a user's state to be pre-populated.
    */
-  safelist: [], // Array of hostnames you want to accept when using a session callback. eg "gov.uk".
+  safelist: ["localhost", "61bca17e-fe74-40e0-9c15-a901ad120eca.mock.pstmn.io"], // Array of hostnames you want to accept when using a session callback. eg "gov.uk".
   initialisedSessionTimeout: minute * 60 * 24 * 28, // Defaults to 28 days. Set the TTL for the initialised session
   initialisedSessionKey: `${nanoid.random(16)}`, // This should be set if you are deploying replicas
 
@@ -102,7 +102,6 @@ module.exports = {
   // Control which is used. Accepts "test" | "production" | "".
   apiEnv: "",
   payApiUrl: "https://publicapi.payments.service.gov.uk/v1",
-  documentUploadApiUrl: "http://localhost:9000",
   // ordnanceSurveyKey: "", // deprecated - this API is deprecated
   // browserRefreshUrl: "", // deprecated - idk what this does
 
@@ -124,6 +123,8 @@ module.exports = {
   multifundDashboard: "/account", //This is used to redirect to the multifund dashboard
   basicAuthOn: false,
   overwriteInitialisedSession: true,
+
+  allowUserTemplates: true,
 
   /**
    * Logging

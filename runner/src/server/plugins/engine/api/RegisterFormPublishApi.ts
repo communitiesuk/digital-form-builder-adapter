@@ -229,7 +229,7 @@ export class RegisterFormPublishApi implements RegisterApi {
 
         server.route(getOptions);
 
-        const {adapterUploadService} = server.services([]);
+        const {s3UploadService} = server.services([]);
 
         const handleFiles = (request: HapiRequest, h: HapiResponseToolkit) => {
             const {path, id} = request.params;
@@ -238,7 +238,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                 (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
             );
             // @ts-ignore
-            return adapterUploadService.handleUploadRequest(request, h, page.pageDef);
+            return s3UploadService.handleUploadRequest(request, h, page.pageDef);
         };
 
         const postHandler = async (
@@ -275,7 +275,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                     output: "stream",
                     parse: true,
                     multipart: {output: "stream"},
-                    maxBytes: adapterUploadService.fileSizeLimit,
+                    maxBytes: s3UploadService.fileSizeLimit,
                     failAction: async (request: HapiRequest, h: HapiResponseToolkit) => {
                         // @ts-ignore
                         request.server.plugins.crumb.generate?.(request, h);

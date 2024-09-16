@@ -30,7 +30,7 @@ export class FreeTextField extends AdapterFormComponent {
     schema: FreeTextFieldComponent["schema"];
     customValidationMessage?: string;
     //@ts-ignore
-    dataType = "freeText" as AdapterDataType;
+    dataType = "text" as AdapterDataType;
     isCharacterOrWordCount: boolean = false;
 
     constructor(def: FreeTextFieldComponent, model: AdapterFormModel) {

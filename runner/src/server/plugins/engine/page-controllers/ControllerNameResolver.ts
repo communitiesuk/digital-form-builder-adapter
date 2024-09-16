@@ -9,6 +9,8 @@ import {PageControllerBase} from "./PageControllerBase";
 import {AdapterPage} from "@communitiesuk/model";
 import {RepeatingFieldPageController} from "./RepeatingFieldPageController";
 import {RepeatingSummaryPageController} from "./RepeatingSummaryPageController";
+import {MultiStartPageController} from "./MultiStartPageController";
+import {UploadPageController} from "./UploadPageController";
 
 export class ControllerNameResolver {
 
@@ -21,7 +23,9 @@ export class ControllerNameResolver {
         PageControllerBase,
         SummaryPageController,
         RepeatingFieldPageController,
-        RepeatingSummaryPageController
+        RepeatingSummaryPageController,
+        MultiStartPageController,
+        UploadPageController
     };
 
 
