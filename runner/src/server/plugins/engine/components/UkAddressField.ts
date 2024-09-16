@@ -12,6 +12,21 @@ import {
     FormSubmissionState
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 
+const UK_COUNTIES = {
+    England: [
+        "Bedfordshire", "Berkshire", "Bristol", "Buckinghamshire", "Cambridgeshire", "Cheshire", "Cornwall", "Cumbria", "Derbyshire", "Devon", "Dorset", "Durham", "East Riding of Yorkshire", "East Sussex", "Essex", "Gloucestershire", "Greater London", "Greater Manchester", "Hampshire", "Herefordshire", "Hertfordshire", "Isle of Wight", "Kent", "Lancashire", "Leicestershire", "Lincolnshire", "Merseyside", "Norfolk", "North Yorkshire", "Northamptonshire", "Northumberland", "Nottinghamshire", "Oxfordshire", "Rutland", "Shropshire", "Somerset", "South Yorkshire", "Staffordshire", "Suffolk", "Surrey", "Tyne and Wear", "Warwickshire", "West Midlands", "West Sussex", "West Yorkshire", "Wiltshire", "Worcestershire"
+    ],
+    Scotland: [
+        "Aberdeenshire", "Angus", "Argyll and Bute", "Ayrshire", "Banffshire", "Berwickshire", "Caithness", "Clackmannanshire", "Dumfries and Galloway", "Dunbartonshire", "East Lothian", "Fife", "Inverness-shire", "Kincardineshire", "Kinross-shire", "Kirkcudbrightshire", "Lanarkshire", "Midlothian", "Moray", "Nairnshire", "Orkney", "Peeblesshire", "Perthshire", "Renfrewshire", "Ross and Cromarty", "Roxburghshire", "Selkirkshire", "Shetland", "Stirlingshire", "Sutherland", "West Lothian", "Wigtownshire"
+    ],
+    Wales: [
+        "Anglesey", "Brecknockshire", "Caernarfonshire", "Cardiganshire", "Carmarthenshire", "Clwyd", "Denbighshire", "Dyfed", "Flintshire", "Glamorgan", "Gwent", "Gwynedd", "Merionethshire", "Monmouthshire", "Montgomeryshire", "Pembrokeshire", "Powys", "Radnorshire", "South Glamorgan", "West Glamorgan"
+    ],
+    NorthernIreland: [
+        "Antrim", "Armagh", "Down", "Fermanagh", "Londonderry", "Tyrone"
+    ]
+};
+
 export class UkAddressField extends AdapterFormComponent {
     formChildren: ComponentCollection;
     stateChildren: ComponentCollection;
@@ -183,10 +198,8 @@ export class UkAddressField extends AdapterFormComponent {
                 value.county,
                 value.postcode,
             ]
-                .filter((p) => {
-                    return !!p;
-                })
-                .join(", ")
+            .filter((p) => p && p !== "null")
+            .join(", ")
             : "";
     }
 
@@ -214,18 +227,55 @@ export class UkAddressField extends AdapterFormComponent {
         return viewModel;
     }
 
+    //@ts-ignore
+    isValidCounty(county: string): boolean {
+        const lowerCaseCounty = county.toLowerCase();
+        return Object.values(UK_COUNTIES).some(region =>
+            region.some(c => c.toLowerCase() === lowerCaseCounty)
+        );
+    }
+
     // This method is used to solve the issue of the address fields appearing blank when
     // returning to a completed section of a form.
     convertStringAnswers(name: string, value: any) {
         const address = value.split(", ");
 
-        return {
-            [`${name}__addressLine1`]: value && address[0],
-            [`${name}__addressLine2`]:
-                value && address[1] === "null" ? "" : address[1],
-            [`${name}__town`]: value && address[2],
-            [`${name}__county`]: value && address[3] === "null" ? "" : address[3],
-            [`${name}__postcode`]: value && address[4],
+        // Initialize the address object with empty strings
+        const addressObject: any = {
+            [`${name}__addressLine1`]: "",
+            [`${name}__addressLine2`]: "",
+            [`${name}__town`]: "",
+            [`${name}__county`]: "",
+            [`${name}__postcode`]: "",
         };
+
+        if (address.length === 3) {
+            // Case: "123 Main St, Sheffield, S1 2AB"
+            addressObject[`${name}__addressLine1`] = address[0];
+            addressObject[`${name}__town`] = address[1];
+            addressObject[`${name}__postcode`] = address[2];
+        } else if (address.length === 4) {
+            // Case: "123 Main St, Address line 2, Sheffield, S1 2AB" or "123 Main St, Sheffield, County, S1 2AB"
+            addressObject[`${name}__addressLine1`] = address[0];
+            addressObject[`${name}__postcode`] = address[3];
+
+            // Determine if the second field is addressLine2 or town
+            if (this.isValidCounty(address[2])) {
+                addressObject[`${name}__town`] = address[1];
+                addressObject[`${name}__county`] = address[2];
+            } else {
+                addressObject[`${name}__addressLine2`] = address[1];
+                addressObject[`${name}__town`] = address[2];
+            }
+        } else if (address.length === 5) {
+            // Case: "123 Main St, Address line 2, Sheffield, County, S1 2AB"
+            addressObject[`${name}__addressLine1`] = address[0];
+            addressObject[`${name}__addressLine2`] = address[1];
+            addressObject[`${name}__town`] = address[2];
+            addressObject[`${name}__county`] = address[3];
+            addressObject[`${name}__postcode`] = address[4];
+        }
+
+        return addressObject;
     }
 }
