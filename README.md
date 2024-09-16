@@ -5,6 +5,7 @@
 **Always run scripts from the root directory.**
 
 
+
 1. Make sure you are using node >=16. `node --version`.
 2. Make sure you have yarn 1.22+ installed. You do not need to install yarn 2.4+, yarn will detect the yarn 2 binary within [.yarn](./.yarn) and that will be used.
 3. If using the designer:

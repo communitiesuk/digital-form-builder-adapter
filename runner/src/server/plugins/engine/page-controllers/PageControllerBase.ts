@@ -521,9 +521,10 @@ export class PageControllerBase {
              */
             const {originalFilenames} = state;
             if (originalFilenames) {
-                Object.entries(formData).forEach(([key, value]) => {
-                    if (value && value === (originalFilenames[key] || {}).location) {
-                        formData[key] = originalFilenames[key].originalFilename;
+                Object.entries(originalFilenames).forEach(([key, fileDetail]) => {
+                    if (fileDetail) {
+                        //@ts-ignore
+                        formData[key] = fileDetail.originalFilename;
                     }
                 });
             }
