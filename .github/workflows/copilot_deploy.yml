@@ -224,7 +224,7 @@ jobs:
 
       - name: log
         run: |
-          docker compose logs runner
+          docker compose logs
 
       - name: run e2e tests
         run: yarn e2e-test cypress run
