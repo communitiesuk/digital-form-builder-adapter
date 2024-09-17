@@ -166,7 +166,7 @@ jobs:
             LAST_COMMIT='${{ github.sha }}'    
 
   e2e-test:
-    needs: [ docker-designer-build, docker-runner-build, setup ]
+    needs: [ setup, docker-designer-build, docker-runner-build ]
     runs-on: ubuntu-latest
     name: run e2e
     outputs:
@@ -242,7 +242,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs: [ docker-designer-build, docker-runner-build, setup, e2e-test ]
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'dev' }}
@@ -266,7 +266,7 @@ jobs:
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
 
   post_dev_deploy_tests:
-    needs: [ dev_deploy ]
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy ]
     secrets:
       FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
       FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
@@ -291,7 +291,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs: [ docker-designer-build, docker-runner-build, setup, e2e-test ]
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, post_dev_deploy_tests ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'test' }}
@@ -315,7 +315,7 @@ jobs:
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
 
   post_test_deploy_tests:
-    needs: [ test_deploy ]
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, post_dev_deploy_tests, test_deploy ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
 
     secrets:
@@ -340,13 +340,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs:
-      [
-        setup,
-        docker-runner-build,
-        test_deploy,
-        post_test_deploy_tests,
-      ]
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, post_dev_deploy_tests, test_deploy, post_test_deploy_tests ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'uat') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'uat' }}
@@ -370,14 +364,7 @@ jobs:
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
 
   post_uat_deploy_tests:
-    needs:
-      [
-        setup,
-        docker-runner-build,
-        test_deploy,
-        post_test_deploy_tests,
-        uat_deploy,
-      ]
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, post_dev_deploy_tests, test_deploy, post_test_deploy_tests, uat_deploy ]
     if: ${{ always()  && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'uat') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
     secrets:
       FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
@@ -401,15 +388,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs:
-      [
-        setup,
-        docker-runner-build,
-        test_deploy,
-        post_test_deploy_tests,
-        uat_deploy,
-        post_uat_deploy_tests,
-      ]
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, post_dev_deploy_tests, test_deploy, post_test_deploy_tests, uat_deploy, post_uat_deploy_tests ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'prod') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'uat' }}
