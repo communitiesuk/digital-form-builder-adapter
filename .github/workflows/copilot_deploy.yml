@@ -242,7 +242,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    needs: [ docker-build-designer, docker-build, setup, e2e-test ]
+    needs: [ docker-build-designer, docker-runner-build, setup, e2e-test ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'dev' }}
@@ -344,7 +344,7 @@ jobs:
     needs:
       [
         setup,
-        docker-build,
+        docker-runner-build,
         test_deploy,
         post_test_deploy_tests,
       ]
@@ -374,7 +374,7 @@ jobs:
     needs:
       [
         setup,
-        docker-build,
+        docker-runner-build,
         test_deploy,
         post_test_deploy_tests,
         uat_deploy,
@@ -405,7 +405,7 @@ jobs:
     needs:
       [
         setup,
-        docker-build,
+        docker-runner-build,
         test_deploy,
         post_test_deploy_tests,
         uat_deploy,
