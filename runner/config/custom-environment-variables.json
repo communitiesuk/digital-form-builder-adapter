@@ -56,6 +56,7 @@
   "logoutUrl": "LOGOUT_URL",
   "multifundDashboard": "MULTIFUND_URL",
   "eligibilityResultUrl": "ELIGIBILITY_RESULT_URL",
+  "isE2EModeEnabled": "E2E_MODE_ENABLED",
   "basicAuthOn": {
     "__name": "BASIC_AUTH_ON",
     "__format": "boolean"

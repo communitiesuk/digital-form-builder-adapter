@@ -23,6 +23,7 @@ module.exports = {
   previewMode: false,
   enforceCsrf: true,
   singleRedis: false,
+  isE2EModeEnabled: false,
 
   /**
    * Helper flags
@@ -41,17 +42,6 @@ module.exports = {
   }),
 
   /**
-   * Analytics
-   */
-  // Google Tag Manager - you must amend the privacy notice if you use GTM to load analytics scripts.
-  // gtmId1: "",
-  // gtmId2: "",
-
-  // Matomo (aka Piwik)
-  // matomoId: "",
-  // matomoUrl: "",
-
-  /**
    * Service
    */
   serviceUrl: "http://localhost:3009", //This is used for redirects back to the runner.
@@ -66,17 +56,10 @@ module.exports = {
    * Redis integration is optional, but recommended for production environments.
    */
   sessionTimeout: 20 * minute,
-  // sessionCookiePassword: "",
-  // redisHost: "http://localhost",
-  // redisPort: 6379,
-  // redisPassword: nanoid.random(16), // This should be set if you are deploying replicas
-  // redisTls: true, //run in TLS mode
 
   /**
    * SSL
    */
-  // sslKey: "", // Path to the SSL key
-  // sslCert: "", // Path to the SSL certificate
   rateLimit: true,
 
   /**
@@ -89,21 +72,12 @@ module.exports = {
   fromEmailAddress: "",
 
   /**
-   * Health checks
-   * These should be configured with environment variables.
-   */
-  // lastCommit: "undefined",
-  // lastTag: "undefined",
-
-  /**
    * API integrations
    */
   // API keys configured within a form may be set like so { "test": "test-key", "production": "prod" }.
   // Control which is used. Accepts "test" | "production" | "".
   apiEnv: "",
   payApiUrl: "https://publicapi.payments.service.gov.uk/v1",
-  // ordnanceSurveyKey: "", // deprecated - this API is deprecated
-  // browserRefreshUrl: "", // deprecated - idk what this does
 
   /**
    * Authentication
@@ -111,11 +85,6 @@ module.exports = {
    * Currently only oAuth is supported.
    */
   authEnabled: false,
-  // authClientId: "", // oAuth client ID;
-  // authClientSecret: "", // oAuth client Secret
-  // authClientAuthUrl: "", // oAuth client secret
-  // authClientTokenUrl: "", // oAuth client token endpoint
-  // authClientProfileUrl: "" // oAuth client user profile endpoint
   jwtAuthEnabled: true,
   jwtAuthCookieName: "fsd_user_token",
   jwtRedirectToAuthenticationUrl: "http://localhost:3004/sessions/sign-out",
