@@ -211,12 +211,6 @@ jobs:
           cd digital-form-builder
           yarn
 
-      - name: Inject env specific values into manifest
-        run: |
-          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
-          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
-          cat docker-compose.e2e.yml
-
       - name: start containers
         run: |
           docker compose -f docker-compose.e2e.yml up -d 
