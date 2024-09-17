@@ -107,6 +107,7 @@ async function createServer(routeConfig: RouteConfig) {
 
     server.registerService([AdapterCacheService, NotifyService, PayService, WebhookService, AddressService]);
     if (config.isE2EModeEnabled && config.isE2EModeEnabled == "true") {
+        console.log("E2E Mode enabled")
         server.registerService([Schmervice.withName("s3UploadService", MockUploadService),]);
     } else {
         server.registerService([S3UploadService]);
