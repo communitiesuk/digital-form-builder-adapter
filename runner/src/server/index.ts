@@ -106,7 +106,7 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(pluginAuth);
 
     server.registerService([AdapterCacheService, NotifyService, PayService, WebhookService, AddressService]);
-    if (config.isE2EModeEnabled) {
+    if (config.isE2EModeEnabled && config.isE2EModeEnabled == "true") {
         server.registerService([Schmervice.withName("s3UploadService", MockUploadService),]);
     } else {
         server.registerService([S3UploadService]);
