@@ -27,5 +27,6 @@ services:
       - LAST_COMMIT
       - LAST_TAG
       - JWT_AUTH_ENABLED=false
+      - E2E_MODE_ENABLED=true
       - NODE_ENV=test
     command: yarn runner production

@@ -23,7 +23,6 @@ import {
     catboxProvider,
     NotifyService,
     PayService,
-    MockUploadService,
     WebhookService,
 } from "../../../digital-form-builder/runner/src/server/services";
 import {HapiRequest, HapiResponseToolkit, RouteConfig} from "./types";
@@ -38,6 +37,7 @@ import {AdapterStatusService} from "./services";
 import {configureInitialiseSessionPlugin} from "./plugins/initialize-session/SessionManagementPlugin";
 import {S3UploadService} from "./services";
 import clientSideUploadPlugin from "./plugins/ClientSideUploadPlugin";
+import {MockUploadService} from "./services/MockUploadService";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -106,8 +106,11 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(pluginAuth);
 
     server.registerService([AdapterCacheService, NotifyService, PayService, WebhookService, AddressService]);
-    server.registerService([S3UploadService]);
-
+    if (config.isE2EModeEnabled) {
+        server.registerService([Schmervice.withName("s3UploadService", MockUploadService),]);
+    } else {
+        server.registerService([S3UploadService]);
+    }
 
     // @ts-ignore
     server.registerService(AdapterStatusService);
