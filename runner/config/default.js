@@ -23,6 +23,7 @@ module.exports = {
   previewMode: false,
   enforceCsrf: true,
   singleRedis: false,
+  redisUri: process.env.FORM_RUNNER_REDIS_INSTANCE_URI ? process.env.FORM_RUNNER_REDIS_INSTANCE_URI : undefined,
   isE2EModeEnabled: false,
 
   /**
