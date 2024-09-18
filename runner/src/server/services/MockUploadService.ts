@@ -1,4 +1,4 @@
-import {S3UploadService} from "./S3UploadService";
+import {S3Object, S3UploadService} from "./S3UploadService";
 import {HapiRequest, HapiResponseToolkit} from "../types";
 
 export class MockUploadService extends S3UploadService {
@@ -12,5 +12,10 @@ export class MockUploadService extends S3UploadService {
 
     async handleUploadRequest(request: HapiRequest, h: HapiResponseToolkit, form?: any): Promise<symbol> {
         return super.handleUploadRequest(request, h, form);
+    }
+
+    //@ts-ignore
+    async listFilesInBucketFolder(folderPath: string, formSessionId: string): Promise<S3Object[]> {
+        return new Array();
     }
 }

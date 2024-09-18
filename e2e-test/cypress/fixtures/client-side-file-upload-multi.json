@@ -1,0 +1,59 @@
+{
+  "metadata": {},
+  "startPage": "/first-page",
+  "pages": [
+    {
+      "title": "First page",
+      "path": "/first-page",
+      "components": [],
+      "next": [
+        {
+          "path": "/test-client-side-file-upload"
+        }
+      ]
+    },
+    {
+      "path": "/test-client-side-file-upload",
+      "title": "Test Client Side file Upload",
+      "components": [
+        {
+          "name": "clientSideFileUploadField1",
+          "options": {
+            "dropzoneConfig": {
+              "maxFiles": 2,
+              "parallelUploads": 2,
+              "maxFilesize": 10,
+              "acceptedFiles": "image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
+            },
+            "hideTitle": false,
+            "minimumRequiredFiles": 2
+          },
+          "type": "ClientSideFileUploadField",
+          "title": "Upload the independent survey of works",
+          "hint": "Upload a file"
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ]
+    },
+    {
+      "title": "Summary",
+      "path": "/summary",
+      "controller": "./pages/summary.js",
+      "components": [],
+      "next": []
+    }
+  ],
+  "lists": [],
+  "sections": [],
+  "conditions": [],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "feeOptions": {},
+  "markAsComplete": false
+}
