@@ -4,10 +4,26 @@ import {
     DecodedSessionToken
 } from "../../../../digital-form-builder/runner/src/server/plugins/initialiseSession/types";
 import {config} from "../plugins/utils/AdapterConfigurationSchema";
+import CatboxRedis from "@hapi/catbox-redis";
+import CatboxMemory from "@hapi/catbox-memory";
 
+import Redis from "ioredis";
 
-const {sessionTimeout,} = config;
 const partition = "cache";
+
+const {
+    redisHost,
+    redisPort,
+    redisPassword,
+    redisTls,
+    isSingleRedis,
+    sessionTimeout,
+} = config;
+let redisUri;
+
+if (process.env.FORM_RUNNER_REDIS_INSTANCE_URI) {
+    redisUri = process.env.FORM_RUNNER_REDIS_INSTANCE_URI;
+}
 
 export class AdapterCacheService extends CacheService {
 
@@ -43,3 +59,56 @@ export class AdapterCacheService extends CacheService {
         };
     }
 }
+
+export const catboxProvider = () => {
+    /**
+     * If redisHost doesn't exist, CatboxMemory will be used instead.
+     * More information at {@link https://hapi.dev/module/catbox/api}
+     */
+    const provider = {
+        constructor: redisHost || redisUri ? CatboxRedis : CatboxMemory,
+        options: {},
+    };
+
+    if (redisHost || redisUri) {
+        console.log("Starting redis session management")
+        const redisOptions: {
+            password?: string;
+            tls?: {};
+        } = {};
+
+        if (redisPassword) {
+            redisOptions.password = redisPassword;
+        }
+
+        if (redisTls) {
+            redisOptions.tls = {};
+        }
+
+        const client = isSingleRedis
+            ? new Redis(
+                redisUri ?? {
+                    host: redisHost,
+                    port: redisPort,
+                    password: redisPassword,
+                }
+            )
+            : new Redis.Cluster(
+                [
+                    {
+                        host: redisHost,
+                        port: redisPort,
+                    },
+                ],
+                {
+                    dnsLookup: (address, callback) => callback(null, address, 4),
+                    redisOptions,
+                }
+            );
+        provider.options = {client, partition};
+    } else {
+        provider.options = {partition};
+    }
+
+    return provider;
+};
