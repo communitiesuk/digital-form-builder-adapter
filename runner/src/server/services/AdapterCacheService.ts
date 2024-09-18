@@ -60,7 +60,7 @@ export class AdapterCacheService extends CacheService {
     }
 }
 
-export const catboxProvider = () => {
+export const catboxProvider = async () => {
     /**
      * If redisHost doesn't exist, CatboxMemory will be used instead.
      * More information at {@link https://hapi.dev/module/catbox/api}
@@ -106,6 +106,9 @@ export const catboxProvider = () => {
                 }
             );
         provider.options = {client, partition};
+        console.log(`Redis Url : ${redisUri} session management`);
+        const pingCommandResult = await client.ping();
+        console.log(`Ping command result: ${pingCommandResult} session management`);
     } else {
         console.log("Starting in memory session management")
         provider.options = {partition};
