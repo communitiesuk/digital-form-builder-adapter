@@ -23,5 +23,8 @@
     "e2e-test": "yarn workspace e2e-test"
   },
   "author": "Communities UK",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "ts-jest": "^29.2.5"
+  }
 }
