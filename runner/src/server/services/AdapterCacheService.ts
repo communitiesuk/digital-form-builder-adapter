@@ -21,8 +21,8 @@ const {
 } = config;
 let redisUri;
 
-if (process.env.FORM_RUNNER_REDIS_INSTANCE_URI) {
-    redisUri = process.env.FORM_RUNNER_REDIS_INSTANCE_URI;
+if (process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI) {
+    redisUri = process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI;
 }
 
 export class AdapterCacheService extends CacheService {
