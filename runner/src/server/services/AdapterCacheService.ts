@@ -66,7 +66,7 @@ export const catboxProvider = () => {
      * More information at {@link https://hapi.dev/module/catbox/api}
      */
     const provider = {
-        constructor: redisHost || redisUri ? CatboxRedis : CatboxMemory,
+        constructor: redisHost || redisUri ? CatboxRedis.Engine : CatboxMemory.Engine,
         options: {},
     };
 
@@ -107,6 +107,7 @@ export const catboxProvider = () => {
             );
         provider.options = {client, partition};
     } else {
+        console.log("Starting in memory session management")
         provider.options = {partition};
     }
 
