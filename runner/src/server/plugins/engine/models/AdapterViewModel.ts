@@ -1,10 +1,10 @@
-import {SummaryViewModel} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/models";
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {HapiRequest} from "../../../../../../digital-form-builder/runner/src/server/types";
 import {AdapterFormModel} from "./AdapterFormModel";
 import {SummaryPageController} from "../page-controllers/SummaryPageController";
+import {ViewModelBase} from "./ViewModelBase";
 
-export class AdapterViewModel extends SummaryViewModel {
+export class AdapterViewModel extends ViewModelBase {
 
 
     constructor(pageTitle: string, model: AdapterFormModel, state: FormSubmissionState, request: HapiRequest) {

@@ -48,6 +48,7 @@ export class AdapterFormModel {
     conditions: Record<string, ExecutableCondition> | {};
     fieldsForContext: ContextComponentCollection;
     fieldsForPrePopulation: Record<string, any>;
+    showFilenamesOnSummaryPage: boolean = false;
     pages: any;
     startPage: any;
 
@@ -98,6 +99,7 @@ export class AdapterFormModel {
             this.conditions[condition.name] = condition;
         });
         this.fieldsForContext = new ContextComponentCollection(this);
+        this.showFilenamesOnSummaryPage = def.showFilenamesOnSummaryPage ?? false;
         this.fieldsForPrePopulation = {};
 
         // @ts-ignore
