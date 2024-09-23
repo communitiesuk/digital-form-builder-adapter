@@ -107,6 +107,13 @@ export const catboxProvider = () => {
             );
         provider.options = {client, partition};
         console.log(`Redis Url : ${redisUri} session management`);
+        client.ping((error, result) => {
+            if (error) {
+                console.log(`Redis not connected ${error}`);
+            } else {
+                console.log(`Redis connected ${result}`);
+            }
+        })
     } else {
         console.log("Starting in memory session management")
         provider.options = {partition};
