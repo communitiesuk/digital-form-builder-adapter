@@ -82,7 +82,7 @@ environments:
     deployment:
       rolling: "recreate"
     count:
-      spot: 1
+      spot: 2
   uat:
     count:
       range: 2-4

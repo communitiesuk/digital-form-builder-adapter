@@ -28,10 +28,13 @@ if (process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI) {
 export class AdapterCacheService extends CacheService {
 
     async activateSession(jwt, request) {
+        request.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
         const initialisedSession = await this.cache.get(this.JWTKey(jwt));
+        request.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
         const {decoded} = Jwt.token.decode(jwt);
         const {payload}: { payload: DecodedSessionToken } = decoded;
         const userSessionKey = {segment: partition, id: `${request.yar.id}:${payload.group}`};
+        request.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
         const {redirectPath} = await super.activateSession(jwt, request);
 
         let redirectPathNew = redirectPath
@@ -42,7 +45,7 @@ export class AdapterCacheService extends CacheService {
         }
 
         if (config.overwriteInitialisedSession) {
-            request.logger.info("Replacing user session with initialisedSession");
+            request.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
             this.cache.set(userSessionKey, initialisedSession, sessionTimeout);
         } else {
             const currentSession = await this.cache.get(userSessionKey);
@@ -50,10 +53,10 @@ export class AdapterCacheService extends CacheService {
                 ...currentSession,
                 ...initialisedSession,
             };
-            request.logger.info("Merging user session with initialisedSession");
+            request.logger.info("[ACTIVATE-SESSION] Merging user session with initialisedSession");
             this.cache.set(userSessionKey, mergedSession, sessionTimeout);
         }
-
+        request.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
         return {
             redirectPath: redirectPathNew,
         };
