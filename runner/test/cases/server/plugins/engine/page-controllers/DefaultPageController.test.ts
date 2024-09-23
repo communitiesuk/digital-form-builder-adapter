@@ -73,6 +73,7 @@ suite("DefaultPageController", () => {
     const request = {
       query: {},
       payload: {
+        // Add any necessary form fields here
       },
       services: () => ({
         adapterCacheService: {

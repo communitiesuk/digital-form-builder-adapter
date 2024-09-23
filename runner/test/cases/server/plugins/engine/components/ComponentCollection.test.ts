@@ -17,6 +17,7 @@ suite("ComponentCollection", () => {
 
   beforeEach(() => {
     model = {
+      // Add necessary mock properties and methods for AdapterFormModel
     } as AdapterFormModel;
 
     componentDefinition = [
