@@ -20,7 +20,6 @@ import pluginApplicationStatus from "./plugins/engine/application-status";
 import pluginPulse from "../../../digital-form-builder/runner/src/server/plugins/pulse";
 import {
     AddressService,
-    catboxProvider,
     NotifyService,
     PayService,
     WebhookService,
@@ -38,6 +37,7 @@ import {configureInitialiseSessionPlugin} from "./plugins/initialize-session/Ses
 import {S3UploadService} from "./services";
 import clientSideUploadPlugin from "./plugins/ClientSideUploadPlugin";
 import {MockUploadService} from "./services/MockUploadService";
+import {catboxProvider} from "./services/AdapterCacheService";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;

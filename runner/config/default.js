@@ -14,6 +14,7 @@ module.exports = {
   safelist: ["localhost", "61bca17e-fe74-40e0-9c15-a901ad120eca.mock.pstmn.io"], // Array of hostnames you want to accept when using a session callback. eg "gov.uk".
   initialisedSessionTimeout: minute * 60 * 24 * 28, // Defaults to 28 days. Set the TTL for the initialised session
   initialisedSessionKey: `${nanoid.random(16)}`, // This should be set if you are deploying replicas
+  initialisedSessionAlgorithm: "HS512",
 
   /**
    * Server
