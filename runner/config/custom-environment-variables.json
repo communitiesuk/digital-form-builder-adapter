@@ -57,6 +57,9 @@
   "multifundDashboard": "MULTIFUND_URL",
   "eligibilityResultUrl": "ELIGIBILITY_RESULT_URL",
   "isE2EModeEnabled": "E2E_MODE_ENABLED",
+  "initialisedSessionTimeout": "INITIALISED_SESSION_TIMEOUT",
+  "initialisedSessionKey": "INITIALISED_SESSION_KEY",
+  "initialisedSessionAlgorithm": "INITIALISED_SESSION_ALGORITHM",
   "basicAuthOn": {
     "__name": "BASIC_AUTH_ON",
     "__format": "boolean"
