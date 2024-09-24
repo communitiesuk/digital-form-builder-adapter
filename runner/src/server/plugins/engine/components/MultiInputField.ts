@@ -14,7 +14,7 @@ export class MultiInputField extends AdapterFormComponent {
     children: ComponentCollection;
     options: MultiInputFieldComponent["options"];
     //@ts-ignore
-    dataType = "list" as AdapterDataType;
+    dataType = "multiInput" as AdapterDataType;
 
     constructor(def: AdapterInputFieldsComponentsDef, model: AdapterFormModel) {
         //@ts-ignore
