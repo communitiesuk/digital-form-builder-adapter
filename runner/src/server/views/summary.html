@@ -132,9 +132,9 @@
                             Submit and pay
                         {% else %}
                             {% if page.isEligibility %}
-                                {{ govukButton({ attributes: { id: "submit" }, text: page.confirmAndContinueText }) }}
+                                {{ govukButton({ attributes: { id: "submit", data-prevent-double-click: "true" }, text: page.confirmAndContinueText }) }}
                             {% else %}
-                                {{ govukButton({ attributes: { id: "submit" }, text: page.saveAndContinueText }) }}
+                                {{ govukButton({ attributes: { id: "submit", data-prevent-double-click: "true" }, text: page.saveAndContinueText }) }}
                             {% endif %}
                         {% endif %}
 
