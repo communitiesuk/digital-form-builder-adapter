@@ -231,6 +231,14 @@ jobs:
       - name: run e2e tests
         run: yarn e2e-test cypress run
 
+      - name: Upload E2E Test Report Application
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-report-application
+          path: ./e2e-test/cypress/screenshots
+          retention-days: 5
+
   dev_deploy:
     strategy:
       matrix:
