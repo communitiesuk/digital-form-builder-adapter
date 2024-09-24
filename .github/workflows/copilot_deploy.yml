@@ -220,9 +220,12 @@ jobs:
         run: |
           docker compose -f docker-compose.e2e.yml logs localstack
 
-      - name: Create Resources on docker localstack
+      - name: Create S3 bucket
         run: |
           docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
+
+      - name: Create S3 cors
+        run: |
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
 
       - name: run e2e tests
