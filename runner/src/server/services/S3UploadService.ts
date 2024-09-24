@@ -31,6 +31,8 @@ if (endpointUrl) {
     awsConfig.s3ForcePathStyle = true;
     //@ts-ignore
     awsConfig.signatureVersion = process.env.AWS_SIGNATURE_VERSION || "v4";
+    //@ts-ignore
+    awsConfig.forcePathStyle = true
 }
 const s3 = new S3Client(awsConfig);
 

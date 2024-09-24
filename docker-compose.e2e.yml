@@ -1,5 +1,5 @@
 # This file only contains base configuration needed for CI build and test
-# For local development environment please see docker-compose.dev.yml
+# For local development environment, please see docker-compose.dev.yml
 version: "3.9"
 services:
   designer:
@@ -24,6 +24,7 @@ services:
     build:
       context: .
       dockerfile: ./runner/Dockerfile
+    env_file: ./docker-localstack/.awslocal.env
     ports:
       - "3009:3009"
     environment:
@@ -31,18 +32,30 @@ services:
       - PREVIEW_MODE=true
       - LAST_COMMIT
       - LAST_TAG
-      - JWT_AUTH_ENABLED=false
+      - ACCESSIBILITY_STATEMENT_URL=http://localhost:3008/accessibility_statement
+      - ALLOW_USER_TEMPLATES=true
+      - CONTACT_US_URL=http://localhost:3008/contact_us
+      - COOKIE_POLICY_URL=http://localhost:3008/cookie_policy
       - E2E_MODE_ENABLED=false
+      - ELIGIBILITY_RESULT_URL=http://localhost:3008/eligibility-result
+      - FEEDBACK_LINK=http://localhost:3008/feedback
+      - JWT_AUTH_ENABLED=false
+      - LOG_LEVEL=debug
+      - MULTIFUND_URL=http://localhost:3008/account
+      - PRIVACY_POLICY_URL=http://localhost:3008/privacy
+      - RSA256_PUBLIC_KEY_BASE64="LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHZU1BMEdDU3FHU0liM0RRRUJBUVVBQTRHTUFEQ0JpQUtCZ0hHYnRGMXlWR1crckNBRk9JZGFrVVZ3Q2Z1dgp4SEUzOGxFL2kwS1dwTXdkU0haRkZMWW5IakJWT09oMTVFaWl6WXphNEZUSlRNdkwyRTRRckxwcVlqNktFNnR2CkhyaHlQL041ZnlwU3p0OHZDajlzcFo4KzBrRnVjVzl6eU1rUHVEaXNZdG1rV0dkeEJta2QzZ3RZcDNtT0k1M1YKVkRnS2J0b0lGVTNzSWs1TkFnTUJBQUU9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQ\=\="
+      - SERVICE_START_PAGE=http://localhost:3008/account
     command: yarn runner production
     depends_on:
       - localstack
   localstack:
+    container_name: localstack
     image: localstack/localstack:stable
     environment:
       - SERVICES=s3,sqs
       - PERSISTENCE=/var/lib/localstack/data
     ports:
-      - 4566:4566 # LocalStack endpoint
+      - "4566:4566"
     volumes:
       - ./docker-localstack:/etc/localstack/init/ready.d
       - ./localstack-data:/var/lib/localstack
