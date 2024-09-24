@@ -1,6 +1,5 @@
 # This file only contains base configuration needed for CI build and test
 # For local development environment, please see docker-compose.dev.yml
-version: "3.9"
 services:
   designer:
     container_name: designer
