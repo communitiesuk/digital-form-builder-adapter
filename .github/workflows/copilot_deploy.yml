@@ -109,26 +109,18 @@ jobs:
           cd digital-form-builder
           yarn
 
-      - name: Check Folders (temp)
-        run: |
-          ls ../digital-form-builder-adapter 
-
       - name: Start containers
         run: |
           docker compose -f docker-compose.e2e.yml up -d 
           docker ps
 
-      - name: Check Folders (temp)
+      - name: Create Folders
         run: |
           mkdir -p ./e2e-test/cypress/screenshots/logs
 
-      - name: Check Folders 2 (temp)
+      - name: Get Logs from Runner & Moc aws for service start
         run: |
-          ls ./e2e-test/cypress 
-
-      - name: Validating the service start
-        run: |
-          nohup docker compose logs --no-color 2>&1 | tee -a ./e2e-test/cypress/screenshots/logs/runner-pre.log
+          docker logs runner | tee -a ./e2e-test/cypress/screenshots/logs/runner-pre.log && docker logs localstack | tee -a ./e2e-test/cypress/screenshots/logs/localstack-pre.log
 
       - name: Create S3 bucket
         run: |
@@ -138,12 +130,12 @@ jobs:
         run: |
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
 
-      - name: run e2e tests
+      - name: Run e2e tests
         run: yarn e2e-test cypress run
 
-      - name: Get Logs from Runner
+      - name: Get Logs from Runner & Moc aws
         run: |
-          nohup docker compose logs --no-color 2>&1 | tee -a ./e2e-test/cypress/screenshots/logs/runner.log
+          docker logs runner | tee -a ./e2e-test/cypress/screenshots/logs/runner.log && docker logs localstack | tee -a ./e2e-test/cypress/screenshots/logs/localstack.log
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
