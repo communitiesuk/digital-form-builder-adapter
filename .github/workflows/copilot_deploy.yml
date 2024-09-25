@@ -92,7 +92,22 @@ jobs:
           key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
-            ${{ runner.os }}-yarn           
+            ${{ runner.os }}-yarn  
+
+      - name: Setup e2e dependencies
+        run: |
+          echo "--  Git submodule initialize into local  --"
+          git submodule update --init
+          echo "--  Pulling git submodules into local  --"
+          git pull --recurse-submodules
+          echo "--  Installing digital-form-builder-adapter locally  --"
+          node update-package.js
+          yarn install
+          echo "--  Install e2e dependencies  --"
+          yarn e2e-test install
+          echo "--  Building digital-form-builder locally  --"
+          cd digital-form-builder
+          yarn
 
       - name: Start containers
         run: |
@@ -103,9 +118,13 @@ jobs:
         run: |
           mkdir -p ./e2e-test/cypress/screenshots/logs
 
-      - name: Get Logs from Runner & Mock aws for service start
+      - name: Get Logs from Localstack
         run: |
           docker logs localstack | tee -a ./e2e-test/cypress/screenshots/logs/localstack-pre.log
+
+      - name: Get Logs from Runner
+        run: |
+          docker logs runner | tee -a ./e2e-test/cypress/screenshots/logs/runner-pre.log
 
       - name: Create S3 bucket
         run: |
@@ -115,10 +134,24 @@ jobs:
         run: |
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
 
+      - name: Run e2e tests
+        run: yarn e2e-test cypress run
 
-      - name: Get Logs from Runner & Moc aws
+      - name: Get Logs from localstack
         run: |
           docker logs localstack | tee -a ./e2e-test/cypress/screenshots/logs/localstack.log
+
+      - name: Get Logs from runner
+        run: |
+          docker logs runner | tee -a ./e2e-test/cypress/screenshots/logs/runner.log
+
+      - name: Upload E2E Test Report Application (temp)
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-report-application
+          path: ./e2e-test/cypress/screenshots/logs
+          retention-days: 5
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
