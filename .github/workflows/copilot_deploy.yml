@@ -77,6 +77,9 @@ jobs:
         with:
           node-version: "20.x"
 
+      - name: OS version
+        run: cat /etc/os-release
+
       - name: Get hosts
         run: cat /etc/hosts
 
@@ -87,7 +90,7 @@ jobs:
         run: cat /etc/hosts
 
       - name: Flush DNS
-        run: sudo systemd-resolve --flush-caches
+        run: sudo systemctl restart systemd-resolved
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
