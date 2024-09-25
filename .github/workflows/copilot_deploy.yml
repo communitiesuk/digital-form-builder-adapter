@@ -218,7 +218,7 @@ jobs:
 
       - name: Validating the service start
         run: |
-          docker compose logs
+          nohup docker compose logs -f --no-color 2>&1 | tee -a ./e2e-test/cypress/screenshots/runner-pre.log
 
       - name: Create S3 bucket
         run: |
@@ -233,7 +233,7 @@ jobs:
 
       - name: Get Logs from Runner
         run: |
-          docker compose logs | tee -a ./e2e-test/cypress/screenshots/runner.log
+          nohup docker compose logs -f --no-color 2>&1 | tee -a ./e2e-test/cypress/screenshots/runner.log
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
