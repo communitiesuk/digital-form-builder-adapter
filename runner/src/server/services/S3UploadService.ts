@@ -406,6 +406,7 @@ export class S3UploadService {
             Bucket: bucketName,
             Prefix: `${folderPath}/`,
         };
+        this.logger.info(`[S3UploadService] list all the objects in bucket ${params.Prefix} && bucket ${params.Bucket}`);
         const command = new ListObjectsCommand(params);
         await s3.send(command).then(function (result) {
             if (!result.Contents || result.Contents.length === 0) {

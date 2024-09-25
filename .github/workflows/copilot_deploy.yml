@@ -139,6 +139,9 @@ jobs:
       - name: Check logs availability
         run: ls ./e2e-test/cypress/screenshots/logs
 
+      - name: Get all the uploaded files in the bucket
+        run: awslocal s3api list-objects --bucket fsd-bucket
+
       - name: Upload E2E Test Report Application
         if: success() || failure()
         uses: actions/upload-artifact@v4
