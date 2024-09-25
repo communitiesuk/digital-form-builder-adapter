@@ -112,6 +112,9 @@ jobs:
       - name: Start containers
         run: |
           docker compose -f docker-compose.e2e.yml up -d 
+
+      - name: Check container status
+        run: |
           docker ps
 
       - name: Create Folders
@@ -144,6 +147,14 @@ jobs:
       - name: Get Logs from runner
         run: |
           docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
+
+      - name: Check container status (temp)
+        run: |
+          docker ps
+
+      - name: Check logs availability
+        run: |
+          ls ./e2e-test/cypress/screenshots/logs
 
       - name: Upload E2E Test Report Application (temp)
         if: success() || failure()
