@@ -120,11 +120,11 @@ jobs:
 
       - name: Get Logs from Localstack
         run: |
-          docker logs localstack | tee -a ./e2e-test/cypress/screenshots/logs/localstack-pre.log
+          docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack-pre.log
 
       - name: Get Logs from Runner
         run: |
-          docker logs runner | tee -a ./e2e-test/cypress/screenshots/logs/runner-pre.log
+          docker logs runner > ./e2e-test/cypress/screenshots/logs/runner-pre.log
 
       - name: Create S3 bucket
         run: |
@@ -139,11 +139,11 @@ jobs:
 
       - name: Get Logs from localstack
         run: |
-          docker logs localstack | tee -a ./e2e-test/cypress/screenshots/logs/localstack.log
+          docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
 
       - name: Get Logs from runner
         run: |
-          docker logs runner | tee -a ./e2e-test/cypress/screenshots/logs/runner.log
+          docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
 
       - name: Upload E2E Test Report Application (temp)
         if: success() || failure()
