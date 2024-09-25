@@ -99,7 +99,7 @@ function fieldAnswerFromComponent(
     const rawValue = state?.[component.name];
 
     switch (component.dataType) {
-        case "list" || "freeText":
+        case "list" || "multiInput":
             return rawValue;
         case "date":
             return format(new Date(rawValue), "yyyy-MM-dd");

@@ -311,8 +311,11 @@ export class RepeatingFieldPageController extends PageController {
                 savedState = await adapterCacheService.getState(request);
 
                 if (savedState.metadata && savedState.webhookData) {
-                    //@ts-ignore
-                    await adapterStatusService.outputRequests(request);
+                    const {callback} = savedState;
+                    if (callback && callback.callbackUrl) {
+                        //@ts-ignore
+                        await adapterStatusService.outputRequests(request);
+                    }
                 }
 
                 if (typeof query.returnUrl !== "undefined") {
