@@ -29,7 +29,7 @@ Feature: Client Side File Upload
       | client-side-file-upload-multi | /            |
     And I go to the initialised session URL with generated token
     And I continue
-    When I upload the file "passes.png" wait till upload and then save and continue with "true"
+    When I upload the file "passes.png" wait till upload
     Then I see the error "Test Client Side file Upload requires 2 files" for "Upload the independent survey of works" component with problem title
 
 
