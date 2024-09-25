@@ -6,8 +6,8 @@ Feature: Client Side File Upload
 
   Scenario: Testing if client side file upload field error message if required
     And the form session will be initiated with the given component type "text" key "clientSideFileUploadField1" title "Upload the independent survey of works" answer "" question "Upload the independent survey of works" and finally form "client-side-file-upload-single" and session "045a5791-1d76-45e6-a926-7d4ff26b4115"
-      | form                           | callbackUrl                                                | redirectPath |
-      | client-side-file-upload-single | https://61bca17e-fe74-40e0-9c15-a901ad120eca.mock.pstmn.io | /            |
+      | form                           | redirectPath |
+      | client-side-file-upload-single | /            |
     And I go to the initialised session URL with generated token
     And I continue
     And I continue
@@ -15,8 +15,8 @@ Feature: Client Side File Upload
 
   Scenario: Adding a single file into the client side file upload
     And the form session will be initiated with the given component type "text" key "clientSideFileUploadField1" title "Upload the independent survey of works" answer "" question "Upload the independent survey of works" and finally form "client-side-file-upload-single" and session "045a5791-1d76-45e6-a926-7d4ff26b4113"
-      | form                           | callbackUrl                                                | redirectPath |
-      | client-side-file-upload-single | https://61bca17e-fe74-40e0-9c15-a901ad120eca.mock.pstmn.io | /            |
+      | form                           | redirectPath |
+      | client-side-file-upload-single | /            |
     And I go to the initialised session URL with generated token
     And I continue
     When I upload the file "passes.png" wait till upload and then save and continue with "true"
@@ -25,8 +25,8 @@ Feature: Client Side File Upload
 
   Scenario: Adding a multi file into the client side file upload and if one uploaded then error
     And the form session will be initiated with the given component type "text" key "clientSideFileUploadField2" title "Upload the independent survey of works" answer "" question "Upload the independent survey of works" and finally form "client-side-file-upload-multi" and session "045a5791-1d76-45e6-a926-7d4ff26b4119"
-      | form                          | callbackUrl                                                | redirectPath |
-      | client-side-file-upload-multi | https://61bca17e-fe74-40e0-9c15-a901ad120eca.mock.pstmn.io | /            |
+      | form                          | redirectPath |
+      | client-side-file-upload-multi | /            |
     And I go to the initialised session URL with generated token
     And I continue
     When I upload the file "passes.png" wait till upload and then save and continue with "true"

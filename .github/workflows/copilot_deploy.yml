@@ -123,6 +123,7 @@ jobs:
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
 
       - name: Run e2e tests
+        id: e2e
         run: yarn e2e-test cypress run
         continue-on-error: true
 
@@ -147,7 +148,10 @@ jobs:
           retention-days: 5
 
       - name: Check for errors & exit the job
-        if: failure()
-        run: exit 1
+        run: |
+          if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
+            echo "Test failures please fix before deploying the service"
+            exit 1
+          fi
 
 
