@@ -20,9 +20,13 @@ export class AdapterStatusService extends StatusService {
     async outputRequests(request: HapiRequest) {
         const state = await this.cacheService.getState(request);
         const {callback} = state;
-        if (callback && callback.callbackUrl) {
+        if (callback) {
+            if (callback.callbackUrl) {
+                await super.outputRequests(request);
+            }
+            this.logger.info(`[AdapterStatusService] call back should have a callbackUrl`);
+        } else {
             await super.outputRequests(request);
         }
-        this.logger.info(`[AdapterStatusService] Cannot save data by using callback url ignore save call back is ${callback}`);
     }
 }
