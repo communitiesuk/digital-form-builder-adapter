@@ -438,7 +438,7 @@ export class S3UploadService {
             Key: key,
         };
         const command = new GetObjectCommand(params);
-        this.logger.info(`[S3UploadService] getting the presign url to download`);
+        this.logger.info(`[S3UploadService] getting the presign url to download ${params.Key}`);
         return getSignedUrl(s3, command);
     }
 
@@ -448,7 +448,7 @@ export class S3UploadService {
             Key: key
         };
         const command = new PutObjectCommand(params);
-        this.logger.info(`[S3UploadService] getting the presign url to upload`);
+        this.logger.info(`[S3UploadService] getting the presign url to upload ${params.Key}`);
         return getSignedUrl(s3, command, {expiresIn: 60 * 60});
     }
 
