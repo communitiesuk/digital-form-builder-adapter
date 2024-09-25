@@ -94,21 +94,6 @@ jobs:
             ${{ runner.os }}-yarn-e2e
             ${{ runner.os }}-yarn           
 
-      - name: Setup e2e dependencies
-        run: |
-          echo "--  Git submodule initialize into local  --"
-          git submodule update --init
-          echo "--  Pulling git submodules into local  --"
-          git pull --recurse-submodules
-          echo "--  Installing digital-form-builder-adapter locally  --"
-          node update-package.js
-          yarn install
-          echo "--  Install e2e dependencies  --"
-          yarn e2e-test install
-          echo "--  Building digital-form-builder locally  --"
-          cd digital-form-builder
-          yarn
-
       - name: Start containers
         run: |
           docker compose -f docker-compose.e2e.yml up -d 
@@ -118,7 +103,7 @@ jobs:
         run: |
           mkdir -p ./e2e-test/cypress/screenshots/logs
 
-      - name: Get Logs from Runner & Moc aws for service start
+      - name: Get Logs from Runner & Mock aws for service start
         run: |
           docker logs runner | tee -a ./e2e-test/cypress/screenshots/logs/runner-pre.log && docker logs localstack | tee -a ./e2e-test/cypress/screenshots/logs/localstack-pre.log
 
