@@ -77,21 +77,6 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: OS version
-        run: cat /etc/os-release
-
-      - name: Get hosts
-        run: cat /etc/hosts
-
-      - name: Apply docker host
-        run: echo "127.0.0.1	host.docker.internal" | sudo tee -a /etc/hosts > /dev/null
-
-      - name: Get hosts check
-        run: cat /etc/hosts
-
-      - name: Flush DNS
-        run: sudo systemctl restart systemd-resolved
-
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
@@ -127,9 +112,6 @@ jobs:
       - name: Start containers
         run: docker compose -f docker-compose.e2e.yml up -d
 
-      - name: Check container status
-        run: docker ps
-
       - name: Create S3 bucket
         run: docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
 
@@ -139,7 +121,7 @@ jobs:
 
       - name: Run e2e tests
         id: e2e
-        run: DEBUG=cypress:network:agent yarn e2e-test cypress run
+        run: yarn e2e-test cypress run
         continue-on-error: true
 
       - name: Create Folders
@@ -150,9 +132,6 @@ jobs:
 
       - name: Get Logs from runner
         run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
-
-      - name: Check logs availability
-        run: ls ./e2e-test/cypress/screenshots/logs
 
       - name: Get all the uploaded files in the bucket
         run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
