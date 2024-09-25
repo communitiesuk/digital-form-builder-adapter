@@ -1,5 +1,8 @@
 # This file only contains base configuration needed for CI build and test
 # For local development environment, please see docker-compose.dev.yml
+networks:
+  localstack_network:
+    driver: bridge
 services:
   designer:
     container_name: designer
@@ -47,6 +50,8 @@ services:
     command: yarn runner production
     logging:
       driver: "json-file"
+    networks:
+      - localstack_network
     depends_on:
       - localstack
   localstack:
@@ -59,6 +64,8 @@ services:
       - "4566:4566"
     logging:
       driver: "json-file"
+    networks:
+      - localstack_network
     volumes:
       - ./docker-localstack:/etc/localstack/init/ready.d
       - ./localstack-data:/var/lib/localstack
