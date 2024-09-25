@@ -124,7 +124,7 @@ jobs:
 
       - name: Run e2e tests
         id: e2e
-        run: yarn e2e-test cypress run
+        run: DEBUG=cypress:network:agent yarn e2e-test cypress run
         continue-on-error: true
 
       - name: Create Folders
