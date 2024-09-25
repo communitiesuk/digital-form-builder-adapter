@@ -77,6 +77,15 @@ jobs:
         with:
           node-version: "20.x"
 
+      - name: Get hosts
+        run: cat /etc/hosts
+
+      - name: Apply docker host
+        run: echo "127.0.0.1	host.docker.internal" | sudo tee -a /etc/hosts > /dev/null
+
+      - name: Get hosts check
+        run: cat /etc/hosts
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
