@@ -291,7 +291,8 @@ export class S3UploadService {
                 }
             }
 
-
+            this.logger.info(`[S3UploadService] valid file count for upload ${validFiles.length}`);
+            this.logger.info(`[S3UploadService] file count for upload ${values.length}`);
             if (validFiles.length === values.length) {
                 try {
                     const {error, location, originalFilename} = await this.uploadDocuments(

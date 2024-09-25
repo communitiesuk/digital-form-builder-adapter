@@ -19,7 +19,7 @@ Feature: Client Side File Upload
       | client-side-file-upload-single | /            |
     And I go to the initialised session URL with generated token
     And I continue
-    When I upload the file "passes.png" wait till upload and then save and continue with "true"
+    When I upload the file "passes.png" wait till upload
     When I submit the form adapter
     Then I see "Application complete"
 
