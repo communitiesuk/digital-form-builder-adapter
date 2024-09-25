@@ -45,6 +45,8 @@ services:
       - RSA256_PUBLIC_KEY_BASE64="LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHZU1BMEdDU3FHU0liM0RRRUJBUVVBQTRHTUFEQ0JpQUtCZ0hHYnRGMXlWR1crckNBRk9JZGFrVVZ3Q2Z1dgp4SEUzOGxFL2kwS1dwTXdkU0haRkZMWW5IakJWT09oMTVFaWl6WXphNEZUSlRNdkwyRTRRckxwcVlqNktFNnR2CkhyaHlQL041ZnlwU3p0OHZDajlzcFo4KzBrRnVjVzl6eU1rUHVEaXNZdG1rV0dkeEJta2QzZ3RZcDNtT0k1M1YKVkRnS2J0b0lGVTNzSWs1TkFnTUJBQUU9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQ\=\="
       - SERVICE_START_PAGE=http://localhost:3008/account
     command: yarn runner production
+    logging:
+      driver: "json-file"
     depends_on:
       - localstack
   localstack:
@@ -55,6 +57,8 @@ services:
       - PERSISTENCE=/var/lib/localstack/data
     ports:
       - "4566:4566"
+    logging:
+      driver: "json-file"
     volumes:
       - ./docker-localstack:/etc/localstack/init/ready.d
       - ./localstack-data:/var/lib/localstack
