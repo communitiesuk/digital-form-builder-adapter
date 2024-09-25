@@ -173,14 +173,17 @@ export class S3UploadService {
 
         const {path} = request.params;
         let files: [string, any][] = [];
+        this.logger.info(`[S3UploadService] handling file upload`);
 
         if (form?.pages) {
             const page = form?.pages.find((page) => this.normalisePath(page.path) === this.normalisePath(path));
             if (request.payload !== null) {
+                this.logger.info(`[S3UploadService] has files in the payload`);
                 files = this.fileStreamsFromPayload(request.payload);
             }
             const clientSideUploadComponent = page.components.items.find((c) => c.type === "ClientSideFileUploadField");
             if (clientSideUploadComponent && form_session_identifier && request.payload) {
+                this.logger.info(`[S3UploadService] found client side file upload component`);
                 const {id, path} = request.params;
                 const delPath = `${form_session_identifier}/${id}/${path}/${clientSideUploadComponent.name}`;
                 const filesToDelete =
@@ -348,7 +351,7 @@ export class S3UploadService {
         }
         //@ts-ignore
         await adapterCacheService.mergeState(request, {originalFilenames});
-
+        this.logger.info(`[S3UploadService] end handling file upload`);
         return h.continue;
     }
 
@@ -372,6 +375,7 @@ export class S3UploadService {
                 client: s3,
                 params: uploadParams
             })
+            this.logger.info(`[S3UploadService] uploading the file key is ${uploadParams.Key}`);
             await command.done()
                 .then(function (data) {
                     response.push({location: data.Location, error: undefined});
@@ -388,6 +392,7 @@ export class S3UploadService {
     }
 
     normalisePath(path: string) {
+        this.logger.info(`[S3UploadService] normalizing the path ${path}`);
         return path.replace(/^\//, "").replace(/\/$/, "");
     }
 
@@ -421,6 +426,7 @@ export class S3UploadService {
             });
             this.logger.error(`Cannot get the list of files`, err);
         });
+        this.logger.info(`[S3UploadService] selected files count ${response.length}`);
         return response;
     }
 
@@ -430,6 +436,7 @@ export class S3UploadService {
             Key: key,
         };
         const command = new GetObjectCommand(params);
+        this.logger.info(`[S3UploadService] getting the presign url to download`);
         return getSignedUrl(s3, command);
     }
 
@@ -439,6 +446,7 @@ export class S3UploadService {
             Key: key
         };
         const command = new PutObjectCommand(params);
+        this.logger.info(`[S3UploadService] getting the presign url to upload`);
         return getSignedUrl(s3, command, {expiresIn: 60 * 60});
     }
 
@@ -448,6 +456,7 @@ export class S3UploadService {
             Key: key,
         };
         try {
+            this.logger.info(`[S3UploadService] delete key ${params.Key}`);
             const command = new DeleteObjectCommand(params);
             await s3.send(command);
             return true;
