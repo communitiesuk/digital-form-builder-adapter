@@ -110,51 +110,44 @@ jobs:
           yarn
 
       - name: Start containers
-        run: |
-          docker compose -f docker-compose.e2e.yml up -d 
+        run: docker compose -f docker-compose.e2e.yml up -d
 
       - name: Check container status
-        run: |
-          docker ps
+        run: docker ps
 
       - name: Create Folders
-        run: |
-          mkdir -p ./e2e-test/cypress/screenshots/logs
+        run: mkdir -p ./e2e-test/cypress/screenshots/logs
 
       - name: Get Logs from Localstack
-        run: |
-          docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack-pre.log
+        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack-pre.log
 
       - name: Get Logs from Runner
-        run: |
-          docker logs runner > ./e2e-test/cypress/screenshots/logs/runner-pre.log
+        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner-pre.log
+
+      - name: Check logs availability
+        run: ls ./e2e-test/cypress/screenshots/logs
 
       - name: Create S3 bucket
-        run: |
-          docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
+        run: docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
 
       - name: Create S3 cors
         run: |
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
 
       - name: Run e2e tests
-        run: yarn e2e-test cypress run
+        run: yarn e2e-test cypress run &
 
       - name: Get Logs from localstack
-        run: |
-          docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
+        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
 
       - name: Get Logs from runner
-        run: |
-          docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
+        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
 
       - name: Check container status (temp)
-        run: |
-          docker ps
+        run: docker ps
 
       - name: Check logs availability
-        run: |
-          ls ./e2e-test/cypress/screenshots/logs
+        run: ls ./e2e-test/cypress/screenshots/logs
 
       - name: Upload E2E Test Report Application (temp)
         if: success() || failure()
