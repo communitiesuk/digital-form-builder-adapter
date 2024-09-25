@@ -115,18 +115,6 @@ jobs:
       - name: Check container status
         run: docker ps
 
-      - name: Create Folders
-        run: mkdir -p ./e2e-test/cypress/screenshots/logs
-
-      - name: Get Logs from Localstack
-        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack-pre.log
-
-      - name: Get Logs from Runner
-        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner-pre.log
-
-      - name: Check logs availability
-        run: ls ./e2e-test/cypress/screenshots/logs
-
       - name: Create S3 bucket
         run: docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
 
@@ -138,6 +126,9 @@ jobs:
         run: yarn e2e-test cypress run
         continue-on-error: true
 
+      - name: Create Folders
+        run: mkdir -p ./e2e-test/cypress/screenshots/logs
+
       - name: Get Logs from localstack
         run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
 
@@ -147,14 +138,6 @@ jobs:
       - name: Check logs availability
         run: ls ./e2e-test/cypress/screenshots/logs
 
-      - name: Upload E2E Test Report Application (temp)
-        if: success() || failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: e2e-test-report-application
-          path: ./e2e-test/cypress/screenshots/logs
-          retention-days: 5
-
       - name: Upload E2E Test Report Application
         if: success() || failure()
         uses: actions/upload-artifact@v4
@@ -162,5 +145,9 @@ jobs:
           name: e2e-test-report-application
           path: ./e2e-test/cypress/screenshots
           retention-days: 5
+
+      - name: Check for errors & exit the job
+        if: failure()
+        run: exit 1
 
 
