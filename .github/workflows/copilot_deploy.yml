@@ -216,9 +216,9 @@ jobs:
           docker compose -f docker-compose.e2e.yml up -d 
           docker ps
 
-      - name: log
+      - name: Validating the service start
         run: |
-          docker compose -f docker-compose.e2e.yml logs localstack
+          docker compose logs -f
 
       - name: Create S3 bucket
         run: |
@@ -230,6 +230,10 @@ jobs:
 
       - name: run e2e tests
         run: yarn e2e-test cypress run
+
+      - name: Get Logs from Runner
+        run: |
+          docker compose logs -f | tee -a ./e2e-test/cypress/screenshots/runner.log
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
