@@ -86,6 +86,9 @@ jobs:
       - name: Get hosts check
         run: cat /etc/hosts
 
+      - name: Flush DNS
+        run: sudo systemd-resolve --flush-caches
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
