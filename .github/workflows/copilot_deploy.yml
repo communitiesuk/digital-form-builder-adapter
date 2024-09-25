@@ -135,16 +135,14 @@ jobs:
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
 
       - name: Run e2e tests
-        run: yarn e2e-test cypress run &
+        run: yarn e2e-test cypress run
+        continue-on-error: true
 
       - name: Get Logs from localstack
         run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
 
       - name: Get Logs from runner
         run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
-
-      - name: Check container status (temp)
-        run: docker ps
 
       - name: Check logs availability
         run: ls ./e2e-test/cypress/screenshots/logs
