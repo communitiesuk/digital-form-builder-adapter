@@ -63,8 +63,110 @@ jobs:
     with:
       environment: ${{ inputs.environment }}
 
-  e2e-test:
+  docker-runner-build:
+    runs-on: ubuntu-latest
     needs: [ setup ]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: "Set version in env"
+        id: set-version
+        run: |
+          source version
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Docker metadata
+        id: metadata
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{env.IMAGE_REPO_PATH}}/${{env.IMAGE_NAME}}
+          tags: |
+            type=sha,format=long
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=${{env.VERSION}},enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest
+            type=ref,event=branch
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create .env for runner workspace
+        run: |
+          touch ./runner/.env
+          echo LAST_TAG_GH=runner >> ./runner/.env
+          echo LAST_COMMIT_GH=runner >> ./runner/.env
+          cat ./runner/.env
+
+      - name: Build and push docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          tags: ${{ steps.metadata.outputs.tags}}
+          labels: ${{ steps.metadata.outputs.labels }}
+          push: true
+          file: ./runner/Dockerfile
+          build-args: |
+            LAST_TAG='${{env.VERSION}}'
+            LAST_COMMIT='${{ github.sha }}'
+
+  docker-designer-build:
+    runs-on: ubuntu-latest
+    needs: [ setup ]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: "Set version in env"
+        id: set-version
+        run: |
+          source version
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Docker metadata
+        id: metadata
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{env.IMAGE_REPO_PATH}}/${{env.IMAGE_NAME_DESIGNER}}
+          tags: |
+            type=sha,format=long
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=${{env.VERSION}},enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest
+            type=ref,event=branch
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create .env for designer workspace
+        run: |
+          touch ./designer/.env
+          echo LAST_TAG_GH=designer >> ./designer/.env
+          echo LAST_COMMIT_GH=designer >> ./designer/.env
+          cat ./designer/.env
+
+      - name: Build and push docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          tags: ${{ steps.metadata.outputs.tags}}
+          labels: ${{ steps.metadata.outputs.labels }}
+          push: true
+          file: ./designer/Dockerfile
+          build-args: |
+            LAST_TAG='${{env.VERSION}}'
+            LAST_COMMIT='${{ github.sha }}'
+
+  e2e-test:
+    needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
     name: run e2e
     outputs:
@@ -151,4 +253,189 @@ jobs:
             exit 1
           fi
 
+  dev_deploy:
+    strategy:
+      matrix:
+        include:
+          - deployment: fsd-form-runner-adapter
+            command: svc
+            appname: "form-runner-adapter"
+          - deployment: fsd-form-designer-adapter
+            command: svc
+            appname: "form-designer-adapter"
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test ]
+    if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'dev' }}
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+
+      - name: Setup Copilot
+        uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
+        with:
+          environment: ${{ inputs.environment || 'dev' }}
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+
+      - name: Inject env specific values into manifest
+        run: |
+          yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+          yq -i '.image.location = "ghcr.io/communitiesuk/funding-service-design-${{ matrix.appname }}:sha-${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+
+      - name: Copilot deploy ${{ matrix.deployment }}
+        run: |
+          copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
+
+  post_dev_deploy_tests:
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy ]
+    secrets:
+      FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
+      FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
+    uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
+    with:
+      run_performance_tests: ${{ inputs.run_performance_tests || true }}
+      run_e2e_tests_assessment: ${{ inputs.run_e2e_tests_assessment || false }}
+      run_e2e_tests_application: ${{ inputs.run_e2e_tests_application || false }}
+      run_static_security_python: false
+      run_zap_scan: true
+      app_name: forms
+      environment: dev
+
+  test_deploy:
+    strategy:
+      matrix:
+        include:
+          - deployment: fsd-form-runner-adapter
+            command: svc
+            appname: "form-runner-adapter"
+          - deployment: fsd-form-designer-adapter
+            command: svc
+            appname: "form-designer-adapter"
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, post_dev_deploy_tests ]
+    if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'test' }}
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+
+      - name: Setup Copilot
+        uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
+        with:
+          environment: ${{ inputs.environment || 'test' }}
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+
+      - name: Inject env specific values into manifest
+        run: |
+          yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+          yq -i '.image.location = "ghcr.io/communitiesuk/funding-service-design-${{ matrix.appname }}:sha-${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+
+      - name: Copilot deploy ${{ matrix.deployment }}
+        run: |
+          copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
+
+  post_test_deploy_tests:
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, test_deploy ]
+    if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
+
+    secrets:
+      FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
+      FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
+    uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
+    with:
+      run_performance_tests: ${{ inputs.run_performance_tests || true }}
+      run_e2e_tests_assessment: ${{ inputs.run_e2e_tests_assessment || false }}
+      run_e2e_tests_application: ${{ inputs.run_e2e_tests_application || true }}
+      run_static_security_python: false
+      run_zap_scan: true
+      app_name: forms
+      environment: test
+
+  uat_deploy:
+    strategy:
+      matrix:
+        include:
+          - deployment: fsd-form-runner-adapter
+            command: svc
+            appname: "form-runner-adapter"
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, test_deploy, post_test_deploy_tests ]
+    if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'uat') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'uat' }}
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+
+      - name: Setup Copilot
+        uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
+        with:
+          environment: ${{ inputs.environment || 'uat' }}
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+
+      - name: Inject env specific values into manifest
+        run: |
+          yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+          yq -i '.image.location = "ghcr.io/communitiesuk/funding-service-design-${{ matrix.appname }}:sha-${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+
+      - name: Copilot deploy ${{ matrix.deployment }}
+        run: |
+          copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
+
+  post_uat_deploy_tests:
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, test_deploy, uat_deploy ]
+    if: ${{ always()  && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'uat') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
+    secrets:
+      FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
+      FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
+    uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
+    with:
+      run_performance_tests: ${{ inputs.run_performance_tests || true }}
+      run_e2e_tests_assessment: ${{ inputs.run_e2e_tests_assessment || false }}
+      run_e2e_tests_application: ${{ inputs.run_e2e_tests_application || true }}
+      run_static_security_python: false
+      run_zap_scan: true
+      app_name: forms
+      environment: uat
+
+  prod_deploy:
+    strategy:
+      matrix:
+        include:
+          - deployment: fsd-form-runner-adapter
+            command: svc
+            appname: "form-runner-adapter"
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
+    needs: [ setup, docker-designer-build, docker-runner-build, e2e-test, dev_deploy, test_deploy, uat_deploy, post_uat_deploy_tests ]
+    if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'prod') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'uat' }}
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+
+      - name: Setup Copilot
+        uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
+        with:
+          environment: ${{ inputs.environment || 'uat' }}
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+
+      - name: Inject env specific values into manifest
+        run: |
+          yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+          yq -i '.image.location = "ghcr.io/communitiesuk/funding-service-design-${{ matrix.appname }}:sha-${{ github.sha }}"'  copilot/${{ matrix.deployment }}/manifest.yml
+
+      - name: Copilot deploy ${{ matrix.deployment }}
+        run: |
+          copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
 
