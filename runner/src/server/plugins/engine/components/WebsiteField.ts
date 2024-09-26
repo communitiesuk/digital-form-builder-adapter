@@ -69,7 +69,7 @@ export class WebsiteField extends TextField {
         const options: any = this.options;
         const {prefix} = options;
         const viewModelPrefix = {prefix: {text: prefix}};
-        const viewModel = {
+        return {
             //@ts-ignore
             ...super.getViewModel(formData, errors),
             type: "website",
@@ -77,12 +77,5 @@ export class WebsiteField extends TextField {
             // the given options are present.
             ...(options.prefix && viewModelPrefix),
         };
-
-        if (options.hideTitle) {
-            viewModel.label = {text: "", html: viewModel.hint?.html!, classes: ""};
-            viewModel.hint = {html: this.localisedString(this.hint)};
-        }
-
-        return viewModel;
     }
 }
