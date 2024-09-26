@@ -1,0 +1,75 @@
+{
+  "metadata": {},
+  "startPage": "/first-page",
+  "pages": [
+    {
+      "title": "First page",
+      "path": "/first-page",
+      "components": [],
+      "next": [
+        {
+          "path": "/second-page"
+        }
+      ]
+    },
+    {
+      "path": "/second-page",
+      "title": "Second page",
+      "components": [
+        {
+          "name": "piQQZg",
+          "options": {
+            "columnTitles": [
+              "test"
+            ]
+          },
+          "type": "MultiInputField",
+          "title": "Test multi input field",
+          "hint": "Test multi input field",
+          "children": [
+            {
+              "type": "YesNoField",
+              "name": "hbOXDw",
+              "options": {},
+              "title": "Test multi input field 1",
+              "hint": "Test multi input field 1",
+              "schema": ""
+            },
+            {
+              "type": "UkAddressField",
+              "name": "Jixslj",
+              "options": {},
+              "title": "Test multi input field 2",
+              "hint": "",
+              "schema": ""
+            }
+          ],
+          "tempSubComponent": {
+            "type": "YesNoField",
+            "name": "hbOXDw"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ]
+    },
+    {
+      "title": "Summary",
+      "path": "/summary",
+      "controller": "./pages/summary.js",
+      "components": []
+    }
+  ],
+  "lists": [],
+  "sections": [],
+  "conditions": [],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "feeOptions": {},
+  "markAsComplete": false
+}

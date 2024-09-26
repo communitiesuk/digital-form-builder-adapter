@@ -25,6 +25,7 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                 const {id, pageKey, componentKey} = request.params as any;
                 //@ts-ignore
                 const {filename} = request.payload;
+                request.logger.info(`[RegisterS3FileUploadApi] uploading the file ${filename}`);
                 //@ts-ignore
                 const form = request.server.app.forms[id];
                 const page = form?.pages.find(
@@ -38,7 +39,7 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                     section: encodeURI(page.section?.title ?? ""),
                     componentName: componentKey,
                 };
-
+                request.logger.info(`[RegisterS3FileUploadApi] meta data ${JSON.stringify(metaData)}`);
                 const key = `${form_session_identifier}/${id}/${pageKey}/${componentKey}/${filename}`;
                 //@ts-ignore
                 const url = await s3UploadService.getPreSignedUrlS3(key, metaData);

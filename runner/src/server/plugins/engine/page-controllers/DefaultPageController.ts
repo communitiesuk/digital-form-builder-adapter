@@ -49,8 +49,11 @@ export class DefaultPageController extends PageController {
             state = await adapterCacheService.getState(request);
 
             if (state.metadata && state.webhookData) {
-                //@ts-ignore
-                await adapterStatusService.outputRequests(request);
+                const {callback} = state;
+                if (callback && callback.callbackUrl) {
+                    //@ts-ignore
+                    await adapterStatusService.outputRequests(request);
+                }
             }
 
             //This is required to ensure we don't navigate to an incorrect page based on stale state values

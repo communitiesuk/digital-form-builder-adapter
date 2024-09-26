@@ -14,5 +14,4 @@ export class AdapterStatusService extends StatusService {
         const {adapterCacheService} = server.services([]);
         this.cacheService = adapterCacheService;
     }
-
 }
