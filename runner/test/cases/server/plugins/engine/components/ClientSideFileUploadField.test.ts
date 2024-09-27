@@ -1,6 +1,7 @@
 import * as Code from "@hapi/code";
 import * as Lab from "@hapi/lab";
 import joi from "joi";
+import FormData from "form-data";
 import { ClientSideFileUploadField } from "src/server/plugins/engine/components";
 import { AdapterFormModel } from "src/server/plugins/engine/models";
 import { ClientSideFileUploadFieldComponent } from "@communitiesuk/model";
