@@ -1,5 +1,6 @@
 import * as Code from "@hapi/code";
 import * as Lab from "@hapi/lab";
+import FormData from "form-data";
 import { Component } from "src/server/plugins/engine/components";
 import { AdapterFormModel } from "src/server/plugins/engine/models";
 import { AdapterComponentDef } from "@communitiesuk/model";
