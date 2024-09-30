@@ -553,6 +553,7 @@ export class PageControllerBase {
                     }
                 });
             }
+            request.logger.info(`[PageControllerBase] summary details ${JSON.stringify(formData)}`);
             const viewModel = this.getViewModel(formData, num);
             viewModel.startPage = startPage!.startsWith("http")
                 ? redirectTo(request, h, startPage!)
@@ -628,10 +629,7 @@ export class PageControllerBase {
             } else {
                 this.backLink = viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
             }
-
             viewModel.continueButtonText = "Save and continue"
-            console.log(`[PageControllerBase] summary details ${JSON.stringify(viewModel)}`);
-
             return h.view(this.viewName, viewModel);
         };
     }

@@ -88,7 +88,6 @@ export class SummaryPageController extends PageController {
             }
             this.loadRequestErrors(request, viewModel);
             await this.existingFilesToClientSideFileUpload(state, viewModel, request);
-            console.log(`[SummaryPageController] summary details ${JSON.stringify(viewModel)}`);
             return h.view("summary", viewModel);
         };
     }

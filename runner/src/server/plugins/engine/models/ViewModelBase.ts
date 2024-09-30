@@ -95,6 +95,7 @@ export class ViewModelBase {
 
             // TODO: move to controller
             this._webhookData = outputs.webhookData;
+            request.logger.info(`[ViewModelBase] save details ${JSON.stringify(outputs.webhookData)}`);
             this._webhookData = this.addFeedbackSourceDataToWebhook(
                 this._webhookData,
                 model,
@@ -231,6 +232,7 @@ export class ViewModelBase {
             }
         });
 
+        request.logger.info(`[PageControllerBase] summary details ${JSON.stringify(details)}`);
         return details;
     }
 
