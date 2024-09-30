@@ -10,6 +10,7 @@ import {
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/SelectionControlField";
 import {Field} from "../../../../../../digital-form-builder/runner/src/server/schemas/types";
 import {PageControllerBase} from "../page-controllers/PageControllerBase";
+import {SummaryPageController} from "../page-controllers/SummaryPageController";
 
 export function WebhookModel(model: AdapterFormModel, state: FormSubmissionState) {
     let englishName = `${config.serviceName} ${model.basePath}`;
@@ -20,7 +21,9 @@ export function WebhookModel(model: AdapterFormModel, state: FormSubmissionState
 
     let questions;
 
-    const {relevantPages} = model.getRelevantPages(state);
+    //Getting pages based on the answers in the state & this will allow the user to save all the given answers in the db
+    //TODO probable redesign will happen with https://dluhcdigital.atlassian.net/browse/FS-4341 Jira this tries to manage application state based on scenarios
+    const {relevantPages} = getRelevantPagesBasedOnState(state, model);
 
     questions = relevantPages.map((page) => pagesToQuestions(page, state));
     const fees = FeesModel(model, state);
@@ -31,6 +34,25 @@ export function WebhookModel(model: AdapterFormModel, state: FormSubmissionState
         questions: questions,
         ...(!!fees && {fees}),
     };
+}
+
+function getRelevantPagesBasedOnState(state: FormSubmissionState, model: AdapterFormModel) {
+    let nextPage = model.startPage;
+    const relevantPages: any[] = [];
+    let endPage = null;
+    while (nextPage != null) {
+        if (nextPage.hasFormComponents) {
+            relevantPages.push(nextPage);
+        } else if (!nextPage.hasNext &&!(nextPage instanceof SummaryPageController)) {
+            endPage = nextPage;
+        }
+        if (nextPage.getNextPage) {
+            nextPage = nextPage.getNextPage(state, true);
+        } else {
+            nextPage = null;
+        }
+    }
+    return {relevantPages, endPage};
 }
 
 function createToFieldsMap(state: FormSubmissionState) {
