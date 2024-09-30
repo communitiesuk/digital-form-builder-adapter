@@ -52,7 +52,7 @@ export class SummaryPageController extends PageController {
             }
 
             if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
-                this.convertData(state, model);
+                this.formattingDataInTheStateToOriginal(state, model);
             }
 
             //@ts-ignore
@@ -93,7 +93,23 @@ export class SummaryPageController extends PageController {
         };
     }
 
-    private convertData(state: FormSubmissionState, model: AdapterFormModel) {
+    /** read all the formatted data & convert them back to original format
+     // Ex.
+     UkAddress field original format is
+     {
+         addressLine1: "",
+         addressLine2: "",
+         town: "",
+         county: "",
+         postcode: "",
+     }
+     but when we saving it converts back to comma seperated value.
+     However, if we are going to show the data back in the summary,
+     we have
+     to convert the data back in to original format since in the view model
+     we have a validation before going inside the summary page
+     **/
+    private formattingDataInTheStateToOriginal(state: FormSubmissionState, model: AdapterFormModel) {
         //@ts-ignore
         const ukAddressFields = this.findUkAddressFieldComponents(this.def.pages)
         //@ts-ignore
