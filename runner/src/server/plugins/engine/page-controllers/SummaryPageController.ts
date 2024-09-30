@@ -88,7 +88,7 @@ export class SummaryPageController extends PageController {
             }
             this.loadRequestErrors(request, viewModel);
             await this.existingFilesToClientSideFileUpload(state, viewModel, request);
-
+            request.logger.info(`[SummaryPageController] summary details ${JSON.stringify(viewModel)}`);
             return h.view("summary", viewModel);
         };
     }
@@ -97,11 +97,11 @@ export class SummaryPageController extends PageController {
      // Ex.
      UkAddress field original format is
      {
-         addressLine1: "",
-         addressLine2: "",
-         town: "",
-         county: "",
-         postcode: "",
+     addressLine1: "",
+     addressLine2: "",
+     town: "",
+     county: "",
+     postcode: "",
      }
      but when we saving it converts back to comma seperated value.
      However, if we are going to show the data back in the summary,

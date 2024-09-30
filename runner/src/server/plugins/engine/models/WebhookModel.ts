@@ -27,6 +27,7 @@ export function WebhookModel(model: AdapterFormModel, state: FormSubmissionState
 
     questions = relevantPages.map((page) => pagesToQuestions(page, state));
     const fees = FeesModel(model, state);
+    console.log(`[WebhookModel] save data ${JSON.stringify(questions)}`);
 
     return {
         metadata: model.def.metadata,
