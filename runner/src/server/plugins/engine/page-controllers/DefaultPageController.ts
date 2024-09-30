@@ -49,6 +49,9 @@ export class DefaultPageController extends PageController {
             state = await adapterCacheService.getState(request);
 
             if (state.metadata && state.webhookData) {
+                request.logger.info(`[DefaultPageController][${state.metadata?.form_session_identifier}] savable value ${JSON.stringify(summaryViewModel._webhookData)}`);
+                request.logger.info(`[DefaultPageController][${state.metadata?.form_session_identifier}] values ${JSON.stringify(summaryViewModel.value)}`);
+                request.logger.info(`[DefaultPageController][${state.metadata?.form_session_identifier}] summary details ${JSON.stringify(JSON.stringify(summaryViewModel.details))}`);
                 const {callback} = state;
                 if (callback && callback.callbackUrl) {
                     //@ts-ignore
