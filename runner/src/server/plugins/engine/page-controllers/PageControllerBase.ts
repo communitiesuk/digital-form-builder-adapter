@@ -630,7 +630,7 @@ export class PageControllerBase {
             }
 
             viewModel.continueButtonText = "Save and continue"
-            request.logger.info(`[PageControllerBase] summary details ${JSON.stringify(viewModel)}`);
+            console.log(`[PageControllerBase] summary details ${JSON.stringify(viewModel)}`);
 
             return h.view(this.viewName, viewModel);
         };
