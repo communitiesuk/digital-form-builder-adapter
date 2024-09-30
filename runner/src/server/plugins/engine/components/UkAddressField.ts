@@ -198,8 +198,8 @@ export class UkAddressField extends AdapterFormComponent {
                 value.county,
                 value.postcode,
             ]
-            .filter((p) => p && p !== "null")
-            .join(", ")
+                .filter((p) => p && p !== "null")
+                .join(", ")
             : "";
     }
 
@@ -233,6 +233,47 @@ export class UkAddressField extends AdapterFormComponent {
         return Object.values(UK_COUNTIES).some(region =>
             region.some(c => c.toLowerCase() === lowerCaseCounty)
         );
+    }
+
+    // arranging the address into an object
+    convertStringAnswersIntoObject(value: any) {
+        if (value !== "" && value !== undefined) {
+            const address = value.split(", ");
+            // Initialize the address object with empty strings
+            const addressObject: any = {
+                [`addressLine1`]: "",
+                [`addressLine2`]: "",
+                [`town`]: "",
+                [`county`]: "",
+                [`postcode`]: "",
+            };
+            if (address.length === 3) {
+                // Case: "123 Main St, Sheffield, S1 2AB"
+                addressObject[`addressLine1`] = address[0];
+                addressObject[`town`] = address[1];
+                addressObject[`postcode`] = address[2];
+            } else if (address.length === 4) {
+                // Case: "123 Main St, Address line 2, Sheffield, S1 2AB" or "123 Main St, Sheffield, County, S1 2AB"
+                addressObject[`addressLine1`] = address[0];
+                addressObject[`postcode`] = address[3];
+                // Determine if the second field is addressLine2 or town
+                if (this.isValidCounty(address[2])) {
+                    addressObject[`town`] = address[1];
+                    addressObject[`county`] = address[2];
+                } else {
+                    addressObject[`addressLine2`] = address[1];
+                    addressObject[`town`] = address[2];
+                }
+            } else if (address.length === 5) {
+                // Case: "123 Main St, Address line 2, Sheffield, County, S1 2AB"
+                addressObject[`addressLine1`] = address[0];
+                addressObject[`addressLine2`] = address[1];
+                addressObject[`town`] = address[2];
+                addressObject[`county`] = address[3];
+                addressObject[`postcode`] = address[4];
+            }
+            return addressObject;
+        }
     }
 
     // This method is used to solve the issue of the address fields appearing blank when

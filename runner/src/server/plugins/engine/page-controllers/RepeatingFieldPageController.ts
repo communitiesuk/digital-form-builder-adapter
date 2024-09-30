@@ -12,6 +12,7 @@ import {FormSubmissionState} from "../../../../../../digital-form-builder/runner
 import {
     SummaryPageController
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
+import {redirectTo} from "../util/helper";
 
 const contentTypes: Array<ComponentDef["type"]> = [
     "Para",
@@ -138,6 +139,13 @@ export class RepeatingFieldPageController extends PageController {
             }
             //@ts-ignore
             let state = await adapterCacheService.getState(request);
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+                if (form_session_identifier) {
+                    return redirectTo(request, h, `/${this.model.basePath}/summary?form_session_identifier=${form_session_identifier}`)
+                }
+                return redirectTo(request, h, `/${this.model.basePath}/summary`);
+            }
             const partialState = this.getPartialState(state, view);
             state[this.inputComponent.name] = this.convertMultiInputStringAnswers(
                 state[this.inputComponent.name]

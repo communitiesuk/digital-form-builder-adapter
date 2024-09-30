@@ -488,6 +488,13 @@ export class PageControllerBase {
             const lang = this.langFromRequest(request);
             //@ts-ignore
             let state = await adapterCacheService.getState(request);
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+                if (form_session_identifier) {
+                    return redirectTo(request, h, `/${this.model.basePath}/summary?form_session_identifier=${form_session_identifier}`)
+                }
+                return redirectTo(request, h, `/${this.model.basePath}/summary`);
+            }
             const progress = state.progress || [];
             const {num} = request.query;
             const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;

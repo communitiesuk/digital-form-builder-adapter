@@ -1,6 +1,5 @@
-import {AdapterFormModel} from "../models";
+import {AdapterFormModel, AdapterSummaryViewModel} from "../models";
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
-import {AdapterSummaryViewModel} from "../models";
 import {redirectUrl} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {FeesModel} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/models/submission";
@@ -9,12 +8,12 @@ import {isMultipleApiKey} from "@xgovformbuilder/model";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {redirectTo} from "../util/helper";
 import {UtilHelper} from "../../utils/UtilHelper";
+import {UkAddressField} from "../components";
 
 
 export class SummaryPageController extends PageController {
 
     isEligibility: boolean = false;
-    isReadOnlySummary: boolean;
 
     constructor(model: AdapterFormModel, pageDef: any) {
         // @ts-ignore
@@ -51,6 +50,11 @@ export class SummaryPageController extends PageController {
                 this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
                 this.backLink = state.callback?.returnUrl;
             }
+
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                this.convertData(state, model);
+            }
+
             //@ts-ignore
             const viewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             if (viewModel.endPage) {
@@ -87,6 +91,46 @@ export class SummaryPageController extends PageController {
 
             return h.view("summary", viewModel);
         };
+    }
+
+    private convertData(state: FormSubmissionState, model: AdapterFormModel) {
+        //@ts-ignore
+        const ukAddressFields = this.findUkAddressFieldComponents(this.def.pages)
+        //@ts-ignore
+        for (let ukAddressField of ukAddressFields) {
+            if (ukAddressField.section && state[ukAddressField.section]) {
+                let field = new UkAddressField(ukAddressField.component, model);
+                //@ts-ignore
+                state[ukAddressField.section][ukAddressField.component.name] = field.convertStringAnswersIntoObject(state[ukAddressField.section][ukAddressField.component.name])
+            } else {
+                //@ts-ignore
+                let field = new UkAddressField(ukAddressField.component, model);
+                //@ts-ignore
+                state[ukAddressField.component.name] = field.convertStringAnswersIntoObject(state[ukAddressField.component.name])
+            }
+        }
+    }
+
+    // Function to find all UkAddressField components
+    private findUkAddressFieldComponents(pageDef) {
+        let results: any = [];
+        pageDef.forEach(page => {
+            // Check if the page has components
+            if (page.components) {
+                for (let component of page.components) {
+                    // If a component type is 'UkAddressField', add it to the results
+                    //@ts-ignore
+                    if (component.type === 'UkAddressField') {
+                        if (page.section) {
+                            results.push({"section": page.section, "component": component});
+                        } else {
+                            results.push({"section": undefined, "component": component});
+                        }
+                    }
+                }
+            }
+        });
+        return results;
     }
 
     makePostRouteHandler() {
