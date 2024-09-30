@@ -297,6 +297,24 @@ export class PageControllerBase {
         return this[ADDITIONAL_VALIDATION_FUNCTIONS];
     }
 
+    hasDataInThePage(state: FormSubmissionState): boolean {
+        if (this.pageDef.section && state[this.pageDef.section]) {
+            for (let component of this.pageDef.components) {
+                if (state[this.pageDef.section][component.name] !== undefined) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            for (let component of this.pageDef.components) {
+                if (state[component.name] !== undefined) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     /**
      * returns the path to the next page
      */

@@ -41,9 +41,9 @@ function getRelevantPagesBasedOnState(state: FormSubmissionState, model: Adapter
     const relevantPages: any[] = [];
     let endPage = null;
     while (nextPage != null) {
-        if (nextPage.hasFormComponents) {
+        if (nextPage.hasFormComponents && nextPage.hasDataInThePage(state)) {
             relevantPages.push(nextPage);
-        } else if (!nextPage.hasNext &&!(nextPage instanceof SummaryPageController)) {
+        } else if (!nextPage.hasNext && !(nextPage instanceof SummaryPageController)) {
             endPage = nextPage;
         }
         if (nextPage.getNextPage) {
@@ -127,10 +127,16 @@ function fieldAnswerFromComponent(
         case "multiInput":
             return rawValue;
         case "date":
-            return format(new Date(rawValue), "yyyy-MM-dd");
+            if (rawValue) {
+                return format(new Date(rawValue), "yyyy-MM-dd");
+            }
+            return undefined;
         case "monthYear":
-            const [month, year] = Object.values(rawValue);
-            return format(new Date(`${year}-${month}-1`), "yyyy-MM");
+            if (rawValue) {
+                const [month, year] = Object.values(rawValue);
+                return format(new Date(`${year}-${month}-1`), "yyyy-MM");
+            }
+            return undefined;
         default:
             return component.getDisplayStringFromState(state);
     }
