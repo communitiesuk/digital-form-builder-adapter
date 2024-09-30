@@ -88,8 +88,9 @@ export class SummaryPageController extends PageController {
             }
             this.loadRequestErrors(request, viewModel);
             await this.existingFilesToClientSideFileUpload(state, viewModel, request);
-            console.log(`[SummaryPageController] summary value ${JSON.stringify(viewModel.value)}`);
-            console.log(`[SummaryPageController] summary details ${JSON.stringify(JSON.stringify(viewModel.details))}`);
+            request.logger.info(`[SummaryPageController][${state.metadata?.form_session_identifier}] savable value ${JSON.stringify(viewModel._webhookData)}`);
+            request.logger.info(`[SummaryPageController][${state.metadata?.form_session_identifier}] values ${JSON.stringify(viewModel.value)}`);
+            request.logger.info(`[SummaryPageController][${state.metadata?.form_session_identifier}] summary details ${JSON.stringify(JSON.stringify(viewModel.details))}`);
             return h.view("summary", viewModel);
         };
     }

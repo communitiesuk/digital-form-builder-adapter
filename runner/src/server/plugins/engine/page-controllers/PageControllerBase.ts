@@ -553,7 +553,7 @@ export class PageControllerBase {
                     }
                 });
             }
-            request.logger.info(`[PageControllerBase] summary details ${JSON.stringify(formData)}`);
+            request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary details ${JSON.stringify(formData)}`);
             const viewModel = this.getViewModel(formData, num);
             viewModel.startPage = startPage!.startsWith("http")
                 ? redirectTo(request, h, startPage!)
@@ -630,6 +630,7 @@ export class PageControllerBase {
                 this.backLink = viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
             }
             viewModel.continueButtonText = "Save and continue"
+            request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary value ${JSON.stringify(viewModel.components)}`);
             return h.view(this.viewName, viewModel);
         };
     }

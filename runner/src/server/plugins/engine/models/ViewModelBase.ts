@@ -232,7 +232,7 @@ export class ViewModelBase {
             }
         });
 
-        request.logger.info(`[PageControllerBase] summary details ${JSON.stringify(details)}`);
+        request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary details ${JSON.stringify(details)}`);
         return details;
     }
 
