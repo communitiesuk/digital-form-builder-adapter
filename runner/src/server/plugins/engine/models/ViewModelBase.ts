@@ -379,7 +379,7 @@ function Item(
         label: component.localisedString(component.title),
         value: component.getDisplayStringFromState(sectionState),
         rawValue: sectionState[component.name],
-        url: redirectUrl(request, `/${model.basePath}${page.path}`, params),
+        url: redirectUrl(request, `/${model.basePath}${page.path}?form_session_identifier=${request.query.form_session_identifier}`, params),
         pageId: `/${model.basePath}${page.path}`,
         type: component.type,
         title: component.title,
