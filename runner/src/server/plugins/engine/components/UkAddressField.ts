@@ -235,7 +235,15 @@ export class UkAddressField extends AdapterFormComponent {
         );
     }
 
-    // arranging the address into an object
+    /** read comma seperated address and convert it to the following object type
+     {
+     addressLine1: "",
+     addressLine2: "",
+     town: "",
+     county: "",
+     postcode: "",
+     }
+     **/
     convertStringAnswersIntoObject(value: any) {
         if (value !== "" && value !== undefined) {
             const address = value.split(", ");

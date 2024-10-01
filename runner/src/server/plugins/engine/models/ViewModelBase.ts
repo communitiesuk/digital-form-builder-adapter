@@ -17,6 +17,10 @@ import {
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {feedbackReturnInfoKey} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
 
+const LOGGER_DATA = {
+    class: "ViewModelBase",
+}
+
 /**
  * TODO - extract submission behaviour dependencies from the viewmodel
  * skipSummary (replace with reference to this.def.skipSummary?)
@@ -83,8 +87,10 @@ export class ViewModelBase {
         relevantPages.forEach(page => {
             relevantPagePaths.push(page.path);
         })
-
-        request.logger.info(`[ViewModelBase] number of selected pages ${relevantPages.length} pages are ${JSON.stringify(relevantPagePaths)}`);
+        request.logger.info({
+            ...LOGGER_DATA,
+            message: `Number of selected pages ${relevantPages.length} pages are ${JSON.stringify(relevantPagePaths)}`
+        });
         const schema = model.makeFilteredSchema(state, relevantPages);
         const collatedRepeatPagesState = gatherRepeatPages(state);
 
@@ -101,7 +107,10 @@ export class ViewModelBase {
             const outputs = new Outputs(model, state);
             // TODO: move to controller
             this._webhookData = outputs.webhookData;
-            request.logger.info(`[ViewModelBase] save details ${JSON.stringify(outputs.webhookData)}`);
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `Prepared savable data [${JSON.stringify(outputs.webhookData)}]`
+            });
             this._webhookData = this.addFeedbackSourceDataToWebhook(
                 this._webhookData,
                 model,
@@ -238,8 +247,11 @@ export class ViewModelBase {
                 }
             }
         });
-
-        request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary details ${JSON.stringify(details)}`);
+        request.logger.info({
+            ...LOGGER_DATA,
+            message: `Viewable summary data set [${JSON.stringify(details)}]`,
+            form_session_identifier: state.metadata?.form_session_identifier ?? ""
+        });
         return details;
     }
 

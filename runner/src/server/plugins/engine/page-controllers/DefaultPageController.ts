@@ -7,6 +7,10 @@ import {
     SummaryPageController
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
 
+const LOGGER_DATA = {
+    class: "DefaultPageController",
+}
+
 export class DefaultPageController extends PageController {
 
     constructor(model: AdapterFormModel, pageDef: any) {
@@ -49,11 +53,18 @@ export class DefaultPageController extends PageController {
             state = await adapterCacheService.getState(request);
 
             if (state.metadata && state.webhookData) {
-                request.logger.info(`[DefaultPageController][${state.metadata?.form_session_identifier}] savable value ${JSON.stringify(summaryViewModel._webhookData)}`);
-                request.logger.info(`[DefaultPageController][${state.metadata?.form_session_identifier}] values ${JSON.stringify(summaryViewModel.value)}`);
-                request.logger.info(`[DefaultPageController][${state.metadata?.form_session_identifier}] summary details ${JSON.stringify(JSON.stringify(summaryViewModel.details))}`);
                 const {callback} = state;
                 if (callback && callback.callbackUrl) {
+                    request.logger.info({
+                        ...LOGGER_DATA,
+                        message: `Viewable data for user [${JSON.stringify(summaryViewModel.details)}]`,
+                        form_session_identifier: state.metadata?.form_session_identifier ?? ""
+                    });
+                    request.logger.info({
+                        ...LOGGER_DATA,
+                        message: `Save per page triggerred and saving following data [${JSON.stringify(summaryViewModel._webhookData)}]`,
+                        form_session_identifier: state.metadata?.form_session_identifier ?? ""
+                    });
                     //@ts-ignore
                     await adapterStatusService.outputRequests(request);
                 }

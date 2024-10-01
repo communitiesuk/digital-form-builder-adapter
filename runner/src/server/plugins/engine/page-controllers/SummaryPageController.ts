@@ -10,6 +10,10 @@ import {redirectTo} from "../util/helper";
 import {UtilHelper} from "../../utils/UtilHelper";
 import {UkAddressField} from "../components";
 
+const LOGGER_DATA = {
+    class: "SummaryPageController",
+}
+
 
 export class SummaryPageController extends PageController {
 
@@ -90,9 +94,16 @@ export class SummaryPageController extends PageController {
             }
             this.loadRequestErrors(request, viewModel);
             await this.existingFilesToClientSideFileUpload(state, viewModel, request);
-            request.logger.info(`[SummaryPageController][${state.metadata?.form_session_identifier}] savable value ${JSON.stringify(viewModel._webhookData)}`);
-            request.logger.info(`[SummaryPageController][${state.metadata?.form_session_identifier}] values ${JSON.stringify(viewModel.value)}`);
-            request.logger.info(`[SummaryPageController][${state.metadata?.form_session_identifier}] summary details ${JSON.stringify(JSON.stringify(viewModel.details))}`);
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `Savable data and following are the data that will be saved [${JSON.stringify(viewModel._webhookData)}]`,
+                form_session_identifier: state.metadata?.form_session_identifier ?? ""
+            });
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `Viewable summary details and following are the data [${JSON.stringify(viewModel.details)}]`,
+                form_session_identifier: state.metadata?.form_session_identifier ?? ""
+            });
             return h.view("summary", viewModel);
         };
     }
@@ -165,7 +176,6 @@ export class SummaryPageController extends PageController {
             }
             //@ts-ignore
             await adapterCacheService.mergeState(request, {...state});
-            request.logger.info(`[SummaryPageController][${state.metadata?.form_session_identifier}] creating summary model`);
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             this.setFeedbackDetails(summaryViewModel, request);
@@ -223,8 +233,12 @@ export class SummaryPageController extends PageController {
             await adapterCacheService.mergeState(request,
                 {outputs: summaryViewModel.outputs, userCompletedSummary: true,});
 
-            request.logger.info(["Webhook data", "before send", request.yar.id],
-                JSON.stringify(summaryViewModel.validatedWebhookData));
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `Save data for the given url and data is [${JSON.stringify(summaryViewModel.validatedWebhookData)}]`,
+                form_session_identifier: state.metadata?.form_session_identifier ?? "",
+                request_id: request.yar.id
+            });
 
             //@ts-ignore
             await adapterCacheService.mergeState(request, {
@@ -243,7 +257,11 @@ export class SummaryPageController extends PageController {
             const payReturnUrl =
                 this.model.feeOptions?.payReturnUrl ?? config.payReturnUrl;
 
-            request.logger.info(`payReturnUrl has been configured to ${payReturnUrl}`);
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `payReturnUrl has been configured to ${payReturnUrl}`,
+                form_session_identifier: state.metadata?.form_session_identifier ?? ""
+            });
 
             const url = new URL(`${payReturnUrl}/${request.params.id}/status`).toString();
 

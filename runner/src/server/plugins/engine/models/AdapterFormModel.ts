@@ -236,7 +236,6 @@ export class AdapterFormModel {
     }
 
     getRelevantPages(state: FormSubmissionState) {
-        console.log(`[AdapterFormModel] get relevant pages`);
         let nextPage = this.startPage;
         const relevantPages: any[] = [];
         let endPage = null;
@@ -260,6 +259,10 @@ export class AdapterFormModel {
         return {relevantPages, endPage};
     }
 
+    /**
+     * based on the state values (user answered) determine the pages that need to select from the form definition
+     * @param state values that given in the form
+     */
     getRelevantPagesBasedOnState(state: FormSubmissionState) {
         let nextPage = this.startPage;
         const relevantPages: any[] = [];
