@@ -260,4 +260,23 @@ export class AdapterFormModel {
         return {relevantPages, endPage};
     }
 
+    getRelevantPagesBasedOnState(state: FormSubmissionState) {
+        let nextPage = this.startPage;
+        const relevantPages: any[] = [];
+        let endPage = null;
+        while (nextPage != null) {
+            if (nextPage.hasFormComponents && nextPage.hasDataInThePage(state)) {
+                relevantPages.push(nextPage);
+            } else if (!nextPage.hasNext && !(nextPage instanceof SummaryPageController)) {
+                endPage = nextPage;
+            }
+            if (nextPage.getNextPage) {
+                nextPage = nextPage.getNextPage(state, true);
+            } else {
+                nextPage = null;
+            }
+        }
+        return {relevantPages, endPage};
+    }
+
 }
