@@ -236,6 +236,7 @@ export class AdapterFormModel {
     }
 
     getRelevantPages(state: FormSubmissionState) {
+        console.log(`[AdapterFormModel] get relevant pages`);
         let nextPage = this.startPage;
         const relevantPages: any[] = [];
         let endPage = null;

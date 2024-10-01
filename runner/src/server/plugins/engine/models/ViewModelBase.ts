@@ -79,6 +79,12 @@ export class ViewModelBase {
             ((def.feedback?.emailAddress && `mailto:${def.feedback?.emailAddress}`) ||
                 config.feedbackLink);
 
+        let relevantPagePaths: string[] = []
+        relevantPages.forEach(page => {
+            relevantPagePaths.push(page.path);
+        })
+
+        request.logger.info(`[ViewModelBase] number of selected pages ${relevantPages.length} pages are ${JSON.stringify(relevantPagePaths)}`);
         const schema = model.makeFilteredSchema(state, relevantPages);
         const collatedRepeatPagesState = gatherRepeatPages(state);
 
@@ -88,11 +94,11 @@ export class ViewModelBase {
         });
 
         if (result.error) {
+            request.logger.error(`[ViewModelBase] errors ${JSON.stringify(result.error)}`);
             this.processErrors(result, details);
         } else {
             this.fees = FeesModel(model, state);
             const outputs = new Outputs(model, state);
-
             // TODO: move to controller
             this._webhookData = outputs.webhookData;
             request.logger.info(`[ViewModelBase] save details ${JSON.stringify(outputs.webhookData)}`);
