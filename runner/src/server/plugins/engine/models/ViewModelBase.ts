@@ -167,6 +167,7 @@ export class ViewModelBase {
         relevantPages
     ) {
         const details: object[] = [];
+        let form_session_identifier = state.metadata?.form_session_identifier ?? "";
 
         [undefined, ...model.sections].forEach((section) => {
             const items: any[] = [];
@@ -199,7 +200,7 @@ export class ViewModelBase {
 
             sectionPages.forEach((page) => {
                 for (const component of page.components.formItems) {
-                    const item = Item(request, component, sectionState, page, model);
+                    const item = Item(request, component, sectionState, page, model, form_session_identifier);
                     if (items.find((cbItem) => cbItem.name === item.name)) return;
                     items.push(item);
                     if (component.items) {
@@ -209,7 +210,7 @@ export class ViewModelBase {
                         )[0];
                         if (selectedItem && selectedItem.childrenCollection) {
                             for (const cc of selectedItem.childrenCollection.formItems) {
-                                const cItem = Item(request, cc, sectionState, page, model);
+                                const cItem = Item(request, cc, sectionState, page, model, form_session_identifier);
                                 items.push(cItem);
                             }
                         }
@@ -351,8 +352,9 @@ function Item(
     sectionState,
     page,
     model: AdapterFormModel,
+    form_session_identifier,
     params: { num?: number; returnUrl: string } = {
-        returnUrl: redirectUrl(request, `/${model.basePath}/summary`),
+        returnUrl: redirectUrl(request, `/${model.basePath}/summary?form_session_identifier=${request.query.form_session_identifier}`),
     }
 ) {
     const isRepeatable = !!page.repeatField;
@@ -364,7 +366,7 @@ function Item(
                 (acc: {}, p: any) => ({...acc, ...p}),
                 {}
             );
-            return Item(request, component, collated, page, model, {
+            return Item(request, component, collated, page, model, form_session_identifier, {
                 ...params,
                 num: i + 1,
             });

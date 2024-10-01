@@ -165,6 +165,7 @@ export class SummaryPageController extends PageController {
             }
             //@ts-ignore
             await adapterCacheService.mergeState(request, {...state});
+            request.logger.info(`[SummaryPageController][${state.metadata?.form_session_identifier}] creating summary model`);
             //@ts-ignore
             const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             this.setFeedbackDetails(summaryViewModel, request);
