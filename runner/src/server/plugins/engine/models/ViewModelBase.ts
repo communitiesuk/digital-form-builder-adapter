@@ -354,7 +354,7 @@ function Item(
     model: AdapterFormModel,
     form_session_identifier,
     params: { num?: number; returnUrl: string } = {
-        returnUrl: redirectUrl(request, `/${model.basePath}/summary?form_session_identifier=${request.query.form_session_identifier}`),
+        returnUrl: redirectUrl(request, `/${model.basePath}/summary`),
     }
 ) {
     const isRepeatable = !!page.repeatField;
