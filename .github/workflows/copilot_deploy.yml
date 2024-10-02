@@ -102,6 +102,11 @@ jobs:
           echo LAST_COMMIT_GH=runner >> ./runner/.env
           cat ./runner/.env
 
+      - name: Run Unit test before docker build
+        run: |
+          sh .devcontainer/setup.sh
+          yarn runner test-cov
+
       - name: Set up Docker Buildx property
         run: echo "DOCKER_BUILDKIT=1" >> $GITHUB_ENV
 
