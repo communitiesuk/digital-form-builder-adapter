@@ -18,10 +18,11 @@ export class AdapterSummaryViewModel extends AdapterViewModel {
         state: FormSubmissionState,
         request: HapiRequest,
         page: PageControllerBase,
-        isSavePerPageMode?: boolean
+        isSavePerPageMode?: boolean,
+        validateStateTillGivenPath?: string
     ) {
         // @ts-ignore
-        super(pageTitle, model, state, request, isSavePerPageMode);
+        super(pageTitle, model, state, request, isSavePerPageMode, validateStateTillGivenPath);
         this.markAsCompleteComponent = state.callback?.markAsCompleteComponent;
         this.markAsComplete = state.markAsComplete;
         this.page = page;

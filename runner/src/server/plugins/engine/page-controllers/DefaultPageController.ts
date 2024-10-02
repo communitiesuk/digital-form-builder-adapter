@@ -31,15 +31,10 @@ export class DefaultPageController extends PageController {
             if (state.metadata) {
                 state.metadata.isSummaryPageSubmit = false;
             }
+
             const model = this.model;
-            if (!returnUrl) {
-                // We have overridden this because when we create an AdapterSummaryViewModel it tries
-                // to verify that all the conditions are met for an entire form journey,
-                // not to the point that we are in
-                model.getRelevantPages = this.retrievePagesUpToCurrent
-            }
             //@ts-ignore
-            const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request, this, true);
+            const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request, this, (!returnUrl) ? this.path : undefined);
             //@ts-ignore
             const savedState = await adapterCacheService.getState(request);
             //This is required to ensure we don't navigate to an incorrect page based on stale state values
@@ -78,31 +73,5 @@ export class DefaultPageController extends PageController {
         };
     }
 
-    /**
-     * In this method, it will get all the pages up to the current page & return the list of pages
-     * @param state
-     */
-    retrievePagesUpToCurrent = (state: FormSubmissionState) => {
-        let nextPage = this.model.startPage;
-        const relevantPages: any[] = [];
-        let endPage = null;
 
-        while (nextPage != null) {
-            if (nextPage.hasFormComponents) {
-                relevantPages.push(nextPage);
-            } else if (
-                !nextPage.hasNext &&
-                !(nextPage instanceof SummaryPageController)
-            ) {
-                endPage = nextPage;
-            }
-            if (nextPage.path === this.path) {
-                nextPage = null;
-            } else {
-                nextPage = nextPage.getNextPage(state, true);
-            }
-        }
-
-        return {relevantPages, endPage};
-    }
 }

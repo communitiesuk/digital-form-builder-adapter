@@ -69,10 +69,19 @@ export class ViewModelBase {
         model: AdapterFormModel,
         state: FormSubmissionState,
         request: HapiRequest,
-        isSavePerPageMode?: boolean
+        isSavePerPageMode?: boolean,
+        validateStateTillGivenPath?: string
     ) {
         this.pageTitle = pageTitle;
-        const {relevantPages, endPage} = model.getRelevantPages(state);
+        let {relevantPages, endPage} = model.getRelevantPages(state);
+        if (validateStateTillGivenPath) {
+            const {
+                relevantPagesForCurrent,
+                endPageForCurrent
+            } = model.retrievePagesUpToGivenPath(state, validateStateTillGivenPath);
+            relevantPages = relevantPagesForCurrent;
+            endPage = endPageForCurrent
+        }
         const details = this.summaryDetails(request, model, state, relevantPages);
         const {def} = model;
         // @ts-ignore
@@ -186,7 +195,6 @@ export class ViewModelBase {
         relevantPages
     ) {
         const details: object[] = [];
-        let form_session_identifier = state.metadata?.form_session_identifier ?? "";
 
         [undefined, ...model.sections].forEach((section) => {
             const items: any[] = [];
