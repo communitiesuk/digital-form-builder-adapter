@@ -4,9 +4,9 @@ import {AdapterFormModel} from "./AdapterFormModel";
 import {ViewModelBase} from "./ViewModelBase";
 
 export class AdapterViewModel extends ViewModelBase {
-    constructor(pageTitle: string, model: AdapterFormModel, state: FormSubmissionState, request: HapiRequest) {
+    constructor(pageTitle: string, model: AdapterFormModel, state: FormSubmissionState, request: HapiRequest, isSavePerPageMode?: boolean) {
         // @ts-ignore
-        super(pageTitle, model, state, request);
+        super(pageTitle, model, state, request, isSavePerPageMode);
         if (this.details.length > 0) {
             let notSuppliedText = "Not supplied";
             let changeText = "Change";

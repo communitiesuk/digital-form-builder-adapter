@@ -57,10 +57,10 @@ export class SummaryPageController extends PageController {
 
             if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
                 this.formattingDataInTheStateToOriginal(state, model);
+                // We have overridden this because when we create an AdapterSummaryViewModel it tries
+                // in the summary, we show the user that we are planing to save in the last page
+                model.getRelevantPages = model.getRelevantPagesBasedOnState
             }
-            // We have overridden this because when we create an AdapterSummaryViewModel it tries
-            // in the summary, we show the user that we are planing to save in the last page
-            model.getRelevantPages = model.getRelevantPagesBasedOnState
             //@ts-ignore
             const viewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             if (viewModel.endPage) {

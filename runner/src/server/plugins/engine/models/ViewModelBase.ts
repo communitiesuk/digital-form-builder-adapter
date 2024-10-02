@@ -16,6 +16,7 @@ import {
     redirectUrl
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {feedbackReturnInfoKey} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
+import {AdapterFormDefinition} from "@communitiesuk/model";
 
 const LOGGER_DATA = {
     class: "ViewModelBase",
@@ -67,7 +68,8 @@ export class ViewModelBase {
         pageTitle: string,
         model: AdapterFormModel,
         state: FormSubmissionState,
-        request: HapiRequest
+        request: HapiRequest,
+        isSavePerPageMode?: boolean
     ) {
         this.pageTitle = pageTitle;
         const {relevantPages, endPage} = model.getRelevantPages(state);
@@ -103,28 +105,11 @@ export class ViewModelBase {
             request.logger.error(`[ViewModelBase] errors ${JSON.stringify(result.error)}`);
             this.processErrors(result, details);
         } else {
-            this.fees = FeesModel(model, state);
-            const outputs = new Outputs(model, state);
-            // TODO: move to controller
-            this._webhookData = outputs.webhookData;
-            request.logger.info({
-                ...LOGGER_DATA,
-                message: `Prepared savable data [${JSON.stringify(outputs.webhookData)}]`
-            });
-            this._webhookData = this.addFeedbackSourceDataToWebhook(
-                this._webhookData,
-                model,
-                request
-            );
+            this.generateWebhookData(model, state, request, def);
+        }
 
-            /**
-             * If there outputs defined, parse the state data for the appropriate outputs.
-             * Skip outputs if this is a callback
-             */
-            if (def.outputs && !state.callback) {
-                // TODO: move to controller
-                this._outputs = outputs.outputs;
-            }
+        if (isSavePerPageMode) {
+            this.generateWebhookData(model, state, request, def);
         }
 
         this.result = result;
@@ -135,6 +120,31 @@ export class ViewModelBase {
         const {feeOptions} = model;
         this.showPaymentSkippedWarningPage =
             feeOptions.showPaymentSkippedWarningPage ?? false;
+    }
+
+    private generateWebhookData(model: AdapterFormModel, state: FormSubmissionState, request: HapiRequest, def: AdapterFormDefinition) {
+        this.fees = FeesModel(model, state);
+        const outputs = new Outputs(model, state);
+        // TODO: move to controller
+        this._webhookData = outputs.webhookData;
+        request.logger.info({
+            ...LOGGER_DATA,
+            message: `Prepared savable data [${JSON.stringify(outputs.webhookData)}]`
+        });
+        this._webhookData = this.addFeedbackSourceDataToWebhook(
+            this._webhookData,
+            model,
+            request
+        );
+
+        /**
+         * If there outputs defined, parse the state data for the appropriate outputs.
+         * Skip outputs if this is a callback
+         */
+        if (def.outputs && !state.callback) {
+            // TODO: move to controller
+            this._outputs = outputs.outputs;
+        }
     }
 
     private processErrors(result, details) {
@@ -209,7 +219,7 @@ export class ViewModelBase {
 
             sectionPages.forEach((page) => {
                 for (const component of page.components.formItems) {
-                    const item = Item(request, component, sectionState, page, model, form_session_identifier);
+                    const item = Item(request, component, sectionState, page, model);
                     if (items.find((cbItem) => cbItem.name === item.name)) return;
                     items.push(item);
                     if (component.items) {
@@ -219,7 +229,7 @@ export class ViewModelBase {
                         )[0];
                         if (selectedItem && selectedItem.childrenCollection) {
                             for (const cc of selectedItem.childrenCollection.formItems) {
-                                const cItem = Item(request, cc, sectionState, page, model, form_session_identifier);
+                                const cItem = Item(request, cc, sectionState, page, model);
                                 items.push(cItem);
                             }
                         }
@@ -373,11 +383,23 @@ function Item(
     sectionState,
     page,
     model: AdapterFormModel,
-    form_session_identifier,
-    params: { num?: number; returnUrl: string } = {
+    params: {
+        num?: number;
+        returnUrl: string,
+        form_session_identifier?: string
+    } = {
         returnUrl: redirectUrl(request, `/${model.basePath}/summary`),
     }
 ) {
+    if (component?.options?.noReturnUrlOnSummaryPage === true) {
+        // @ts-ignore
+        delete params.returnUrl;
+    }
+
+    if (request.query.form_session_identifier) {
+        params.form_session_identifier = request.query.form_session_identifier;
+    }
+
     const isRepeatable = !!page.repeatField;
 
     //TODO:- deprecate in favour of section based and/or repeatingFieldPageController
@@ -387,7 +409,7 @@ function Item(
                 (acc: {}, p: any) => ({...acc, ...p}),
                 {}
             );
-            return Item(request, component, collated, page, model, form_session_identifier, {
+            return Item(request, component, collated, page, model, {
                 ...params,
                 num: i + 1,
             });
@@ -400,7 +422,7 @@ function Item(
         label: component.localisedString(component.title),
         value: component.getDisplayStringFromState(sectionState),
         rawValue: sectionState[component.name],
-        url: redirectUrl(request, `/${model.basePath}${page.path}?form_session_identifier=${request.query.form_session_identifier}`, params),
+        url: redirectUrl(request, `/${model.basePath}${page.path}`, params),
         pageId: `/${model.basePath}${page.path}`,
         type: component.type,
         title: component.title,

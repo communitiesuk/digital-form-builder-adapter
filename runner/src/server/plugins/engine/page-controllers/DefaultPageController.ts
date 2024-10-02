@@ -39,7 +39,7 @@ export class DefaultPageController extends PageController {
                 model.getRelevantPages = this.retrievePagesUpToCurrent
             }
             //@ts-ignore
-            const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
+            const summaryViewModel = new AdapterSummaryViewModel(this.title, model, state, request, this, true);
             //@ts-ignore
             const savedState = await adapterCacheService.getState(request);
             //This is required to ensure we don't navigate to an incorrect page based on stale state values

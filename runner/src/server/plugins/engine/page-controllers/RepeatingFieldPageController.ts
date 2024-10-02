@@ -309,7 +309,7 @@ export class RepeatingFieldPageController extends PageController {
                 //@ts-ignore
                 let savedState = await adapterCacheService.getState(request);
                 //@ts-ignore
-                const summaryViewModel = new AdapterSummaryViewModel(this.title, model, savedState, request, this);
+                const summaryViewModel = new AdapterSummaryViewModel(this.title, model, savedState, request, this, true);
                 //@ts-ignore
                 await adapterCacheService.mergeState(request, {
                     ...savedState,
