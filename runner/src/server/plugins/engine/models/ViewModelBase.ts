@@ -245,6 +245,15 @@ export class ViewModelBase {
                         items,
                     });
                 }
+            } else {
+                if (section?.name && section?.title) {
+                    details.push({
+                        name: section?.name,
+                        title: section?.title,
+                        message: "This section has not been answered",
+                        items,
+                    });
+                }
             }
         });
         request.logger.info({

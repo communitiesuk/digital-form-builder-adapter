@@ -132,12 +132,12 @@ export class SummaryPageController extends PageController {
             if (ukAddressField.section && state[ukAddressField.section]) {
                 let field = new UkAddressField(ukAddressField.component, model);
                 //@ts-ignore
-                state[ukAddressField.section][ukAddressField.component.name] = field.convertStringAnswersIntoObject(state[ukAddressField.section][ukAddressField.component.name])
+                state[ukAddressField.section][ukAddressField.component.name] = field.convertStringAnswers(state[ukAddressField.section][ukAddressField.component.name])
             } else {
                 //@ts-ignore
                 let field = new UkAddressField(ukAddressField.component, model);
                 //@ts-ignore
-                state[ukAddressField.component.name] = field.convertStringAnswersIntoObject(state[ukAddressField.component.name])
+                state[ukAddressField.component.name] = field.convertStringAnswers(state[ukAddressField.component.name])
             }
         }
     }
