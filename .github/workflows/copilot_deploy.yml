@@ -104,7 +104,13 @@ jobs:
 
       - name: Run Unit test before docker build
         run: |
-          sh .devcontainer/setup.sh
+          echo "--  Git submodule initialize into local  --"
+          git submodule update --init
+          echo "--  Pulling git submodules into local  --"
+          git pull --recurse-submodules
+          echo "--  Installing digital-form-builder-adapter locally  --"
+          node update-package.js
+          yarn install
           yarn runner test-cov
 
       - name: Set up Docker Buildx property
