@@ -47,8 +47,8 @@ pluginViews.options.context = (request: HapiRequest) => ({
     migrationBannerEnabled: config.migrationBannerEnabled,
     navigation: request?.auth.isAuthenticated
         ? [
-            {text: "View all applications", href: config.multifundDashboard},
-            {text: "Sign out", href: config.logoutUrl},
+            {text: request.i18n.__('viewAllApplications'), href: config.multifundDashboard},
+            {text: request.i18n.__('signOut'), href: config.logoutUrl},
         ]
         : null,
 })
