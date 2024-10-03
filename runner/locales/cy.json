@@ -1,21 +1,25 @@
 {
-	"viewAllApplications": "Eich ceisiadau",
-	"signOut": "Allgofnodi",
-	"validation": {
-		"required": "Mae angen {#label}",
-		"max": "Rhaid i {#label} fod yn {#limit} nod neu lai",
-		"min": "Rhaid i {#label} fod yn {#limit} nod neu fwy",
-		"regex": "rhowch {#label} dilys",
-		"email": "Rhaid i {#label} fod yn gyfeiriad e-bost dilys",
-		"number": "Rhaid i {#label} fod yn rhif",
-		"numberMin": "Rhaid i {#label} fod yn {#limit} neu'n uwch",
-		"numberMax": "Rhaid i {#label} fod yn {#limit} neu'n is",
-		"format": "Rhowch {#label} dilys",
-		"maxWords": "Rhaid i {#label} fod yn {#limit} gair neu lai",
-		"dateRequired": "Rhaid i {#label} fod yn ddyddiad go iawn",
-		"dateFormat": "Rhaid i {#label} fod yn ddyddiad go iawn",
-		"dateMin": "Rhaid i {#label} fod yr un fath â neu ar ôl {#limit}",
-		"dateMax": "Rhaid i {#label} fod yr un fath â neu cyn {#limit}",
-		"selectRequired": "Mae angen {#label}"
-	}
+  "viewAllApplications": "Eich ceisiadau",
+  "signOut": "Allgofnodi",
+  "validation": {
+    "required": "Mae angen {#label}",
+    "max": "Rhaid i {#label} fod yn {#limit} nod neu lai",
+    "min": "Rhaid i {#label} fod yn {#limit} nod neu fwy",
+    "regex": "rhowch {#label} dilys",
+    "email": "Rhaid i {#label} fod yn gyfeiriad e-bost dilys",
+    "number": "Rhaid i {#label} fod yn rhif",
+    "numberMin": "Rhaid i {#label} fod yn {#limit} neu'n uwch",
+    "numberMax": "Rhaid i {#label} fod yn {#limit} neu'n is",
+    "format": "Rhowch {#label} dilys",
+    "maxWords": "Rhaid i {#label} fod yn {#limit} gair neu lai",
+    "dateRequired": "Rhaid i {#label} fod yn ddyddiad go iawn",
+    "dateFormat": "Rhaid i {#label} fod yn ddyddiad go iawn",
+    "dateMin": "Rhaid i {#label} fod yr un fath â neu ar ôl {#limit}",
+    "dateMax": "Rhaid i {#label} fod yr un fath â neu cyn {#limit}",
+    "selectRequired": "Mae angen {#label}"
+  },
+  "banner": {
+    "title": "Mae hwn yn wasanaeth newydd.",
+    "tag": "beta"
+  }
 }
