@@ -240,16 +240,16 @@
     {% else %}
         {% set footerItems = [{
             href: privacyPolicyUrl,
-            text: 'Privacy'
+            text: privacyPolicyText
         }, {
             href: cookiePolicyUrl,
-            text: 'Cookies'
+            text: cookiesText
         }, {
             href: accessibilityStatementUrl,
-            text: 'Accessibility Statement'
+            text: accessibilityStatementText
         }, {
             href: contactUsUrl,
-            text: 'Contact Us'
+            text: contactUsText
         }] %}
     {% endif %}
     {{ govukFooter({

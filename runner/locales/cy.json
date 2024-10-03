@@ -1,6 +1,10 @@
 {
 	"viewAllApplications": "Eich ceisiadau",
 	"signOut": "Allgofnodi",
+  "privacy": "Preifatrwydd",
+	"cookies": "Cwcis",
+	"accessibilityStatement": "Datganiad Hygyrchedd",
+	"contactUs": "Cysylltwch â ni",
 	"validation": {
 		"required": "Mae angen {#label}",
 		"max": "Rhaid i {#label} fod yn {#limit} nod neu lai",

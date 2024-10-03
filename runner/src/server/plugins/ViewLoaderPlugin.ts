@@ -45,6 +45,10 @@ pluginViews.options.context = (request: HapiRequest) => ({
     accessibilityStatementUrl: config.accessibilityStatementUrl,
     phaseTag: config.phaseTag,
     migrationBannerEnabled: config.migrationBannerEnabled,
+    privacyPolicyText: request.i18n.__('privacy'),
+    cookiesText: request.i18n.__('cookies'),
+    accessibilityStatementText: request.i18n.__('accessibilityStatement'),
+    contactUsText: request.i18n.__('contactUs'),
     navigation: request?.auth.isAuthenticated
         ? [
             {text: request.i18n.__('viewAllApplications'), href: config.multifundDashboard},

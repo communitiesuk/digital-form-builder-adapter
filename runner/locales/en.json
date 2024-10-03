@@ -1,6 +1,10 @@
 {
 	"viewAllApplications": "View all applications",
 	"signOut": "Sign out",
+  "privacy": "Privacy",
+	"cookies": "Cookies",
+	"accessibilityStatement": "Accessibility Statement",
+	"contactUs": "Contact Us",
 	"validation": {
 		"required": "{#label} is required",
 		"max": "{#label} must be {#limit} characters or less",
