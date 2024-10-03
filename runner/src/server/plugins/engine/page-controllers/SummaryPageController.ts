@@ -1,6 +1,5 @@
-import {AdapterFormModel} from "../models";
+import {AdapterFormModel, AdapterSummaryViewModel} from "../models";
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
-import {AdapterSummaryViewModel} from "../models";
 import {redirectUrl} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {FeesModel} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/models/submission";
@@ -9,12 +8,16 @@ import {isMultipleApiKey} from "@xgovformbuilder/model";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {redirectTo} from "../util/helper";
 import {UtilHelper} from "../../utils/UtilHelper";
+import {UkAddressField} from "../components";
+
+const LOGGER_DATA = {
+    class: "SummaryPageController",
+}
 
 
 export class SummaryPageController extends PageController {
 
     isEligibility: boolean = false;
-    isReadOnlySummary: boolean;
 
     constructor(model: AdapterFormModel, pageDef: any) {
         // @ts-ignore
@@ -51,6 +54,13 @@ export class SummaryPageController extends PageController {
                 this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
                 this.backLink = state.callback?.returnUrl;
             }
+
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                this.formattingDataInTheStateToOriginal(state, model);
+                // We have overridden this because when we create an AdapterSummaryViewModel it tries
+                // in the summary, we show the user that we are planing to save in the last page
+                model.getRelevantPages = model.getRelevantPagesBasedOnState
+            }
             //@ts-ignore
             const viewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
             if (viewModel.endPage) {
@@ -84,9 +94,74 @@ export class SummaryPageController extends PageController {
             }
             this.loadRequestErrors(request, viewModel);
             await this.existingFilesToClientSideFileUpload(state, viewModel, request);
-
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `Savable data and following are the data that will be saved [${JSON.stringify(viewModel._webhookData)}]`,
+                form_session_identifier: state.metadata?.form_session_identifier ?? ""
+            });
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `Viewable summary details and following are the data [${JSON.stringify(viewModel.details)}]`,
+                form_session_identifier: state.metadata?.form_session_identifier ?? ""
+            });
             return h.view("summary", viewModel);
         };
+    }
+
+    /** read all the formatted data & convert them back to original format
+     // Ex.
+     UkAddress field original format is
+     {
+     addressLine1: "",
+     addressLine2: "",
+     town: "",
+     county: "",
+     postcode: "",
+     }
+     but when we saving it converts back to comma seperated value.
+     However, if we are going to show the data back in the summary,
+     we have
+     to convert the data back in to original format since in the view model
+     we have a validation before going inside the summary page
+     **/
+    private formattingDataInTheStateToOriginal(state: FormSubmissionState, model: AdapterFormModel) {
+        //@ts-ignore
+        const ukAddressFields = this.findUkAddressFieldComponents(this.def.pages)
+        //@ts-ignore
+        for (let ukAddressField of ukAddressFields) {
+            if (ukAddressField.section && state[ukAddressField.section]) {
+                let field = new UkAddressField(ukAddressField.component, model);
+                //@ts-ignore
+                state[ukAddressField.section][ukAddressField.component.name] = field.convertStringAnswers(state[ukAddressField.section][ukAddressField.component.name])
+            } else {
+                //@ts-ignore
+                let field = new UkAddressField(ukAddressField.component, model);
+                //@ts-ignore
+                state[ukAddressField.component.name] = field.convertStringAnswers(state[ukAddressField.component.name])
+            }
+        }
+    }
+
+    // Function to find all UkAddressField components
+    private findUkAddressFieldComponents(pageDef) {
+        let results: any = [];
+        pageDef.forEach(page => {
+            // Check if the page has components
+            if (page.components) {
+                for (let component of page.components) {
+                    // If a component type is 'UkAddressField', add it to the results
+                    //@ts-ignore
+                    if (component.type === 'UkAddressField') {
+                        if (page.section) {
+                            results.push({"section": page.section, "component": component});
+                        } else {
+                            results.push({"section": undefined, "component": component});
+                        }
+                    }
+                }
+            }
+        });
+        return results;
     }
 
     makePostRouteHandler() {
@@ -158,8 +233,12 @@ export class SummaryPageController extends PageController {
             await adapterCacheService.mergeState(request,
                 {outputs: summaryViewModel.outputs, userCompletedSummary: true,});
 
-            request.logger.info(["Webhook data", "before send", request.yar.id],
-                JSON.stringify(summaryViewModel.validatedWebhookData));
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `Save data for the given url and data is [${JSON.stringify(summaryViewModel.validatedWebhookData)}]`,
+                form_session_identifier: state.metadata?.form_session_identifier ?? "",
+                request_id: request.yar.id
+            });
 
             //@ts-ignore
             await adapterCacheService.mergeState(request, {
@@ -178,7 +257,11 @@ export class SummaryPageController extends PageController {
             const payReturnUrl =
                 this.model.feeOptions?.payReturnUrl ?? config.payReturnUrl;
 
-            request.logger.info(`payReturnUrl has been configured to ${payReturnUrl}`);
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `payReturnUrl has been configured to ${payReturnUrl}`,
+                form_session_identifier: state.metadata?.form_session_identifier ?? ""
+            });
 
             const url = new URL(`${payReturnUrl}/${request.params.id}/status`).toString();
 

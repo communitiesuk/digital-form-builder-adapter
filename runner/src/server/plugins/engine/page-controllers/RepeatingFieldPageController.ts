@@ -8,10 +8,7 @@ import joi from "joi";
 import {reach} from "hoek";
 import {AdapterFormModel, AdapterSummaryViewModel} from "../models";
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
-import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
-import {
-    SummaryPageController
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/pageControllers";
+import {redirectTo} from "../util/helper";
 
 const contentTypes: Array<ComponentDef["type"]> = [
     "Para",
@@ -138,6 +135,13 @@ export class RepeatingFieldPageController extends PageController {
             }
             //@ts-ignore
             let state = await adapterCacheService.getState(request);
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+                if (form_session_identifier) {
+                    return redirectTo(request, h, `/${this.model.basePath}/summary?form_session_identifier=${form_session_identifier}`)
+                }
+                return redirectTo(request, h, `/${this.model.basePath}/summary`);
+            }
             const partialState = this.getPartialState(state, view);
             state[this.inputComponent.name] = this.convertMultiInputStringAnswers(
                 state[this.inputComponent.name]
@@ -292,16 +296,10 @@ export class RepeatingFieldPageController extends PageController {
                 }
 
                 const model = this.model;
-                if (!returnUrl) {
-                    // We have overridden this because when we create an AdapterSummaryViewModel it tries
-                    // to verify that all the conditions are met for an entire form journey,
-                    // not to the point that we are in
-                    model.getRelevantPages = this.retrievePagesUpToCurrent
-                }
                 //@ts-ignore
                 let savedState = await adapterCacheService.getState(request);
                 //@ts-ignore
-                const summaryViewModel = new AdapterSummaryViewModel(this.title, model, savedState, request, this);
+                const summaryViewModel = new AdapterSummaryViewModel(this.title, model, savedState, request, this, true, (!returnUrl) ? this.path : undefined);
                 //@ts-ignore
                 await adapterCacheService.mergeState(request, {
                     ...savedState,
@@ -404,31 +402,4 @@ export class RepeatingFieldPageController extends PageController {
         return answers;
     }
 
-    /**
-     * In this method, it will get all the pages up to the current page & return the list of pages
-     * @param state
-     */
-    retrievePagesUpToCurrent = (state: FormSubmissionState) => {
-        let nextPage = this.model.startPage;
-        const relevantPages: any[] = [];
-        let endPage = null;
-
-        while (nextPage != null) {
-            if (nextPage.hasFormComponents) {
-                relevantPages.push(nextPage);
-            } else if (
-                !nextPage.hasNext &&
-                !(nextPage instanceof SummaryPageController)
-            ) {
-                endPage = nextPage;
-            }
-            if (nextPage.path === this.path) {
-                nextPage = null;
-            } else {
-                nextPage = nextPage.getNextPage(state, true);
-            }
-        }
-
-        return {relevantPages, endPage};
-    }
 }

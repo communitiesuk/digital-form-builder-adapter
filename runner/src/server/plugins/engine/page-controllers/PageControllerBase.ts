@@ -297,6 +297,24 @@ export class PageControllerBase {
         return this[ADDITIONAL_VALIDATION_FUNCTIONS];
     }
 
+    hasDataInThePage(state: FormSubmissionState): boolean {
+        if (this.pageDef.section && state[this.pageDef.section]) {
+            for (let component of this.pageDef.components) {
+                if (state[this.pageDef.section][component.name] !== undefined) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            for (let component of this.pageDef.components) {
+                if (state[component.name] !== undefined) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     /**
      * returns the path to the next page
      */
@@ -488,6 +506,13 @@ export class PageControllerBase {
             const lang = this.langFromRequest(request);
             //@ts-ignore
             let state = await adapterCacheService.getState(request);
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+                if (form_session_identifier) {
+                    return redirectTo(request, h, `/${this.model.basePath}/summary?form_session_identifier=${form_session_identifier}`)
+                }
+                return redirectTo(request, h, `/${this.model.basePath}/summary`);
+            }
             const progress = state.progress || [];
             const {num} = request.query;
             const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
@@ -528,6 +553,7 @@ export class PageControllerBase {
                     }
                 });
             }
+            request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary details ${JSON.stringify(formData)}`);
             const viewModel = this.getViewModel(formData, num);
             viewModel.startPage = startPage!.startsWith("http")
                 ? redirectTo(request, h, startPage!)
@@ -603,9 +629,8 @@ export class PageControllerBase {
             } else {
                 this.backLink = viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
             }
-
             viewModel.continueButtonText = "Save and continue"
-
+            request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary value ${JSON.stringify(viewModel.components)}`);
             return h.view(this.viewName, viewModel);
         };
     }

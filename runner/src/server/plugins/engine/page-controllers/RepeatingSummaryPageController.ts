@@ -240,7 +240,7 @@ export class RepeatingSummaryPageController extends PageController {
                 },
                 values: [],
             };
-
+            //@ts-ignore
             for (const [i, name] of orderedNames.entries()) {
                 row.values.push({
                     text: keyToRenderedValue[name],
@@ -259,6 +259,7 @@ export class RepeatingSummaryPageController extends PageController {
     makePostRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {adapterCacheService, adapterStatusService} = request.services([]);
+            //@ts-ignore
             const state = await adapterCacheService.getState(request);
             const query = request.query;
             let form_session_identifier = "";

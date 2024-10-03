@@ -1,15 +1,12 @@
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {HapiRequest} from "../../../../../../digital-form-builder/runner/src/server/types";
 import {AdapterFormModel} from "./AdapterFormModel";
-import {SummaryPageController} from "../page-controllers/SummaryPageController";
 import {ViewModelBase} from "./ViewModelBase";
 
 export class AdapterViewModel extends ViewModelBase {
-
-
-    constructor(pageTitle: string, model: AdapterFormModel, state: FormSubmissionState, request: HapiRequest) {
+    constructor(pageTitle: string, model: AdapterFormModel, state: FormSubmissionState, request: HapiRequest, isSavePerPageMode?: boolean, validateStateTillGivenPath?: string) {
         // @ts-ignore
-        super(pageTitle, model, state, request);
+        super(pageTitle, model, state, request, isSavePerPageMode, validateStateTillGivenPath);
         if (this.details.length > 0) {
             let notSuppliedText = "Not supplied";
             let changeText = "Change";
@@ -25,27 +22,6 @@ export class AdapterViewModel extends ViewModelBase {
                 };
             });
         }
-    }
-
-
-    static getRelevantPages(model: AdapterFormModel, state: FormSubmissionState) {
-        let nextPage = model.startPage;
-        const relevantPages: any[] = [];
-        let endPage = null;
-
-        while (nextPage != null) {
-            if (nextPage.hasFormComponents) {
-                relevantPages.push(nextPage);
-            } else if (
-                !nextPage.hasNext &&
-                !(nextPage instanceof SummaryPageController)
-            ) {
-                endPage = nextPage;
-            }
-            nextPage = nextPage.getNextPage(state, true);
-        }
-
-        return {relevantPages, endPage};
     }
 
 }

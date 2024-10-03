@@ -259,4 +259,56 @@ export class AdapterFormModel {
         return {relevantPages, endPage};
     }
 
+    /**
+     * In this method, it will get all the pages up to the current page & return the list of pages
+     * @param state
+     * @param path
+     */
+    retrievePagesUpToGivenPath = (state: FormSubmissionState, path: string) => {
+        let nextPage = this.startPage;
+        const relevantPagesForCurrent: any[] = [];
+        let endPageForCurrent = null;
+
+        while (nextPage != null) {
+            if (nextPage.hasFormComponents) {
+                relevantPagesForCurrent.push(nextPage);
+            } else if (
+                !nextPage.hasNext &&
+                !(nextPage instanceof SummaryPageController)
+            ) {
+                endPageForCurrent = nextPage;
+            }
+            if (nextPage.path === path) {
+                nextPage = null;
+            } else {
+                nextPage = nextPage.getNextPage(state, true);
+            }
+        }
+
+        return {relevantPagesForCurrent, endPageForCurrent};
+    }
+
+    /**
+     * based on the state values (user answered) determine the pages that need to select from the form definition
+     * @param state values that given in the form
+     */
+    getRelevantPagesBasedOnState(state: FormSubmissionState) {
+        let nextPage = this.startPage;
+        const relevantPages: any[] = [];
+        let endPage = null;
+        while (nextPage != null) {
+            if (nextPage.hasFormComponents && nextPage.hasDataInThePage(state)) {
+                relevantPages.push(nextPage);
+            } else if (!nextPage.hasNext && !(nextPage instanceof SummaryPageController)) {
+                endPage = nextPage;
+            }
+            if (nextPage.getNextPage) {
+                nextPage = nextPage.getNextPage(state, true);
+            } else {
+                nextPage = null;
+            }
+        }
+        return {relevantPages, endPage};
+    }
+
 }

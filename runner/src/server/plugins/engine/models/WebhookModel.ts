@@ -20,11 +20,12 @@ export function WebhookModel(model: AdapterFormModel, state: FormSubmissionState
 
     let questions;
 
-    const {relevantPages} = model.getRelevantPages(state);
+    //Getting pages based on the answers in the state & this will allow the user to save all the given answers in the db
+    //TODO probable redesign will happen with https://dluhcdigital.atlassian.net/browse/FS-4341 Jira this tries to manage application state based on scenarios
+    const {relevantPages} = model.getRelevantPagesBasedOnState(state);
 
     questions = relevantPages.map((page) => pagesToQuestions(page, state));
     const fees = FeesModel(model, state);
-
     return {
         metadata: model.def.metadata,
         name: englishName,
@@ -105,10 +106,16 @@ function fieldAnswerFromComponent(
         case "multiInput":
             return rawValue;
         case "date":
-            return format(new Date(rawValue), "yyyy-MM-dd");
+            if (rawValue) {
+                return format(new Date(rawValue), "yyyy-MM-dd");
+            }
+            return undefined;
         case "monthYear":
-            const [month, year] = Object.values(rawValue);
-            return format(new Date(`${year}-${month}-1`), "yyyy-MM");
+            if (rawValue) {
+                const [month, year] = Object.values(rawValue);
+                return format(new Date(`${year}-${month}-1`), "yyyy-MM");
+            }
+            return undefined;
         default:
             return component.getDisplayStringFromState(state);
     }
