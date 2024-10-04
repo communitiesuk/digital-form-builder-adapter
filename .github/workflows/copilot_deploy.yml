@@ -218,7 +218,7 @@ jobs:
 
       - name: Get docker compose e2e file
         run: |
-          cat ocker-compose.e2e.yml
+          cat docker-compose.e2e.yml
 
       - name: Start containers
         run: docker compose -f docker-compose.e2e.yml up -d
