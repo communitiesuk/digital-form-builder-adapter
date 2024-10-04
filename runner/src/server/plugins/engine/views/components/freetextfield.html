@@ -60,12 +60,12 @@
                 var label = document.getElementById('word-count-label-' + editor.id);
 
                 if (label != null) {
-                    label.textContent = '{{ i18nGetTranslation("components.freeTextField.wordCountReminder") }} '.replace("{count}", `${wordsRemaing}`);
+                    label.textContent = '{{ i18nGetTranslation("components.freeTextField.wordCountReminder") }}'.replace("{count}", `${wordsRemaing}`);
                     label.style.color = '#505a5f';
 
                     if (wordsRemaing < 0) {
                         var wordsOver = wordCount - Number(maxWords);
-                        label.textContent = '{{ i18nGetTranslation("components.freeTextField.wordCountRemainingError") }} '.replace("{count}", `${wordsOver}`);
+                        label.textContent = '{{ i18nGetTranslation("components.freeTextField.wordCountRemainingError") }}'.replace("{count}", `${wordsOver}`);
                         label.style.color = '#d4351c';
                         editor.dom.addClass(editor.getContainer(), 'red-border');
                     } else {
