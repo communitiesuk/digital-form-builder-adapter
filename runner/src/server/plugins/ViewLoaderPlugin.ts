@@ -45,10 +45,16 @@ pluginViews.options.context = (request: HapiRequest) => ({
     accessibilityStatementUrl: config.accessibilityStatementUrl,
     phaseTag: config.phaseTag,
     migrationBannerEnabled: config.migrationBannerEnabled,
+    i18nGetTranslation: request.i18n.__,
+    language: request.i18n.getLocale(request),
+    privacyPolicyText: request.i18n.__('privacy'),
+    cookiesText: request.i18n.__('cookies'),
+    accessibilityStatementText: request.i18n.__('accessibilityStatement'),
+    contactUsText: request.i18n.__('contactUs'),
     navigation: request?.auth.isAuthenticated
         ? [
-            {text: "View all applications", href: config.multifundDashboard},
-            {text: "Sign out", href: config.logoutUrl},
+            {text: request.i18n.__('viewAllApplications'), href: config.multifundDashboard},
+            {text: request.i18n.__('signOut'), href: config.logoutUrl},
         ]
         : null,
 })

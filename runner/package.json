@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "yarn clean:build && yarn babel-build && yarn babel-build:adapter && npm run package-json:copy && yarn static-content:dist-push && yarn scss:build && yarn copy-forms",
+    "build": "yarn clean:build && yarn babel-build && yarn babel-build:adapter && npm run package-json:copy && yarn static-content:dist-push && yarn scss:build && yarn copy-forms && yarn copy-local",
     "babel-build": "babel --config-file ../digital-form-builder/runner/.babelrc --extensions '.ts' ../digital-form-builder/runner/src -d dist/digital-form-builder/runner/src --copy-files -s inline",
     "babel-build:adapter": "babel --config-file ../runner/.babelrc --extensions '.ts' ../runner/src -d dist/digital-form-builder-adapter/runner --copy-files -s inline",
     "package-json:copy": "cp package.json dist/digital-form-builder/runner && cp package.json dist/digital-form-builder-adapter",
@@ -12,7 +12,8 @@
     "copy-forms": "node copy-form-json.js",
     "clean:build": "rm -rf dist",
     "dev": "NODE_ENV=development  nodemon dist/digital-form-builder-adapter/runner/index.js",
-    "production": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js"
+    "production": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js",
+    "copy-local": "mkdir -p dist/digital-form-builder-adapter/runner/locales && cp ./locales/cy.json dist/digital-form-builder-adapter/runner/locales && cp ./locales/en.json dist/digital-form-builder-adapter/runner/locales"
   },
   "author": "Communities UK",
   "license": "SEE LICENSE IN LICENSE",
@@ -22,6 +23,7 @@
     "@aws-sdk/lib-storage": "3.633.0",
     "@aws-sdk/s3-request-presigner": "3.633.0",
     "dropzone": "5.9.3",
+    "hapi-i18n": "3.0.1",
     "joi": "17.13.3",
     "tinymce": "7.3.0"
   },

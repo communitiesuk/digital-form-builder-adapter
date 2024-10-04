@@ -13,7 +13,6 @@ import {configureRateLimitPlugin} from "../../../digital-form-builder/runner/src
 import {configureBlankiePlugin} from "../../../digital-form-builder/runner/src/server/plugins/blankie";
 import {configureCrumbPlugin} from "../../../digital-form-builder/runner/src/server/plugins/crumb";
 
-import pluginLocale from "../../../digital-form-builder/runner/src/server/plugins/locale";
 import pluginSession from "../../../digital-form-builder/runner/src/server/plugins/session";
 import pluginAuth from "./plugins/engine/Auth";
 import pluginApplicationStatus from "./plugins/engine/application-status";
@@ -38,6 +37,7 @@ import {S3UploadService} from "./services";
 import clientSideUploadPlugin from "./plugins/ClientSideUploadPlugin";
 import {MockUploadService} from "./services/MockUploadService";
 import {catboxProvider} from "./services/AdapterCacheService";
+import LanguagePlugin from "./plugins/LanguagePlugin";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -83,6 +83,30 @@ const serverOptions = (): ServerOptions => {
     };
 };
 
+function determineLocal(request: any) {
+    if (request.i18n) {
+        if (request.state && request.state.language) {
+            const language = request.state.language;
+            // Set the language based on the request state
+            if (language) {
+                request.i18n.setLocale(language);  // Ensure request.i18n is set properly
+            } else {
+                request.i18n.setLocale("en");
+            }
+        } else if (request.query && request.query.lang) {
+            const language = request.query.lang;
+            // Set the language based on the request state
+            if (language) {
+                request.i18n.setLocale(language);  // Ensure request.i18n is set properly
+            } else {
+                request.i18n.setLocale("en");
+            }
+        } else {
+            request.i18n.setLocale("en");
+        }
+    }
+}
+
 async function createServer(routeConfig: RouteConfig) {
     console.log("SERVER CREATING")
     const server = hapi.server(serverOptions());
@@ -104,6 +128,7 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(configureCrumbPlugin(config, routeConfig));
     await server.register(Schmervice);
     await server.register(pluginAuth);
+    await server.register(LanguagePlugin);
 
     server.registerService([AdapterCacheService, NotifyService, PayService, WebhookService, AddressService]);
     if (config.isE2EModeEnabled && config.isE2EModeEnabled == "true") {
@@ -154,16 +179,20 @@ async function createServer(routeConfig: RouteConfig) {
         }
     );
 
+    server.ext("onPreHandler", (request: HapiRequest, h: HapiResponseToolkit) => {
+        determineLocal(request);
+        return h.continue;
+    });
+
     server.ext("onRequest", (request: HapiRequest, h: HapiResponseToolkit) => {
         // @ts-ignore
         const {pathname} = getRequestInfo(request);
         //@ts-ignore
         request.app.location = pathname;
+        determineLocal(request);
         return h.continue;
     });
 
-
-    await server.register(pluginLocale);
     // @ts-ignore
     await server.register(ViewLoaderPlugin);
     // @ts-ignore
