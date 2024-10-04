@@ -17,14 +17,15 @@
     "dateMin": "{#label} must be the same as or after {#limit}",
     "dateMax": "{#label} must be the same as or before {#limit}",
     "selectRequired": "{#label} is required",
-    "title": "There is a problem",
+    "title1": "There is a problem",
     "fileUpload": {
       "filePartiallyUploadError": "The files have not fully uploaded",
       "fileUploadSizeError": "File must be under ",
       "fileUploadCombinedSizeError": "Combined filesize must be under ",
-      "fileUploadNotAllowedError": "You can only upload ",
       "fileUploadTypeError": "You can't upload files of this type.",
-      "files": "files"
+      "fileUploadCountSingleError": "You can only upload a single file",
+      "fileUploadCountMaxError": "You can only upload {maxFiles} files",
+      "fileUploadCountMinError": "{labelText} requires {minimumRequiredFiles} files"
     }
   },
   "components": {
@@ -63,9 +64,5 @@
     "cookies": "Cookies",
     "accessibilityStatement": "Accessibility Statement",
     "contactUs": "Contact Us"
-  },
-  "banner": {
-    "tag": "banner.tag",
-    "title": "banner.title"
   }
 }

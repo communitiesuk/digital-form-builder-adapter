@@ -17,14 +17,15 @@
     "dateMin": "Rhaid i {#label} fod yr un fath neu'n hwyrach na {#limit}",
     "dateMax": "Rhaid i {#label} fod yr un fath neu'n gynharach na {#limit}",
     "selectRequired": "Mae angen {#label}",
-    "title": "Mae problem wedi codi",
+    "title1": "Mae problem wedi codi",
     "fileUpload": {
-      "filePartiallyUploadError": "Nid yw'r ffeiliau wedi llwytho'n llawn",
+      "filePartiallyUploadError": "Nid yw'r ffeiliau wedi'u llwytho i fyny'n llawn",
       "fileUploadSizeError": "Rhaid i'r ffeil fod o dan ",
-      "fileUploadCombinedSizeError": "Rhaid i'r cyfanswm maint y ffeiliau fod o dan ",
-      "fileUploadNotAllowedError": "Dim ond {#label} y gallwch ei lanlwytho",
-      "fileUploadTypeError": "Ni allwch lanlwytho ffeiliau o'r math hwn.",
-      "files": "ffeiliau"
+      "fileUploadCombinedSizeError": "Rhaid i'r cyfanswm maint ffeiliau fod o dan ",
+      "fileUploadTypeError": "Ni allwch lwytho ffeiliau o'r math hwn.",
+      "fileUploadCountSingleError": "Dim ond un ffeil y gallwch ei llwytho i fyny",
+      "fileUploadCountMaxError": "Dim ond {maxFiles} ffeil y gallwch ei llwytho i fyny",
+      "fileUploadCountMinError": "Mae angen {minimumRequiredFiles} ffeil ar {labelText}"
     }
   },
   "components": {

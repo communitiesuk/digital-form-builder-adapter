@@ -711,7 +711,7 @@ export class PageControllerBase {
                 );
             } else {
                 formResult.errors = {
-                    titleText: "There is a problem",
+                    titleText: request.i18n.__('validation.title1'),
                     errorList: additionalValidationErrors,
                 };
             }

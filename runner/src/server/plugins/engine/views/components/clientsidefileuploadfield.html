@@ -238,7 +238,7 @@
                 const existingFiles = getAllFiles();
                 if (existingFiles.length > this.options.maxFiles) {
                     myDropzone.removeFile(file);
-                    handleError(`{{ i18nGetTranslation("validation.fileUpload.fileUploadNotAllowedError") }} ${myDropzone.options.maxFiles} {{ i18nGetTranslation("validation.fileUpload.files") }}`)
+                    handleError(`{{ i18nGetTranslation("validation.fileUpload.fileUploadCountMaxError") }}`.replace("{maxFiles}", `${myDropzone.options.maxFiles}`))
                     return;
                 }
                 {% endif %}
@@ -286,7 +286,7 @@
                 errorSummaryParentContainer.insertAdjacentHTML('afterBegin', `
                 <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
                     <h2 class="govuk-error-summary__title" id="error-summary-title">
-                        {{ i18nGetTranslation("validation.title") }}
+                        {{ i18nGetTranslation("validation.title1") }}
                     </h2>
                     <div class="govuk-error-summary__body">
                         <ul class="govuk-list govuk-error-summary__list">
@@ -363,7 +363,7 @@
             }
 
             if (existingFileCount > myDropzone.options.maxFiles) {
-                handleError(`{{ i18nGetTranslation("validation.fileUpload.fileUploadNotAllowedError") }} ${myDropzone.options.maxFiles} {{ i18nGetTranslation("validation.fileUpload.files") }}`)
+                handleError(`{{ i18nGetTranslation("validation.fileUpload.fileUploadCountMaxError") }}`.replace("{maxFiles}", `${myDropzone.options.maxFiles}`))
                 myDropzone.removeFile(file);
                 return false;
             }
@@ -409,7 +409,7 @@
         }
 
         myDropzone.on('error', function (file, error) {
-            if (error === `{{ i18nGetTranslation("validation.fileUpload.fileUploadNotAllowedError") }}`) {
+            if (error === `{{ i18nGetTranslation("validation.fileUpload.fileUploadTypeError") }}`) {
                 handleError(error);
                 this.removeFile(file);
             } else {

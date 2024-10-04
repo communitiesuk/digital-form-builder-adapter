@@ -75,8 +75,8 @@ export class ClientSideFileUploadField extends AdapterFormComponent {
                             href: `#${componentKey}`,
                             text:
                                 maxFiles > 1
-                                    ? `You can only upload ${maxFiles} files`
-                                    : `You can only upload a single file`,
+                                    ? request.i18n.__('validation.fileUpload.fileUploadCountMaxError').replace("{maxFiles}", maxFiles)
+                                    : request.i18n.__('validation.fileUpload.fileUploadCountSingleError'),
                         },
                     ];
                 }
@@ -96,7 +96,7 @@ export class ClientSideFileUploadField extends AdapterFormComponent {
 
                 if (this.options.minimumRequiredFiles === 1) {
                     const labelText = clientSideUploadComponent.model?.label?.text || "";
-                    const fullErrorText = `${labelText} is required`;
+                    const fullErrorText = request.i18n.__('validation.required').replace("{#label}", labelText);
                     return [
                         {
                             ...error,
@@ -108,7 +108,7 @@ export class ClientSideFileUploadField extends AdapterFormComponent {
                 }
 
                 const labelText = clientSideUploadComponent.model?.label?.text || "";
-                const fullErrorText = `${labelText} requires ${this.options.minimumRequiredFiles} files`;
+                const fullErrorText = request.i18n.__('validation.fileUpload.fileUploadCountMinError').replace("{labelText}", labelText).replace("{minimumRequiredFiles}", `${this.options.minimumRequiredFiles}`);
                 return [
                     {
                         ...error,

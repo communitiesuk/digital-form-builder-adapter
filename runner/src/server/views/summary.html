@@ -8,9 +8,9 @@
 {% block beforeContent %}
     {{ govukPhaseBanner({
         tag: {
-            text: i18nGetTranslation("banner.tag")
+            text: i18nGetTranslation("head.banner.tag")
         },
-        html: i18nGetTranslation("banner.title")
+        html: i18nGetTranslation("head.banner.title")
     }) }}
     {% if page.isEligibility or isReadOnlySummary %}
         {{ govukBackLink({
