@@ -211,6 +211,15 @@ jobs:
           cd digital-form-builder
           yarn
 
+      - name: Injecting image into docker compose e2e
+        run: |
+          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+
+      - name: Get docker compose e2e file
+        run: |
+          cat ocker-compose.e2e.yml
+
       - name: Start containers
         run: docker compose -f docker-compose.e2e.yml up -d
 
