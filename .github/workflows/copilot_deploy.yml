@@ -102,6 +102,11 @@ jobs:
           echo LAST_COMMIT_GH=runner >> ./runner/.env
           cat ./runner/.env
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container
+
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
@@ -162,6 +167,11 @@ jobs:
           echo LAST_TAG_GH=designer >> ./designer/.env
           echo LAST_COMMIT_GH=designer >> ./designer/.env
           cat ./designer/.env
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container
 
       - name: Cache Docker layers
         uses: actions/cache@v4
