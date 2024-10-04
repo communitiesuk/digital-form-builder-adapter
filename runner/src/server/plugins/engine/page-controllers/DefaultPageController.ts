@@ -7,6 +7,10 @@ const LOGGER_DATA = {
     class: "DefaultPageController",
 }
 
+const LOGGER_DATA = {
+    class: "DefaultPageController",
+}
+
 export class DefaultPageController extends PageController {
 
     constructor(model: AdapterFormModel, pageDef: any) {
