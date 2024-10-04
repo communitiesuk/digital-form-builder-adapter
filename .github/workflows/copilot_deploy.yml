@@ -216,7 +216,9 @@ jobs:
       - uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          path: |
+            node_modules  # Cache the installed node modules
+            **/node_modules  # Include subfolders if using workspaces
           key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
