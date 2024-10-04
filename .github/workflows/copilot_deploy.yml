@@ -168,49 +168,13 @@ jobs:
   e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/communitiesuk/funding-service-design-form-e2e-adapter:latest
     name: run e2e
     outputs:
       tag: ${{ steps.hashFile.outputs.tag }}
       hash: ${{ steps.hashFile.outputs.hash }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20.x"
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      - name: Get into the directory
-        id: change-dir
-        run: yarn config set enableImmutableInstalls false
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-e2e
-            ${{ runner.os }}-yarn  
-
-      - name: Setup e2e dependencies
-        run: |
-          echo "--  Git submodule initialize into local  --"
-          git submodule update --init
-          echo "--  Pulling git submodules into local  --"
-          git pull --recurse-submodules
-          echo "--  Installing digital-form-builder-adapter locally  --"
-          node update-package.js
-          yarn install
-          echo "--  Install e2e dependencies  --"
-          yarn e2e-test install
-          echo "--  Building digital-form-builder locally  --"
-          cd digital-form-builder
-          yarn
-
       - name: Injecting image into docker compose e2e
         run: |
           yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
