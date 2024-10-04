@@ -2,14 +2,18 @@
 # Stage 1
 # Base image contains the node version and app user creation
 # It also configures the non-root user that will be given permission to copied files/folders in every subsequent stages
-FROM node:20-alpine AS base-image
+FROM ubuntu:latest AS base-image
 RUN mkdir -p /usr/src/app/digital-form-builder-adapter/runner/public/static && \
     addgroup -g 1001 appuser && \
     adduser -S -u 1001 -G appuser appuser && \
     chown -R appuser:appuser /usr/src/app/digital-form-builder-adapter && \
     chmod -R +x  /usr/src/app/digital-form-builder-adapter && \
-    apk update && \
-    apk add --no-cache bash git
+    apt update && \
+    apt install curl -y && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&
+    apt install nodejs -y
+RUN node -v
+RUN npm -v
 RUN npm install -g nodemon
 RUN npm install -g cypress
 
