@@ -111,7 +111,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache-runner
-          key: ${{ runner.os }}-buildx-${{ github.sha }}-runner
+          key: ${{ runner.os }}-buildx-runner
           restore-keys: |
             ${{ runner.os }}-buildx-runner
 
@@ -177,7 +177,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache-designer
-          key: ${{ runner.os }}-buildx-${{ github.sha }}-designer
+          key: ${{ runner.os }}-buildx-designer
           restore-keys: |
             ${{ runner.os }}-buildx-designer
 
@@ -208,10 +208,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20.x"
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
       - name: Get into the directory
         id: change-dir
