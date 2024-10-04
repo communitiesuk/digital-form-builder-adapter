@@ -1,0 +1,71 @@
+name: Publish e2e Image
+
+permissions:
+  packages: write
+  contents: write
+
+on:
+  push:
+    paths-ignore:
+      [
+        "**/README.md",
+        ".github/workflows/increment-version.yml",
+        "version",
+        "python/**",
+      ]
+
+env:
+  DOCKER_REGISTRY: ghcr.io
+  IMAGE_NAME: "funding-service-design-form-e2e-adapter"
+  IMAGE_REPO_PATH: "ghcr.io/${{github.repository_owner}}"
+
+jobs:
+  publish-e2e-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: "Set version in env"
+        id: set-version
+        run: |
+          source version
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Docker metadata
+        id: metadata
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{env.IMAGE_REPO_PATH}}/${{env.IMAGE_NAME}}
+          tags: |
+            type=sha,format=long
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=${{env.VERSION}},enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest
+            type=ref,event=branch
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create .env for designer workspace
+        run: |
+          touch ./designer/.env
+          echo LAST_TAG_GH=designer >> ./designer/.env
+          echo LAST_COMMIT_GH=designer >> ./designer/.env
+          cat ./designer/.env
+
+      - name: Build and push docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          tags: ${{ steps.metadata.outputs.tags}}
+          labels: ${{ steps.metadata.outputs.labels }}
+          push: true
+          file: ./e2e-test/Dockerfile
+          build-args: |
+            LAST_TAG='${{env.VERSION}}'
+            LAST_COMMIT='${{ github.sha }}'
