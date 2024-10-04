@@ -60,12 +60,12 @@
                 var label = document.getElementById('word-count-label-' + editor.id);
 
                 if (label != null) {
-                    label.textContent = 'You have ' + wordsRemaing + ' words remaining';
+                    label.textContent = '{{ i18nGetTranslation("components.freeTextField.wordCountReminder") }} '.replace("{count}", `${wordsRemaing}`);
                     label.style.color = '#505a5f';
 
                     if (wordsRemaing < 0) {
                         var wordsOver = wordCount - Number(maxWords);
-                        label.textContent = 'You have ' + wordsOver + ' words too many';
+                        label.textContent = '{{ i18nGetTranslation("components.freeTextField.wordCountRemainingError") }} '.replace("{count}", `${wordsOver}`);
                         label.style.color = '#d4351c';
                         editor.dom.addClass(editor.getContainer(), 'red-border');
                     } else {
@@ -81,14 +81,14 @@
         <div id="hint-{{ component.model.id }}" class="govuk-hint">{{ component.model.hint.html|safe }}</div>
         {% if component.model.errorMessage %}
             <span id="nationality-error" class="govuk-error-message">
-    <span class="govuk-visually-hidden">Error:</span> {{ component.model.errorMessage.text }}
+    <span class="govuk-visually-hidden">{{ i18nGetTranslation("components.freeTextField.error") }}</span> {{ component.model.errorMessage.text }}
   </span>
         {% endif %}
         <textarea id="{{ component.model.id }}" name="{{ component.model.name }}" rows="5"
                   class="govuk-textarea">{{ component.model.value }}</textarea>
         {% if component.model.isCharacterOrWordCount == true %}
-            <div id="word-count-label-{{ component.model.id }}" class="govuk-hint govuk-js-character-count">You can
-                enter up to {{ component.model.maxWords }} words
+            <div id="word-count-label-{{ component.model.id }}"
+                 class="govuk-hint govuk-js-character-count">{{ i18nGetTranslation("components.freeTextField.wordCountError") | replace("{count}", component.model.maxWords) }}
             </div>
         {% endif %}
     </div>

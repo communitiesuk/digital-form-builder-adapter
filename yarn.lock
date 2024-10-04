@@ -2600,6 +2600,7 @@ __metadata:
     babel-plugin-module-name-mapper: ^1.2.0
     dropzone: 5.9.3
     hapi-auth-jwt2: 10.2.0
+    hapi-i18n: 3.0.1
     joi: 17.13.3
     prisma: ^5.1.1
     sass: ^1.49.9
@@ -3825,7 +3826,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/hoek@npm:9.x.x, @hapi/hoek@npm:^9.0.0, @hapi/hoek@npm:^9.0.3, @hapi/hoek@npm:^9.0.4, @hapi/hoek@npm:^9.3.0":
+"@hapi/hoek@npm:9.x.x, @hapi/hoek@npm:^9.0.0, @hapi/hoek@npm:^9.0.2, @hapi/hoek@npm:^9.0.3, @hapi/hoek@npm:^9.0.4, @hapi/hoek@npm:^9.3.0":
   version: 9.3.0
   resolution: "@hapi/hoek@npm:9.3.0"
   checksum: 4771c7a776242c3c022b168046af4e324d116a9d2e1d60631ee64f474c6e38d1bb07092d898bf95c7bc5d334c5582798a1456321b2e53ca817d4e7c88bc25b43
@@ -7272,7 +7273,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"accept-language-parser@npm:1.5.0":
+"accept-language-parser@npm:1.5.0, accept-language-parser@npm:^1.5.0":
   version: 1.5.0
   resolution: "accept-language-parser@npm:1.5.0"
   checksum: e32124e500f67d30da7dd15462b3ff7a718df327ff8bd1c97ae02d8ee5cf0917a3f600bf3b171965b1f95fef480b96d36752f674eff2cb0069c276d9783d32f6
@@ -14490,6 +14491,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hapi-i18n@npm:3.0.1":
+  version: 3.0.1
+  resolution: "hapi-i18n@npm:3.0.1"
+  dependencies:
+    "@hapi/boom": ^9.0.0
+    "@hapi/hoek": ^9.0.2
+    accept-language-parser: ^1.5.0
+    i18n: ^0.13.2
+    lodash: ^4.17.4
+  checksum: 2131271fc395169a883b7c9c776ffb1215bd246b0898ccab5f7e7623cf6c347c1797f3b211b1f8a58911bc0d4758a51b5a1d22ddfa46a60571f9d70e93663bb4
+  languageName: node
+  linkType: hard
+
 "hapi-pino@npm:8.0.0":
   version: 8.0.0
   resolution: "hapi-pino@npm:8.0.0"
@@ -15122,6 +15136,20 @@ __metadata:
   version: 1.0.0
   resolution: "hyperlinker@npm:1.0.0"
   checksum: f6d020ac552e9d048668206c805a737262b4c395546c773cceea3bc45252c46b4fa6eeb67c5896499dad00d21cb2f20f89fdd480a4529cfa3d012da2957162f9
+  languageName: node
+  linkType: hard
+
+"i18n@npm:^0.13.2":
+  version: 0.13.4
+  resolution: "i18n@npm:0.13.4"
+  dependencies:
+    debug: ^4.3.3
+    make-plural: ^7.0.0
+    math-interval-parser: ^2.0.1
+    messageformat: ^2.3.0
+    mustache: ^4.2.0
+    sprintf-js: ^1.1.2
+  checksum: ea4edf04f2b41a787fc029fb610ee93a6b4efffd67b065a20eaf692a1ff7f291b708385163dade3518baa4f2f27e2c782e8b7cdba190460a6370f33d5e589320
   languageName: node
   linkType: hard
 
@@ -18218,6 +18246,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"make-plural@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "make-plural@npm:4.3.0"
+  dependencies:
+    minimist: ^1.2.0
+  dependenciesMeta:
+    minimist:
+      optional: true
+  bin:
+    make-plural: ./bin/make-plural
+  checksum: 1702556e988d7f0b64f10260bf897be3b32e973fbb21b59175ba2ece75ad4d49b9d8caea2ef633dd573e6009051f221fe350907d9f2a904a21e9c9b7b964fba4
+  languageName: node
+  linkType: hard
+
+"make-plural@npm:^7.0.0":
+  version: 7.4.0
+  resolution: "make-plural@npm:7.4.0"
+  checksum: f2e58b6efd3e099ebc076d6c6b60854740886006a7af9cfcb1d4478409efbdd41f6ae14921b8eef4f1cbc0702ff7a29f159199d7ac0831784d0bbfcfded39558
+  languageName: node
+  linkType: hard
+
 "makeerror@npm:1.0.12":
   version: 1.0.12
   resolution: "makeerror@npm:1.0.12"
@@ -18257,6 +18306,13 @@ __metadata:
     "@types/minimatch": ^3.0.3
     minimatch: ^3.0.2
   checksum: f6d4f94bdcf773f9cbd4b7b10199a7632c434833a4c01bfb29c373e118647bb3b748aa3f20c70d6c3a715915fcc44ad4a77a9f8d5f059f3a0d15c984c0acc83d
+  languageName: node
+  linkType: hard
+
+"math-interval-parser@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "math-interval-parser@npm:2.0.1"
+  checksum: aa7111a337106a68a822d63331b9400621637700f96b1a2ae5dcd4abb7571c271d56995b78223023e255259f37065e55a848bdc4c82d023e628e7e415082475f
   languageName: node
   linkType: hard
 
@@ -18316,6 +18372,31 @@ __metadata:
   version: 1.4.1
   resolution: "merge2@npm:1.4.1"
   checksum: 7268db63ed5169466540b6fb947aec313200bcf6d40c5ab722c22e242f651994619bcd85601602972d3c85bd2cc45a358a4c61937e9f11a061919a1da569b0c2
+  languageName: node
+  linkType: hard
+
+"messageformat-formatters@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "messageformat-formatters@npm:2.0.1"
+  checksum: 847d034aaf354abd6af2dc8ff3d0f98b165242545916fa060714201afa14b60a4d246951ef354fc8511de9dde36c16b69ca348ed6c79116840f9f0511cf61ab4
+  languageName: node
+  linkType: hard
+
+"messageformat-parser@npm:^4.1.2":
+  version: 4.1.3
+  resolution: "messageformat-parser@npm:4.1.3"
+  checksum: d5a72581116b1813460241672ffb6ff3e2f05c311d48c7d81daf368f5254447dda095756e53830664383c51c707dbf387c21b35cd341b7edd4f2945656ac476f
+  languageName: node
+  linkType: hard
+
+"messageformat@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "messageformat@npm:2.3.0"
+  dependencies:
+    make-plural: ^4.3.0
+    messageformat-formatters: ^2.0.1
+    messageformat-parser: ^4.1.2
+  checksum: 9c336657cbd60c968a64b1895e84d19cb53634124814cdb60a5a87803b9d66844820fe5dae0c823f1d9b7c7776c8b5cfe434c5c45633f5ce3702c5d7a294c9da
   languageName: node
   linkType: hard
 
@@ -18814,6 +18895,15 @@ __metadata:
   bin:
     multicast-dns: cli.js
   checksum: f515b49ca964429ab48a4ac8041fcf969c927aeb49ab65288bd982e52c849a870fc3b03565780b0d194a1a02da8821f28b6425e48e95b8107bc9fcc92f571a6f
+  languageName: node
+  linkType: hard
+
+"mustache@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "mustache@npm:4.2.0"
+  bin:
+    mustache: bin/mustache
+  checksum: 928fcb63e3aa44a562bfe9b59ba202cccbe40a46da50be6f0dd831b495be1dd7e38ca4657f0ecab2c1a89dc7bccba0885eab7ee7c1b215830da765758c7e0506
   languageName: node
   linkType: hard
 
@@ -22815,7 +22905,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sprintf-js@npm:^1.1.1, sprintf-js@npm:^1.1.3":
+"sprintf-js@npm:^1.1.1, sprintf-js@npm:^1.1.2, sprintf-js@npm:^1.1.3":
   version: 1.1.3
   resolution: "sprintf-js@npm:1.1.3"
   checksum: a3fdac7b49643875b70864a9d9b469d87a40dfeaf5d34d9d0c5b1cda5fd7d065531fcb43c76357d62254c57184a7b151954156563a4d6a747015cfb41021cad0

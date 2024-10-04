@@ -168,14 +168,14 @@
         {% if feedbackLink %}
             {{ govukPhaseBanner({
                 tag: {
-                    text: i18nGetTranslation("banner.tag")
+                    text: i18nGetTranslation("head.banner.tag")
                 },
-                html: i18nGetTranslation("banner.title")
+                html: i18nGetTranslation("head.banner.title")
             }) }}
         {% else %}
             {{ govukPhaseBanner({
                 tag: {
-                    text: i18nGetTranslation("banner.tag")
+                    text: i18nGetTranslation("head.banner.tag")
                 }
             }) }}
         {% endif %}
@@ -240,16 +240,16 @@
     {% else %}
         {% set footerItems = [{
             href: privacyPolicyUrl,
-            text: 'Privacy'
+            text: i18nGetTranslation("footer.privacy")
         }, {
             href: cookiePolicyUrl,
-            text: 'Cookies'
+            text: i18nGetTranslation("footer.cookies")
         }, {
             href: accessibilityStatementUrl,
-            text: 'Accessibility Statement'
+            text: i18nGetTranslation("footer.accessibilityStatement")
         }, {
             href: contactUsUrl,
-            text: 'Contact Us'
+            text: i18nGetTranslation("footer.contactUs")
         }] %}
     {% endif %}
     {{ govukFooter({

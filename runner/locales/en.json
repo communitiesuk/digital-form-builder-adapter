@@ -16,10 +16,56 @@
     "dateFormat": "{#label} must be a real date",
     "dateMin": "{#label} must be the same as or after {#limit}",
     "dateMax": "{#label} must be the same as or before {#limit}",
-    "selectRequired": "{#label} is required"
+    "selectRequired": "{#label} is required",
+    "title": "There is a problem",
+    "fileUpload": {
+      "filePartiallyUploadError": "The files have not fully uploaded",
+      "fileUploadSizeError": "File must be under ",
+      "fileUploadCombinedSizeError": "Combined filesize must be under ",
+      "fileUploadNotAllowedError": "You can only upload ",
+      "fileUploadTypeError": "You can't upload files of this type.",
+      "files": "files"
+    }
+  },
+  "components": {
+    "clientSideFileUpload": {
+      "javascriptEnableMessageTitle": "You need to have JavaScript enabled to see your selected files",
+      "description1": "Why is JavaScript required?",
+      "description2": "Without JavaScript, you will be able to select files to upload, but you won't be able to see them on this page.",
+      "description3": "Your files will still be uploaded when you hit \"Save and continue\". If you revisit this page, you will be able to see your previously uploaded files.",
+      "fileUploadBtn": "Choose file",
+      "filesUploadBtn": "Choose files",
+      "table": {
+        "fileNameCol": "File name",
+        "fileSizeCol": "File size",
+        "fileProgressCol": "Progress",
+        "fileActionCol": "Action",
+        "fileActionComplete": "Complete",
+        "fileActionFailed": "Failed",
+        "deleteBtn": "Delete"
+      }
+    },
+    "freeTextField": {
+      "wordCountReminder": "You have {count} words remaining",
+      "wordCountRemainingError": "You have {count} words too many",
+      "wordCountError": "You can enter up to {count} words",
+      "error": "Error:"
+    }
+  },
+  "head": {
+    "banner": {
+      "title": "This is a new service.",
+      "tag": "beta"
+    }
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "accessibilityStatement": "Accessibility Statement",
+    "contactUs": "Contact Us"
   },
   "banner": {
-    "title": "This is a new service.",
-    "tag": "beta"
+    "tag": "banner.tag",
+    "title": "banner.title"
   }
 }

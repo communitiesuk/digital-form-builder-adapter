@@ -1,5 +1,5 @@
 {
-  "viewAllApplications": "Eich ceisiadau",
+  "viewAllApplications": "Gweld yr holl geisiadau",
   "signOut": "Allgofnodi",
   "validation": {
     "required": "Mae angen {#label}",
@@ -12,14 +12,56 @@
     "numberMax": "Rhaid i {#label} fod yn {#limit} neu'n is",
     "format": "Rhowch {#label} dilys",
     "maxWords": "Rhaid i {#label} fod yn {#limit} gair neu lai",
-    "dateRequired": "Rhaid i {#label} fod yn ddyddiad go iawn",
-    "dateFormat": "Rhaid i {#label} fod yn ddyddiad go iawn",
-    "dateMin": "Rhaid i {#label} fod yr un fath â neu ar ôl {#limit}",
-    "dateMax": "Rhaid i {#label} fod yr un fath â neu cyn {#limit}",
-    "selectRequired": "Mae angen {#label}"
+    "dateRequired": "Rhaid i {#label} fod yn ddyddiad dilys",
+    "dateFormat": "Rhaid i {#label} fod yn ddyddiad dilys",
+    "dateMin": "Rhaid i {#label} fod yr un fath neu'n hwyrach na {#limit}",
+    "dateMax": "Rhaid i {#label} fod yr un fath neu'n gynharach na {#limit}",
+    "selectRequired": "Mae angen {#label}",
+    "title": "Mae problem wedi codi",
+    "fileUpload": {
+      "filePartiallyUploadError": "Nid yw'r ffeiliau wedi llwytho'n llawn",
+      "fileUploadSizeError": "Rhaid i'r ffeil fod o dan ",
+      "fileUploadCombinedSizeError": "Rhaid i'r cyfanswm maint y ffeiliau fod o dan ",
+      "fileUploadNotAllowedError": "Dim ond {#label} y gallwch ei lanlwytho",
+      "fileUploadTypeError": "Ni allwch lanlwytho ffeiliau o'r math hwn.",
+      "files": "ffeiliau"
+    }
   },
-  "banner": {
-    "title": "Mae hwn yn wasanaeth newydd.",
-    "tag": "beta"
+  "components": {
+    "clientSideFileUpload": {
+      "javascriptEnableMessageTitle": "Mae angen i chi alluogi JavaScript i weld eich ffeiliau a ddewiswyd",
+      "description1": "Pam mae angen JavaScript?",
+      "description2": "Heb JavaScript, byddwch yn gallu dewis ffeiliau i'w llwytho, ond ni fyddwch yn gallu eu gweld ar y dudalen hon.",
+      "description3": "Bydd eich ffeiliau yn dal i gael eu llwytho pan fyddwch yn clicio \"Arbed a pharhau\". Os byddwch yn ymweld â'r dudalen hon eto, byddwch yn gallu gweld eich ffeiliau a uwchlwythwyd yn flaenorol.",
+      "fileUploadBtn": "Dewiswch ffeil",
+      "filesUploadBtn": "Dewiswch ffeiliau",
+      "table": {
+        "fileNameCol": "Enw'r ffeil",
+        "fileSizeCol": "Maint y ffeil",
+        "fileProgressCol": "Cynnydd",
+        "fileActionCol": "Gweithred",
+        "fileActionComplete": "Wedi gorffen",
+        "fileActionFailed": "Wedi methu",
+        "deleteBtn": "Dileu"
+      }
+    },
+    "freeTextField": {
+      "wordCountReminder": "Mae gennych {count} gair yn weddill",
+      "wordCountRemainingError": "Mae gennych {count} gair yn ormod",
+      "wordCountError": "Gallwch nodi hyd at {count} gair",
+      "error": "Gwall:"
+    }
+  },
+  "head": {
+    "banner": {
+      "title": "Mae hwn yn wasanaeth newydd.",
+      "tag": "beta"
+    }
+  },
+  "footer": {
+    "privacy": "Preifatrwydd",
+    "cookies": "Cwcis",
+    "accessibilityStatement": "Datganiad Hygyrchedd",
+    "contactUs": "Cysylltwch â ni"
   }
 }
