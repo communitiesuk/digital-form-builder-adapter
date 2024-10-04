@@ -168,14 +168,14 @@
         {% if feedbackLink %}
             {{ govukPhaseBanner({
                 tag: {
-                    text: phaseTag
+                    text: i18nGetTranslation("banner.tag")
                 },
-                html: "This is a new service."
+                html: i18nGetTranslation("banner.title")
             }) }}
         {% else %}
             {{ govukPhaseBanner({
                 tag: {
-                    text: phaseTag
+                    text: i18nGetTranslation("banner.tag")
                 }
             }) }}
         {% endif %}

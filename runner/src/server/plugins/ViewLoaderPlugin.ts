@@ -45,6 +45,8 @@ pluginViews.options.context = (request: HapiRequest) => ({
     accessibilityStatementUrl: config.accessibilityStatementUrl,
     phaseTag: config.phaseTag,
     migrationBannerEnabled: config.migrationBannerEnabled,
+    i18nGetTranslation: request.i18n.__,
+    language: request.i18n.getLocale(request),
     privacyPolicyText: request.i18n.__('privacy'),
     cookiesText: request.i18n.__('cookies'),
     accessibilityStatementText: request.i18n.__('accessibilityStatement'),

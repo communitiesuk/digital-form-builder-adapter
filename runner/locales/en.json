@@ -21,5 +21,9 @@
 		"dateMin": "{#label} must be the same as or after {#limit}",
 		"dateMax": "{#label} must be the same as or before {#limit}",
 		"selectRequired": "{#label} is required"
-	}
+	},
+  "banner": {
+    "title": "This is a new service.",
+    "tag": "beta"
+  }
 }
