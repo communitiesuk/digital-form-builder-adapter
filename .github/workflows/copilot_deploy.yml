@@ -102,6 +102,14 @@ jobs:
           echo LAST_COMMIT_GH=runner >> ./runner/.env
           cat ./runner/.env
 
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache-runner
+          key: ${{ runner.os }}-buildx-${{ github.sha }}-runner
+          restore-keys: |
+            ${{ runner.os }}-buildx-runner
+
       - name: Build and push docker image
         uses: docker/build-push-action@v4
         with:
@@ -113,6 +121,8 @@ jobs:
           build-args: |
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'
+          cache-from: type=local,src=/tmp/.buildx-cache-runner
+          cache-to: type=local,dest=/tmp/.buildx-cache-runner
 
   docker-designer-build:
     runs-on: ubuntu-latest
@@ -153,6 +163,14 @@ jobs:
           echo LAST_COMMIT_GH=designer >> ./designer/.env
           cat ./designer/.env
 
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache-designer
+          key: ${{ runner.os }}-buildx-${{ github.sha }}-designer
+          restore-keys: |
+            ${{ runner.os }}-buildx-designer
+
       - name: Build and push docker image
         uses: docker/build-push-action@v4
         with:
@@ -164,6 +182,8 @@ jobs:
           build-args: |
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'
+          cache-from: type=local,src=/tmp/.buildx-cache-designer
+          cache-to: type=local,dest=/tmp/.buildx-cache-designer
 
   e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
@@ -191,7 +211,7 @@ jobs:
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
             ${{ runner.os }}-yarn  
@@ -210,6 +230,11 @@ jobs:
           echo "--  Building digital-form-builder locally  --"
           cd digital-form-builder
           yarn
+
+      - name: Injecting image into docker compose e2e
+        run: |
+          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
 
       - name: Start containers
         run: docker compose -f docker-compose.e2e.yml up -d
