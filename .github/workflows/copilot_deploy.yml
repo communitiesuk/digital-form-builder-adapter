@@ -108,7 +108,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache-runner
+          path: ~/.buildx/cache
           key: ${{ runner.os }}-buildx-runner-${{ hashFiles('./runner/Dockerfile') }}-${{ hashFiles('./runner/package.json') }}
           restore-keys: |
             ${{ runner.os }}-buildx-runner-${{ hashFiles('./runner/Dockerfile') }}-${{ hashFiles('./runner/package.json') }}
@@ -174,7 +174,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache-designer
+          path: ~/.buildx/cache
           key: ${{ runner.os }}-buildx-runner-${{ hashFiles('./designer/Dockerfile') }}-${{ hashFiles('./designer/package.json') }}
           restore-keys: |
             ${{ runner.os }}-buildx-designer-${{ hashFiles('./designer/Dockerfile') }}-${{ hashFiles('./designer/package.json') }}
