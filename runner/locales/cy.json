@@ -1,61 +1,61 @@
 {
-  "viewAllApplications": "Gweld yr holl geisiadau",
+  "viewAllApplications": "Eich ceisiadau",
   "signOut": "Allgofnodi",
   "validation": {
-    "required": "Mae angen {#label}",
-    "max": "Rhaid i {#label} fod yn {#limit} nod neu lai",
-    "min": "Rhaid i {#label} fod yn {#limit} nod neu fwy",
-    "regex": "rhowch {#label} dilys",
-    "email": "Rhaid i {#label} fod yn gyfeiriad e-bost dilys",
-    "number": "Rhaid i {#label} fod yn rhif",
-    "numberMin": "Rhaid i {#label} fod yn {#limit} neu'n uwch",
-    "numberMax": "Rhaid i {#label} fod yn {#limit} neu'n is",
-    "format": "Rhowch {#label} dilys",
-    "maxWords": "Rhaid i {#label} fod yn {#limit} gair neu lai",
-    "dateRequired": "Rhaid i {#label} fod yn ddyddiad dilys",
-    "dateFormat": "Rhaid i {#label} fod yn ddyddiad dilys",
-    "dateMin": "Rhaid i {#label} fod yr un fath neu'n hwyrach na {#limit}",
-    "dateMax": "Rhaid i {#label} fod yr un fath neu'n gynharach na {#limit}",
-    "selectRequired": "Mae angen {#label}",
-    "title1": "Mae problem wedi codi",
+    "required": "{#label} is required",
+    "max": "{#label} must be {#limit} characters or less",
+    "min": "{#label} must be {#limit} characters or more",
+    "regex": "enter a valid {#label}",
+    "email": "{#label} must be a valid email address",
+    "number": "{#label} must be a number",
+    "numberMin": "{#label} must be {#limit} or higher",
+    "numberMax": "{#label} must be {#limit} or lower",
+    "format": "Enter a valid {#label}",
+    "maxWords": "{#label} must be {#limit} words or fewer",
+    "dateRequired": "{#label} must be a real date",
+    "dateFormat": "{#label} must be a real date",
+    "dateMin": "{#label} must be the same as or after {#limit}",
+    "dateMax": "{#label} must be the same as or before {#limit}",
+    "selectRequired": "{#label} is required",
+    "title1": "There is a problem",
     "fileUpload": {
-      "filePartiallyUploadError": "Nid yw'r ffeiliau wedi'u llwytho i fyny'n llawn",
-      "fileUploadSizeError": "Rhaid i'r ffeil fod o dan ",
-      "fileUploadCombinedSizeError": "Rhaid i'r cyfanswm maint ffeiliau fod o dan ",
-      "fileUploadTypeError": "Ni allwch lwytho ffeiliau o'r math hwn.",
-      "fileUploadCountSingleError": "Dim ond un ffeil y gallwch ei llwytho i fyny",
-      "fileUploadCountMaxError": "Dim ond {maxFiles} ffeil y gallwch ei llwytho i fyny",
-      "fileUploadCountMinError": "Mae angen {minimumRequiredFiles} ffeil ar {labelText}"
+      "filePartiallyUploadError": "The files have not fully uploaded",
+      "fileUploadSizeError": "File must be under ",
+      "fileUploadCombinedSizeError": "Combined filesize must be under ",
+      "fileUploadTypeError": "You can't upload files of this type.",
+      "fileUploadCountSingleError": "You can only upload a single file",
+      "fileUploadCountMaxError": "You can only upload {maxFiles} files",
+      "fileUploadCountMinError": "{labelText} requires {minimumRequiredFiles} files"
     }
   },
   "components": {
     "clientSideFileUpload": {
-      "javascriptEnableMessageTitle": "Mae angen i chi alluogi JavaScript i weld eich ffeiliau a ddewiswyd",
-      "description1": "Pam mae angen JavaScript?",
-      "description2": "Heb JavaScript, byddwch yn gallu dewis ffeiliau i'w llwytho, ond ni fyddwch yn gallu eu gweld ar y dudalen hon.",
-      "description3": "Bydd eich ffeiliau yn dal i gael eu llwytho pan fyddwch yn clicio \"Arbed a pharhau\". Os byddwch yn ymweld â'r dudalen hon eto, byddwch yn gallu gweld eich ffeiliau a uwchlwythwyd yn flaenorol.",
-      "fileUploadBtn": "Dewiswch ffeil",
-      "filesUploadBtn": "Dewiswch ffeiliau",
+      "javascriptEnableMessageTitle": "You need to have JavaScript enabled to see your selected files",
+      "description1": "Why is JavaScript required?",
+      "description2": "Without JavaScript, you will be able to select files to upload, but you won't be able to see them on this page.",
+      "description3": "Your files will still be uploaded when you hit \"Save and continue\". If you revisit this page, you will be able to see your previously uploaded files.",
+      "fileUploadBtn": "Choose file",
+      "filesUploadBtn": "Choose files",
       "table": {
         "fileNameCol": "Enw'r ffeil",
         "fileSizeCol": "Maint y ffeil",
         "fileProgressCol": "Cynnydd",
-        "fileActionCol": "Gweithred",
-        "fileActionComplete": "Wedi gorffen",
-        "fileActionFailed": "Wedi methu",
-        "deleteBtn": "Dileu"
+        "fileActionCol": "Gweithredu",
+        "fileActionComplete": "Cyflawn",
+        "fileActionFailed": "Failed",
+        "deleteBtn": "Delete"
       }
     },
     "freeTextField": {
-      "wordCountReminder": "Mae gennych {count} gair yn weddill",
-      "wordCountRemainingError": "Mae gennych {count} gair yn ormod",
-      "wordCountError": "Gallwch nodi hyd at {count} gair",
-      "error": "Gwall:"
+      "wordCountReminder": "Mae gennych {count} o eiriau'n weddill",
+      "wordCountRemainingError": "You have {count} words too many",
+      "wordCountError": "You can enter up to {count} words",
+      "error": "Error:"
     }
   },
   "head": {
     "banner": {
-      "title": "Mae hwn yn wasanaeth newydd.",
+      "title": "This is a new service.",
       "tag": "beta"
     }
   },
