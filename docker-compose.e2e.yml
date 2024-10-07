@@ -3,9 +3,7 @@
 services:
   designer:
     container_name: designer
-    build:
-      context: .
-      dockerfile: ./designer/Dockerfile
+    image: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:latest
     ports:
       - "3000:3000"
     environment:
@@ -20,9 +18,7 @@ services:
       - localstack
   runner:
     container_name: runner
-    build:
-      context: .
-      dockerfile: ./runner/Dockerfile
+    image: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:latest
     env_file: ./docker-localstack/.awslocal.env
     ports:
       - "3009:3009"

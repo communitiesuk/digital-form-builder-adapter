@@ -102,6 +102,22 @@ jobs:
           echo LAST_COMMIT_GH=runner >> ./runner/.env
           cat ./runner/.env
 
+      - name: Set up Docker Buildx property
+        run: echo "DOCKER_BUILDKIT=1" >> $GITHUB_ENV
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: ~/.buildx/cache
+          key: ${{ runner.os }}-buildx-runner-${{ hashFiles('./runner/Dockerfile') }}-${{ hashFiles('./runner/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-runner-${{ hashFiles('./runner/Dockerfile') }}-${{ hashFiles('./runner/package.json') }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container
+
       - name: Build and push docker image
         uses: docker/build-push-action@v4
         with:
@@ -113,6 +129,8 @@ jobs:
           build-args: |
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'
+          cache-from: type=gha,scope=buildx
+          cache-to: type=gha,mode=max,scope=buildx
 
   docker-designer-build:
     runs-on: ubuntu-latest
@@ -153,6 +171,19 @@ jobs:
           echo LAST_COMMIT_GH=designer >> ./designer/.env
           cat ./designer/.env
 
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: ~/.buildx/cache
+          key: ${{ runner.os }}-buildx-runner-${{ hashFiles('./designer/Dockerfile') }}-${{ hashFiles('./designer/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-designer-${{ hashFiles('./designer/Dockerfile') }}-${{ hashFiles('./designer/package.json') }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container
+
       - name: Build and push docker image
         uses: docker/build-push-action@v4
         with:
@@ -164,6 +195,8 @@ jobs:
           build-args: |
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'
+          cache-from: type=gha,scope=buildx
+          cache-to: type=gha,mode=max,scope=buildx
 
   e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
@@ -179,10 +212,6 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
       - name: Get into the directory
         id: change-dir
         run: yarn config set enableImmutableInstalls false
@@ -190,8 +219,10 @@ jobs:
       - uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            node_modules  # Cache the installed node modules
+            **/node_modules  # Include subfolders if using workspaces
+          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
             ${{ runner.os }}-yarn  
@@ -210,6 +241,11 @@ jobs:
           echo "--  Building digital-form-builder locally  --"
           cd digital-form-builder
           yarn
+
+      - name: Injecting image into docker compose e2e
+        run: |
+          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
 
       - name: Start containers
         run: docker compose -f docker-compose.e2e.yml up -d
