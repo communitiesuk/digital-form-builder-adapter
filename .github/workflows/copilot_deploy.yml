@@ -102,11 +102,6 @@ jobs:
           echo LAST_COMMIT_GH=runner >> ./runner/.env
           cat ./runner/.env
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          driver: docker-container
-
       - name: Set up Docker Buildx property
         run: echo "DOCKER_BUILDKIT=1" >> $GITHUB_ENV
 
@@ -117,6 +112,11 @@ jobs:
           key: ${{ runner.os }}-buildx-runner
           restore-keys: |
             ${{ runner.os }}-buildx-runner
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container
 
       - name: Build and push docker image
         uses: docker/build-push-action@v4
@@ -129,8 +129,8 @@ jobs:
           build-args: |
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'
-          cache-from: type=local,src=/tmp/.buildx-cache-runner
-          cache-to: type=local,dest=/tmp/.buildx-cache-runner,mode=max
+          cache-from: type=gha,scope=buildx
+          cache-to: type=gha,mode=max,scope=buildx
 
   docker-designer-build:
     runs-on: ubuntu-latest
@@ -171,18 +171,18 @@ jobs:
           echo LAST_COMMIT_GH=designer >> ./designer/.env
           cat ./designer/.env
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          driver: docker-container
-
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache-designer
-          key: ${{ runner.os }}-buildx-designer
+          key: ${{ runner.os }}-buildx-runner
           restore-keys: |
             ${{ runner.os }}-buildx-designer
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container
 
       - name: Build and push docker image
         uses: docker/build-push-action@v4
@@ -195,8 +195,8 @@ jobs:
           build-args: |
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'
-          cache-from: type=local,src=/tmp/.buildx-cache-designer
-          cache-to: type=local,dest=/tmp/.buildx-cache-designer
+          cache-from: type=gha,scope=buildx
+          cache-to: type=gha,mode=max,scope=buildx
 
   e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
