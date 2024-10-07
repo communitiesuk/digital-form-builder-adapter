@@ -26,7 +26,7 @@ import {
 import {format, parseISO} from "date-fns";
 import nunjucks from "nunjucks";
 import {AdapterFormModel} from "../models";
-import {ComponentCollection} from "../components/ComponentCollection";
+import {ComponentCollection} from "../components";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {proceed, redirectTo} from "../util/helper";
 import {UtilHelper} from "../../utils/UtilHelper";
@@ -429,20 +429,21 @@ export class PageControllerBase {
      * Runs joi validate
      * @param value - user's answers
      * @param schema - which schema to validate against
+     * @param request
      */
-    validate(value, schema) {
-        const result = schema.validate(value, this.validationOptions);
+    validate(value, schema, request: HapiRequest) {
+        const result = schema.validate(value, validationOptions(request));
         const errors = result.error ? this.getErrors(result) : null;
 
         return {value: result.value, errors};
     }
 
-    validateForm(payload) {
-        return this.validate(payload, this.formSchema);
+    validateForm(payload, request: HapiRequest) {
+        return this.validate(payload, this.formSchema, request);
     }
 
-    validateState(newState) {
-        return this.validate(newState, this.stateSchema);
+    validateState(newState, request: HapiRequest) {
+        return this.validate(newState, this.stateSchema, request);
     }
 
     /**
@@ -685,7 +686,7 @@ export class PageControllerBase {
         const hasFilesizeError = request.payload === null;
         const preHandlerErrors = request.pre.errors;
         const payload = (request.payload || {}) as FormData;
-        const formResult: any = this.validateForm(payload);
+        const formResult: any = this.validateForm(payload, request);
         //@ts-ignore
         const state = await adapterCacheService.getState(request);
         const originalFilenames = (state || {}).originalFilenames || {};
@@ -710,7 +711,7 @@ export class PageControllerBase {
                 );
             } else {
                 formResult.errors = {
-                    titleText: "There is a problem",
+                    titleText: request.i18n.__('validation.title1'),
                     errorList: additionalValidationErrors,
                 };
             }
@@ -730,7 +731,7 @@ export class PageControllerBase {
         }
 
         const newState = this.getStateFromValidForm(formResult.value);
-        const stateResult = this.validateState(newState);
+        const stateResult = this.validateState(newState, request);
         if (stateResult.errors) {
             return this.renderWithErrors(request, h, payload, num, progress, stateResult.errors);
         }
@@ -903,11 +904,6 @@ export class PageControllerBase {
 
     get defaultNextPath() {
         return `${this.model.basePath || ""}/summary`;
-    }
-
-    // @ts-ignore
-    get validationOptions() {
-        return validationOptions;
     }
 
     get conditionOptions() {

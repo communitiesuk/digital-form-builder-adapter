@@ -5,6 +5,7 @@ import joi from "joi";
 import {FormSubmissionErrors} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {HapiRequest, HapiResponseToolkit} from "../../../types";
 import {AdapterFormModel} from "../models";
+import {validationOptions} from "./ValidationOptions";
 
 export class PlaybackUploadPageController extends PageController {
     inputComponent: AdapterFormComponent;
@@ -87,7 +88,7 @@ export class PlaybackUploadPageController extends PageController {
             const state = await adapterCacheService.getState(request);
             const {progress = []} = state;
             const {payload} = request;
-            const result = this.formSchema.validate(payload, this.validationOptions);
+            const result = this.formSchema.validate(payload, validationOptions(request));
             if (result.error) {
                 const errors = this.getErrors(result);
                 let sectionTitle = this.section?.title;

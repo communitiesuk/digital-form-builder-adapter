@@ -39,6 +39,7 @@ declare module "@hapi/hapi" {
     interface Request {
         services: Services; // plugin schmervice
         i18n: {
+            __(arg0: string): string;
             // plugin locale
             setLocale(lang: string): void;
             getLocale(request: Request): void;
