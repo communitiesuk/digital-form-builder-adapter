@@ -23,7 +23,7 @@ export class RegisterFormPublishApi implements RegisterApi {
      * the designer too!
      */
     register(server: HapiServer, options: Options) {
-        const {previewMode, forms} = options;
+        const {previewMode} = options;
         const disabledRouteDetailString =
             "A request was made however previewing is disabled. See environment variable details in runner/README.md if this error is not expected.";
 
@@ -49,7 +49,11 @@ export class RegisterFormPublishApi implements RegisterApi {
                     typeof configuration === "string"
                         ? JSON.parse(configuration)
                         : configuration;
-                await adapterCacheService.setFormConfigurationRedisCache(id, {configuration: parsedConfiguration}, request.server)
+                if (parsedConfiguration.configuration) {
+                    await adapterCacheService.setFormConfigurationRedisCache(id, parsedConfiguration, request.server)
+                } else {
+                    await adapterCacheService.setFormConfigurationRedisCache(id, {configuration: parsedConfiguration}, request.server)
+                }
                 return h.response({}).code(204);
             }
         });
@@ -107,21 +111,14 @@ export class RegisterFormPublishApi implements RegisterApi {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const keys = Object.keys(forms);
-                let id = "";
-                if (keys.length === 1) {
-                    id = keys[0];
-                }
                 const {adapterCacheService} = request.services([]);
-                const model = await adapterCacheService.getFormAdapterModel(id, request);
+                const model = await adapterCacheService.getFormAdapterModel("components", request);
                 if (model) {
-                    return PluginUtil.getStartPageRedirect(request, h, id, model);
+                    return PluginUtil.getStartPageRedirect(request, h, "components", model);
                 }
-
                 if (config.serviceStartPage) {
                     return h.redirect(config.serviceStartPage);
                 }
-
                 throw Boom.notFound("No default form found");
             }
         });
