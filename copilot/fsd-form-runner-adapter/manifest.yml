@@ -30,7 +30,7 @@ memory: 2048
 platform: linux/x86_64
 
 # Number of tasks that should be running in your service.
-count: 1
+count: 0
 
 # Enable running commands in your container.
 exec: true
@@ -84,7 +84,7 @@ environments:
     deployment:
       rolling: "recreate"
     count:
-      spot: 2
+      spot: 0
   uat:
     count:
       range: 0
