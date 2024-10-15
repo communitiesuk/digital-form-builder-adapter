@@ -57,7 +57,7 @@ export class RepeatingSummaryPageController extends PageController {
             //@ts-ignore
             await adapterCacheService.mergeState(request, {progress});
 
-            const viewModel = this.getViewModel(state);
+            const viewModel = this.getViewModel(state, request);
             //@ts-ignore
             viewModel.crumb = request.plugins.crumb;
 
@@ -94,7 +94,7 @@ export class RepeatingSummaryPageController extends PageController {
         };
     };
 
-    getViewModel(formData) {
+    getViewModel(formData, request) {
         const baseViewModel = super.getViewModel(formData);
         let rows;
         const answers = this.getPartialState(formData);
@@ -105,7 +105,8 @@ export class RepeatingSummaryPageController extends PageController {
             rows = this.buildTextFieldRows(
                 answers,
                 formData.metadata.form_session_identifier,
-                orderedNames
+                orderedNames,
+                request
             );
             return {
                 ...baseViewModel,
@@ -122,7 +123,7 @@ export class RepeatingSummaryPageController extends PageController {
         };
     }
 
-    buildRows(state, response) {
+    buildRows(state, response, request) {
         let form_session_identifier =
             response.request.query.form_session_identifier ?? "";
 
@@ -133,7 +134,8 @@ export class RepeatingSummaryPageController extends PageController {
             return this.buildTextFieldRows(
                 state,
                 form_session_identifier,
-                orderedNames
+                orderedNames,
+                request
             );
         }
         return this.getRowsFromAnswers(state, form_session_identifier);
@@ -214,6 +216,7 @@ export class RepeatingSummaryPageController extends PageController {
         answers,
         form_session_identifier,
         orderedNames,
+        request,
         view = false
     ) {
         const {title = ""} = this.inputComponent;
@@ -235,7 +238,7 @@ export class RepeatingSummaryPageController extends PageController {
                         form_session_identifier ? form_session_identifier : ``
                     }`,
                     //@ts-ignore
-                    text: this.options.customText?.removeText ?? "Remove",
+                    text: this.options.customText?.removeText ?? request.i18n.__('removeText'),
                     visuallyHiddenText: title,
                 },
                 values: [],

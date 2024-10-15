@@ -1,6 +1,8 @@
 {
   "viewAllApplications": "View all applications",
   "signOut": "Sign out",
+  "markAsComplete": "Do you want to mark this section as complete i8n?",
+  "removeText": "Remove",
   "validation": {
     "required": "{#label} is required",
     "max": "{#label} must be {#limit} characters or less",
