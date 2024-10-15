@@ -178,7 +178,7 @@ export class RepeatingFieldPageController extends PageController {
                     }
                 );
 
-                this.addRowsToViewContext(response, state);
+                this.addRowsToViewContext(response, state, request);
                 return response;
             }
 
@@ -207,10 +207,10 @@ export class RepeatingFieldPageController extends PageController {
         };
     }
 
-    addRowsToViewContext(response, state) {
+    addRowsToViewContext(response, state, request) {
         let rows = {};
         if (this.options!.summaryDisplayMode!.samePage) {
-            rows = this.summary.buildRows(this.getPartialState(state), response);
+            rows = this.summary.buildRows(this.getPartialState(state), response, request);
             response.source.context.details = {
                 //@ts-ignore
                 headings: this.inputComponent.options.columnTitles,
@@ -346,7 +346,7 @@ export class RepeatingFieldPageController extends PageController {
                 const {adapterCacheService} = request.services([]);
                 //@ts-ignore
                 const state = await adapterCacheService.getState(request);
-                this.addRowsToViewContext(response, state);
+                this.addRowsToViewContext(response, state, request);
                 return response;
             }
 
