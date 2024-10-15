@@ -27,16 +27,24 @@ export const plugin = {
     register: async (server: HapiServer, options: Options) => {
         const {configs} = options;
         const {adapterCacheService} = server.services([]);
-        let countOk = 0
-        let countError = 0
+        let countOk = 0;
+        let countError = 0;
         for (const config of configs) {
-            await adapterCacheService.setFormConfigurationRedisCache(config.id, config, server);
+            try {
+                await adapterCacheService.setFormConfigurationRedisCache(config.id, config, server);
+                countOk++;
+            } catch (e) {
+                countError++;
+                console.log({
+                    ...LOGGER_DATA,
+                    message: `[FORM-CACHE] error occurred while loading a form config`
+                })
+            }
         }
         console.log({
             ...LOGGER_DATA,
             message: `[FORM-CACHE] number of forms loaded into cache ok[${countOk}] error[${countError}]`
         })
-
         new RegisterFormPublishApi().register(server, options);
     }
 };
