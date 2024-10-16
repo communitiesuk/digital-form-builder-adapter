@@ -1,7 +1,7 @@
 {
   "metadata": {},
   "startPage": "/your-funding-request",
-  "name": "Apply for expression of interest in applying for the Community Ownership Fund  2025 - EOI",
+  "name": "Apply for expression of interest in applying for the Community Ownership Fund 2025",
   "pages": [
     {
       "path": "/your-funding-request",
@@ -11,20 +11,20 @@
           "name": "WbRhdz",
           "options": {},
           "type": "Html",
-          "content": "<p class=\"govuk-body\"><b>In this section, we'll ask:</b></p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>what you plan to use COF25-EOI funding for</li>\n  <li>if the leasehold you are buying will have at least 15 years (if applicable)</li>\n  <li>how much capital funding you are requesting</li>\n  <li>if you plan to request any revenue funding</li>\n  <li>if you plan to secure match funding (either cash or in-kind)</li>\n  <li>where you plan to source match funding (if applicable)</li>\n  <li>what progress you have made to secure this funding (if applicable)</li>\n  <li>if your project includes an element of housing</li>\n  <li>if you need planning permission for your project</li>\n  <li>what stage you are at in securing planning permission (if applicable)</li>\n</ul>",
+          "content": "<p class=\"govuk-body\"><b>In this section, we'll ask:</b></p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>what you plan to use COF25 funding for</li>\n  <li>if the leasehold you are buying will have at least 15 years (if applicable)</li>\n  <li>how much capital funding you are requesting</li>\n  <li>if you plan to request any revenue funding</li>\n  <li>if you plan to secure match funding (either cash or in-kind)</li>\n  <li>where you plan to source match funding (if applicable)</li>\n  <li>what progress you have made to secure this funding (if applicable)</li>\n  <li>if your project includes an element of housing</li>\n  <li>if you need planning permission for your project</li>\n  <li>what stage you are at in securing planning permission (if applicable)</li>\n</ul>",
           "schema": {}
         }
       ],
       "next": [
         {
-          "path": "/what-do-you-plan-to-use-cof25-eois-funding-for"
+          "path": "/what-do-you-plan-to-use-cof25s-funding-for"
         }
       ],
       "controller": "./pages/start.js"
     },
     {
-      "path": "/what-do-you-plan-to-use-cof25-eois-funding-for",
-      "title": "What do you plan to use COF25-EOI's funding for?",
+      "path": "/what-do-you-plan-to-use-cof25s-funding-for",
+      "title": "What do you plan to use COF25's funding for?",
       "components": [
         {
           "name": "aocRmv",
@@ -32,7 +32,7 @@
             "hideTitle": true
           },
           "type": "CheckboxesField",
-          "title": "What do you plan to use COF25-EOI's funding for?",
+          "title": "What do you plan to use COF25's funding for?",
           "list": "xMbcbn",
           "schema": {}
         }
@@ -43,7 +43,7 @@
           "condition": "zuMnTE"
         },
         {
-          "path": "/how-much-capital-funding-are-you-requesting-from-cof25-eoi",
+          "path": "/how-much-capital-funding-are-you-requesting-from-cof25",
           "condition": "xTzWDE"
         }
       ],
@@ -65,25 +65,25 @@
       ],
       "next": [
         {
-          "path": "/how-much-capital-funding-are-you-requesting-from-cof25-eoi"
+          "path": "/how-much-capital-funding-are-you-requesting-from-cof25"
         }
       ],
       "section": "seZPbt"
     },
     {
-      "path": "/how-much-capital-funding-are-you-requesting-from-cof25-eoi",
-      "title": "How much capital funding are you requesting from COF25-EOI?",
+      "path": "/how-much-capital-funding-are-you-requesting-from-cof25",
+      "title": "How much capital funding are you requesting from COF25?",
       "components": [
         {
           "name": "fZAMFv",
           "options": {
             "prefix": "£",
             "hideTitle": true,
-            "customValidationMessage": "How much capital funding are you requesting from COF25-EOI? must be 2000000 or less"
+            "customValidationMessage": "How much capital funding are you requesting from COF25? must be 2000000 or less"
           },
           "type": "NumberField",
-          "title": "How much capital funding are you requesting from COF25-EOI?",
-          "hint": "<label for='fZAMFv'>Capital costs are the costs of buying or leasing your asset and paying for refurbishment. You can apply for up to £2 million (<span class='govuk-!-font-size-19'>£2000000</span>) in capital costs from COF25-EOI.<br><br>Enter the amount using only numerals, for example, 1500000</label>",
+          "title": "How much capital funding are you requesting from COF25?",
+          "hint": "<label for='fZAMFv'>Capital costs are the costs of buying or leasing your asset and paying for refurbishment. You can apply for up to £2 million (<span class='govuk-!-font-size-19'>£2000000</span>) in capital costs from COF25.<br><br>Enter the amount using only numerals, for example, 1500000</label>",
           "schema": {
             "max": 2000000
           }
@@ -164,7 +164,7 @@
           "name": "YHpwEv",
           "options": {},
           "type": "Html",
-          "content": "<p class=\"govuk-body\"><a href=\"https://www.gov.uk/government/publications/community-ownership-fund-prospectus/community-ownership-fund-prospectus--3#funding-available\" class=\"govuk-link\">See Section 9 of the COF25-EOI prospectus for details on match funding requirements and eligible types of match funding</a>.</p>",
+          "content": "<p class=\"govuk-body\"><a href=\"https://www.gov.uk/government/publications/community-ownership-fund-prospectus/community-ownership-fund-prospectus--3#funding-available\" class=\"govuk-link\">See Section 9 of the COF25 prospectus for details on match funding requirements and eligible types of match funding</a>.</p>",
           "schema": {}
         },
         {
@@ -297,7 +297,7 @@
   ],
   "lists": [
     {
-      "title": "COF25-EOI funding for",
+      "title": "COF25 funding for",
       "name": "xMbcbn",
       "type": "string",
       "items": [
@@ -559,7 +559,7 @@
             "field": {
               "name": "aocRmv",
               "type": "CheckboxesField",
-              "display": "What do you plan to use COF25-EOI's funding for?"
+              "display": "What do you plan to use COF25's funding for?"
             },
             "operator": "contains",
             "value": {
@@ -573,7 +573,7 @@
             "field": {
               "name": "aocRmv",
               "type": "CheckboxesField",
-              "display": "What do you plan to use COF25-EOI's funding for?"
+              "display": "What do you plan to use COF25's funding for?"
             },
             "operator": "contains",
             "value": {
@@ -595,7 +595,7 @@
             "field": {
               "name": "aocRmv",
               "type": "CheckboxesField",
-              "display": "What do you plan to use COF25-EOI's funding for?"
+              "display": "What do you plan to use COF25's funding for?"
             },
             "operator": "contains",
             "value": {
@@ -609,7 +609,7 @@
             "field": {
               "name": "aocRmv",
               "type": "CheckboxesField",
-              "display": "What do you plan to use COF25-EOI's funding for?"
+              "display": "What do you plan to use COF25's funding for?"
             },
             "operator": "contains",
             "value": {

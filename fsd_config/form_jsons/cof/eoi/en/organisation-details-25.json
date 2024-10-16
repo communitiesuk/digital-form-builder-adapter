@@ -1,7 +1,7 @@
 {
   "metadata": {},
   "startPage": "/organisation-details",
-  "name": "Apply for expression of interest in applying for the Community Ownership Fund 2025 - EOI",
+  "name": "Apply for expression of interest in applying for the Community Ownership Fund 2025",
   "pages": [
     {
       "title": "Organisation details",
@@ -85,7 +85,7 @@
           "options": {},
           "type": "Details",
           "title": "Help with organisation type",
-          "content": "<p><a href=\"https://www.gov.uk/government/publications/community-ownership-fund-prospectus/community-ownership-fund-prospectus--3#whocanapply\" class=\"govuk-link\">See Section 6 of the COF25-EOI prospectus for a list of eligible organisations</a>. If your organisation has not yet registered as a company or charity, select 'not yet incorporated'</p>",
+          "content": "<p><a href=\"https://www.gov.uk/government/publications/community-ownership-fund-prospectus/community-ownership-fund-prospectus--3#whocanapply\" class=\"govuk-link\">See Section 6 of the COF25 prospectus for a list of eligible organisations</a>. If your organisation has not yet registered as a company or charity, select 'not yet incorporated'</p>",
           "schema": {}
         },
         {
