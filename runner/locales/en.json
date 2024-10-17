@@ -20,6 +20,7 @@
     "dateMax": "{#label} must be the same as or before {#limit}",
     "selectRequired": "{#label} is required",
     "title1": "There is a problem",
+    "title2": "Fix the following errors",
     "fileUpload": {
       "filePartiallyUploadError": "The files have not fully uploaded",
       "fileUploadSizeError": "File must be under ",
@@ -27,7 +28,14 @@
       "fileUploadTypeError": "You can't upload files of this type.",
       "fileUploadCountSingleError": "You can only upload a single file",
       "fileUploadCountMaxError": "You can only upload {maxFiles} files",
-      "fileUploadCountMinError": "{labelText} requires {minimumRequiredFiles} files"
+      "fileUploadCountMinError": "{labelText} requires {minimumRequiredFiles} files",
+      "fileUploadSelectedFileMaxError": "The selected file must be smaller than {size}MB"
+    },
+    "ukAddressField": {
+      "invalidPostCodeError": "Enter a valid postcode"
+    },
+    "telephoneNumberField": {
+      "incorrectFormat": "Enter a telephone number in the correct format"
     }
   },
   "components": {
@@ -53,6 +61,23 @@
       "wordCountRemainingError": "You have {count} words too many",
       "wordCountError": "You can enter up to {count} words",
       "error": "Error:"
+    },
+    "markAsComplete": {
+      "error": "You must select yes or no"
+    },
+    "declaration": {
+      "error": "You must declare to be able to submit this application"
+    },
+    "ukAddressField": {
+      "addressLine1": "Address line 1",
+      "addressLine2": "Address line 2",
+      "townOrCity": "Town or city",
+      "county": "County",
+      "postcode": "Postcode"
+    },
+    "yesOrNoField": {
+      "yes": "Yes",
+      "no": "No"
     }
   },
   "head": {

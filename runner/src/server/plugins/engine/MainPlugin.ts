@@ -4,6 +4,9 @@ import {AdapterFormModel} from "./models";
 import {Options} from "./types/PluginOptions";
 import {HapiServer} from "../../types";
 import {RegisterFormPublishApi} from "./api";
+import fs from "fs";
+import Boom from "boom";
+
 
 configure([
     // Configure Nunjucks to allow rendering of content that is revealed conditionally.
@@ -26,10 +29,27 @@ export const plugin = {
         server.app.forms = {};
         // @ts-ignore
         const forms = server.app.forms;
+        let translationEn = undefined
+        let translationCy = undefined
+        try {
+            const filePathCy = path.join(__dirname, '../../../locales', `cy.json`);
+            const filePathEn = path.join(__dirname, '../../../locales', `en.json`);
+            // @ts-ignore
+            const dataCy = fs.readFileSync(filePathCy, 'utf8');
+            const dataEn = fs.readFileSync(filePathEn, 'utf8');
+            translationEn = JSON.parse(dataEn);
+            translationCy = JSON.parse(dataCy);
+        } catch (err) {
+            console.error(`Error reading translations`, err);
+            Boom.internal("Cannot read translations from the local folder")
+        }
+
         configs.forEach((config) => {
             forms[config.id] = new AdapterFormModel(config.configuration, {
                 ...modelOptions,
-                basePath: config.id
+                basePath: config.id,
+                translationEn: translationEn,
+                translationCy: translationCy
             });
         });
         options.forms = forms;
