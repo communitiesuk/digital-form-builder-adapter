@@ -90,7 +90,7 @@ export class PlaybackUploadPageController extends PageController {
             const {payload} = request;
             const result = this.formSchema.validate(payload, validationOptions(request));
             if (result.error) {
-                const errors = this.getErrors(result);
+                const errors = this.getErrors(result, request);
                 let sectionTitle = this.section?.title;
                 return h.view("upload-playback", {
                     sectionTitle: sectionTitle,

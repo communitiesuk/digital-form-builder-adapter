@@ -625,7 +625,7 @@
         },
         {
           "text": "Eisoes wedi'i llogi gan eich sefydliad",
-          "value": "Eisoes wedi'i llogi gan eich sefydliad"
+          "value": "Eisoes-wedi-i-llogi-gan-eich-sefydliad"
         }
       ]
     },
@@ -986,10 +986,10 @@
       }
     },
     {
-      "displayName": "Eisoes wedi'i llogi gan eich sefydliad - Ie",
+      "displayName": "Eisoes-wedi-i-llogi-gan-eich-sefydliad-Ie",
       "name": "hWsHyx",
       "value": {
-        "name": "Eisoes wedi'i llogi gan eich sefydliad - Ie",
+        "name": "Eisoes-wedi-i-llogi-gan-eich-sefydliad-Ie",
         "conditions": [
           {
             "field": {
@@ -1000,8 +1000,8 @@
             "operator": "is",
             "value": {
               "type": "Value",
-              "value": "Eisoes wedii llogi gan eich sefydliad",
-              "display": "Eisoes wedi'i llogi gan eich sefydliad"
+              "value": "Eisoes-wedi-i-llogi-gan-eich-sefydliad",
+              "display": "Eisoes-wedi-i-llogi-gan-eich-sefydliad"
             }
           }
         ]

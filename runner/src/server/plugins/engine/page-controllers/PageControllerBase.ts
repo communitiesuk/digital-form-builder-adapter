@@ -389,7 +389,7 @@ export class PageControllerBase {
      * Parses the errors from joi.validate so they can be rendered by govuk-frontend templates
      * @param validationResult - provided by joi.validate
      */
-    getErrors(validationResult): FormSubmissionErrors | undefined {
+    getErrors(validationResult, request: HapiRequest): FormSubmissionErrors | undefined {
         if (validationResult && validationResult.error) {
             const isoRegex = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/;
 
@@ -414,7 +414,7 @@ export class PageControllerBase {
             });
 
             return {
-                titleText: this.errorSummaryTitle,
+                titleText: request.i18n.__('validation.title2'),
                 errorList: errorList.filter(
                     ({text}, index) =>
                         index === errorList.findIndex((err) => err.text === text)
@@ -433,7 +433,7 @@ export class PageControllerBase {
      */
     validate(value, schema, request: HapiRequest) {
         const result = schema.validate(value, validationOptions(request));
-        const errors = result.error ? this.getErrors(result) : null;
+        const errors = result.error ? this.getErrors(result, request) : null;
 
         return {value: result.value, errors};
     }
@@ -697,7 +697,7 @@ export class PageControllerBase {
         const progress = state.progress || [];
         const {num} = request.query;
 
-        this.validatingForErrors(hasFilesizeError, fileFields, formResult, preHandlerErrors);
+        this.validatingForErrors(hasFilesizeError, fileFields, formResult, preHandlerErrors, request);
 
         const additionalValidationErrors = await this.validateComponentFunctions(request, viewModel);
         if (additionalValidationErrors.length > 0) {
@@ -759,19 +759,19 @@ export class PageControllerBase {
         await adapterCacheService.mergeState(request, update, nullOverride, arrayMerge);
     }
 
-    private validatingForErrors(hasFilesizeError: boolean, fileFields, formResult: any, preHandlerErrors) {
+    private validatingForErrors(hasFilesizeError: boolean, fileFields, formResult: any, preHandlerErrors, request: HapiRequest) {
         if (hasFilesizeError) {
             const reformattedErrors = fileFields.map((field) => {
                 return {
                     path: field.name,
                     href: `#${field.name}`,
                     name: field.name,
-                    text: `The selected file must be smaller than ${config.maxFileSizeStringInMb}MB`,
+                    text: request.i18n.__('validation.fileUpload.fileUploadSelectedFileMaxError').replace("{size}", config.maxFileSizeStringInMb),
                 };
             });
 
             formResult.errors = Object.is(formResult.errors, null)
-                ? {titleText: "Fix the following errors"}
+                ? {titleText: request.i18n.__('validation.title2'),}
                 : formResult.errors;
             formResult.errors.errorList = reformattedErrors;
         }
@@ -798,7 +798,7 @@ export class PageControllerBase {
             });
 
             formResult.errors = Object.is(formResult.errors, null)
-                ? {titleText: "Fix the following errors"}
+                ? {titleText: request.i18n.__('validation.title2'),}
                 : formResult.errors;
             formResult.errors.errorList = reformattedErrors;
         }
@@ -908,10 +908,6 @@ export class PageControllerBase {
 
     get conditionOptions() {
         return this.model.conditionOptions;
-    }
-
-    get errorSummaryTitle() {
-        return "Fix the following errors";
     }
 
     /**

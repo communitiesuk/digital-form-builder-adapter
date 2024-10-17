@@ -54,6 +54,8 @@ export class AdapterFormModel {
 
     feeOptions: AdapterFormDefinition["feeOptions"];
     specialPages: AdapterFormDefinition["specialPages"];
+    translationEn: any;
+    translationCy: any;
 
     constructor(def, options) {
         //@ts-ignore
@@ -107,6 +109,11 @@ export class AdapterFormModel {
         this.startPage = this.pages.find((page) => page.path === def.startPage);
         this.specialPages = def.specialPages;
         this.feeOptions = {...DEFAULT_FEE_OPTIONS, ...def.feeOptions};
+
+        if (options && options.translationEn && options.translationCy) {
+            this.translationEn = options.translationEn;
+            this.translationCy = options.translationCy;
+        }
     }
 
     /**

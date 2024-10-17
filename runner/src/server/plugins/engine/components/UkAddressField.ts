@@ -37,18 +37,20 @@ export class UkAddressField extends AdapterFormComponent {
         const stateSchema = buildStateSchema("date", this);
         const isRequired = !("required" in options && options.required === false);
 
-        let addressLine1Title = "Address line 1";
-        let addressLine2Title = "Address line 2";
-        let townCityText = "Town or city";
-        let county = "County";
-        let postcode = "Postcode";
+        let addressLine1Title = model.options.translationEn.components.ukAddressField.addressLine1;
+        let addressLine2Title = model.options.translationEn.components.ukAddressField.addressLine2;
+        let townCityText = model.options.translationEn.components.ukAddressField.townOrCity;
+        let county = model.options.translationEn.components.ukAddressField.county;
+        let postcode = model.options.translationEn.components.ukAddressField.postcode;
+        let invalidPostCodeError = model.options.translationEn.validation.ukAddressField.invalidPostCodeError;
 
         if (model.def.metadata?.isWelsh) {
-            addressLine1Title = "Llinell cyfeiriad 1";
-            addressLine2Title = "Llinell cyfeiriad 2";
-            townCityText = "Tref neu ddinas";
-            county = "Sir";
-            postcode = "Cod post";
+            addressLine1Title = model.options.translationCy.components.ukAddressField.addressLine1;
+            addressLine2Title = model.options.translationCy.components.ukAddressField.addressLine2;
+            townCityText = model.options.translationCy.components.ukAddressField.townOrCity;
+            county = model.options.translationCy.components.ukAddressField.county;
+            postcode = model.options.translationCy.components.ukAddressField.postcode;
+            invalidPostCodeError = model.options.translationCy.validation.ukAddressField.invalidPostCodeError;
         }
 
         const childrenList: any = [
@@ -100,8 +102,8 @@ export class UkAddressField extends AdapterFormComponent {
                 options: {
                     required: isRequired,
                     customValidationMessages: {
-                        "string.max": "Enter a valid postcode",
-                        "string.pattern.base": "Enter a valid postcode",
+                        "string.max": invalidPostCodeError,
+                        "string.pattern.base": invalidPostCodeError,
                     },
                     classes: "govuk-!-width-one-half",
                     optionalText: false,

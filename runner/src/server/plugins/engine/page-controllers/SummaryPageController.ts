@@ -207,8 +207,7 @@ export class SummaryPageController extends PageController {
                 const {declaration} = request.payload as { declaration?: any; };
 
                 if (!declaration) {
-                    request.yar.flash("declarationError",
-                        "You must declare to be able to submit this application");
+                    request.yar.flash("declarationError", request.i18n.__('components.declaration.error'));
                     const url = request.headers.referer ?? request.path;
                     return redirectTo(request, h, `${url}#declaration`);
                 }
@@ -219,7 +218,7 @@ export class SummaryPageController extends PageController {
             if (summaryViewModel.markAsCompleteComponent) {
                 const {markAsComplete} = request.payload as { markAsComplete?: any };
                 if (!markAsComplete) {
-                    request.yar.flash("markAsCompleteError", "You must select yes or no");
+                    request.yar.flash("markAsCompleteError", request.i18n.__('components.markAsComplete.error'));
                     return redirectTo(request, h, `${request.headers.referer}#markAsComplete`);
                 }
                 summaryViewModel.addMarkAsCompleteAsQuestion(
