@@ -16,6 +16,7 @@ import {
 } from "../../../digital-form-builder/runner/src/server/services";
 import {AdapterCacheService, S3UploadService} from "./services";
 import {AdapterStatusService} from "./services";
+import {TranslationLoaderService} from "./plugins/engine/service/TranslationLoaderService";
 
 export type Services = (services: string[]) => {
     adapterCacheService: AdapterCacheService;
@@ -24,6 +25,7 @@ export type Services = (services: string[]) => {
     s3UploadService: S3UploadService;
     webhookService: WebhookService;
     adapterStatusService: AdapterStatusService;
+    translationLoaderService: TranslationLoaderService;
 };
 
 export type RouteConfig = {

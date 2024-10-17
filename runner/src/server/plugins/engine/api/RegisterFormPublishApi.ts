@@ -12,8 +12,7 @@ import {
 import {PluginSpecificConfiguration} from "@hapi/hapi";
 import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
-import path from "path";
-import fs from "fs";
+import {Localization} from "../service/TranslationLoaderService";
 
 export class RegisterFormPublishApi implements RegisterApi {
 
@@ -36,7 +35,8 @@ export class RegisterFormPublishApi implements RegisterApi {
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
             },
-            handler: (request: HapiRequest, h: HapiResponseToolkit) => {
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                const {translationLoaderService} = request.services([]);
                 if (!previewMode) {
                     request.logger.error(
                         [`POST /publish`, "previewModeError"],
@@ -47,21 +47,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                 const payload = request.payload as FormPayload;
                 const {id, configuration} = payload;
 
-                // translations that needs for the component level
-                let translationEn = undefined
-                let translationCy = undefined
-                try {
-                    const filePathCy = path.join(__dirname, '../../../../locales', `cy.json`);
-                    const filePathEn = path.join(__dirname, '../../../../locales', `en.json`);
-                    // @ts-ignore
-                    const dataCy = fs.readFileSync(filePathCy, 'utf8');
-                    const dataEn = fs.readFileSync(filePathEn, 'utf8');
-                    translationEn = JSON.parse(dataEn);
-                    translationCy = JSON.parse(dataCy);
-                } catch (err) {
-                    console.error(`Error reading translations`, err);
-                    Boom.internal("Cannot read translations from the local folder")
-                }
+                const translations: Localization = await translationLoaderService.getTranslations()
 
                 const parsedConfiguration =
                     typeof configuration === "string"
@@ -70,8 +56,8 @@ export class RegisterFormPublishApi implements RegisterApi {
                 forms[id] = new AdapterFormModel(parsedConfiguration, {
                     ...modelOptions,
                     basePath: id,
-                    translationEn: translationEn,
-                    translationCy: translationCy
+                    translationEn: translations.en,
+                    translationCy: translations.cy
                 });
                 return h.response({}).code(204);
             }

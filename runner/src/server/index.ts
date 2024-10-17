@@ -38,6 +38,7 @@ import clientSideUploadPlugin from "./plugins/ClientSideUploadPlugin";
 import {MockUploadService} from "./services/MockUploadService";
 import {catboxProvider} from "./services/AdapterCacheService";
 import LanguagePlugin from "./plugins/LanguagePlugin";
+import {TranslationLoaderService} from "./plugins/engine/service/TranslationLoaderService";
 
 const serverOptions = (): ServerOptions => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -130,7 +131,7 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(pluginAuth);
     await server.register(LanguagePlugin);
 
-    server.registerService([AdapterCacheService, NotifyService, PayService, WebhookService, AddressService]);
+    server.registerService([AdapterCacheService, NotifyService, PayService, WebhookService, AddressService, TranslationLoaderService]);
     if (config.isE2EModeEnabled && config.isE2EModeEnabled == "true") {
         console.log("E2E Mode enabled")
         server.registerService([Schmervice.withName("s3UploadService", MockUploadService),]);
