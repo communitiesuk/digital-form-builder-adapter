@@ -38,7 +38,7 @@ export class UkAddressField extends AdapterFormComponent {
         const isRequired = !("required" in options && options.required === false);
 
         let addressLine1Title = model.options.translationEn.components.ukAddressField.addressLine1;
-        let addressLine2Title = model.options.translationEn.components.ukAddressField.addressLine1;
+        let addressLine2Title = model.options.translationEn.components.ukAddressField.addressLine2;
         let townCityText = model.options.translationEn.components.ukAddressField.townOrCity;
         let county = model.options.translationEn.components.ukAddressField.county;
         let postcode = model.options.translationEn.components.ukAddressField.postcode;
@@ -46,7 +46,7 @@ export class UkAddressField extends AdapterFormComponent {
 
         if (model.def.metadata?.isWelsh) {
             addressLine1Title = model.options.translationCy.components.ukAddressField.addressLine1;
-            addressLine2Title = model.options.translationCy.components.ukAddressField.addressLine1;
+            addressLine2Title = model.options.translationCy.components.ukAddressField.addressLine2;
             townCityText = model.options.translationCy.components.ukAddressField.townOrCity;
             county = model.options.translationCy.components.ukAddressField.county;
             postcode = model.options.translationCy.components.ukAddressField.postcode;
