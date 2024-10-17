@@ -29,6 +29,8 @@ export const plugin = {
         server.app.forms = {};
         // @ts-ignore
         const forms = server.app.forms;
+
+        // translations that needs for the component level
         let translationEn = undefined
         let translationCy = undefined
         try {
