@@ -29,7 +29,7 @@
       "fileUploadCountSingleError": "Dim ond un ffeil y gallwch ei uwchlwytho",
       "fileUploadCountMaxError": "Dim ond ffeiliau {maxFiles} y gallwch chi eu huwchlwytho",
       "fileUploadCountMinError": "Mae {labelText} angen {minimumRequiredFiles} ffeil",
-      "fileUploadSelectedFileMaxError": "(cy) The selected file must be smaller than {size}MB"
+      "fileUploadSelectedFileMaxError": "Rhaid i'r ffeil a ddewiswyd fod yn llai na {size}MB"
     },
     "ukAddressField": {
       "invalidPostCodeError": "Rhowch god post dilys"
