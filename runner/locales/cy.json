@@ -4,69 +4,69 @@
   "markAsComplete": "A ydych chi eisiau marcio bod yr adran hon wedi'i chwblhau?",
   "removeText": "Dileu",
   "validation": {
-    "required": "(cy) {#label} is required",
-    "max": "(cy) {#label} must be {#limit} characters or less",
-    "min": "(cy) {#label} must be {#limit} characters or more",
-    "regex": "(cy) enter a valid {#label}",
-    "email": "(cy) {#label} must be a valid email address",
-    "number": "(cy) {#label} must be a number",
-    "numberMin": "(cy) {#label} must be {#limit} or higher",
-    "numberMax": "(cy) {#label} must be {#limit} or lower",
-    "format": "(cy) Enter a valid {#label}",
-    "maxWords": "(cy) {#label} must be {#limit} words or fewer",
-    "dateRequired": "(cy) {#label} must be a real date",
-    "dateFormat": "(cy) {#label} must be a real date",
-    "dateMin": "(cy) {#label} must be the same as or after {#limit}",
-    "dateMax": "(cy) {#label} must be the same as or before {#limit}",
-    "selectRequired": "(cy) {#label} is required",
-    "title1": "(cy) There is a problem",
+    "required": "{#label} yn ofynnol",
+    "max": "{#label} rhaid iddo fod yn {#limit} nod neu lai",
+    "min": "{#label} rhaid iddo fod yn {#limit} nod neu fwy",
+    "regex": "rhowch {#label} dilys",
+    "email": "{#label} rhaid iddo fod yn gyfeiriad e-bost dilys",
+    "number": "{#label} rhaid bod yn rhif",
+    "numberMin": "{#label} rhaid iddo fod yn {#limit} neu'n uwch",
+    "numberMax": "{#label} rhaid iddo fod yn {#limit} neu'n is",
+    "format": "Rhowch {#label} dilys",
+    "maxWords": "{#label} rhaid bod yn {#limit} o eiriau neu lai",
+    "dateRequired": "{#label} rhaid bod yn ddyddiad go iawn",
+    "dateFormat": "{#label} rhaid bod yn ddyddiad go iawn",
+    "dateMin": "{#label} rhaid bod yr un peth â neu ar ôl {#limit}",
+    "dateMax": "{#label} rhaid bod yr un peth â neu cyn {#limit}",
+    "selectRequired": "{#label} yn ofynnol",
+    "title1": "Mae yna broblem",
     "title2": "(cy) Fix the following errors",
     "fileUpload": {
-      "filePartiallyUploadError": "(cy) The files have not fully uploaded",
-      "fileUploadSizeError": "(cy) File must be under ",
-      "fileUploadCombinedSizeError": "(cy) Combined filesize must be under ",
-      "fileUploadTypeError": "(cy) You can't upload files of this type.",
-      "fileUploadCountSingleError": "(cy) You can only upload a single file",
-      "fileUploadCountMaxError": "(cy) You can only upload {maxFiles} files",
-      "fileUploadCountMinError": "(cy) {labelText} requires {minimumRequiredFiles} files",
+      "filePartiallyUploadError": "Nid yw'r ffeiliau wedi'u llwytho i fyny yn llawn",
+      "fileUploadSizeError": "Rhaid i'r ffeil fod o dan ",
+      "fileUploadCombinedSizeError": "Rhaid i faint ffeiliau cyfun fod o dan ",
+      "fileUploadTypeError": "Ni allwch uwchlwytho ffeiliau o'r math hwn.",
+      "fileUploadCountSingleError": "Dim ond un ffeil y gallwch ei uwchlwytho",
+      "fileUploadCountMaxError": "Dim ond ffeiliau {maxFiles} y gallwch chi eu huwchlwytho",
+      "fileUploadCountMinError": "Mae {labelText} angen {minimumRequiredFiles} ffeil",
       "fileUploadSelectedFileMaxError": "(cy) The selected file must be smaller than {size}MB"
     },
     "ukAddressField": {
-      "invalidPostCodeError": "(cy) Enter a valid postcode"
+      "invalidPostCodeError": "Rhowch god post dilys"
     },
     "telephoneNumberField": {
-      "incorrectFormat": "(cy) Enter a telephone number in the correct format"
+      "incorrectFormat": "Rhowch rif ffôn yn y fformat cywir"
     }
   },
   "components": {
     "clientSideFileUpload": {
-      "javascriptEnableMessageTitle": "(cy) You need to have JavaScript enabled to see your selected files",
-      "description1": "(cy) Why is JavaScript required?",
-      "description2": "(cy) Without JavaScript, you will be able to select files to upload, but you won't be able to see them on this page.",
-      "description3": "(cy) Your files will still be uploaded when you hit \"Save and continue\". If you revisit this page, you will be able to see your previously uploaded files.",
-      "fileUploadBtn": "(cy) Choose file",
-      "filesUploadBtn": "(cy) Choose files",
+      "javascriptEnableMessageTitle": "Mae angen i chi alluogi JavaScript i weld y ffeiliau a ddewiswyd gennych",
+      "description1": "Pam fod angen JavaScript?",
+      "description2": "Heb JavaScript, byddwch yn gallu dewis ffeiliau i'w huwchlwytho, ond ni fyddwch yn gallu eu gweld ar y dudalen hon.",
+      "description3": "Bydd eich ffeiliau yn dal i gael eu llwytho i fyny pan fyddwch yn taro \"Cadw a pharhau\". Os byddwch yn ailymweld â'r dudalen hon, byddwch yn gallu gweld eich ffeiliau a uwchlwythwyd yn flaenorol.",
+      "fileUploadBtn": "Dewiswch ffeil",
+      "filesUploadBtn": "Dewiswch ffeiliau",
       "table": {
         "fileNameCol": "Enw'r ffeil",
         "fileSizeCol": "Maint y ffeil",
         "fileProgressCol": "Cynnydd",
         "fileActionCol": "Gweithredu",
         "fileActionComplete": "Cyflawn",
-        "fileActionFailed": "(cy) Failed",
-        "deleteBtn": "(cy) Delete"
+        "fileActionFailed": "Wedi methu",
+        "deleteBtn": "Dileu"
       }
     },
     "freeTextField": {
       "wordCountReminder": "Mae gennych {count} o eiriau'n weddill",
-      "wordCountRemainingError": "(cy) You have {count} words too many",
-      "wordCountError": "(cy) You can enter up to {count} words",
-      "error": "(cy) Error:"
+      "wordCountRemainingError": "Mae gennych chi {count} o eiriau gormod",
+      "wordCountError": "Gallwch chi roi hyd at {count} o eiriau",
+      "error": "Gwall:"
     },
     "markAsComplete": {
-      "error": "(cy) You must select yes or no"
+      "error": "Rhaid i chi ddewis ie neu na"
     },
     "declaration": {
-      "error": "(cy) You must declare to be able to submit this application"
+      "error": "Rhaid i chi ddatgan eich bod yn gallu cyflwyno'r cais hwn"
     },
     "ukAddressField": {
       "addressLine1": "Llinell cyfeiriad 1",
@@ -76,14 +76,14 @@
       "postcode": "Cod post"
     },
     "yesOrNoField": {
-      "yes": "(cy) Yes",
-      "no": "(cy) No"
+      "yes": "Ie",
+      "no": "Na"
     }
   },
   "head": {
     "banner": {
-      "title": "(cy) This is a new service.",
-      "tag": "(cy) beta"
+      "title": "Mae hwn yn wasanaeth newydd.",
+      "tag": "beta"
     }
   },
   "footer": {
