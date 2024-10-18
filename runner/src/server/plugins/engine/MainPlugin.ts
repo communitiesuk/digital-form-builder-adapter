@@ -1,10 +1,8 @@
 import path from "path";
 import {configure} from "nunjucks";
-import {AdapterFormModel} from "./models";
 import {Options} from "./types/PluginOptions";
 import {HapiServer} from "../../types";
 import {RegisterFormPublishApi} from "./api";
-import {Localization} from "./service/TranslationLoaderService";
 
 
 configure([
@@ -18,29 +16,27 @@ configure([
 ]);
 
 
+const LOGGER_DATA = {
+    class: "MainPlugin",
+}
+
 export const plugin = {
     name: "@communitiesuk/runner/engine",
     dependencies: "@hapi/vision",
     multiple: true,
     register: async (server: HapiServer, options: Options) => {
-        const {modelOptions, configs} = options;
-        const {translationLoaderService} = server.services([]);
-        // @ts-ignore
-        server.app.forms = {};
-        // @ts-ignore
-        const forms = server.app.forms;
+        const {configs} = options;
+        const {adapterCacheService} = server.services([]);
+        let countOk = 0
+        let countError = 0
+        for (const config of configs) {
+            await adapterCacheService.setFormConfigurationRedisCache(config.id, config, server);
+        }
+        console.log({
+            ...LOGGER_DATA,
+            message: `[FORM-CACHE] number of forms loaded into cache ok[${countOk}] error[${countError}]`
+        })
 
-        const translations: Localization = await translationLoaderService.getTranslations()
-
-        configs.forEach((config) => {
-            forms[config.id] = new AdapterFormModel(config.configuration, {
-                ...modelOptions,
-                basePath: config.id,
-                translationEn: translations.en,
-                translationCy: translations.cy
-            });
-        });
-        options.forms = forms;
         new RegisterFormPublishApi().register(server, options);
     }
 };

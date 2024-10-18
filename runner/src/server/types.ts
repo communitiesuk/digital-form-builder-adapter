@@ -11,11 +11,11 @@ import {Logger} from "pino";
 import {RateOptions} from "../../../digital-form-builder/runner/src/server/plugins/rateLimit";
 import {
     NotifyService,
-    PayService,
-    WebhookService,
+    PayService
 } from "../../../digital-form-builder/runner/src/server/services";
 import {AdapterCacheService, S3UploadService} from "./services";
 import {AdapterStatusService} from "./services";
+import {WebhookService} from "./services/WebhookService";
 import {TranslationLoaderService} from "./plugins/engine/service/TranslationLoaderService";
 
 export type Services = (services: string[]) => {
