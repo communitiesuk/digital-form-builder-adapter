@@ -37,7 +37,7 @@ import clientSideUploadPlugin from "./plugins/ClientSideUploadPlugin";
 import {MockUploadService} from "./services/MockUploadService";
 import {catboxProvider} from "./services/AdapterCacheService";
 import LanguagePlugin from "./plugins/LanguagePlugin";
-import {TranslationLoaderService} from "./plugins/engine/service/TranslationLoaderService";
+import {TranslationLoaderService} from "./services/TranslationLoaderService";
 import {WebhookService} from "./services/WebhookService";
 
 const serverOptions = async (): Promise<ServerOptions> => {

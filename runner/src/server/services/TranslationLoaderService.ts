@@ -8,26 +8,37 @@ export type Localization = {
 }
 
 export class TranslationLoaderService {
-    async getTranslations() {
+
+    translations: Localization = {
+        en: undefined,
+        cy: undefined
+    };
+
+    constructor() {
         // translations that need for the component level will be loaded from this service
         let translationEn = undefined
         let translationCy = undefined
         try {
-            const filePathCy = path.join(__dirname, '../../../../locales', `cy.json`);
-            const filePathEn = path.join(__dirname, '../../../../locales', `en.json`);
+            const filePathCy = path.join(__dirname, '../../locales', `cy.json`);
+            const filePathEn = path.join(__dirname, '../../locales', `en.json`);
             // @ts-ignore
-            const dataCy = await fs.readFileSync(filePathCy, 'utf8');
-            const dataEn = await fs.readFileSync(filePathEn, 'utf8');
+            const dataCy = fs.readFileSync(filePathCy, 'utf8');
+            const dataEn = fs.readFileSync(filePathEn, 'utf8');
             translationEn = JSON.parse(dataEn);
             translationCy = JSON.parse(dataCy);
-            const translations: Localization = {
+            //@ts-ignore
+            this.translations = {
                 en: translationEn,
                 cy: translationCy,
             }
-            return translations;
+            console.log("Loading the translations (cy) and (en)")
         } catch (err) {
             console.error(`Error reading translations`, err);
             throw Boom.internal("Cannot read translations from the local folder")
         }
+    }
+
+    getTranslations() {
+        return this.translations;
     }
 }

@@ -16,7 +16,7 @@ import {
 import {AdapterCacheService, S3UploadService} from "./services";
 import {AdapterStatusService} from "./services";
 import {WebhookService} from "./services/WebhookService";
-import {TranslationLoaderService} from "./plugins/engine/service/TranslationLoaderService";
+import {TranslationLoaderService} from "./services/TranslationLoaderService";
 
 export type Services = (services: string[]) => {
     adapterCacheService: AdapterCacheService;
