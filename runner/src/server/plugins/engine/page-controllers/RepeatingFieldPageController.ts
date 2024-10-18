@@ -312,7 +312,10 @@ export class RepeatingFieldPageController extends PageController {
                     const {callback} = savedState;
                     if (callback && callback.callbackUrl) {
                         //@ts-ignore
-                        await adapterStatusService.outputRequests(request);
+                        const {statusCode} = await adapterStatusService.outputRequests(request);
+                        if ((statusCode === 301 || statusCode === 302) && savedState.metadata && savedState.metadata.round_close_notification_url) {
+                            return h.redirect(savedState.metadata.round_close_notification_url);
+                        }
                     }
                 }
 
