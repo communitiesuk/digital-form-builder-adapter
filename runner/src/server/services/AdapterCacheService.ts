@@ -14,6 +14,7 @@ import {HapiRequest, HapiServer} from "../types";
 import {AdapterFormModel} from "../plugins/engine/models";
 import Boom from "boom";
 import {FormConfiguration} from "@xgovformbuilder/model";
+import {AdapterSchema} from "@communitiesuk/model";
 
 const partition = "cache";
 const LOGGER_DATA = {
@@ -151,13 +152,17 @@ export class AdapterCacheService extends CacheService {
     async getFormAdapterModel(formId: string, request: HapiRequest) {
         //@ts-ignore
         const redisClient: Redis = request.server.app.redis
+        const {translationLoaderService} = request.services([]);
+        const translations = translationLoaderService.getTranslations();
         const jsonDataString = await redisClient.get(`${FORMS_KEY_PREFIX}${formId}`);
         if (jsonDataString !== null) {
             const configObj = JSON.parse(jsonDataString);
             return new AdapterFormModel(configObj.configuration, {
                 basePath: configObj.id ? configObj.id : formId,
                 hash: configObj.hash,
-                previewMode: true
+                previewMode: true,
+                translationEn: translations.en,
+                translationCy: translations.cy
             })
         }
         request.logger.error({
@@ -172,20 +177,15 @@ export class AdapterCacheService extends CacheService {
         const redisClient: Redis = request.server.app.redis;
         const keys = await redisClient.keys(`${FORMS_KEY_PREFIX}*`);
         const configs: FormConfiguration[] = []
-
         for (const key of keys) {
             const configObj = JSON.parse(await redisClient.get(`${key}`));
-            const form = new AdapterFormModel(configObj.configuration, {
-                basePath: configObj.id,
-                hash: configObj.hash,
-                previewMode: true
-            })
+            const result = AdapterSchema.validate(configObj.configuration, {abortEarly: false});
             configs.push(
                 new FormConfiguration(
                     key.replace(FORMS_KEY_PREFIX, ""),
-                    form.name,
+                    result.value.name,
                     undefined,
-                    form.def.feedback?.feedbackForm
+                    result.value.feedback?.feedbackForm
                 )
             )
         }
