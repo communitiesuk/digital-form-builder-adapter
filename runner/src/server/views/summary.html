@@ -112,7 +112,7 @@
                                                    name="markAsComplete" type="radio" value="true"
                                                    {% if markAsComplete %}checked{% endif %}>
                                             <label class="govuk-label govuk-radios__label" for="markAsComplete-yes">
-                                                Yes
+                                                {{ i18nGetTranslation("components.yesOrNoField.yes") }}
                                             </label>
                                         </div>
                                         <div class="govuk-radios__item">
@@ -120,7 +120,7 @@
                                                    name="markAsComplete" type="radio" value="false"
                                                    {% if markAsComplete == false %}checked{% endif %}>
                                             <label class="govuk-label govuk-radios__label" for="markAsComplete-no">
-                                                No
+                                                {{ i18nGetTranslation("components.yesOrNoField.no") }}
                                             </label>
                                         </div>
                                     </div>

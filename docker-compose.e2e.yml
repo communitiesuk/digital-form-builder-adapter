@@ -40,6 +40,8 @@ services:
       - PRIVACY_POLICY_URL=http://localhost:3008/privacy
       - RSA256_PUBLIC_KEY_BASE64="LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHZU1BMEdDU3FHU0liM0RRRUJBUVVBQTRHTUFEQ0JpQUtCZ0hHYnRGMXlWR1crckNBRk9JZGFrVVZ3Q2Z1dgp4SEUzOGxFL2kwS1dwTXdkU0haRkZMWW5IakJWT09oMTVFaWl6WXphNEZUSlRNdkwyRTRRckxwcVlqNktFNnR2CkhyaHlQL041ZnlwU3p0OHZDajlzcFo4KzBrRnVjVzl6eU1rUHVEaXNZdG1rV0dkeEJta2QzZ3RZcDNtT0k1M1YKVkRnS2J0b0lGVTNzSWs1TkFnTUJBQUU9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQ\=\="
       - SERVICE_START_PAGE=http://localhost:3008/account
+      - SINGLE_REDIS=true
+      - FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI=redis://redis-data:6379
     command: yarn runner production
     logging:
       driver: "json-file"
@@ -58,3 +60,7 @@ services:
     volumes:
       - ./docker-localstack:/etc/localstack/init/ready.d
       - ./localstack-data:/var/lib/localstack
+  redis-data:
+    image: redis
+    ports:
+      - 6379:6379

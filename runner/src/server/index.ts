@@ -21,7 +21,6 @@ import {
     AddressService,
     NotifyService,
     PayService,
-    WebhookService,
 } from "../../../digital-form-builder/runner/src/server/services";
 import {HapiRequest, HapiResponseToolkit, RouteConfig} from "./types";
 import getRequestInfo from "../../../digital-form-builder/runner/src/server/utils/getRequestInfo";
@@ -38,9 +37,10 @@ import clientSideUploadPlugin from "./plugins/ClientSideUploadPlugin";
 import {MockUploadService} from "./services/MockUploadService";
 import {catboxProvider} from "./services/AdapterCacheService";
 import LanguagePlugin from "./plugins/LanguagePlugin";
-import {TranslationLoaderService} from "./plugins/engine/service/TranslationLoaderService";
+import {TranslationLoaderService} from "./services/TranslationLoaderService";
+import {WebhookService} from "./services/WebhookService";
 
-const serverOptions = (): ServerOptions => {
+const serverOptions = async (): Promise<ServerOptions> => {
     const hasCertificate = config.sslKey && config.sslCert;
 
     const serverOptions: ServerOptions = {
@@ -66,7 +66,7 @@ const serverOptions = (): ServerOptions => {
                 xframe: true,
             },
         },
-        cache: [{provider: catboxProvider()}],
+        cache: [{provider: await catboxProvider()}],
     };
 
     const httpsOptions = hasCertificate
@@ -110,7 +110,7 @@ function determineLocal(request: any) {
 
 async function createServer(routeConfig: RouteConfig) {
     console.log("SERVER CREATING")
-    const server = hapi.server(serverOptions());
+    const server = hapi.server(await serverOptions());
     // @ts-ignore
     const {formFileName, formFilePath, options} = routeConfig;
 

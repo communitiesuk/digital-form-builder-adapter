@@ -56,6 +56,7 @@ export class AdapterFormModel {
     specialPages: AdapterFormDefinition["specialPages"];
     translationEn: any;
     translationCy: any;
+    hash: any;
 
     constructor(def, options) {
         //@ts-ignore
@@ -113,6 +114,9 @@ export class AdapterFormModel {
         if (options && options.translationEn && options.translationCy) {
             this.translationEn = options.translationEn;
             this.translationCy = options.translationCy;
+        }
+        if (options.hash) {
+            this.hash = options.hash
         }
     }
 

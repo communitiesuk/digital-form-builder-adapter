@@ -24,11 +24,17 @@ export class RegisterApplicationStatusApi implements RegisterApi {
                     const {adapterStatusService, adapterCacheService} = request.services([]);
                     const {params} = request;
                     //@ts-ignore
-                    const form = server.app.forms[params.id];
+                    const form = await adapterCacheService.getFormAdapterModel(params.id, request);
                     //@ts-ignore
                     const state = await adapterCacheService.getState(request);
                     //@ts-ignore
-                    const {reference: newReference} = await adapterStatusService.outputRequests(request);
+                    const response = await adapterStatusService.outputRequests(request);
+                    const {reference: newReference} = response
+                    const {statusCode} = response
+
+                    if ((statusCode === 301 || statusCode === 302) && state.metadata && state.metadata.round_close_notification_url) {
+                        return h.redirect(state.metadata.round_close_notification_url);
+                    }
 
                     if (state.callback?.skipSummary?.redirectUrl || state.callback?.returnUrl) {
                         let redirectUrl = state.callback?.skipSummary?.redirectUrl;

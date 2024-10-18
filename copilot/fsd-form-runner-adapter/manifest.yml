@@ -79,7 +79,7 @@ secrets:
 environments:
   dev:
     count:
-      spot: 1
+      spot: 2
   test:
     deployment:
       rolling: "recreate"

@@ -299,7 +299,10 @@ export class RepeatingSummaryPageController extends PageController {
 
             if (!isStartPage && savedState.metadata && savedState.webhookData) {
                 //@ts-ignore
-                await adapterStatusService.outputRequests(request);
+                const {statusCode} = await adapterStatusService.outputRequests(request);
+                if ((statusCode === 301 || statusCode === 302) && state.metadata && state.metadata.round_close_notification_url) {
+                    return h.redirect(state.metadata.round_close_notification_url);
+                }
             }
 
 
