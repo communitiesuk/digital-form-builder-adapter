@@ -20,7 +20,7 @@
     "dateMax": "{#label} rhaid bod yr un peth â neu cyn {#limit}",
     "selectRequired": "{#label} yn ofynnol",
     "title1": "Mae yna broblem",
-    "title2": "(cy) Fix the following errors",
+    "title2": "Trwsiwch y gwallau canlynol",
     "fileUpload": {
       "filePartiallyUploadError": "Nid yw'r ffeiliau wedi'u llwytho i fyny yn llawn",
       "fileUploadSizeError": "Rhaid i'r ffeil fod o dan ",
