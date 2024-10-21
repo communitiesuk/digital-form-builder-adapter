@@ -18,6 +18,8 @@
     "test:dev": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test --coverage-exclude",
     "unit-test": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test -S -v -r console -o stdout -r html -o unit-test.html -I version -l",
     "unit-test-cov": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test -t 83 -S -v -r console -o stdout -r lcov -o test-coverage/lab/lcov.info -r html -o test-coverage/lab/unit-test.html -r junit -o test-results/junit/unit-test.xml -I version -l"
+    "unit-test-cov": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test -t 83 -S -v -r console -o stdout -r lcov -o test-coverage/lab/lcov.info -r html -o test-coverage/lab/unit-test.html -r junit -o test-results/junit/unit-test.xml -I version -l",
+    "copy-local": "mkdir -p dist/digital-form-builder-adapter/runner/locales && cp ./locales/cy.json dist/digital-form-builder-adapter/runner/locales && cp ./locales/en.json dist/digital-form-builder-adapter/runner/locales"
   },
   "author": "Communities UK",
   "license": "SEE LICENSE IN LICENSE",
@@ -27,6 +29,7 @@
     "@aws-sdk/lib-storage": "3.633.0",
     "@aws-sdk/s3-request-presigner": "3.633.0",
     "dropzone": "5.9.3",
+    "hapi-i18n": "3.0.1",
     "joi": "17.13.3",
     "tinymce": "7.3.0"
   },
