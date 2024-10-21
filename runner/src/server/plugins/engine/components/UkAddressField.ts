@@ -37,18 +37,20 @@ export class UkAddressField extends AdapterFormComponent {
         const stateSchema = buildStateSchema("date", this);
         const isRequired = !("required" in options && options.required === false);
 
-        let addressLine1Title = "Address line 1";
-        let addressLine2Title = "Address line 2";
-        let townCityText = "Town or city";
-        let county = "County";
-        let postcode = "Postcode";
+        let addressLine1Title = model.options.translationEn.components.ukAddressField.addressLine1;
+        let addressLine2Title = model.options.translationEn.components.ukAddressField.addressLine2;
+        let townCityText = model.options.translationEn.components.ukAddressField.townOrCity;
+        let county = model.options.translationEn.components.ukAddressField.county;
+        let postcode = model.options.translationEn.components.ukAddressField.postcode;
+        let invalidPostCodeError = model.options.translationEn.validation.ukAddressField.invalidPostCodeError;
 
         if (model.def.metadata?.isWelsh) {
-            addressLine1Title = "Llinell cyfeiriad 1";
-            addressLine2Title = "Llinell cyfeiriad 2";
-            townCityText = "Tref neu ddinas";
-            county = "Sir";
-            postcode = "Cod post";
+            addressLine1Title = model.options.translationCy.components.ukAddressField.addressLine1;
+            addressLine2Title = model.options.translationCy.components.ukAddressField.addressLine2;
+            townCityText = model.options.translationCy.components.ukAddressField.townOrCity;
+            county = model.options.translationCy.components.ukAddressField.county;
+            postcode = model.options.translationCy.components.ukAddressField.postcode;
+            invalidPostCodeError = model.options.translationCy.validation.ukAddressField.invalidPostCodeError;
         }
 
         const childrenList: any = [
@@ -100,8 +102,8 @@ export class UkAddressField extends AdapterFormComponent {
                 options: {
                     required: isRequired,
                     customValidationMessages: {
-                        "string.max": "Enter a valid postcode",
-                        "string.pattern.base": "Enter a valid postcode",
+                        "string.max": invalidPostCodeError,
+                        "string.pattern.base": invalidPostCodeError,
                     },
                     classes: "govuk-!-width-one-half",
                     optionalText: false,
@@ -148,7 +150,7 @@ export class UkAddressField extends AdapterFormComponent {
         const value = state[name];
 
         if (typeof value === "string") {
-            return this.convertStringAnswers(name, value);
+            return this.convertStringAnswers(value, name);
         }
         return {
             [`${name}__addressLine1`]: value && value.addressLine1,
@@ -198,8 +200,8 @@ export class UkAddressField extends AdapterFormComponent {
                 value.county,
                 value.postcode,
             ]
-            .filter((p) => p && p !== "null")
-            .join(", ")
+                .filter((p) => p && p !== "null")
+                .join(", ")
             : "";
     }
 
@@ -237,45 +239,45 @@ export class UkAddressField extends AdapterFormComponent {
 
     // This method is used to solve the issue of the address fields appearing blank when
     // returning to a completed section of a form.
-    convertStringAnswers(name: string, value: any) {
-        const address = value.split(", ");
-
+    convertStringAnswers(value: any, name?: string) {
+        const prefix = name ? `${name}__` : "";
         // Initialize the address object with empty strings
         const addressObject: any = {
-            [`${name}__addressLine1`]: "",
-            [`${name}__addressLine2`]: "",
-            [`${name}__town`]: "",
-            [`${name}__county`]: "",
-            [`${name}__postcode`]: "",
+            [`${prefix}addressLine1`]: "",
+            [`${prefix}addressLine2`]: "",
+            [`${prefix}town`]: "",
+            [`${prefix}county`]: "",
+            [`${prefix}postcode`]: "",
         };
+        if (value !== "" && value !== undefined) {
+            const address = value.split(", ");
+            if (address.length === 3) {
+                // Case: "123 Main St, Sheffield, S1 2AB"
+                addressObject[`${prefix}addressLine1`] = address[0];
+                addressObject[`${prefix}town`] = address[1];
+                addressObject[`${prefix}postcode`] = address[2];
+            } else if (address.length === 4) {
+                // Case: "123 Main St, Address line 2, Sheffield, S1 2AB" or "123 Main St, Sheffield, County, S1 2AB"
+                addressObject[`${prefix}addressLine1`] = address[0];
+                addressObject[`${prefix}postcode`] = address[3];
 
-        if (address.length === 3) {
-            // Case: "123 Main St, Sheffield, S1 2AB"
-            addressObject[`${name}__addressLine1`] = address[0];
-            addressObject[`${name}__town`] = address[1];
-            addressObject[`${name}__postcode`] = address[2];
-        } else if (address.length === 4) {
-            // Case: "123 Main St, Address line 2, Sheffield, S1 2AB" or "123 Main St, Sheffield, County, S1 2AB"
-            addressObject[`${name}__addressLine1`] = address[0];
-            addressObject[`${name}__postcode`] = address[3];
-
-            // Determine if the second field is addressLine2 or town
-            if (this.isValidCounty(address[2])) {
-                addressObject[`${name}__town`] = address[1];
-                addressObject[`${name}__county`] = address[2];
-            } else {
-                addressObject[`${name}__addressLine2`] = address[1];
-                addressObject[`${name}__town`] = address[2];
+                // Determine if the second field is addressLine2 or town
+                if (this.isValidCounty(address[2])) {
+                    addressObject[`${prefix}town`] = address[1];
+                    addressObject[`${prefix}county`] = address[2];
+                } else {
+                    addressObject[`${prefix}addressLine2`] = address[1];
+                    addressObject[`${prefix}town`] = address[2];
+                }
+            } else if (address.length === 5) {
+                // Case: "123 Main St, Address line 2, Sheffield, County, S1 2AB"
+                addressObject[`${prefix}addressLine1`] = address[0];
+                addressObject[`${prefix}addressLine2`] = address[1];
+                addressObject[`${prefix}town`] = address[2];
+                addressObject[`${prefix}county`] = address[3];
+                addressObject[`${prefix}postcode`] = address[4];
             }
-        } else if (address.length === 5) {
-            // Case: "123 Main St, Address line 2, Sheffield, County, S1 2AB"
-            addressObject[`${name}__addressLine1`] = address[0];
-            addressObject[`${name}__addressLine2`] = address[1];
-            addressObject[`${name}__town`] = address[2];
-            addressObject[`${name}__county`] = address[3];
-            addressObject[`${name}__postcode`] = address[4];
         }
-
         return addressObject;
     }
 }

@@ -68,6 +68,7 @@ variables:
   SINGLE_REDIS: true
   JWT_AUTH_COOKIE_NAME: "fsd_user_token"
   ELIGIBILITY_RESULT_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
+  JWT_AUTH_ENABLED: true
 
 secrets:
   RSA256_PUBLIC_KEY_BASE64: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/RSA256_PUBLIC_KEY_BASE64
@@ -98,11 +99,7 @@ environments:
       response_time: 2s
   prod:
     http:
-      alias:
-        [
-          "forms.prod.access-funding.levellingup.gov.uk",
-          "forms.access-funding.levellingup.gov.uk",
-        ]
+      alias: forms.access-funding.levellingup.gov.uk
       hosted_zone: Z0686469NF3ZJTU9I02M
     variables:
       ACCESSIBILITY_STATEMENT_URL: "https://frontend.access-funding.levellingup.gov.uk/accessibility_statement"

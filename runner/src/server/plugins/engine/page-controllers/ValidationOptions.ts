@@ -1,56 +1,57 @@
-import { ValidationOptions } from "joi";
+import {ValidationOptions} from "joi";
+import {HapiRequest} from "../../../types";
+
 /**
  * see @link https://joi.dev/api/?v=17.4.2#template-syntax for template syntax
  */
-const messageTemplate = {
-  required: "{{#label}} is required",
-  selectRequired: "{{#label}} is required",
-  max: "{{#label}} must be {{#limit}} characters or less",
-  min: "{{#label}} must be {{#limit}} characters or more",
-  regex: "enter a valid {{#label}}",
-  email: "{{#label}} must be a valid email address",
-  number: "{{#label}} must be a number",
-  numberMin: "{{#label}} must be {{#limit}} or higher",
-  numberMax: "{{#label}} must be {{#limit}} or lower",
-  format: "Enter a valid {{#label}}",
-  maxWords: "{{#label}} must be {{#limit}} words or fewer",
-  dateRequired: "{{#label}} must be a real date",
-  dateFormat: "{{#label}} must be a real date",
-  dateMin: "{{#label}} must be the same as or after {{#limit}}",
-  dateMax: "{{#label}} must be the same as or before {{#limit}}",
+const messageTemplate = (request: HapiRequest) => {
+    return {
+        required: `${request.i18n.__('validation.required')}`,
+        selectRequired: `${request.i18n.__('validation.selectRequired')}`,
+        max: `${request.i18n.__('validation.max')}`,
+        min: `${request.i18n.__('validation.min')}`,
+        regex: `${request.i18n.__('validation.regex')}`,
+        email: `${request.i18n.__('validation.email')}`,
+        number: `${request.i18n.__('validation.number')}`,
+        numberMin: `${request.i18n.__('validation.numberMin')}`,
+        numberMax: `${request.i18n.__('validation.numberMax')}`,
+        format: `${request.i18n.__('validation.format')}`,
+        maxWords: `${request.i18n.__('validation.maxWords')}`,
+        dateRequired: `${request.i18n.__('validation.dateRequired')}`,
+        dateFormat: `${request.i18n.__('validation.dateFormat')}`,
+        dateMin: `${request.i18n.__('validation.dateMin')}`,
+        dateMax: `${request.i18n.__('validation.dateMax')}`,
+    }
 };
 
-export const messages: ValidationOptions["messages"] = {
-  "string.base": messageTemplate.required,
-  "string.min": messageTemplate.min,
-  "string.empty": messageTemplate.required,
-  "string.max": messageTemplate.max,
-  "string.email": messageTemplate.email,
-  "string.regex.base": messageTemplate.format,
-  "string.maxWords": messageTemplate.maxWords,
-
-  "number.base": messageTemplate.number,
-  "number.empty": messageTemplate.required,
-  "number.required": messageTemplate.required,
-  "number.min": messageTemplate.numberMin,
-  "number.max": messageTemplate.numberMax,
-
-  "any.required": messageTemplate.selectRequired,
-  "any.empty": messageTemplate.required,
-
-  "date.base": messageTemplate.dateRequired,
-  "date.format": messageTemplate.dateFormat,
-  "date.min": messageTemplate.dateMin,
-  "date.max": messageTemplate.dateMax,
-};
-
-export const validationOptions: ValidationOptions = {
-  abortEarly: false,
-  messages,
-  dateFormat: "iso",
-  errors: {
-    wrap: {
-      label: false,
-    },
-  },
+export const validationOptions = (request: HapiRequest): ValidationOptions => {
+    return {
+        abortEarly: false,
+        messages: {
+            "string.base": messageTemplate(request).required,
+            "string.min": messageTemplate(request).min,
+            "string.empty": messageTemplate(request).required,
+            "string.max": messageTemplate(request).max,
+            "string.email": messageTemplate(request).email,
+            "string.regex.base": messageTemplate(request).format,
+            "string.maxWords": messageTemplate(request).maxWords,
+            "number.base": messageTemplate(request).number,
+            "number.empty": messageTemplate(request).required,
+            "number.required": messageTemplate(request).required,
+            "number.min": messageTemplate(request).numberMin,
+            "number.max": messageTemplate(request).numberMax,
+            "any.required": messageTemplate(request).selectRequired,
+            "any.empty": messageTemplate(request).required,
+            "date.base": messageTemplate(request).dateRequired,
+            "date.format": messageTemplate(request).dateFormat,
+            "date.min": messageTemplate(request).dateMin,
+            "date.max": messageTemplate(request).dateMax,
+        },
+        dateFormat: "iso",
+        errors: {
+            wrap: {
+                label: false,
+            },
+        },
+    }
 };

@@ -26,7 +26,7 @@ import {
 import {format, parseISO} from "date-fns";
 import nunjucks from "nunjucks";
 import {AdapterFormModel} from "../models";
-import {ComponentCollection} from "../components/ComponentCollection";
+import {ComponentCollection} from "../components";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {proceed, redirectTo} from "../util/helper";
 import {UtilHelper} from "../../utils/UtilHelper";
@@ -297,6 +297,24 @@ export class PageControllerBase {
         return this[ADDITIONAL_VALIDATION_FUNCTIONS];
     }
 
+    hasDataInThePage(state: FormSubmissionState): boolean {
+        if (this.pageDef.section && state[this.pageDef.section]) {
+            for (let component of this.pageDef.components) {
+                if (state[this.pageDef.section][component.name] !== undefined) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            for (let component of this.pageDef.components) {
+                if (state[component.name] !== undefined) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     /**
      * returns the path to the next page
      */
@@ -371,7 +389,7 @@ export class PageControllerBase {
      * Parses the errors from joi.validate so they can be rendered by govuk-frontend templates
      * @param validationResult - provided by joi.validate
      */
-    getErrors(validationResult): FormSubmissionErrors | undefined {
+    getErrors(validationResult, request: HapiRequest): FormSubmissionErrors | undefined {
         if (validationResult && validationResult.error) {
             const isoRegex = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/;
 
@@ -396,7 +414,7 @@ export class PageControllerBase {
             });
 
             return {
-                titleText: this.errorSummaryTitle,
+                titleText: request.i18n.__('validation.title2'),
                 errorList: errorList.filter(
                     ({text}, index) =>
                         index === errorList.findIndex((err) => err.text === text)
@@ -411,20 +429,21 @@ export class PageControllerBase {
      * Runs joi validate
      * @param value - user's answers
      * @param schema - which schema to validate against
+     * @param request
      */
-    validate(value, schema) {
-        const result = schema.validate(value, this.validationOptions);
-        const errors = result.error ? this.getErrors(result) : null;
+    validate(value, schema, request: HapiRequest) {
+        const result = schema.validate(value, validationOptions(request));
+        const errors = result.error ? this.getErrors(result, request) : null;
 
         return {value: result.value, errors};
     }
 
-    validateForm(payload) {
-        return this.validate(payload, this.formSchema);
+    validateForm(payload, request: HapiRequest) {
+        return this.validate(payload, this.formSchema, request);
     }
 
-    validateState(newState) {
-        return this.validate(newState, this.stateSchema);
+    validateState(newState, request: HapiRequest) {
+        return this.validate(newState, this.stateSchema, request);
     }
 
     /**
@@ -488,6 +507,13 @@ export class PageControllerBase {
             const lang = this.langFromRequest(request);
             //@ts-ignore
             let state = await adapterCacheService.getState(request);
+            if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
+                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+                if (form_session_identifier) {
+                    return redirectTo(request, h, `/${this.model.basePath}/summary?form_session_identifier=${form_session_identifier}`)
+                }
+                return redirectTo(request, h, `/${this.model.basePath}/summary`);
+            }
             const progress = state.progress || [];
             const {num} = request.query;
             const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
@@ -528,6 +554,7 @@ export class PageControllerBase {
                     }
                 });
             }
+            request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary details ${JSON.stringify(formData)}`);
             const viewModel = this.getViewModel(formData, num);
             viewModel.startPage = startPage!.startsWith("http")
                 ? redirectTo(request, h, startPage!)
@@ -603,9 +630,8 @@ export class PageControllerBase {
             } else {
                 this.backLink = viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
             }
-
             viewModel.continueButtonText = "Save and continue"
-
+            request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary value ${JSON.stringify(viewModel.components)}`);
             return h.view(this.viewName, viewModel);
         };
     }
@@ -660,7 +686,7 @@ export class PageControllerBase {
         const hasFilesizeError = request.payload === null;
         const preHandlerErrors = request.pre.errors;
         const payload = (request.payload || {}) as FormData;
-        const formResult: any = this.validateForm(payload);
+        const formResult: any = this.validateForm(payload, request);
         //@ts-ignore
         const state = await adapterCacheService.getState(request);
         const originalFilenames = (state || {}).originalFilenames || {};
@@ -671,7 +697,7 @@ export class PageControllerBase {
         const progress = state.progress || [];
         const {num} = request.query;
 
-        this.validatingForErrors(hasFilesizeError, fileFields, formResult, preHandlerErrors);
+        this.validatingForErrors(hasFilesizeError, fileFields, formResult, preHandlerErrors, request);
 
         const additionalValidationErrors = await this.validateComponentFunctions(request, viewModel);
         if (additionalValidationErrors.length > 0) {
@@ -685,7 +711,7 @@ export class PageControllerBase {
                 );
             } else {
                 formResult.errors = {
-                    titleText: "There is a problem",
+                    titleText: request.i18n.__('validation.title1'),
                     errorList: additionalValidationErrors,
                 };
             }
@@ -705,7 +731,7 @@ export class PageControllerBase {
         }
 
         const newState = this.getStateFromValidForm(formResult.value);
-        const stateResult = this.validateState(newState);
+        const stateResult = this.validateState(newState, request);
         if (stateResult.errors) {
             return this.renderWithErrors(request, h, payload, num, progress, stateResult.errors);
         }
@@ -733,19 +759,19 @@ export class PageControllerBase {
         await adapterCacheService.mergeState(request, update, nullOverride, arrayMerge);
     }
 
-    private validatingForErrors(hasFilesizeError: boolean, fileFields, formResult: any, preHandlerErrors) {
+    private validatingForErrors(hasFilesizeError: boolean, fileFields, formResult: any, preHandlerErrors, request: HapiRequest) {
         if (hasFilesizeError) {
             const reformattedErrors = fileFields.map((field) => {
                 return {
                     path: field.name,
                     href: `#${field.name}`,
                     name: field.name,
-                    text: `The selected file must be smaller than ${config.maxFileSizeStringInMb}MB`,
+                    text: request.i18n.__('validation.fileUpload.fileUploadSelectedFileMaxError').replace("{size}", config.maxFileSizeStringInMb),
                 };
             });
 
             formResult.errors = Object.is(formResult.errors, null)
-                ? {titleText: "Fix the following errors"}
+                ? {titleText: request.i18n.__('validation.title2'),}
                 : formResult.errors;
             formResult.errors.errorList = reformattedErrors;
         }
@@ -772,7 +798,7 @@ export class PageControllerBase {
             });
 
             formResult.errors = Object.is(formResult.errors, null)
-                ? {titleText: "Fix the following errors"}
+                ? {titleText: request.i18n.__('validation.title2'),}
                 : formResult.errors;
             formResult.errors.errorList = reformattedErrors;
         }
@@ -880,17 +906,8 @@ export class PageControllerBase {
         return `${this.model.basePath || ""}/summary`;
     }
 
-    // @ts-ignore
-    get validationOptions() {
-        return validationOptions;
-    }
-
     get conditionOptions() {
         return this.model.conditionOptions;
-    }
-
-    get errorSummaryTitle() {
-        return "Fix the following errors";
     }
 
     /**

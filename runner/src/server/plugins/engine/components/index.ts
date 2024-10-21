@@ -50,16 +50,16 @@ export {
     SelectField
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/SelectField";
 export {
-    TelephoneNumberField
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/TelephoneNumberField";
+    AdapterTelephoneNumberField as TelephoneNumberField
+} from "./AdapterTelephoneNumberField";
 export {TextField} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/TextField";
 export {TimeField} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/TimeField";
 export {
     WebsiteField
 } from "./WebsiteField";
 export {
-    YesNoField
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/YesNoField";
+    AdapterYesNoField as YesNoField
+} from "./AdapterYesNoField";
 export {
     MonthYearField
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/MonthYearField";

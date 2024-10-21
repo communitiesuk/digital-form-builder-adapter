@@ -16,6 +16,11 @@ import {
     redirectUrl
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {feedbackReturnInfoKey} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
+import {AdapterFormDefinition} from "@communitiesuk/model";
+
+const LOGGER_DATA = {
+    class: "ViewModelBase",
+}
 
 /**
  * TODO - extract submission behaviour dependencies from the viewmodel
@@ -63,10 +68,20 @@ export class ViewModelBase {
         pageTitle: string,
         model: AdapterFormModel,
         state: FormSubmissionState,
-        request: HapiRequest
+        request: HapiRequest,
+        isSavePerPageMode?: boolean,
+        validateStateTillGivenPath?: string
     ) {
         this.pageTitle = pageTitle;
-        const {relevantPages, endPage} = model.getRelevantPages(state);
+        let {relevantPages, endPage} = model.getRelevantPages(state);
+        if (validateStateTillGivenPath) {
+            const {
+                relevantPagesForCurrent,
+                endPageForCurrent
+            } = model.retrievePagesUpToGivenPath(state, validateStateTillGivenPath);
+            relevantPages = relevantPagesForCurrent;
+            endPage = endPageForCurrent
+        }
         const details = this.summaryDetails(request, model, state, relevantPages);
         const {def} = model;
         // @ts-ignore
@@ -79,6 +94,14 @@ export class ViewModelBase {
             ((def.feedback?.emailAddress && `mailto:${def.feedback?.emailAddress}`) ||
                 config.feedbackLink);
 
+        let relevantPagePaths: string[] = []
+        relevantPages.forEach(page => {
+            relevantPagePaths.push(page.path);
+        })
+        request.logger.info({
+            ...LOGGER_DATA,
+            message: `Number of selected pages ${relevantPages.length} pages are ${JSON.stringify(relevantPagePaths)}`
+        });
         const schema = model.makeFilteredSchema(state, relevantPages);
         const collatedRepeatPagesState = gatherRepeatPages(state);
 
@@ -88,27 +111,14 @@ export class ViewModelBase {
         });
 
         if (result.error) {
+            request.logger.error(`[ViewModelBase] errors ${JSON.stringify(result.error)}`);
             this.processErrors(result, details);
         } else {
-            this.fees = FeesModel(model, state);
-            const outputs = new Outputs(model, state);
+            this.generateWebhookData(model, state, request, def);
+        }
 
-            // TODO: move to controller
-            this._webhookData = outputs.webhookData;
-            this._webhookData = this.addFeedbackSourceDataToWebhook(
-                this._webhookData,
-                model,
-                request
-            );
-
-            /**
-             * If there outputs defined, parse the state data for the appropriate outputs.
-             * Skip outputs if this is a callback
-             */
-            if (def.outputs && !state.callback) {
-                // TODO: move to controller
-                this._outputs = outputs.outputs;
-            }
+        if (isSavePerPageMode) {
+            this.generateWebhookData(model, state, request, def);
         }
 
         this.result = result;
@@ -119,6 +129,31 @@ export class ViewModelBase {
         const {feeOptions} = model;
         this.showPaymentSkippedWarningPage =
             feeOptions.showPaymentSkippedWarningPage ?? false;
+    }
+
+    private generateWebhookData(model: AdapterFormModel, state: FormSubmissionState, request: HapiRequest, def: AdapterFormDefinition) {
+        this.fees = FeesModel(model, state);
+        const outputs = new Outputs(model, state);
+        // TODO: move to controller
+        this._webhookData = outputs.webhookData;
+        request.logger.info({
+            ...LOGGER_DATA,
+            message: `Prepared savable data [${JSON.stringify(outputs.webhookData)}]`
+        });
+        this._webhookData = this.addFeedbackSourceDataToWebhook(
+            this._webhookData,
+            model,
+            request
+        );
+
+        /**
+         * If there outputs defined, parse the state data for the appropriate outputs.
+         * Skip outputs if this is a callback
+         */
+        if (def.outputs && !state.callback) {
+            // TODO: move to controller
+            this._outputs = outputs.outputs;
+        }
     }
 
     private processErrors(result, details) {
@@ -228,9 +263,22 @@ export class ViewModelBase {
                         items,
                     });
                 }
+            } else {
+                if (section?.name && section?.title) {
+                    details.push({
+                        name: section?.name,
+                        title: section?.title,
+                        message: "This section has not been answered",
+                        items,
+                    });
+                }
             }
         });
-
+        request.logger.info({
+            ...LOGGER_DATA,
+            message: `Viewable summary data set [${JSON.stringify(details)}]`,
+            form_session_identifier: state.metadata?.form_session_identifier ?? ""
+        });
         return details;
     }
 
@@ -343,10 +391,23 @@ function Item(
     sectionState,
     page,
     model: AdapterFormModel,
-    params: { num?: number; returnUrl: string } = {
+    params: {
+        num?: number;
+        returnUrl: string,
+        form_session_identifier?: string
+    } = {
         returnUrl: redirectUrl(request, `/${model.basePath}/summary`),
     }
 ) {
+    if (component?.options?.noReturnUrlOnSummaryPage === true) {
+        // @ts-ignore
+        delete params.returnUrl;
+    }
+
+    if (request.query.form_session_identifier) {
+        params.form_session_identifier = request.query.form_session_identifier;
+    }
+
     const isRepeatable = !!page.repeatField;
 
     //TODO:- deprecate in favour of section based and/or repeatingFieldPageController

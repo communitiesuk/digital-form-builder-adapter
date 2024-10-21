@@ -1,0 +1,95 @@
+{
+  "viewAllApplications": "Eich ceisiadau",
+  "signOut": "Allgofnodi",
+  "markAsComplete": "A ydych chi eisiau marcio bod yr adran hon wedi'i chwblhau?",
+  "removeText": "Dileu",
+  "validation": {
+    "required": "{#label} yn ofynnol",
+    "max": "{#label} rhaid iddo fod yn {#limit} nod neu lai",
+    "min": "{#label} rhaid iddo fod yn {#limit} nod neu fwy",
+    "regex": "rhowch {#label} dilys",
+    "email": "{#label} rhaid iddo fod yn gyfeiriad e-bost dilys",
+    "number": "{#label} rhaid bod yn rhif",
+    "numberMin": "{#label} rhaid iddo fod yn {#limit} neu'n uwch",
+    "numberMax": "{#label} rhaid iddo fod yn {#limit} neu'n is",
+    "format": "Rhowch {#label} dilys",
+    "maxWords": "{#label} rhaid bod yn {#limit} o eiriau neu lai",
+    "dateRequired": "{#label} rhaid bod yn ddyddiad go iawn",
+    "dateFormat": "{#label} rhaid bod yn ddyddiad go iawn",
+    "dateMin": "{#label} rhaid bod yr un peth â neu ar ôl {#limit}",
+    "dateMax": "{#label} rhaid bod yr un peth â neu cyn {#limit}",
+    "selectRequired": "{#label} yn ofynnol",
+    "title1": "Mae yna broblem",
+    "title2": "Trwsiwch y gwallau canlynol",
+    "fileUpload": {
+      "filePartiallyUploadError": "Nid yw'r ffeiliau wedi'u llwytho i fyny yn llawn",
+      "fileUploadSizeError": "Rhaid i'r ffeil fod o dan ",
+      "fileUploadCombinedSizeError": "Rhaid i faint ffeiliau cyfun fod o dan ",
+      "fileUploadTypeError": "Ni allwch uwchlwytho ffeiliau o'r math hwn.",
+      "fileUploadCountSingleError": "Dim ond un ffeil y gallwch ei uwchlwytho",
+      "fileUploadCountMaxError": "Dim ond ffeiliau {maxFiles} y gallwch chi eu huwchlwytho",
+      "fileUploadCountMinError": "Mae {labelText} angen {minimumRequiredFiles} ffeil",
+      "fileUploadSelectedFileMaxError": "Rhaid i'r ffeil a ddewiswyd fod yn llai na {size}MB"
+    },
+    "ukAddressField": {
+      "invalidPostCodeError": "Rhowch god post dilys"
+    },
+    "telephoneNumberField": {
+      "incorrectFormat": "Rhowch rif ffôn yn y fformat cywir"
+    }
+  },
+  "components": {
+    "clientSideFileUpload": {
+      "javascriptEnableMessageTitle": "Mae angen i chi alluogi JavaScript i weld y ffeiliau a ddewiswyd gennych",
+      "description1": "Pam fod angen JavaScript?",
+      "description2": "Heb JavaScript, byddwch yn gallu dewis ffeiliau i'w huwchlwytho, ond ni fyddwch yn gallu eu gweld ar y dudalen hon.",
+      "description3": "Bydd eich ffeiliau yn dal i gael eu llwytho i fyny pan fyddwch yn taro \"Cadw a pharhau\". Os byddwch yn ailymweld â'r dudalen hon, byddwch yn gallu gweld eich ffeiliau a uwchlwythwyd yn flaenorol.",
+      "fileUploadBtn": "Dewiswch ffeil",
+      "filesUploadBtn": "Dewiswch ffeiliau",
+      "table": {
+        "fileNameCol": "Enw'r ffeil",
+        "fileSizeCol": "Maint y ffeil",
+        "fileProgressCol": "Cynnydd",
+        "fileActionCol": "Gweithredu",
+        "fileActionComplete": "Cyflawn",
+        "fileActionFailed": "Wedi methu",
+        "deleteBtn": "Dileu"
+      }
+    },
+    "freeTextField": {
+      "wordCountReminder": "Mae gennych {count} o eiriau'n weddill",
+      "wordCountRemainingError": "Mae gennych chi {count} o eiriau gormod",
+      "wordCountError": "Gallwch chi roi hyd at {count} o eiriau",
+      "error": "Gwall:"
+    },
+    "markAsComplete": {
+      "error": "Rhaid i chi ddewis ie neu na"
+    },
+    "declaration": {
+      "error": "Rhaid i chi ddatgan eich bod yn gallu cyflwyno'r cais hwn"
+    },
+    "ukAddressField": {
+      "addressLine1": "Llinell cyfeiriad 1",
+      "addressLine2": "Llinell cyfeiriad 2",
+      "townOrCity": "Tref neu ddinas",
+      "county": "Sir",
+      "postcode": "Cod post"
+    },
+    "yesOrNoField": {
+      "yes": "Ie",
+      "no": "Na"
+    }
+  },
+  "head": {
+    "banner": {
+      "title": "Mae hwn yn wasanaeth newydd.",
+      "tag": "beta"
+    }
+  },
+  "footer": {
+    "privacy": "Preifatrwydd",
+    "cookies": "Cwcis",
+    "accessibilityStatement": "Datganiad Hygyrchedd",
+    "contactUs": "Cysylltwch â ni"
+  }
+}

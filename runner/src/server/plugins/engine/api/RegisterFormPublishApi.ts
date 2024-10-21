@@ -12,7 +12,7 @@ import {
 import {PluginSpecificConfiguration} from "@hapi/hapi";
 import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
-
+import {Localization} from "../service/TranslationLoaderService";
 
 export class RegisterFormPublishApi implements RegisterApi {
 
@@ -35,7 +35,8 @@ export class RegisterFormPublishApi implements RegisterApi {
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
             },
-            handler: (request: HapiRequest, h: HapiResponseToolkit) => {
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                const {translationLoaderService} = request.services([]);
                 if (!previewMode) {
                     request.logger.error(
                         [`POST /publish`, "previewModeError"],
@@ -46,13 +47,17 @@ export class RegisterFormPublishApi implements RegisterApi {
                 const payload = request.payload as FormPayload;
                 const {id, configuration} = payload;
 
+                const translations: Localization = await translationLoaderService.getTranslations()
+
                 const parsedConfiguration =
                     typeof configuration === "string"
                         ? JSON.parse(configuration)
                         : configuration;
                 forms[id] = new AdapterFormModel(parsedConfiguration, {
                     ...modelOptions,
-                    basePath: id
+                    basePath: id,
+                    translationEn: translations.en,
+                    translationCy: translations.cy
                 });
                 return h.response({}).code(204);
             }

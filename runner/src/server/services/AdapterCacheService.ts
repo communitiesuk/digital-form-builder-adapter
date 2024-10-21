@@ -8,6 +8,7 @@ import CatboxRedis from "@hapi/catbox-redis";
 import CatboxMemory from "@hapi/catbox-memory";
 
 import Redis from "ioredis";
+import {HapiRequest} from "../types";
 
 const partition = "cache";
 
@@ -23,6 +24,10 @@ let redisUri;
 
 if (process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI) {
     redisUri = process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI;
+}
+
+enum ADDITIONAL_IDENTIFIER {
+    Confirmation = ":confirmation",
 }
 
 export class AdapterCacheService extends CacheService {
@@ -57,8 +62,32 @@ export class AdapterCacheService extends CacheService {
             this.cache.set(userSessionKey, mergedSession, sessionTimeout);
         }
         request.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
+        const key = this.JWTKey(jwt);
+        request.logger.info(`[ACTIVATE-SESSION] drop key ${JSON.stringify(key)}`);
+        await this.cache.drop(key);
         return {
             redirectPath: redirectPathNew,
+        };
+    }
+
+    /**
+     * The key used to store user session data against.
+     * If there are multiple forms on the same runner instance, for example `form-a` and `form-a-feedback` this will prevent CacheService from clearing data from `form-a` if a user gave feedback before they finished `form-a`
+     *
+     * @param request - hapi request object
+     * @param additionalIdentifier - appended to the id
+     */
+    //@ts-ignore
+    Key(request: HapiRequest, additionalIdentifier?: ADDITIONAL_IDENTIFIER) {
+        let id = `${request.yar.id}:${request.params.id}`;
+
+        if (request.query.form_session_identifier) {
+            id = `${id}:${request.query.form_session_identifier}`;
+        }
+        request.logger.info(`[ACTIVATE-SESSION] session key ${id} and segment is ${partition}`);
+        return {
+            segment: partition,
+            id: `${id}${additionalIdentifier ?? ""}`,
         };
     }
 }
