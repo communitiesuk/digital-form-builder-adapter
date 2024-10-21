@@ -2595,6 +2595,7 @@ __metadata:
     "@babel/preset-env": ^7.23.3
     "@babel/preset-typescript": ^7.23.3
     "@babel/register": ^7.22.15
+    "@hapi/lab": 24.0.0
     "@types/hoek": ^4.1.4
     babel-eslint: ^10.1.0
     babel-plugin-module-name-mapper: ^1.2.0
@@ -3383,7 +3384,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/address@npm:^4.0.0, @hapi/address@npm:^4.0.1, @hapi/address@npm:^4.1.0":
+"@hapi/address@npm:^4.0.0, @hapi/address@npm:^4.0.1":
   version: 4.1.0
   resolution: "@hapi/address@npm:4.1.0"
   dependencies:
@@ -6959,7 +6960,7 @@ __metadata:
     babel-plugin-module-resolver: ^4.1.0
     babel-plugin-transform-import-ignore: ^1.1.0
     blankie: 5.0.0
-    cheerio: ^1.0.0-rc.10
+    cheerio: ^1.0.0-rc.3
     classnames: ^2.3.1
     clean-webpack-plugin: ^4.0.0
     concurrently: ^7.0.0
@@ -7186,7 +7187,7 @@ __metadata:
     hapi-require-https: 5.0.0
     hmpo-components: ^5.2.1
     ioredis: 4.16.1
-    joi: 17.2.1
+    joi: ^17.13.3
     lodash: ^4.17.21
     lodash-es: ^4.17.21
     nanoid: ^3.3.4
@@ -7202,6 +7203,7 @@ __metadata:
     sinon: ^13.0.1
     tmp: ^0.2.1
     typescript: 4.9.5
+    update-browserslist-db: ^1.1.0
     url-parse: ^1.5.10
     uuid: ^8.3.2
     yar: 9.1.0
@@ -17248,7 +17250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"joi@npm:17.13.3, joi@npm:^17.2.1, joi@npm:^17.3.0, joi@npm:^17.7.0, joi@npm:^17.7.1, joi@npm:^17.9.1":
+"joi@npm:17.13.3, joi@npm:^17.13.3, joi@npm:^17.2.1, joi@npm:^17.3.0, joi@npm:^17.7.0, joi@npm:^17.7.1, joi@npm:^17.9.1":
   version: 17.13.3
   resolution: "joi@npm:17.13.3"
   dependencies:
@@ -17258,19 +17260,6 @@ __metadata:
     "@sideway/formula": ^3.0.1
     "@sideway/pinpoint": ^2.0.0
   checksum: 66ed454fee3d8e8da1ce21657fd2c7d565d98f3e539d2c5c028767e5f38cbd6297ce54df8312d1d094e62eb38f9452ebb43da4ce87321df66cf5e3f128cbc400
-  languageName: node
-  linkType: hard
-
-"joi@npm:17.2.1":
-  version: 17.2.1
-  resolution: "joi@npm:17.2.1"
-  dependencies:
-    "@hapi/address": ^4.1.0
-    "@hapi/formula": ^2.0.0
-    "@hapi/hoek": ^9.0.0
-    "@hapi/pinpoint": ^2.0.0
-    "@hapi/topo": ^5.0.0
-  checksum: 7de9f6c2bce9d887ee2b212c6c7d9d163efb2ed8279cbc9cacd13d06dd2fbb9399e7d87d4a866bfeb5227ee3631801ff613886713945d8363e659c1053504c6c
   languageName: node
   linkType: hard
 
@@ -24377,7 +24366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"update-browserslist-db@npm:^1.0.16":
+"update-browserslist-db@npm:^1.0.16, update-browserslist-db@npm:^1.1.0":
   version: 1.1.0
   resolution: "update-browserslist-db@npm:1.1.0"
   dependencies:
