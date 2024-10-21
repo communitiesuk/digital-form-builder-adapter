@@ -276,7 +276,7 @@ jobs:
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: e2e-test-report-application
           path: ./e2e-test/cypress/screenshots

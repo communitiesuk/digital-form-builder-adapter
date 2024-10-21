@@ -20,7 +20,7 @@ import DeclarationEdit from "../../../../digital-form-builder/designer/client/de
 import {
     DataPrettyPrint
 } from "../../../../digital-form-builder/designer/client/components/DataPrettyPrint/DataPrettyPrint";
-import {SubMenu} from "../../../../digital-form-builder/designer/client/components/Menu/SubMenu";
+import {SubMenu} from "./SubMenu";
 
 type Props = {
     updateDownloadedAt?: (string) => void;
@@ -72,6 +72,7 @@ export default function AdapterMenu({updateDownloadedAt, id}: Props) {
                 </button>
                 <button
                     data-testid="menu-summary-behaviour"
+                    id="menu-summary-behaviour"
                     onClick={summaryBehaviour.show}
                 >
                     {i18n("menu.summaryBehaviour")}

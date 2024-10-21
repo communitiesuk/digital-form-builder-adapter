@@ -125,7 +125,9 @@ export const MultiInputFieldBaseEdit = React.forwardRef((props, ref: any) => {
                     false,
                     false,
                     false,
-                    disableChangingFromSummary)}
+                    disableChangingFromSummary,
+                    //@ts-ignore
+                    props.id)}
             </div>
         );
     }
