@@ -26,12 +26,14 @@ export const renderFieldEdit = (
     type: AdapterComponentType,
     optionalText: boolean, exposeToContext: boolean,
     isListField: boolean | undefined, allowPrePopulation: boolean,
-    allowPrePopulationOverwrite: boolean, disableChangingFromSummary: boolean) => {
+    allowPrePopulationOverwrite: boolean,
+    disableChangingFromSummary: boolean,
+    id?: string) => {
     return (
         <div>
-            <div data-test-id="standard-inputs">
+            <div data-test-id="standard-inputs" id={id}>
                 <Input
-                    id="field-title"
+                    id={`${id ? `${id}-` : ''}field-title`}
                     name="title"
                     label={{
                         className: "govuk-label--s",
@@ -54,7 +56,7 @@ export const renderFieldEdit = (
                     }
                 />
                 <Textarea
-                    id="field-hint"
+                    id={`${id ? `${id}-` : ''}field-hint`}
                     name="hint"
                     rows={2}
                     label={{
@@ -78,7 +80,7 @@ export const renderFieldEdit = (
                     <div className="govuk-checkboxes__item">
                         <input
                             className="govuk-checkboxes__input"
-                            id="field-options-hideTitle"
+                            id={`${id ? `${id}-` : ''}field-options-hideTitle`}
                             name="options.hideTitle"
                             type="checkbox"
                             checked={hideTitle}
@@ -91,7 +93,7 @@ export const renderFieldEdit = (
                         />
                         <label
                             className="govuk-label govuk-checkboxes__label"
-                            htmlFor="field-options-hideTitle"
+                            htmlFor={`${id ? `${id}-` : ''}field-options-hideTitle`}
                         >
                             {i18n("common.hideTitleOption.title")}
                         </label>

@@ -45,6 +45,61 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
     const [isEditingPage, setIsEditingPage] = useState(false);
     const [isCreatingComponent, setIsCreatingComponent] = useState(false);
 
+    if (data.pages) {
+        const multiInputPages = data.pages.filter(page =>
+            // @ts-ignore
+            page.components.some(component => component.type === 'MultiInputField')
+        );
+        multiInputPages.forEach(page => {
+            // @ts-ignore
+            const multiInputFields = page.components.filter(component => component.type === 'MultiInputField');
+            //@ts-ignore
+            if (multiInputFields && multiInputFields[0] && multiInputFields[0].pageOptions) {
+                //@ts-ignore
+                page.options = multiInputFields[0].pageOptions;
+                //@ts-ignore
+                page.options.customText.samePageTitle = multiInputFields[0].pageOptions.customText.samePageTitle;
+                multiInputFields.forEach(component => {
+                    //@ts-ignore
+                    delete component.pageOptions
+                })
+                page.controller = "RepeatingFieldPageController"
+            }
+
+            //@ts-ignore
+            if (multiInputFields && multiInputFields[0] && !multiInputFields[0].pageOptions) {
+                //@ts-ignore
+                multiInputFields[0].pageOptions = {
+                    // @ts-ignore
+                    summaryDisplayMode: {
+                        // @ts-ignore
+                        samePage: page.options.summaryDisplayMode ? page.options.summaryDisplayMode.samePage : true,
+                        // @ts-ignore
+                        separatePage: page.options.summaryDisplayMode ? page.options.summaryDisplayMode.separatePage : false,
+                        // @ts-ignore
+                        hideRowTitles: page.options.summaryDisplayMode ? page.options.summaryDisplayMode.hideRowTitles : false
+                    },
+                    customText: {
+                        //@ts-ignore
+                        samePageTitle: page.options.customText.samePageTitle ? page.options.customText.samePageTitle : "",
+                    }
+                }
+            }
+        })
+        if (multiInputPages.length <= 0) {
+            data.pages.forEach(page => {
+                if (page.controller === "RepeatingFieldPageController") {
+                    // @ts-ignore
+                    delete page.controller;
+                    // @ts-ignore
+                    delete page.options.summaryDisplayMode;
+                    // @ts-ignore
+                    delete page.options.customText;
+                }
+            })
+        }
+    }
+
     const onSortEnd = ({oldIndex, newIndex}) => {
         const copy = {...data};
         const [copyPage, index] = findPage(data, page.path);

@@ -143,7 +143,6 @@ export const AdapterComponentCreate = (props) => {
                     </h4>
                 </>
             )}
-            {hasErrors && <ErrorSummary errorList={errors}/>}
             {!type && <AdapterComponentCreateList onSelectComponent={handleTypeChange}/>}
             {type && renderTypeEdit && (
                 <form onSubmit={handleSubmit}>
