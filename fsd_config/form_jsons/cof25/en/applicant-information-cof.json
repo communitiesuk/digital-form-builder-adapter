@@ -1,0 +1,88 @@
+{
+    "startPage": "/applicant-information",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/applicant-information",
+            "title": "Applicant information",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label class=\"govuk-!-font-weight-bold\">In this section, we'll ask about:\n</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>lead contact name</li>\n<li>lead contact job title</li>\n<li>lead contact email address</li>\n<li>lead contact telephone number</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "UtVqvP"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/lead-contact-details"
+                }
+            ],
+            "controller": "start.js"
+        },
+        {
+            "path": "/lead-contact-details",
+            "title": "Lead contact details",
+            "components": [
+                {
+                    "options": {
+                        "classes": "govuk-!-width-full"
+                    },
+                    "type": "TextField",
+                    "title": "Name of lead contact",
+                    "hint": "They will receive all the information about this application.",
+                    "schema": {},
+                    "name": "SnLGJE"
+                },
+                {
+                    "options": {
+                        "classes": "govuk-!-width-full"
+                    },
+                    "type": "TextField",
+                    "title": "Lead contact job title",
+                    "hint": "",
+                    "schema": {},
+                    "name": "qRDTUc"
+                },
+                {
+                    "options": {
+                        "classes": "govuk-!-width-full"
+                    },
+                    "type": "EmailAddressField",
+                    "title": "Lead contact email address",
+                    "hint": "",
+                    "schema": {},
+                    "name": "NlHSBg"
+                },
+                {
+                    "options": {
+                        "classes": "govuk-!-width-full"
+                    },
+                    "type": "TelephoneNumberField",
+                    "title": "Lead contact telephone number",
+                    "hint": "",
+                    "schema": {},
+                    "name": "FhBkJQ"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ]
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Applicant information"
+}
