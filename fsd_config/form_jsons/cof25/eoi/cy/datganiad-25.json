@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "isWelsh": true
+  },
+  "startPage": "/datganiad",
+  "name": "Gwneud cais am ddatganiad o ddiddordeb mewn gwneud cais i'r Gronfa Perchnogaeth Gymunedol",
+
+  "pages": [
+    {
+      "title": "Datganiad",
+      "path": "/datganiad",
+      "components": [
+        {
+          "name": "oXFEkV",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "Cadarnhaf fod y wybodaeth rwyf wedi'i darparu yn gywir",
+          "list": "nHHnuf"
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ]
+    },
+    {
+      "path": "/summary",
+      "title": "Gwiriwch eich atebion",
+      "components": [],
+      "next": [],
+      "controller": "./pages/summary.js"
+    }
+  ],
+  "lists": [
+    {
+      "title": "Datganiad",
+      "name": "nHHnuf",
+      "type": "string",
+      "items": [
+        {
+          "text": "Cadarnhaf fod y wybodaeth rwyf wedi'i darparu yn gywir",
+          "value": "cadarnhaf"
+        }
+      ]
+    }
+  ],
+  "sections": [],
+  "conditions": [],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "markAsComplete": false
+}
