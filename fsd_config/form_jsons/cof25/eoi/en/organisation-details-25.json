@@ -1,0 +1,261 @@
+{
+    "startPage": "/organisation-details",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/alternative-names-of-your-organisation",
+            "title": "Alternative names of your organisation",
+            "components": [
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Alternative name 1",
+                    "hint": "",
+                    "schema": {},
+                    "name": "qkNYMP"
+                },
+                {
+                    "options": {
+                        "required": false
+                    },
+                    "type": "TextField",
+                    "title": "Alternative name 2",
+                    "hint": "",
+                    "schema": {},
+                    "name": "mVxvon"
+                },
+                {
+                    "options": {
+                        "required": false
+                    },
+                    "type": "TextField",
+                    "title": "Alternative name 3",
+                    "hint": "",
+                    "schema": {},
+                    "name": "DaIVVm"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/organisation-address"
+                }
+            ]
+        },
+        {
+            "path": "/organisation-address",
+            "title": "Organisation address",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "UkAddressField",
+                    "title": "Organisation address",
+                    "hint": "",
+                    "schema": {},
+                    "name": "OpeSdM"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-your-organisation-is-classified"
+                }
+            ]
+        },
+        {
+            "path": "/organisation-names",
+            "title": "Organisation name",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "Organisation name",
+                    "hint": "This must match your registered legal organisation name.",
+                    "schema": {},
+                    "name": "SMRWjl"
+                },
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Does your organisation have any alternative names?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "SxkwhF",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/organisation-address"
+                },
+                {
+                    "path": "/alternative-names-of-your-organisation",
+                    "condition": "DaVyIg"
+                }
+            ]
+        },
+        {
+            "path": "/is-your-organisation-subject-to-any-insolvency-actions",
+            "title": "Is your organisation subject to any insolvency actions?",
+            "components": [
+                {
+                    "type": "Details",
+                    "content": "<p class=\"govuk-body\">An organisation is insolvent if it can't pay its debts. This could mean either:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>it can't pay bills when they become due</li>\n  <li>it has more liabilities than assets on its balance sheet</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "title": "Help with insolvency",
+                    "name": "jGoBGp"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Is your organisation subject to any insolvency actions?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "NcQSbU",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ]
+        },
+        {
+            "path": "/how-your-organisation-is-classified",
+            "title": "How your organisation is classified",
+            "components": [
+                {
+                    "type": "Details",
+                    "content": "<p><a href=\"https://www.gov.uk/government/publications/community-ownership-fund-prospectus/community-ownership-fund-prospectus--3#whocanapply\" class=\"govuk-link\">See Section 6 of the COF25 prospectus for a list of eligible organisations</a>. If your organisation has not yet registered as a company or charity, select 'not yet incorporated'</p>",
+                    "options": {},
+                    "schema": {},
+                    "title": "Help with organisation type",
+                    "name": "Fepkam"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "RadiosField",
+                    "title": "Organisation classification",
+                    "hint": "Select one",
+                    "schema": {},
+                    "name": "uYiLsv",
+                    "list": "CCbnpc",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-your-organisation-subject-to-any-insolvency-actions"
+                }
+            ]
+        },
+        {
+            "path": "/organisation-details",
+            "title": "Organisation details",
+            "components": [
+                {
+                    "type": "Html",
+                    "content": "<p class=\"govuk-body\"><b>In this section, we'll ask about:</b></p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>organisation name</li>\n  <li>organisation address</li>\n  <li>how your organisation is classified</li>\n  <li>if your organisation is subject to any insolvency actions</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "rclykK"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/organisation-names"
+                }
+            ],
+            "controller": "start.js"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "Charitable incorporated organisation (CIO)",
+                    "value": "Charitable incorporated organisation"
+                },
+                {
+                    "text": "Co-operative (for example, a community benefit society)",
+                    "value": "co-operative"
+                },
+                {
+                    "text": "Community interest company (CIC)",
+                    "value": "community-interest-company"
+                },
+                {
+                    "text": "Company limited by guarantee",
+                    "value": "company-limited"
+                },
+                {
+                    "text": "Scottish charitable incorporate organisation (SCIO)",
+                    "value": "scottish-charitable "
+                },
+                {
+                    "text": "Parish, town and community councils",
+                    "value": "parish-town-community-councils"
+                },
+                {
+                    "text": "Trust port",
+                    "value": "Trust port"
+                },
+                {
+                    "text": "Not yet incorporated",
+                    "value": "not-yet-incorporated"
+                }
+            ],
+            "name": "CCbnpc",
+            "title": "Organisation classification"
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "orgNameAltTrue",
+            "name": "DaVyIg",
+            "value": {
+                "name": "orgNameAltTrue",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "SxkwhF",
+                            "type": "YesNoField",
+                            "display": "Does your organisation have any alternative names?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Organisation details"
+}
