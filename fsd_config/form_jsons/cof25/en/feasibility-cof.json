@@ -1,0 +1,156 @@
+{
+    "startPage": "/feasibility",
+    "pages": [
+        {
+            "path": "/feasiblity-studies-youve-carried-out",
+            "title": "Feasiblity studies you've carried out",
+            "components": [
+                {
+                    "type": "Details",
+                    "content": "<p class=\"govuk-body\">This is analysis which tests the ability of your project to deliver its objectives.</p>\n<p class=\"govuk-body\"> You should use your feasibility studies to:</p>\n\n<ul class=\"govuk-list govuk-list--bullet govuk-caption-m govuk-body\">\n<li>test the context and resources within which the project is operating, including market analysis and whether the financial, technical and management capabilities are strong enough to deliver the range of uses planned for the asset</li>\n<li>test the viability and sustainability of the project in the long term</li>\n<li>develop a strong business plan</li>\n</ul>\n\n<p class=\"govuk-body\">You can use your business plan to provide evidence to support your answers.</p>",
+                    "options": {},
+                    "schema": {},
+                    "title": "Help with feasibility",
+                    "name": "DOWJMG"
+                },
+                {
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "Tell us about the feasibility studies you have carried out for your project",
+                    "hint": "",
+                    "schema": {},
+                    "name": "iSbwDM"
+                },
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Do you need to do any further feasibility work?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "jFPlEJ",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/further-feasibility-work",
+                    "condition": "QVJYQZ"
+                },
+                {
+                    "path": "/summary",
+                    "condition": "XprEGH"
+                }
+            ]
+        },
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/further-feasibility-work",
+            "title": "Further feasibility work",
+            "components": [
+                {
+                    "type": "Details",
+                    "content": "<p class=\"govuk-body\">This is analysis which tests the ability of your project to deliver its objectives.</p>\n<p class=\"govuk-body\"> You should use your feasibility studies to:</p>\n\n<ul class=\"govuk-list govuk-list--bullet govuk-caption-m govuk-body\">\n<li>test the context and resources within which the project is operating, including market analysis and whether the financial, technical and management capabilities are strong enough to deliver the range of uses planned for the asset</li>\n<li>test the viability and sustainability of the project in the long term</li>\n<li>develop a strong business plan</li>\n</ul>\n\n<p class=\"govuk-body\">You can use your business plan to provide evidence to support your answers.</p>",
+                    "options": {},
+                    "schema": {},
+                    "title": "Help with feasibility",
+                    "name": "YqUokQ"
+                },
+                {
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "Describe the feasibility work you still need to complete",
+                    "hint": "Include details of your plans and when you expect to complete them.",
+                    "schema": {},
+                    "name": "WWdVTC"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ]
+        },
+        {
+            "path": "/feasibility",
+            "title": "Feasibility",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label class=\"govuk-!-font-weight-bold\">In this section, we'll ask about:\n</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>feasibility studies carried out</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "OarXHO"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/feasiblity-studies-youve-carried-out"
+                }
+            ],
+            "controller": "start.js"
+        }
+    ],
+    "lists": [],
+    "conditions": [
+        {
+            "displayName": "Do you need to do any further feasibility work-yes",
+            "name": "QVJYQZ",
+            "value": {
+                "name": "Do you need to do any further feasibility work-yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "jFPlEJ",
+                            "type": "YesNoField",
+                            "display": "Do you need to do any further feasibility work?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Do you need to do any further feasibility work-no",
+            "name": "XprEGH",
+            "value": {
+                "name": "Do you need to do any further feasibility work-no",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "jFPlEJ",
+                            "type": "YesNoField",
+                            "display": "Do you need to do any further feasibility work?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Feasibility "
+}
