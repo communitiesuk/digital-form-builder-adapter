@@ -27,13 +27,12 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                 const {filename} = request.payload;
                 request.logger.info(`[RegisterS3FileUploadApi] uploading the file ${filename}`);
                 //@ts-ignore
-                const form = request.server.app.forms[id];
+                const form = await adapterCacheService.getFormAdapterModel(id, request);
                 const page = form?.pages.find(
                     (p) =>
                         s3UploadService.normalisePath(p.path) ===
                         s3UploadService.normalisePath(pageKey)
                 );
-
                 const metaData = {
                     page: encodeURI(page.title),
                     section: encodeURI(page.section?.title ?? ""),

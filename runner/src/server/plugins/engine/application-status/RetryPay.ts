@@ -3,11 +3,11 @@ import {AdapterFormModel} from "../models";
 
 
 export async function retryPay(request: HapiRequest, h: HapiResponseToolkit) {
-    const {adapterStatusService} = request.services([]);
+    const {adapterStatusService, adapterCacheService} = request.services([]);
     //@ts-ignore
     const shouldShowPayErrorPage = await adapterStatusService.shouldShowPayErrorPage(request);
     //@ts-ignore
-    const form: AdapterFormModel = request.server.app.forms[request.params.id];
+    const form: AdapterFormModel = await adapterCacheService.getFormAdapterModel(request.params.id, request);
     const feeOptions = form.feeOptions;
     const {allowSubmissionWithoutPayment = true, customPayErrorMessage,} = feeOptions;
     if (shouldShowPayErrorPage) {

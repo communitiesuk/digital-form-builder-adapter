@@ -77,7 +77,7 @@ export class RegisterSessionApi implements RegisterApi {
                 const {callbackUrl} = options;
 
                 //@ts-ignore
-                const isExistingForm = server.app.forms?.[formId] ?? false;
+                const isExistingForm = await adapterCacheService.getFormAdapterModel(formId, request) ?? false;
                 const {error: callbackSafeListError} = callbackValidation(pluginOptions.safelist).validate(callbackUrl, {abortEarly: false,});
 
                 if (!isExistingForm) {

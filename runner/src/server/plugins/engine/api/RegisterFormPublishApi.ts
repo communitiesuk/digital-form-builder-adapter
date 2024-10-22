@@ -2,9 +2,8 @@ import {RegisterApi} from "./RegisterApi";
 import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
 import {Options} from "../types/PluginOptions";
 import {FormPayload} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
+// @ts-ignore
 import Boom from "boom";
-import {AdapterFormModel} from "../models";
-import {FormConfiguration} from "@xgovformbuilder/model";
 import {PluginUtil} from "../util/PluginUtil";
 import {
     getValidStateFromQueryParameters
@@ -12,7 +11,6 @@ import {
 import {PluginSpecificConfiguration} from "@hapi/hapi";
 import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
-import {Localization} from "../service/TranslationLoaderService";
 
 export class RegisterFormPublishApi implements RegisterApi {
 
@@ -25,7 +23,7 @@ export class RegisterFormPublishApi implements RegisterApi {
      * the designer too!
      */
     register(server: HapiServer, options: Options) {
-        const {modelOptions, previewMode, forms} = options;
+        const {previewMode} = options;
         const disabledRouteDetailString =
             "A request was made however previewing is disabled. See environment variable details in runner/README.md if this error is not expected.";
 
@@ -36,7 +34,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {translationLoaderService} = request.services([]);
+                const {adapterCacheService} = request.services([]);
                 if (!previewMode) {
                     request.logger.error(
                         [`POST /publish`, "previewModeError"],
@@ -47,18 +45,15 @@ export class RegisterFormPublishApi implements RegisterApi {
                 const payload = request.payload as FormPayload;
                 const {id, configuration} = payload;
 
-                const translations: Localization = await translationLoaderService.getTranslations()
-
                 const parsedConfiguration =
                     typeof configuration === "string"
                         ? JSON.parse(configuration)
                         : configuration;
-                forms[id] = new AdapterFormModel(parsedConfiguration, {
-                    ...modelOptions,
-                    basePath: id,
-                    translationEn: translations.en,
-                    translationCy: translations.cy
-                });
+                if (parsedConfiguration.configuration) {
+                    await adapterCacheService.setFormConfigurationRedisCache(id, parsedConfiguration, request.server)
+                } else {
+                    await adapterCacheService.setFormConfigurationRedisCache(id, {configuration: parsedConfiguration}, request.server)
+                }
                 return h.response({}).code(204);
             }
         });
@@ -69,7 +64,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
             },
-            handler: (request: HapiRequest, h: HapiResponseToolkit) => {
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
                 if (!previewMode) {
                     request.logger.error(
@@ -78,13 +73,12 @@ export class RegisterFormPublishApi implements RegisterApi {
                     );
                     throw Boom.unauthorized("publishing is disabled");
                 }
-
-                const form = forms[id];
+                const {adapterCacheService} = request.services([]);
+                const form = await adapterCacheService.getFormAdapterModel(id, request);
                 if (!form) {
                     return h.response({}).code(204);
                 }
-
-                const {values} = forms[id];
+                const {values} = await adapterCacheService.getFormAdapterModel(id, request);
                 return h.response(JSON.stringify({id, values})).code(200);
             }
         });
@@ -95,7 +89,8 @@ export class RegisterFormPublishApi implements RegisterApi {
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
             },
-            handler: (request: HapiRequest, h: HapiResponseToolkit) => {
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                const {adapterCacheService} = request.services([]);
                 if (!previewMode) {
                     request.logger.error(
                         [`GET /published`, "previewModeError"],
@@ -104,19 +99,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                     throw Boom.unauthorized("publishing is disabled.");
                 }
                 return h
-                    .response(
-                        JSON.stringify(
-                            Object.keys(forms).map(
-                                (key) =>
-                                    new FormConfiguration(
-                                        key,
-                                        forms[key].name,
-                                        undefined,
-                                        forms[key].def.feedback?.feedbackForm
-                                    )
-                            )
-                        )
-                    )
+                    .response(JSON.stringify(await adapterCacheService.getFormConfigurations(request)))
                     .code(200);
             }
         });
@@ -127,21 +110,15 @@ export class RegisterFormPublishApi implements RegisterApi {
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
             },
-            handler: (request: HapiRequest, h: HapiResponseToolkit) => {
-                const keys = Object.keys(forms);
-                let id = "";
-                if (keys.length === 1) {
-                    id = keys[0];
-                }
-                const model = forms[id];
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                const {adapterCacheService} = request.services([]);
+                const model = await adapterCacheService.getFormAdapterModel("components", request);
                 if (model) {
-                    return PluginUtil.getStartPageRedirect(request, h, id, model);
+                    return PluginUtil.getStartPageRedirect(request, h, "components", model);
                 }
-
                 if (config.serviceStartPage) {
                     return h.redirect(config.serviceStartPage);
                 }
-
                 throw Boom.notFound("No default form found");
             }
         });
@@ -152,7 +129,8 @@ export class RegisterFormPublishApi implements RegisterApi {
         ) => {
             const {query} = request;
             const {id} = request.params;
-            const model = forms[id];
+            const {adapterCacheService} = request.services([]);
+            const model = await adapterCacheService.getFormAdapterModel(id, request);
             if (!model) {
                 throw Boom.notFound("No form found for id");
             }
@@ -164,7 +142,6 @@ export class RegisterFormPublishApi implements RegisterApi {
             ) {
                 return h.continue;
             }
-            const {adapterCacheService} = request.services([]);
             // @ts-ignore
             const state = await adapterCacheService.getState(request);
             const newValues = getValidStateFromQueryParameters(
@@ -191,9 +168,10 @@ export class RegisterFormPublishApi implements RegisterApi {
                     }
                 ]
             },
-            handler: (request: HapiRequest, h: HapiResponseToolkit) => {
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
-                const model = forms[id];
+                const {adapterCacheService} = request.services([]);
+                const model = await adapterCacheService.getFormAdapterModel(id, request);
                 if (model) {
                     return PluginUtil.getStartPageRedirect(request, h, id, model);
                 }
@@ -212,16 +190,17 @@ export class RegisterFormPublishApi implements RegisterApi {
                     }
                 ],
             },
-            handler: (request: HapiRequest, h: HapiResponseToolkit) => {
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {path, id} = request.params;
-                const model = forms[id];
+                const {adapterCacheService} = request.services([]);
+                const model = await adapterCacheService.getFormAdapterModel(id, request);
                 const page = model?.pages.find(
                     (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
                 );
                 if (page) {
                     return page.makeGetRouteHandler()(request, h);
                 }
-                if (PluginUtil.normalisePath(path) === "") {
+                if (PluginUtil.normalisePath(path) === "" && model) {
                     return PluginUtil.getStartPageRedirect(request, h, id, model);
                 }
                 throw Boom.notFound("No form or page found");
@@ -236,9 +215,10 @@ export class RegisterFormPublishApi implements RegisterApi {
 
         const {s3UploadService} = server.services([]);
 
-        const handleFiles = (request: HapiRequest, h: HapiResponseToolkit) => {
+        const handleFiles = async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {path, id} = request.params;
-            const model = forms[id];
+            const {adapterCacheService} = request.services([]);
+            const model = await adapterCacheService.getFormAdapterModel(id, request);
             const page = model?.pages.find(
                 (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
             );
@@ -251,7 +231,8 @@ export class RegisterFormPublishApi implements RegisterApi {
             h: HapiResponseToolkit
         ) => {
             const {path, id} = request.params;
-            const model = forms[id];
+            const {adapterCacheService} = request.services([]);
+            const model = await adapterCacheService.getFormAdapterModel(id, request);
 
             if (model) {
                 const page = model.pages.find(
