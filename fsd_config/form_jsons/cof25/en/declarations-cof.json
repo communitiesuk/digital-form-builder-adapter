@@ -1,0 +1,103 @@
+{
+    "startPage": "/final-confirmations",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/final-confirmations",
+            "title": "Final confirmations",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label class=\"govuk-!-font-weight-bold\">In this section, we'll ask about:\n</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>confirmation of subsidy control and state aid information</li>\n<li>confirmation you have considered people with protected characteristics</li>\n<li>confirmation you have considered sustainability and the environment</li>\n<li>confirmation you have a bank account set up for your organisation</li>\n<li>confirmation that the information you have provided is accurate</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "TlHDXK"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/agree-to-the-final-confirmations"
+                }
+            ],
+            "controller": "start.js"
+        },
+        {
+            "path": "/agree-to-the-final-confirmations",
+            "title": "Agree to the final confirmations",
+            "components": [
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Confirm you have considered subsidy control and state aid implications for your project, and the information you have given us is correct",
+                    "hint": "",
+                    "schema": {},
+                    "name": "vSQKwD",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Confirm you have considered people with protected characteristics throughout the planning of your project",
+                    "hint": "",
+                    "schema": {},
+                    "name": "CQoLFp",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Confirm you have considered sustainability and the environment throughout the planning of your project, including compliance with the government's Net Zero ambitions",
+                    "hint": "",
+                    "schema": {},
+                    "name": "jdPkiX",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Confirm you have a bank account set up and associated with the organisation you are applying on behalf of",
+                    "hint": "",
+                    "schema": {},
+                    "name": "qWuSCy",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Confirm that the information you've provided in this application is accurate to the best of your knowledge on the date of submission",
+                    "hint": "",
+                    "schema": {},
+                    "name": "tjZlml",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ]
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Declarations"
+}

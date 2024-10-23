@@ -1,0 +1,56 @@
+{
+    "startPage": "/declaration",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/declaration",
+            "title": "Declaration",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "I confirm the information I've provided is correct",
+                    "hint": "",
+                    "schema": {},
+                    "name": "oXFEkV",
+                    "list": "nHHnuf",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "controller": "start.js"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "I confirm the information I've provided is correct",
+                    "value": "confirm"
+                }
+            ],
+            "name": "nHHnuf",
+            "title": "Declaration"
+        }
+    ],
+    "conditions": [],
+    "sections": [],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Declaration"
+}
