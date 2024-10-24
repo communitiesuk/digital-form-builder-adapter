@@ -264,7 +264,7 @@ export class ViewModelBase {
                     });
                 }
             } else {
-                if (section?.name && section?.title) {
+                if ((section?.name && section?.title) && !config.ignoreSectionsFromSummary.includes(section?.name)) {
                     details.push({
                         name: section?.name,
                         title: section?.title,
