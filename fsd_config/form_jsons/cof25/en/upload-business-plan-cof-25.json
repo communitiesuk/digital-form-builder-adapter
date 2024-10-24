@@ -6,6 +6,7 @@
             "title": "Check your answers",
             "components": [],
             "next": [],
+            "section": "FabDefault",
             "controller": "./pages/summary.js"
         },
         {
@@ -25,6 +26,7 @@
                     "path": "/your-business-plan"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         },
         {
@@ -60,13 +62,25 @@
                 {
                     "path": "/summary"
                 }
-            ]
+            ],
+            "section": "xtwqlH"
         }
     ],
     "lists": [],
     "conditions": [],
-    "sections": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        },
+        {
+            "name": "xtwqlH",
+            "title": "Upload business plan",
+            "hideTitle": false
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for funding to save an asset in your community"
 }

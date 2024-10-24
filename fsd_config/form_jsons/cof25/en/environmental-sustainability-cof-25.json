@@ -6,6 +6,7 @@
             "title": "Check your answers",
             "components": [],
             "next": [],
+            "section": "ljcxPd",
             "controller": "./pages/summary.js"
         },
         {
@@ -27,7 +28,8 @@
                 {
                     "path": "/summary"
                 }
-            ]
+            ],
+            "section": "ljcxPd"
         },
         {
             "path": "/environmental-sustainability",
@@ -46,13 +48,25 @@
                     "path": "/how-youve-considered-the-environment"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         }
     ],
     "lists": [],
     "conditions": [],
-    "sections": [],
+    "sections": [
+        {
+            "name": "ljcxPd",
+            "title": "Environmental sustainability",
+            "hideTitle": false
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for funding to save an asset in your community"
 }

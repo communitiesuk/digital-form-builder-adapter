@@ -6,7 +6,112 @@
             "title": "Check your answers",
             "components": [],
             "next": [],
+            "section": "eAEGhH",
             "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/how-your-organisation-is-classified",
+            "title": "How your organisation is classified",
+            "components": [
+                {
+                    "type": "Details",
+                    "content": "<p><a href=\"https://www.gov.uk/government/publications/community-ownership-fund-prospectus/community-ownership-fund-prospectus--3#whocanapply\" class=\"govuk-link\">See Section 6 of the COF25 prospectus for a list of eligible organisations</a>. If your organisation has not yet registered as a company or charity, select 'not yet incorporated'</p>",
+                    "options": {},
+                    "schema": {},
+                    "title": "Help with organisation type",
+                    "name": "Fepkam"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "RadiosField",
+                    "title": "Organisation classification",
+                    "hint": "Select one",
+                    "schema": {},
+                    "name": "uYiLsv",
+                    "list": "CCbnpc",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-your-organisation-subject-to-any-insolvency-actions"
+                }
+            ],
+            "section": "eAEGhH"
+        },
+        {
+            "path": "/organisation-names",
+            "title": "Organisation name",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "Organisation name",
+                    "hint": "This must match your registered legal organisation name.",
+                    "schema": {},
+                    "name": "SMRWjl"
+                },
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Does your organisation have any alternative names?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "SxkwhF",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/organisation-address"
+                },
+                {
+                    "path": "/alternative-names-of-your-organisation",
+                    "condition": "DaVyIg"
+                }
+            ],
+            "section": "eAEGhH"
+        },
+        {
+            "path": "/is-your-organisation-subject-to-any-insolvency-actions",
+            "title": "Is your organisation subject to any insolvency actions?",
+            "components": [
+                {
+                    "type": "Details",
+                    "content": "<p class=\"govuk-body\">An organisation is insolvent if it can't pay its debts. This could mean either:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>it can't pay bills when they become due</li>\n  <li>it has more liabilities than assets on its balance sheet</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "title": "Help with insolvency",
+                    "name": "jGoBGp"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Is your organisation subject to any insolvency actions?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "NcQSbU",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "eAEGhH"
         },
         {
             "path": "/alternative-names-of-your-organisation",
@@ -45,7 +150,8 @@
                 {
                     "path": "/organisation-address"
                 }
-            ]
+            ],
+            "section": "eAEGhH"
         },
         {
             "path": "/organisation-address",
@@ -66,108 +172,8 @@
                 {
                     "path": "/how-your-organisation-is-classified"
                 }
-            ]
-        },
-        {
-            "path": "/organisation-names",
-            "title": "Organisation name",
-            "components": [
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "TextField",
-                    "title": "Organisation name",
-                    "hint": "This must match your registered legal organisation name.",
-                    "schema": {},
-                    "name": "SMRWjl"
-                },
-                {
-                    "options": {},
-                    "type": "YesNoField",
-                    "title": "Does your organisation have any alternative names?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "SxkwhF",
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
             ],
-            "next": [
-                {
-                    "path": "/organisation-address"
-                },
-                {
-                    "path": "/alternative-names-of-your-organisation",
-                    "condition": "DaVyIg"
-                }
-            ]
-        },
-        {
-            "path": "/is-your-organisation-subject-to-any-insolvency-actions",
-            "title": "Is your organisation subject to any insolvency actions?",
-            "components": [
-                {
-                    "type": "Details",
-                    "content": "<p class=\"govuk-body\">An organisation is insolvent if it can't pay its debts. This could mean either:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>it can't pay bills when they become due</li>\n  <li>it has more liabilities than assets on its balance sheet</li>\n</ul>",
-                    "options": {},
-                    "schema": {},
-                    "title": "Help with insolvency",
-                    "name": "jGoBGp"
-                },
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "YesNoField",
-                    "title": "Is your organisation subject to any insolvency actions?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "NcQSbU",
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/summary"
-                }
-            ]
-        },
-        {
-            "path": "/how-your-organisation-is-classified",
-            "title": "How your organisation is classified",
-            "components": [
-                {
-                    "type": "Details",
-                    "content": "<p><a href=\"https://www.gov.uk/government/publications/community-ownership-fund-prospectus/community-ownership-fund-prospectus--3#whocanapply\" class=\"govuk-link\">See Section 6 of the COF25 prospectus for a list of eligible organisations</a>. If your organisation has not yet registered as a company or charity, select 'not yet incorporated'</p>",
-                    "options": {},
-                    "schema": {},
-                    "title": "Help with organisation type",
-                    "name": "Fepkam"
-                },
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "RadiosField",
-                    "title": "Organisation classification",
-                    "hint": "Select one",
-                    "schema": {},
-                    "name": "uYiLsv",
-                    "list": "CCbnpc",
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/is-your-organisation-subject-to-any-insolvency-actions"
-                }
-            ]
+            "section": "eAEGhH"
         },
         {
             "path": "/organisation-details",
@@ -186,6 +192,7 @@
                     "path": "/organisation-names"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         }
     ],
@@ -254,8 +261,19 @@
             }
         }
     ],
-    "sections": [],
+    "sections": [
+        {
+            "name": "eAEGhH",
+            "title": "Organisation details",
+            "hideTitle": false
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for expression of interest in applying for the Community Ownership Fund 2025"
 }

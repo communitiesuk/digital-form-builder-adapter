@@ -6,6 +6,7 @@
             "title": "Check your answers",
             "components": [],
             "next": [],
+            "section": "FabDefault",
             "controller": "./pages/summary.js"
         },
         {
@@ -32,6 +33,7 @@
                     "path": "/summary"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         }
     ],
@@ -49,8 +51,14 @@
         }
     ],
     "conditions": [],
-    "sections": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for expression of interest in applying for the Community Ownership Fund 2025"
 }

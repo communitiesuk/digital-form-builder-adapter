@@ -6,6 +6,7 @@
             "title": "Check your answers ",
             "components": [],
             "next": [],
+            "section": "HKdODf",
             "controller": "./pages/summary.js"
         },
         {
@@ -42,7 +43,8 @@
                 {
                     "path": "/summary"
                 }
-            ]
+            ],
+            "section": "HKdODf"
         },
         {
             "path": "/risk",
@@ -61,13 +63,25 @@
                     "path": "/your-project-risk-register"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         }
     ],
     "lists": [],
     "conditions": [],
-    "sections": [],
+    "sections": [
+        {
+            "name": "HKdODf",
+            "title": "Risk",
+            "hideTitle": false
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for funding to save an asset in your community"
 }

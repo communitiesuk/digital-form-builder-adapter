@@ -2,37 +2,11 @@
     "startPage": "/project-information",
     "pages": [
         {
-            "path": "/previous-community-ownership-fund-2025-applications",
-            "title": "Previous Community Ownership Fund 2025 applications",
-            "components": [
-                {
-                    "options": {},
-                    "type": "YesNoField",
-                    "title": "Have you applied to the Community Ownership Fund 2025 before?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "pWwCRM",
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/successful-community-ownership-fund-2025-applications",
-                    "condition": "GhNZig"
-                },
-                {
-                    "path": "/project-name-and-summary",
-                    "condition": "mqlhBn"
-                }
-            ]
-        },
-        {
             "path": "/summary",
             "title": "Check your answers",
             "components": [],
             "next": [],
+            "section": "qsnIGd",
             "controller": "./pages/summary.js"
         },
         {
@@ -60,90 +34,36 @@
                     "path": "/projects-previously-funded-by-the-community-ownership-fund-2025",
                     "condition": "TTGIAJ"
                 }
-            ]
+            ],
+            "section": "qsnIGd"
         },
         {
-            "path": "/project-name-and-summary",
-            "title": "Project name and summary",
+            "path": "/previous-community-ownership-fund-2025-applications",
+            "title": "Previous Community Ownership Fund 2025 applications",
             "components": [
                 {
-                    "options": {
-                        "classes": "govuk-!-width-full"
-                    },
-                    "type": "TextField",
-                    "title": "Project name",
-                    "hint": "<p>This is what your project will be called within your organisation and by the public.</p>\n\n<p>Choose a name that describes your project. For example, the name of your asset, or a link to your asset's location.</p>",
-                    "schema": {},
-                    "name": "apGjFS"
-                },
-                {
-                    "options": {
-                        "maxWords": "500"
-                    },
-                    "type": "FreeTextField",
-                    "title": "Tell us how the asset is currently being used, or how it has been used before, and why it's important to the community",
-                    "hint": "If it has already been lost to the community, tell us how it was used before closure.",
-                    "schema": {},
-                    "name": "bEWpAj"
-                },
-                {
-                    "options": {
-                        "maxWords": "500"
-                    },
-                    "type": "FreeTextField",
-                    "title": "Give a brief summary of your project, including what you hope to achieve",
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Have you applied to the Community Ownership Fund 2025 before?",
                     "hint": "",
                     "schema": {},
-                    "name": "uypCNM"
-                },
-                {
-                    "options": {
-                        "maxWords": "500"
-                    },
-                    "type": "FreeTextField",
-                    "title": "Tell us about the planned activities and/or services that will take place in the asset",
-                    "hint": "",
-                    "schema": {},
-                    "name": "AgeRbd"
+                    "name": "pWwCRM",
+                    "values": {
+                        "type": "listRef"
+                    }
                 }
             ],
             "next": [
                 {
-                    "path": "/address-of-the-asset"
-                }
-            ]
-        },
-        {
-            "path": "/projects-previously-funded-by-the-community-ownership-fund-2025",
-            "title": "Projects previously funded by the Community Ownership Fund 2025",
-            "components": [
-                {
-                    "options": {
-                        "maxWords": "500"
-                    },
-                    "type": "FreeTextField",
-                    "title": "Describe the project for which you were given funding",
-                    "hint": "Include:\n<p>\n<ul  class=\"govuk-hint\">\n<li>project name</li>\n<li>general project overview</li>\n<li>date you received funding</li>\n</ul>\n</p>",
-                    "schema": {},
-                    "name": "ACppgI"
+                    "path": "/successful-community-ownership-fund-2025-applications",
+                    "condition": "GhNZig"
                 },
                 {
-                    "options": {
-                        "prefix": "\u00a3",
-                        "classes": "govuk-input--width-10"
-                    },
-                    "type": "NumberField",
-                    "title": "Amount of funding received",
-                    "hint": "",
-                    "schema": {},
-                    "name": "yuvajR"
+                    "path": "/project-name-and-summary",
+                    "condition": "mqlhBn"
                 }
             ],
-            "next": [
-                {
-                    "path": "/project-name-and-summary"
-                }
-            ]
+            "section": "qsnIGd"
         },
         {
             "path": "/address-of-the-asset",
@@ -182,7 +102,95 @@
                 {
                     "path": "/summary"
                 }
-            ]
+            ],
+            "section": "qsnIGd"
+        },
+        {
+            "path": "/projects-previously-funded-by-the-community-ownership-fund-2025",
+            "title": "Projects previously funded by the Community Ownership Fund 2025",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "Describe the project for which you were given funding",
+                    "hint": "Include:\n<p>\n<ul  class=\"govuk-hint\">\n<li>project name</li>\n<li>general project overview</li>\n<li>date you received funding</li>\n</ul>\n</p>",
+                    "schema": {},
+                    "name": "ACppgI"
+                },
+                {
+                    "options": {
+                        "prefix": "\u00a3",
+                        "classes": "govuk-input--width-10"
+                    },
+                    "type": "NumberField",
+                    "title": "Amount of funding received",
+                    "hint": "",
+                    "schema": {},
+                    "name": "yuvajR"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-name-and-summary"
+                }
+            ],
+            "section": "qsnIGd"
+        },
+        {
+            "path": "/project-name-and-summary",
+            "title": "Project name and summary",
+            "components": [
+                {
+                    "options": {
+                        "classes": "govuk-!-width-full"
+                    },
+                    "type": "TextField",
+                    "title": "Project name",
+                    "hint": "<p>This is what your project will be called within your organisation and by the public.</p>\n\n<p>Choose a name that describes your project. For example, the name of your asset, or a link to your asset's location.</p>",
+                    "schema": {},
+                    "name": "apGjFS"
+                },
+                {
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "Tell us how the asset is currently being used, or how it has been used before, and why it's important to the community",
+                    "hint": "If it has already been lost to the community, tell us how it was used before closure.",
+                    "schema": {
+                        "regex": ""
+                    },
+                    "name": "bEWpAj"
+                },
+                {
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "Give a brief summary of your project, including what you hope to achieve",
+                    "hint": "",
+                    "schema": {},
+                    "name": "uypCNM"
+                },
+                {
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "Tell us about the planned activities and/or services that will take place in the asset",
+                    "hint": "",
+                    "schema": {},
+                    "name": "AgeRbd"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/address-of-the-asset"
+                }
+            ],
+            "section": "qsnIGd"
         },
         {
             "path": "/project-information",
@@ -201,55 +209,12 @@
                     "path": "/previous-community-ownership-fund-2025-applications"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         }
     ],
     "lists": [],
     "conditions": [
-        {
-            "displayName": "Previous Community Ownership Fund 2025 applications-yes",
-            "name": "GhNZig",
-            "value": {
-                "name": "Previous Community Ownership Fund 2025 applications-yes",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "pWwCRM",
-                            "type": "YesNoField",
-                            "display": "Have you applied to the Community Ownership Fund 2025 before?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Previous Community Ownership Fund 2025 applications-no",
-            "name": "mqlhBn",
-            "value": {
-                "name": "Previous Community Ownership Fund 2025 applications-no",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "pWwCRM",
-                            "type": "YesNoField",
-                            "display": "Have you applied to the Community Ownership Fund 2025 before?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
         {
             "displayName": "Was your application successful-no",
             "name": "ObwCag",
@@ -293,10 +258,65 @@
                     }
                 ]
             }
+        },
+        {
+            "displayName": "Previous Community Ownership Fund 2025 applications-yes",
+            "name": "GhNZig",
+            "value": {
+                "name": "Previous Community Ownership Fund 2025 applications-yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "pWwCRM",
+                            "type": "YesNoField",
+                            "display": "Have you applied to the Community Ownership Fund 2025 before?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Previous Community Ownership Fund 2025 applications-no",
+            "name": "mqlhBn",
+            "value": {
+                "name": "Previous Community Ownership Fund 2025 applications-no",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "pWwCRM",
+                            "type": "YesNoField",
+                            "display": "Have you applied to the Community Ownership Fund 2025 before?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
         }
     ],
-    "sections": [],
+    "sections": [
+        {
+            "name": "qsnIGd",
+            "title": "Project information",
+            "hideTitle": false
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for funding to save an asset in your community"
 }

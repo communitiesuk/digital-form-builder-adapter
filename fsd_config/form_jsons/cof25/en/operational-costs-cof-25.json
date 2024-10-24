@@ -6,6 +6,7 @@
             "title": "Check your answers",
             "components": [],
             "next": [],
+            "section": "oSfXFZ",
             "controller": "./pages/summary.js"
         },
         {
@@ -35,7 +36,8 @@
                 {
                     "path": "/summary"
                 }
-            ]
+            ],
+            "section": "oSfXFZ"
         },
         {
             "path": "/operational-costs",
@@ -54,13 +56,25 @@
                     "path": "/forecasted-income-and-operational-costs-to-run-the-asset"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         }
     ],
     "lists": [],
     "conditions": [],
-    "sections": [],
+    "sections": [
+        {
+            "name": "oSfXFZ",
+            "title": "Operational costs",
+            "hideTitle": false
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for funding to save an asset in your community"
 }
