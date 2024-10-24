@@ -29,7 +29,8 @@
                     "path": "/describe-your-project-and-its-aims",
                     "condition": "BXKKSX"
                 }
-            ]
+            ],
+            "section": "IEwDfr"
         },
         {
             "path": "/summary",
@@ -44,6 +45,7 @@
                 }
             ],
             "next": [],
+            "section": "IEwDfr",
             "controller": "./pages/summary.js"
         },
         {
@@ -66,7 +68,8 @@
                 {
                     "path": "/lead-contact-details"
                 }
-            ]
+            ],
+            "section": "IEwDfr"
         },
         {
             "path": "/development-support-provider",
@@ -85,6 +88,7 @@
                     "path": "/do-you-wish-to-be-contacted-by-the-development-support-provider-if-eligible-for-in-depth-support"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         },
         {
@@ -129,7 +133,8 @@
                 {
                     "path": "/summary"
                 }
-            ]
+            ],
+            "section": "IEwDfr"
         },
         {
             "path": "/what-are-the-main-things-you-feel-you-need-support-with-to-submit-a-good-cof25-application",
@@ -154,7 +159,8 @@
                 {
                     "path": "/describe-your-project-and-its-aims"
                 }
-            ]
+            ],
+            "section": "IEwDfr"
         }
     ],
     "lists": [
@@ -251,8 +257,19 @@
             }
         }
     ],
-    "sections": [],
+    "sections": [
+        {
+            "name": "IEwDfr",
+            "title": "Development support provider",
+            "hideTitle": false
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for expression of interest in applying for the Community Ownership Fund 2025"
 }

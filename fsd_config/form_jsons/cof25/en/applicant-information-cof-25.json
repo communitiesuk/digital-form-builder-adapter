@@ -6,6 +6,7 @@
             "title": "Check your answers",
             "components": [],
             "next": [],
+            "section": "ZuHuGk",
             "controller": "./pages/summary.js"
         },
         {
@@ -25,6 +26,7 @@
                     "path": "/lead-contact-details"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         },
         {
@@ -76,12 +78,24 @@
                 {
                     "path": "/summary"
                 }
-            ]
+            ],
+            "section": "ZuHuGk"
         }
     ],
     "lists": [],
     "conditions": [],
-    "sections": [],
+    "sections": [
+        {
+            "name": "ZuHuGk",
+            "title": "Applicant information",
+            "hideTitle": false
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
     "name": "Apply for funding to save an asset in your community"

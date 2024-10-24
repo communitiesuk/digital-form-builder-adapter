@@ -44,13 +44,15 @@
                     "path": "/summary",
                     "condition": "XprEGH"
                 }
-            ]
+            ],
+            "section": "bBGnkL"
         },
         {
             "path": "/summary",
             "title": "Check your answers",
             "components": [],
             "next": [],
+            "section": "bBGnkL",
             "controller": "./pages/summary.js"
         },
         {
@@ -80,7 +82,8 @@
                 {
                     "path": "/summary"
                 }
-            ]
+            ],
+            "section": "bBGnkL"
         },
         {
             "path": "/feasibility",
@@ -99,6 +102,7 @@
                     "path": "/feasiblity-studies-youve-carried-out"
                 }
             ],
+            "section": "FabDefault",
             "controller": "start.js"
         }
     ],
@@ -149,8 +153,19 @@
             }
         }
     ],
-    "sections": [],
+    "sections": [
+        {
+            "name": "bBGnkL",
+            "title": "Feasibility",
+            "hideTitle": false
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for funding to save an asset in your community"
 }

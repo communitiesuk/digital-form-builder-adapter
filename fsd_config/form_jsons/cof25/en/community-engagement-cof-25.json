@@ -6,47 +6,8 @@
             "title": "Check your answers",
             "components": [],
             "next": [],
+            "section": "lmdhVN",
             "controller": "./pages/summary.js"
-        },
-        {
-            "path": "/your-fundraising-activities",
-            "title": "Your fundraising activities",
-            "components": [
-                {
-                    "options": {
-                        "maxWords": "500"
-                    },
-                    "type": "FreeTextField",
-                    "title": "Describe your fundraising activities",
-                    "hint": "",
-                    "schema": {},
-                    "name": "jAhuWN"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/partnerships-and-local-plans"
-                }
-            ]
-        },
-        {
-            "path": "/community-engagement",
-            "title": "Community engagement",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "<label class=\"govuk-!-font-weight-bold\">In this section, we'll ask about:\n</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>who you have engaged with in the community</li>\n<li>fundraising activities</li>\n<li>how your project supports wider plans</li>\n</ul>",
-                    "options": {},
-                    "schema": {},
-                    "name": "ImjRDZ"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/how-youve-engaged-with-the-community"
-                }
-            ],
-            "controller": "start.js"
         },
         {
             "path": "/how-youve-engaged-with-the-community",
@@ -67,7 +28,28 @@
                 {
                     "path": "/your-fundraising-activities"
                 }
-            ]
+            ],
+            "section": "lmdhVN"
+        },
+        {
+            "path": "/community-engagement",
+            "title": "Community engagement",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label class=\"govuk-!-font-weight-bold\">In this section, we'll ask about:\n</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>who you have engaged with in the community</li>\n<li>fundraising activities</li>\n<li>how your project supports wider plans</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "ImjRDZ"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-youve-engaged-with-the-community"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
         },
         {
             "path": "/partnerships-and-local-plans",
@@ -98,13 +80,47 @@
                 {
                     "path": "/summary"
                 }
-            ]
+            ],
+            "section": "lmdhVN"
+        },
+        {
+            "path": "/your-fundraising-activities",
+            "title": "Your fundraising activities",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "Describe your fundraising activities",
+                    "hint": "",
+                    "schema": {},
+                    "name": "jAhuWN"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/partnerships-and-local-plans"
+                }
+            ],
+            "section": "lmdhVN"
         }
     ],
     "lists": [],
     "conditions": [],
-    "sections": [],
+    "sections": [
+        {
+            "name": "lmdhVN",
+            "title": "Community engagement",
+            "hideTitle": false
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        }
+    ],
     "outputs": [],
     "skipSummary": false,
-  "name": "Apply for funding to save an asset in your community"
+    "name": "Apply for funding to save an asset in your community"
 }
