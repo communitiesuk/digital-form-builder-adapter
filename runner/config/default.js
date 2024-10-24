@@ -108,4 +108,5 @@ module.exports = {
   awsRegion: "eu-west-2", // The aws buckets region
   migrationBannerEnabled: false,
   eligibilityResultUrl: "",
+  ignoreSectionsFromSummary: ["FabDefault"],
 };
