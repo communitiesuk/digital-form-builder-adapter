@@ -296,10 +296,6 @@
           "condition": "EQpfAl"
         },
         {
-          "path": "/trosiad-aseth-cymunedol",
-          "condition": "rrSKPO"
-        },
-        {
           "path": "/asedau-o-werth-cymunedol"
         }
       ],
@@ -978,7 +974,7 @@
             "operator": "is",
             "value": {
               "type": "Value",
-              "value": "Eisoes yn eiddo iw sefydliad",
+              "value": "Eisoes yn eiddo i'w sefydliad",
               "display": "Eisoes yn eiddo i'w sefydliad"
             }
           }
@@ -1022,8 +1018,8 @@
             "operator": "contains",
             "value": {
               "type": "Value",
-              "value": "Llogir eiddo",
-              "display": "Llogi'r eiddo"
+              "value": "Wedî'i restru ar gyfer gwaredu",
+              "display": "Wedî'i restru ar gyfer gwaredu"
             }
           }
         ]
