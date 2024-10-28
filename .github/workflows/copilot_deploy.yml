@@ -305,7 +305,7 @@ jobs:
     needs: [ setup, docker-designer-build, docker-runner-build ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment || 'dev' }}
+    environment: dev
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -313,7 +313,7 @@ jobs:
       - name: Setup Copilot
         uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
         with:
-          environment: ${{ inputs.environment || 'dev' }}
+          environment: dev
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
 
       - name: Inject env specific values into manifest
@@ -356,7 +356,7 @@ jobs:
     needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, post_dev_deploy_tests ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment || 'test' }}
+    environment: test
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -364,7 +364,7 @@ jobs:
       - name: Setup Copilot
         uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
         with:
-          environment: ${{ inputs.environment || 'test' }}
+          environment: test
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
 
       - name: Inject env specific values into manifest
@@ -406,7 +406,7 @@ jobs:
     needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, test_deploy, post_test_deploy_tests ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'uat') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment || 'uat' }}
+    environment: uat
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -414,7 +414,7 @@ jobs:
       - name: Setup Copilot
         uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
         with:
-          environment: ${{ inputs.environment || 'uat' }}
+          environment: uat
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
 
       - name: Inject env specific values into manifest
@@ -455,7 +455,7 @@ jobs:
     needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, test_deploy, uat_deploy, post_uat_deploy_tests ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'prod') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment || 'uat' }}
+    environment: prod
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -463,7 +463,7 @@ jobs:
       - name: Setup Copilot
         uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
         with:
-          environment: ${{ inputs.environment || 'uat' }}
+          environment: prod
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
 
       - name: Inject env specific values into manifest
