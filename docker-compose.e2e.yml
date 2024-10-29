@@ -42,6 +42,7 @@ services:
       - SERVICE_START_PAGE=http://localhost:3008/account
       - SINGLE_REDIS=true
       - FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI=redis://redis-data:6379
+      - PREVIEW_MODE=true
     command: yarn runner production
     logging:
       driver: "json-file"
