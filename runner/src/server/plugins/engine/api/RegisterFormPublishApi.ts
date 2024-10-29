@@ -35,7 +35,8 @@ export class RegisterFormPublishApi implements RegisterApi {
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
-                if (!previewMode) {
+                // @ts-ignore
+                if (!previewMode || previewMode==="false") {
                     request.logger.error(
                         [`POST /publish`, "previewModeError"],
                         disabledRouteDetailString
@@ -66,7 +67,8 @@ export class RegisterFormPublishApi implements RegisterApi {
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
-                if (!previewMode) {
+                // @ts-ignore
+                if (!previewMode || previewMode==="false") {
                     request.logger.error(
                         [`GET /published/${id}`, "previewModeError"],
                         disabledRouteDetailString
@@ -91,7 +93,8 @@ export class RegisterFormPublishApi implements RegisterApi {
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
-                if (!previewMode) {
+                // @ts-ignore
+                if (!previewMode || previewMode==="false") {
                     request.logger.error(
                         [`GET /published`, "previewModeError"],
                         disabledRouteDetailString
