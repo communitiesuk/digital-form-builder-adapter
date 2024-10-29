@@ -78,14 +78,20 @@ secrets:
 # You can override any of the values defined above by environment.
 environments:
   dev:
+    variables:
+      PREVIEW_MODE: true
     count:
       spot: 2
   test:
+    variables:
+      PREVIEW_MODE: true
     deployment:
       rolling: "recreate"
     count:
       spot: 2
   uat:
+    variables:
+      PREVIEW_MODE: true
     count:
       range: 2-4
       cooldown:
