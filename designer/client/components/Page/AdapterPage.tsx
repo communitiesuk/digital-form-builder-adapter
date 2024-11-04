@@ -44,6 +44,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
     const {data, save} = useContext(AdapterDataContext);
     const [isEditingPage, setIsEditingPage] = useState(false);
     const [isCreatingComponent, setIsCreatingComponent] = useState(false);
+    let isMultiInputUpdated: boolean = false;
 
     if (data.pages) {
         const multiInputPages = data.pages.filter(page =>
@@ -51,6 +52,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
             page.components.some(component => component.type === 'MultiInputField')
         );
         multiInputPages.forEach(page => {
+            isMultiInputUpdated = true;
             // @ts-ignore
             const multiInputFields = page.components.filter(component => component.type === 'MultiInputField');
             //@ts-ignore
@@ -64,7 +66,6 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
                     delete component.pageOptions
                 })
                 page.controller = "RepeatingFieldPageController"
-                save(data)
             }
 
             //@ts-ignore
@@ -85,22 +86,29 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
                         samePageTitle: page.options.customText.samePageTitle ? page.options.customText.samePageTitle : "",
                     }
                 }
-                save(data)
             }
         })
         if (multiInputPages.length <= 0) {
             data.pages.forEach(page => {
                 if (page.controller === "RepeatingFieldPageController") {
+                    isMultiInputUpdated = true;
                     // @ts-ignore
                     delete page.controller;
                     // @ts-ignore
                     delete page.options.summaryDisplayMode;
                     // @ts-ignore
                     delete page.options.customText;
-                    save(data)
                 }
             })
         }
+    }
+
+    const publishAndDirectToPreview = async (_e) => {
+        _e.preventDefault();
+        if (isMultiInputUpdated) {
+            await save(data);
+        }
+        window.location.href = new URL(`${id}${page.path}`, previewUrl).toString();
     }
 
     const onSortEnd = ({oldIndex, newIndex}) => {
@@ -167,7 +175,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
                 </button>
                 <a
                     title={i18n("Preview page")}
-                    href={new URL(`${id}${page.path}`, previewUrl).toString()}
+                    onClick={(_e) => publishAndDirectToPreview(_e)}
                     target="_blank"
                     rel="noreferrer"
                 >

@@ -44,7 +44,7 @@ Feature: Multi Input Field Edit
       | UkAddressField     | This is a address field   | {}                                                  | false      |              | addressfield   |
       | MultilineTextField | This is a multiline field | {}                                                  | false      |              | multilinefield |
     And I save component
-    And I preview the page "First page"
+    And I preview the page "First page" without href
     Then I see following components in the page
       | component          | title                     |
       | TextField          | This is a text field      |
