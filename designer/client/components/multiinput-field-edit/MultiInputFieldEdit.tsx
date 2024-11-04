@@ -49,6 +49,10 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
     const {selectedComponent} = state;
     //@ts-ignore
     const {options = {}} = selectedComponent;
+    //@ts-ignore
+    options.required = true
+    //@ts-ignore
+    selectedComponent.schema = {}
     const [pageOptions, setPageOptions] = useState({
         // @ts-ignore
         summaryDisplayMode: {
@@ -858,6 +862,7 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
                         onChange={handleSubComponentSelection}>
                     <option value={"Clear"}>Please select</option>
                     <option value={"TextField"}>Text Field</option>
+                    <option value={"MultilineTextField"}>Multiline Text Field</option>
                     <option value={"NumberField"}>Number Field</option>
                     <option value={"RadiosField"}>Radios Field</option>
                     <option value={"DatePartsField"}>Date Parts Field</option>

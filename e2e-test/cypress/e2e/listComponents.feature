@@ -25,7 +25,8 @@ Feature: List components
     When I create a component
       | page       | component   | title                   | list         |
       | First page | <component> | Which eggs do you like? | Types of egg |
-    And I preview the page "First page"
+    And I close the flyout
+    And I preview the page "First page" without href
     Then I see the options with hints
       | text          | hint                   |
       | sunny-side up | fried but not flipped  |
@@ -42,7 +43,8 @@ Feature: List components
     When I create a component
       | page       | component | title                   | list         |
       | First page | Select    | Which eggs do you like? | Types of egg |
-    And I preview the page "First page"
+    And I close the flyout
+    And I preview the page "First page" without href
     Then I see the dropdown options
       | labelText  | options                               |
       | First page | sunny-side up,over-easy,scrambled,raw |
@@ -51,7 +53,8 @@ Feature: List components
     When I create a component
       | page       | component    | title                   | list         |
       | First page | Autocomplete | Which eggs do you like? | Types of egg |
-    And I preview the page "First page"
+    And I close the flyout
+    And I preview the page "First page" without href
     Then I see the typeahead options
       | labelText  | options                               |
       | First page | sunny-side up,over-easy,scrambled,raw |
@@ -63,7 +66,8 @@ Feature: List components
     And I create a component
       | page       | component | title |
       | First page | Text      | Other |
-    * I preview the page "First page"
+    And I close the flyout
+    * I preview the page "First page" without href
     Then I see the heading "First page"
     * I see "Which eggs do you like?"
     * I see the field "Other"
@@ -72,7 +76,8 @@ Feature: List components
     When I create a component
       | page       | component | title                   | list         |
       | First page | Radios    | Which eggs do you like? | Types of egg |
-    And I preview the page "First page"
+    And I close the flyout
+    And I preview the page "First page" without href
     Then I see the options with hints
       | text          | hint                   |
       | sunny-side up | fried but not flipped  |
@@ -83,7 +88,8 @@ Feature: List components
     And I open the link "Types of egg"
     And I delete the list item "scrambled"
     * I save the list
-    * I preview the page "First page"
+    And I close the flyout
+    * I preview the page "First page" without href
     Then I don't see "scrambled"
 
 
@@ -91,7 +97,8 @@ Feature: List components
     When I create a component
       | page       | component | title                   | list         |
       | First page | Radios    | Which eggs do you like? | Types of egg |
-    And I preview the page "First page"
+    And I close the flyout
+    And I preview the page "First page" without href
     Then I see the options with hints
       | text          | hint                   |
       | sunny-side up | fried but not flipped  |
@@ -104,14 +111,16 @@ Feature: List components
       | initialItem | text | help                    | value |
       | scrambled   |      | eggs whisked with cream |       |
     * I save the list
-    * I preview the page "First page"
+    And I close the flyout
+    * I preview the page "First page" without href
     Then I see "eggs whisked with cream"
 
   Scenario: Content lists render
     When I create a component
       | page       | component | title                   | list         |
       | First page | List      | Which eggs do you like? | Types of egg |
-    And I preview the page "First page"
+    And I close the flyout
+    And I preview the page "First page" without href
     Then I see
       | text          |
       | sunny-side up |
@@ -123,7 +132,8 @@ Feature: List components
     When I create a component
       | page       | component  | title                   | list         |
       | First page | Flash card | Which eggs do you like? | Types of egg |
-    And I preview the page "First page"
+    And I close the flyout
+    And I preview the page "First page" without href
     Then I see
       | text          | hint                   |
       | sunny-side up | fried but not flipped  |

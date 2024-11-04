@@ -11,19 +11,19 @@ Feature: Form pages
   Scenario: Edit a page title
     When I edit the page "First page"
     And I change the page title to "Testing"
-    * I preview the page "Testing"
+    * I preview the page "Testing" without href
     Then I see the heading "Testing"
 
   Scenario: Edit the page path
     When I edit the page "First page"
     And I change the page path to "my-first-test-page"
-    * I preview the page "First page"
+    * I preview the page "First page" without href
     Then I see the path is "/my-first-test-page"
 
   Scenario: Create a section from Edit page
     And I edit the page "First page"
     When I create a section titled "Personal Details"
-    And I preview the page "First page"
+    And I preview the page "First page" without href
     Then I see the section title "Personal Details" is displayed in the preview
 
   Scenario: Add a page
