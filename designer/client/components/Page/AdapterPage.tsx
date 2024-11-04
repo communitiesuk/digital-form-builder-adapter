@@ -64,6 +64,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
                     delete component.pageOptions
                 })
                 page.controller = "RepeatingFieldPageController"
+                save(data)
             }
 
             //@ts-ignore
@@ -84,6 +85,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
                         samePageTitle: page.options.customText.samePageTitle ? page.options.customText.samePageTitle : "",
                     }
                 }
+                save(data)
             }
         })
         if (multiInputPages.length <= 0) {
@@ -95,6 +97,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
                     delete page.options.summaryDisplayMode;
                     // @ts-ignore
                     delete page.options.customText;
+                    save(data)
                 }
             })
         }

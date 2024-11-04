@@ -30,26 +30,29 @@ Feature: Multi Input Field Edit
     * I add table title name "Websitefield"
     * I add table title name "YesorNofield"
     * I add table title name "MonthYearfield"
+    * I add table title name "MultilineTextField"
     * I add table title "This is a table title"
     And I add child components
-      | component      | title                   | options                                             | additional | listItem     | name           |
-      | TextField      | This is a text field    | {"min": "1", "max": "5", "words":"2", "length":"2"} | true       |              | textfield      |
-      | NumberField    | This is a number field  | {"min": "1", "prefix": "£", "max":"2"}              | true       |              | numberfield    |
-      | RadiosField    | This is a radios field  | {}                                                  | false      | Types of egg | radiofield     |
-      | DatePartsField | This is a date field    | {"maxDaysInPast": "1", "maxDaysInFuture": "5"}      | true       |              | datepartsfield |
-      | WebsiteField   | This is a website field | {}                                                  | false      |              | websitefield   |
-      | YesNoField     | This is a yes no field  | {}                                                  | false      |              | yesnofield     |
-      | MonthYearField | This is a month field   | {}                                                  | false      |              | monthfield     |
-      | UkAddressField | This is a address field | {}                                                  | false      |              | addressfield   |
+      | component          | title                     | options                                             | additional | listItem     | name           |
+      | TextField          | This is a text field      | {"min": "1", "max": "5", "words":"2", "length":"2"} | true       |              | textfield      |
+      | NumberField        | This is a number field    | {"min": "1", "prefix": "£", "max":"2"}              | true       |              | numberfield    |
+      | RadiosField        | This is a radios field    | {}                                                  | false      | Types of egg | radiofield     |
+      | DatePartsField     | This is a date field      | {"maxDaysInPast": "1", "maxDaysInFuture": "5"}      | true       |              | datepartsfield |
+      | WebsiteField       | This is a website field   | {}                                                  | false      |              | websitefield   |
+      | YesNoField         | This is a yes no field    | {}                                                  | false      |              | yesnofield     |
+      | MonthYearField     | This is a month field     | {}                                                  | false      |              | monthfield     |
+      | UkAddressField     | This is a address field   | {}                                                  | false      |              | addressfield   |
+      | MultilineTextField | This is a multiline field | {}                                                  | false      |              | multilinefield |
     And I save component
     And I preview the page "First page"
     Then I see following components in the page
-      | component      | title                   |
-      | TextField      | This is a text field    |
-      | NumberField    | This is a number field  |
-      | RadiosField    | This is a radios field  |
-      | DatePartsField | This is a date field    |
-      | WebsiteField   | This is a website field |
-      | YesNoField     | This is a yes no field  |
-      | MonthYearField | This is a month field   |
-      | UkAddressField | This is a address field |
+      | component          | title                     |
+      | TextField          | This is a text field      |
+      | NumberField        | This is a number field    |
+      | RadiosField        | This is a radios field    |
+      | DatePartsField     | This is a date field      |
+      | WebsiteField       | This is a website field   |
+      | YesNoField         | This is a yes no field    |
+      | MonthYearField     | This is a month field     |
+      | UkAddressField     | This is a address field   |
+      | MultilineTextField | This is a multiline field |

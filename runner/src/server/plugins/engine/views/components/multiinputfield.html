@@ -13,7 +13,7 @@
     <label class="govuk-label" for={{item.id}}>
         {% if item.componentType == "TextField"%}
         {{ govukInput(item) }}
-        {% elif item.componentType == "UkAddressField"%}
+        {% elif item.componentType == "MultilineTextField"%}
             {% if item.isCharacterOrWordCount %}
                 {{ govukCharacterCount(item) }}
             {% else %}

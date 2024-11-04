@@ -217,6 +217,7 @@ export class RepeatingFieldPageController extends PageController {
                 rows,
             };
         }
+        console.log(rows);
     }
 
     async removeAtIndex(request, h) {
