@@ -1,0 +1,155 @@
+{% from "partials/summary-detail.html" import summaryDetail %}
+{% from "components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "button/macro.njk" import govukButton %}
+{% extends 'layout.html' %}
+
+{% set pageTitle = pageTitle if not isReadOnlySummary else "View your answers" %}
+
+{% block beforeContent %}
+    {{ govukPhaseBanner({
+        tag: {
+            text: "beta"
+        },
+        html: "This is a new service."
+    }) }}
+    {% if page.isEligibility or isReadOnlySummary %}
+        {{ govukBackLink({
+            href: backLink or page.backLink,
+            text: (backLinkText or page.backLinkText) if not isReadOnlySummary else "Back to application for funding overview"
+        }) }}
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="govuk-main-wrapper">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+                {% set hasMultipleSections = (details and details.length > 1 and details[0].items[0] | isArray) %}
+                {% if not hasMultipleSections %}
+                <span class="govuk-caption-l">{{ details[0].title }}</span>
+                {% endif %}
+                <h1 class="govuk-heading-l">
+                    {% if callback and callback.title %}
+                        {{ callback.title }}
+                    {% else %}
+                        {{ pageTitle }}
+                    {% endif %}
+                </h1>
+                {% if callback and callback.message %}
+                    <div class="govuk-inset-text">
+                        {{ callback.message }}
+                    </div>
+                {% endif %}
+
+                {% if callback and callback.htmlMessage %}
+                    {{ callback.htmlMessage | safe }}
+                {% endif %}
+
+                {% if containsFileType %}
+                    <div class="govuk-inset-text">
+                        Check your uploaded file is visible. If not, upload it again.
+                    </div>
+                {% endif %}
+
+                {% if isReadOnlySummary %}
+                <p class="govuk-body">You cannot change your answers.</p>
+                {% endif %}
+
+                {% for detail in details %}
+                    {{ summaryDetail(detail, isReadOnlySummary) }}
+                {% endfor %}
+
+                {% if fees and fees.details|length %}
+                    <h2 class="govuk-heading-m">Fees</h2>
+                    <ul class="govuk-list govuk-list--bullet">
+                        {% for fee in fees.details %}
+                            <li>{{ fee.description }}: £{{ fee.amount / 100 }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p class="govuk-body">Total cost: £{{ fees.total / 100 }}</p>
+                    <p class="govuk-body">You should not be charged an exchange fee if you pay with a UK credit or debit
+                        card.</p>
+                {% endif %}
+
+                {% if not result.error and not isReadOnlySummary %}
+                    <form method="post" enctype="multipart/form-data" autocomplete="off" novalidate>
+                        <input type="hidden" name="crumb" value="{{ crumb }}"/>
+
+                        {% if declaration %}
+                            <h2 class="govuk-heading-m" id="declaration">Declaration</h2>
+                            {{ declaration | safe }}
+                            <div class="govuk-form-group {{ 'govuk-form-group--error' if declarationError }}">
+                                {% if declarationError %}
+                                    <span id="nationality-error" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span> {{ declarationError }}</span>
+                                {% endif %}
+                                <div class="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="declaration-1" name="declaration"
+                                               type="checkbox" value="true">
+                                        <label class="govuk-label govuk-checkboxes__label" for="declaration-1">
+                                            Confirm
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if markAsCompleteComponent %}
+                            <div class="govuk-form-group {{ 'govuk-form-group--error' if markAsCompleteError }}">
+                                {% if markAsCompleteError %}
+                                    <span id="nationality-error" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span> {{ markAsCompleteError }}</span>
+                                {% endif %}
+                                <fieldset class="govuk-fieldset">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                        <h1 class="govuk-fieldset__heading">
+                                            Do you want to mark this section as complete?
+                                        </h1>
+                                    </legend>
+                                    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                                        <div class="govuk-radios__item">
+                                            <input class="govuk-radios__input" id="markAsComplete-yes"
+                                                   name="markAsComplete" type="radio" value="true"
+                                                   {% if markAsComplete %}checked{% endif %}>
+                                            <label class="govuk-label govuk-radios__label" for="markAsComplete-yes">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="govuk-radios__item">
+                                            <input class="govuk-radios__input" id="markAsComplete-no"
+                                                   name="markAsComplete" type="radio" value="false"
+                                                   {% if markAsComplete == false %}checked{% endif %}>
+                                            <label class="govuk-label govuk-radios__label" for="markAsComplete-no">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        {% endif %}
+
+                        {% if fees and fees.details|length %}
+                            Submit and pay
+                        {% else %}
+                            {% if page.isEligibility %}
+                                {{ govukButton({ attributes: { id: "submit" }, text: page.confirmAndContinueText }) }}
+                            {% else %}
+                                {{ govukButton({ attributes: { id: "submit" }, text: page.saveAndContinueText }) }}
+                            {% endif %}
+                        {% endif %}
+
+                        {% if showPaymentSkippedWarningPage %}
+                            <div class="govuk-body">
+                                <button data-prevent-double-click="true" class="govuk-body govuk-button--link"
+                                        name="skipPayment" value="true" data-module="govuk-button">
+                                    Unable to pay online
+                                </button>
+                            </div>
+                        {% endif %}
+
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
