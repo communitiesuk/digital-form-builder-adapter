@@ -108,7 +108,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
         if (isMultiInputUpdated) {
             await save(data);
         }
-        window.location.href = new URL(`${id}${page.path}`, previewUrl).toString();
+        window.open(new URL(`${id}${page.path}`, previewUrl).toString(), "_blank");
     }
 
     const onSortEnd = ({oldIndex, newIndex}) => {
