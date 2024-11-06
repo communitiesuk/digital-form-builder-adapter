@@ -13,7 +13,7 @@
     "clean:build": "rm -rf dist",
     "dev": "NODE_ENV=development  nodemon dist/digital-form-builder-adapter/runner/index.js",
     "production": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js",
-    "copy-local": "mkdir -p dist/digital-form-builder-adapter/runner/locales && cp ./locales/cy.json dist/digital-form-builder-adapter/runner/locales && cp ./locales/en.json dist/digital-form-builder-adapter/runner/locales"
+    "copy-local": "mkdir -p dist/digital-form-builder-adapter/runner/locales && cp ./locales/cy.json dist/digital-form-builder-adapter/runner/locales && cp ./locales/en.json dist/digital-form-builder-adapter/runner/locales",
     "test-cov": "yarn run unit-test-cov",
     "test:dev": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test --coverage-exclude",
     "unit-test": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test -S -v -r console -o stdout -r html -o unit-test.html -I version -l",
@@ -43,7 +43,7 @@
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
     "@babel/register": "^7.22.15",
-    "@hapi/lab": "24.0.0",
+    "@hapi/lab": "26.0.0",
     "@types/hoek": "^4.1.4",
     "babel-eslint": "^10.1.0",
     "babel-plugin-module-name-mapper": "^1.2.0",

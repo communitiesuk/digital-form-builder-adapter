@@ -22,7 +22,7 @@ internals.transform = function (content, filename) {
         "@babel/preset-env",
         {
           targets: {
-            node: "16",
+            node: "20",
           },
         },
       ],
