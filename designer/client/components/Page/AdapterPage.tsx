@@ -108,7 +108,17 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
         if (isMultiInputUpdated) {
             await save(data);
         }
-        window.open(new URL(`${id}${page.path}`, previewUrl).toString(), "_blank");
+        const url = new URL(`${id}${page.path}`, previewUrl).toString();
+        // Check if Cypress is running because in cypress it will not detect the new tabs created by the window.open,
+        // and it will be a separate browser context for that so to avoid that using this check
+        //@ts-ignore
+        if (window.Cypress) {
+            // Redirect within the same tab for Cypress compatibility
+            window.location.href = url;
+        } else {
+            // Open in a new tab in a real user environment
+            window.open(url, "_blank", "noopener,noreferrer");
+        }
     }
 
     const onSortEnd = ({oldIndex, newIndex}) => {
@@ -176,8 +186,6 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
                 <a
                     title={i18n("Preview page")}
                     onClick={(_e) => publishAndDirectToPreview(_e)}
-                    target="_blank"
-                    rel="noreferrer"
                 >
                     {i18n("Preview")}{" "}
                     <span className="govuk-visually-hidden">{pageTitle}</span>
