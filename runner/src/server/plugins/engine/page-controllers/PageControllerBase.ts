@@ -505,6 +505,7 @@ export class PageControllerBase {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {adapterCacheService} = request.services([]);
             const lang = this.langFromRequest(request);
+            console.log(`${request.yar.set("lang", lang)} Language set `)
             //@ts-ignore
             let state = await adapterCacheService.getState(request);
             if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {

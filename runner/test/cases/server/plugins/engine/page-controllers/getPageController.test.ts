@@ -1,8 +1,8 @@
 import * as Code from "@hapi/code";
 import * as Lab from "@hapi/lab";
-
+//@ts-ignore
 import { ControllerNameResolver } from "server/plugins/engine/page-controllers/ControllerNameResolver";
-
+//@ts-ignore
 import * as PageControllers from "server/plugins/engine/page-controllers";
 
 const lab = Lab.script();

@@ -1,8 +1,10 @@
 import * as Code from "@hapi/code";
 import * as Lab from "@hapi/lab";
-import formJson from "../../../../../../src/server/forms/get-condition-evaluation-context.json";
-
-import { AdapterFormModel } from "../../../../../../src/server/plugins/engine/models";
+//@ts-ignore
+import formJson from "src/server/forms/get-condition-evaluation-context.json";
+//@ts-ignore
+import { AdapterFormModel } from "src/server/plugins/engine/models";
+//@ts-ignore
 import { PageController } from "server/plugins/engine/page-controllers";
 
 const lab = Lab.script();

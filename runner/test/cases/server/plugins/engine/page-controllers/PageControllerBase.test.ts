@@ -1,7 +1,8 @@
 import * as Code from "@hapi/code";
 import * as Lab from "@hapi/lab";
-
+//@ts-ignore
 import { PageControllerBase } from "server/plugins/engine/page-controllers";
+//@ts-ignore
 import { AdapterFormModel } from "server/plugins/engine/models/AdapterFormModel";
 
 const lab = Lab.script();

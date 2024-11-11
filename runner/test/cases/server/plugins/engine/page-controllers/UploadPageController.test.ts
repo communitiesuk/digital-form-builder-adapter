@@ -1,11 +1,15 @@
 import * as Code from "@hapi/code";
 import * as Lab from "@hapi/lab";
-import { UploadPageController } from "../../../../../../src/server/plugins/engine/page-controllers/UploadPageController";
-import { AdapterFormModel } from "../../../../../../src/server/plugins/engine/models";
+//@ts-ignore
+import { UploadPageController } from "src/server/plugins/engine/page-controllers/UploadPageController";
+//@ts-ignore
+import { AdapterFormModel } from "src/server/plugins/engine/models";
 import * as sinon from "sinon";
-import * as PlaybackUploadPageController from "../../../../../../src/server/plugins/engine/page-controllers/PlaybackUploadPageController";
+//@ts-ignore
+import * as PlaybackUploadPageController from "src/server/plugins/engine/page-controllers/PlaybackUploadPageController";
 import { Page } from "@xgovformbuilder/model";
-import { FormComponent } from "../../../../../../src/server/plugins/engine/components";
+//@ts-ignore
+import { FormComponent } from "src/server/plugins/engine/components";
 
 const lab = Lab.script();
 exports.lab = lab;

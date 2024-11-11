@@ -6,6 +6,8 @@ import {config} from "../plugins/utils/AdapterConfigurationSchema";
 import CatboxRedis from "@hapi/catbox-redis";
 // @ts-ignore
 import CatboxMemory from "@hapi/catbox-memory";
+// @ts-ignore
+const Catbox = require('@hapi/catbox');
 
 import Redis from "ioredis";
 // @ts-ignore
@@ -47,6 +49,13 @@ export class AdapterCacheService extends CacheService {
         super(server);
         //@ts-ignore
         server.app.redis = this.getRedisClient()
+        //@ts-ignore
+        if (!server.app.redis) {
+            // starting up the in memory cache
+            this.cache.client.start();
+            //@ts-ignore
+            server.app.inMemoryFormKeys = []
+        }
     }
 
     async activateSession(jwt, request) {
@@ -116,40 +125,112 @@ export class AdapterCacheService extends CacheService {
      * @param configuration form definition configurations
      * @param server server object
      */
-    async setFormConfigurationRedisCache(formId: string, configuration: any, server: HapiServer) {
+    async setFormConfiguration(formId: string, configuration: any, server: HapiServer) {
         if (formId && configuration) {
             //@ts-ignore
-            const redisClient: Redis = server.app.redis
-            const hashValue = Crypto.createHash('sha256').update(JSON.stringify(configuration)).digest('hex')
-            if (redisClient) {
-                const jsonDataString = await redisClient.get(`${FORMS_KEY_PREFIX}${formId}`);
-                if (jsonDataString === null) {
-                    // Adding new config into redis cache service with the hash value
+            if (server.app.redis) {
+                await this.addConfigurationsToRedisCache(server, configuration, formId);
+            } else {
+                await this.addConfigurationIntoInMemoryCache(configuration, formId, server);
+            }
+        }
+    }
+
+    private async addConfigurationIntoInMemoryCache(configuration: any, formId: string, server: HapiServer) {
+        const hashValue = Crypto.createHash('sha256').update(JSON.stringify(configuration)).digest('hex')
+        try {
+            const jsonDataString = await this.cache.get(`${FORMS_KEY_PREFIX}${formId}`);
+            if (jsonDataString === null) {
+                // Adding new config into redis cache service with the hash value
+                const stringConfig = JSON.stringify({
+                    ...configuration,
+                    id: configuration.id,
+                    hash: hashValue
+                });
+                //@ts-ignore
+                server.app.inMemoryFormKeys.push(`${FORMS_KEY_PREFIX}${formId}`)
+                // Adding data into redis cache
+                await this.cache.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig, {expiresIn: 0});
+            } else {
+                // Redis has the data and gets current data set to check hash
+                const configObj = JSON.parse(jsonDataString);
+                if (configObj && configObj.hash && hashValue !== configObj.hash) {
+                    // if hash function is change then updating the configuration
                     const stringConfig = JSON.stringify({
                         ...configuration,
                         id: configuration.id,
                         hash: hashValue
                     });
-                    // Adding data into redis cache
+                    await this.cache.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig, {expiresIn: 0});
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    private async addConfigurationsToRedisCache(server: HapiServer, configuration: any, formId: string) {
+        //@ts-ignore
+        const redisClient: Redis = server.app.redis
+        const hashValue = Crypto.createHash('sha256').update(JSON.stringify(configuration)).digest('hex')
+        if (redisClient) {
+            const jsonDataString = await redisClient.get(`${FORMS_KEY_PREFIX}${formId}`);
+            if (jsonDataString === null) {
+                // Adding new config into redis cache service with the hash value
+                const stringConfig = JSON.stringify({
+                    ...configuration,
+                    id: configuration.id,
+                    hash: hashValue
+                });
+                // Adding data into redis cache
+                await redisClient.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig);
+            } else {
+                // Redis has the data and gets current data set to check hash
+                const configObj = JSON.parse(jsonDataString);
+                if (configObj && configObj.hash && hashValue !== configObj.hash) {
+                    // if hash function is change then updating the configuration
+                    const stringConfig = JSON.stringify({
+                        ...configuration,
+                        id: configuration.id,
+                        hash: hashValue
+                    });
                     await redisClient.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig);
-                } else {
-                    // Redis has the data and gets current data set to check hash
-                    const configObj = JSON.parse(jsonDataString);
-                    if (configObj && configObj.hash && hashValue !== configObj.hash) {
-                        // if hash function is change then updating the configuration
-                        const stringConfig = JSON.stringify({
-                            ...configuration,
-                            id: configuration.id,
-                            hash: hashValue
-                        });
-                        await redisClient.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig);
-                    }
                 }
             }
         }
     }
 
     async getFormAdapterModel(formId: string, request: HapiRequest) {
+        //@ts-ignore
+        if (request.server.app.redis) {
+            return await this.getConfigurationFromRedisCache(request, formId);
+        } else {
+            return await this.getConfigurationFromInMemoryCache(request, formId);
+        }
+    }
+
+    private async getConfigurationFromInMemoryCache(request: HapiRequest, formId: string) {
+        const {translationLoaderService} = request.services([]);
+        const translations = translationLoaderService.getTranslations();
+        const jsonDataString = await this.cache.get(`${FORMS_KEY_PREFIX}${formId}`);
+        if (jsonDataString !== null) {
+            const configObj = JSON.parse(jsonDataString);
+            return new AdapterFormModel(configObj.configuration, {
+                basePath: configObj.id ? configObj.id : formId,
+                hash: configObj.hash,
+                previewMode: true,
+                translationEn: translations.en,
+                translationCy: translations.cy
+            })
+        }
+        request.logger.error({
+            ...LOGGER_DATA,
+            message: `[FORM-CACHE] Cannot find the form ${formId}`
+        });
+        throw Boom.notFound("Cannot find the given form");
+    }
+
+    private async getConfigurationFromRedisCache(request: HapiRequest, formId: string) {
         //@ts-ignore
         const redisClient: Redis = request.server.app.redis
         const {translationLoaderService} = request.services([]);
@@ -173,6 +254,34 @@ export class AdapterCacheService extends CacheService {
     }
 
     async getFormConfigurations(request: HapiRequest) {
+        //@ts-ignore
+        if (request.server.app.redis) {
+            return await this.getFormDisplayConfigurationsFromRedisCache(request);
+        } else {
+            return await this.getFormConfigurationsFromInMemoryCache(request);
+        }
+
+    }
+
+    private async getFormConfigurationsFromInMemoryCache(request: HapiRequest) {
+        const configs: FormConfiguration[] = []
+        //@ts-ignore
+        for (const key of request.server.app.inMemoryFormKeys) {
+            const configObj = JSON.parse(await this.cache.get(`${key}`));
+            const result = AdapterSchema.validate(configObj.configuration, {abortEarly: false});
+            configs.push(
+                new FormConfiguration(
+                    key.replace(FORMS_KEY_PREFIX, ""),
+                    result.value.name,
+                    undefined,
+                    result.value.feedback?.feedbackForm
+                )
+            )
+        }
+        return configs;
+    }
+
+    private async getFormDisplayConfigurationsFromRedisCache(request: HapiRequest) {
         //@ts-ignore
         const redisClient: Redis = request.server.app.redis;
         const keys = await redisClient.keys(`${FORMS_KEY_PREFIX}*`);
@@ -237,7 +346,7 @@ export class AdapterCacheService extends CacheService {
     }
 }
 
-export const catboxProvider = async () => {
+export const catboxProvider = () => {
     /**
      * If redisHost doesn't exist, CatboxMemory will be used instead.
      * More information at {@link https://hapi.dev/module/catbox/api}
@@ -284,8 +393,6 @@ export const catboxProvider = async () => {
             );
         provider.options = {client, partition};
         console.log(`Redis Url : ${redisUri} session management`);
-        const status = await client.ping()
-        console.log(`Redis not connected ${status}`);
     } else {
         console.log("Starting in memory session management")
         provider.options = {partition};

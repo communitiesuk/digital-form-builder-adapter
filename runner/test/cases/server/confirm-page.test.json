@@ -3,37 +3,34 @@
   "startPage": "/first-page",
   "pages": [
     {
-      "title": "First page",
-      "path": "/first-page",
+      "path": "/are-you-applying-from-a-local-authority-in-england",
+      "title": "Are you applying from a local authority in England?",
       "components": [
         {
-          "name": "sVKKuL",
-          "options": {},
-          "type": "Html",
-          "content": "<p class=\"govuk-body\">This is page 1</p>"
+          "name": "lHTLBl",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Are you applying from a local authority in England?",
+          "schema": {},
+          "values": {
+            "type": "listRef"
+          }
         }
       ],
-      "startPageNavigation": {},
-      "next": [{ "path": "/second-page" }],
-      "controller": "MultiStartPageController"
-    },
-    {
-      "path": "/second-page",
-      "title": "Second page",
-      "components": [
+      "next": [
         {
-          "name": "HDgwZU",
-          "options": {},
-          "type": "Html",
-          "content": "<p class=\"govuk-body\">This is page 2</p>"
+          "path": "/summary"
         }
       ],
-      "next": [{ "path": "/summary" }]
+      "section": "mwumLN",
+      "controller": "./pages/continue.js"
     },
     {
       "title": "Summary",
       "path": "/summary",
-      "controller": "./pages/summary.js",
+      "controller": "./pages/confirm.js",
       "components": []
     }
   ],

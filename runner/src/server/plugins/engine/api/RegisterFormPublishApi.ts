@@ -51,9 +51,9 @@ export class RegisterFormPublishApi implements RegisterApi {
                         ? JSON.parse(configuration)
                         : configuration;
                 if (parsedConfiguration.configuration) {
-                    await adapterCacheService.setFormConfigurationRedisCache(id, parsedConfiguration, request.server)
+                    await adapterCacheService.setFormConfiguration(id, parsedConfiguration, request.server)
                 } else {
-                    await adapterCacheService.setFormConfigurationRedisCache(id, {configuration: parsedConfiguration}, request.server)
+                    await adapterCacheService.setFormConfiguration(id, {configuration: parsedConfiguration}, request.server)
                 }
                 return h.response({}).code(204);
             }
