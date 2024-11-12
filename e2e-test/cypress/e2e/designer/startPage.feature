@@ -26,7 +26,7 @@ Feature: Start Page
     When I choose "Open an existing form"
     And I submit the form with the button title "Next"
     And I force open the link "test"
-    Then I see the heading "Start"
+    Then I see the exact heading "Start"
 
   Scenario: Open an existing form duplicates the form with a different ID
     Given I am on the form designer start page
