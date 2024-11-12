@@ -109,8 +109,11 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
             page.next.forEach(link => {
                 if (!link.condition) return;
                 const condition = data.conditions.find(cond => cond.name === link.condition);
+                //@ts-ignore
                 if (!condition?.value?.conditions) return;
+                //@ts-ignore
                 condition.value.conditions.forEach(subCondition => {
+                    if (!page.components) return;
                     const component = page.components.find(comp => subCondition.field.name.includes(comp.name));
                     if (component) {
                         subCondition.field.name = `${page.section ? `${page.section}.` : ""}${component.name}`;
