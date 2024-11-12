@@ -123,11 +123,34 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
         });
     }
 
-
+    function addFabDefaultSection() {
+        const condition = data.sections.find(section => section.name === "FabDefault");
+        if (data.sections) {
+            if (!condition) {
+                data.sections.push({
+                    name: "FabDefault",
+                    title: "Default Section",
+                    hideTitle: true
+                })
+            }
+        } else {
+            data.sections = [{
+                name: "FabDefault",
+                title: "Default Section",
+                hideTitle: true
+            }]
+        }
+        data.pages.forEach(page => {
+            if (!page.section) {
+                page.section = "FabDefault"
+            }
+        });
+    }
 
     if (data.pages) {
-        updateMultiInputField();
+        addFabDefaultSection();
         updateSectionsOnConditions();
+        updateMultiInputField();
     }
 
     const publishAndDirectToPreview = async (_e) => {
