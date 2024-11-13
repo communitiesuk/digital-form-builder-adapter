@@ -20,9 +20,18 @@ Feature: Form pages
     * I preview the page "First page" without href
     Then I see the path is "/my-first-test-page"
 
+  @wip # Since we are adding a default section now this feature will be not available instead need to use section button to create section check below scenario 
   Scenario: Create a section from Edit page
     And I edit the page "First page"
     When I create a section titled "Personal Details"
+    And I preview the page "First page" without href
+    Then I see the section title "Personal Details" is displayed in the preview
+
+  Scenario: Create a section from sections
+    When I open "Sections"
+    And I am creating a section title "Personal Details" and name "personalDetails"
+    And I edit the page "First page"
+    And I am adding the section to the page "First page" and section "personalDetails"
     And I preview the page "First page" without href
     Then I see the section title "Personal Details" is displayed in the preview
 
