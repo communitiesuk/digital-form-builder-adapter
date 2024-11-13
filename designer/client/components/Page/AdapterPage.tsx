@@ -147,10 +147,24 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
         });
     }
 
+    function updateFirstPage() {
+        const allPaths = data.pages.map(page => page.path)
+        const usedPaths = new Set();
+        data.pages.forEach(page => {
+            if (page.next) {
+                page.next.forEach(link => {
+                    usedPaths.add(link.path)
+                })
+            }
+        })
+        data.startPage = allPaths.filter(item => !usedPaths.has(item))[0];
+    }
+
     if (data.pages) {
         addFabDefaultSection();
         updateSectionsOnConditions();
         updateMultiInputField();
+        updateFirstPage();
     }
 
     const publishAndDirectToPreview = async (_e) => {
