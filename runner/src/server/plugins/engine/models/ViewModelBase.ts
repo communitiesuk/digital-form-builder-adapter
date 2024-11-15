@@ -17,6 +17,7 @@ import {
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {feedbackReturnInfoKey} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
 import {AdapterFormDefinition} from "@communitiesuk/model";
+import {PageControllerBase} from "../page-controllers/PageControllerBase";
 
 const LOGGER_DATA = {
     class: "ViewModelBase",
@@ -63,15 +64,18 @@ export class ViewModelBase {
     _webhookData: WebhookData | undefined;
     callback?: AdapterInitialiseSessionOptions;
     showPaymentSkippedWarningPage: boolean = false;
+    page: PageControllerBase;
 
     constructor(
         pageTitle: string,
         model: AdapterFormModel,
         state: FormSubmissionState,
         request: HapiRequest,
+        page: PageControllerBase,
         isSavePerPageMode?: boolean,
         validateStateTillGivenPath?: string
     ) {
+        this.page = page;
         this.pageTitle = pageTitle;
         let {relevantPages, endPage} = model.getRelevantPages(state);
         if (validateStateTillGivenPath) {
@@ -227,7 +231,7 @@ export class ViewModelBase {
 
             sectionPages.forEach((page) => {
                 for (const component of page.components.formItems) {
-                    const item = Item(request, component, sectionState, page, model);
+                    const item = Item(request, component, sectionState, page, model, this.page);
                     if (items.find((cbItem) => cbItem.name === item.name)) return;
                     items.push(item);
                     if (component.items) {
@@ -237,7 +241,7 @@ export class ViewModelBase {
                         )[0];
                         if (selectedItem && selectedItem.childrenCollection) {
                             for (const cc of selectedItem.childrenCollection.formItems) {
-                                const cItem = Item(request, cc, sectionState, page, model);
+                                const cItem = Item(request, cc, sectionState, page, model, this.page);
                                 items.push(cItem);
                             }
                         }
@@ -391,12 +395,13 @@ function Item(
     sectionState,
     page,
     model: AdapterFormModel,
+    lastPage: PageControllerBase,
     params: {
         num?: number;
         returnUrl: string,
         form_session_identifier?: string
     } = {
-        returnUrl: redirectUrl(request, `/${model.basePath}/summary`),
+        returnUrl: redirectUrl(request, `/${model.basePath}/${lastPage.path}`),
     }
 ) {
     if (component?.options?.noReturnUrlOnSummaryPage === true) {
@@ -420,7 +425,7 @@ function Item(
             return Item(request, component, collated, page, model, {
                 ...params,
                 num: i + 1,
-            });
+            }, lastPage);
         });
     }
 

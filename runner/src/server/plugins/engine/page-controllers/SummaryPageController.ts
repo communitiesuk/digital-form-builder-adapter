@@ -78,14 +78,14 @@ export class SummaryPageController extends PageController {
 
             /**
              * iterates through the errors. If there are errors, a user will be redirected to the page
-             * with the error with returnUrl=`/${model.basePath}/summary` in the URL query parameter.
+             * with the error with returnUrl=`/${model.basePath}/<last page that shows summary details>` in the URL query parameter.
              */
             if (viewModel.errors) {
                 //@ts-ignore
                 const {iteration, pageWithError} = this.extractErrors(viewModel, model, state);
                 if (pageWithError) {
                     const params = {
-                        returnUrl: redirectUrl(request, `/${model.basePath}/summary`),
+                        returnUrl: redirectUrl(request, `/${model.basePath}/${this.path}`),
                         num: iteration && pageWithError.repeatField ? iteration : null,
                     };
                     return redirectTo(request, h, `/${model.basePath}${pageWithError.path}`, params);
@@ -343,6 +343,9 @@ export class SummaryPageController extends PageController {
             }
             return false;
         })[0];
+        if (pageWithError) {
+            console.log()
+        }
         return {iteration, pageWithError};
     }
 

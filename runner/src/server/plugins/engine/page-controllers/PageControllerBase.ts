@@ -283,6 +283,47 @@ export class PageControllerBase {
         return nextLink?.page ?? defaultLink?.page;
     }
 
+    /* 1. Check whether there are any conditions attached into form page
+        2. Get Condition field details
+        3. Get value difference based on the webhook and state then remove the returnUrl
+        so this will allow the application to decide the next page other than allowing SummaryPageController
+        To Decide the next page
+        */
+    removeReturnUrlIfConditionalFieldValueIsChanged(
+        returnUrl: string | undefined,
+        state: any,
+        request: HapiRequest
+    ): string | undefined {
+        if (!returnUrl) return undefined;
+        // Get links with conditions
+        const conditionAvailableLinks = this.pageDef.next.filter(link => link.condition);
+        if (!conditionAvailableLinks.length) return returnUrl;
+        // Extract reusable references
+        const {questions} = state.webhookData;
+        if (!questions) return returnUrl;
+        const sectionName = this.section.name;
+        for (const link of conditionAvailableLinks) {
+            //@ts-ignore
+            const condition = this.def.conditions.find(cond => cond.name === link.condition);
+            if (!condition) continue;
+            for (const attachedCondition of condition.value.conditions) {
+                const fieldName = attachedCondition.field?.name;
+                if (!fieldName) continue;
+                for (const question of questions) {
+                    const matchedField = question.fields.find(field => `${sectionName}.${field.key}` === fieldName);
+                    if (matchedField) {
+                        const fieldValue = state[sectionName]?.[matchedField.key];
+                        if (fieldValue !== matchedField.answer) {
+                            delete request.query.returnUrl;
+                            return undefined;
+                        }
+                    }
+                }
+            }
+        }
+        return returnUrl;
+    }
+
     async validateComponentFunctions(request, viewModel) {
         let errors = [];
         for (let func of this.additionalValidationFunctions) {
