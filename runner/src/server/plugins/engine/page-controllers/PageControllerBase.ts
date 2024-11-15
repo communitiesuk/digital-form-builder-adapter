@@ -679,13 +679,15 @@ export class PageControllerBase {
     }
 
     updatePrivacyPolicyUrlAndContactUsUrl(state: any, viewModel: any) {
-        const fund_name = state["metadata"]["fund_name"];
-        const round_name = state["metadata"]["round_name"];
-        if (fund_name && round_name) {
-            //@ts-ignore
-            viewModel.privacyPolicyUrl = `${config.privacyPolicyUrl}?fund=${fund_name}&round=${round_name}`;
-            //@ts-ignore
-            viewModel.contactUsUrl = `${config.contactUsUrl}?fund=${fund_name}&round=${round_name}`;
+        if (state && state["metadata"] && viewModel) {
+            const fund_name = state["metadata"]["fund_name"];
+            const round_name = state["metadata"]["round_name"];
+            if (fund_name && round_name) {
+                //@ts-ignore
+                viewModel.privacyPolicyUrl = `${config.privacyPolicyUrl}?fund=${fund_name}&round=${round_name}`;
+                //@ts-ignore
+                viewModel.contactUsUrl = `${config.contactUsUrl}?fund=${fund_name}&round=${round_name}`;
+            }
         }
     }
 
