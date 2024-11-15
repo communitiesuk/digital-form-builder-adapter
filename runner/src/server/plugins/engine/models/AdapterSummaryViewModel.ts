@@ -10,7 +10,6 @@ export class AdapterSummaryViewModel extends AdapterViewModel {
     markAsCompleteComponent: boolean | undefined;
     markAsCompleteError: any;
     callback?: AdapterInitialiseSessionOptions;
-    page: PageControllerBase;
 
     constructor(
         pageTitle: string,
@@ -21,11 +20,9 @@ export class AdapterSummaryViewModel extends AdapterViewModel {
         isSavePerPageMode?: boolean,
         validateStateTillGivenPath?: string
     ) {
-        // @ts-ignore
-        super(pageTitle, model, state, request, isSavePerPageMode, validateStateTillGivenPath);
+        super(pageTitle, model, state, request, page, isSavePerPageMode, validateStateTillGivenPath);
         this.markAsCompleteComponent = state.callback?.markAsCompleteComponent;
         this.markAsComplete = state.markAsComplete;
-        this.page = page;
     }
 
 

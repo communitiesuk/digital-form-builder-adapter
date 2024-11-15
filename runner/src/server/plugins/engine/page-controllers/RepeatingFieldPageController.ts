@@ -279,7 +279,7 @@ export class RepeatingFieldPageController extends PageController {
                 form_session_identifier = `form_session_identifier=${query.form_session_identifier}`;
             }
 
-            let returnUrl = "";
+            let returnUrl: string | undefined = "";
             if (query.returnUrl) {
                 returnUrl = `&returnUrl=${query.returnUrl}`;
             }
@@ -298,6 +298,7 @@ export class RepeatingFieldPageController extends PageController {
                 const model = this.model;
                 //@ts-ignore
                 let savedState = await adapterCacheService.getState(request);
+                returnUrl = this.removeReturnUrlIfConditionalFieldValueIsChanged(returnUrl, savedState, request)
                 //@ts-ignore
                 const summaryViewModel = new AdapterSummaryViewModel(this.title, model, savedState, request, this, true, (!returnUrl) ? this.path : undefined);
                 //@ts-ignore

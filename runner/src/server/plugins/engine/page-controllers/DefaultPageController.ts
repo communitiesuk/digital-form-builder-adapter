@@ -17,13 +17,14 @@ export class DefaultPageController extends PageController {
     makePostRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             const response = await this.handlePostRequest(request, h);
-            const {returnUrl} = request.query
+            let {returnUrl} = request.query;
             if (response?.source?.context?.errors) {
                 return response;
             }
             const {adapterCacheService, adapterStatusService} = request.services([]);
             //@ts-ignore
             let state = await adapterCacheService.getState(request);
+            returnUrl = this.removeReturnUrlIfConditionalFieldValueIsChanged(returnUrl, state, request)
             if (state.metadata) {
                 state.metadata.isSummaryPageSubmit = false;
             }
