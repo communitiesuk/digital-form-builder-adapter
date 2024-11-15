@@ -673,8 +673,20 @@ export class PageControllerBase {
             }
             viewModel.continueButtonText = "Save and continue"
             request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary value ${JSON.stringify(viewModel.components)}`);
+            this.updatePrivacyPolicyUrlAndContactUsUrl(state, viewModel)
             return h.view(this.viewName, viewModel);
         };
+    }
+
+    updatePrivacyPolicyUrlAndContactUsUrl(state: any, viewModel: any) {
+        const fund_name = state["metadata"]["fund_name"];
+        const round_name = state["metadata"]["round_name"];
+        if (fund_name && round_name) {
+            //@ts-ignore
+            viewModel.privacyPolicyUrl = `${config.privacyPolicyUrl}?fund=${fund_name}&round=${round_name}`;
+            //@ts-ignore
+            viewModel.contactUsUrl = `${config.contactUsUrl}?fund=${fund_name}&round=${round_name}`;
+        }
     }
 
     private async setExistingFilesToClientSideFileUpload(state: FormSubmissionState, viewModel: any, currentPath: string, request: HapiRequest) {
