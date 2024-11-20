@@ -12,7 +12,8 @@ const packageJsonQueueModel = JSON.parse(fs.readFileSync(packageQueueModelPath, 
 packageRunnerJson.devDependencies = {
   ...packageRunnerJson.devDependencies,
   '@xgovformbuilder/model': packageJsonModel.version,
-  '@xgovformbuilder/queue-model': packageJsonQueueModel.version
+  '@xgovformbuilder/queue-model': packageJsonQueueModel.version,
+  'joi': packageAdapterRunnerJson.dependencies.joi
 };
 
 packageJsonModel.dependencies = {

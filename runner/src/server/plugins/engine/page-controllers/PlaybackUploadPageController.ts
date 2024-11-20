@@ -1,6 +1,7 @@
 import {PageController} from "./PageController";
 import {AdapterFormComponent} from "../components";
 import {AdapterPage} from "@communitiesuk/model";
+// @ts-ignore
 import joi from "joi";
 import {FormSubmissionErrors} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {HapiRequest, HapiResponseToolkit} from "../../../types";

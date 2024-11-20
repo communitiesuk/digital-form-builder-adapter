@@ -22,6 +22,9 @@
     "e2e": "yarn workspace e2e",
     "e2e-test": "yarn workspace e2e-test"
   },
+  "resolutions": {
+    "joi": "17.13.3"
+  },
   "author": "Communities UK",
   "license": "MIT"
 }

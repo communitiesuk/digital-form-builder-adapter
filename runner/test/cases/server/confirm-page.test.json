@@ -1,0 +1,45 @@
+{
+  "metadata": {},
+  "startPage": "/first-page",
+  "pages": [
+    {
+      "path": "/are-you-applying-from-a-local-authority-in-england",
+      "title": "Are you applying from a local authority in England?",
+      "components": [
+        {
+          "name": "lHTLBl",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Are you applying from a local authority in England?",
+          "schema": {},
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "mwumLN",
+      "controller": "./pages/continue.js"
+    },
+    {
+      "title": "Summary",
+      "path": "/summary",
+      "controller": "./pages/confirm.js",
+      "components": []
+    }
+  ],
+  "lists": [],
+  "sections": [],
+  "conditions": [],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "feeOptions": {}
+}

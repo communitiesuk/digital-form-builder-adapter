@@ -7,6 +7,8 @@ export type Localization = {
     cy: any
 }
 
+const TARGET_END_URL = "digital-form-builder-adapter/runner";
+
 export class TranslationLoaderService {
 
     translations: Localization = {
@@ -19,8 +21,9 @@ export class TranslationLoaderService {
         let translationEn = undefined
         let translationCy = undefined
         try {
-            const filePathCy = path.join(__dirname, '../../locales', `cy.json`);
-            const filePathEn = path.join(__dirname, '../../locales', `en.json`);
+            const index = __dirname.indexOf(TARGET_END_URL);
+            const filePathCy = path.join(__dirname.substring(0, index + TARGET_END_URL.length), 'locales', `cy.json`);
+            const filePathEn = path.join(__dirname.substring(0, index + TARGET_END_URL.length), 'locales', `en.json`);
             // @ts-ignore
             const dataCy = fs.readFileSync(filePathCy, 'utf8');
             const dataEn = fs.readFileSync(filePathEn, 'utf8');

@@ -31,7 +31,7 @@ export const plugin = {
         let countError = 0;
         for (const config of configs) {
             try {
-                await adapterCacheService.setFormConfigurationRedisCache(config.id, config, server);
+                await adapterCacheService.setFormConfiguration(config.id, config, server);
                 countOk++;
             } catch (e) {
                 countError++;
