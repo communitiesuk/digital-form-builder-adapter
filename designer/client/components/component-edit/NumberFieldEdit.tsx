@@ -6,7 +6,7 @@ import {Actions} from "../../../../digital-form-builder/designer/client/reducers
 import {CssClasses} from "../../../../digital-form-builder/designer/client/components/CssClasses";
 
 type Props = {
-    context: any; // TODO
+    context: any;
 };
 
 export function NumberFieldEdit({context = ComponentContext}: Props) {

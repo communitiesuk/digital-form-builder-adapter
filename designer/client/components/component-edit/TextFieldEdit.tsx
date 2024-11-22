@@ -9,10 +9,11 @@ import {
 } from "../../../../digital-form-builder/designer/client/components/CustomValidationMessage";
 
 type Props = {
-    context: any; // TODO
+    context: any;
     children: React.ReactNode;
 };
 
+//@ts-ignore
 export function TextFieldEdit({children, context = ComponentContext}: Props) {
     // If you are editing a component, the default context will be ComponentContext because props.context is undefined,
     // but if you editing a component which is a children of a list based component, then the props.context is the ListContext.
