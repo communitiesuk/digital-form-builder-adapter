@@ -675,6 +675,18 @@ export class PageControllerBase {
             viewModel.continueButtonText = "Save and continue"
             request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary value ${JSON.stringify(viewModel.components)}`);
             this.updatePrivacyPolicyUrlAndContactUsUrl(state, viewModel)
+            if (viewModel.page && viewModel.page.pageDef.controller && viewModel.page.pageDef.controller === "RepeatingFieldPageController") {
+                if (viewModel.page.components && viewModel.page.components.items) {
+                    //@ts-ignore
+                    const multiInputField = viewModel.page.components.items.find(component => component.type === "MultiInputField");
+                    if (multiInputField) {
+                        //@ts-ignore
+                        if (viewModel.page.components.items.length > 1 || (multiInputField.children && multiInputField.children.items && multiInputField.children.items.length > 1)) {
+                            viewModel.showTitle = true;
+                        }
+                    }
+                }
+            }
             return h.view(this.viewName, viewModel);
         };
     }
