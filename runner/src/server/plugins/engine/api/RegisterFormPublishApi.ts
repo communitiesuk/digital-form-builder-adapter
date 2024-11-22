@@ -239,7 +239,7 @@ export class RegisterFormPublishApi implements RegisterApi {
 
             if (model) {
                 const page = model.pages.find(
-                    (page) => page.path.replace(/^\//, "") === path
+                    (page) => page.path.replace(/^\//, "") === path.replace(/^\//, "")
                 );
 
                 if (page) {
