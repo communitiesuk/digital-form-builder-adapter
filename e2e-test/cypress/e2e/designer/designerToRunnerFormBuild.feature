@@ -1,6 +1,6 @@
-Feature: Json Configuration
+Feature: Form creation through designer and usage in runner
   As a user
-  I want to check the json configuration that we have created
+  I wanted to create a form using the designer and need to check the functionality in runner
 
   Scenario: Test form creation through designer and test it against json config that should have
     Given I am on the new configuration page
