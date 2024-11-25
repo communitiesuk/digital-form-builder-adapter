@@ -84,6 +84,8 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
                     customText: {
                         //@ts-ignore
                         samePageTitle: page.options.customText.samePageTitle ? page.options.customText.samePageTitle : "",
+                        //@ts-ignore
+                        samePageTableItemName: page.options.customText.samePageTableItemName ? page.options.customText.samePageTableItemName : "",
                     }
                 }
             }

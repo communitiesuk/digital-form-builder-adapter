@@ -1,5 +1,4 @@
 import React, {useContext} from "react";
-import {TextFieldEdit} from "../../../../digital-form-builder/designer/client/components/FieldEditors/text-field-edit";
 import {MultilineTextFieldEdit} from "../../../../digital-form-builder/designer/client/multiline-text-field-edit";
 import ListFieldEdit from "../../../../digital-form-builder/designer/client/components/FieldEditors/list-field-edit";
 import SelectFieldEdit
@@ -15,6 +14,7 @@ import {MultiInputFieldEdit} from "../multiinput-field-edit/MultiInputFieldEdit"
 import AdapterFieldEdit from "./AdapterFieldEdit";
 import {ClientSideFileUploadFieldEdit} from "./ClientSideFileUploadFieldEdit";
 import {NumberFieldEdit} from "./NumberFieldEdit";
+import {TextFieldEdit} from "./TextFieldEdit";
 
 export const componentTypeEditors: any = {
     TextField: TextFieldEdit,

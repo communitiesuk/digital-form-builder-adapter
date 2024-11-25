@@ -15,9 +15,9 @@ import {
 import ListFieldEdit from "../../../../digital-form-builder/designer/client/components/FieldEditors/list-field-edit";
 import {DateFieldEdit} from "../../../../digital-form-builder/designer/client/components/FieldEditors/date-field-edit";
 import randomId from "../../../../digital-form-builder/designer/client/randomId";
-import {TextFieldEdit} from "../../../../digital-form-builder/designer/client/components/FieldEditors/text-field-edit";
 // @ts-ignore
 import {Input} from "@govuk-jsx/input";
+import {TextFieldEdit} from "../component-edit/TextFieldEdit";
 
 export type MultiInputFieldTypes =
     YesNoFieldComponent
@@ -41,6 +41,7 @@ enum MultiInputFieldAction {
     EDIT_OPTIONS_SEPARATE_PAGE_DISPLAY_MODE = "EDIT_OPTIONS_SEPARATE_PAGE_DISPLAY_MODE",
     EDIT_OPTIONS_HIDE_ROW_TITLE = "EDIT_OPTIONS_HIDE_ROW_TITLE",
     EDIT_OPTIONS_SHOW_TABLE_TITLE = "EDIT_OPTIONS_SHOW_TABLE_TITLE",
+    EDIT_OPTIONS_SHOW_TABLE_ITEM_NAME = "EDIT_OPTIONS_SHOW_TABLE_ITEM_NAME",
 }
 
 export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) => {
@@ -52,7 +53,9 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
     //@ts-ignore
     options.required = true
     //@ts-ignore
-    selectedComponent.schema = {}
+    selectedComponent.schema = !selectedComponent.schema ? {} : {
+        ...selectedComponent.schema
+    }
     const [pageOptions, setPageOptions] = useState({
         // @ts-ignore
         summaryDisplayMode: {
@@ -65,14 +68,25 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         },
         customText: {
             //@ts-ignore
-            samePageTitle: (selectedComponent.pageOptions && selectedComponent.pageOptions.customText.samePageTitle) ? selectedComponent.pageOptions.customText.samePageTitle : ""
+            samePageTitle: (selectedComponent.pageOptions && selectedComponent.pageOptions.customText.samePageTitle) ? selectedComponent.pageOptions.customText.samePageTitle : "",
+            //@ts-ignore
+            samePageTableItemName: (selectedComponent.pageOptions && selectedComponent.pageOptions.customText.samePageTableItemName) ? selectedComponent.pageOptions.customText.samePageTableItemName : ""
         }
     });
     //@ts-ignore
     selectedComponent.pageOptions = pageOptions;
     // temp state management
     //@ts-ignore
-    const [selectedChildComponents, setSelectedChildComponents] = useState(selectedComponent.children ? selectedComponent.children : []);
+    const [selectedChildComponents, setSelectedChildComponents] = useState(() => {
+        //@ts-ignore
+        return selectedComponent.children
+            //@ts-ignore
+            ? selectedComponent.children.map((child, index) => ({
+                ...child,
+                order: index + 1, // Adding an `order` property starting from 1
+            }))
+            : [];
+    });
     const [selectedComponentType, setSelectedComponentType] = useState("");
     const [selectedSubComponent, setSelectedSubComponent] = useState<MultiInputFieldTypes>();
     const [tableTitle, setTableTitle] = useState<string>("");
@@ -93,389 +107,409 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         //@ts-ignore
         selectedComponent.children = selectedComponent.children.filter(component => component.name !== componentName);
         setSelectedChildComponents([])
+        setSelectedChildComponents(
+            //@ts-ignore
+            selectedComponent.children
+                //@ts-ignore
+                ? selectedComponent.children.map((child, index) => ({
+                    ...child,
+                    order: index + 1, // Adding order
+                }))
+                : []
+        );
+    }
+
+    function handleTextField() {
         //@ts-ignore
-        setSelectedChildComponents(selectedComponent.children)
+        let subComponents = selectedComponent.children.filter(component => component.name === selectedComponent.tempSubComponent.name);
+        if (subComponents.length > 0) {
+            const component: MultiInputFieldTypes = subComponents[0]
+            if (component.options) {
+                component.options = {
+                    ...component.options
+                }
+            } else {
+                component.options = {}
+            }
+            if (component.schema) {
+                component.schema = {
+                    ...component.options
+                }
+            } else {
+                component.schema = {
+                    ...component.options
+                }
+            }
+            //@ts-ignore
+            if (selectedComponent.options && selectedComponent.options.maxWords) {
+                //@ts-ignore
+                component.options = {
+                    //@ts-ignore
+                    ...component.options,
+                    //@ts-ignore
+                    maxWords: parseInt(selectedComponent.options.maxWords),
+                }
+                //@ts-ignore
+                delete selectedComponent.options.maxWords
+            }
+            //@ts-ignore
+            if (selectedComponent.options && selectedComponent.options.autocomplete) {
+                //@ts-ignore
+                component.options = {
+                    //@ts-ignore
+                    ...component.options,
+                    //@ts-ignore
+                    autocomplete: selectedComponent.options.autocomplete,
+                }
+                //@ts-ignore
+                delete selectedComponent.options.autocomplete
+            }
+            //@ts-ignore
+            if (selectedComponent.options && selectedComponent.options.classes) {
+                //@ts-ignore
+                component.options = {
+                    //@ts-ignore
+                    ...component.options,
+                    //@ts-ignore
+                    classes: selectedComponent.options.classes,
+                }
+                //@ts-ignore
+                delete selectedComponent.options.classes
+            }
+            //@ts-ignore
+            if (selectedComponent.schema && selectedComponent.schema.length) {
+                //@ts-ignore
+                component.schema = {
+                    //@ts-ignore
+                    ...component.schema,
+                    //@ts-ignore
+                    length: parseInt(selectedComponent.schema.length),
+                }
+                //@ts-ignore
+                delete selectedComponent.schema.length
+            }
+            //@ts-ignore
+            if (selectedComponent.schema && selectedComponent.schema.max) {
+                //@ts-ignore
+                component.schema = {
+                    //@ts-ignore
+                    ...component.schema,
+                    //@ts-ignore
+                    max: parseInt(selectedComponent.schema.max),
+                }
+                //@ts-ignore
+                delete selectedComponent.schema.max
+            }
+            //@ts-ignore
+            if (selectedComponent.schema && selectedComponent.schema.min) {
+                //@ts-ignore
+                component.schema = {
+                    //@ts-ignore
+                    ...component.schema,
+                    //@ts-ignore
+                    min: parseInt(selectedComponent.schema.min),
+                }
+                //@ts-ignore
+                delete selectedComponent.schema.min
+            }
+            //@ts-ignore
+            if (selectedComponent.schema && selectedComponent.schema.regex) {
+                //@ts-ignore
+                component.schema = {
+                    //@ts-ignore
+                    ...component.schema,
+                    //@ts-ignore
+                    regex: selectedComponent.schema.regex,
+                }
+                //@ts-ignore
+                delete selectedComponent.schema.regex
+            }
+            //@ts-ignore
+            delete selectedComponent.tempSubComponent
+            setSelectedChildComponents([])
+            //@ts-ignore
+            setSelectedChildComponents(
+                //@ts-ignore
+                selectedComponent.children
+                    //@ts-ignore
+                    ? selectedComponent.children.map((child, index) => ({
+                        ...child,
+                        order: index + 1, // Adding order
+                    }))
+                    : []
+            );
+        }
+    }
+
+    function handleNumberField() {
+        //@ts-ignore
+        let subComponents = selectedComponent.children.filter(component => component.name === selectedComponent.tempSubComponent.name);
+        if (subComponents.length > 0) {
+            const component: MultiInputFieldTypes = subComponents[0]
+
+            if (component.options) {
+                component.options = {
+                    ...component.options
+                }
+            } else {
+                component.options = {}
+            }
+
+
+            if (component.schema) {
+                component.schema = {
+                    ...component.schema
+                }
+            } else {
+                component.schema = {}
+            }
+
+            //@ts-ignore
+            if (selectedComponent.options && selectedComponent.options.prefix) {
+                //@ts-ignore
+                component.options = {
+                    //@ts-ignore
+                    ...component.options,
+                    //@ts-ignore
+                    prefix: selectedComponent.options.prefix,
+                }
+            }
+            //@ts-ignore
+            if (selectedComponent.options && selectedComponent.options.sufix) {
+                //@ts-ignore
+                component.options = {
+                    //@ts-ignore
+                    ...component.options,
+                    //@ts-ignore
+                    sufix: selectedComponent.options.sufix,
+                }
+            }
+            //@ts-ignore
+            if (selectedComponent.options && selectedComponent.options.classes) {
+                //@ts-ignore
+                component.options = {
+                    //@ts-ignore
+                    ...component.options,
+                    //@ts-ignore
+                    classes: selectedComponent.options.classes,
+                }
+            }
+
+
+            //@ts-ignore
+            if (selectedComponent.schema && selectedComponent.schema.max) {
+                //@ts-ignore
+                component.schema = {
+                    //@ts-ignore
+                    ...component.schema,
+                    //@ts-ignore
+                    max: parseInt(selectedComponent.schema.max),
+                }
+            }
+            //@ts-ignore
+            if (selectedComponent.schema && selectedComponent.schema.min) {
+                //@ts-ignore
+                component.schema = {
+                    //@ts-ignore
+                    ...component.schema,
+                    //@ts-ignore
+                    min: parseInt(selectedComponent.schema.min),
+                }
+            }
+            //@ts-ignore
+            if (selectedComponent.schema && selectedComponent.schema.precision) {
+                //@ts-ignore
+                component.schema = {
+                    //@ts-ignore
+                    ...component.schema,
+                    //@ts-ignore
+                    precision: selectedComponent.schema.precision,
+                }
+            }
+
+            if (selectedComponent.options) {
+                //@ts-ignore
+                delete selectedComponent.options.prefix
+                //@ts-ignore
+                delete selectedComponent.options.suffix
+                //@ts-ignore
+                delete selectedComponent.options.classes
+            }
+            if (selectedComponent.schema) {
+                //@ts-ignore
+                delete selectedComponent.schema.max
+                //@ts-ignore
+                delete selectedComponent.schema.min
+                //@ts-ignore
+                delete selectedComponent.schema.precision
+            }
+            //@ts-ignore
+            delete selectedComponent.tempSubComponent
+
+            if (selectedComponent.options && Object.keys(selectedComponent.options).length === 0) {
+                delete selectedComponent.options
+            }
+
+            if (selectedComponent.schema) {
+                delete selectedComponent.schema
+            }
+
+            setSelectedChildComponents([])
+            //@ts-ignore
+            setSelectedChildComponents(
+                //@ts-ignore
+                selectedComponent.children
+                    //@ts-ignore
+                    ? selectedComponent.children.map((child, index) => ({
+                        ...child,
+                        order: index + 1, // Adding order
+                    }))
+                    : []
+            );
+        }
+    }
+
+    function handleDatePartField() {
+        //@ts-ignore
+        let subComponents = selectedComponent.children.filter(component => component.name === selectedComponent.tempSubComponent.name);
+        if (subComponents.length > 0) {
+            const component: MultiInputFieldTypes = subComponents[0]
+
+            if (component.options) {
+                component.options = {
+                    ...component.options
+                }
+            } else {
+                component.options = {}
+            }
+
+
+            if (component.schema) {
+                component.schema = {
+                    ...component.schema
+                }
+            } else {
+                component.schema = {}
+            }
+
+            //@ts-ignore
+            if (selectedComponent.options && selectedComponent.options.maxDaysInFuture) {
+                //@ts-ignore
+                component.options = {
+                    //@ts-ignore
+                    ...component.options,
+                    //@ts-ignore
+                    maxDaysInFuture: selectedComponent.options.maxDaysInFuture,
+                }
+            }
+            //@ts-ignore
+            if (selectedComponent.options && selectedComponent.options.maxDaysInPast) {
+                //@ts-ignore
+                component.options = {
+                    //@ts-ignore
+                    ...component.options,
+                    //@ts-ignore
+                    maxDaysInPast: selectedComponent.options.maxDaysInPast,
+                }
+            }
+            //@ts-ignore
+            if (selectedComponent.options && selectedComponent.options.classes) {
+                //@ts-ignore
+                component.options = {
+                    //@ts-ignore
+                    ...component.options,
+                    //@ts-ignore
+                    classes: selectedComponent.options.classes,
+                }
+            }
+
+            if (selectedComponent.options) {
+                //@ts-ignore
+                delete selectedComponent.options.maxDaysInFuture
+                //@ts-ignore
+                delete selectedComponent.options.maxDaysInPast
+                //@ts-ignore
+                delete selectedComponent.options.classes
+            }
+            //@ts-ignore
+            delete selectedComponent.tempSubComponent
+
+            if (selectedComponent.options && Object.keys(selectedComponent.options).length === 0) {
+                delete selectedComponent.options
+            }
+
+            if (selectedComponent.schema) {
+                delete selectedComponent.schema
+            }
+
+            setSelectedChildComponents([])
+            //@ts-ignore
+            setSelectedChildComponents(
+                //@ts-ignore
+                selectedComponent.children
+                    //@ts-ignore
+                    ? selectedComponent.children.map((child, index) => ({
+                        ...child,
+                        order: index + 1, // Adding order
+                    }))
+                    : []
+            );
+        }
+    }
+
+    function handleRadioField() {
+        //@ts-ignore
+        if (selectedComponent.list) {
+            //@ts-ignore
+            let subComponent = selectedComponent.children.filter(component => component.name === selectedComponent.tempSubComponent.name);
+            //@ts-ignore
+            let subComponentState = selectedChildComponents.filter(component => component.name === selectedComponent.tempSubComponent.name);
+            if (subComponent.length > 0) {
+                //@ts-ignore
+                subComponent[0].list = selectedComponent.list
+                //@ts-ignore
+                subComponentState[0].list = selectedComponent.list
+                //@ts-ignore
+                delete selectedComponent.list
+                //@ts-ignore
+                delete selectedComponent.tempSubComponent
+
+                setSelectedChildComponents([])
+                //@ts-ignore
+                setSelectedChildComponents(
+                    //@ts-ignore
+                    selectedComponent.children
+                        //@ts-ignore
+                        ? selectedComponent.children.map((child, index) => ({
+                            ...child,
+                            order: index + 1, // Adding order
+                        }))
+                        : []
+                );
+            }
+        }
     }
 
     //@ts-ignore
     if (selectedComponent.tempSubComponent) {
         //@ts-ignore
         if (selectedComponent.tempSubComponent.type === "RadiosField") {
-            //@ts-ignore
-            if (selectedComponent.list) {
-                //@ts-ignore
-                let subComponent = selectedComponent.children.filter(component => component.name === selectedComponent.tempSubComponent.name);
-                if (subComponent.length > 0) {
-                    //@ts-ignore
-                    subComponent[0].list = selectedComponent.list
-                    //@ts-ignore
-                    deleteComponentByName(selectedComponent.tempSubComponent.name)
-                    //@ts-ignore
-                    delete selectedComponent.list
-                    //@ts-ignore
-                    delete selectedComponent.tempSubComponent
-                    //@ts-ignore
-                    selectedComponent.children = selectedChildComponents
-                    setSelectedChildComponents([])
-                    //@ts-ignore
-                    setSelectedChildComponents(selectedComponent.children)
-                }
-            }
-            //@ts-ignore
+            handleRadioField();
         }
         //@ts-ignore
         else if (selectedComponent.tempSubComponent.type === "TextField") {
-            //@ts-ignore
-            let subComponents = selectedComponent.children.filter(component => component.name === selectedComponent.tempSubComponent.name);
-            if (subComponents.length > 0) {
-                const component: MultiInputFieldTypes = subComponents[0]
-
-                if (component.options) {
-                    component.options = {
-                        ...component.options
-                    }
-                } else {
-                    component.options = {}
-                }
-
-
-                if (component.schema) {
-                    component.schema = {
-                        ...component.options
-                    }
-
-                } else {
-                    component.schema = {
-                        ...component.options
-                    }
-                }
-
-                //@ts-ignore
-                if (selectedComponent.options && selectedComponent.options.maxWords) {
-                    //@ts-ignore
-                    component.options = {
-                        //@ts-ignore
-                        ...component.options,
-                        //@ts-ignore
-                        maxWords: parseInt(selectedComponent.options.maxWords),
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.options && selectedComponent.options.autocomplete) {
-                    //@ts-ignore
-                    component.options = {
-                        //@ts-ignore
-                        ...component.options,
-                        //@ts-ignore
-                        autocomplete: selectedComponent.options.autocomplete,
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.options && selectedComponent.options.classes) {
-                    //@ts-ignore
-                    component.options = {
-                        //@ts-ignore
-                        ...component.options,
-                        //@ts-ignore
-                        classes: selectedComponent.options.classes,
-                    }
-                }
-
-
-                //@ts-ignore
-                if (selectedComponent.schema && selectedComponent.schema.length) {
-                    //@ts-ignore
-                    component.schema = {
-                        //@ts-ignore
-                        ...component.schema,
-                        //@ts-ignore
-                        length: parseInt(selectedComponent.schema.length),
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.schema && selectedComponent.schema.max) {
-                    //@ts-ignore
-                    component.schema = {
-                        //@ts-ignore
-                        ...component.schema,
-                        //@ts-ignore
-                        max: parseInt(selectedComponent.schema.max),
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.schema && selectedComponent.schema.min) {
-                    //@ts-ignore
-                    component.schema = {
-                        //@ts-ignore
-                        ...component.schema,
-                        //@ts-ignore
-                        min: parseInt(selectedComponent.schema.min),
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.schema && selectedComponent.schema.regex) {
-                    //@ts-ignore
-                    component.schema = {
-                        //@ts-ignore
-                        ...component.schema,
-                        //@ts-ignore
-                        regex: selectedComponent.schema.regex,
-                    }
-                }
-
-
-                //@ts-ignore
-                deleteComponentByName(selectedComponent.tempSubComponent.name)
-
-                if (selectedComponent.options) {
-                    //@ts-ignore
-                    delete selectedComponent.options.maxWords
-                    //@ts-ignore
-                    delete selectedComponent.options.autocomplete
-                    //@ts-ignore
-                    delete selectedComponent.options.classes
-                }
-
-                if (selectedComponent.schema) {
-                    //@ts-ignore
-                    delete selectedComponent.schema.length
-                    //@ts-ignore
-                    delete selectedComponent.schema.max
-                    //@ts-ignore
-                    delete selectedComponent.schema.min
-                    //@ts-ignore
-                    delete selectedComponent.schema.regex
-                }
-
-                //@ts-ignore
-                delete selectedComponent.tempSubComponent
-
-                if (selectedComponent.options && Object.keys(selectedComponent.options).length === 0) {
-                    delete selectedComponent.options
-                }
-
-                if (selectedComponent.schema) {
-                    delete selectedComponent.schema
-                }
-
-                //@ts-ignore
-                selectedComponent.children = selectedChildComponents
-                setSelectedChildComponents([])
-                //@ts-ignore
-                setSelectedChildComponents(selectedComponent.children)
-            }
-            //@ts-ignore
+            handleTextField();
         }
         //@ts-ignore
         else if (selectedComponent.tempSubComponent && selectedComponent.tempSubComponent.type === "NumberField") {
-            //@ts-ignore
-            let subComponents = selectedComponent.children.filter(component => component.name === selectedComponent.tempSubComponent.name);
-            if (subComponents.length > 0) {
-                const component: MultiInputFieldTypes = subComponents[0]
-
-                if (component.options) {
-                    component.options = {
-                        ...component.options
-                    }
-                } else {
-                    component.options = {}
-                }
-
-
-                if (component.schema) {
-                    component.schema = {
-                        ...component.schema
-                    }
-                } else {
-                    component.schema = {}
-                }
-
-                //@ts-ignore
-                if (selectedComponent.options && selectedComponent.options.prefix) {
-                    //@ts-ignore
-                    component.options = {
-                        //@ts-ignore
-                        ...component.options,
-                        //@ts-ignore
-                        prefix: selectedComponent.options.prefix,
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.options && selectedComponent.options.sufix) {
-                    //@ts-ignore
-                    component.options = {
-                        //@ts-ignore
-                        ...component.options,
-                        //@ts-ignore
-                        sufix: selectedComponent.options.sufix,
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.options && selectedComponent.options.classes) {
-                    //@ts-ignore
-                    component.options = {
-                        //@ts-ignore
-                        ...component.options,
-                        //@ts-ignore
-                        classes: selectedComponent.options.classes,
-                    }
-                }
-
-
-                //@ts-ignore
-                if (selectedComponent.schema && selectedComponent.schema.max) {
-                    //@ts-ignore
-                    component.schema = {
-                        //@ts-ignore
-                        ...component.schema,
-                        //@ts-ignore
-                        max: parseInt(selectedComponent.schema.max),
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.schema && selectedComponent.schema.min) {
-                    //@ts-ignore
-                    component.schema = {
-                        //@ts-ignore
-                        ...component.schema,
-                        //@ts-ignore
-                        min: parseInt(selectedComponent.schema.min),
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.schema && selectedComponent.schema.precision) {
-                    //@ts-ignore
-                    component.schema = {
-                        //@ts-ignore
-                        ...component.schema,
-                        //@ts-ignore
-                        precision: selectedComponent.schema.precision,
-                    }
-                }
-
-
-                //@ts-ignore
-                deleteComponentByName(selectedComponent.tempSubComponent.name)
-
-                if (selectedComponent.options) {
-                    //@ts-ignore
-                    delete selectedComponent.options.prefix
-                    //@ts-ignore
-                    delete selectedComponent.options.suffix
-                    //@ts-ignore
-                    delete selectedComponent.options.classes
-                }
-                if (selectedComponent.schema) {
-                    //@ts-ignore
-                    delete selectedComponent.schema.max
-                    //@ts-ignore
-                    delete selectedComponent.schema.min
-                    //@ts-ignore
-                    delete selectedComponent.schema.precision
-                }
-                //@ts-ignore
-                delete selectedComponent.tempSubComponent
-
-                if (selectedComponent.options && Object.keys(selectedComponent.options).length === 0) {
-                    delete selectedComponent.options
-                }
-
-                if (selectedComponent.schema) {
-                    delete selectedComponent.schema
-                }
-
-                //@ts-ignore
-                selectedComponent.children = selectedChildComponents
-                setSelectedChildComponents([])
-                //@ts-ignore
-                setSelectedChildComponents(selectedComponent.children)
-            }
+            handleNumberField();
         }
         //@ts-ignore
         else if (selectedComponent.tempSubComponent.type === "DatePartsField") {
+            handleDatePartField();
+        } else {
             //@ts-ignore
-            let subComponents = selectedComponent.children.filter(component => component.name === selectedComponent.tempSubComponent.name);
-            if (subComponents.length > 0) {
-                const component: MultiInputFieldTypes = subComponents[0]
-
-                if (component.options) {
-                    component.options = {
-                        ...component.options
-                    }
-                } else {
-                    component.options = {}
-                }
-
-
-                if (component.schema) {
-                    component.schema = {
-                        ...component.schema
-                    }
-                } else {
-                    component.schema = {}
-                }
-
-                //@ts-ignore
-                if (selectedComponent.options && selectedComponent.options.maxDaysInFuture) {
-                    //@ts-ignore
-                    component.options = {
-                        //@ts-ignore
-                        ...component.options,
-                        //@ts-ignore
-                        maxDaysInFuture: selectedComponent.options.maxDaysInFuture,
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.options && selectedComponent.options.maxDaysInPast) {
-                    //@ts-ignore
-                    component.options = {
-                        //@ts-ignore
-                        ...component.options,
-                        //@ts-ignore
-                        maxDaysInPast: selectedComponent.options.maxDaysInPast,
-                    }
-                }
-                //@ts-ignore
-                if (selectedComponent.options && selectedComponent.options.classes) {
-                    //@ts-ignore
-                    component.options = {
-                        //@ts-ignore
-                        ...component.options,
-                        //@ts-ignore
-                        classes: selectedComponent.options.classes,
-                    }
-                }
-
-
-                //@ts-ignore
-                deleteComponentByName(selectedComponent.tempSubComponent.name)
-                if (selectedComponent.options) {
-                    //@ts-ignore
-                    delete selectedComponent.options.maxDaysInFuture
-                    //@ts-ignore
-                    delete selectedComponent.options.maxDaysInPast
-                    //@ts-ignore
-                    delete selectedComponent.options.classes
-                }
-                //@ts-ignore
-                delete selectedComponent.tempSubComponent
-
-                if (selectedComponent.options && Object.keys(selectedComponent.options).length === 0) {
-                    delete selectedComponent.options
-                }
-
-                if (selectedComponent.schema) {
-                    delete selectedComponent.schema
-                }
-
-                //@ts-ignore
-                selectedComponent.children = selectedChildComponents
-                setSelectedChildComponents([])
-                //@ts-ignore
-                setSelectedChildComponents(selectedComponent.children)
-            }
-
-
+            delete selectedComponent.tempSubComponent
         }
     }
 
@@ -491,10 +525,20 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         toggleShowEditor()
     }
 
-    const handleDataFromChild = (newSubComponent, updateStatus) => {
-        if (updateStatus && updateStatus.status === "Delete") {
-            deleteComponentByName(updateStatus.name)
+    const addComponentAtIndex = (componentArray: any[], newComponent: any, index: number) => {
+        if (index < 0) {
+            throw new Error("Index out of bounds");
         }
+        if (index > componentArray.length) {
+            componentArray.push(newComponent);
+        } else {
+            componentArray.splice(index, 0, newComponent);
+        }
+    }
+
+    const handleDataFromChild = (newSubComponent, updateStatus) => {
+        //@ts-ignore
+        let childComponentState = selectedChildComponents.filter(component => component.name === updateStatus.name);
         //@ts-ignore
         if (!selectedComponent.tempSubComponent) {
             //@ts-ignore
@@ -507,9 +551,18 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         }
         deleteComponentByName(newSubComponent.name)
         //@ts-ignore
-        selectedComponent.children.push(newSubComponent)
+        addComponentAtIndex(selectedComponent.children, newSubComponent, childComponentState.length <= 0 ? selectedComponent.children.length <= 0 ? 0 : selectedComponent.children.length + 1 : childComponentState[0].order - 1)
         //@ts-ignore
-        setSelectedChildComponents(selectedComponent.children)
+        setSelectedChildComponents(
+            //@ts-ignore
+            selectedComponent.children
+                //@ts-ignore
+                ? selectedComponent.children.map((child, index) => ({
+                    ...child,
+                    order: index + 1, // Adding order
+                }))
+                : []
+        );
         toggleShowEditor()
     }
 
@@ -553,8 +606,20 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         if (e.type === MultiInputFieldAction.EDIT_OPTIONS_SHOW_TABLE_TITLE) {
             setPageOptions({
                 ...pageOptions,
+                //@ts-ignore
                 customText: {
+                    ...pageOptions.customText,
                     samePageTitle: e.payload,
+                }
+            })
+        }
+        if (e.type === MultiInputFieldAction.EDIT_OPTIONS_SHOW_TABLE_ITEM_NAME) {
+            setPageOptions({
+                ...pageOptions,
+                //@ts-ignore
+                customText: {
+                    ...pageOptions.customText,
+                    samePageTableItemName: e.payload,
                 }
             })
         }
@@ -585,6 +650,7 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
                             <Flyout title={`${selectedSubComponent ? "Edit" : "Add"} ${selectedComponentType}`}
                                     onHide={toggleShowEditor}>
                                 <MultiInputFieldBaseEdit ref={subComponentRef}
+                                    //@ts-ignore
                                                          sendDataToParent={handleDataFromChild}
                                                          selectedComponentType={selectedComponentType}
                                                          selectedSubComponent={selectedSubComponent ? selectedSubComponent : newSelectedSubComponent}
@@ -634,10 +700,10 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
     const renderAddedSubComponents = () => {
         return (
             <>
-                <div className="govuk-label govuk-label--s">Sub Components list</div>
                 <table className="govuk-table">
                     <thead className="govuk-table__head">
                     <tr className="govuk-table__row">
+                        <th scope="col" className="govuk-table__header" key={"componentType"}>Order</th>
                         <th scope="col" className="govuk-table__header" key={"componentType"}>Component Type</th>
                         <th scope="col" className="govuk-table__header" key={"componentType"}>Component Title</th>
                         <th scope="col" className="govuk-table__header" key={"actionCol"}></th>
@@ -645,8 +711,11 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
                     </thead>
                     <tbody className="govuk-table__body">
                     {//@ts-ignore
-                        selectedChildComponents && selectedChildComponents.length > 0 ? (selectedComponent.children.map((childComponent) => (
-                            <tr className="govuk-table__row" key={childComponent.name}>
+                        selectedChildComponents && selectedChildComponents.length > 0 ? (selectedComponent.children.map((childComponent, index) => (
+                            <tr className="govuk-table__row" key={'index'}>
+                                <td className="govuk-table__cell table__cell__noborder">
+                                    {index + 1}
+                                </td>
                                 <td className="govuk-table__cell table__cell__noborder">
                                     {childComponent.type}
                                 </td>
@@ -705,6 +774,7 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
 
     return (
         <>
+            <label className="govuk-label govuk-label--s">----- Multi Input Field Edit -----</label>
             <div className="govuk-form-group">
                 <label className="govuk-label govuk-label--s" htmlFor="field-table-title">
                     Table title names
@@ -849,6 +919,21 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
                        }}/>
             </div>
 
+            <div className="govuk-form-group" data-test-id="table-title-wrapper">
+                <Input id="table-item-name" name="tableTitleName"
+                       onChange={(e) =>
+                           handleData({
+                               type: MultiInputFieldAction.EDIT_OPTIONS_SHOW_TABLE_ITEM_NAME,
+                               payload: e.target.value,
+                           })
+                       }
+                       value={pageOptions.customText.samePageTableItemName || ""}
+                       label={{
+                           className: "govuk-label--s",
+                           children: ["Table Item Name"]
+                       }}/>
+            </div>
+            <div className="govuk-label govuk-label--s">----- Sub Components list -----</div>
             <div className="govuk-form-group">
                 <label className="govuk-label govuk-label--s" htmlFor="select-field-types">
                     Add child component
@@ -859,6 +944,7 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
                 <select value={selectedComponentType} className="govuk-select" id="select-field-types"
                         name="field-type"
                         aria-describedby="location-hint"
+                    //@ts-ignore
                         onChange={handleSubComponentSelection}>
                     <option value={"Clear"}>Please select</option>
                     <option value={"TextField"}>Text Field</option>
