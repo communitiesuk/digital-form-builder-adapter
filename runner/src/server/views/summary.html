@@ -18,9 +18,29 @@
             text: (backLinkText or page.backLinkText) if not isReadOnlySummary else "Back to application for funding overview"
         }) }}
     {% endif %}
+
+    {% if feedbackMessage or (page and page.feedbackMessage) %}
+    <style>
+        .fsd-alert {
+            border-left: 10px solid #f47738;
+            background-color: #fcd6c3;
+            padding: 15px 15px;
+            font-weight: 400;
+            font-size: 16px;
+        }
+    </style>
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <div class="fsd-alert govuk-!-margin-top-4">
+                <h2 class="govuk-heading-l">You have feedback for this section:</h2>
+                <p class="govuk-body">{{ feedbackMessage or (page and page.feedbackMessage) }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
 {% block content %}
-    <div class="govuk-main-wrapper">
+    {# <div class="govuk-main-wrapper"> #}
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
                 {% set hasMultipleSections = (details and details.length > 1 and details[0].items[0] | isArray) %}
@@ -106,6 +126,14 @@
                                             {{ i18nGetTranslation("markAsComplete") }}
                                         </h1>
                                     </legend>
+                                    {% if feedbackMessage or (page and page.feedbackMessage) %}
+                                    <div class="govuk-hint">
+                                        You have feedback on this section.
+                                    </div>
+                                    <div class="govuk-hint">
+                                        Select yes to confirm that you have reviewed the feedback and updated your answers.
+                                    </div>
+                                    {% endif %}
                                     <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                                         <div class="govuk-radios__item">
                                             <input class="govuk-radios__input" id="markAsComplete-yes"
@@ -151,5 +179,5 @@
                 {% endif %}
             </div>
         </div>
-    </div>
+    {# </div> #}
 {% endblock %}
