@@ -191,6 +191,26 @@
             text: backLinkText
         }) }}
     {% endif %}
+
+    {% if feedbackMessage or (page and page.feedbackMessage) %}
+    <style>
+        .fsd-alert {
+            border-left: 10px solid #f47738;
+            background-color: #fcd6c3;
+            padding: 15px 15px;
+            font-weight: 400;
+            font-size: 16px;
+        }
+    </style>
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <div class="fsd-alert govuk-!-margin-top-4">
+                <h2 class="govuk-heading-l">You have feedback for this section:</h2>
+                <p class="govuk-body">{{ feedbackMessage or (page and page.feedbackMessage) }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
 
 

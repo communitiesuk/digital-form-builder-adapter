@@ -67,6 +67,7 @@ export class SummaryPageController extends PageController {
                 return redirectTo(request, h, `/${model.basePath}${viewModel.endPage.path}`);
             }
 
+            viewModel.feedbackMessage = state["metadata"] && state["metadata"]["feedback_message"]
             if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
                 //@ts-ignore
                 viewModel.isReadOnlySummary = true;
