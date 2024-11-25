@@ -2,7 +2,7 @@ Feature: Form creation through designer and usage in runner
   As a user
   I wanted to create a form using the designer and need to check the functionality in runner
 
-  Scenario: Test form creation through designer and test it against json config that should have
+  Scenario: Test form creation through designer and check the functionality in runner
     Given I am on the new configuration page
     And I enter the form name "risk-form"
     * I submit the form with the button title "Next"
