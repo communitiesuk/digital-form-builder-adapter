@@ -507,6 +507,9 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         //@ts-ignore
         else if (selectedComponent.tempSubComponent.type === "DatePartsField") {
             handleDatePartField();
+        } else {
+            //@ts-ignore
+            delete selectedComponent.tempSubComponent
         }
     }
 
