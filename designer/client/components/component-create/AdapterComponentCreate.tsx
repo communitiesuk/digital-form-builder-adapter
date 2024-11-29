@@ -146,7 +146,7 @@ export const AdapterComponentCreate = (props) => {
             {!type && <AdapterComponentCreateList onSelectComponent={handleTypeChange}/>}
             {type && renderTypeEdit && (
                 <form onSubmit={handleSubmit}>
-                    {type && <AdapterComponentEdit/>}
+                    {type && <AdapterComponentEdit page={props.page} />}
                 </form>
             )}
         </div>
