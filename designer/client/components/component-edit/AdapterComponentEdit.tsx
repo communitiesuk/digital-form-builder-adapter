@@ -95,16 +95,32 @@ const AdapterComponentEdit = (props) => {
     return (
         <>
             {hasErrors && <ErrorSummary errorList={Object.values(errors)}/>}
-            <form autoComplete="off" onSubmit={handleSubmit}>
-                <AdapterComponentTypeEdit page={page}/>
-                <button className="govuk-button" type="submit">
-                    Save
-                </button>
-                {" "}
-                <a href="#" onClick={handleDelete} className="govuk-link">
-                    Delete
-                </a>
-            </form>
+            {
+                props.editMode ? (
+                    <form autoComplete="off" onSubmit={handleSubmit}>
+                        <AdapterComponentTypeEdit page={page}/>
+                        <button className="govuk-button" type="submit">
+                            Save
+                        </button>
+                        {" "}
+                        <a href="#" onClick={handleDelete} className="govuk-link">
+                            Delete
+                        </a>
+                    </form>
+                ) : (
+                    // Optionally render content outside the form if needed
+                    <div>
+                        <AdapterComponentTypeEdit page={page}/>
+                        <button className="govuk-button" type="button" onClick={handleSubmit}>
+                            Save
+                        </button>
+                        {" "}
+                        <a href="#" onClick={handleDelete} className="govuk-link">
+                            Delete
+                        </a>
+                    </div>
+                )
+            }
         </>
     );
 }

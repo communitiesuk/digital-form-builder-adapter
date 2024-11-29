@@ -63,7 +63,7 @@ export const AdapterComponent = (props) => {
             {showEditor && (
                 <Flyout title={editFlyoutTitle} show={true} onHide={toggleShowEditor}>
                     <AdapterComponentContextProvider pagePath={page.path} component={component}>
-                        <AdapterComponentEdit page={page} toggleShowEditor={toggleShowEditor}/>
+                        <AdapterComponentEdit page={page} toggleShowEditor={toggleShowEditor} editMode={true}/>
                     </AdapterComponentContextProvider>
                 </Flyout>
             )}
