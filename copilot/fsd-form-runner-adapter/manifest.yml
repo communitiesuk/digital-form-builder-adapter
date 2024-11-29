@@ -85,8 +85,6 @@ environments:
   test:
     variables:
       PREVIEW_MODE: true
-    deployment:
-      rolling: "recreate"
     count:
       spot: 2
   uat:
