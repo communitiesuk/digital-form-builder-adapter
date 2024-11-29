@@ -30,10 +30,22 @@ export default {
                         //@ts-ignore
                         obj = {
                             ...obj,
-                            requestId: obj.req.info.id,
-                            userAgent: obj.req.headers["user-agent"],
-                            route: obj.req.route.path,
+                            requestInfoId: obj.req.info.id,
+                            requestId: obj.req.yar.id,
+                            userAgent: obj.req.headers["user-agent"]
                         };
+                        if (obj.req.path) {
+                            obj.path = obj.req.path;
+                        }
+                        if (obj.req.query) {
+                            obj.query = obj.req.query;
+                        }
+                        if (obj.req.method) {
+                            obj.method = obj.req.method.toUpperCase();
+                        }
+                        if (obj.req.yar.id) {
+                            obj.requestId = obj.req.yar.id;
+                        }
                         delete obj.req
                         delete obj.res
                     }
