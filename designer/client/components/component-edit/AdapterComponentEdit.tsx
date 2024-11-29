@@ -111,13 +111,7 @@ const AdapterComponentEdit = (props) => {
                     // Optionally render content outside the form if needed
                     <div>
                         <AdapterComponentTypeEdit page={page}/>
-                        <button className="govuk-button" type="button" onClick={handleSubmit}>
-                            Save
-                        </button>
-                        {" "}
-                        <a href="#" onClick={handleDelete} className="govuk-link">
-                            Delete
-                        </a>
+                        <button className="govuk-button" type="submit">Save</button>
                     </div>
                 )
             }
