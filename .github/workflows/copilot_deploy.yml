@@ -238,9 +238,6 @@ jobs:
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
     name: run e2e
-    strategy:
-      matrix:
-        shard: [ 1, 2, 3, 4, 5 ]
     outputs:
       tag: ${{ steps.hashFile.outputs.tag }}
       hash: ${{ steps.hashFile.outputs.hash }}
@@ -331,7 +328,7 @@ jobs:
   performance-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
-    name: run e2e
+    name: run performance test
     outputs:
       tag: ${{ steps.hashFile.outputs.tag }}
       hash: ${{ steps.hashFile.outputs.hash }}
