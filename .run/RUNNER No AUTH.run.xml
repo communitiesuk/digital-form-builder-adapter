@@ -25,9 +25,9 @@
       <env name="FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI" value="redis://localhost:6379" />
       <env name="JWT_AUTH_COOKIE_NAME" value="fsd_user_token" />
       <env name="JWT_AUTH_ENABLED" value="false" />
-      <env name="JWT_REDIRECT_TO_AUTHENTICATION_URL" value="https://authenticator.levellingup.gov.localhost:3004/sessions/sign-out" />
+      <env name="JWT_REDIRECT_TO_AUTHENTICATION_URL" value="https://authenticator.levellingup.gov.localhost:4004/sessions/sign-out" />
       <env name="LOG_LEVEL" value="debug" />
-      <env name="LOGOUT_URL" value="https://authenticator.levellingup.gov.localhost:3004/sessions/sign-out" />
+      <env name="LOGOUT_URL" value="https://authenticator.levellingup.gov.localhost:4004/sessions/sign-out" />
       <env name="MULTIFUND_URL" value="https://frontend.levellingup.gov.localhost:3008/account" />
       <env name="PREVIEW_MODE" value="true" />
       <env name="PRIVACY_POLICY_URL" value="https://frontend.levellingup.gov.localhost:3008/privacy" />

@@ -24,9 +24,9 @@
             <env name="FEEDBACK_LINK" value="http://localhost:3008/feedback"/>
             <env name="JWT_AUTH_COOKIE_NAME" value="fsd_user_token"/>
             <env name="JWT_AUTH_ENABLED" value="false"/>
-            <env name="JWT_REDIRECT_TO_AUTHENTICATION_URL" value="http://localhost:3004/sessions/sign-out"/>
+            <env name="JWT_REDIRECT_TO_AUTHENTICATION_URL" value="http://localhost:4004/sessions/sign-out"/>
             <env name="LOG_LEVEL" value="debug"/>
-            <env name="LOGOUT_URL" value="http://localhost:3004/sessions/sign-out"/>
+            <env name="LOGOUT_URL" value="http://localhost:4004/sessions/sign-out"/>
             <env name="MULTIFUND_URL" value="http://localhost:3008/account"/>
             <env name="PRIVACY_POLICY_URL" value="http://localhost:3008/privacy"/>
             <env name="RSA256_PUBLIC_KEY_BASE64"

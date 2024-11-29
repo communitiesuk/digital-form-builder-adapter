@@ -1,9 +1,9 @@
 const nanoid = require("nanoid");
 const minute = 60 * 1000;
-const {deferConfig} = require("config/defer");
+const { deferConfig } = require("config/defer");
 const dotEnv = require("dotenv");
 if (process.env.NODE_ENV !== "test") {
-  dotEnv.config({path: ".env"});
+  dotEnv.config({ path: ".env" });
 }
 
 module.exports = {
@@ -88,7 +88,7 @@ module.exports = {
   authEnabled: false,
   jwtAuthEnabled: true,
   jwtAuthCookieName: "fsd_user_token",
-  jwtRedirectToAuthenticationUrl: "http://localhost:3004/sessions/sign-out",
+  jwtRedirectToAuthenticationUrl: "http://localhost:4004/sessions/sign-out",
   logoutUrl: "/logout",
   multifundDashboard: "/account", //This is used to redirect to the multifund dashboard
   basicAuthOn: false,
@@ -101,7 +101,12 @@ module.exports = {
    */
   logLevel: "info", // Accepts "trace" | "debug" | "info" | "warn" |"error"
   logPrettyPrint: true,
-  logRedactPaths: ["req.headers", "req.remoteAddress", "req.remotePort", "res.headers"], // You should check your privacy policy before disabling this. Check https://getpino.io/#/docs/redaction on how to configure redaction paths
+  logRedactPaths: [
+    "req.headers",
+    "req.remoteAddress",
+    "req.remotePort",
+    "res.headers",
+  ], // You should check your privacy policy before disabling this. Check https://getpino.io/#/docs/redaction on how to configure redaction paths
   savePerPage: true, // For activation of the save per page feature
 
   awsBucketName: "paas-s3-broker-prod-lon-443b9fc2-55ff-4c2f-9ac3-d3ebfb18ef5a", // For uploading files to a aws bucket
