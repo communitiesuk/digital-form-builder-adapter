@@ -112,6 +112,10 @@ jobs:
 
       - name: Run performance tests
         id: e2e
+        env:
+          FS_BASIC_AUTH_USERNAME: ${{ secrets.FS_BASIC_AUTH_USERNAME }}
+          FS_BASIC_AUTH_PASSWORD: ${{ secrets.FS_BASIC_AUTH_PASSWORD }}
+          ENVIRONMENT: dev
         run: yarn e2e-test cypress run --spec "./cypress/e2e/designer/designerToRunnerFormBuild.feature" --env DESIGNER_URL=https://form-designer.test.access-funding.test.levellingup.gov.uk,RUNNER_URL=https://forms.test.access-funding.test.levellingup.gov.uk
         continue-on-error: true
 

@@ -55,6 +55,9 @@ module.exports = defineConfig({
      * e.g: to override `DESIGNER_URL`, set the env var as `cypress_DESIGNER_URL`.
      */
     DESIGNER_URL: "http://localhost:3000",
+    FS_BASIC_AUTH_USERNAME: process.env.FS_BASIC_AUTH_USERNAME,
+    FS_BASIC_AUTH_PASSWORD: process.env.FS_BASIC_AUTH_PASSWORD,
+    ENVIRONMENT: process.env.ENVIRONMENT,
     RUNNER_URL: "http://localhost:3009",
     TAGS: "not @wip"
   },

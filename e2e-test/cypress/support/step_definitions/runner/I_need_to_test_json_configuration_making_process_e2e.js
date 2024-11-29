@@ -14,6 +14,13 @@ When('I am deleting all the pages from the template', (table) => {
   });
 });
 
+When('I need to authenticate runner with basic auth', () => {
+  if (Cypress.env("FS_BASIC_AUTH_USERNAME") && Cypress.env("FS_BASIC_AUTH_PASSWORD")) {
+    const authenticatorURL = `https://${Cypress.env("FS_BASIC_AUTH_USERNAME")}:${Cypress.env("FS_BASIC_AUTH_PASSWORD")}@authenticator.${Cypress.env("ENVIRONMENT")}.access-funding.test.levellingup.gov.uk`;
+    cy.visit(authenticatorURL);
+  }
+});
+
 When('I am trying to create {string} page {string}', (pageType, pageTitle) => {
   cy.findByRole("button", {name: "Add page"}).click();
   cy.findByTestId("flyout-0").within(() => {
@@ -38,6 +45,7 @@ When('I am creating the links for the page {string} to {string}', (pageFrom, pag
 When('I am creating components on the page {string}', (page, table) => {
   const listItems = table.hashes();
   listItems.forEach(({name, type, title, options, hint}) => {
+    cy.wait(100);
     cy.get(`div#\\${convertToSlug(page)}`)
       .should('exist')
       .within(() => {
@@ -78,7 +86,7 @@ When('I am creating components on the page {string}', (page, table) => {
           }
         }
       }
-      cy.findByRole("button", {name: "Save"}).click();
+      cy.findByRole("button", {name: "Save"}).click({force: true});
     });
   });
 
@@ -280,7 +288,9 @@ When('I am creating the condition {string} mapping field is {string} and operato
     cy.get('#cond-operator').select(operator);
     cy.get('#cond-value').select(value);
     cy.findByRole("button", {name: "Add"}).click();
+    cy.wait(100);
     cy.findByRole("link", {name: "Save"}).click();
+    cy.wait(100);
   })
   cy.get('a.flyout__button-close[title="Close"]').click({force: true});
 });
