@@ -34,7 +34,7 @@ const AdapterComponentEdit = (props) => {
         }
     }, [hasValidated]);
 
-    const handleSubmitUpdate = async (e) => {
+    const handleSubmit = async (e) => {
         e?.preventDefault();
 
         if (!hasValidated) {
@@ -95,26 +95,16 @@ const AdapterComponentEdit = (props) => {
     return (
         <>
             {hasErrors && <ErrorSummary errorList={Object.values(errors)}/>}
-            {
-                props.editMode ? (
-                    <form autoComplete="off" onSubmit={handleSubmitUpdate}>
-                        <AdapterComponentTypeEdit page={page}/>
-                        <button className="govuk-button" type="submit">
-                            Save
-                        </button>
-                        {" "}
-                        <a href="#" onClick={handleDelete} className="govuk-link">
-                            Delete
-                        </a>
-                    </form>
-                ) : (
-                    // Optionally render content outside the form if needed
-                    <div>
-                        <AdapterComponentTypeEdit page={page}/>
-                        <button className="govuk-button" type="submit">Save</button>
-                    </div>
-                )
-            }
+            <form autoComplete="off" onSubmit={handleSubmit}>
+                <AdapterComponentTypeEdit page={page}/>
+                <button className="govuk-button" type="submit">
+                    Save
+                </button>
+                {" "}
+                <a href="#" onClick={handleDelete} className="govuk-link">
+                    Delete
+                </a>
+            </form>
         </>
     );
 }

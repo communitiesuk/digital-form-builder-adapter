@@ -18,6 +18,7 @@ import {AdapterComponentCreateList} from "./AdapterComponentCreateList";
 import AdapterComponentEdit from "../component-edit/AdapterComponentEdit";
 import {AdapterDataContext} from "../../context/AdapterDataContext";
 import {AdapterComponentContext} from "../../reducers/component/AdapterComponentReducer";
+import {AdapterComponentTypeEdit} from "../component-edit/AdapterComponentTypeEdit";
 
 const useComponentCreate = (props) => {
     const [renderTypeEdit, setRenderTypeEdit] = useState<boolean>(false);
@@ -68,9 +69,8 @@ const useComponentCreate = (props) => {
         }
     }, [hasValidated, hasErrors]);
 
-    const handleSubmitCreate = async (e?: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e?: FormEvent<HTMLFormElement>) => {
         e?.preventDefault();
-        e?.stopPropagation();
 
         if (!hasValidated) {
             dispatch({type: Actions.VALIDATE});
@@ -105,7 +105,7 @@ const useComponentCreate = (props) => {
     };
 
     return {
-        handleSubmitCreate,
+        handleSubmit,
         handleTypeChange,
         hasErrors,
         errors: Object.values(errors),
@@ -118,13 +118,12 @@ const useComponentCreate = (props) => {
 
 export const AdapterComponentCreate = (props) => {
     const {
-        handleSubmitCreate,
+        handleSubmit,
         handleTypeChange,
         reset,
         hasErrors,
         errors,
         component,
-        isSaving,
         renderTypeEdit,
     } = useComponentCreate(props);
 
@@ -146,8 +145,16 @@ export const AdapterComponentCreate = (props) => {
             )}
             {!type && <AdapterComponentCreateList onSelectComponent={handleTypeChange}/>}
             {type && renderTypeEdit && (
-                <form onSubmit={handleSubmitCreate}>
-                    {type && <AdapterComponentEdit page={props.page} editMode={false}/>}
+                <form onSubmit={handleSubmit}>
+                    {type && <>
+                        {hasErrors && <ErrorSummary errorList={Object.values(errors)}/>}
+                        <form autoComplete="off" onSubmit={handleSubmit}>
+                            <AdapterComponentTypeEdit page={props.page}/>
+                            <button className="govuk-button" type="submit">
+                                Save
+                            </button>
+                        </form>
+                    </>}
                 </form>
             )}
         </div>

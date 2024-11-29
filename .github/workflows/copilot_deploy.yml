@@ -131,7 +131,7 @@ jobs:
         if: success() || failure()
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: e2e-test-performance-report-application
+          name: e2e-test-performance-report-application-${{ github.run_id }}
           path: ./e2e-test/cypress/screenshots
           retention-days: 5
 
