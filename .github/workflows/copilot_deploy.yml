@@ -64,7 +64,7 @@ jobs:
       environment: ${{ inputs.environment }}
 
   performance-test:
-    needs: [ setup, docker-runner-build, docker-designer-build ]
+    needs: [ setup ]
     runs-on: ubuntu-latest
     name: run performance test
     outputs:
