@@ -70,6 +70,7 @@ const useComponentCreate = (props) => {
 
     const handleSubmit = async (e?: FormEvent<HTMLFormElement>) => {
         e?.preventDefault();
+        e?.stopPropagation();
 
         if (!hasValidated) {
             dispatch({type: Actions.VALIDATE});
