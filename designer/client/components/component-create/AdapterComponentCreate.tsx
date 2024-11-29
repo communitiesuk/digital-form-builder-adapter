@@ -68,7 +68,7 @@ const useComponentCreate = (props) => {
         }
     }, [hasValidated, hasErrors]);
 
-    const handleSubmit = async (e?: FormEvent<HTMLFormElement>) => {
+    const handleSubmitCreate = async (e?: FormEvent<HTMLFormElement>) => {
         e?.preventDefault();
         e?.stopPropagation();
 
@@ -105,7 +105,7 @@ const useComponentCreate = (props) => {
     };
 
     return {
-        handleSubmit,
+        handleSubmitCreate,
         handleTypeChange,
         hasErrors,
         errors: Object.values(errors),
@@ -118,7 +118,7 @@ const useComponentCreate = (props) => {
 
 export const AdapterComponentCreate = (props) => {
     const {
-        handleSubmit,
+        handleSubmitCreate,
         handleTypeChange,
         reset,
         hasErrors,
@@ -146,7 +146,7 @@ export const AdapterComponentCreate = (props) => {
             )}
             {!type && <AdapterComponentCreateList onSelectComponent={handleTypeChange}/>}
             {type && renderTypeEdit && (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmitCreate}>
                     {type && <AdapterComponentEdit page={props.page} editMode={false}/>}
                 </form>
             )}

@@ -34,7 +34,7 @@ const AdapterComponentEdit = (props) => {
         }
     }, [hasValidated]);
 
-    const handleSubmit = async (e) => {
+    const handleSubmitUpdate = async (e) => {
         e?.preventDefault();
 
         if (!hasValidated) {
@@ -97,7 +97,7 @@ const AdapterComponentEdit = (props) => {
             {hasErrors && <ErrorSummary errorList={Object.values(errors)}/>}
             {
                 props.editMode ? (
-                    <form autoComplete="off" onSubmit={handleSubmit}>
+                    <form autoComplete="off" onSubmit={handleSubmitUpdate}>
                         <AdapterComponentTypeEdit page={page}/>
                         <button className="govuk-button" type="submit">
                             Save
