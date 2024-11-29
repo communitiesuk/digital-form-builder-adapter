@@ -112,7 +112,7 @@ jobs:
 
       - name: Run performance tests
         id: e2e
-        run: yarn e2e-test cypress run --spec "./cypress/e2e/designer/designerToRunnerFormBuild.feature" --env DESIGNER_URL=https://form-designer.dev.access-funding.test.levellingup.gov.uk,RUNNER_URL=https://forms.dev.access-funding.test.levellingup.gov.uk
+        run: yarn e2e-test cypress run --spec "./cypress/e2e/designer/designerToRunnerFormBuild.feature" --env DESIGNER_URL=https://form-designer.test.access-funding.test.levellingup.gov.uk,RUNNER_URL=https://forms.test.access-funding.test.levellingup.gov.uk
         continue-on-error: true
 
       - name: Create Folders
