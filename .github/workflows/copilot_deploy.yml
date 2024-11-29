@@ -63,6 +63,85 @@ jobs:
     with:
       environment: ${{ inputs.environment }}
 
+  performance-test:
+    needs: [ setup, docker-runner-build, docker-designer-build ]
+    runs-on: ubuntu-latest
+    name: run performance test
+    outputs:
+      tag: ${{ steps.hashFile.outputs.tag }}
+      hash: ${{ steps.hashFile.outputs.hash }}
+    strategy:
+      matrix:
+        shard: [ 1, 2, 3, 4, 5 ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+
+      - name: Get into the directory
+        id: change-dir
+        run: yarn config set enableImmutableInstalls false
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: |
+            node_modules  # Cache the installed node modules
+            **/node_modules  # Include subfolders if using workspaces
+          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-e2e
+            ${{ runner.os }}-yarn  
+
+      - name: Setup e2e dependencies
+        run: |
+          echo "--  Git submodule initialize into local  --"
+          git submodule update --init
+          echo "--  Pulling git submodules into local  --"
+          git pull --recurse-submodules
+          echo "--  Installing digital-form-builder-adapter locally  --"
+          node update-package.js
+          yarn install
+          echo "--  Install e2e dependencies  --"
+          yarn e2e-test install
+          echo "--  Building digital-form-builder locally  --"
+          cd digital-form-builder
+          yarn
+
+      - name: Run performance tests
+        id: e2e
+        run: yarn e2e-test cypress run --spec "./cypress/e2e/designer/designerToRunnerFormBuild.feature" --env DESIGNER_URL=https://form-designer.dev.access-funding.test.levellingup.gov.uk,RUNNER_URL=https://forms.dev.access-funding.test.levellingup.gov.uk
+        continue-on-error: true
+
+      - name: Create Folders
+        run: mkdir -p ./e2e-test/cypress/screenshots/logs
+
+      - name: Get Logs from localstack
+        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
+
+      - name: Get Logs from runner
+        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
+
+      - name: Get all the uploaded files in the bucket
+        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
+
+      - name: Upload Performance Test Report Application
+        if: success() || failure()
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: e2e-test-performance-report-application
+          path: ./e2e-test/cypress/screenshots
+          retention-days: 5
+
+      - name: Check for errors & exit the job
+        run: |
+          if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
+            echo "Test failures please fix before deploying the service"
+            exit 1
+          fi
+
   docker-runner-build:
     runs-on: ubuntu-latest
     needs: [ setup ]
@@ -324,101 +403,6 @@ jobs:
             echo "Test failures please fix before deploying the service"
             exit 1
           fi
-
-  performance-test:
-    needs: [ setup, docker-runner-build, docker-designer-build ]
-    runs-on: ubuntu-latest
-    name: run performance test
-    outputs:
-      tag: ${{ steps.hashFile.outputs.tag }}
-      hash: ${{ steps.hashFile.outputs.hash }}
-    strategy:
-      matrix:
-        shard: [ 1, 2, 3, 4, 5 ]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20.x"
-
-      - name: Get into the directory
-        id: change-dir
-        run: yarn config set enableImmutableInstalls false
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: |
-            node_modules  # Cache the installed node modules
-            **/node_modules  # Include subfolders if using workspaces
-          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-e2e
-            ${{ runner.os }}-yarn  
-
-      - name: Setup e2e dependencies
-        run: |
-          echo "--  Git submodule initialize into local  --"
-          git submodule update --init
-          echo "--  Pulling git submodules into local  --"
-          git pull --recurse-submodules
-          echo "--  Installing digital-form-builder-adapter locally  --"
-          node update-package.js
-          yarn install
-          echo "--  Install e2e dependencies  --"
-          yarn e2e-test install
-          echo "--  Building digital-form-builder locally  --"
-          cd digital-form-builder
-          yarn
-
-      - name: Injecting image into docker compose e2e
-        run: |
-          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
-          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
-
-      - name: Start containers
-        run: docker compose -f docker-compose.e2e.yml up -d
-
-      - name: Create S3 bucket
-        run: docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
-
-      - name: Create S3 cors
-        run: |
-          docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
-
-      - name: Run performance tests
-        id: e2e
-        run: yarn e2e-test cypress run --spec "./e2e-test/cypress/e2e/designer/designerToRunnerFormBuild.feature"
-        continue-on-error: true
-
-      - name: Create Folders
-        run: mkdir -p ./e2e-test/cypress/screenshots/logs
-
-      - name: Get Logs from localstack
-        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
-
-      - name: Get Logs from runner
-        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
-
-      - name: Get all the uploaded files in the bucket
-        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
-
-      - name: Upload Performance Test Report Application
-        if: success() || failure()
-        uses: actions/upload-artifact@v4.4.3
-        with:
-          name: e2e-test-performance-report-application
-          path: ./e2e-test/cypress/screenshots
-          retention-days: 5
-
-      - name: Check for errors & exit the job
-        run: |
-          if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
-            echo "Test failures please fix before deploying the service"
-            exit 1
-          fi
-  
 
   dev_deploy:
     strategy:
