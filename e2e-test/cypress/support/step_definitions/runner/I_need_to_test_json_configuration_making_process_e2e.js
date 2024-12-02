@@ -61,31 +61,31 @@ When('I am deleting all the pages from the template', (table) => {
     cy.get(`div#\\${convertToSlug(page)}`)
       .should('exist')
       .within(() => {
-        cy.findByRole("button", {name: "Edit page"}).click({force: true});
+        cy.findByRole("button", {name: "Edit page"}).should('exist').click({force: true});
       });
     cy.findByTestId("flyout-0").should('exist').and('be.visible').within(() => {
-      cy.findByRole("button", {name: "Delete"}).click();
+      cy.findByRole("button", {name: "Delete"}).should('exist').click();
     });
   });
 });
 
 When('I am trying to create {string} page {string}', (pageType, pageTitle) => {
-  cy.findByRole("button", {name: "Add page"}).click();
-  cy.findByTestId("flyout-0").within(() => {
+  cy.findByRole("button", {name: "Add page"}).should('exist').click();
+  cy.findByTestId("flyout-0").should('exist').within(() => {
     if (pageType === "Summary page") {
-      cy.get('#page-type').select("./pages/summary.js")
+      cy.get('#page-type').should('exist').select("./pages/summary.js")
     }
-    cy.get('#page-title').type(pageTitle);
-    cy.findByRole("button", {name: "Save"}).click();
+    cy.get('#page-title').should('exist').type(pageTitle);
+    cy.findByRole("button", {name: "Save"}).should('exist').click();
   });
 
 });
 
 When('I am creating the links for the page {string} to {string}', (pageFrom, pageTo) => {
-  cy.findByRole("button", {name: "Add link"}).click();
+  cy.findByRole("button", {name: "Add link"}).should('exist').click();
   cy.findByTestId("flyout-0").should('exist').and('be.visible').within(() => {
-    cy.get('#link-source').select(convertToSlug(pageFrom))
-    cy.get('#link-target').select(convertToSlug(pageTo))
+    cy.get('#link-source').should('exist').select(convertToSlug(pageFrom))
+    cy.get('#link-target').should('exist').select(convertToSlug(pageTo))
     cy.findByRole("button", {name: "Save"}).should('exist').and('be.visible').click();
   });
 });
@@ -100,41 +100,41 @@ When('I am creating components on the page {string}', (page, table) => {
         cy.findByRole("button", {name: "Create component"}).should('exist').and('be.visible').click({force: true});
       });
     cy.findByTestId("flyout-0").should('exist').and('be.visible').within(() => {
-      cy.findByRole("link", {name: type}).click();
+      cy.findByRole("link", {name: type}).should('exist').click();
       if (type === "Paragraph") {
-        cy.get("#field-content").type(title);
+        cy.get("#field-content").should('exist').type(title);
       } else if (type === "Text") {
-        cy.get("#field-title").type(title);
+        cy.get("#field-title").should('exist').type(title);
         if (hint) {
-          cy.get("#field-hint").type(hint);
+          cy.get("#field-hint").should('exist').type(hint);
         }
       } else if (type === "YesNo") {
-        cy.get("#field-title").type(title);
+        cy.get("#field-title").should('exist').type(title);
       } else if (type === "Multi Input Field") {
-        cy.get("#field-title").type(title);
+        cy.get("#field-title").should('exist').type(title);
         if (hint) {
-          cy.get("#field-hint").type(title);
+          cy.get("#field-hint").should('exist').type(title);
         }
         if (options) {
           const jsonOptions = JSON.parse(options);
           if (jsonOptions.hideTitle) {
-            cy.get('#field-options-hideTitle').check().should('be.checked');
+            cy.get('#field-options-hideTitle').should('exist').check().should('be.checked');
           }
           if (jsonOptions.columnTitles) {
             jsonOptions.columnTitles.forEach(columnTitle => {
-              cy.get("#field-table-title").type(columnTitle);
-              cy.findByRole("button", {name: "Add"}).click();
+              cy.get("#field-table-title").should('exist').type(columnTitle);
+              cy.findByRole("button", {name: "Add"}).should('exist').click();
             })
           }
           if (jsonOptions.page && jsonOptions.page.customText) {
-            cy.get("#table-title").type(jsonOptions.page.customText);
+            cy.get("#table-title").should('exist').type(jsonOptions.page.customText);
           }
           if (jsonOptions.page && jsonOptions.page.samePageTableItemName) {
-            cy.get("#table-item-name").type(jsonOptions.page.samePageTableItemName);
+            cy.get("#table-item-name").should('exist').type(jsonOptions.page.samePageTableItemName);
           }
         }
       }
-      cy.findByRole("button", {name: "Save"}).click({force: true});
+      cy.findByRole("button", {name: "Save"}).should('exist').click({force: true});
     });
   });
 
@@ -146,16 +146,16 @@ When('change value in the final page and save continue', (table) => {
     cy.contains('dt.govuk-summary-list__key', question)
       .parent()
       .within(() => {
-        cy.get('dd.govuk-summary-list__actions a').click();
+        cy.get('dd.govuk-summary-list__actions a').should('exist').click();
       });
   });
 });
 
 When('I will verify row content in the multi input field table', (table) => {
   const listItems = table.hashes();
-  cy.get('.govuk-table tbody tr').each(($row) => {
+  cy.get('.govuk-table tbody tr').should('exist').each(($row) => {
     const rowData = []
-    cy.wrap($row).find('td.govuk-table__cell').each(($cell, index, $cells) => {
+    cy.wrap($row).find('td.govuk-table__cell').should('exist').each(($cell, index, $cells) => {
       if (index === $cells.length - 1) {
         cy.wrap($cell).find('a').then(($link) => {
           expect($link.text().trim()).to.contains("Remove")
@@ -177,67 +177,67 @@ When('I am creating the child components in MultiInputField on page {string}', (
     cy.get(`div#\\${convertToSlug(page)}`)
       .should('exist')
       .within(() => {
-        cy.get('div.component-item').click();
+        cy.get('div.component-item').should('exist').click();
       });
     cy.findByTestId("flyout-0").should('exist').and('be.visible').within(() => {
-      cy.get('#select-field-types').select(type)
+      cy.get('#select-field-types').should('exist').select(type)
     });
     if (type === "TextField") {
       cy.findByTestId("flyout-1").should('exist').and('be.visible').within(() => {
-        cy.get("#child-component-field-title").type(title);
+        cy.get("#child-component-field-title").should('exist').type(title);
         if (hint) {
-          cy.get("#child-component-field-hint").type(hint);
+          cy.get("#child-component-field-hint").should('exist').type(hint);
         }
-        cy.findByRole("button", {name: "Add"}).click();
+        cy.findByRole("button", {name: "Add"}).should('exist').click();
       });
     }
 
     if (type === "MultilineTextField") {
       cy.findByTestId("flyout-1").should('exist').and('be.visible').within(() => {
-        cy.get("#child-component-field-title").type(title);
+        cy.get("#child-component-field-title").should('exist').type(title);
         if (hint) {
-          cy.get("#child-component-field-hint").type(hint);
+          cy.get("#child-component-field-hint").should('exist').type(hint);
         }
-        cy.findByRole("button", {name: "Add"}).click();
+        cy.findByRole("button", {name: "Add"}).should('exist').click();
       });
     }
     if (type === "RadiosField") {
       cy.findByTestId("flyout-1").should('exist').and('be.visible').within(() => {
-        cy.get("#child-component-field-title").type(title);
+        cy.get("#child-component-field-title").should('exist').type(title);
         if (hint) {
-          cy.get("#child-component-field-hint").type(hint);
+          cy.get("#child-component-field-hint").should('exist').type(hint);
         }
-        cy.findByRole("button", {name: "Add"}).click();
+        cy.findByRole("button", {name: "Add"}).should('exist').click();
       });
     }
     if (type === "YesNoField") {
       cy.findByTestId("flyout-1").should('exist').and('be.visible').within(() => {
-        cy.get("#child-component-field-title").type(title);
+        cy.get("#child-component-field-title").should('exist').type(title);
         if (hint) {
-          cy.get("#child-component-field-hint").type(hint);
+          cy.get("#child-component-field-hint").should('exist').type(hint);
         }
-        cy.findByRole("button", {name: "Add"}).click();
+        cy.findByRole("button", {name: "Add"}).should('exist').click();
       });
     }
     if (type === "DatePartsField") {
       cy.findByTestId("flyout-1").should('exist').and('be.visible').within(() => {
-        cy.get("#child-component-field-title").type(title);
+        cy.get("#child-component-field-title").should('exist').type(title);
         if (hint) {
-          cy.get("#child-component-field-hint").type(hint);
+          cy.get("#child-component-field-hint").should('exist').type(hint);
         }
-        cy.findByRole("button", {name: "Add"}).click();
+        cy.findByRole("button", {name: "Add"}).should('exist').click();
       });
     }
 
   });
-  cy.findByRole("button", {name: "Save"}).click();
+  cy.findByRole("button", {name: "Save"}).should('exist').click();
 });
 
 When('I am updating the child components in MultiInputField on page {string}', (page) => {
   cy.get(`div#\\${convertToSlug(page)}`)
     .should('exist')
     .within(() => {
-      cy.get('div.component-item').click();
+      cy.get('div.component-item').should('exist').click();
     });
 });
 
@@ -249,14 +249,14 @@ When('I am adding data into following components and save and continue {string}'
         .invoke('attr', 'for')           // Get the 'for' attribute value (e.g., "KXwFjM")
         .then((id) => {
           // Use the 'for' attribute value to locate the input field
-          cy.get(`#${id}`).type(data);
+          cy.get(`#${id}`).should('exist').type(data);
         });
     }
     if (type === "YesNoField") {
       cy.contains(component) // Wait up to 10 seconds for the component
         .closest('.govuk-form-group').should('be.visible')
         .find('input[type="radio"]')
-        .filter(`[value="${data === 'Yes' ? 'true' : 'false'}"]`)
+        .filter(`[value="${data === 'Yes' ? 'true' : 'false'}"]`).should('exist')
         .check({force: true})
         .should('be.checked');
     }
@@ -265,7 +265,7 @@ When('I am adding data into following components and save and continue {string}'
         .contains('label', data) // Find the label containing the given text (e.g., 'Yes' or 'No')
         .invoke('attr', 'for') // Get the 'for' attribute value, which corresponds to the radio button's id
         .then((id) => {
-          cy.get(`#${id}`).check({force: true}); // Check the radio button using the id
+          cy.get(`#${id}`).should('exist').check({force: true}); // Check the radio button using the id
         }).should('be.checked');
     }
     if (type === "DatePartsField") {
@@ -273,16 +273,16 @@ When('I am adding data into following components and save and continue {string}'
       cy.contains('label', component)
         .find('.govuk-date-input')
         .within(() => {
-          cy.get('input[id$="__day"]').clear().type(date[2]);
-          cy.get('input[id$="__month"]').clear().type(date[1]);
-          cy.get('input[id$="__year"]').clear().type(date[0]);
+          cy.get('input[id$="__day"]').should('exist').clear().type(date[2]);
+          cy.get('input[id$="__month"]').should('exist').clear().type(date[1]);
+          cy.get('input[id$="__year"]').should('exist').clear().type(date[0]);
         });
     }
   });
   if (skipSave === "True") {
-    cy.findByRole("button", {name: "Save and continue"}).click();
+    cy.findByRole("button", {name: "Save and continue"}).should('exist').click();
   } else {
-    cy.findByRole("button", {name: "Save and add another"}).click();
+    cy.findByRole("button", {name: "Save and add another"}).should('exist').click();
   }
 });
 
@@ -294,6 +294,7 @@ When('verify last page details {string}', (lastPageName, table) => {
       .parent()
       .within(() => {
         cy.get('dd.govuk-summary-list__value')
+          .should('exist')
           .invoke('text')
           .then((value) => {
             expect(value.trim()).to.equal(answer);
@@ -314,7 +315,7 @@ When('I am previewing the page {string}', (page) => {
       cy.get(`div#\\${convertToSlug(page)}`)
         .should('exist')
         .within(() => {
-          cy.get('a[title="Preview page"]').click();
+          cy.get('a[title="Preview page"]').should('exist').click();
         });
       cy.getCookies().should('have.length.greaterThan', 0);  // Ensure at least one cookie is present
       cy.getCookie('fsd_user_token').should('exist');  // Assert that fsd_user_token exists
@@ -324,14 +325,14 @@ When('I am previewing the page {string}', (page) => {
     cy.get(`div#\\${convertToSlug(page)}`)
       .should('exist')
       .within(() => {
-        cy.get('a[title="Preview page"]').click();
+        cy.get('a[title="Preview page"]').should('exist').click();
       });
   }
 });
 
 When('I am complete update the components', () => {
   cy.findByTestId("flyout-0").should('exist').and('be.visible').within(() => {
-    cy.findByRole("button", {name: "Save"}).click();
+    cy.findByRole("button", {name: "Save"}).should('exist').click();
   })
 });
 
@@ -340,27 +341,27 @@ When('I click on save and continue', () => {
 });
 
 When('I am creating the condition {string} mapping field is {string} and operator {string} check value {string}', (conditionName, fieldName, operator, value) => {
-  cy.findByRole("button", {name: "Conditions"}).click();
+  cy.findByRole("button", {name: "Conditions"}).should('exist').click();
   cy.findByTestId("flyout-0").should('exist').and('be.visible').within(() => {
-    cy.findByRole("link", {name: "Add condition"}).click();
+    cy.findByRole("link", {name: "Add condition"}).should('exist').click();
   })
   cy.findByTestId("flyout-1").should('exist').and('be.visible').within(() => {
-    cy.get('#cond-name').type(conditionName);
-    cy.get('#cond-field').select(fieldName);
-    cy.get('#cond-operator').select(operator);
-    cy.get('#cond-value').select(value);
-    cy.findByRole("button", {name: "Add"}).click();
+    cy.get('#cond-name').should('exist').type(conditionName);
+    cy.get('#cond-field').should('exist').select(fieldName);
+    cy.get('#cond-operator').should('exist').select(operator);
+    cy.get('#cond-value').should('exist').select(value);
+    cy.findByRole("button", {name: "Add"}).should('exist').click();
     cy.wait(100);
-    cy.findByRole("link", {name: "Save"}).click();
+    cy.findByRole("link", {name: "Save"}).should('exist').click();
     cy.wait(100);
   })
-  cy.get('a.flyout__button-close[title="Close"]').click({force: true});
+  cy.get('a.flyout__button-close[title="Close"]').should('exist').click({force: true});
 });
 
 When('I am adding the condition into the link from {string} to {string} and condition {string}', (pageFrom, pageTo, conditionName) => {
   cy.get(`[data-testid="${convertToLinkName(pageFrom, pageTo)}"]`).should('be.visible').click({force: true});
-  cy.get('#select-condition').select(conditionName);
-  cy.findByRole("button", {name: "Save"}).click();
+  cy.get('#select-condition').should('exist').select(conditionName);
+  cy.findByRole("button", {name: "Save"}).should('exist').click();
 })
 
 When('I am updating the radio field {string} with following list {string}', (component, listName, table) => {
@@ -368,38 +369,38 @@ When('I am updating the radio field {string} with following list {string}', (com
     .contains('td', component) // Find the cell containing the target value
     .closest('tr') // Get the closest row containing that cell
     .within(() => {
-      cy.get('button').contains('Edit').click(); // Click the Edit button if it exists
+      cy.get('button').contains('Edit').should('exist').click(); // Click the Edit button if it exists
     });
   if (table) {
     cy.findByTestId("flyout-1").should('exist').and('be.visible').within(() => {
-      cy.findByRole("button", {name: "Add a new list"}).click();
+      cy.findByRole("button", {name: "Add a new list"}).should('exist').click();
     });
     cy.findByTestId("flyout-2").should('exist').and('be.visible').within(() => {
-      cy.get("#list-title").type(listName);
+      cy.get("#list-title").should('exist').type(listName);
     });
     const listItems = table.hashes();
     listItems.forEach(({text, value}) => {
       cy.findByTestId("flyout-2").should('exist').and('be.visible').within(() => {
-        cy.findByRole("link", {name: "Add list item"}).click();
+        cy.findByRole("link", {name: "Add list item"}).should('exist').click();
       });
       cy.findByTestId("flyout-3").should('exist').and('be.visible').within(() => {
-        cy.get("#title").type(text);
-        cy.get("#value").type(value);
-        cy.findByRole("button", {name: "Save"}).click();
+        cy.get("#title").should('exist').type(text);
+        cy.get("#value").should('exist').type(value);
+        cy.findByRole("button", {name: "Save"}).should('exist').click();
       });
     });
 
     cy.findByTestId("flyout-2").should('exist').and('be.visible').within(() => {
-      cy.findByRole("button", {name: "Save"}).click();
+      cy.findByRole("button", {name: "Save"}).should('exist').click();
     });
 
     cy.findByTestId("flyout-1").should('exist').and('be.visible').within(() => {
-      cy.findByRole("button", {name: "Update"}).click();
+      cy.findByRole("button", {name: "Update"}).should('exist').click();
     });
   } else {
     cy.findByTestId("flyout-1").should('exist').and('be.visible').within(() => {
-      cy.get('#field-options-list').select(listName);
-      cy.findByRole("button", {name: "Update"}).click();
+      cy.get('#field-options-list').should('exist').select(listName);
+      cy.findByRole("button", {name: "Update"}).should('exist').click();
     })
   }
 });
