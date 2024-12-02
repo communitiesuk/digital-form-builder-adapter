@@ -1,0 +1,119 @@
+name: Run Performance test
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Deploy to {0}', github.event.inputs.environment) || (github.ref == 'refs/heads/main' && 'Deploy to Test-UAT-Prod' || 'Build & Unit Test') }}
+
+permissions:
+  packages: write
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Deploy to which environment
+        type: choice
+        required: true
+        options:
+          - dev
+          - test
+          - uat
+          - prod
+  workflow_call:
+    inputs:
+      runner-cache-ref:
+        description: cache ref for the runner app
+        required: true
+        type: string
+      designer-cache-ref:
+        description: cache ref for the designer app
+        required: true
+        type: string
+
+env:
+  DOCKER_REGISTRY: ghcr.io
+  IMAGE_NAME: "funding-service-design-form-runner-adapter"
+  IMAGE_NAME_DESIGNER: "funding-service-design-form-designer-adapter"
+  IMAGE_REPO_PATH: "ghcr.io/${{github.repository_owner}}"
+
+jobs:
+  setup:
+    uses: communitiesuk/funding-service-design-workflows/.github/workflows/determine-jobs.yml@main
+    with:
+      environment: ${{ inputs.environment }}
+
+  performance-test:
+    needs: [ setup ]
+    runs-on: ubuntu-latest
+    name: run performance test
+    outputs:
+      tag: ${{ steps.hashFile.outputs.tag }}
+      hash: ${{ steps.hashFile.outputs.hash }}
+    strategy:
+      matrix:
+        shard: [ 1 ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+
+      - name: Get into the directory
+        id: change-dir
+        run: yarn config set enableImmutableInstalls false
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: |
+            node_modules  # Cache the installed node modules
+            **/node_modules  # Include subfolders if using workspaces
+          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-e2e
+            ${{ runner.os }}-yarn  
+
+      - name: Setup e2e dependencies
+        run: |
+          echo "--  Git submodule initialize into local  --"
+          git submodule update --init
+          echo "--  Pulling git submodules into local  --"
+          git pull --recurse-submodules
+          echo "--  Installing digital-form-builder-adapter locally  --"
+          node update-package.js
+          yarn install
+          echo "--  Install e2e dependencies  --"
+          yarn e2e-test install
+          echo "--  Building digital-form-builder locally  --"
+          cd digital-form-builder
+          yarn
+
+      - name: Run performance tests
+        id: e2e
+        env:
+          FS_BASIC_AUTH_USERNAME: ${{ secrets.FS_BASIC_AUTH_USERNAME }}
+          FS_BASIC_AUTH_PASSWORD: ${{ secrets.FS_BASIC_AUTH_PASSWORD }}
+          AUTH_URL: https://${{ secrets.FS_BASIC_AUTH_USERNAME }}:${{ secrets.FS_BASIC_AUTH_PASSWORD }}@authenticator.dev.access-funding.test.levellingup.gov.uk
+          FRONTEND_URL: https://${{ secrets.FS_BASIC_AUTH_USERNAME }}:${{ secrets.FS_BASIC_AUTH_PASSWORD }}@frontend.dev.access-funding.test.levellingup.gov.uk
+          RUNNER_URL: https://${{secrets.FS_BASIC_AUTH_USERNAME}}:${{secrets.FS_BASIC_AUTH_PASSWORD}}@forms.dev.access-funding.test.levellingup.gov.uk
+          DESIGNER_URL: https://form-designer.dev.access-funding.test.levellingup.gov.uk
+          ENVIRONMENT: dev
+        run: yarn e2e-test cypress run --spec "./cypress/e2e/designer/designerToRunnerFormBuild.feature"
+        continue-on-error: true
+
+      - name: Create Folders
+        run: mkdir -p ./e2e-test/cypress/screenshots/logs
+
+      - name: Upload Performance Test Report Application
+        if: success() || failure()
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: e2e-test-performance-report-application-${{ github.run_id }}
+          path: ./e2e-test/cypress/screenshots
+          retention-days: 5
+
+      - name: Check for errors & exit the job
+        run: |
+          if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
+            echo "Test failures please fix before deploying the service"
+            exit 1
+          fi
