@@ -72,7 +72,7 @@ jobs:
       hash: ${{ steps.hashFile.outputs.hash }}
     strategy:
       matrix:
-        shard: [ 1, 2, 3, 4, 5 ]
+        shard: [ 1 ]
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -115,21 +115,16 @@ jobs:
         env:
           FS_BASIC_AUTH_USERNAME: ${{ secrets.FS_BASIC_AUTH_USERNAME }}
           FS_BASIC_AUTH_PASSWORD: ${{ secrets.FS_BASIC_AUTH_PASSWORD }}
+          AUTH_URL: https://${{ secrets.FS_BASIC_AUTH_USERNAME }}:${{ secrets.FS_BASIC_AUTH_PASSWORD }}@authenticator.dev.access-funding.test.levellingup.gov.uk
+          FRONTEND_URL: https://${{ secrets.FS_BASIC_AUTH_USERNAME }}:${{ secrets.FS_BASIC_AUTH_PASSWORD }}@frontend.dev.access-funding.test.levellingup.gov.uk
+          RUNNER_URL: https://${{secrets.FS_BASIC_AUTH_USERNAME}}:${{secrets.FS_BASIC_AUTH_PASSWORD}}@forms.dev.access-funding.test.levellingup.gov.uk
+          DESIGNER_URL: https://form-designer.dev.access-funding.test.levellingup.gov.uk
           ENVIRONMENT: dev
-        run: yarn e2e-test cypress run --spec "./cypress/e2e/designer/designerToRunnerFormBuild.feature" --env DESIGNER_URL=https://form-designer.test.access-funding.test.levellingup.gov.uk,RUNNER_URL=https://forms.test.access-funding.test.levellingup.gov.uk
+        run: yarn e2e-test cypress run --spec "./cypress/e2e/designer/designerToRunnerFormBuild.feature"
         continue-on-error: true
 
       - name: Create Folders
         run: mkdir -p ./e2e-test/cypress/screenshots/logs
-
-      - name: Get Logs from localstack
-        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
-
-      - name: Get Logs from runner
-        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
-
-      - name: Get all the uploaded files in the bucket
-        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
 
       - name: Upload Performance Test Report Application
         if: success() || failure()

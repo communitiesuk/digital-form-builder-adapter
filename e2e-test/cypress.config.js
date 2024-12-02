@@ -54,11 +54,12 @@ module.exports = defineConfig({
      * To override these via CLI, prefix with cypress_
      * e.g: to override `DESIGNER_URL`, set the env var as `cypress_DESIGNER_URL`.
      */
-    DESIGNER_URL: "http://localhost:3000",
+    DESIGNER_URL: process.env.DESIGNER_URL ? process.env.DESIGNER_URL : "http://localhost:3000",
     FS_BASIC_AUTH_USERNAME: process.env.FS_BASIC_AUTH_USERNAME,
     FS_BASIC_AUTH_PASSWORD: process.env.FS_BASIC_AUTH_PASSWORD,
-    ENVIRONMENT: process.env.ENVIRONMENT,
-    RUNNER_URL: "http://localhost:3009",
+    AUTH_URL: process.env.AUTH_URL,
+    FRONTEND_URL: process.env.FRONTEND_URL,
+    RUNNER_URL: process.env.RUNNER_URL ? process.env.RUNNER_URL : "http://localhost:3009",
     TAGS: "not @wip"
   },
 });

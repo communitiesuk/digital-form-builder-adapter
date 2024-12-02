@@ -1,4 +1,59 @@
-import {When} from "@badeball/cypress-cucumber-preprocessor";
+import {Before, When} from "@badeball/cypress-cucumber-preprocessor";
+
+Cypress.Commands.add('saveAndSetCookies', (targetUrl) => {
+  cy.getCookies().then((cookies) => {
+    cookies.forEach((cookie) => {
+      cy.setCookie(cookie.name, cookie.value, {
+        domain: ".levellingup.gov.uk",
+        path: "/",
+        secure: cookie.secure,
+        httpOnly: cookie.httpOnly,
+        sameSite: cookie.sameSite
+      });
+    });
+    cy.visit(targetUrl);
+  });
+});
+
+Before(() => {
+  cy.session('userSession', () => {
+    if (Cypress.env("FS_BASIC_AUTH_USERNAME") && Cypress.env("FS_BASIC_AUTH_PASSWORD")) {
+      const authUrlWithAuth = Cypress.env("AUTH_URL")
+      const frontendUrlWithAuth = Cypress.env("FRONTEND_URL")
+      const workAroundFrontendLogin = `${frontendUrlWithAuth}/funding-round/hsra/r1`;
+      cy.visit(workAroundFrontendLogin);
+      const workAroundLogin = `${authUrlWithAuth}/service/magic-links/new?fund=hsra&round=r1`;
+      cy.visit(workAroundLogin);
+      cy.get("#email").type("sample@gg.com");
+      cy.findByRole("button", {name: "Continue"}).click();
+      cy.request('GET', `${authUrlWithAuth}/magic-links`)
+        .then((response) => {
+          cy.log(response)
+          expect(response.status).to.eq(200);
+          if (!response.body.length >= 1) {
+            throw new Error("No magic links available");
+          }
+          let linkId = null
+          for (let i = 0; i < response.body.length; i++) {
+            if (response.body[i].startsWith("link:")) {
+              linkId = response.body[i].slice(5);
+              break;
+            }
+          }
+          if (linkId !== null) {
+            cy.intercept(`*`, (req) => {
+              req.headers['authorization'] = 'Basic ' + btoa(`${Cypress.env("FS_BASIC_AUTH_USERNAME")}:${Cypress.env("FS_BASIC_AUTH_PASSWORD")}`);
+            }).as('allRequests');
+            cy.visit(`${authUrlWithAuth}/service/magic-links/landing/${linkId}?fund=hsra&round=r1`);
+            cy.get('a[role="button"][data-module="govuk-button"]').click();
+            cy.getCookies().should('have.length.greaterThan', 0);  // Ensure at least one cookie is present
+            cy.getCookie('fsd_user_token').should('exist');  // Assert that fsd_user_token exists
+            cy.getCookie('fsd_user_token').should('have.property', 'value').and('not.be.empty');  // Ensures the cookie has a value
+          }
+        });
+    }
+  });
+});
 
 When('I am deleting all the pages from the template', (table) => {
   const listItems = table.hashes();
@@ -12,13 +67,6 @@ When('I am deleting all the pages from the template', (table) => {
       cy.findByRole("button", {name: "Delete"}).click();
     });
   });
-});
-
-When('I need to authenticate runner with basic auth', () => {
-  if (Cypress.env("FS_BASIC_AUTH_USERNAME") && Cypress.env("FS_BASIC_AUTH_PASSWORD")) {
-    const authenticatorURL = `https://${Cypress.env("FS_BASIC_AUTH_USERNAME")}:${Cypress.env("FS_BASIC_AUTH_PASSWORD")}@authenticator.${Cypress.env("ENVIRONMENT")}.access-funding.test.levellingup.gov.uk`;
-    cy.visit(authenticatorURL);
-  }
 });
 
 When('I am trying to create {string} page {string}', (pageType, pageTitle) => {
@@ -260,11 +308,25 @@ When('verify last page details {string}', (lastPageName, table) => {
 });
 
 When('I am previewing the page {string}', (page) => {
-  cy.get(`div#\\${convertToSlug(page)}`)
-    .should('exist')
-    .within(() => {
-      cy.get('a[title="Preview page"]').click();
+  if (Cypress.env("FS_BASIC_AUTH_USERNAME") && Cypress.env("FS_BASIC_AUTH_PASSWORD")) {
+    cy.url().then(url => {
+      cy.saveAndSetCookies(url);
+      cy.get(`div#\\${convertToSlug(page)}`)
+        .should('exist')
+        .within(() => {
+          cy.get('a[title="Preview page"]').click();
+        });
+      cy.getCookies().should('have.length.greaterThan', 0);  // Ensure at least one cookie is present
+      cy.getCookie('fsd_user_token').should('exist');  // Assert that fsd_user_token exists
+      cy.getCookie('fsd_user_token').should('have.property', 'value').and('not.be.empty');  // Ensures the cookie has a value
     });
+  } else {
+    cy.get(`div#\\${convertToSlug(page)}`)
+      .should('exist')
+      .within(() => {
+        cy.get('a[title="Preview page"]').click();
+      });
+  }
 });
 
 When('I am complete update the components', () => {

@@ -7,6 +7,7 @@ export const jwtAuthStrategyName = "jwt_auth";
 // rsa256Options()
 // Returns configuration options for rsa256 auth strategy
 export function rsa256Options(jwtAuthCookieName) {
+    console.log(`[JWT] registering the auth cookie`);
     return {
         key: keyFunc,
         validate,
@@ -23,6 +24,7 @@ export function rsa256Options(jwtAuthCookieName) {
 // this is normally used to look up keys from list in a multi-tenant scenario
 const keyFunc = async function (decoded) {
     const key = Buffer.from(config.rsa256PublicKeyBase64 ?? "", "base64");
+    console.log(`[JWT] check key function [${config.rsa256PublicKeyBase64 ?? "", "base64"}]`);
     return {key, additional: decoded};
 };
 
@@ -34,6 +36,7 @@ const validate = async function (decoded, request, h) {
     // It must return an object with an 'isValid' boolean property,
     // this allows the user to continue if true or raises a 401 if false
     const credentials = decoded;
+    request.logger.info(`[JWT] validating the auth cookie`);
     if (request.plugins["hapi-auth-jwt2"]) {
         credentials.extraInfo = request.plugins["hapi-auth-jwt2"].extraInfo;
     }
@@ -41,8 +44,10 @@ const validate = async function (decoded, request, h) {
         request.logger.error(
             "JWT token has no accountID in jwt: " + credentials.extraInfo.toString()
         );
+        request.logger.info(`[JWT] invalid auth token provided`);
         return {isValid: false};
     } else {
+        request.logger.info(`[JWT] valid auth token allow access`);
         return {isValid: true, credentials};
     }
 };

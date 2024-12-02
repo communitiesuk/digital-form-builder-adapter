@@ -3,8 +3,7 @@ Feature: Form creation through designer and usage in runner
   I wanted to create a form using the designer and need to check the functionality in runner
 
   Scenario: Test form creation through designer and check the functionality in runner
-    Given I need to authenticate runner with basic auth
-    And I am on the new configuration page
+    Given I am on the new configuration page
     And I enter the form name "risk-form"
     * I submit the form with the button title "Next"
     When I open "Lists"
