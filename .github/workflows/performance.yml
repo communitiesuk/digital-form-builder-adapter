@@ -6,6 +6,14 @@ permissions:
   contents: write
 
 on:
+  push:
+    paths-ignore:
+      [
+        "**/README.md",
+        ".github/workflows/increment-version.yml",
+        "version",
+        "python/**",
+      ]
   workflow_dispatch:
     inputs:
       environment:
