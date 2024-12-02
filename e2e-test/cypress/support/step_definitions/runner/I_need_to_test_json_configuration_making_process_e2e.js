@@ -86,18 +86,18 @@ When('I am creating the links for the page {string} to {string}', (pageFrom, pag
   cy.findByTestId("flyout-0").should('exist').and('be.visible').within(() => {
     cy.get('#link-source').select(convertToSlug(pageFrom))
     cy.get('#link-target').select(convertToSlug(pageTo))
-    cy.findByRole("button", {name: "Save"}).click();
+    cy.findByRole("button", {name: "Save"}).should('exist').and('be.visible').click();
   });
 });
 
 When('I am creating components on the page {string}', (page, table) => {
   const listItems = table.hashes();
   listItems.forEach(({name, type, title, options, hint}) => {
-    cy.wait(100);
+    cy.wait(1000);
     cy.get(`div#\\${convertToSlug(page)}`)
       .should('exist')
       .within(() => {
-        cy.findByRole("button", {name: "Create component"}).click({force: true});
+        cy.findByRole("button", {name: "Create component"}).should('exist').and('be.visible').click({force: true});
       });
     cy.findByTestId("flyout-0").should('exist').and('be.visible').within(() => {
       cy.findByRole("link", {name: type}).click();
