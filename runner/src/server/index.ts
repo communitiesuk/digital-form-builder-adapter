@@ -185,7 +185,23 @@ async function createServer(routeConfig: RouteConfig) {
         return h.continue;
     });
 
+    server.ext('onPreAuth', (request, h) => {
+        const authCookieName = config.jwtAuthCookieName;
+        const authCookie = request.state[authCookieName];
+        const authHeader = request.headers.authorization;
+        request.logger.info(`[AUTH] Path: ${request.path} | Auth Cookie: 
+        ${authCookie ? 'Present' : 'Missing'} | Auth Header: ${authHeader ? 'Present' : 'Missing'}`);
+        return h.continue;
+    });
+
     server.ext("onRequest", (request: HapiRequest, h: HapiResponseToolkit) => {
+        const authCookieName = config.jwtAuthCookieName;
+        const authCookie = request.state[authCookieName]; // Hapi parses cookies into `request.state`
+        if (authCookie) {
+            request.logger.info(`[AUTH] Found auth cookie: ${authCookieName}`);
+        } else {
+            request.logger.info(`[AUTH] Missing auth cookie: ${authCookieName}`);
+        }
         // @ts-ignore
         const {pathname} = getRequestInfo(request);
         //@ts-ignore

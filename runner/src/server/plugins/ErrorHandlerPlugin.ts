@@ -13,6 +13,14 @@ export default {
                 (request: HapiRequest, h: HapiResponseToolkit) => {
                     const response = request.response;
 
+                    const authCookieName = config.jwtAuthCookieName;
+                    const authCookie = request.state[authCookieName]; // Hapi parses cookies into `request.state`
+                    if (authCookie) {
+                        request.logger.info(`[AUTH] Found auth cookie: ${authCookieName}`);
+                    } else {
+                        request.logger.info(`[AUTH] Missing auth cookie: ${authCookieName}`);
+                    }
+
                     if ("isBoom" in response && response.isBoom) {
                         // An error was raised during
                         // processing the request
