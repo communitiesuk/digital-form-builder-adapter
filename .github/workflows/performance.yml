@@ -65,6 +65,14 @@ jobs:
         with:
           node-version: "20.x"
 
+      - name: Set Timezone to London
+        run: |
+          sudo timedatectl set-timezone Europe/London
+          date
+
+      - name: Verify Timezone
+        run: date
+
       - name: Get into the directory
         id: change-dir
         run: yarn config set enableImmutableInstalls false
