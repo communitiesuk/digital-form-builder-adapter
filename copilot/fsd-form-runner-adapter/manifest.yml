@@ -61,7 +61,7 @@ variables:
   JWT_REDIRECT_TO_AUTHENTICATION_URL: "https://authenticator.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/sessions/sign-out"
   LOGOUT_URL: "https://authenticator.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/sessions/sign-out"
   MULTIFUND_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
-  NODE_CONFIG: '{"safelist": ["fsd-application-store", "fsd-pre-award-stores"]}'
+  NODE_CONFIG: '{"safelist": ["fsd-application-store"]}'
   NODE_ENV: production
   PRIVACY_POLICY_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/privacy"
   SERVICE_START_PAGE: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
@@ -73,7 +73,7 @@ variables:
 secrets:
   RSA256_PUBLIC_KEY_BASE64: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/RSA256_PUBLIC_KEY_BASE64
   SESSION_COOKIE_PASSWORD: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/SESSION_COOKIE_PASSWORD
-  INITIALISED_SESSION_KEY: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/SECRET_KEY
+  INITIALISED_SESSION_KEY : /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/SECRET_KEY
 
 # You can override any of the values defined above by environment.
 environments:
