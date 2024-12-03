@@ -52,7 +52,7 @@ RUN --mount=type=cache,target=/usr/src/app/digital-form-builder-adapter/.yarn/ca
 FROM install-dependencies AS build-xgov
 WORKDIR /usr/src/app/digital-form-builder-adapter/digital-form-builder
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755 \
-    yarn install --frozen-lockfile
+    yarn
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755 \
     yarn model build
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755 \
