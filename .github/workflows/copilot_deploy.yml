@@ -272,7 +272,7 @@ jobs:
           git pull --recurse-submodules
           echo "--  Installing digital-form-builder-adapter locally  --"
           node update-package.js
-          yarn install
+          yarn install --no-frozen-lockfile
           echo "--  Install e2e dependencies  --"
           yarn e2e-test install
           echo "--  Building digital-form-builder locally  --"
