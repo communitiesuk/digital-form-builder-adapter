@@ -295,7 +295,7 @@ jobs:
 
       - name: Run Parallel Cypress Tests
         id: e2e
-        run: yarn e2e-test cypress run --parallel --record --ci-build-id ${{ github.run_id }} --group shard-${{ matrix.shard }} --env shard=${{ matrix.shard }}
+        run: yarn e2e-test cypress run --parallel --ci-build-id ${{ github.run_id }} --group shard-${{ matrix.shard }} --env shard=${{ matrix.shard }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
