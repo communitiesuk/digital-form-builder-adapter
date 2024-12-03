@@ -106,7 +106,7 @@ jobs:
       - uses: actions/cache@v3
         id: yarn-cache
         with:
-          path: ~/.cache/yarn
+          path: ~/.yarn/cache
           key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('./runner/package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
@@ -131,19 +131,19 @@ jobs:
           git pull --recurse-submodules
           echo "--  Installing digital-form-builder-adapter locally  --"
           node update-package.js
-          yarn install --cache-folder $YARN_CACHE_DIR
+          yarn install  
           echo "--  Building digital-form-builder-adapter locally  --"
-          yarn setup  --cache-folder $YARN_CACHE_DIR
+          yarn setup   
           echo "--  Building digital-form-builder locally  --"
           # shellcheck disable=SC2164
           cd digital-form-builder
-          yarn  --cache-folder $YARN_CACHE_DIR
+          yarn   
           echo "--  Building digital-form-builder model locally  --"
-          yarn model build --cache-folder $YARN_CACHE_DIR
+          yarn model build  
           echo "--  Building digital-form-builder queue-model locally  --"
-          yarn queue-model build --cache-folder $YARN_CACHE_DIR
+          yarn queue-model build  
           echo "--  Running unit tests  --"
-          yarn runner test-cov --cache-folder $YARN_CACHE_DIR
+          yarn runner test-cov  
 
       - name: Set up Docker Buildx property
         run: echo "DOCKER_BUILDKIT=1" >> $GITHUB_ENV
@@ -272,7 +272,7 @@ jobs:
 
       - name: Get into the directory
         id: change-dir
-        run: yarn config set enableImmutableInstalls false  --cache-folder $YARN_CACHE_DIR
+        run: yarn config set enableImmutableInstalls false   
 
       - name: Setup e2e dependencies
         run: |
@@ -282,12 +282,12 @@ jobs:
           git pull --recurse-submodules
           echo "--  Installing digital-form-builder-adapter locally  --"
           node update-package.js
-          yarn install --cache-folder $YARN_CACHE_DIR
+          yarn install  
           echo "--  Install e2e dependencies  --"
-          yarn e2e-test install --cache-folder $YARN_CACHE_DIR
+          yarn e2e-test install  
           echo "--  Building digital-form-builder locally  --"
           cd digital-form-builder
-          yarn --cache-folder $YARN_CACHE_DIR
+          yarn  
 
       - name: Injecting image into docker compose e2e
         run: |
