@@ -48,7 +48,7 @@
     "babel-eslint": "^10.1.0",
     "babel-plugin-module-name-mapper": "^1.2.0",
     "hapi-auth-jwt2": "10.2.0",
-    "prisma": "^5.1.1",
+    "prisma": "6.0.1",
     "sass": "^1.49.9",
     "sinon": "^19.0.2"
   },

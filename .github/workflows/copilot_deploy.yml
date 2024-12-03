@@ -135,7 +135,7 @@ jobs:
           cd digital-form-builder
           yarn
           echo "--  Building digital-form-builder model locally  --"
-          yarn model build  
+          yarn model build
           echo "--  Building digital-form-builder queue-model locally  --"
           yarn queue-model build
           echo "--  Running unit tests  --"
