@@ -69,6 +69,7 @@ variables:
   JWT_AUTH_COOKIE_NAME: "fsd_user_token"
   ELIGIBILITY_RESULT_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
   JWT_AUTH_ENABLED: true
+  LOG_PRETTY_PRINT: false
 
 secrets:
   RSA256_PUBLIC_KEY_BASE64: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/RSA256_PUBLIC_KEY_BASE64
