@@ -20,12 +20,24 @@ export class ConfirmPageController extends SummaryPageController {
             //@ts-ignore
             const state = await adapterCacheService.getState(request);
             const fund_name = state["metadata"]["fund_name"];
-            let round_name = state["metadata"]["round_name"];
-            // if it's HSRA fund, get the value of a question from the eligibility form to determine the round
-            if(fund_name === "hsra"){
-                round_name = state["mwumLN"]["OjGBLs"];
+            const round_name = state["metadata"]["round_name"];
+
+            let question_answer_short_code;
+
+            // get the question_answer_short_code (round to redirect to) if it was included in the funds eligibility questions
+            for (let [, section] of Object.entries(state)) {
+                if (section && section["redirectToEligibleRound"]) {
+                    question_answer_short_code = section["redirectToEligibleRound"];
+                }
             }
-            return redirectTo(request, h, `${config.eligibilityResultUrl}?fund_name=${fund_name}&round_name=${round_name}`);
+
+            const url = new URL(`${config.eligibilityResultUrl}/${fund_name}/${round_name}`)
+
+            if (question_answer_short_code) {
+                url.searchParams.set('redirect_to_eligible_round', question_answer_short_code)
+            }
+
+            return redirectTo(request, h, url.href)
         };
     }
 }

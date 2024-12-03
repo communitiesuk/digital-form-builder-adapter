@@ -1,16 +1,16 @@
 {
     "metadata": {},
-    "startPage": "/before-you-start",
+    "startPage": "/check-if-youre-eligible",
     "pages": [
         {
-            "title": "Before you start",
-            "path": "/before-you-start",
+            "title": "Check if you're eligible",
+            "path": "/check-if-youre-eligible",
             "components": [
                 {
                     "name": "GqJNNZ",
                     "options": {},
                     "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation’s location and type </li>\n<li>the location of the vacant property</li>\n<li>how long the property has been vacant</li>\n<li>the vacancy rate of the high street</li>\n<li>when you expect us to defray your costs</li>\n</ul>",
+                    "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation’s location</li>\n<li>the grant you are applying for</li>\n<li>the location of the vacant property</li>\n<li>how long the property has been vacant</li>\n<li>the vacancy rate of the high street</li>\n</ul>",
                     "schema": {}
                 }
             ],
@@ -41,7 +41,7 @@
             ],
             "next": [
                 {
-                    "path": "/why-are-you-applying-for-this-grant",
+                    "path": "/which-grant-are-you-applying-for",
                     "condition": "bXSKqL"
                 },
                 {
@@ -61,15 +61,19 @@
             "section": "FabDefault"
         },
         {
-            "path": "/why-are-you-applying-for-this-grant",
-            "title": "Why are you applying for this grant?",
+            "path": "/which-grant-are-you-applying-for",
+            "title": "Which grant are you applying for?",
             "components": [
                 {
-                    "name": "OjGBLs",
+                    "name": "redirectToEligibleRound",
                     "options": {},
                     "type": "RadiosField",
                     "list": "EhLAys",
-                    "title": "Why are you applying for this grant?"
+                    "title": "Why are you applying for this grant?",
+                    "hint": "You must submit an application for every project you seek funding for.",
+                    "values": {
+                        "type": "listRef"
+                    }
                 }
             ],
             "next": [
@@ -78,7 +82,7 @@
                     "condition": "QHGUAo"
                 },
                 {
-                    "path": "/in-the-last-2-years-has-the-property-been-vacant-for-365-days-or-more",
+                    "path": "/has-the-property-been-vacant-for-366-days-or-more-in-the-last-2-years",
                     "condition": "miarua"
                 },
                 {
@@ -90,8 +94,8 @@
             "controller": "./pages/continue.js"
         },
         {
-            "path": "/in-the-last-2-years-has-the-property-been-vacant-for-365-days-or-more",
-            "title": "In the last 2 years, has the property been vacant for 365 days or more?",
+            "path": "/has-the-property-been-vacant-for-366-days-or-more-in-the-last-2-years",
+            "title": "Has the property been vacant for 366 days or more in the last 2 years?",
             "components": [
                 {
                     "name": "pPNbfh",
@@ -99,8 +103,11 @@
                         "hideTitle": true
                     },
                     "type": "YesNoField",
-                    "title": "In the last 2 years, has the property been vacant for 365 days or more?",
-                    "schema": {}
+                    "title": "Has the property been vacant for 366 days or more in the last 2 years?",
+                    "schema": {},
+                    "values": {
+                        "type": "listRef"
+                    }
                 }
             ],
             "next": [
@@ -124,7 +131,7 @@
                     "name": "oAnaAw",
                     "options": {},
                     "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">The property must have been vacant for 365 days or more in the last 2 years.</p>\n\nCheck who can apply in the High Street Rental Auctions Fund prospectus",
+                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">The property must have been vacant for 366 days or more in the last 2 years.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
                     "schema": {}
                 }
             ],
@@ -167,27 +174,12 @@
                     "name": "LpLRZy",
                     "options": {},
                     "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">The property must be in a designated high street with a vacancy rate of 8% or higher.</p>\n\nCheck who can apply in the High Street Rental Auctions Fund prospectus",
+                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">The property must be in a designated high street with a vacancy rate of 8% or higher.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
                     "schema": {}
                 }
             ],
             "next": [],
             "controller": "./pages/continue.js",
-            "section": "FabDefault"
-        },
-        {
-            "path": "/you-cannot-apply-for-this-funding",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "LNXmKd",
-                    "options": {},
-                    "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">We must defray all costs by 31 March 2025.</p>\n\nCheck who can apply in the High Street Rental Auctions Fund prospectus",
-                    "schema": {}
-                }
-            ],
-            "next": [],
             "section": "FabDefault"
         },
         {
@@ -198,7 +190,7 @@
                     "name": "GuqDsJ",
                     "options": {},
                     "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must be applying from local authority in England.</p>\n\nCheck who can apply in the High Street Rental Auctions Fund prospectus",
+                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must be applying from local authority in England.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
                     "schema": {}
                 }
             ],
@@ -226,7 +218,7 @@
     "sections": [
         {
             "name": "mwumLN",
-            "title": "Before you start",
+            "title": "Check if you're eligible",
             "hideTitle": false
         },
         {
@@ -609,7 +601,7 @@
                 "conditions": [
                     {
                         "field": {
-                            "name": "mwumLN.OjGBLs",
+                            "name": "mwumLN.redirectToEligibleRound",
                             "type": "RadiosField",
                             "display": "Why are you applying for this grant?"
                         },
@@ -631,7 +623,7 @@
                 "conditions": [
                     {
                         "field": {
-                            "name": "mwumLN.OjGBLs",
+                            "name": "mwumLN.redirectToEligibleRound",
                             "type": "RadiosField",
                             "display": "Why are you applying for this grant?"
                         },
@@ -653,7 +645,7 @@
                 "conditions": [
                     {
                         "field": {
-                            "name": "mwumLN.OjGBLs",
+                            "name": "mwumLN.redirectToEligibleRound",
                             "type": "RadiosField",
                             "display": "Why are you applying for this grant?"
                         },
@@ -675,7 +667,7 @@
                 "conditions": [
                     {
                         "field": {
-                            "name": "mwumLN.OjGBLs",
+                            "name": "mwumLN.redirectToEligibleRound",
                             "type": "RadiosField",
                             "display": "Why are you applying for this grant?"
                         },
@@ -697,7 +689,7 @@
                 "conditions": [
                     {
                         "field": {
-                            "name": "mwumLN.OjGBLs",
+                            "name": "mwumLN.redirectToEligibleRound",
                             "type": "RadiosField",
                             "display": "Why are you applying for this grant?"
                         },
