@@ -127,7 +127,7 @@ jobs:
           git pull --recurse-submodules
           echo "--  Installing digital-form-builder-adapter locally  --"
           node update-package.js
-          yarn install --no-frozen-lockfile
+          yarn install --immutable
           echo "--  Building digital-form-builder-adapter locally  --"
           yarn setup
           echo "--  Building digital-form-builder locally  --"
