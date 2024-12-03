@@ -237,10 +237,10 @@ jobs:
   e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
-    name: run e2e
-    outputs:
-      tag: ${{ steps.hashFile.outputs.tag }}
-      hash: ${{ steps.hashFile.outputs.hash }}
+    name: Parallel E2E Tests
+    strategy:
+      matrix:
+        shard: [ 0, 1, 2, 3 ] # Adjust the number of shards based on the number of machines
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -261,7 +261,7 @@ jobs:
           key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
-            ${{ runner.os }}-yarn
+            ${{ runner.os }}-yarn  
 
       - name: Setup e2e dependencies
         run: |
@@ -293,35 +293,23 @@ jobs:
         run: |
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
 
-      - name: Run e2e tests
+      - name: Run Parallel Cypress Tests
         id: e2e
-        run: yarn e2e-test cypress run
-        continue-on-error: true
+        run: yarn e2e-test cypress run --parallel --record --ci-build-id ${{ github.run_id }} --group shard-${{ matrix.shard }} --env shard=${{ matrix.shard }}
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
-      - name: Create Folders
-        run: mkdir -p ./e2e-test/cypress/screenshots/logs
-
-      - name: Get Logs from localstack
-        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
-
-      - name: Get Logs from runner
-        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
-
-      - name: Get all the uploaded files in the bucket
-        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
-
-      - name: Upload E2E Test Report Application
-        if: success() || failure()
+      - name: Upload E2E Test Artifacts
+        if: always()
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: e2e-test-report-application
-          path: ./e2e-test/cypress/screenshots
-          retention-days: 5
+          name: e2e-test-results-${{ matrix.shard }}
+          path: ./cypress/screenshots
 
       - name: Check for errors & exit the job
         run: |
           if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
-            echo "Test failures please fix before deploying the service"
+            echo "Test failures. Please fix before deploying the service."
             exit 1
           fi
 
