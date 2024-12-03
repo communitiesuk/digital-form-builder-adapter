@@ -112,10 +112,6 @@ jobs:
             ${{ runner.os }}-yarn-e2e
             ${{ runner.os }}-yarn
 
-      - name: Get Yarn cache directory path
-        id: yarn-cache-dir
-        run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> $GITHUB_ENV
-
       - name: Create .env for runner workspace
         run: |
           touch ./runner/.env
