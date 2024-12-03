@@ -106,9 +106,7 @@ jobs:
       - uses: actions/cache@v3
         id: yarn-cache
         with:
-          path: |
-            node_modules  # Cache the installed node modules
-            **/node_modules  # Include subfolders if using workspaces
+          path: ~/.cache/yarn
           key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('./runner/package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
