@@ -41,20 +41,21 @@ RUN git submodule update --init --recursive && \
 # ----------------------------
 # Stage 4: Install dependencies
 FROM pre-build AS install-dependencies
-
-RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755 \
+RUN --mount=type=cache,target=/usr/src/app/digital-form-builder-adapter/.yarn/cache,uid=1001,mode=0755 \
     node update-package.js && \
-    yarn setup && \
+    yarn setup
+RUN --mount=type=cache,target=/usr/src/app/digital-form-builder-adapter/.yarn/cache,uid=1001,mode=0755 \
     yarn install
 
 # ----------------------------
 # Stage 5: Build XGovFormBuilder
 FROM install-dependencies AS build-xgov
-
 WORKDIR /usr/src/app/digital-form-builder-adapter/digital-form-builder
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755 \
-    yarn && \
-    yarn model build && \
+    yarn install --frozen-lockfile
+RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755 \
+    yarn model build
+RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755 \
     yarn queue-model build
 
 # ----------------------------
@@ -67,7 +68,6 @@ COPY --chown=appuser:appuser ../model ./model
 # ----------------------------
 # Stage 7: Build model
 FROM model-stage AS build-model
-
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755 \
     yarn model build
 
