@@ -261,7 +261,7 @@ jobs:
           key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
-            ${{ runner.os }}-yarn  
+            ${{ runner.os }}-yarn
 
       - name: Setup e2e dependencies
         run: |
@@ -363,11 +363,14 @@ jobs:
 
   post_dev_deploy_tests:
     needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy ]
+    permissions:
+      id-token: write # This is required for requesting the JWT
     secrets:
       FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
       FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
       FS_BASIC_AUTH_USERNAME: ${{ secrets.FS_BASIC_AUTH_USERNAME }}
       FS_BASIC_AUTH_PASSWORD: ${{ secrets.FS_BASIC_AUTH_PASSWORD }}
+      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
     with:
       run_performance_tests: ${{ inputs.run_performance_tests || true }}
@@ -416,6 +419,8 @@ jobs:
 
   post_test_deploy_tests:
     needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, test_deploy ]
+    permissions:
+      id-token: write # This is required for requesting the JWT
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'test') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
 
     secrets:
@@ -423,6 +428,7 @@ jobs:
       FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
       FS_BASIC_AUTH_USERNAME: ${{ secrets.FS_BASIC_AUTH_USERNAME }}
       FS_BASIC_AUTH_PASSWORD: ${{ secrets.FS_BASIC_AUTH_PASSWORD }}
+      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
     with:
       run_performance_tests: ${{ inputs.run_performance_tests || true }}
@@ -468,12 +474,15 @@ jobs:
 
   post_uat_deploy_tests:
     needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, test_deploy, uat_deploy ]
+    permissions:
+      id-token: write # This is required for requesting the JWT
     if: ${{ always()  && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'uat') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
     secrets:
       FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
       FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
       FS_BASIC_AUTH_USERNAME: ${{ secrets.FS_BASIC_AUTH_USERNAME }}
       FS_BASIC_AUTH_PASSWORD: ${{ secrets.FS_BASIC_AUTH_PASSWORD }}
+      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
     with:
       run_performance_tests: ${{ inputs.run_performance_tests || true }}
