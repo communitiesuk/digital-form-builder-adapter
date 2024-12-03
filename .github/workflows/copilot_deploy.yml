@@ -127,19 +127,19 @@ jobs:
           git pull --recurse-submodules
           echo "--  Installing digital-form-builder-adapter locally  --"
           node update-package.js
-          yarn install  
+          yarn install
           echo "--  Building digital-form-builder-adapter locally  --"
-          yarn setup   
+          yarn setup
           echo "--  Building digital-form-builder locally  --"
           # shellcheck disable=SC2164
           cd digital-form-builder
-          yarn   
+          yarn
           echo "--  Building digital-form-builder model locally  --"
           yarn model build  
           echo "--  Building digital-form-builder queue-model locally  --"
-          yarn queue-model build  
+          yarn queue-model build
           echo "--  Running unit tests  --"
-          yarn runner test-cov  
+          yarn runner test-cov
 
       - name: Set up Docker Buildx property
         run: echo "DOCKER_BUILDKIT=1" >> $GITHUB_ENV
@@ -240,10 +240,10 @@ jobs:
   e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
-    name: Parallel E2E Tests
-    strategy:
-      matrix:
-        shard: [ 0, 1, 2, 3 ] # Adjust the number of shards based on the number of machines
+    name: run e2e
+    outputs:
+      tag: ${{ steps.hashFile.outputs.tag }}
+      hash: ${{ steps.hashFile.outputs.hash }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -251,24 +251,18 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: Restore Yarn dependencies cache
-        uses: actions/cache@v3
+      - name: Get into the directory
+        id: change-dir
+        run: yarn config set enableImmutableInstalls false
+
+      - uses: actions/cache@v3
+        id: yarn-cache
         with:
-          path: |
-            node_modules
-            **/node_modules
-          key: ${{ needs.docker-runner-build.outputs.yarn-cache-key }}
+          path: ~/.yarn/cache
+          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('./runner/package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
             ${{ runner.os }}-yarn
-
-      - name: Get Yarn cache directory path
-        id: yarn-cache-dir
-        run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> $GITHUB_ENV
-
-      - name: Get into the directory
-        id: change-dir
-        run: yarn config set enableImmutableInstalls false   
 
       - name: Setup e2e dependencies
         run: |
@@ -278,12 +272,12 @@ jobs:
           git pull --recurse-submodules
           echo "--  Installing digital-form-builder-adapter locally  --"
           node update-package.js
-          yarn install  
+          yarn install
           echo "--  Install e2e dependencies  --"
-          yarn e2e-test install  
+          yarn e2e-test install
           echo "--  Building digital-form-builder locally  --"
           cd digital-form-builder
-          yarn  
+          yarn
 
       - name: Injecting image into docker compose e2e
         run: |
@@ -300,26 +294,37 @@ jobs:
         run: |
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
 
-      - name: Run Parallel Cypress Tests
+      - name: Run e2e tests
         id: e2e
-        run: yarn e2e-test cypress run --parallel --ci-build-id ${{ github.run_id }} --group shard-${{ matrix.shard }} --env shard=${{ matrix.shard }}
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        run: yarn e2e-test cypress run
+        continue-on-error: true
 
-      - name: Upload E2E Test Artifacts
-        if: always()
+      - name: Create Folders
+        run: mkdir -p ./e2e-test/cypress/screenshots/logs
+
+      - name: Get Logs from localstack
+        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
+
+      - name: Get Logs from runner
+        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
+
+      - name: Get all the uploaded files in the bucket
+        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
+
+      - name: Upload E2E Test Report Application
+        if: success() || failure()
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: e2e-test-results-${{ matrix.shard }}
-          path: ./cypress/screenshots
+          name: e2e-test-report-application
+          path: ./e2e-test/cypress/screenshots
+          retention-days: 5
 
       - name: Check for errors & exit the job
         run: |
           if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
-            echo "Test failures. Please fix before deploying the service."
+            echo "Test failures please fix before deploying the service"
             exit 1
           fi
-
   dev_deploy:
     strategy:
       matrix:
