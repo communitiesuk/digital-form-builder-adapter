@@ -242,6 +242,7 @@ jobs:
       hash: ${{ steps.hashFile.outputs.hash }}
     steps:
       - name: Checkout only e2e-test folder
+        uses: actions/checkout@v4
         with:
           path: e2e-test
           sparse-checkout: true
