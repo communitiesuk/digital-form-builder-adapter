@@ -168,6 +168,14 @@ jobs:
           cache-from: type=gha,scope=buildx
           cache-to: type=gha,mode=max,scope=buildx
 
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: digital-form-builder-adapter
+          path: .
+          retention-days: 1
+          overwrite: true
+
   docker-designer-build:
     runs-on: ubuntu-latest
     needs: [ setup ]
@@ -234,82 +242,8 @@ jobs:
           cache-from: type=gha,scope=buildx
           cache-to: type=gha,mode=max,scope=buildx
 
-  build-e2e:
-    needs: [ setup, docker-runner-build, docker-designer-build ]
-    runs-on: ubuntu-latest
-    outputs:
-      tag: ${{ steps.hashFile.outputs.tag }}
-      hash: ${{ steps.hashFile.outputs.hash }}
-    steps:
-      - name: Checkout only e2e-test folder
-        uses: actions/checkout@v4
-        with:
-          path: e2e-test
-          sparse-checkout: true
-
-      - name: Configure sparse checkout for specific folders
-        run: |
-          git sparse-checkout set e2e-test/* digital-form-builder/e2e/*
-          git sparse-checkout list
-
-      - name: Copy step definition files
-        run: |
-          mkdir -p e2e-test/cypress/support/step_definitions
-          cp -R digital-form-builder/e2e/support/step_definitions/* e2e-test/cypress/support/step_definitions/
-
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20.x"
-
-      - name: Configure Yarn
-        run: yarn config set enableImmutableInstalls false
-
-      - name: Cache Node Modules
-        uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: |
-            e2e-test/node_modules
-          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('e2e-test/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-e2e
-            ${{ runner.os }}-yarn
-
-      - name: Install E2E Dependencies
-        working-directory: e2e-test
-        run: |
-          echo "-- Installing e2e dependencies --"
-          cd e2e-test
-          yarn
-
-      - name: Check for Changes in e2e-test
-        id: check-changes
-        run: |
-          echo "Checking for file changes in e2e-test"
-          git diff --exit-code --quiet e2e-test/
-        continue-on-error: true
-
-      - name: Generate Hash Key
-        if: steps.check-changes.outcome == 'failure'
-        id: hashFile
-        run: |
-          echo "-- Generating hash key for changed files --"
-          HASH=$(find e2e-test -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f1)
-          echo "hash=${HASH}" >> $GITHUB_ENV
-          echo "::set-output name=hash::${HASH}"
-          echo "::set-output name=tag::e2e-test-${HASH}"
-
-      - name: Upload Build Artifacts
-        if: steps.check-changes.outcome == 'failure'
-        uses: actions/upload-artifact@v4.4.3
-        with:
-          name: e2e-setup
-          path: e2e-test/
-          retention-days: 5
-
   run-e2e:
-    needs: [ setup, docker-runner-build, docker-designer-build, build-e2e ]
+    needs: [ setup, docker-runner-build, docker-designer-build ]
     strategy:
       matrix:
         part: [ 1, 2, 3, 4 ] # Number of parallel jobs
@@ -319,14 +253,13 @@ jobs:
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4.1.0
         with:
-          name: e2e-setup
+          name: docker-runner-build
 
       - name: Unzip Artifact
         run: |
-          mkdir -p e2e-setup-unzipped
-          unzip e2e-setup.zip -d e2e-setup-unzipped
+          unzip digital-form-builder-adapter.zip -d digital-form-builder-adapter
           ls
-          cd e2e-setup-unzipped
+          cd digital-form-builder-adapter
 
       - name: Start Docker Containers
         run: docker compose -f docker-compose.e2e.yml up -d
