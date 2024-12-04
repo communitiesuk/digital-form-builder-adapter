@@ -10,14 +10,6 @@ export default {
         formatters: {
             level: (label) => {
                 return {severity: label.toUpperCase()}; // Align severity levels for CloudWatch
-            },
-            log: (obj) => {
-                const {severity, message, ...rest} = obj;
-                return {
-                    severity,
-                    message,
-                    ...rest
-                };
             }
         },
         messageKey: "message",
