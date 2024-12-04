@@ -249,21 +249,18 @@ jobs:
         part: [ 1, 2, 3, 4 ] # Number of parallel jobs
     runs-on: ubuntu-latest
     steps:
+      - name: Checking content 1
+        run: |
+          ls
       - uses: actions/checkout@v4
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4.1.0
         with:
           name: digital-form-builder-adapter
 
-      - name: Unzip Artifact
+      - name: Checking content 2
         run: |
           ls
-
-      - name: Unzip Artifact
-        run: |
-          unzip digital-form-builder-adapter.zip -d digital-form-builder-adapter
-          ls
-          cd digital-form-builder-adapter
 
       - name: Start Docker Containers
         run: docker compose -f docker-compose.e2e.yml up -d
