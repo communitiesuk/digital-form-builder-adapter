@@ -246,10 +246,11 @@ jobs:
         with:
           path: e2e-test
           sparse-checkout: true
-          sparse-checkout-config:
-            set:
-              - "e2e-test/*"
-              - "digital-form-builder/e2e/*"
+
+      - name: Configure sparse checkout for specific folders
+        run: |
+          git sparse-checkout set e2e-test/* digital-form-builder/e2e/*
+          git sparse-checkout list
 
       - name: Copy step definition files
         run: |
