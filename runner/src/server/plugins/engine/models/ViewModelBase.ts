@@ -253,6 +253,7 @@ export class ViewModelBase {
                 if (Array.isArray(sectionState)) {
                     details.push({
                         name: section?.name,
+                        hideTitle: section?.hideTitle,
                         title: section?.title,
                         items: [...Array(reach(state, repeatablePage.repeatField))].map(
                             (_x, i) => {
@@ -263,6 +264,7 @@ export class ViewModelBase {
                 } else {
                     details.push({
                         name: section?.name,
+                        hideTitle: section?.hideTitle,
                         title: section?.title,
                         items,
                     });
@@ -271,6 +273,7 @@ export class ViewModelBase {
                 if ((section?.name && section?.title) && !config.ignoreSectionsFromSummary.includes(section?.name)) {
                     details.push({
                         name: section?.name,
+                        hideTitle: section?.hideTitle,
                         title: section?.title,
                         message: "This section has not been answered",
                         items,
@@ -424,6 +427,7 @@ function Item(
             );
             return Item(request, component, collated, page, model, {
                 ...params,
+                //@ts-ignore
                 num: i + 1,
             }, lastPage);
         });
