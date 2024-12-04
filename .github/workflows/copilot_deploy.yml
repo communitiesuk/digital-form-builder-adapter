@@ -244,6 +244,10 @@ jobs:
         with:
           node-version: "20.x"
 
+      - name: Yarn Config
+        id: change-dir
+        run: yarn config set enableImmutableInstalls false
+
       - uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
