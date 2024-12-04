@@ -163,14 +163,6 @@ jobs:
           cache-from: type=gha,scope=buildx
           cache-to: type=gha,mode=max,scope=buildx
 
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v4.4.3
-        with:
-          name: digital-form-builder-adapter
-          path: .
-          retention-days: 1
-          overwrite: true
-
   docker-designer-build:
     runs-on: ubuntu-latest
     needs: [ setup ]
@@ -237,65 +229,77 @@ jobs:
           cache-from: type=gha,scope=buildx
           cache-to: type=gha,mode=max,scope=buildx
 
-  run-e2e:
+  e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
-    strategy:
-      matrix:
-        part: [ 1, 2, 3, 4 ] # Number of parallel jobs
     runs-on: ubuntu-latest
+    name: run e2e
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [ 1, 2, 3 ]
     steps:
-      - name: Checking content 1
-        run: |
-          ls
-
-      - name: Download Build Artifacts
-        uses: actions/download-artifact@v4.1.0
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          name: digital-form-builder-adapter
+          node-version: "20.x"
 
-      - name: Checking content 2
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: |
+            node_modules  # Cache the installed node modules
+            **/node_modules  # Include subfolders if using workspaces
+          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-e2e
+            ${{ runner.os }}-yarn
+
+      - name: Injecting image into docker compose e2e
         run: |
-          ls
+          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
 
-      - name: Start Docker Containers
+      - name: Start containers
         run: docker compose -f docker-compose.e2e.yml up -d
 
-      - name: Create S3 Bucket
+      - name: Create S3 bucket
         run: docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
 
-      - name: Set S3 CORS
+      - name: Create S3 cors
         run: |
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
 
-      - name: Run Cypress tests (parallel)
+      - name: Run split Cypress tests 🧪
+        uses: cypress-io/github-action@v6
         env:
-          SPLIT: ${{ matrix.part }} # Matrix index for splitting
-        run: |
-          yarn e2e-test cypress-split --ci-group $SPLIT --ci-total 4
-          yarn e2e-test cypress run --spec $(npx cypress-split --ci-group $SPLIT --ci-total 4)
+            SPLIT: ${{ strategy.job-total }}
+            SPLIT_INDEX: ${{ strategy.job-index }}
 
-      - name: Create Logs Directory
+      - name: Create Folders
         run: mkdir -p ./e2e-test/cypress/screenshots/logs
 
-      - name: Capture Logs
-        run: |
-          docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
-          docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
+      - name: Get Logs from localstack
+        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
 
-      - name: List Uploaded Files in S3 Bucket
+      - name: Get Logs from runner
+        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
+
+      - name: Get all the uploaded files in the bucket
         run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
 
-      - name: Upload E2E Test Artifacts
+      - name: Upload E2E Test Report Application
+        if: success() || failure()
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: e2e-test-report
+          name: e2e-test-report-application
           path: ./e2e-test/cypress/screenshots
           retention-days: 5
 
-      - name: Fail on Test Errors
+      - name: Check for errors & exit the job
         run: |
           if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
-            echo "Test failures found. Please fix before deployment."
+            echo "Test failures please fix before deploying the service"
             exit 1
           fi
 
@@ -502,4 +506,3 @@ jobs:
       - name: Copilot deploy ${{ matrix.deployment }}
         run: |
           copilot ${{ matrix.command }} deploy --name ${{ matrix.deployment }}
-
