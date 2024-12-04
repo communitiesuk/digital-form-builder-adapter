@@ -257,6 +257,10 @@ jobs:
 
       - name: Unzip Artifact
         run: |
+          ls
+
+      - name: Unzip Artifact
+        run: |
           unzip digital-form-builder-adapter.zip -d digital-form-builder-adapter
           ls
           cd digital-form-builder-adapter
