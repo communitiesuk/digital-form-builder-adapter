@@ -95,15 +95,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v4
-      - name: Use Node.js
+      - name: Setup Node 20v
         uses: actions/setup-node@v3
         with:
           node-version: "20.x"
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
       - name: Get into the directory
         id: change-dir
@@ -252,7 +247,7 @@ jobs:
       - name: Checking content 1
         run: |
           ls
-      - uses: actions/checkout@v4
+
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4.1.0
         with:
@@ -271,8 +266,6 @@ jobs:
       - name: Set S3 CORS
         run: |
           docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
-          
-          # Step 4: Split tests and run them
 
       - name: Run Cypress tests (parallel)
         env:
