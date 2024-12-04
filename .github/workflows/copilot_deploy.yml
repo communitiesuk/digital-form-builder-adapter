@@ -241,7 +241,20 @@ jobs:
       tag: ${{ steps.hashFile.outputs.tag }}
       hash: ${{ steps.hashFile.outputs.hash }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout only e2e-test folder
+        with:
+          path: e2e-test
+          sparse-checkout: true
+          sparse-checkout-config:
+            set:
+              - "e2e-test/*"
+              - "digital-form-builder/e2e/*"
+
+      - name: Copy step definition files
+        run: |
+          mkdir -p e2e-test/cypress/support/step_definitions
+          cp -R digital-form-builder/e2e/support/step_definitions/* e2e-test/cypress/support/step_definitions/
+
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -250,42 +263,47 @@ jobs:
       - name: Configure Yarn
         run: yarn config set enableImmutableInstalls false
 
-      - uses: actions/cache@v3
+      - name: Cache Node Modules
+        uses: actions/cache@v3
         id: yarn-cache
         with:
           path: |
-            node_modules  # Cache the installed node modules
-            **/node_modules  # Include subfolders if using workspaces
-          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
+            e2e-test/node_modules
+          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('e2e-test/package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-e2e
             ${{ runner.os }}-yarn
 
-      - name: Setup E2E dependencies
+      - name: Install E2E Dependencies
+        working-directory: e2e-test
         run: |
-          echo "--  Initializing Git submodules  --"
-          git submodule update --init
-          echo "--  Pulling Git submodules  --"
-          git pull --recurse-submodules
-          echo "--  Installing digital-form-builder-adapter locally  --"
-          node update-package.js
-          yarn install
-          echo "--  Install e2e dependencies  --"
-          yarn e2e-test install
-          echo "--  Building digital-form-builder locally  --"
-          cd digital-form-builder
+          echo "-- Installing e2e dependencies --"
+          cd e2e-test
           yarn
 
-      - name: Inject Docker images into Docker Compose
+      - name: Check for Changes in e2e-test
+        id: check-changes
         run: |
-          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"' docker-compose.e2e.yml
-          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"' docker-compose.e2e.yml
+          echo "Checking for file changes in e2e-test"
+          git diff --exit-code --quiet e2e-test/
+        continue-on-error: true
+
+      - name: Generate Hash Key
+        if: steps.check-changes.outcome == 'failure'
+        id: hashFile
+        run: |
+          echo "-- Generating hash key for changed files --"
+          HASH=$(find e2e-test -type f -exec sha256sum {} \; | sha256sum | cut -d ' ' -f1)
+          echo "hash=${HASH}" >> $GITHUB_ENV
+          echo "::set-output name=hash::${HASH}"
+          echo "::set-output name=tag::e2e-test-${HASH}"
 
       - name: Upload Build Artifacts
+        if: steps.check-changes.outcome == 'failure'
         uses: actions/upload-artifact@v4.4.3
         with:
           name: e2e-setup
-          path: . # Save everything needed for the test, including Docker Compose and related files
+          path: e2e-test/
           retention-days: 5
 
   run-e2e:
