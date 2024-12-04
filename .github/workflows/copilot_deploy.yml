@@ -253,7 +253,7 @@ jobs:
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4.1.0
         with:
-          name: docker-runner-build
+          name: digital-form-builder-adapter
 
       - name: Unzip Artifact
         run: |
