@@ -301,6 +301,13 @@ jobs:
         with:
           name: e2e-setup
 
+      - name: Unzip Artifact
+        run: |
+          mkdir -p e2e-setup-unzipped
+          unzip e2e-setup.zip -d e2e-setup-unzipped
+          ls
+          cd e2e-setup-unzipped
+
       - name: Start Docker Containers
         run: docker compose -f docker-compose.e2e.yml up -d
 
