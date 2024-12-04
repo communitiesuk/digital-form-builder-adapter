@@ -234,10 +234,9 @@ jobs:
           cache-from: type=gha,scope=buildx
           cache-to: type=gha,mode=max,scope=buildx
 
-  e2e-test:
+  build-e2e:
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
-    name: run e2e
     outputs:
       tag: ${{ steps.hashFile.outputs.tag }}
       hash: ${{ steps.hashFile.outputs.hash }}
@@ -248,12 +247,11 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: Get into the directory
-        id: change-dir
+      - name: Configure Yarn
         run: yarn config set enableImmutableInstalls false
 
       - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        id: yarn-cache
         with:
           path: |
             node_modules  # Cache the installed node modules
@@ -263,11 +261,11 @@ jobs:
             ${{ runner.os }}-yarn-e2e
             ${{ runner.os }}-yarn
 
-      - name: Setup e2e dependencies
+      - name: Setup E2E dependencies
         run: |
-          echo "--  Git submodule initialize into local  --"
+          echo "--  Initializing Git submodules  --"
           git submodule update --init
-          echo "--  Pulling git submodules into local  --"
+          echo "--  Pulling Git submodules  --"
           git pull --recurse-submodules
           echo "--  Installing digital-form-builder-adapter locally  --"
           node update-package.js
@@ -278,50 +276,72 @@ jobs:
           cd digital-form-builder
           yarn
 
-      - name: Injecting image into docker compose e2e
+      - name: Inject Docker images into Docker Compose
         run: |
-          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
-          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"' docker-compose.e2e.yml
+          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"' docker-compose.e2e.yml
 
-      - name: Start containers
-        run: docker compose -f docker-compose.e2e.yml up -d
-
-      - name: Create S3 bucket
-        run: docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
-
-      - name: Create S3 cors
-        run: |
-          docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
-
-      - name: Run e2e tests
-        id: e2e
-        run: yarn e2e-test cypress run
-        continue-on-error: true
-
-      - name: Create Folders
-        run: mkdir -p ./e2e-test/cypress/screenshots/logs
-
-      - name: Get Logs from localstack
-        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
-
-      - name: Get Logs from runner
-        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
-
-      - name: Get all the uploaded files in the bucket
-        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
-
-      - name: Upload E2E Test Report Application
-        if: success() || failure()
+      - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: e2e-test-report-application
+          name: e2e-setup
+          path: . # Save everything needed for the test, including Docker Compose and related files
+          retention-days: 5
+
+  run-e2e:
+    needs: [ setup, docker-runner-build, docker-designer-build, build-e2e ]
+    strategy:
+      matrix:
+        part: [ 1, 2, 3, 4 ] # Number of parallel jobs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4.1.0
+        with:
+          name: e2e-setup
+
+      - name: Start Docker Containers
+        run: docker compose -f docker-compose.e2e.yml up -d
+
+      - name: Create S3 Bucket
+        run: docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
+
+      - name: Set S3 CORS
+        run: |
+          docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
+          
+          # Step 4: Split tests and run them
+
+      - name: Run Cypress tests (parallel)
+        env:
+          SPLIT: ${{ matrix.part }} # Matrix index for splitting
+        run: |
+          yarn e2e-test cypress-split --ci-group $SPLIT --ci-total 4
+          yarn e2e-test cypress run --spec $(npx cypress-split --ci-group $SPLIT --ci-total 4)
+
+      - name: Create Logs Directory
+        run: mkdir -p ./e2e-test/cypress/screenshots/logs
+
+      - name: Capture Logs
+        run: |
+          docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
+          docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
+
+      - name: List Uploaded Files in S3 Bucket
+        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
+
+      - name: Upload E2E Test Artifacts
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: e2e-test-report
           path: ./e2e-test/cypress/screenshots
           retention-days: 5
 
-      - name: Check for errors & exit the job
+      - name: Fail on Test Errors
         run: |
           if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
-            echo "Test failures please fix before deploying the service"
+            echo "Test failures found. Please fix before deployment."
             exit 1
           fi
 

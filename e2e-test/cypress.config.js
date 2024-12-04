@@ -2,6 +2,7 @@ const {defineConfig} = require("cypress");
 const webpack = require("@cypress/webpack-preprocessor");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const path = require("path");
+const cypressSplit = require('cypress-split')
 
 
 console.log("****************** starting e2e ******************")
@@ -34,6 +35,7 @@ async function setupNodeEvents(on, config) {
     })
   );
   // Make sure to return the config object as it might have been modified by the plugin
+  cypressSplit(on, config)
   return config;
 }
 
