@@ -1,27 +1,10 @@
-import pino from "hapi-pino";
+import pluginLogging from "../../../../digital-form-builder/runner/src/server/plugins/logging";
 import {config} from "./utils/AdapterConfigurationSchema";
 
-export default {
-    plugin: pino,
-    options: {
-        prettyPrint: config.logPrettyPrint === "true" || config.logPrettyPrint === true,
-        level: config.logLevel,
-        base: null,
-        formatters: {
-            level: (label) => {
-                return {severity: label.toUpperCase()}; // Align severity levels for CloudWatch
-            }
-        },
-        messageKey: "message",
-        redact: {
-            paths: config.logRedactPaths,
-            remove: true,
-        },
-        ignoreFunc: (_options, request) =>
-            request.path.startsWith("/assets"),
-        debug: config.isDev,
-        logRequestStart: config.isDev,
-        logRequestComplete: config.isDev,
-    },
-};
-
+pluginLogging.options.ignoreFunc = (_options, request) => request.path.startsWith("/assets")
+pluginLogging.options.redact = {
+    paths: config.logRedactPaths,
+    //@ts-ignore
+    remove: true,
+}
+export const pluginLog: any = pluginLogging

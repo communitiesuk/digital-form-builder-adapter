@@ -38,7 +38,7 @@ import {catboxProvider} from "./services/AdapterCacheService";
 import LanguagePlugin from "./plugins/LanguagePlugin";
 import {TranslationLoaderService} from "./services/TranslationLoaderService";
 import {WebhookService} from "./services/WebhookService";
-import logging from "./plugins/logging";
+import {pluginLog} from "./plugins/logging";
 
 const serverOptions = async (): Promise<ServerOptions> => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -117,7 +117,7 @@ async function createServer(routeConfig: RouteConfig) {
     if (config.rateLimit) {
         await server.register(configureRateLimitPlugin(routeConfig));
     }
-    await server.register(logging);
+    await server.register(pluginLog);
     await server.register(pluginSession);
     await server.register(pluginPulse);
     await server.register(inert);
