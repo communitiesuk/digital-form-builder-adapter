@@ -1,0 +1,115 @@
+{
+    "startPage": "/about-your-organisation",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/which-local-authority-are-you-applying-from",
+            "title": "Which local authority are you applying from?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "classes": "govuk-!-width-full"
+                    },
+                    "type": "TextField",
+                    "title": "Which local authority are you applying from?",
+                    "hint": "<label class=\"govuk-hint\">The full legal name</label>",
+                    "schema": {},
+                    "name": "WLddBt"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-your-section-151-officer"
+                }
+            ],
+            "section": "eaktoV"
+        },
+        {
+            "path": "/who-is-your-section-151-officer",
+            "title": "Who is your section 151 officer?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "Full name",
+                    "hint": "<label class=\"govuk-label\" for=\"okHmBB\">Full name</label>",
+                    "schema": {},
+                    "name": "okHmBB"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "EmailAddressField",
+                    "title": "Email address",
+                    "hint": "<label class=\"govuk-label\" for=\"bQOXTi\">Email address</label>",
+                    "schema": {},
+                    "name": "bQOXTi"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TelephoneNumberField",
+                    "title": "Telephone number",
+                    "hint": "<label class=\"govuk-label\" for=\"phaosT\">Telephone number</label>",
+                    "schema": {},
+                    "name": "phaosT"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "eaktoV"
+        },
+        {
+            "path": "/about-your-organisation",
+            "title": "About your organisation",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label> In this section, we'll ask about:\n</label>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>local authority name</li>\n<li>section 151 officer\u2019s name</li>\n<li>section 151 officer\u2019s email address</li>\n<li>section 151 officer\u2019s telephone number</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "mcFbhg"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-local-authority-are-you-applying-from"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        },
+        {
+            "name": "eaktoV",
+            "title": "About your organisation",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Apply for the High Street Rental Auction fund"
+}

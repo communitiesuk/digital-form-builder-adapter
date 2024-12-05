@@ -1,0 +1,128 @@
+{
+    "startPage": "/designated-area-details",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/which-designated-high-street-or-town-centre-is-the-vacant-property-in",
+            "title": "Which designated high street or town centre is the vacant property in?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "Which designated high street or town centre is the vacant property in?",
+                    "hint": "<label class=\"govuk-hint\">The official name of the designated area</label>",
+                    "schema": {},
+                    "name": "frDgtU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/where-have-you-published-the-designation-details"
+                }
+            ],
+            "section": "YFgsrH"
+        },
+        {
+            "path": "/number-of-commercial-properties",
+            "title": "Number of commercial properties",
+            "components": [
+                {
+                    "options": {
+                        "classes": "govuk-!-width-one-quarter"
+                    },
+                    "type": "NumberField",
+                    "title": "How many commercial properties are in the designated area?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "boXxzj"
+                },
+                {
+                    "options": {
+                        "classes": "govuk-!-width-one-quarter"
+                    },
+                    "type": "NumberField",
+                    "title": "How many of these are vacant?",
+                    "hint": "This must be correct at the time you submit your application",
+                    "schema": {},
+                    "name": "eBpXPM"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "YFgsrH"
+        },
+        {
+            "path": "/where-have-you-published-the-designation-details",
+            "title": "Where have you published the designation details?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "prefix": "https://",
+                        "classes": "govuk-input--width-20"
+                    },
+                    "type": "WebsiteField",
+                    "title": "Where have you published the designation details?",
+                    "hint": "Enter the webpage link, for example \u2018www.council.gov.uk/designations\u2019. We\u2019ll use this to check the property is within the designated area.",
+                    "schema": {},
+                    "name": "fmWgiF"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/number-of-commercial-properties"
+                }
+            ],
+            "section": "YFgsrH"
+        },
+        {
+            "path": "/designated-area-details",
+            "title": "Designated area details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label >In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>the name of the designated area</li>\n<li>the webpage where you\u2019ve published designation details</li>\n<li>the number of commercial properties and vacancies</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "ByrOzi"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-designated-high-street-or-town-centre-is-the-vacant-property-in"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        },
+        {
+            "name": "YFgsrH",
+            "title": "Designated area details",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Apply for the High Street Rental Auction fund"
+}

@@ -1,0 +1,157 @@
+{
+    "startPage": "/joint-applicant",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/joint-applicant",
+            "title": "Joint applicant",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label >In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>if you\u2019re making a joint application with another local authority</li>\n<li>local authority name (if applicable)</li>\n<li>local authority lead contact\u2019s name (if applicable)</li>\n<li>local authority lead contact\u2019s email address (if applicable)</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "FflOeC"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/are-you-making-a-joint-application-with-another-local-authority"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/are-you-making-a-joint-application-with-another-local-authority",
+            "title": "Are you making a joint application with another local authority?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Are you making a joint application with another local authority?",
+                    "hint": "Your joint applicant must be a planning authority or a combined authority",
+                    "schema": {},
+                    "name": "luWnQp",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                },
+                {
+                    "path": "/which-local-authority-are-you-applying-with",
+                    "condition": "PZUMwa"
+                }
+            ],
+            "section": "vpxTQD"
+        },
+        {
+            "path": "/who-from-that-authority-should-we-contact-about-this-application",
+            "title": "Who from that authority should we contact about this application?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "Full name",
+                    "hint": "Full name",
+                    "schema": {},
+                    "name": "CyfqVo"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "EmailAddressField",
+                    "title": "Email address",
+                    "hint": "<label class=\"govuk-label\" for=\"EvfEzH\">Email address</label>",
+                    "schema": {},
+                    "name": "EvfEzH"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "vpxTQD"
+        },
+        {
+            "path": "/which-local-authority-are-you-applying-with",
+            "title": "Which local authority are you applying with?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "classes": "govuk-!-width-two-thirds"
+                    },
+                    "type": "TextField",
+                    "title": "Which local authority are you applying with?",
+                    "hint": "<label class=\"govuk-hint\">The full legal name</label>",
+                    "schema": {},
+                    "name": "cVDqxW"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-from-that-authority-should-we-contact-about-this-application"
+                }
+            ],
+            "section": "vpxTQD"
+        }
+    ],
+    "lists": [],
+    "conditions": [
+        {
+            "displayName": "Are you making a joint application with another local authority-yes",
+            "name": "PZUMwa",
+            "value": {
+                "name": "Are you making a joint application with another local authority-yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "luWnQp",
+                            "type": "YesNoField",
+                            "display": "Are you making a joint application with another local authority?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        },
+        {
+            "name": "vpxTQD",
+            "title": "Joint applicant",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Apply for the High Street Rental Auction fund"
+}

@@ -1,0 +1,103 @@
+{
+    "startPage": "/other-costs",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/other-costs",
+            "title": "Other costs",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label >In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>total expected other costs</li>\n<li>quotes showing other costs</li>\n</ul>\n\n<div class=\"govuk-label\">Other costs include:</div>\n<br>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>preparing the contract for tenancy and tenancy agreement</li>\n<li>conveyancing</li>\n<li>commissioning an independent survey to identify refurbishment needed to meet minimum standards</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "tguYic"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-total-of-any-other-expected-costs-in-pounds"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/upload-quotes-showing-other-costs",
+            "title": "Upload quotes showing other costs",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": false,
+                        "dropzoneConfig": {
+                            "maxFiles": "10",
+                            "parallelUploads": "10",
+                            "maxFilesize": "10",
+                            "acceptedFiles": "image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
+                        },
+                        "minimumRequiredFiles": "1"
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload quotes showing other costs",
+                    "hint": "Upload files",
+                    "schema": {},
+                    "name": "kRiNuO"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "qavZyX"
+        },
+        {
+            "path": "/what-is-the-total-of-any-other-expected-costs-in-pounds",
+            "title": "What is the total of any other expected costs, in pounds?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "prefix": "\u00a3",
+                        "classes": "govuk-!-width-one-quarter"
+                    },
+                    "type": "NumberField",
+                    "title": "What is the total of any other expected costs, in pounds?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "uJIluf"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-quotes-showing-other-costs"
+                }
+            ],
+            "section": "qavZyX"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default section",
+            "hideTitle": true
+        },
+        {
+            "name": "qavZyX",
+            "title": "Other costs",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Apply for the High Street Rental Auction fund"
+}
