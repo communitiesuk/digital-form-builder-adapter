@@ -69,7 +69,11 @@ const serverOptions = async (): Promise<ServerOptions> => {
                 xframe: true,
             },
         },
-        cache: [{provider: catboxProvider()}],
+        cache: [
+            {
+                provider: catboxProvider()
+            }
+        ],
     };
 
     const httpsOptions = hasCertificate
