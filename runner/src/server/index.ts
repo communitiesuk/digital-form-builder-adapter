@@ -25,7 +25,6 @@ import {
 import {HapiRequest, HapiResponseToolkit, RouteConfig} from "./types";
 import getRequestInfo from "../../../digital-form-builder/runner/src/server/utils/getRequestInfo";
 import {ViewLoaderPlugin} from "./plugins/ViewLoaderPlugin";
-import {pluginLog} from "./plugins/logging";
 import publicRouterPlugin from "./plugins/engine/PublicRouterPlugin";
 import {config} from "./plugins/utils/AdapterConfigurationSchema";
 import errorHandlerPlugin from "./plugins/ErrorHandlerPlugin";
@@ -39,6 +38,7 @@ import {catboxProvider} from "./services/AdapterCacheService";
 import LanguagePlugin from "./plugins/LanguagePlugin";
 import {TranslationLoaderService} from "./services/TranslationLoaderService";
 import {WebhookService} from "./services/WebhookService";
+import {pluginLog} from "./plugins/logging";
 
 const serverOptions = async (): Promise<ServerOptions> => {
     const hasCertificate = config.sslKey && config.sslCert;
