@@ -1,0 +1,49 @@
+{
+    "startPage": "/name-your-application",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "ScxYon",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/name-your-application",
+            "title": "Name your application",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "classes": "govuk-!-width-full"
+                    },
+                    "type": "TextField",
+                    "title": "Name your application",
+                    "hint": "<div class=\"govuk-hint\">This is what your application will be called and will help you find it when you save and return.</div>\n<div class=\"govuk-hint\">Choose a memorable name that describes your application.</div>",
+                    "schema": {},
+                    "name": "JAAhRP"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "ScxYon",
+            "controller": "start.js"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "ScxYon",
+            "title": "Name your application",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Apply for funding to begin your digital planning improvement journey"
+}

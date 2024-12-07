@@ -1,0 +1,124 @@
+{
+    "startPage": "/your-skills-and-experience",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "akREtH",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/your-skills-and-experience",
+            "title": "Your skills and experience",
+            "components": [
+                {
+                    "type": "Html",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>whether your organisation has delivered projects like this before\u00a0</li>\n<li>information about the projects you've delivered before (if applicable)\u00a0</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "MbtXtU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-your-organisation-delivered-projects-like-this-before"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/has-your-organisation-delivered-projects-like-this-before",
+            "title": "Has your organisation delivered projects like this before?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has your organisation delivered projects like this before?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "rGADMs",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                },
+                {
+                    "path": "/similar-previous-projects",
+                    "condition": "MAfLtk"
+                }
+            ],
+            "section": "akREtH"
+        },
+        {
+            "path": "/similar-previous-projects",
+            "title": "Tell us about how your organisation has worked on similar previous projects",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "250"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us about how your organisation has worked on similar previous projects",
+                    "hint": "<div class=\"govuk-hint\">Tell us about:\n<ul class=\"govuk-list govuk-list--bullet govuk-hint\">\n  <li>the scope of the project (for example, goals, outputs and outcomes)</li>\n  <li>the value of the project (for example, cost savings)</li>\n  <li>who was involved</li>\n</ul>\n</div>",
+                    "schema": {},
+                    "name": "WWVXnq"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "akREtH"
+        }
+    ],
+    "lists": [],
+    "conditions": [
+        {
+            "displayName": "previous projects",
+            "name": "MAfLtk",
+            "value": {
+                "name": "previous projects",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "akREtH.rGADMs",
+                            "type": "YesNoField",
+                            "display": "Has your organisation delivered projects like this before?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "akREtH",
+            "title": "Your skills and experience",
+            "hideTitle": true
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Apply for funding to begin your digital planning improvement journey"
+}
