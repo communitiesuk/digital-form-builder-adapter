@@ -1,0 +1,304 @@
+{
+    "startPage": "/roles-and-recruitment",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "nJcRTz",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/do-you-have-a-team-in-place-ready-to-deliver-the-project",
+            "title": "Do you have a team in place ready to deliver the project?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Do you have a team in place ready to deliver the project?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "vuZiab",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-about-the-shape-of-the-project-team"
+                },
+                {
+                    "path": "/how-will-you-make-sure-you-have-a-team-in-place-ready-to-deliver-the-project",
+                    "condition": "bRZmty"
+                }
+            ],
+            "section": "nJcRTz"
+        },
+        {
+            "path": "/what-is-the-estimated-cost-of-backfilling-roles",
+            "title": "What is the estimated cost of backfilling roles?",
+            "components": [
+                {
+                    "options": {
+                        "suffix": "",
+                        "prefix": "\u00a3",
+                        "classes": "govuk-input--width-10",
+                        "hideTitle": true
+                    },
+                    "type": "NumberField",
+                    "title": "What is the estimated cost of backfilling roles?",
+                    "hint": "<label for=\"KEnthg\" class=\"govuk-hint\" style=\"display: none;\">Amount in pounds</label>",
+                    "schema": {},
+                    "name": "KEnthg"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-know-who-the-project-lead-will-be"
+                }
+            ],
+            "section": "nJcRTz"
+        },
+        {
+            "path": "/who-will-be-the-project-lead",
+            "title": "Who will be the project lead?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": false,
+                        "classes": ""
+                    },
+                    "type": "TextField",
+                    "title": "Project lead first name",
+                    "hint": "",
+                    "schema": {},
+                    "name": "eWmNSY"
+                },
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Project lead last name",
+                    "hint": "",
+                    "schema": {},
+                    "name": "ZIRDgU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "nJcRTz"
+        },
+        {
+            "path": "/will-you-need-to-backfill-any-roles-in-your-organisation",
+            "title": "Will you need to backfill any roles in your organisation?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Will you need to backfill any roles in your organisation?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "gSQPxs",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-know-who-the-project-lead-will-be"
+                },
+                {
+                    "path": "/what-is-the-estimated-cost-of-backfilling-roles",
+                    "condition": "CkxdlS"
+                }
+            ],
+            "section": "nJcRTz"
+        },
+        {
+            "path": "/tell-us-about-the-shape-of-the-project-team",
+            "title": "Tell us about the shape of the project team",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "250"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us about the shape of the project team",
+                    "hint": "<div class=\"govuk-hint\">Tell us about:\n<ul class=\"govuk-list govuk-list--bullet govuk-hint\">\n  <li>how many people are in the team</li>  \n  <li>the roles in the team</li>\n  <li>whether you have a GIS (geographic information system) officer to support the project or if you plan to recruit one</li>\n</ul>\n</div>",
+                    "schema": {},
+                    "name": "hBGcPv"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/will-you-need-to-backfill-any-roles-in-your-organisation"
+                }
+            ],
+            "section": "nJcRTz"
+        },
+        {
+            "path": "/do-you-know-who-the-project-lead-will-be",
+            "title": "Do you know who the project lead will be?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Do you know who the project lead will be?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "pRqIkv",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                },
+                {
+                    "path": "/who-will-be-the-project-lead",
+                    "condition": "NPjkPj"
+                }
+            ],
+            "section": "nJcRTz"
+        },
+        {
+            "path": "/roles-and-recruitment",
+            "title": "Roles and recruitment",
+            "components": [
+                {
+                    "type": "Html",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>whether you have a team in place ready to deliver the project</li>\n<li>how you will make sure you have a team in place ready to deliver the project (if applicable)</li>\n<li>who\u2019s involved in the project team and how it\u2019s structured (if applicable)</li>\n<li>whether you need to backfill any roles in the organisation</li>\n<li>the estimated cost of backfilling roles (if applicable)</li>\n<li>whether you know who the project lead will be</li>\n<li>who the project lead will be (if applicable)</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "vwXfgR"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-have-a-team-in-place-ready-to-deliver-the-project"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/how-will-you-make-sure-you-have-a-team-in-place-ready-to-deliver-the-project",
+            "title": "How will you make sure you have a team in place ready to deliver the project?",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "250"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "How will you make sure you have a team in place ready to deliver the project?",
+                    "hint": "<div class=\"govuk-hint\">Tell us about how you plan to recruit any new roles if they are needed</div>",
+                    "schema": {},
+                    "name": "apcoeU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-about-the-shape-of-the-project-team"
+                }
+            ],
+            "section": "nJcRTz"
+        }
+    ],
+    "lists": [],
+    "conditions": [
+        {
+            "displayName": "Team in place no",
+            "name": "bRZmty",
+            "value": {
+                "name": "Team in place no",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "nJcRTz.vuZiab",
+                            "type": "YesNoField",
+                            "display": "Do you have a team in place ready to deliver the project?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Backfill yes",
+            "name": "CkxdlS",
+            "value": {
+                "name": "Backfill yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "nJcRTz.gSQPxs",
+                            "type": "YesNoField",
+                            "display": "Will you need to backfill any roles in the organisation?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Lead day to day yes",
+            "name": "NPjkPj",
+            "value": {
+                "name": "Lead day to day yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "nJcRTz.pRqIkv",
+                            "type": "YesNoField",
+                            "display": "Do you know who will lead the day-to-day delivery of the project in your organisation?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "nJcRTz",
+            "title": "Roles and recruitment",
+            "hideTitle": true
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Apply for funding to begin your digital planning improvement journey"
+}
