@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "yarn clean:build && yarn babel-build && yarn babel-build:adapter && npm run package-json:copy && yarn static-content:dist-push && yarn scss:build && yarn copy-forms && yarn copy-local",
+    "build": "yarn clean:build && yarn babel-build && yarn babel-build:adapter && npm run package-json:copy && yarn static-content:dist-push && yarn scss:build && yarn copy-local",
     "babel-build": "babel --config-file ../digital-form-builder/runner/.babelrc --extensions '.ts' ../digital-form-builder/runner/src -d dist/digital-form-builder/runner/src --copy-files -s inline",
     "babel-build:adapter": "babel --config-file ../runner/.babelrc --extensions '.ts' ../runner/src -d dist/digital-form-builder-adapter/runner --copy-files -s inline",
     "package-json:copy": "cp package.json dist/digital-form-builder/runner && cp package.json dist/digital-form-builder-adapter",

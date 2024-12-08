@@ -15,111 +15,35 @@ RUN npm install -g nodemon
 
 # ----------------------------
 # Stage 2
-# Cache layer contains yarn configurations
-# It will re-run only if there is a yarn configuration change
-FROM base-image AS yarn-build
+# Copy Project files
+FROM base-image AS digital-form-builder-adapter-code-setup
 WORKDIR /usr/src/app/digital-form-builder-adapter
-COPY --chown=appuser:appuser ../.yarn .yarn
-COPY --chown=appuser:appuser ../.yarnrc.yml .yarnrc.yml
 USER 1001
+COPY --chown=appuser:appuser ../ .
 
 
 # ----------------------------
 # Stage 3
-# Cache layer contains digital-form-builder-adapter configurations
-# It will re-run only if there is a configuration change
-FROM yarn-build AS digital-form-builder-adapter-pre-build
+# Installing the dependencies and building the files
+FROM digital-form-builder-adapter-code-setup AS digital-form-builder-dependency-install
 WORKDIR /usr/src/app/digital-form-builder-adapter
 USER 1001
-COPY --chown=appuser:appuser .git ./.git
-COPY --chown=appuser:appuser .gitmodules ./.gitmodules
-RUN git submodule update --init --recursive
-RUN rm -rf .git
-RUN rm -rf digital-form-builder/.git
-COPY --chown=appuser:appuser ../package.json package.json
-COPY --chown=appuser:appuser ../tsconfig.json tsconfig.json
-COPY --chown=appuser:appuser ../update-package.js update-package.js
-COPY --chown=appuser:appuser ../yarn.lock yarn.lock
-COPY --chown=appuser:appuser ../designer/package.json ./designer/package.json
-COPY --chown=appuser:appuser ../runner/package.json ./runner/package.json
-COPY --chown=appuser:appuser ../model/package.json ./model/package.json
+RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
+    yarn setup-runner
 
 
 # ----------------------------
 # Stage 4
-# Cache layer contains digital-form-builder-adapter dependencies
-# It will re-run only if there is a dependency change
-FROM digital-form-builder-adapter-pre-build AS digital-form-builder-adapter-install
+# Copy json form configurations
+FROM digital-form-builder-dependency-install AS digital-form-builder-adapter-runner-forms-copy
 WORKDIR /usr/src/app/digital-form-builder-adapter
 USER 1001
-RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
-    node update-package.js && yarn setup && yarn install
-
+RUN yarn runner copy-forms
 
 # ----------------------------
 # Stage 5
-# Cache layer contains XGovFormBuilder with yarn build with dependencies
-# It will re-run only if there is a XGovFormBuilder change
-FROM digital-form-builder-adapter-install AS digital-form-builder-build
+# copy run content final image
+FROM digital-form-builder-adapter-runner-forms-copy
 WORKDIR /usr/src/app/digital-form-builder-adapter
 USER 1001
-WORKDIR /usr/src/app/digital-form-builder-adapter/digital-form-builder
-RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-build \
-    --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
-    yarn && yarn model build && yarn queue-model build
-
-
-# ----------------------------
-# Stage 6
-# Cache layer contains model changes
-# It will re-run only if there is a model change
-FROM digital-form-builder-build AS digital-form-builder-adapter-model-pre-build
-WORKDIR /usr/src/app/digital-form-builder-adapter
-USER 1001
-COPY --chown=appuser:appuser ../model ./model
-
-
-# ----------------------------
-# Stage 7
-# Cache layer contains model build
-# It will re-run only if there is a model change and a build change
-FROM digital-form-builder-adapter-model-pre-build AS digital-form-builder-adapter-model-build
-WORKDIR /usr/src/app/digital-form-builder-adapter
-USER 1001
-RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-build  \
-    --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
-    --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-model-build
-RUN yarn model build
-
-
-# ----------------------------
-# Stage 8
-# Cache layer contains designer changes
-# It will re-run only if there is a designer change
-FROM digital-form-builder-adapter-model-build AS digital-form-builder-adapter-runner-pre-build
-WORKDIR /usr/src/app/digital-form-builder-adapter
-USER 1001
-COPY --chown=appuser:appuser ../runner ./runner
-COPY --chown=appuser:appuser ../fsd_config ./fsd_config
-
-
-# ----------------------------
-# Stage 9
-# Cache layer contains designer build
-# It will re-run only if there is a designer change and a build change
-FROM digital-form-builder-adapter-runner-pre-build AS digital-form-builder-adapter-runner-build
-WORKDIR /usr/src/app/digital-form-builder-adapter
-RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-build  \
-    --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
-    --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-model-build  \
-    yarn runner build
-USER appuser
 CMD ["yarn", "runner", "production"]
-
-
-
-
-
-
-
-
