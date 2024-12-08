@@ -15,7 +15,8 @@
   "version": "1.0.0",
   "description": "Mono repo for communitiesuk's designer, model and runner adapter for xgovformbuilder",
   "scripts": {
-    "setup": "yarn && yarn xgovformbuilder-model install && yarn xgovformbuilder-model build && yarn xgovformbuilder-queue-model install && yarn xgovformbuilder-queue-model build && yarn model build && yarn designer build && yarn runner build",
+    "setup-runner": "yarn && yarn xgovformbuilder-model install && yarn xgovformbuilder-model build && yarn xgovformbuilder-queue-model install && yarn xgovformbuilder-queue-model build && yarn model build && yarn runner build",
+    "setup-designer": "yarn && yarn xgovformbuilder-model install && yarn xgovformbuilder-model build && yarn model build && yarn designer build",
     "xgovformbuilder-model": "yarn workspace @xgovformbuilder/model",
     "xgovformbuilder-runner": "yarn workspace @xgovformbuilder/runner",
     "xgovformbuilder-designer": "yarn workspace @xgovformbuilder/designer",
