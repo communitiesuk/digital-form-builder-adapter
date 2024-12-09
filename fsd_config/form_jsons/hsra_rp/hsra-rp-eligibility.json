@@ -10,7 +10,7 @@
                     "name": "GqJNNZ",
                     "options": {},
                     "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation’s location</li>\n<li>the grant you are applying for</li>\n<li>the location of the vacant property</li>\n<li>how long the property has been vacant</li>\n<li>the vacancy rate of the high street</li>\n</ul>",
+                    "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation’s location</li>\n<li>the grant you are applying for</li>\n<li>designation status of high street or town centre </li>\n<li>the location of the vacant property</li>\n<li>how long the property has been vacant</li>\n<li>the vacancy rate of the high street</li>\n</ul>",
                     "schema": {}
                 }
             ],
@@ -49,8 +49,7 @@
                     "condition": "hwhjge"
                 }
             ],
-            "section": "mwumLN",
-            "controller": "./pages/continue.js"
+            "section": "mwumLN"
         },
         {
             "title": "Summary",
@@ -73,7 +72,8 @@
                     "hint": "You must submit an application for every project you seek funding for.",
                     "values": {
                         "type": "listRef"
-                    }
+                    },
+                    "schema": {}
                 }
             ],
             "next": [
@@ -82,16 +82,15 @@
                     "condition": "QHGUAo"
                 },
                 {
-                    "path": "/has-the-property-been-vacant-for-366-days-or-more-in-the-last-2-years",
-                    "condition": "miarua"
-                },
-                {
                     "path": "/summary",
                     "condition": "luxXGh"
+                },
+                {
+                    "path": "/has-the-high-street-or-town-centre-subject-to-the-hsra-been-officially-designated",
+                    "condition": "miarua"
                 }
             ],
-            "section": "mwumLN",
-            "controller": "./pages/continue.js"
+            "section": "mwumLN"
         },
         {
             "path": "/has-the-property-been-vacant-for-366-days-or-more-in-the-last-2-years",
@@ -120,8 +119,7 @@
                     "condition": "zwwxkY"
                 }
             ],
-            "section": "mwumLN",
-            "controller": "./pages/continue.js"
+            "section": "mwumLN"
         },
         {
             "path": "/not-eligible/property-vacant-long-duration",
@@ -136,7 +134,6 @@
                 }
             ],
             "next": [],
-            "controller": "./pages/continue.js",
             "section": "FabDefault"
         },
         {
@@ -163,8 +160,7 @@
                     "condition": "jPvjPM"
                 }
             ],
-            "section": "mwumLN",
-            "controller": "./pages/continue.js"
+            "section": "mwumLN"
         },
         {
             "path": "/not-eligible/lower-vacancy-rate",
@@ -179,7 +175,6 @@
                 }
             ],
             "next": [],
-            "controller": "./pages/continue.js",
             "section": "FabDefault"
         },
         {
@@ -191,6 +186,46 @@
                     "options": {},
                     "type": "Html",
                     "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must be applying from local authority in England.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
+                    "schema": {}
+                }
+            ],
+            "next": [],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/has-the-high-street-or-town-centre-subject-to-the-hsra-been-officially-designated",
+            "title": "Has the high street or town centre subject to the HSRA been officially designated?",
+            "components": [
+                {
+                    "name": "MaUaFc",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the high street or town centre subject to the HSRA been officially designated?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-property-been-vacant-for-366-days-or-more-in-the-last-2-years"
+                },
+                {
+                    "path": "/you-cannot-apply-for-this-funding",
+                    "condition": "zvZlrj"
+                }
+            ],
+            "section": "mwumLN"
+        },
+        {
+            "path": "/you-cannot-apply-for-this-funding",
+            "title": "You cannot apply for this funding",
+            "components": [
+                {
+                    "name": "shDNbE",
+                    "options": {},
+                    "type": "Html",
+                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must have officially designated high street or town centre subject</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
                     "schema": {}
                 }
             ],
@@ -698,6 +733,28 @@
                             "type": "Value",
                             "value": "RP",
                             "display": "RP"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Has the high street or town centre subject to the HSRA been officially designated?-No",
+            "name": "zvZlrj",
+            "value": {
+                "name": "Has the high street or town centre subject to the HSRA been officially designated?-No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "mwumLN.MaUaFc",
+                            "type": "YesNoField",
+                            "display": "Has the high street or town centre subject to the HSRA been officially designated?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
                         }
                     }
                 ]
