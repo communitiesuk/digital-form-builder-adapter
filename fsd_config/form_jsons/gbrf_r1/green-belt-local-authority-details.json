@@ -1,0 +1,218 @@
+{
+    "startPage": "/local-authority-details",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "CdGjnO",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/lead-contact-details",
+            "title": "Lead contact details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "The main point of contact for this application.",
+                    "options": {},
+                    "schema": {},
+                    "name": "bxcVpP"
+                },
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Lead contact first name",
+                    "hint": "",
+                    "schema": {},
+                    "name": "sdrrOT"
+                },
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Lead contact last name",
+                    "hint": "",
+                    "schema": {},
+                    "name": "itKcJz"
+                },
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Lead contact job title",
+                    "hint": "",
+                    "schema": {},
+                    "name": "gswBOa"
+                },
+                {
+                    "options": {},
+                    "type": "EmailAddressField",
+                    "title": "Lead contact email address",
+                    "hint": "",
+                    "schema": {},
+                    "name": "BkuACU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/are-you-submitting-this-expression-of-interest-jointly-with-other-local-authorities"
+                }
+            ],
+            "section": "CdGjnO"
+        },
+        {
+            "path": "/local-authority-name",
+            "title": "Local authority name",
+            "components": [
+                {
+                    "options": {},
+                    "type": "AutocompleteField",
+                    "title": "Local authority name",
+                    "hint": "",
+                    "schema": {},
+                    "name": "RoLhhf",
+                    "list": "vlTWym",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/lead-contact-details"
+                }
+            ],
+            "section": "CdGjnO"
+        },
+        {
+            "path": "/local-authority-details",
+            "title": "Local authority details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your local authority name</li>\n<li>your lead contact's name</li>\n<li>your lead contact's job title</li>\n<li>your lead contact's email address</li>\n<li>whether you are submitting this expression of interest jointly with other local authorities</li>\n<li>the other local authorities you are submitting this joint expression of interest with (if applicable)</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "nmKurP"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/local-authority-name"
+                }
+            ],
+            "section": "CdGjnO",
+            "controller": "start.js"
+        },
+        {
+            "path": "/tell-us-which-local-authorities-you-are-submitting-this-joint-expression-of-interest-with",
+            "title": "Tell us which local authorities you are submitting this joint expression of interest with",
+            "components": [
+                {
+                    "options": {},
+                    "type": "MultilineTextField",
+                    "title": "Tell us which local authorities you are submitting this joint expression of interest with",
+                    "hint": "If there is more than one other local authority, use a comma to separate the names.",
+                    "schema": {},
+                    "name": "MhgGgD"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "CdGjnO"
+        },
+        {
+            "path": "/are-you-submitting-this-expression-of-interest-jointly-with-other-local-authorities",
+            "title": "Are you submitting this expression of interest jointly with other local authorities?",
+            "components": [
+                {
+                    "options": {
+                        "exposeToContext": true,
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Is this expression of interest being submitted jointly with another local authority?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "hRxtWX",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "CdGjnO"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "Cambridgeshire County Council",
+                    "value": "Cambridgeshire County Council"
+                },
+                {
+                    "text": "Derbyshire County Council",
+                    "value": "Derbyshire County Council"
+                },
+                {
+                    "text": "Devon County Council",
+                    "value": "Devon County Council"
+                },
+                {
+                    "text": "East Sussex County Council",
+                    "value": "East Sussex County Council"
+                },
+                {
+                    "text": "Essex County Council",
+                    "value": "Essex County Council"
+                },
+                {
+                    "text": "Gloucestershire County Council",
+                    "value": "Gloucestershire County Council"
+                },
+                {
+                    "text": "Hampshire County Council",
+                    "value": "Hampshire County Council"
+                },
+                {
+                    "text": "Hertfordshire County Council",
+                    "value": "Hertfordshire County Council"
+                },
+                {
+                    "text": "Kent County Council",
+                    "value": "Kent County Council"
+                },
+                {
+                    "text": "Lancashire County Council",
+                    "value": "Lancashire County Council"
+                },
+                {
+                    "text": "Leicestershire County Council",
+                    "value": "Leicestershire County Council"
+                }
+            ],
+            "name": "vlTWym",
+            "title": "Local authorities"
+        }
+    ],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "CdGjnO",
+            "title": "Local authority details",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Apply for green belt funding"
+}
