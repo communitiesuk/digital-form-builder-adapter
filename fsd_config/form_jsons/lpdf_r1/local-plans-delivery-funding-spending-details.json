@@ -1,0 +1,184 @@
+{
+    "startPage": "/spending-details",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "LYpnCr",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/spending-details",
+            "title": "Spending details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>types of activities that this funding will be used to support</li>\n<li>other types of activities that this funding will be used to support (if applicable)</li>\n<li>whether you commit to have a plan in place by the end of this financial year on how you would spend this funding</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "RmHNjR"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-types-of-activities-will-this-funding-will-be-used-to-support"
+                }
+            ],
+            "section": "LYpnCr",
+            "controller": "start.js"
+        },
+        {
+            "path": "/which-types-of-activities-will-this-funding-will-be-used-to-support",
+            "title": "Which types of activities will this funding will be used to support?",
+            "components": [
+                {
+                    "options": {
+                        "exposeToContext": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which types of activities will this funding will be used to support?",
+                    "hint": "Select all that apply",
+                    "schema": {},
+                    "name": "WIOGzl",
+                    "list": "yHOipF",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-commit-to-have-a-plan-in-place-by-the-end-of-this-financial-year-on-how-you-would-spend-this-funding"
+                },
+                {
+                    "path": "/tell-us-what-other-types-of-activities-this-funding-will-be-used-to-support",
+                    "condition": "xLZXyo"
+                }
+            ],
+            "section": "LYpnCr"
+        },
+        {
+            "path": "/do-you-commit-to-have-a-plan-in-place-by-the-end-of-this-financial-year-on-how-you-would-spend-this-funding",
+            "title": "Do you commit to have a plan in place by the end of this financial year on how you would spend this funding?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "exposeToContext": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Do you commit to have a plan in place by the end of this financial year on how you would spend this funding?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "pXGiGI",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "LYpnCr"
+        },
+        {
+            "path": "/tell-us-what-other-types-of-activities-this-funding-will-be-used-to-support",
+            "title": "Tell us what other types of activities this funding will be used to support",
+            "components": [
+                {
+                    "options": {
+                        "exposeToContext": true,
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us what other types of activities this funding will be used to support",
+                    "hint": "",
+                    "schema": {},
+                    "name": "cePdOW"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-commit-to-have-a-plan-in-place-by-the-end-of-this-financial-year-on-how-you-would-spend-this-funding"
+                }
+            ],
+            "section": "LYpnCr"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "Preparing or updating the plan evidence base  ",
+                    "value": "Preparing or updating the plan evidence base  "
+                },
+                {
+                    "text": "Updating technical studies ",
+                    "value": "Updating technical studies "
+                },
+                {
+                    "text": "Additional site assessments ",
+                    "value": "Additional site assessments "
+                },
+                {
+                    "text": "Consultation or engagement work  ",
+                    "value": "Consultation or engagement work  "
+                },
+                {
+                    "text": "Hiring additional staff ",
+                    "value": "Hiring additional staff "
+                },
+                {
+                    "text": "Hiring consultants ",
+                    "value": "Hiring consultants "
+                },
+                {
+                    "text": "Other",
+                    "value": "Other"
+                }
+            ],
+            "name": "yHOipF",
+            "title": "Activities"
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "Other activities",
+            "name": "xLZXyo",
+            "value": {
+                "name": "Other activities",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "LYpnCr.WIOGzl",
+                            "type": "CheckboxesField",
+                            "display": "Which types of activities will this funding will be used to support?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "other",
+                            "display": "other"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "LYpnCr",
+            "title": "Spending details",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Local plans delivery fund"
+}
