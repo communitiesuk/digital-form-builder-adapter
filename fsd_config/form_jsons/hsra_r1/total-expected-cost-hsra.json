@@ -1,0 +1,201 @@
+{
+  "metadata": {},
+  "startPage": "/total-expected-cost",
+  "pages": [
+    {
+      "title": "Total expected cost",
+      "path": "/total-expected-cost",
+      "components": [
+        {
+          "name": "dAopHX",
+          "options": {},
+          "type": "Para",
+          "content": "<label >In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>the total expected cost of delivering the HSRA</li>\n<li>why your costs are higher than the guided price.</li>\n<li>if you’ve secured match funding</li>\n<li>the amount of match funding (if applicable)</li>\n<li>who is providing the match funding (if applicable)</li>\n</ul>\n"
+        }
+      ],
+      "next": [
+        {
+          "path": "/what-is-the-total-expected-cost-of-delivering-the-hsra-in-pounds"
+        }
+      ],
+      "controller": "./pages/start.js"
+    },
+    {
+      "path": "/what-is-the-total-expected-cost-of-delivering-the-hsra-in-pounds",
+      "title": "What is the total expected cost of delivering the HSRA, in pounds?",
+      "components": [
+        {
+          "name": "lfXuaP",
+          "options": {
+            "hideTitle": true,
+            "prefix": "£",
+            "classes": "govuk-!-width-one-quarter"
+          },
+          "type": "NumberField",
+          "hint": "This includes any costs you expect to recover from the tenant or through matched funding",
+          "title": "What is the total expected cost of delivering the HSRA, in pounds?"
+        }
+      ],
+      "next": [
+        {
+          "path": "/costs-are-higher-than-the-guided-price",
+          "condition": "xuygbT"
+        },
+        {
+          "path": "/have-you-secured-any-match-funding"
+        }
+      ],
+      "section": "XDldxG"
+    },
+    {
+      "title": "Check your answers",
+      "path": "/summary",
+      "controller": "./pages/summary.js",
+      "components": [],
+      "next": []
+    },
+    {
+      "path": "/costs-are-higher-than-the-guided-price",
+      "title": "Costs are higher than the guided price",
+      "components": [
+        {
+          "name": "CwEWDh",
+          "options": {},
+          "type": "Para",
+          "content": "Guided price: We expect refurbishment to cost approximately:\n<ul><li>£40,000 for a property between 100 sqm and 200 sqm</li><li>£79,000 for a property between 201 sqm and 300 sqm</li></ul>\n<p class='govuk-body'>We’ll consider costs above this range but need to understand why your costs are higher.</p"
+        },
+        {
+          "name": "OBXEXZ",
+          "options": {
+            "maxWords": "300"
+          },
+          "type": "FreeTextField",
+          "title": "Why are your costs higher than the guided price?"
+        }
+      ],
+      "next": [
+        {
+          "path": "/have-you-secured-any-match-funding"
+        }
+      ],
+      "section": "XDldxG"
+    },
+    {
+      "path": "/have-you-secured-any-match-funding",
+      "title": "Have you secured any match funding?",
+      "components": [
+        {
+          "name": "KSQYyb",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Have you secured any match funding?"
+        }
+      ],
+      "next": [
+        {
+          "path": "/match-funding-details",
+          "condition": "bmWRnF"
+        },
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "XDldxG"
+    },
+    {
+      "path": "/match-funding-details",
+      "title": "Match funding details",
+      "components": [
+        {
+          "name": "QveKZm",
+          "options": {
+            "prefix": "£",
+            "classes": "govuk-!-width-one-quarter"
+          },
+          "type": "NumberField",
+          "title": "How much match funding have you secured, in pounds?"
+        },
+        {
+          "name": "pyCINJ",
+          "options": {},
+          "type": "TextField",
+          "title": "Who is providing this?"
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "XDldxG"
+    }
+  ],
+  "lists": [],
+  "sections": [
+    {
+      "name": "XDldxG",
+      "title": "Total expected cost"
+    }
+  ],
+  "conditions": [
+    {
+      "displayName": "Costs are higher than the guided price",
+      "name": "xuygbT",
+      "value": {
+        "name": "Costs are higher than the guided price",
+        "conditions": [
+          {
+            "field": {
+              "name": "lfXuaP",
+              "type": "NumberField",
+              "display": "What is the total expected cost of delivering the HSRA, in pounds?"
+            },
+            "operator": "is more than",
+            "value": {
+              "type": "Value",
+              "value": "72000",
+              "display": "72000"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Have you secured any match funding?",
+      "name": "bmWRnF",
+      "value": {
+        "name": "Have you secured any match funding?",
+        "conditions": [
+          {
+            "field": {
+              "name": "KSQYyb",
+              "type": "YesNoField",
+              "display": "Have you secured any match funding?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "markAsComplete": false,
+  "name": "Apply for funding to cover the cost of delivering a high street rental auction",
+  "feedback": {
+    "feedbackForm": false,
+    "url": ""
+  },
+  "phaseBanner": {
+    "phase": "beta"
+  }
+}
