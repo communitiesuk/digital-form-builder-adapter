@@ -170,7 +170,7 @@
       "components": [
         {
           "name": "iGqOjq",
-          "options": {},
+          "options": { "maxWords": "250" },
           "type": "MultilineTextField",
           "title": "What are the current known issues and challenges you have with data quality and publication?"
         }
