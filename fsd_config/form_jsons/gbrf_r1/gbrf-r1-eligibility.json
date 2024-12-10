@@ -10,7 +10,7 @@
           "name": "GqJNNZ",
           "options": {},
           "type": "Html",
-          "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>...</li>\n<li>...</li>\n<li>...</li>\n<li>...</li>\n<li>...</li>\n</ul>",
+          "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>whether you agree to undertake a Green Belt review to accommodate an increase in your local housing need as a result of our NPPF (National Planning Policy Framework) changes</li>\n<li>whether you agree to collaborate with MHCLG over monitoring and evaluation requirements</li>\n<li>whether your Section 151 officer, or deputy Section 151 officer, is aware of this submission</li>\n</ul>",
           "schema": {}
         }
       ],
@@ -128,7 +128,7 @@
           "name": "oAnaAw",
           "options": {},
           "type": "Html",
-          "content": "<p class=\"govuk-body\">\nBased on your answer, you’re not eligible to apply for (change fund specific text).</p>\n\n<p class=\"govuk-body\">Check who can apply (fund specific email)</p>",
+          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>you did not agree to collaborate with MHCLG over monitoring and evaluation requirements</li>\n</ul>\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
           "schema": {}
         }
       ],
@@ -144,7 +144,7 @@
           "name": "LpLRZy",
           "options": {},
           "type": "Html",
-          "content": "<p class=\"govuk-body\">\nBased on your answer, you’re not eligible to apply for (change fund specific text).</p>\n\n<p class=\"govuk-body\">Check who can apply (fund specific email)</p>",
+          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>you did not agree to undertake a Green Belt review to accommodate an increase in your local housing need as a result of our NPPF (National Planning Policy Framework) changes </li>\n</ul>\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
           "schema": {}
         }
       ],
@@ -160,7 +160,7 @@
           "name": "LNXmKd",
           "options": {},
           "type": "Html",
-          "content": "<p class=\"govuk-body\">\nBased on your answer, you’re not eligible to apply for (change fund specific text).</p>\n\n<p class=\"govuk-body\">Check who can apply (fund specific email)</p>",
+          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>you did not confirm your Section 151 officer, or deputy Section 151 officer, is aware of this submission</li>\n</ul>\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
           "schema": {}
         }
       ],
