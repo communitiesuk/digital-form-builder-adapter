@@ -69,7 +69,7 @@
                         "hideTitle": true
                     },
                     "type": "YesNoField",
-                    "title": "Will your new local housing need figure be 25% or more greater than the housing requirement in your emerging local plan?",
+                    "title": "Does your plan’s draft housing requirement meet less than 80% of your revised local housing need (as published on GOV.UK)?",
                     "schema": {},
                     "values": {
                         "type": "listRef"
