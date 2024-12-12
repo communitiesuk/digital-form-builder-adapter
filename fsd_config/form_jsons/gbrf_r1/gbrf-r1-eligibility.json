@@ -10,13 +10,13 @@
           "name": "GqJNNZ",
           "options": {},
           "type": "Html",
-          "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>whether your emerging local plan will be at Regulation 19 stage on 12 March 2025</li>\n<li>whether your plan’s draft housing requirement meets less than 80% of your revised local housing need (as published on GOV.UK)</li>\n<li>whether you need to revise your plan to reflect the revised National Planning Policy Framework and local housing need prior to submitting the document for examination</li>\n<li>whether you will submit your plan by the deadline set out in the National Planning Policy Framework (by June or December 2026 as appropriate)</li>\n<li>whether you agree to collaborate with MHCLG over monitoring and evaluation requirements</li>\n<li>whether you agree to respond to MHCLG’s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG within 12 weeks of the publication of the revised National Planning Policy Framework, and to provide regular updates on your progress against milestones</li>\n<li>whether your section 151 officer, or deputy section 151 officer, supports this submission</li>\n<li>whether you commit to have proposals in place by March 2025 on how you will spend the funding</li>\n</ul>",
+          "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>whether you intend to undertake a Green Belt review to accommodate an increase in your needs</li>\n<li>whether you agree to collaborate with MHCLG over monitoring and evaluation requirements</li>\n<li>whether your section 151 officer, or deputy section 151 officer, supports this submission</li>\n<li>whether you commit to have proposals in place by March 2025 on how you will spend the funding</li>\n</ul>",
           "schema": {}
         }
       ],
       "next": [
         {
-          "path": "/will-your-emerging-local-plan-will-be-at-regulation-19-stage-on-12-march-2025"
+          "path": "/do-you-intend-to-undertake-a-green-belt-review-to-accommodate-an-increase-in-your-needs"
         }
       ],
       "controller": "./pages/start.js",
@@ -31,242 +31,102 @@
       "section": "FabDefault"
     },
     {
-      "path": "/will-your-emerging-local-plan-will-be-at-regulation-19-stage-on-12-march-2025",
-      "title": "Will your emerging local plan will be at Regulation 19 stage on 12 March 2025?",
+      "path": "/do-you-intend-to-undertake-a-green-belt-review-to-accommodate-an-increase-in-your-needs",
+      "title": "Do you intend to undertake a Green Belt review to accommodate an increase in your needs? ",
       "components": [
         {
           "name": "Mhzypt",
-          "options": { "hideTitle": true },
+          "options": {
+            "hideTitle": true
+          },
           "type": "YesNoField",
-          "title": "Will your emerging local plan be at Regulation 19 stage on 12 March 2025?",
+          "title": "Do you intend to undertake a Green Belt review to accommodate an increase in your needs? ",
           "schema": {},
-          "values": { "type": "listRef" }
-        }
-      ],
-      "next": [
-        {
-          "path": "/does-your-plans-draft-housing-requirement-meet-less-than-80-of-your-revised-local-housing-need-as-published-on-govuk",
-          "condition": "wWnFcL"
-        },
-        { "path": "/not-eligible/regulation-19-stage", "condition": "kdHBPA" }
-      ],
-      "section": "mwumLN"
-    },
-    {
-      "path": "/does-your-plans-draft-housing-requirement-meet-less-than-80-of-your-revised-local-housing-need-as-published-on-govuk",
-      "title": "Does your plan’s draft housing requirement meet less than 80% of your revised local housing need (as published on GOV.UK)?",
-      "components": [
-        {
-          "name": "pPNbfh",
-          "options": { "hideTitle": true },
-          "type": "YesNoField",
-          "title": "Does your plan’s draft housing requirement meet less than 80% of your revised local housing need (as published on GOV.UK)?",
-          "schema": {},
-          "values": { "type": "listRef" }
-        }
-      ],
-      "next": [
-        {
-          "path": "/will-you-need-to-revise-your-plan-to-reflect-the-revised-national-planning-policy-framework-and-local-housing-need-prior-to-submitting-the-document-for-examination",
-          "condition": "JYircR"
-        },
-        {
-          "path": "/not-eligible/local-housing-need-figure-be-25",
-          "condition": "dgfqLn"
-        }
-      ],
-      "section": "mwumLN"
-    },
-    {
-      "path": "/will-you-need-to-revise-your-plan-to-reflect-the-revised-national-planning-policy-framework-and-local-housing-need-prior-to-submitting-the-document-for-examination",
-      "title": "Will you need to revise your plan to reflect the revised National Planning Policy Framework and local housing need prior to submitting the document for examination?",
-      "components": [
-        {
-          "name": "WJoaFR",
-          "options": { "hideTitle": true },
-          "type": "YesNoField",
-          "title": "Will you need to revise your plan to reflect the revised National Planning Policy Framework and local housing need prior to submitting the document for examination?",
-          "schema": {},
-          "values": { "type": "listRef" }
-        }
-      ],
-      "next": [
-        {
-          "path": "/not-eligible/revise-your-plan-to-reflect-the-revised-NPPF",
-          "condition": "lfYCTy"
-        },
-        {
-          "path": "/will-you-submit-your-plan-by-the-deadline-set-out-in-the-national-planning-policy-framework-by-june-or-december-2026-as-appropriate",
-          "condition": "hfMmpl"
-        }
-      ],
-      "section": "mwumLN"
-    },
-    {
-      "path": "/not-eligible/local-housing-need-figure-be-25",
-      "title": "You cannot apply for this funding",
-      "components": [
-        {
-          "name": "oAnaAw",
-          "options": {},
-          "type": "Html",
-          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because your your plan’s draft housing requirement does not meet less than 80% of your revised local housing need (as published on GOV.UK).\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
-          "schema": {}
-        }
-      ],
-      "next": [],
-      "section": "FabDefault"
-    },
-    {
-      "path": "/not-eligible/regulation-19-stage",
-      "title": "You cannot apply for this funding",
-      "components": [
-        {
-          "name": "LpLRZy",
-          "options": {},
-          "type": "Html",
-          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because your emerging local plan will not be at Regulation 19 stage on 12 March 2025.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
-          "schema": {}
-        }
-      ],
-      "next": [],
-      "section": "FabDefault"
-    },
-    {
-      "path": "/not-eligible/revise-your-plan-to-reflect-the-revised-NPPF",
-      "title": "You cannot apply for this funding",
-      "components": [
-        {
-          "name": "LNXmKd",
-          "options": {},
-          "type": "Html",
-          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because you said you do not need to revise your plan to reflect the revised National Planning Policy Framework and local housing need prior to submitting the document for examination.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
-          "schema": {}
-        }
-      ],
-      "next": [],
-      "section": "FabDefault"
-    },
-    {
-      "path": "/will-you-submit-your-plan-by-the-deadline-set-out-in-the-national-planning-policy-framework-by-june-or-december-2026-as-appropriate",
-      "title": "Will you submit your plan by the deadline set out in the National Planning Policy Framework (by June or December 2026 as appropriate)?",
-      "components": [
-        {
-          "name": "ivrmYs",
-          "options": { "hideTitle": true },
-          "type": "YesNoField",
-          "title": "Will you submit your plan by the deadline set out in the National Planning Policy Framework (by June or December 2026 as appropriate)?",
-          "schema": {},
-          "values": { "type": "listRef" }
+          "values": {
+            "type": "listRef"
+          },
+          "hint": "This can include your local housing need as a result of the National Planning Policy Framework."
         }
       ],
       "next": [
         {
           "path": "/do-you-agree-to-collaborate-with-mhclg-over-monitoring-and-evaluation-requirements",
-          "condition": "CgJcvj"
+          "condition": "Kkqowe"
         },
         {
-          "path": "/not-eligible/anticipate-submitting-your-plan",
-          "condition": "OLpKqN"
+          "path": "/not-eligible/lower-vacancy-rate",
+          "condition": "jPvjPM"
         }
       ],
-      "section": "mwumLN"
+      "section": "mwumLN",
+      "controller": "./pages/continue.js"
     },
     {
       "path": "/do-you-agree-to-collaborate-with-mhclg-over-monitoring-and-evaluation-requirements",
       "title": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?",
       "components": [
         {
-          "name": "bztIEb",
-          "options": { "hideTitle": true },
+          "name": "pPNbfh",
+          "options": {
+            "hideTitle": true
+          },
           "type": "YesNoField",
           "title": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?",
-          "schema": {}
-        }
-      ],
-      "next": [
-        {
-          "path": "/do-you-agree-to-respond-to-mhclgs-requests-to-submit-an-updated-local-plan-timetable-local-development-scheme-or-lds-to-mhclg-within-12-weeks-of-the-publication-of-the-revised-national-planning-policy-framework-and-to-provide-regular-updates-on-your-progress-against-milestones",
-          "condition": "UxuYNm"
-        },
-        {
-          "path": "/not-eligible/agree-to-collaborate-with-MHCLG",
-          "condition": "axoKrV"
-        }
-      ],
-      "section": "mwumLN"
-    },
-    {
-      "path": "/do-you-agree-to-respond-to-mhclgs-requests-to-submit-an-updated-local-plan-timetable-local-development-scheme-or-lds-to-mhclg-within-12-weeks-of-the-publication-of-the-revised-national-planning-policy-framework-and-to-provide-regular-updates-on-your-progress-against-milestones",
-      "title": "Do you agree to respond to MHCLG’s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG within 12 weeks of the publication of the revised National Planning Policy Framework, and to provide regular updates on your progress against milestones?",
-      "components": [
-        {
-          "name": "KPMoZB",
-          "options": { "hideTitle": true },
-          "type": "YesNoField",
-          "title": "Do you agree to respond to MHCLG’s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG within 12 weeks of the publication of the revised National Planning Policy Framework, and to provide regular updates on your progress against milestones?",
           "schema": {},
-          "values": { "type": "listRef" }
+          "values": {
+            "type": "listRef"
+          }
         }
       ],
       "next": [
         {
           "path": "/does-your-section-151-officer-or-deputy-section-151-officer-support-this-submission",
-          "condition": "aeurFt"
+          "condition": "REqbHB"
         },
         {
-          "path": "/not-eligible/commit-to-respond-to-MHCLG",
-          "condition": "KMrYSh"
+          "path": "/not-eligible/property-vacant-long-duration",
+          "condition": "zwwxkY"
         }
       ],
-      "section": "mwumLN"
+      "section": "mwumLN",
+      "controller": "./pages/continue.js"
     },
     {
       "path": "/does-your-section-151-officer-or-deputy-section-151-officer-support-this-submission",
       "title": "Does your section 151 officer, or deputy section 151 officer, support this submission?",
       "components": [
         {
-          "name": "iWShyw",
-          "options": { "hideTitle": true },
+          "name": "WJoaFR",
+          "options": {
+            "hideTitle": true
+          },
           "type": "YesNoField",
           "title": "Does your section 151 officer, or deputy section 151 officer, support this submission?",
           "schema": {},
-          "values": { "type": "listRef" }
+          "values": {
+            "type": "listRef"
+          }
         }
       ],
       "next": [
         {
-          "path": "/not-eligible/you-cannot-apply-for-this-funding-LQRNvm",
-          "condition": "KzcorB"
+          "path": "/you-cannot-apply-for-this-funding",
+          "condition": "gVEhwH"
         },
         {
           "path": "/do-you-commit-to-have-proposals-in-place-by-march-2025-on-how-you-will-spend-the-funding",
-          "condition": "opqPWi"
+          "condition": "xIzxnn"
         }
       ],
-      "section": "mwumLN"
+      "section": "mwumLN",
+      "controller": "./pages/continue.js"
     },
     {
-      "path": "/not-eligible/anticipate-submitting-your-plan",
+      "path": "/not-eligible/property-vacant-long-duration",
       "title": "You cannot apply for this funding",
       "components": [
         {
-          "name": "bbZCTp",
-          "options": {},
-          "type": "Html",
-          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because you will not submit your plan by the deadline set out in the National Planning Policy Framework (by June or December 2026 as appropriate).\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
-          "schema": {}
-        }
-      ],
-      "next": [],
-      "section": "FabDefault"
-    },
-    {
-      "path": "/not-eligible/agree-to-collaborate-with-MHCLG",
-      "title": "You cannot apply for this funding",
-      "components": [
-        {
-          "name": "wKmBxp",
+          "name": "oAnaAw",
           "options": {},
           "type": "Html",
           "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because you did not agree to collaborate with MHCLG over monitoring and evaluation requirements.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
@@ -274,29 +134,31 @@
         }
       ],
       "next": [],
+      "controller": "./pages/continue.js",
       "section": "FabDefault"
     },
     {
-      "path": "/not-eligible/commit-to-respond-to-MHCLG",
+      "path": "/not-eligible/lower-vacancy-rate",
       "title": "You cannot apply for this funding",
       "components": [
         {
-          "name": "arFBbO",
+          "name": "LpLRZy",
           "options": {},
           "type": "Html",
-          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because you did not agree to respond to MHCLG’s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG within 12 weeks of the publication of the revised National Planning Policy Framework, and to provide regular updates on your progress against milestones.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
+          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because you do not intend to undertake a Green Belt review to accommodate an increase in your needs.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
           "schema": {}
         }
       ],
       "next": [],
+      "controller": "./pages/continue.js",
       "section": "FabDefault"
     },
     {
-      "path": "/not-eligible/you-cannot-apply-for-this-funding-LQRNvm",
+      "path": "/you-cannot-apply-for-this-funding",
       "title": "You cannot apply for this funding",
       "components": [
         {
-          "name": "AMOYzI",
+          "name": "LNXmKd",
           "options": {},
           "type": "Html",
           "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because your section 151 officer, or deputy section 151 officer, does not support this submission.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
@@ -311,25 +173,36 @@
       "title": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?",
       "components": [
         {
-          "name": "XaHxLK",
-          "options": { "exposeToContext": true },
+          "name": "RWRWqx",
+          "options": {
+            "exposeToContext": true
+          },
           "type": "YesNoField",
           "title": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?",
+          "values": {
+            "type": "listRef"
+          },
           "schema": {}
         }
       ],
       "next": [
-        { "path": "/you-cannot-apply-for-this-funding", "condition": "qRmPny" },
-        { "path": "/summary", "condition": "IJadmc" }
+        {
+          "path": "/you-cannot-apply-for-this-funding-Wcfswy",
+          "condition": "XezpcQ"
+        },
+        {
+          "path": "/summary",
+          "condition": "IMcUoD"
+        }
       ],
       "section": "mwumLN"
     },
     {
-      "path": "/you-cannot-apply-for-this-funding",
+      "path": "/you-cannot-apply-for-this-funding-Wcfswy",
       "title": "You cannot apply for this funding",
       "components": [
         {
-          "name": "PylfxQ",
+          "name": "JVsELa",
           "options": {},
           "type": "Para",
           "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because you did not commit to have proposals in place by March 2025 on how you will spend the funding.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
@@ -337,299 +210,195 @@
         }
       ],
       "next": [],
-      "section": "FabDefault"
+      "section": "mwumLN"
     }
   ],
   "lists": [],
   "sections": [
-    { "name": "mwumLN", "title": "Before you start", "hideTitle": false },
-    { "name": "FabDefault", "title": "Default Section", "hideTitle": true }
+    {
+      "name": "mwumLN",
+      "title": "Before you start",
+      "hideTitle": false
+    },
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    }
   ],
   "conditions": [
     {
-      "displayName": "revise your plan to reflect the revised NPPF-No",
-      "name": "lfYCTy",
+      "displayName": "required to undertake greebelt review",
+      "name": "Kkqowe",
       "value": {
-        "name": "revise your plan to reflect the revised NPPF-No",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.WJoaFR",
-              "type": "YesNoField",
-              "display": "Will you need to revise your plan to reflect the revised NPPF (National Planning Policy Framework) and new LHN (local housing need) prior to submitting the document for examination?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "false", "display": "false" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "revise your plan to reflect the revised NPPF-Yes",
-      "name": "hfMmpl",
-      "value": {
-        "name": "revise your plan to reflect the revised NPPF-Yes",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.WJoaFR",
-              "type": "YesNoField",
-              "display": "Will you need to revise your plan to reflect the revised NPPF (National Planning Policy Framework) and new LHN (local housing need) prior to submitting the document for examination?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "true", "display": "true" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "anticipate submitting your plan-Yes",
-      "name": "CgJcvj",
-      "value": {
-        "name": "anticipate submitting your plan-Yes",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.ivrmYs",
-              "type": "YesNoField",
-              "display": "Do you anticipate submitting your plan in the current system (by June or December 2026)?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "true", "display": "true" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "agree to collaborate with MHCLG-Yes",
-      "name": "UxuYNm",
-      "value": {
-        "name": "agree to collaborate with MHCLG-Yes",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.bztIEb",
-              "type": "YesNoField",
-              "display": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "true", "display": "true" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "section 151 officer aware of submission-Yes",
-      "name": "opqPWi",
-      "value": {
-        "name": "section 151 officer aware of submission-Yes",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.iWShyw",
-              "type": "YesNoField",
-              "display": "Is your section 151 officer, or deputy section 151 officer, aware of this submission?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "true", "display": "true" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "anticipate submitting your plan-No",
-      "name": "OLpKqN",
-      "value": {
-        "name": "anticipate submitting your plan-No",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.ivrmYs",
-              "type": "YesNoField",
-              "display": "Do you anticipate submitting your plan in the current system (by June or December 2026)?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "false", "display": "false" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "Regulation 19 stage-Yes",
-      "name": "wWnFcL",
-      "value": {
-        "name": "Regulation 19 stage-Yes",
+        "name": "required to undertake greebelt review",
         "conditions": [
           {
             "field": {
               "name": "mwumLN.Mhzypt",
               "type": "YesNoField",
-              "display": "Will your emerging local plan will be at Regulation 19 stage on 12 March 2025?"
+              "display": "Will you be required to undertake a Green Belt review to accommodate an increase in your local housing need as a result of our NPPF (National Planning Policy Framework) changes?"
             },
             "operator": "is",
-            "value": { "type": "Value", "value": "true", "display": "true" }
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
           }
         ]
       }
     },
     {
-      "displayName": "Regulation 19 stage-No",
-      "name": "kdHBPA",
+      "displayName": "agree to collaborate",
+      "name": "REqbHB",
       "value": {
-        "name": "Regulation 19 stage-No",
+        "name": "agree to collaborate",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.pPNbfh",
+              "type": "YesNoField",
+              "display": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "section 151 is aware",
+      "name": "xIzxnn",
+      "value": {
+        "name": "section 151 is aware",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.WJoaFR",
+              "type": "YesNoField",
+              "display": "Please confirm that your Section 151 officer, or deputy Section 151 officer, is aware of this submission"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "agree to collaborate-No",
+      "name": "zwwxkY",
+      "value": {
+        "name": "agree to collaborate-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.pPNbfh",
+              "type": "YesNoField",
+              "display": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "required to undertake greebelt review-No",
+      "name": "jPvjPM",
+      "value": {
+        "name": "required to undertake greebelt review-No",
         "conditions": [
           {
             "field": {
               "name": "mwumLN.Mhzypt",
               "type": "YesNoField",
-              "display": "Will your emerging local plan will be at Regulation 19 stage on 12 March 2025?"
+              "display": "Will you be required to undertake a Green Belt review to accommodate an increase in your local housing need as a result of our NPPF (National Planning Policy Framework) changes?"
             },
             "operator": "is",
-            "value": { "type": "Value", "value": "false", "display": "false" }
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
           }
         ]
       }
     },
     {
-      "displayName": "local housing need figure be 25%-Yes",
-      "name": "JYircR",
+      "displayName": "section 151 is aware-No",
+      "name": "gVEhwH",
       "value": {
-        "name": "local housing need figure be 25%-Yes",
+        "name": "section 151 is aware-No",
         "conditions": [
           {
             "field": {
-              "name": "mwumLN.pPNbfh",
+              "name": "mwumLN.WJoaFR",
               "type": "YesNoField",
-              "display": "Will your new local housing need figure be 25% or more greater than the housing requirement in your emerging local plan?"
+              "display": "Please confirm that your Section 151 officer, or deputy Section 151 officer, is aware of this submission"
             },
             "operator": "is",
-            "value": { "type": "Value", "value": "true", "display": "true" }
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
           }
         ]
       }
     },
     {
-      "displayName": "local housing need figure be 25%-No",
-      "name": "dgfqLn",
+      "displayName": "Proposal in place-yes",
+      "name": "IMcUoD",
       "value": {
-        "name": "local housing need figure be 25%-No",
+        "name": "Proposal in place-yes",
         "conditions": [
           {
             "field": {
-              "name": "mwumLN.pPNbfh",
-              "type": "YesNoField",
-              "display": "Will your new local housing need figure be 25% or more greater than the housing requirement in your emerging local plan?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "false", "display": "false" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "agree to collaborate with MHCLG-No",
-      "name": "axoKrV",
-      "value": {
-        "name": "agree to collaborate with MHCLG-No",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.bztIEb",
-              "type": "YesNoField",
-              "display": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "false", "display": "false" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "commit to respond to MHCLG-No",
-      "name": "KMrYSh",
-      "value": {
-        "name": "commit to respond to MHCLG-No",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.KPMoZB",
-              "type": "YesNoField",
-              "display": "Do you commit to respond to MHCLG’s request to submit an updated Local Development Scheme (LDS)?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "false", "display": "false" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "section 151 officer aware of submission-No",
-      "name": "KzcorB",
-      "value": {
-        "name": "section 151 officer aware of submission-No",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.iWShyw",
-              "type": "YesNoField",
-              "display": "Is your section 151 officer, or deputy section 151 officer, aware of this submission?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "false", "display": "false" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "commit to respond to MHCLG-Yes",
-      "name": "aeurFt",
-      "value": {
-        "name": "commit to respond to MHCLG-Yes",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.KPMoZB",
-              "type": "YesNoField",
-              "display": "Do you commit to respond to MHCLG’s request to submit an updated Local Development Scheme (LDS)?"
-            },
-            "operator": "is",
-            "value": { "type": "Value", "value": "true", "display": "true" }
-          }
-        ]
-      }
-    },
-    {
-      "displayName": "Proposals in place-yes",
-      "name": "IJadmc",
-      "value": {
-        "name": "Proposals in place-yes",
-        "conditions": [
-          {
-            "field": {
-              "name": "mwumLN.XaHxLK",
+              "name": "mwumLN.RWRWqx",
               "type": "YesNoField",
               "display": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?"
             },
             "operator": "is",
-            "value": { "type": "Value", "value": "true", "display": "true" }
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
           }
         ]
       }
     },
     {
-      "displayName": "Proposals in place-no",
-      "name": "qRmPny",
+      "displayName": "Proposal in place-no",
+      "name": "XezpcQ",
       "value": {
-        "name": "Proposals in place-no",
+        "name": "Proposal in place-no",
         "conditions": [
           {
             "field": {
-              "name": "mwumLN.XaHxLK",
+              "name": "mwumLN.RWRWqx",
               "type": "YesNoField",
               "display": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?"
             },
             "operator": "is",
-            "value": { "type": "Value", "value": "false", "display": "false" }
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
           }
         ]
       }
@@ -640,7 +409,7 @@
   "version": 2,
   "skipSummary": false,
   "markAsComplete": false,
-  "name": "Apply for local plan funding",
+  "name": "Apply for Green belt review funding",
   "feeOptions": {
     "allowSubmissionWithoutPayment": true,
     "maxAttempts": 3,
