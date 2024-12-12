@@ -1,0 +1,206 @@
+{
+  "metadata": {},
+  "startPage": "/declarations",
+  "pages": [
+    {
+      "title": "Declarations",
+      "path": "/declarations",
+      "components": [
+        {
+          "name": "LTyOhV",
+          "options": {},
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask you to:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>confirm your emerging local plan will be at Regulation 19 stage on 12 March 2025</li>\n<li>confirm your plan’s draft housing requirement meets less than 80% of your revised local housing need (as published on GOV.UK)</li>\n<li>agree to revise your plan to reflect the revised National Planning Policy Framework and local housing need prior to submitting the document for examination</li>\n<li>agree to submit your plan by the deadline set out in the National Planning Policy Framework (by June or December 2026 as appropriate)</li>\n<li>agree to respond to MHCLG’s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG within 12 weeks of the publication of the revised National Planning Policy Framework, and to provide regular updates on your progress against milestones</li>\n<li>agree to collaborate with MHCLG over monitoring and evaluation requirements</li>\n<li>confirm your section 151 officer, or deputy section 151 officer, supports this submission</li>\n<li>commit to have proposals in place by March 2025 on how you will spend the funding</li>\n</ul>",
+          "schema": {}
+        }
+      ],
+      "next": [{ "path": "/declarations-uuKiTo" }],
+      "section": "utYlqF"
+    },
+    {
+      "path": "/declarations-uuKiTo",
+      "title": "Declarations",
+      "components": [
+        {
+          "name": "FLpMfV",
+          "options": { "hideTitle": true },
+          "type": "CheckboxesField",
+          "title": "I confirm our emerging local plan will be at Regulation 19 stage on 12 March 2025",
+          "list": "CuOgoc",
+          "schema": {}
+        },
+        {
+          "name": "PdObhd",
+          "options": { "hideTitle": true },
+          "type": "CheckboxesField",
+          "title": "I confirm our plan’s draft housing requirement meets less than 80% of our revised local housing need (as published on GOV.UK)",
+          "list": "zwxzpo",
+          "schema": {}
+        },
+        {
+          "name": "hsWqpW",
+          "options": { "hideTitle": true },
+          "type": "CheckboxesField",
+          "title": "I confirm that we will need to revise our draft plan to reflect the revised NPPF and local housing need prior to submitting the document for examination",
+          "list": "pDLYCI",
+          "schema": {}
+        },
+        {
+          "name": "PnGUpK",
+          "options": { "hideTitle": true },
+          "type": "CheckboxesField",
+          "title": "I confirm I anticipate submitting our plan by the deadline set out in the National Planning Policy Framework (by June or December 2026 as appropriate)",
+          "list": "WOAlUc",
+          "schema": {}
+        },
+        {
+          "name": "oYfyOJ",
+          "options": { "exposeToContext": false, "hideTitle": true },
+          "type": "CheckboxesField",
+          "title": "I agree to respond to MHCLG’s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG within 12 weeks of the publication of the revised National Planning Policy Framework, and to provide regular updates on our progress against milestones",
+          "list": "ZglUiB",
+          "schema": {}
+        },
+        {
+          "name": "CTerDe",
+          "options": { "hideTitle": true },
+          "type": "CheckboxesField",
+          "title": "I agree to collaborate with MHCLG over monitoring and evaluation requirements",
+          "list": "YWixij",
+          "schema": {}
+        },
+        {
+          "name": "uIGuiD",
+          "options": { "hideTitle": true },
+          "type": "CheckboxesField",
+          "title": "I confirm our section 151 officer, or deputy section 151 officer, supports this submission",
+          "list": "seboBL",
+          "schema": {}
+        },
+        {
+          "name": "VtcHob",
+          "options": { "hideTitle": true },
+          "type": "CheckboxesField",
+          "title": "I commit to have proposals in place by March 2025 on how we will spend the funding",
+          "list": "QXffzR",
+          "schema": {}
+        }
+      ],
+      "next": [{ "path": "/check-your-answers" }],
+      "section": "utYlqF"
+    },
+    {
+      "title": "Check your answers",
+      "path": "/check-your-answers",
+      "controller": "./pages/summary.js",
+      "components": [],
+      "section": "utYlqF",
+      "next": []
+    }
+  ],
+  "lists": [
+    {
+      "title": "Emerging local plan",
+      "name": "CuOgoc",
+      "type": "string",
+      "items": [
+        {
+          "text": "I confirm our emerging local plan will be at Regulation 19 stage on 12 March 2025",
+          "value": "I confirm our emerging local plan will be at Regulation 19 stage on 12 March 2025"
+        }
+      ]
+    },
+    {
+      "title": "Housing requirement",
+      "name": "zwxzpo",
+      "type": "string",
+      "items": [
+        {
+          "text": "I confirm our plan’s draft housing requirement meets less than 80% of our revised local housing need (as published on GOV.UK)",
+          "value": "I confirm our plan’s draft housing requirement meets less than 80% of our revised local housing need (as published on GOV.UK)"
+        }
+      ]
+    },
+    {
+      "title": "Revise plan",
+      "name": "pDLYCI",
+      "type": "string",
+      "items": [
+        {
+          "text": "I agree to revise our plan to reflect the revised National Planning Policy Framework and local housing need prior to submitting the document for examination",
+          "value": "I agree to revise our plan to reflect the revised National Planning Policy Framework and local housing need prior to submitting the document for examination"
+        }
+      ]
+    },
+    {
+      "title": "Submit plan",
+      "name": "WOAlUc",
+      "type": "string",
+      "items": [
+        {
+          "text": "I confirm I will submit our plan by the deadline set out in the National Planning Policy Framework (by June or December 2026 as appropriate)",
+          "value": "I confirm I will submit our plan by the deadline set out in the National Planning Policy Framework (by June or December 2026 as appropriate)"
+        }
+      ]
+    },
+    {
+      "title": "Monitoring and evaluation",
+      "name": "YWixij",
+      "type": "string",
+      "items": [
+        {
+          "text": "I agree to collaborate with MHCLG over monitoring and evaluation requirements",
+          "value": "I agree to collaborate with MHCLG over monitoring and evaluation requirements"
+        }
+      ]
+    },
+    {
+      "title": "Updated LDS",
+      "name": "ZglUiB",
+      "type": "string",
+      "items": [
+        {
+          "text": "I agree to respond to MHCLG’s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG within 12 weeks of the publication of the revised National Planning Policy Framework, and to provide regular updates on our progress against milestones",
+          "value": "I agree to respond to MHCLG’s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG within 12 weeks of the publication of the revised National Planning Policy Framework, and to provide regular updates on our progress against milestones"
+        }
+      ]
+    },
+    {
+      "title": "Section 151 officer",
+      "name": "seboBL",
+      "type": "string",
+      "items": [
+        {
+          "text": "I confirm our section 151 officer, or deputy section 151 officer, supports this submission",
+          "value": "I confirm our section 151 officer, or deputy section 151 officer, supports this submission"
+        }
+      ]
+    },
+    {
+      "title": "Commit to proposals",
+      "name": "QXffzR",
+      "type": "string",
+      "items": [
+        {
+          "text": "I commit to have proposals in place by March 2025 on how we will spend the funding",
+          "value": "I commit to have proposals in place by March 2025 on how we will spend the funding"
+        }
+      ]
+    }
+  ],
+  "sections": [
+    { "name": "FabDefault", "title": "Default Section", "hideTitle": true },
+    { "name": "utYlqF", "title": "Declarations", "hideTitle": true }
+  ],
+  "conditions": [],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "feeOptions": {
+    "allowSubmissionWithoutPayment": true,
+    "maxAttempts": 3,
+    "showPaymentSkippedWarningPage": false
+  },
+  "markAsComplete": false
+}

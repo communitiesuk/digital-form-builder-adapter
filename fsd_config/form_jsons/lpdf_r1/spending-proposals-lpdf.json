@@ -1,0 +1,135 @@
+{
+  "metadata": {},
+  "startPage": "/spending-proposals",
+  "pages": [
+    {
+      "title": "Spending proposals",
+      "path": "/spending-proposals",
+      "components": [
+        {
+          "name": "RmHNjR",
+          "options": {},
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>types of activities that this funding will be used to support</li>\n<li>other types of activities that this funding will be used to support (if applicable)</li>\n</ul>",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/which-types-of-activities-will-this-funding-will-be-used-to-support"
+        }
+      ],
+      "section": "LYpnCr"
+    },
+    {
+      "path": "/which-types-of-activities-will-this-funding-will-be-used-to-support",
+      "title": "Which types of activities will this funding will be used to support?",
+      "components": [
+        {
+          "name": "WIOGzl",
+          "options": { "exposeToContext": true },
+          "type": "CheckboxesField",
+          "title": "Which types of activities will this funding will be used to support?",
+          "hint": "Select all that apply",
+          "list": "yHOipF",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/tell-us-what-other-types-of-activities-this-funding-will-be-used-to-support",
+          "condition": "ZJTMyR"
+        },
+        { "path": "/check-your-answers" }
+      ],
+      "section": "LYpnCr"
+    },
+    {
+      "title": "Check your answers",
+      "path": "/check-your-answers",
+      "controller": "./pages/summary.js",
+      "components": [],
+      "section": "LYpnCr",
+      "next": []
+    },
+    {
+      "path": "/tell-us-what-other-types-of-activities-this-funding-will-be-used-to-support",
+      "title": "Tell us what other types of activities this funding will be used to support",
+      "components": [
+        {
+          "name": "cePdOW",
+          "options": {
+            "exposeToContext": true,
+            "hideTitle": true,
+            "maxWords": "250"
+          },
+          "type": "MultilineTextField",
+          "title": "Tell us what other types of activities this funding will be used to support",
+          "schema": {}
+        }
+      ],
+      "next": [{ "path": "/check-your-answers" }],
+      "section": "LYpnCr"
+    }
+  ],
+  "lists": [
+    {
+      "title": "Activities",
+      "name": "yHOipF",
+      "type": "string",
+      "items": [
+        {
+          "text": "Preparing or updating the plan evidence base  ",
+          "value": "Preparing or updating the plan evidence base  "
+        },
+        { "text": "Technical studies ", "value": "Technical studies " },
+        { "text": "Site assessments ", "value": "Site assessments " },
+        {
+          "text": "Joint working with other local authorities",
+          "value": "Joint working with other local authorities"
+        },
+        { "text": "Community engagement", "value": "Community engagement" },
+        {
+          "text": "Hiring additional staff ",
+          "value": "Hiring additional staff "
+        },
+        { "text": "Hiring consultants ", "value": "Hiring consultants " },
+        { "text": "Other", "value": "Other" }
+      ]
+    }
+  ],
+  "sections": [
+    { "name": "FabDefault", "title": "Default Section", "hideTitle": true },
+    { "name": "LYpnCr", "title": "Spending proposals", "hideTitle": true }
+  ],
+  "conditions": [
+    {
+      "displayName": "Other activities",
+      "name": "ZJTMyR",
+      "value": {
+        "name": "Other activities",
+        "conditions": [
+          {
+            "field": {
+              "name": "LYpnCr.WIOGzl",
+              "type": "CheckboxesField",
+              "display": "Which types of activities will this funding will be used to support?"
+            },
+            "operator": "contains",
+            "value": { "type": "Value", "value": "Other", "display": "Other" }
+          }
+        ]
+      }
+    }
+  ],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "feeOptions": {
+    "allowSubmissionWithoutPayment": true,
+    "maxAttempts": 3,
+    "showPaymentSkippedWarningPage": false
+  },
+  "markAsComplete": false
+}
