@@ -1,0 +1,418 @@
+{
+  "metadata": {},
+  "startPage": "/before-you-start",
+  "pages": [
+    {
+      "title": "Before you start",
+      "path": "/before-you-start",
+      "components": [
+        {
+          "name": "GqJNNZ",
+          "options": {},
+          "type": "Html",
+          "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>whether you intend to undertake a Green Belt review to accommodate an increase in your needs</li>\n<li>whether you agree to collaborate with MHCLG over monitoring and evaluation requirements</li>\n<li>whether your section 151 officer, or deputy section 151 officer, supports this submission</li>\n<li>whether you commit to have proposals in place by March 2025 on how you will spend the funding</li>\n</ul>",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/do-you-intend-to-undertake-a-green-belt-review-to-accommodate-an-increase-in-your-needs"
+        }
+      ],
+      "controller": "./pages/start.js",
+      "section": "FabDefault"
+    },
+    {
+      "title": "Summary",
+      "path": "/summary",
+      "controller": "./pages/confirm.js",
+      "components": [],
+      "next": [],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/do-you-intend-to-undertake-a-green-belt-review-to-accommodate-an-increase-in-your-needs",
+      "title": "Do you intend to undertake a Green Belt review to accommodate an increase in your needs? ",
+      "components": [
+        {
+          "name": "Mhzypt",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Do you intend to undertake a Green Belt review to accommodate an increase in your needs? ",
+          "schema": {},
+          "values": {
+            "type": "listRef"
+          },
+          "hint": "This can include your local housing need as a result of the National Planning Policy Framework."
+        }
+      ],
+      "next": [
+        {
+          "path": "/do-you-agree-to-collaborate-with-mhclg-over-monitoring-and-evaluation-requirements",
+          "condition": "Kkqowe"
+        },
+        {
+          "path": "/not-eligible/lower-vacancy-rate",
+          "condition": "jPvjPM"
+        }
+      ],
+      "section": "mwumLN",
+      "controller": "./pages/continue.js"
+    },
+    {
+      "path": "/do-you-agree-to-collaborate-with-mhclg-over-monitoring-and-evaluation-requirements",
+      "title": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?",
+      "components": [
+        {
+          "name": "pPNbfh",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?",
+          "schema": {},
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/does-your-section-151-officer-or-deputy-section-151-officer-support-this-submission",
+          "condition": "REqbHB"
+        },
+        {
+          "path": "/not-eligible/property-vacant-long-duration",
+          "condition": "zwwxkY"
+        }
+      ],
+      "section": "mwumLN",
+      "controller": "./pages/continue.js"
+    },
+    {
+      "path": "/does-your-section-151-officer-or-deputy-section-151-officer-support-this-submission",
+      "title": "Does your section 151 officer, or deputy section 151 officer, support this submission?",
+      "components": [
+        {
+          "name": "WJoaFR",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Does your section 151 officer, or deputy section 151 officer, support this submission?",
+          "schema": {},
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/you-cannot-apply-for-this-funding",
+          "condition": "gVEhwH"
+        },
+        {
+          "path": "/do-you-commit-to-have-proposals-in-place-by-march-2025-on-how-you-will-spend-the-funding",
+          "condition": "xIzxnn"
+        }
+      ],
+      "section": "mwumLN",
+      "controller": "./pages/continue.js"
+    },
+    {
+      "path": "/not-eligible/property-vacant-long-duration",
+      "title": "You cannot apply for this funding",
+      "components": [
+        {
+          "name": "oAnaAw",
+          "options": {},
+          "type": "Html",
+          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because you did not agree to collaborate with MHCLG over monitoring and evaluation requirements.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
+          "schema": {}
+        }
+      ],
+      "next": [],
+      "controller": "./pages/continue.js",
+      "section": "FabDefault"
+    },
+    {
+      "path": "/not-eligible/lower-vacancy-rate",
+      "title": "You cannot apply for this funding",
+      "components": [
+        {
+          "name": "LpLRZy",
+          "options": {},
+          "type": "Html",
+          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because you do not intend to undertake a Green Belt review to accommodate an increase in your needs.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
+          "schema": {}
+        }
+      ],
+      "next": [],
+      "controller": "./pages/continue.js",
+      "section": "FabDefault"
+    },
+    {
+      "path": "/you-cannot-apply-for-this-funding",
+      "title": "You cannot apply for this funding",
+      "components": [
+        {
+          "name": "LNXmKd",
+          "options": {},
+          "type": "Html",
+          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because your section 151 officer, or deputy section 151 officer, does not support this submission.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
+          "schema": {}
+        }
+      ],
+      "next": [],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/do-you-commit-to-have-proposals-in-place-by-march-2025-on-how-you-will-spend-the-funding",
+      "title": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?",
+      "components": [
+        {
+          "name": "RWRWqx",
+          "options": {
+            "exposeToContext": true
+          },
+          "type": "YesNoField",
+          "title": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?",
+          "values": {
+            "type": "listRef"
+          },
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/you-cannot-apply-for-this-funding-Wcfswy",
+          "condition": "XezpcQ"
+        },
+        {
+          "path": "/summary",
+          "condition": "IMcUoD"
+        }
+      ],
+      "section": "mwumLN"
+    },
+    {
+      "path": "/you-cannot-apply-for-this-funding-Wcfswy",
+      "title": "You cannot apply for this funding",
+      "components": [
+        {
+          "name": "JVsELa",
+          "options": {},
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!\">You’re not eligible to apply for funding because you did not commit to have proposals in place by March 2025 on how you will spend the funding.\n\n<p class=\"govuk-body\">If you need help, email the grant team at (email)</p>",
+          "schema": {}
+        }
+      ],
+      "next": [],
+      "section": "mwumLN"
+    }
+  ],
+  "lists": [],
+  "sections": [
+    {
+      "name": "mwumLN",
+      "title": "Before you start",
+      "hideTitle": false
+    },
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    }
+  ],
+  "conditions": [
+    {
+      "displayName": "required to undertake greebelt review",
+      "name": "Kkqowe",
+      "value": {
+        "name": "required to undertake greebelt review",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.Mhzypt",
+              "type": "YesNoField",
+              "display": "Will you be required to undertake a Green Belt review to accommodate an increase in your local housing need as a result of our NPPF (National Planning Policy Framework) changes?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "agree to collaborate",
+      "name": "REqbHB",
+      "value": {
+        "name": "agree to collaborate",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.pPNbfh",
+              "type": "YesNoField",
+              "display": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "section 151 is aware",
+      "name": "xIzxnn",
+      "value": {
+        "name": "section 151 is aware",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.WJoaFR",
+              "type": "YesNoField",
+              "display": "Please confirm that your Section 151 officer, or deputy Section 151 officer, is aware of this submission"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "agree to collaborate-No",
+      "name": "zwwxkY",
+      "value": {
+        "name": "agree to collaborate-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.pPNbfh",
+              "type": "YesNoField",
+              "display": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "required to undertake greebelt review-No",
+      "name": "jPvjPM",
+      "value": {
+        "name": "required to undertake greebelt review-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.Mhzypt",
+              "type": "YesNoField",
+              "display": "Will you be required to undertake a Green Belt review to accommodate an increase in your local housing need as a result of our NPPF (National Planning Policy Framework) changes?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "section 151 is aware-No",
+      "name": "gVEhwH",
+      "value": {
+        "name": "section 151 is aware-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.WJoaFR",
+              "type": "YesNoField",
+              "display": "Please confirm that your Section 151 officer, or deputy Section 151 officer, is aware of this submission"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Proposal in place-yes",
+      "name": "IMcUoD",
+      "value": {
+        "name": "Proposal in place-yes",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.RWRWqx",
+              "type": "YesNoField",
+              "display": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Proposal in place-no",
+      "name": "XezpcQ",
+      "value": {
+        "name": "Proposal in place-no",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.RWRWqx",
+              "type": "YesNoField",
+              "display": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "markAsComplete": false,
+  "name": "Apply for Green belt review funding",
+  "feeOptions": {
+    "allowSubmissionWithoutPayment": true,
+    "maxAttempts": 3,
+    "showPaymentSkippedWarningPage": false
+  }
+}
