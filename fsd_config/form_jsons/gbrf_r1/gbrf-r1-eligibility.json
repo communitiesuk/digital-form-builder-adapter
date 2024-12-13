@@ -36,15 +36,11 @@
       "components": [
         {
           "name": "Mhzypt",
-          "options": {
-            "hideTitle": true
-          },
+          "options": { "hideTitle": true },
           "type": "YesNoField",
           "title": "Do you intend to undertake a Green Belt review to accommodate an increase in your needs? ",
           "schema": {},
-          "values": {
-            "type": "listRef"
-          },
+          "values": { "type": "listRef" },
           "hint": "This can include your local housing need as a result of the National Planning Policy Framework."
         }
       ],
@@ -53,10 +49,7 @@
           "path": "/do-you-agree-to-collaborate-with-mhclg-over-monitoring-and-evaluation-requirements",
           "condition": "Kkqowe"
         },
-        {
-          "path": "/not-eligible/lower-vacancy-rate",
-          "condition": "jPvjPM"
-        }
+        { "path": "/not-eligible/lower-vacancy-rate", "condition": "jPvjPM" }
       ],
       "section": "mwumLN",
       "controller": "./pages/continue.js"
@@ -67,15 +60,11 @@
       "components": [
         {
           "name": "pPNbfh",
-          "options": {
-            "hideTitle": true
-          },
+          "options": { "hideTitle": true },
           "type": "YesNoField",
           "title": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?",
           "schema": {},
-          "values": {
-            "type": "listRef"
-          }
+          "values": { "type": "listRef" }
         }
       ],
       "next": [
@@ -97,22 +86,15 @@
       "components": [
         {
           "name": "WJoaFR",
-          "options": {
-            "hideTitle": true
-          },
+          "options": { "hideTitle": true },
           "type": "YesNoField",
           "title": "Does your section 151 officer, or deputy section 151 officer, support this submission?",
           "schema": {},
-          "values": {
-            "type": "listRef"
-          }
+          "values": { "type": "listRef" }
         }
       ],
       "next": [
-        {
-          "path": "/you-cannot-apply-for-this-funding",
-          "condition": "gVEhwH"
-        },
+        { "path": "/you-cannot-apply-for-this-funding", "condition": "gVEhwH" },
         {
           "path": "/do-you-commit-to-have-proposals-in-place-by-march-2025-on-how-you-will-spend-the-funding",
           "condition": "xIzxnn"
@@ -174,14 +156,10 @@
       "components": [
         {
           "name": "RWRWqx",
-          "options": {
-            "exposeToContext": true
-          },
+          "options": { "exposeToContext": true },
           "type": "YesNoField",
           "title": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?",
-          "values": {
-            "type": "listRef"
-          },
+          "values": { "type": "listRef" },
           "schema": {}
         }
       ],
@@ -190,10 +168,7 @@
           "path": "/you-cannot-apply-for-this-funding-Wcfswy",
           "condition": "XezpcQ"
         },
-        {
-          "path": "/summary",
-          "condition": "IMcUoD"
-        }
+        { "path": "/summary", "condition": "IMcUoD" }
       ],
       "section": "mwumLN"
     },
@@ -215,16 +190,8 @@
   ],
   "lists": [],
   "sections": [
-    {
-      "name": "mwumLN",
-      "title": "Before you start",
-      "hideTitle": false
-    },
-    {
-      "name": "FabDefault",
-      "title": "Default Section",
-      "hideTitle": true
-    }
+    { "name": "mwumLN", "title": "Before you start", "hideTitle": false },
+    { "name": "FabDefault", "title": "Default Section", "hideTitle": true }
   ],
   "conditions": [
     {
@@ -240,11 +207,7 @@
               "display": "Will you be required to undertake a Green Belt review to accommodate an increase in your local housing need as a result of our NPPF (National Planning Policy Framework) changes?"
             },
             "operator": "is",
-            "value": {
-              "type": "Value",
-              "value": "true",
-              "display": "true"
-            }
+            "value": { "type": "Value", "value": "true", "display": "true" }
           }
         ]
       }
@@ -262,11 +225,7 @@
               "display": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?"
             },
             "operator": "is",
-            "value": {
-              "type": "Value",
-              "value": "true",
-              "display": "true"
-            }
+            "value": { "type": "Value", "value": "true", "display": "true" }
           }
         ]
       }
@@ -284,11 +243,7 @@
               "display": "Please confirm that your Section 151 officer, or deputy Section 151 officer, is aware of this submission"
             },
             "operator": "is",
-            "value": {
-              "type": "Value",
-              "value": "true",
-              "display": "true"
-            }
+            "value": { "type": "Value", "value": "true", "display": "true" }
           }
         ]
       }
@@ -306,11 +261,7 @@
               "display": "Do you agree to collaborate with MHCLG over monitoring and evaluation requirements?"
             },
             "operator": "is",
-            "value": {
-              "type": "Value",
-              "value": "false",
-              "display": "false"
-            }
+            "value": { "type": "Value", "value": "false", "display": "false" }
           }
         ]
       }
@@ -328,11 +279,7 @@
               "display": "Will you be required to undertake a Green Belt review to accommodate an increase in your local housing need as a result of our NPPF (National Planning Policy Framework) changes?"
             },
             "operator": "is",
-            "value": {
-              "type": "Value",
-              "value": "false",
-              "display": "false"
-            }
+            "value": { "type": "Value", "value": "false", "display": "false" }
           }
         ]
       }
@@ -350,11 +297,7 @@
               "display": "Please confirm that your Section 151 officer, or deputy Section 151 officer, is aware of this submission"
             },
             "operator": "is",
-            "value": {
-              "type": "Value",
-              "value": "false",
-              "display": "false"
-            }
+            "value": { "type": "Value", "value": "false", "display": "false" }
           }
         ]
       }
@@ -372,11 +315,7 @@
               "display": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?"
             },
             "operator": "is",
-            "value": {
-              "type": "Value",
-              "value": "true",
-              "display": "true"
-            }
+            "value": { "type": "Value", "value": "true", "display": "true" }
           }
         ]
       }
@@ -394,11 +333,7 @@
               "display": "Do you commit to have proposals in place by March 2025 on how you will spend the funding?"
             },
             "operator": "is",
-            "value": {
-              "type": "Value",
-              "value": "false",
-              "display": "false"
-            }
+            "value": { "type": "Value", "value": "false", "display": "false" }
           }
         ]
       }
