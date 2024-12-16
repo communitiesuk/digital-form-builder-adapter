@@ -79,8 +79,8 @@
       "type": "string",
       "items": [
         {
-          "text": "Preparing or updating the plan evidence base  ",
-          "value": "Preparing or updating the plan evidence base  "
+          "text": "Preparing or updating the evidence base  ",
+          "value": "Preparing or updating the evidence base  "
         },
         { "text": "Technical studies ", "value": "Technical studies " },
         { "text": "Site assessments ", "value": "Site assessments " },
