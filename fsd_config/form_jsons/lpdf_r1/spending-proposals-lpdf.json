@@ -88,7 +88,10 @@
           "text": "Joint working with other local authorities",
           "value": "Joint working with other local authorities"
         },
-        { "text": "Community engagement", "value": "Community engagement" },
+        {
+          "text": "Consultation or engagement work",
+          "value": "Consultation or engagement work"
+        },
         {
           "text": "Hiring additional staff ",
           "value": "Hiring additional staff "
