@@ -55,14 +55,14 @@
     },
     {
       "path": "/which-types-of-activities-will-this-funding-will-be-used-to-support",
-      "title": "Which types of activities will this funding will be used to support?",
+      "title": "Which types of activities will this funding be used to support?",
       "components": [
         {
           "options": {
             "exposeToContext": true
           },
           "type": "CheckboxesField",
-          "title": "Which types of activities will this funding will be used to support?",
+          "title": "Which types of activities will this funding be used to support?",
           "hint": "Select all that apply",
           "schema": {},
           "name": "WIOGzl",
@@ -136,7 +136,7 @@
             "field": {
               "name": "LYpnCr.WIOGzl",
               "type": "CheckboxesField",
-              "display": "Which types of activities will this funding will be used to support?"
+              "display": "Which types of activities will this funding be used to support?"
             },
             "operator": "contains",
             "value": {
