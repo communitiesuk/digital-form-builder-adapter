@@ -10,7 +10,7 @@
                     {{itemValue}}<br>
                 {% endfor %}
             {% elif item.type == 'NumberField' or item.type == 'WebsiteField' and 'http' not in item.value|lower %}
-                {{item.prefix}}{{item.value}}
+                {{item.prefix}} {{item.value}} {{item.suffix}}
             {% elif item.type == 'ClientSideFileUploadField' %}
                 {% if item.value.files|length == 0 %}
                     {{ notSuppliedText }}

@@ -445,12 +445,11 @@ function Item(
         title: component.title,
         dataType: component.dataType,
         immutable: component.options.disableChangingFromSummary,
+        prefix: component.options && component.options.prefix ? component.options.prefix: "",
+        suffix: component.options && component.options.suffix ? component.options.suffix: "",
     };
 
-    if (
-        component.type === "FileUploadField" &&
-        model.showFilenamesOnSummaryPage
-    ) {
+    if (component.type === "FileUploadField" && model.showFilenamesOnSummaryPage && sectionState.originalFilenames) {
         //@ts-ignore
         item.filename = sectionState.originalFilenames[component.name]?.originalFilename;
     }
