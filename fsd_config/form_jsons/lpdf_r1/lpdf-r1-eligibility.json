@@ -32,7 +32,7 @@
     },
     {
       "path": "/will-your-emerging-local-plan-will-be-at-regulation-19-stage-on-12-march-2025",
-      "title": "Will your emerging local plan will be at Regulation 19 stage on 12 March 2025?",
+      "title": "Will your emerging local plan be at Regulation 19 stage on 12 March 2025?",
       "components": [
         {
           "name": "Mhzypt",
@@ -464,7 +464,7 @@
             "field": {
               "name": "mwumLN.Mhzypt",
               "type": "YesNoField",
-              "display": "Will your emerging local plan will be at Regulation 19 stage on 12 March 2025?"
+              "display": "Will your emerging local plan be at Regulation 19 stage on 12 March 2025?"
             },
             "operator": "is",
             "value": { "type": "Value", "value": "true", "display": "true" }
@@ -482,7 +482,7 @@
             "field": {
               "name": "mwumLN.Mhzypt",
               "type": "YesNoField",
-              "display": "Will your emerging local plan will be at Regulation 19 stage on 12 March 2025?"
+              "display": "Will your emerging local plan be at Regulation 19 stage on 12 March 2025?"
             },
             "operator": "is",
             "value": { "type": "Value", "value": "false", "display": "false" }

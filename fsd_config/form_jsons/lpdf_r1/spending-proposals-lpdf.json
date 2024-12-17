@@ -23,13 +23,13 @@
     },
     {
       "path": "/which-types-of-activities-will-this-funding-will-be-used-to-support",
-      "title": "Which types of activities will this funding will be used to support?",
+      "title": "Which types of activities will this funding be used to support?",
       "components": [
         {
           "name": "WIOGzl",
           "options": { "exposeToContext": true },
           "type": "CheckboxesField",
-          "title": "Which types of activities will this funding will be used to support?",
+          "title": "Which types of activities will this funding be used to support?",
           "hint": "Select all that apply",
           "list": "yHOipF",
           "schema": {}
@@ -79,8 +79,8 @@
       "type": "string",
       "items": [
         {
-          "text": "Preparing or updating the plan evidence base  ",
-          "value": "Preparing or updating the plan evidence base  "
+          "text": "Preparing or updating the evidence base  ",
+          "value": "Preparing or updating the evidence base  "
         },
         { "text": "Technical studies ", "value": "Technical studies " },
         { "text": "Site assessments ", "value": "Site assessments " },
@@ -88,7 +88,10 @@
           "text": "Joint working with other local authorities",
           "value": "Joint working with other local authorities"
         },
-        { "text": "Community engagement", "value": "Community engagement" },
+        {
+          "text": "Consultation or engagement work",
+          "value": "Consultation or engagement work"
+        },
         {
           "text": "Hiring additional staff ",
           "value": "Hiring additional staff "
@@ -113,7 +116,7 @@
             "field": {
               "name": "LYpnCr.WIOGzl",
               "type": "CheckboxesField",
-              "display": "Which types of activities will this funding will be used to support?"
+              "display": "Which types of activities will this funding be used to support?"
             },
             "operator": "contains",
             "value": { "type": "Value", "value": "Other", "display": "Other" }
