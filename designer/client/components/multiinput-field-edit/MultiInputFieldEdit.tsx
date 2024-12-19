@@ -51,8 +51,6 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
     //@ts-ignore
     const {options = {}} = selectedComponent;
     //@ts-ignore
-    options.required = true
-    //@ts-ignore
     selectedComponent.schema = !selectedComponent.schema ? {} : {
         ...selectedComponent.schema
     }
@@ -100,6 +98,7 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
         setShowEditor(!showEditor);
         if (showEditor) {
             setSelectedComponentType("Clear")
+            setSelectedSubComponent(undefined)
         }
     };
 

@@ -24,7 +24,7 @@ export const MultiInputFieldBaseEdit = React.forwardRef((props, ref: any) => {
             //@ts-ignore
             hideTitle = false,
             //@ts-ignore
-            optionalText = false,
+            optionalText = true,
             //@ts-ignore
             required = true,
             exposeToContext = false,
@@ -54,6 +54,16 @@ export const MultiInputFieldBaseEdit = React.forwardRef((props, ref: any) => {
                 setSelectedSubComponentEdit({
                     ...selectedSubComponentEdit,
                     title: event.payload
+                })
+            } else if (event.type === Actions.EDIT_OPTIONS_HIDE_OPTIONAL) {
+                setSelectedSubComponentEdit({
+                    ...selectedSubComponentEdit,
+                    //@ts-ignore
+                    options: {
+                        ...options,
+                        //@ts-ignore
+                        optionalText: event.payload
+                    }
                 })
             } else if (event.type === Actions.EDIT_HELP) {
                 setSelectedSubComponentEdit({
