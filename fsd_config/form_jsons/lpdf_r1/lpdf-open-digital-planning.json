@@ -1,0 +1,65 @@
+{
+  "metadata": {},
+  "startPage": "/open-digital-planning",
+  "pages": [
+    {
+      "title": "Open Digital Planning",
+      "path": "/open-digital-planning",
+      "components": [
+        {
+          "name": "oKuFsS",
+          "options": {},
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>whether you would like to receive more information about the Open Digital Planning community and support to develop digital and data skills in your planning service</li>\n</ul>",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/would-you-like-to-receive-more-information-about-the-open-digital-planning-community-and-support-to-develop-digital-and-data-skills-in-your-planning-service"
+        }
+      ],
+      "section": "sUTADw"
+    },
+    {
+      "path": "/would-you-like-to-receive-more-information-about-the-open-digital-planning-community-and-support-to-develop-digital-and-data-skills-in-your-planning-service",
+      "title": "Would you like to receive more information about the Open Digital Planning community and support to develop digital and data skills in your planning service?",
+      "components": [
+        {
+          "name": "ncrZUY",
+          "options": { "hideTitle": false },
+          "type": "YesNoField",
+          "title": "Would you like to receive more information about the Open Digital Planning community and support to develop digital and data skills in your planning service?",
+          "values": { "type": "listRef" },
+          "schema": {}
+        }
+      ],
+      "next": [{ "path": "/check-your-answers" }],
+      "section": "sUTADw"
+    },
+    {
+      "title": "Check your answers",
+      "path": "/check-your-answers",
+      "controller": "./pages/summary.js",
+      "components": [],
+      "section": "sUTADw",
+      "next": []
+    }
+  ],
+  "lists": [],
+  "sections": [
+    { "name": "FabDefault", "title": "Default Section", "hideTitle": true },
+    { "name": "sUTADw", "title": "Open Digital Planning", "hideTitle": true }
+  ],
+  "conditions": [],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "feeOptions": {
+    "allowSubmissionWithoutPayment": true,
+    "maxAttempts": 3,
+    "showPaymentSkippedWarningPage": false
+  },
+  "markAsComplete": false
+}
