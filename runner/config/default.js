@@ -88,7 +88,7 @@ module.exports = {
   authEnabled: false,
   jwtAuthEnabled: true,
   jwtAuthCookieName: "fsd_user_token",
-  jwtRedirectToAuthenticationUrl: "http://localhost:4004/sessions/sign-out",
+  jwtRedirectToAuthenticationUrl: "https://authenticator.levellingup.gov.localhost:4004/sessions/sign-out",
   logoutUrl: "/logout",
   multifundDashboard: "/account", //This is used to redirect to the multifund dashboard
   basicAuthOn: false,
