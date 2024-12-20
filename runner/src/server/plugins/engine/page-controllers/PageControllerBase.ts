@@ -602,6 +602,7 @@ export class PageControllerBase {
                 ? redirectTo(request, h, startPage!)
                 : redirectTo(request, h, `/${this.model.basePath}${startPage!}`);
 
+            viewModel.feedbackMessage = state["metadata"] && state["metadata"]["feedback_message"]
             this.setPhaseTag(viewModel);
             this.setFeedbackDetails(viewModel, request);
             await this.setExistingFilesToClientSideFileUpload(state, viewModel, currentPath, request);
