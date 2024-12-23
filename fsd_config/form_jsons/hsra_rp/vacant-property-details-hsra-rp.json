@@ -1,0 +1,126 @@
+{
+    "startPage": "/vacant-property-details",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/upload-the-initial-notice-you-served-the-landlord",
+            "title": "Upload the initial notice you served the landlord",
+            "components": [
+                {
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 1,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": "image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 1,
+                        "hideTitle": false
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload the initial notice you served the landlord",
+                    "hint": "",
+                    "schema": {},
+                    "name": "ndpQJk"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "ISBazm"
+        },
+        {
+            "path": "/what-is-the-total-commercial-floorspace-of-the-property-in-meters-squared",
+            "title": "What is the total commercial floorspace of the property, in meters squared?",
+            "components": [
+                {
+                    "options": {
+                        "suffix": "m2",
+                        "hideTitle": true,
+                        "classes": "govuk-input--width-5"
+                    },
+                    "type": "NumberField",
+                    "title": "What is the total commercial floorspace of the property, in meters squared?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "rFpLZQ"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-the-initial-notice-you-served-the-landlord"
+                }
+            ],
+            "section": "ISBazm"
+        },
+        {
+            "path": "/vacant-property-details",
+            "title": "Vacant property details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label >In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>the vacant property’s address and commercial floorspace</li>\n<li>the initial notice you served the landlord</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "rnzbvq"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-address-of-the-vacant-property"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/what-is-the-address-of-the-vacant-property",
+            "title": "What is the address of the vacant property?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "UkAddressField",
+                    "title": "What is the address of the vacant property?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "dwLpZU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-total-commercial-floorspace-of-the-property-in-meters-squared"
+                }
+            ],
+            "section": "ISBazm"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        },
+        {
+            "name": "ISBazm",
+            "title": "Vacant property details",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction"
+}

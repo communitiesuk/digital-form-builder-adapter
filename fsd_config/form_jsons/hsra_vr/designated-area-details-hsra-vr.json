@@ -1,0 +1,94 @@
+{
+    "startPage": "/designated-area-details",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/designated-area-details",
+            "title": "Designated area details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label >In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>the name of the designated area</li>\n<li>designation area details</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "ByrOzi"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-town-or-city-will-the-designated-area-be-located-in"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/tell-us-more-about-the-designated-area",
+            "title": "Tell us more about the designated area.",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us more about the designated area.",
+                    "hint": "Include information about:\n<br> \n<ul class=\"govuk-list govuk-list--bullet govuk-caption-m govuk-!-padding-top-2\">\n<li>the specific high street or town centre that you are creating a vacancy register for</li>\n<li>what stage of the designation process you are in</li>\n</ul>",
+                    "schema": {},
+                    "name": "YMqcPf"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "YFgsrH"
+        },
+        {
+            "path": "/which-town-or-city-will-the-designated-area-be-located-in",
+            "title": "Which town or city will the designated area be located in?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "Which town or city will the designated area be located in?",
+                    "hint": "You must have started the process to designate a town centre or high street.  ",
+                    "schema": {},
+                    "name": "frDgtU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-more-about-the-designated-area"
+                }
+            ],
+            "section": "YFgsrH"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        },
+        {
+            "name": "YFgsrH",
+            "title": "Designated area details",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction"
+}

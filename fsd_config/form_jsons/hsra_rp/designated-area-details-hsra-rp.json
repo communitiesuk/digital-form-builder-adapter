@@ -1,0 +1,94 @@
+{
+    "startPage": "/designated-area-details",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/share-the-link-with-details-of-the-designated-area",
+            "title": "Share the link with details of the designated area",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "WebsiteField",
+                    "title": "Share the link with details of the designated area.",
+                    "hint": "Enter the webpage link, for example ‘www.council.gov.uk/designations’ showing the designation area. \n<br /><br />\nWe’ll use this to check the property is within the designated area.",
+                    "schema": {},
+                    "name": "TzGISC"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "YFgsrH"
+        },
+        {
+            "path": "/which-designated-high-street-or-town-centre-is-the-vacant-property-in",
+            "title": "Which designated high street or town centre is the vacant property in?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "Which designated high street or town centre is the vacant property in?",
+                    "hint": "<label class=\"govuk-hint\">The official name of the designated area</label>",
+                    "schema": {},
+                    "name": "frDgtU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/share-the-link-with-details-of-the-designated-area"
+                }
+            ],
+            "section": "YFgsrH"
+        },
+        {
+            "path": "/designated-area-details",
+            "title": "Designated area details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label >In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>the location of the designated area</li>\n<li>published details of the designated area</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "ByrOzi"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-designated-high-street-or-town-centre-is-the-vacant-property-in"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        },
+        {
+            "name": "YFgsrH",
+            "title": "Designated area details",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction"
+}
