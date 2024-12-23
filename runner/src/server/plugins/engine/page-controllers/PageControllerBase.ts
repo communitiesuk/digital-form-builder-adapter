@@ -153,6 +153,7 @@ export class PageControllerBase {
         backLinkText?: string;
         continueButtonText?: string;
         phaseTag?: string | undefined;
+        feedbackMessage?: string | undefined;
     } {
         let showTitle = true;
         let pageTitle = this.title;
