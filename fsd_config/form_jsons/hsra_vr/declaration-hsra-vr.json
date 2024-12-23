@@ -1,0 +1,69 @@
+{
+    "startPage": "/by-submitting-this-application-you-confirm-that-the-information-you-have-provided-is-correct-PvIYSU",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/by-submitting-this-application-you-confirm-that-the-information-you-have-provided-is-correct-PvIYSU",
+            "title": "By submitting this application, you confirm that the information you have provided is correct.",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "By submitting this application, you confirm that the information you have provided is correct.",
+                    "hint": "",
+                    "schema": {},
+                    "name": "QUaOGq",
+                    "list": "OkbBaj",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "wycNzR",
+            "controller": "start.js"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "Yes, I confirm all the information is correct",
+                    "value": "confirm"
+                }
+            ],
+            "name": "OkbBaj",
+            "title": "By submitting this application, you confirm that the information you have provided is correct."
+        }
+    ],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        },
+        {
+            "name": "wycNzR",
+            "title": "Declaration",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction"
+}

@@ -1,0 +1,104 @@
+{
+    "startPage": "/project-costs",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/how-much-funding-are-you-applying-for",
+            "title": "How much funding are you applying for?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "prefix": "\u00a3",
+                        "classes": "govuk-!-width-one-half"
+                    },
+                    "type": "NumberField",
+                    "title": "How much funding are you applying for?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "MIrLuu"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-the-quote-for-the-vacancy-register"
+                }
+            ],
+            "section": "ObIMZj"
+        },
+        {
+            "path": "/project-costs",
+            "title": "Project costs",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label >In this section, we’ll ask:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>how much funding you are applying for</li>\n<li>for a copy of the vacancy register quote</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "lxWzlI"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-much-funding-are-you-applying-for"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/upload-the-quote-for-the-vacancy-register",
+            "title": "Upload the quote for the vacancy register",
+            "components": [
+                {
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 1,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": "image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 1,
+                        "hideTitle": false
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload the quote for the vacancy register",
+                    "hint": "",
+                    "schema": {},
+                    "name": "SqqyyB"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "ObIMZj"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        },
+        {
+            "name": "ObIMZj",
+            "title": "Project costs",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction"
+}
