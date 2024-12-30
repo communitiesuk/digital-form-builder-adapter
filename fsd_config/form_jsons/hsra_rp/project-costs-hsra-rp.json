@@ -1,0 +1,189 @@
+{
+    "startPage": "/project-costs",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/upload-the-independent-survey-of-works",
+            "title": "Upload the independent survey of works",
+            "components": [
+                {
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 1,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": "image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 1
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload the quote for the vacancy register",
+                    "hint": "",
+                    "schema": {},
+                    "name": "zORoJy"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-quotes-for-refurbishment"
+                }
+            ],
+            "section": "qavZyX"
+        },
+        {
+            "path": "/how-much-funding-are-you-applying-for",
+            "title": "How much funding are you applying for? ",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "prefix": "\u00a3",
+                        "classes": "govuk-!-width-one-quarter"
+                    },
+                    "type": "NumberField",
+                    "title": "How much funding are you applying for? ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "uJIluf"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-the-independent-survey-of-works"
+                },
+                {
+                    "path": "/why-are-your-costs-higher-than-the-guided-price",
+                    "condition": "RPgOof"
+                }
+            ],
+            "section": "qavZyX"
+        },
+        {
+            "path": "/why-are-your-costs-higher-than-the-guided-price",
+            "title": "Why are your costs higher than the guided price?",
+            "components": [
+                {
+                    "type": "InsetText",
+                    "content": "Costs are higher than the guided price.\n\nWe\u2019ve estimated that most HSRA projects should cost approximately \u00a350,000. We\u2019ll consider costs above this range but need to understand why your costs are higher.",
+                    "options": {},
+                    "schema": {},
+                    "name": "kKuvMY"
+                },
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": ""
+                    },
+                    "type": "FreeTextField",
+                    "title": "Why are your costs higher than the guided price?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "LFwJND"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-the-independent-survey-of-works"
+                }
+            ],
+            "section": "qavZyX"
+        },
+        {
+            "path": "/project-costs",
+            "title": "Project costs",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<label >In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>how much funding you are applying for</li>\n<li>the independent survey of works</li>\n<li>quotes for the refurbishment project</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "tguYic"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-much-funding-are-you-applying-for"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/upload-quotes-for-refurbishment",
+            "title": "Upload quotes for refurbishment",
+            "components": [
+                {
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 10,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": "image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 1
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload quotes for refurbishment",
+                    "hint": "",
+                    "schema": {},
+                    "name": "xPzwQq"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "qavZyX"
+        }
+    ],
+    "lists": [],
+    "conditions": [
+        {
+            "displayName": "Funding > 50,000",
+            "name": "RPgOof",
+            "value": {
+                "name": "Funding > 50,000",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "qavZyX.uJIluf",
+                            "type": "NumberField",
+                            "display": "How much funding are you applying for? "
+                        },
+                        "operator": "is more than",
+                        "value": {
+                            "type": "Value",
+                            "value": "50000",
+                            "display": "50000"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        },
+        {
+            "name": "qavZyX",
+            "title": "Project costs",
+            "hideTitle": false
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction"
+}

@@ -10,7 +10,7 @@
                     "name": "GqJNNZ",
                     "options": {},
                     "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding.</p>\n<p class=\"govuk-body govuk-!\">We'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation’s location</li>\n<li>the grant you are applying for</li>\n<li>designation status of high street or town centre </li>\n<li>the location of the vacant property</li>\n<li>how long the property has been vacant</li>\n<li>the vacancy rate of the high street</li>\n</ul>",
+                    "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding. We'll ask you to verify:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>that you are a local authority in England</li>\n<li>which type of grant you are applying for</li>\n<li>that the area subject to a HSRA has been officially designated</li>\n<li>that the property has been vacant for 366 days or more in the last 2 years</li>\n<li>that the vacancy rate of the high street is 8% or higher</li>\n</ul>",
                     "schema": {}
                 }
             ],
