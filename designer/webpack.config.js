@@ -121,7 +121,7 @@ const client = {
     new CopyPlugin({
       patterns: [
         {from: "../designer/client/i18n/translations", to: "assets/translations"},
-        {from: "../digital-form-builder/designer/server/views", to: "views"},
+        {from: "../designer/server/views", to: "views"},
       ],
     }),
     new BundleAnalyzerPlugin({
