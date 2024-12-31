@@ -10,6 +10,8 @@ import {determinePersistenceService} from "../../digital-form-builder/designer/s
 import {configureBlankiePlugin} from "../../digital-form-builder/designer/server/plugins/blankie";
 import {configureYarPlugin} from "../../digital-form-builder/designer/server/plugins/session";
 import {designerPlugin} from "./plugins/DesignerRouteRegister";
+import errorHandlerPlugin from "./plugins/ErrorHandlerPlugin";
+import authPlugin from "./plugins/AuthPlugin";
 
 const serverOptions = () => {
     return {
@@ -40,6 +42,9 @@ const serverOptions = () => {
 export async function createServer() {
     //@ts-ignore
     const server = hapi.server(serverOptions());
+    await server.register(errorHandlerPlugin);
+    //@ts-ignore
+    await server.register(authPlugin);
     await server.register(inert);
     await server.register(Scooter);
     //@ts-ignore

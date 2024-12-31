@@ -1,0 +1,21 @@
+{% extends 'designer.html' %}
+
+{% block content %}
+    <div class="new-config">
+        <div class="choice-wrapper">
+            <h1 class="govuk-heading-xl govuk-heading-xl__lowmargin">
+                Sign in to use Designer
+            </h1>
+            <p class="govuk-body">Sign in using the Microsoft account for your work email address.</p>
+
+            <button
+                    type="submit"
+                    class="govuk-button"
+                    data-module="govuk-button"
+                    onclick="window.location.href='{{ssoLoginUrl}}';"
+            >
+                Sign in using Microsoft
+            </button>
+        </div>
+    </div>
+{% endblock %}
