@@ -11,13 +11,15 @@
                 <span class="govuk-header__logotype-text">GOV.UK</span>
             </a>
         </div>
-        <div class="govuk-header__content">
-            <form method="post" action="/logout">
-                <span class="govuk-header__service-name"><span class="govuk-header__link">Form Designer</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="submit" class="govuk-header__link signout_button">Sign out</button>
-                </span>
-            </form>
-        </div>
+            <div class="govuk-header__content">
+                <form method="post" action="/logout">
+                    <span class="govuk-header__service-name"><span class="govuk-header__link">Form Designer</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {% if authEnable and not ssoLoginUrl %}
+                            <button type="submit" class="govuk-header__link signout_button">Sign out</button>
+                        {% endif %}
+                    </span>
+                </form>
+            </div>
     </div>
 </header>
 

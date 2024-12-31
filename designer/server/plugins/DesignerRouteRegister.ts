@@ -10,31 +10,6 @@ export const designerPlugin = {
         multiple: true,
         dependencies: "vision",
         register: async (server) => {
-            const loginRoute = {
-                method: "get",
-                path: "/login",
-                options: {
-                    handler: async (_request, h) => {
-                        return h.view("login", {
-                            ssoLoginUrl: config.authServiceUrl + config.ssoLoginUrl
-                        });
-                    },
-                },
-            }
-
-            server.route(loginRoute);
-
-            const logOutRoute = {
-                method: "post",
-                path: "/logout",
-                options: {
-                    handler: async (_request, h) => {
-                        return h.redirect(config.authServiceUrl + config.ssoLogoutUrl);
-                    },
-                },
-            }
-
-            server.route(logOutRoute);
 
             const startRoute = {
                 method: "get",
@@ -47,15 +22,62 @@ export const designerPlugin = {
             }
 
             // @ts-ignore
-            if (config.authEnabled) {
+            if (config.authEnabled && config.authEnabled == "true") {
+                const loginRoute = {
+                    method: "get",
+                    path: "/login",
+                    options: {
+                        handler: async (_request, h) => {
+                            return h.view("login", {
+                                ssoLoginUrl: config.authServiceUrl + config.ssoLoginUrl,
+                                authEnable: config.authEnabled
+                            });
+                        },
+                    },
+                }
+
+                const logOutRoute = {
+                    method: "post",
+                    path: "/logout",
+                    options: {
+                        handler: async (_request, h) => {
+                            console.log(config.authServiceUrl + config.ssoLogoutUrl)
+                            return h.redirect(config.authServiceUrl + config.ssoLogoutUrl);
+                        },
+                    },
+                }
+                server.route(logOutRoute);
+                server.route(loginRoute);
                 // @ts-ignore
                 startRoute.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                app.getApp.options.auth = jwtAuthStrategyName
+                app.getApp.options = {
+                    auth: jwtAuthStrategyName,
+                    handler: async (_request, h) => {
+                        //@ts-ignore
+                        return h.view("designer", {
+                            phase: config.phase,
+                            previewUrl: config.previewUrl,
+                            footerText: config.footerText,
+                            authEnable: config.authEnabled
+                        });
+                    },
+                }
                 // @ts-ignore
                 app.redirectNewToApp.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                app.getAppChildRoutes.options.auth = jwtAuthStrategyName
+                app.getAppChildRoutes.options = {
+                    auth: jwtAuthStrategyName,
+                    handler: async (_request, h) => {
+                        //@ts-ignore
+                        return h.view("designer", {
+                            phase: config.phase,
+                            previewUrl: config.previewUrl,
+                            footerText: config.footerText,
+                            authEnable: config.authEnabled
+                        });
+                    },
+                }
                 // @ts-ignore
                 app.getErrorCrashReport.options.auth = jwtAuthStrategyName
                 // @ts-ignore
