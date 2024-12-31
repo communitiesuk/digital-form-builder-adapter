@@ -12,7 +12,7 @@ services:
       - PUBLISH_URL=http://runner:3009
       - LAST_COMMIT
       - LAST_TAG
-      - AUTH_ENABLED=true
+      - AUTH_ENABLED=false
     command: yarn designer production
     depends_on:
       - runner
