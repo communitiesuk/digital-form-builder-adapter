@@ -15,7 +15,7 @@
   "description": "Cross government digital form builder adapter (designer)",
   "dependencies": {
     "@communitiesuk/model": "1.0.0",
-    "@sentry/node": "^8.47.0"
+    "@sentry/browser": "^8.47.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",

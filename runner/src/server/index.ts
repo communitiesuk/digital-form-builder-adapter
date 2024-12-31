@@ -110,7 +110,7 @@ function determineLocal(request: any) {
     }
 }
 
-function initSentry() {
+const initSentry = () => {
     if (config.sentryDsn.trim().length > 0 && config.sentryTracesSampleRate.trim().length > 0) {
         Sentry.init({
             dsn: config.sentryDsn, // Replace with your Sentry DSN
@@ -119,10 +119,9 @@ function initSentry() {
     }
 }
 
-initSentry()
-
 
 async function createServer(routeConfig: RouteConfig) {
+    initSentry()
     console.log("SERVER CREATING")
     const server = hapi.server(await serverOptions());
     // @ts-ignore
