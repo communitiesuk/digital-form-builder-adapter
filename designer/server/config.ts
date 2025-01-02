@@ -29,6 +29,8 @@ export interface Config {
     authServiceUrl: string,
     rsa256PublicKeyBase64: string,
     authCookieName: string,
+    sslKey: string,
+    sslCert: string,
 }
 
 // server-side storage expiration - defaults to 20 minutes
@@ -61,6 +63,8 @@ const schema = joi.object({
     authServiceUrl: joi.string().optional(),
     rsa256PublicKeyBase64: joi.string().optional(),
     authCookieName: joi.string().optional(),
+    sslKey: joi.string().optional(),
+    sslCert: joi.string().optional(),
 });
 
 // Build config
@@ -84,6 +88,8 @@ const config = {
     authServiceUrl: process.env.AUTH_SERVICE_URL,
     rsa256PublicKeyBase64: process.env.RSA256_PUBLIC_KEY_BASE64,
     authCookieName: process.env.AUTH_COOKIE_NAME,
+    sslKey: process.env.SSL_KEY,
+    sslCert: process.env.SSL_CERT,
 };
 
 // Validate config
