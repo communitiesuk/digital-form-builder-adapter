@@ -120,11 +120,16 @@ export const AdapterComponentCreate = (props) => {
         handleSubmit,
         handleTypeChange,
         reset,
+        //@ts-ignore
         hasErrors,
+        //@ts-ignore
         errors,
         component,
+        //@ts-ignore
         isSaving,
         renderTypeEdit,
+        //@ts-ignore
+        page
     } = useComponentCreate(props);
 
     const type = component?.type;
@@ -146,7 +151,7 @@ export const AdapterComponentCreate = (props) => {
             {!type && <AdapterComponentCreateList onSelectComponent={handleTypeChange}/>}
             {type && renderTypeEdit && (
                 <form onSubmit={handleSubmit}>
-                    {type && <AdapterComponentEdit/>}
+                    {type && <AdapterComponentEdit page={props.page}/>}
                 </form>
             )}
         </div>
