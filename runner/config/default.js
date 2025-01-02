@@ -109,4 +109,8 @@ module.exports = {
   migrationBannerEnabled: false,
   eligibilityResultUrl: "",
   ignoreSectionsFromSummary: ["FabDefault"],
+
+  /*sentry configurations*/
+  sentryDsn: "",
+  sentryTracesSampleRate: ""
 };

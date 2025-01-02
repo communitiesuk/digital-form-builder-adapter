@@ -31,6 +31,8 @@ export interface Config {
     authCookieName: string,
     sslKey: string,
     sslCert: string,
+    sentryDsn: string,
+    sentryTracesSampleRate: number,
 }
 
 // server-side storage expiration - defaults to 20 minutes
@@ -65,6 +67,8 @@ const schema = joi.object({
     authCookieName: joi.string().optional(),
     sslKey: joi.string().optional(),
     sslCert: joi.string().optional(),
+    sentryDsn: joi.string().optional(),
+    sentryTracesSampleRate: joi.number().optional(),
 });
 
 // Build config
@@ -90,6 +94,8 @@ const config = {
     authCookieName: process.env.AUTH_COOKIE_NAME,
     sslKey: process.env.SSL_KEY,
     sslCert: process.env.SSL_CERT,
+    sentryDsn: process.env.SENTRY_DDSN,
+    sentryTracesSampleRate: process.env.SENTRY_TRACE_SAMPLE_RATE,
 };
 
 // Validate config

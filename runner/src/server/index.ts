@@ -40,6 +40,8 @@ import {TranslationLoaderService} from "./services/TranslationLoaderService";
 import {WebhookService} from "./services/WebhookService";
 import {pluginLog} from "./plugins/logging";
 
+const Sentry = require('@sentry/node');
+
 const serverOptions = async (): Promise<ServerOptions> => {
     const hasCertificate = config.sslKey && config.sslCert;
 
@@ -108,12 +110,31 @@ function determineLocal(request: any) {
     }
 }
 
+function initSentry() {
+    if (config.sentryDsn.trim().length > 0 && config.sentryTracesSampleRate.trim().length > 0) {
+        Sentry.init({
+            dsn: config.sentryDsn, // Replace with your Sentry DSN
+            tracesSampleRate: config.sentryTracesSampleRate, // Set tracesSampleRate to 0 to disable performance monitoring
+        });
+    }
+}
+
+initSentry()
+
+
 async function createServer(routeConfig: RouteConfig) {
     console.log("SERVER CREATING")
     const server = hapi.server(await serverOptions());
     // @ts-ignore
     const {formFileName, formFilePath, options} = routeConfig;
-
+    // Add a global error handler
+    server.ext('onPreResponse', (request, h) => {
+        const response = request.response;
+        if ("isBoom" in response && response.isBoom) {
+            Sentry.captureException(response);
+        }
+        return h.continue;
+    });
     if (config.rateLimit) {
         await server.register(configureRateLimitPlugin(routeConfig));
     }

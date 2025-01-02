@@ -14,6 +14,8 @@ import authPlugin from "./plugins/AuthPlugin";
 import fs from "fs";
 import config from "./config";
 
+const Sentry = require('@sentry/node');
+
 const serverOptions = () => {
     const hasCertificate = config.sslKey && config.sslCert;
 
@@ -56,6 +58,17 @@ const serverOptions = () => {
     };
 };
 
+function initSentry() {
+    if (config.sentryDsn && config.sentryTracesSampleRate && config.sentryDsn.trim().length > 0) {
+        Sentry.init({
+            dsn: config.sentryDsn, // Replace with your Sentry DSN
+            tracesSampleRate: config.sentryTracesSampleRate, // Set tracesSampleRate to 0 to disable performance monitoring
+        });
+    }
+}
+
+initSentry()
+
 export async function createServer() {
     //@ts-ignore
     const server = hapi.server(serverOptions());
@@ -79,6 +92,7 @@ export async function createServer() {
     await server.register(designerPlugin);
     await server.register(router);
     await server.register(logging);
-
+    // Setting up sentry error
+    await Sentry.setupHapiErrorHandler(server);
     return server;
 }
