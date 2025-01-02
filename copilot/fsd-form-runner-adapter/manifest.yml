@@ -51,7 +51,7 @@ network:
 #
 # Pass environment variables as key value pairs.
 variables:
-  SENTRY_DSN: "https://80c7f65b54f0eff535777a66b375adf0@o1432034.ingest.us.sentry.io/4508324370317312"
+  SENTRY_DSN: "https://6724d8df633d3f4599fbd4cf9c537e3c@o1432034.ingest.us.sentry.io/4508573162864640"
   SENTRY_TRACES_SAMPLE_RATE: 1.0
   ACCESSIBILITY_STATEMENT_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/accessibility_statement"
   AWS_BUCKET_NAME:
@@ -83,16 +83,19 @@ environments:
   dev:
     variables:
       PREVIEW_MODE: true
+      NODE_ENV: dev
     count:
       spot: 2
   test:
     variables:
       PREVIEW_MODE: true
+      NODE_ENV: test
     count:
       spot: 2
   uat:
     variables:
       PREVIEW_MODE: true
+      NODE_ENV: uat
     count:
       range: 2-4
       cooldown:
@@ -121,6 +124,7 @@ environments:
       SERVICE_START_PAGE: "https://frontend.access-funding.levellingup.gov.uk/account"
       ELIGIBILITY_RESULT_URL: "https://frontend.access-funding.levellingup.gov.uk/eligibility-result"
       SENTRY_TRACES_SAMPLE_RATE: 0.02
+      NODE_ENV: production
     count:
       range: 2-4
       cooldown:

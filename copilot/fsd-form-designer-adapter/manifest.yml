@@ -51,9 +51,8 @@ network:
 #
 # Pass environment variables as key value pairs.
 variables:
-  SENTRY_DSN: "https://80c7f65b54f0eff535777a66b375adf0@o1432034.ingest.us.sentry.io/4508324370317312"
+  SENTRY_DSN: "https://6ea6ede15c9324f76df31ded81ac9468@o1432034.ingest.us.sentry.io/4508569971261440"
   SENTRY_TRACES_SAMPLE_RATE: 1.0
-  NODE_ENV: production
   CHOKIDAR_USEPOLLING: true
   PREVIEW_URL: "https://forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk"
   PUBLISH_URL: "http://fsd-form-runner-adapter:3009"
