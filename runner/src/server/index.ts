@@ -1,5 +1,6 @@
 // @ts-ignore
 import fs from "fs";
+import "../instrument";
 // @ts-ignore
 import hapi, {ServerOptions} from "@hapi/hapi";
 
@@ -39,6 +40,8 @@ import LanguagePlugin from "./plugins/LanguagePlugin";
 import {TranslationLoaderService} from "./services/TranslationLoaderService";
 import {WebhookService} from "./services/WebhookService";
 import {pluginLog} from "./plugins/logging";
+
+const Sentry = require('@sentry/node');
 
 const serverOptions = async (): Promise<ServerOptions> => {
     const hasCertificate = config.sslKey && config.sslCert;
@@ -109,11 +112,10 @@ function determineLocal(request: any) {
 }
 
 async function createServer(routeConfig: RouteConfig) {
-    console.log("SERVER CREATING")
+    console.log("*** SERVER CREATING WITH PLUGINS ***")
     const server = hapi.server(await serverOptions());
     // @ts-ignore
     const {formFileName, formFilePath, options} = routeConfig;
-
     if (config.rateLimit) {
         await server.register(configureRateLimitPlugin(routeConfig));
     }
@@ -147,7 +149,10 @@ async function createServer(routeConfig: RouteConfig) {
         (request: HapiRequest, h: HapiResponseToolkit) => {
             const {response} = request;
 
-            if ("isBoom" in response && response.isBoom) {
+            if ("isBoom" in response && response.isBoom
+                && response?.output?.statusCode >= 500
+                && response?.output?.statusCode < 600) {
+                Sentry.captureException(response);
                 return h.continue;
             }
 
@@ -207,6 +212,9 @@ async function createServer(routeConfig: RouteConfig) {
     server.state("cookies_policy", {
         encoding: "base64json",
     });
+
+    // Sentry error monitoring
+    await Sentry.setupHapiErrorHandler(server);
     return server;
 }
 
