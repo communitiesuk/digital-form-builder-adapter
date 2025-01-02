@@ -14,8 +14,6 @@ import authPlugin from "./plugins/AuthPlugin";
 import fs from "fs";
 import config from "./config";
 
-const Sentry = require('@sentry/node');
-
 const serverOptions = () => {
     const hasCertificate = config.sslKey && config.sslCert;
 
