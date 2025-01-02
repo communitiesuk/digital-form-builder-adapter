@@ -1,20 +1,23 @@
-import hapi from "@hapi/hapi";
+import hapi, {ServerOptions} from "@hapi/hapi";
 import inert from "@hapi/inert";
 import Scooter from "@hapi/scooter";
 import logging from "../../digital-form-builder/designer/server/plugins/logging";
 import router from "../../digital-form-builder/designer/server/plugins/router";
 import {viewPlugin} from "../../digital-form-builder/designer/server/plugins/view";
 import Schmervice from "schmervice";
-import config from "../../digital-form-builder/designer/server/config";
 import {determinePersistenceService} from "../../digital-form-builder/designer/server/lib/persistence";
 import {configureBlankiePlugin} from "../../digital-form-builder/designer/server/plugins/blankie";
 import {configureYarPlugin} from "../../digital-form-builder/designer/server/plugins/session";
 import {designerPlugin} from "./plugins/DesignerRouteRegister";
 import errorHandlerPlugin from "./plugins/ErrorHandlerPlugin";
 import authPlugin from "./plugins/AuthPlugin";
+import fs from "fs";
+import config from "./config";
 
 const serverOptions = () => {
-    return {
+    const hasCertificate = config.sslKey && config.sslCert;
+
+    const serverOptions: ServerOptions = {
         port: process.env.PORT || 3000,
         router: {
             stripTrailingSlash: true,
@@ -36,6 +39,20 @@ const serverOptions = () => {
                 xframe: true,
             },
         },
+    };
+
+    const httpsOptions = hasCertificate
+        ? {
+            tls: {
+                key: fs.readFileSync(config.sslKey),
+                cert: fs.readFileSync(config.sslCert),
+            },
+        }
+        : {};
+
+    return {
+        ...serverOptions,
+        ...httpsOptions,
     };
 };
 
