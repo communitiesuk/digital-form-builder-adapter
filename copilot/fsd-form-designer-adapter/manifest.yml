@@ -51,6 +51,7 @@ network:
 #
 # Pass environment variables as key value pairs.
 variables:
+  NODE_ENV: production
   CHOKIDAR_USEPOLLING: true
   PREVIEW_URL: "https://forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk"
   PUBLISH_URL: "http://fsd-form-runner-adapter:3009"
