@@ -112,6 +112,7 @@ function determineLocal(request: any) {
 
 const initSentry = () => {
     if (config.sentryDsn && config.sentryTracesSampleRate && config.sentryDsn.trim().length > 0 && config.sentryTracesSampleRate.trim().length > 0) {
+        console.log("Sentry monitoring enabled")
         Sentry.init({
             dsn: config.sentryDsn, // Replace with your Sentry DSN
             tracesSampleRate: config.sentryTracesSampleRate, // Set tracesSampleRate to 0 to disable performance monitoring
@@ -160,6 +161,7 @@ async function createServer(routeConfig: RouteConfig) {
             const {response} = request;
 
             if ("isBoom" in response && response.isBoom) {
+                Sentry.captureException(response);
                 return h.continue;
             }
 
