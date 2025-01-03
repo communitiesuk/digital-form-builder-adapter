@@ -40,6 +40,8 @@ import {TranslationLoaderService} from "./services/TranslationLoaderService";
 import {WebhookService} from "./services/WebhookService";
 import {pluginLog} from "./plugins/logging";
 
+const Sentry = require('@sentry/node');
+
 const serverOptions = async (): Promise<ServerOptions> => {
     const hasCertificate = config.sslKey && config.sslCert;
 
@@ -108,12 +110,27 @@ function determineLocal(request: any) {
     }
 }
 
+const initSentry = () => {
+    if (config.sentryDsn && config.sentryTracesSampleRate && config.sentryDsn.trim().length > 0 && config.sentryTracesSampleRate.trim().length > 0) {
+        console.log("SENTRY MONITORING ENABLED")
+        console.log(`Environment ${config.env}`)
+        console.log(`Sample Rate ${config.sentryTracesSampleRate}`)
+        console.log(`DSN Available`)
+        Sentry.init({
+            dsn: config.sentryDsn, // Replace with your Sentry DSN
+            tracesSampleRate: config.sentryTracesSampleRate, // Set tracesSampleRate to 0 to disable performance monitoring
+            environment: config.env || "production"
+        });
+    }
+}
+
+
 async function createServer(routeConfig: RouteConfig) {
+    initSentry()
     console.log("SERVER CREATING")
     const server = hapi.server(await serverOptions());
     // @ts-ignore
     const {formFileName, formFilePath, options} = routeConfig;
-
     if (config.rateLimit) {
         await server.register(configureRateLimitPlugin(routeConfig));
     }
@@ -148,6 +165,7 @@ async function createServer(routeConfig: RouteConfig) {
             const {response} = request;
 
             if ("isBoom" in response && response.isBoom) {
+                Sentry.captureException(response);
                 return h.continue;
             }
 
@@ -207,6 +225,9 @@ async function createServer(routeConfig: RouteConfig) {
     server.state("cookies_policy", {
         encoding: "base64json",
     });
+
+    // Sentry error monitoring
+    await Sentry.setupHapiErrorHandler(server);
     return server;
 }
 

@@ -67,5 +67,7 @@
     "__name": "MIGRATION_BANNER_ENABLED",
     "__format": "boolean"
   },
-  "ignoreSectionsFromSummary": "IGNORE_SECTIONS_FROM_SUMMARY_PAGE"
+  "ignoreSectionsFromSummary": "IGNORE_SECTIONS_FROM_SUMMARY_PAGE",
+  "sentryDsn": "SENTRY_DSN",
+  "sentryTracesSampleRate": "SENTRY_TRACES_SAMPLE_RATE"
 }
