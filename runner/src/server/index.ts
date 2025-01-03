@@ -112,12 +112,14 @@ function determineLocal(request: any) {
 
 const initSentry = () => {
     if (config.sentryDsn && config.sentryTracesSampleRate && config.sentryDsn.trim().length > 0 && config.sentryTracesSampleRate.trim().length > 0) {
-        console.log("Sentry monitoring enabled")
+        console.log("SENTRY MONITORING ENABLED")
+        console.log(`Environment ${config.env}`)
+        console.log(`Sample Rate ${config.sentryTracesSampleRate}`)
+        console.log(`DSN Available`)
         Sentry.init({
             dsn: config.sentryDsn, // Replace with your Sentry DSN
             tracesSampleRate: config.sentryTracesSampleRate, // Set tracesSampleRate to 0 to disable performance monitoring
-            environment: process.env.NODE_ENV || "production",
-            release: process.env.GITHUB_SHA || "unknown",
+            environment: config.env || "production"
         });
     }
 }
