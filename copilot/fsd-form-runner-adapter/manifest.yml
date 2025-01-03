@@ -35,8 +35,6 @@ count: 1
 # Enable running commands in your container.
 exec: true
 
-command: ["sh", "-c", "NODE_ENV=${NODE_ENV} yarn runner production"]
-
 network:
   connect: true # Enable Service Connect for intra-environment traffic between services.
 
@@ -88,12 +86,14 @@ environments:
       NODE_ENV: dev
     count:
       spot: 2
+    command: ["sh", "-c", "NODE_ENV=dev yarn runner production"]
   test:
     variables:
       PREVIEW_MODE: true
       NODE_ENV: test
     count:
       spot: 2
+    command: ["sh", "-c", "NODE_ENV=dev yarn runner production"]
   uat:
     variables:
       PREVIEW_MODE: true
@@ -109,6 +109,7 @@ environments:
         value: 80
       requests: 30
       response_time: 2s
+    command: ["sh", "-c", "NODE_ENV=uat yarn runner production"]
   prod:
     http:
       alias: forms.access-funding.levellingup.gov.uk
@@ -126,7 +127,7 @@ environments:
       SERVICE_START_PAGE: "https://frontend.access-funding.levellingup.gov.uk/account"
       ELIGIBILITY_RESULT_URL: "https://frontend.access-funding.levellingup.gov.uk/eligibility-result"
       SENTRY_TRACES_SAMPLE_RATE: 0.02
-      NODE_ENV: production
+      NODE_ENV: prod
     count:
       range: 2-4
       cooldown:
@@ -137,3 +138,4 @@ environments:
       memory_percentage:
         value: 80
       requests: 30
+    command: ["sh", "-c", "NODE_ENV=prod yarn runner production"]
