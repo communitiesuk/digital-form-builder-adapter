@@ -35,6 +35,8 @@ count: 1
 # Enable running commands in your container.
 exec: true
 
+command: ["sh", "-c", "NODE_ENV=${NODE_ENV} yarn runner production"]
+
 network:
   connect: true # Enable Service Connect for intra-environment traffic between services.
 
