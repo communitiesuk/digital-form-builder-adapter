@@ -116,6 +116,8 @@ const initSentry = () => {
         Sentry.init({
             dsn: config.sentryDsn, // Replace with your Sentry DSN
             tracesSampleRate: config.sentryTracesSampleRate, // Set tracesSampleRate to 0 to disable performance monitoring
+            environment: process.env.NODE_ENV || "production",
+            release: process.env.GITHUB_SHA || "unknown",
         });
     }
 }
