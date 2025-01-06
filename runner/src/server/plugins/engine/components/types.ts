@@ -22,4 +22,7 @@ export type ClientSideFileUploadFieldViewModel = {
 
 export type AdapterDataType = DataType | "multiInput" | "freeText";
 
-
+export type ChangeRequest = {
+  title: string;
+  messages: string[];
+}
