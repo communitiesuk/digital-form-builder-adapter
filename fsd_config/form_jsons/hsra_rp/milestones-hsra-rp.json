@@ -1,160 +1,161 @@
 {
-    "startPage": "/milestones",
-    "pages": [
+  "startPage": "/milestones",
+  "pages": [
+    {
+      "path": "/summary",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/when-do-you-expect-the-auction-to-take-place",
+      "title": "When do you expect the auction to take place?",
+      "components": [
         {
-            "path": "/summary",
-            "title": "Check your answers",
-            "components": [],
-            "next": [],
-            "section": "FabDefault",
-            "controller": "./pages/summary.js"
-        },
-        {
-            "path": "/when-do-you-expect-the-auction-to-take-place",
-            "title": "When do you expect the auction to take place?",
-            "components": [
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "DatePartsField",
-                    "title": "When do you expect the auction to take place?",
-                    "hint": "For example, 27 10 2024",
-                    "schema": {},
-                    "name": "kkBYPW"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/when-do-you-expect-to-submit-your-claim"
-                }
-            ],
-            "section": "wtecPW"
-        },
-        {
-            "path": "/milestones",
-            "title": "Milestones",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "<label >In this section, we’ll ask about expected dates for:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>the high street rental auction</li>\n<li>the claim to be submission</li>\n<li>the tenancy agreement to be signed off</li>\n<li>the refurbishment works to complete</li>\n<li>the tenant to move in</li>\n</ul>",
-                    "options": {},
-                    "schema": {},
-                    "name": "EGjyyU"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/when-do-you-expect-the-auction-to-take-place"
-                }
-            ],
-            "section": "FabDefault",
-            "controller": "start.js"
-        },
-        {
-            "path": "/when-do-you-expect-the-tenant-to-move-in",
-            "title": "When do you expect the tenant to move in?",
-            "components": [
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "DatePartsField",
-                    "title": "When do you expect the tenant to move in?",
-                    "hint": "For example, 27 10 2024",
-                    "schema": {},
-                    "name": "HeqfVH"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/summary"
-                }
-            ],
-            "section": "wtecPW"
-        },
-        {
-            "path": "/when-do-you-expect-to-finish-the-refurbishment-works",
-            "title": "When do you expect to finish the refurbishment works?",
-            "components": [
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "DatePartsField",
-                    "title": "When do you expect to finish the refurbishment works?",
-                    "hint": "For example, 27 10 2024",
-                    "schema": {},
-                    "name": "gLzqSP"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/when-do-you-expect-the-tenant-to-move-in"
-                }
-            ],
-            "section": "wtecPW"
-        },
-        {
-            "path": "/when-do-you-expect-to-submit-your-claim",
-            "title": "When do you expect to submit your claim?",
-            "components": [
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "DatePartsField",
-                    "title": "When do you expect to submit your claim?",
-                    "hint": "For example, 27 10 2024",
-                    "schema": {},
-                    "name": "pTZLiJ"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/when-do-you-expect-the-tenant-to-sign-the-tenancy-agreement"
-                }
-            ],
-            "section": "wtecPW"
-        },
-        {
-            "path": "/when-do-you-expect-the-tenant-to-sign-the-tenancy-agreement",
-            "title": "When do you expect the tenant to sign  the tenancy agreement?",
-            "components": [
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "DatePartsField",
-                    "title": "When do you expect the tenant to sign  the tenancy agreement?",
-                    "hint": "For example, 27 10 2024",
-                    "schema": {},
-                    "name": "ihfalZ"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/when-do-you-expect-to-finish-the-refurbishment-works"
-                }
-            ],
-            "section": "wtecPW"
-        }
-    ],
-    "lists": [],
-    "conditions": [],
-    "sections": [
-        {
-            "name": "FabDefault",
-            "title": "Default Section",
+          "options": {
             "hideTitle": true
-        },
-        {
-            "name": "wtecPW",
-            "title": "Milestones",
-            "hideTitle": false
+          },
+          "type": "DatePartsField",
+          "title": "When do you expect the auction to take place?",
+          "hint": "For example, 27 10 2024",
+          "schema": {},
+          "name": "kkBYPW"
         }
-    ],
-    "outputs": [],
-    "skipSummary": false,
-    "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction"
+      ],
+      "next": [
+        {
+          "path": "/when-do-you-expect-to-submit-your-claim"
+        }
+      ],
+      "section": "wtecPW"
+    },
+    {
+      "path": "/milestones",
+      "title": "Milestones",
+      "components": [
+        {
+          "type": "Para",
+          "content": "<label >In this section, we’ll ask about expected dates for:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>the high street rental auction</li>\n<li>the claim to be submitted</li>\n<li>the tenancy agreement to be signed off</li>\n<li>the refurbishment works to complete</li>\n<li>the tenant to move in</li>\n</ul>",
+          "options": {},
+          "schema": {},
+          "name": "EGjyyU"
+        }
+      ],
+      "next": [
+        {
+          "path": "/when-do-you-expect-the-auction-to-take-place"
+        }
+      ],
+      "section": "FabDefault",
+      "controller": "start.js"
+    },
+    {
+      "path": "/when-do-you-expect-the-tenant-to-move-in",
+      "title": "When do you expect the tenant to move in?",
+      "components": [
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "DatePartsField",
+          "title": "When do you expect the tenant to move in?",
+          "hint": "For example, 27 10 2024",
+          "schema": {},
+          "name": "HeqfVH"
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "wtecPW"
+    },
+    {
+      "path": "/when-do-you-expect-to-finish-the-refurbishment-works",
+      "title": "When do you expect to finish the refurbishment works?",
+      "components": [
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "DatePartsField",
+          "title": "When do you expect to finish the refurbishment works?",
+          "hint": "For example, 27 10 2024",
+          "schema": {},
+          "name": "gLzqSP"
+        }
+      ],
+      "next": [
+        {
+          "path": "/when-do-you-expect-the-tenant-to-move-in"
+        }
+      ],
+      "section": "wtecPW"
+    },
+    {
+      "path": "/when-do-you-expect-to-submit-your-claim",
+      "title": "When do you expect to submit your claim?",
+      "components": [
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "DatePartsField",
+          "title": "When do you expect to submit your claim?",
+          "hint": "For example, 27 10 2024",
+          "schema": {},
+          "name": "pTZLiJ"
+        }
+      ],
+      "next": [
+        {
+          "path": "/when-do-you-expect-the-tenant-to-sign-the-tenancy-agreement"
+        }
+      ],
+      "section": "wtecPW"
+    },
+    {
+      "path": "/when-do-you-expect-the-tenant-to-sign-the-tenancy-agreement",
+      "title": "When do you expect the tenant to sign  the tenancy agreement?",
+      "components": [
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "DatePartsField",
+          "title": "When do you expect the tenant to sign  the tenancy agreement?",
+          "hint": "For example, 27 10 2024",
+          "schema": {},
+          "name": "ihfalZ"
+        }
+      ],
+      "next": [
+        {
+          "path": "/when-do-you-expect-to-finish-the-refurbishment-works"
+        }
+      ],
+      "section": "wtecPW"
+    }
+  ],
+  "lists": [],
+  "conditions": [],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    },
+    {
+      "name": "wtecPW",
+      "title": "Milestones",
+      "hideTitle": false
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction",
+  "version": 2
 }
