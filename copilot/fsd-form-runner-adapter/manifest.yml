@@ -64,7 +64,6 @@ variables:
   LOGOUT_URL: "https://authenticator.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/sessions/sign-out"
   MULTIFUND_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
   NODE_CONFIG: '{"safelist": ["fsd-application-store", "fsd-pre-award-stores", "fsd-pre-award", "fsd-pre-award.${COPILOT_ENVIRONMENT_NAME}.pre-award.local"]}'
-  NODE_ENV: production
   PRIVACY_POLICY_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/privacy"
   SERVICE_START_PAGE: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
   SINGLE_REDIS: true
@@ -86,14 +85,12 @@ environments:
       NODE_ENV: dev
     count:
       spot: 2
-    command: ["sh", "-c", "NODE_ENV=dev yarn runner production"]
   test:
     variables:
       PREVIEW_MODE: true
       NODE_ENV: test
     count:
       spot: 2
-    command: ["sh", "-c", "NODE_ENV=dev yarn runner production"]
   uat:
     variables:
       PREVIEW_MODE: true
@@ -109,7 +106,6 @@ environments:
         value: 80
       requests: 30
       response_time: 2s
-    command: ["sh", "-c", "NODE_ENV=uat yarn runner production"]
   prod:
     http:
       alias: forms.access-funding.levellingup.gov.uk
@@ -138,4 +134,3 @@ environments:
       memory_percentage:
         value: 80
       requests: 30
-    command: ["sh", "-c", "NODE_ENV=prod yarn runner production"]
