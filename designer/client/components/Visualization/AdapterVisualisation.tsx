@@ -4,8 +4,6 @@ import React, {useContext, useEffect, useRef, useState} from "react";
 import "../../../../digital-form-builder/designer/client/components/Visualisation/visualisation.scss";
 import {getLayout, Pos} from "../../../../digital-form-builder/designer/client/components/Visualisation/getLayout";
 import {AdapterPage} from "../Page";
-import {Info} from "../../../../digital-form-builder/designer/client/components/Visualisation/Info";
-import {Minimap} from "../../../../digital-form-builder/designer/client/components/Visualisation/Minimap";
 import {AdapterDataContext} from "../../context/AdapterDataContext";
 import {AdapterLines} from "./AdapterLines";
 
@@ -36,6 +34,7 @@ export const AdapterVisualisation = (props: Props) => {
 
     const {updatedAt, downloadedAt, previewUrl, persona, id} = props;
     const {pages} = data;
+    const scale = 0.05
 
     const wrapperStyle = layout && {
         width: layout?.width,
@@ -61,9 +60,48 @@ export const AdapterVisualisation = (props: Props) => {
                     </div>
                 </div>
 
-                {layout && <Info downloadedAt={downloadedAt} updatedAt={updatedAt}/>}
+                {layout &&
+                    <div style={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+                        <div className="notification" style={{position: 'relative'}}>
+                            <p className="govuk-body">last downloaded at {downloadedAt}</p>
+                            <p className="govuk-body">last updated at {updatedAt}</p>
+                        </div>
+                        <div className="minimap" style={{position: 'relative'}}>
+                            <svg
+                                height={parseFloat(layout.height) * scale}
+                                width={parseFloat(layout.width) * scale}
+                            >
+                                {layout.edges.map((edge) => {
+                                    const points = edge.points
+                                        .map((points) => `${points.x * scale},${points.y * scale}`)
+                                        .join(" ");
+                                    return (
+                                        <g key={points}>
+                                            <polyline points={points}/>
+                                        </g>
+                                    );
+                                })}
 
-                {layout && <Minimap layout={layout}/>}
+                                {layout.nodes.map((node, index) => {
+                                    // @ts-ignore
+                                    return (
+                                        <g key={node + index}><a id={node + index} xlinkHref={`#${node.node.label}`}>
+                                            <rect
+                                                x={parseFloat(node.left) * scale}
+                                                y={parseFloat(node.top) * scale}
+                                                width={node.node.width * scale}
+                                                height={node.node.height * scale}
+                                                //@ts-ignore
+                                                title={node.node.label}
+                                            />
+                                        </a>
+                                        </g>
+                                    );
+                                })}
+                            </svg>
+                        </div>
+                    </div>
+                }
             </div>
         </>
     );

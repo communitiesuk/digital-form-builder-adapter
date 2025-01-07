@@ -107,7 +107,7 @@ export default class AdapterDesigner extends Component<Props, State> {
                                 <Prompt when={!error} message={`${i18n("leaveDesigner")}`}
                                     //@ts-ignore
                                 /><AdapterMenu id={this.id} updateDownloadedAt={this.updateDownloadedAt}
-                                               //@ts-ignore
+                                //@ts-ignore
                                                updatePersona={this.updatePersona}/>
                                 <AdapterVisualisation downloadedAt={
                                     //@ts-ignore
