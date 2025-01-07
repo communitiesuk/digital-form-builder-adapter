@@ -26,6 +26,7 @@
     "@aws-sdk/client-s3": "3.633.0",
     "@aws-sdk/lib-storage": "3.633.0",
     "@aws-sdk/s3-request-presigner": "3.633.0",
+    "@sentry/node": "^8.47.0",
     "dropzone": "5.9.3",
     "hapi-i18n": "3.0.1",
     "joi": "17.13.3",
