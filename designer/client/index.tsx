@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {LandingChoice, NewConfig} from "../../digital-form-builder/designer/client/pages/LandingPage";
 import {SaveError} from "../../digital-form-builder/designer/client/pages/ErrorPages";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import { ViewFundForms } from "./pages/landing-page";
+import {ViewFundForms} from "./pages/landing-page";
 import AdapterDesigner from "./AdapterDesigner";
 import {adapterInitI18n} from "./i18n";
 
@@ -17,7 +17,7 @@ export class CustomApp extends React.Component {
     render() {
         return (
             <Router basename="/app">
-                <div id="app">
+                <div id="app" style={{overflow: 'auto'}}>
                     <Switch>
                         <Route path="/designer/:id" component={AdapterDesigner}/>
                         <Route path="/" exact>
@@ -27,7 +27,7 @@ export class CustomApp extends React.Component {
                             <NewConfig/>
                         </Route>
                         <Route path="/choose-existing" exact>
-                            <ViewFundForms />
+                            <ViewFundForms/>
                         </Route>
                         <Route path="/save-error" exact>
                             <SaveError/>
