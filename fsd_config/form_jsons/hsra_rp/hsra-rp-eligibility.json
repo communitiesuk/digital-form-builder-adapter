@@ -3,7 +3,7 @@
   "startPage": "/check-if-youre-eligible",
   "pages": [
     {
-      "title": "Check if you're eligible",
+      "title": "We need to check if you can apply for funding",
       "path": "/check-if-youre-eligible",
       "components": [
         {
@@ -253,7 +253,7 @@
   "sections": [
     {
       "name": "mwumLN",
-      "title": "Check if you're eligible",
+      "title": " ",
       "hideTitle": false
     },
     {
