@@ -44,7 +44,7 @@ export default function AdapterMenu({updateDownloadedAt, id}: Props) {
     const {selectedTab, handleTabChange} = useTabs();
 
     return (
-        <nav className="menu">
+        <nav className="menu" style={{position: 'relative'}}>
             <div className="menu__row">
                 <button data-testid="menu-form-details" onClick={formDetails.show}>
                     {i18n("menu.formDetails")}
