@@ -1,775 +1,776 @@
 {
-    "metadata": {},
-    "startPage": "/check-if-youre-eligible",
-    "pages": [
+  "metadata": {
+  },
+  "startPage": "/check-if-youre-eligible",
+  "pages": [
+    {
+      "title": "We need to check if you can apply for funding",
+      "path": "/check-if-youre-eligible",
+      "components": [
         {
-            "title": "Check if you're eligible",
-            "path": "/check-if-youre-eligible",
-            "components": [
-                {
-                    "name": "GqJNNZ",
-                    "options": {},
-                    "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding. We'll ask you to verify:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>that you are a local authority in England</li>\n<li>which type of grant you are applying for</li>\n<li>that the area subject to a HSRA has been officially designated</li>\n<li>that the property has been vacant for 366 days or more in the last 2 years</li>\n<li>that the vacancy rate of the high street is 8% or higher</li>\n</ul>",
-                    "schema": {}
-                }
-            ],
-            "next": [
-                {
-                    "path": "/are-you-applying-from-a-local-authority-in-england"
-                }
-            ],
-            "controller": "./pages/start.js",
-            "section": "FabDefault"
-        },
-        {
-            "path": "/are-you-applying-from-a-local-authority-in-england",
-            "title": "Are you applying from a local authority in England?",
-            "components": [
-                {
-                    "name": "lHTLBl",
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "YesNoField",
-                    "title": "Are you applying from a local authority in England?",
-                    "schema": {},
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/which-grant-are-you-applying-for",
-                    "condition": "bXSKqL"
-                },
-                {
-                    "path": "/not-eliglible/not-england-local-authority",
-                    "condition": "hwhjge"
-                }
-            ],
-            "section": "mwumLN"
-        },
-        {
-            "title": "Summary",
-            "path": "/summary",
-            "controller": "./pages/confirm.js",
-            "components": [],
-            "next": [],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/which-grant-are-you-applying-for",
-            "title": "Which grant are you applying for?",
-            "components": [
-                {
-                    "name": "redirectToEligibleRound",
-                    "options": {},
-                    "type": "RadiosField",
-                    "list": "EhLAys",
-                    "title": "Why are you applying for this grant?",
-                    "hint": "You must submit an application for every project you seek funding for.",
-                    "values": {
-                        "type": "listRef"
-                    },
-                    "schema": {}
-                }
-            ],
-            "next": [
-                {
-                    "path": "/not-eligible/not-a-planning-authority",
-                    "condition": "QHGUAo"
-                },
-                {
-                    "path": "/summary",
-                    "condition": "luxXGh"
-                },
-                {
-                    "path": "/has-the-high-street-or-town-centre-subject-to-the-hsra-been-officially-designated",
-                    "condition": "miarua"
-                }
-            ],
-            "section": "mwumLN"
-        },
-        {
-            "path": "/has-the-property-been-vacant-for-366-days-or-more-in-the-last-2-years",
-            "title": "Has the property been vacant for 366 days or more in the last 2 years?",
-            "components": [
-                {
-                    "name": "pPNbfh",
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "YesNoField",
-                    "title": "Has the property been vacant for 366 days or more in the last 2 years?",
-                    "schema": {},
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/is-the-vacancy-rate-in-the-designated-high-street-or-town-centre-8-or-higher",
-                    "condition": "REqbHB"
-                },
-                {
-                    "path": "/not-eligible/property-vacant-long-duration",
-                    "condition": "zwwxkY"
-                }
-            ],
-            "section": "mwumLN"
-        },
-        {
-            "path": "/not-eligible/property-vacant-long-duration",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "oAnaAw",
-                    "options": {},
-                    "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">The property must have been vacant for 366 days or more in the last 2 years.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
-                    "schema": {}
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/is-the-vacancy-rate-in-the-designated-high-street-or-town-centre-8-or-higher",
-            "title": "Is the vacancy rate in the designated high street or town centre 8% or higher?",
-            "components": [
-                {
-                    "name": "Mhzypt",
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "YesNoField",
-                    "title": "Is the vacancy rate in the designated high street or town centre 8% or higher?",
-                    "schema": {}
-                }
-            ],
-            "next": [
-                {
-                    "path": "/summary",
-                    "condition": "Kkqowe"
-                },
-                {
-                    "path": "/not-eligible/lower-vacancy-rate",
-                    "condition": "jPvjPM"
-                }
-            ],
-            "section": "mwumLN"
-        },
-        {
-            "path": "/not-eligible/lower-vacancy-rate",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "LpLRZy",
-                    "options": {},
-                    "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">The property must be in a designated high street with a vacancy rate of 8% or higher.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
-                    "schema": {}
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/not-eliglible/not-england-local-authority",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "GuqDsJ",
-                    "options": {},
-                    "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must be applying from local authority in England.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
-                    "schema": {}
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/has-the-high-street-or-town-centre-subject-to-the-hsra-been-officially-designated",
-            "title": "Has the high street or town centre subject to the HSRA been officially designated?",
-            "components": [
-                {
-                    "name": "MaUaFc",
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "YesNoField",
-                    "title": "Has the high street or town centre subject to the HSRA been officially designated?",
-                    "schema": {}
-                }
-            ],
-            "next": [
-                {
-                    "path": "/has-the-property-been-vacant-for-366-days-or-more-in-the-last-2-years"
-                },
-                {
-                    "path": "/you-cannot-apply-for-this-funding",
-                    "condition": "zvZlrj"
-                }
-            ],
-            "section": "mwumLN"
-        },
-        {
-            "path": "/you-cannot-apply-for-this-funding",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "shDNbE",
-                    "options": {},
-                    "type": "Html",
-                    "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must have officially designated high street or town centre subject</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
-                    "schema": {}
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
+          "name": "GqJNNZ",
+          "options": {},
+          "type": "Html",
+          "content": "<p class=\"govuk-body govuk-!\">We need to ask some questions to check you can apply for this funding. We'll ask you to verify:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>that you are a local authority in England</li>\n<li>which type of grant you are applying for</li>\n<li>that the area subject to a HSRA has been officially designated (refurbishment projects only)</li>\n<li>that the property has been vacant for 366 days or more in the last 2 years (refurbishment projects only)</li>\n<li>that the vacancy rate of the high street is 8% or higher (refurbishment projects only)</li>\n</ul>",
+          "schema": {}
         }
-    ],
-    "lists": [
+      ],
+      "next": [
         {
-            "title": "hsra-vr-rp",
-            "name": "EhLAys",
-            "type": "string",
-            "items": [
-                {
-                    "text": "Fund a town centre or high street vacancy register",
-                    "value": "VR"
-                },
-                {
-                    "text": "Refurbish a property subject to a high street rental auction",
-                    "value": "RP"
-                }
-            ]
+          "path": "/are-you-applying-from-a-local-authority-in-england"
         }
-    ],
-    "sections": [
+      ],
+      "controller": "./pages/start.js",
+      "section": "FabDefault"
+    },
+    {
+      "path": "/are-you-applying-from-a-local-authority-in-england",
+      "title": "Are you applying from a local authority in England?",
+      "components": [
         {
-            "name": "mwumLN",
-            "title": "Check if you're eligible",
-            "hideTitle": false
-        },
-        {
-            "name": "FabDefault",
-            "title": "Default Section",
+          "name": "lHTLBl",
+          "options": {
             "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Are you applying from a local authority in England?",
+          "schema": {},
+          "values": {
+            "type": "listRef"
+          }
         }
-    ],
-    "conditions": [
+      ],
+      "next": [
         {
-            "displayName": "Applying from local authority in england-No",
-            "name": "hwhjge",
-            "value": {
-                "name": "Applying from a local authority in england-No",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.lHTLBl",
-                            "type": "YesNoField",
-                            "display": "Are you applying from a local authority in England?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
+          "path": "/which-grant-are-you-applying-for",
+          "condition": "bXSKqL"
         },
         {
-            "displayName": "Applying from local authority in England",
-            "name": "bXSKqL",
-            "value": {
-                "name": "Applying from local authority in England",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.lHTLBl",
-                            "type": "YesNoField",
-                            "display": "Are you applying from a local authority in England?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Is authority is planning authority",
-            "name": "OxSDmx",
-            "value": {
-                "name": "Is authority is planning authority",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.uztZUm",
-                            "type": "YesNoField",
-                            "display": "Is your local authority a planning authority?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "combined authority partnering with a planning authority",
-            "name": "bAaXko",
-            "value": {
-                "name": "combined authority partnering with a planning authority",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "KaMFvv",
-                            "type": "YesNoField",
-                            "display": "Is it a combined authority partnering with a planning authority?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "property in a designated high street or town centre",
-            "name": "XgbLXU",
-            "value": {
-                "name": "property in a designated high street or town centre",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.VJrojB",
-                            "type": "YesNoField",
-                            "display": "Is the property in a designated high street or town centre?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "vacancy rate in designated high street 8% or higher",
-            "name": "Kkqowe",
-            "value": {
-                "name": "vacancy rate in designated high street 8% or higher",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.Mhzypt",
-                            "type": "YesNoField",
-                            "display": "Is the vacancy rate in the designated high street or town centre 8% or higher?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "has the proper been vacant for 365 days or more",
-            "name": "REqbHB",
-            "value": {
-                "name": "has the proper been vacant for 365 days or more",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.pPNbfh",
-                            "type": "YesNoField",
-                            "display": "In the last 2 years, has the property been vacant for 365 days or more?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "defray all cost by March 2015",
-            "name": "xIzxnn",
-            "value": {
-                "name": "defray all cost by March 2015",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.WJoaFR",
-                            "type": "YesNoField",
-                            "display": "Do you expect us to defray all your costs by 31 March 2025?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "local authority a planning authority-No",
-            "name": "QHGUAo",
-            "value": {
-                "name": "local authority a planning authority-No",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.uztZUm",
-                            "type": "YesNoField",
-                            "display": "Is your local authority a planning authority?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "combined authority parterning with planning authority-No",
-            "name": "vJFLLV",
-            "value": {
-                "name": "combined authority parterning with planning authority-No",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "KaMFvv",
-                            "type": "YesNoField",
-                            "display": "Is it a combined authority partnering with a planning authority?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "property in a designated high street or town centre-No",
-            "name": "OKnwMX",
-            "value": {
-                "name": "property in a designated high street or town centre-No",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.VJrojB",
-                            "type": "YesNoField",
-                            "display": "Is the property in a designated high street or town centre?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "is the property vacant for 365 days or more-No",
-            "name": "zwwxkY",
-            "value": {
-                "name": "is the property vacant for 365 days or more-No",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.pPNbfh",
-                            "type": "YesNoField",
-                            "display": "In the last 2 years, has the property been vacant for 365 days or more?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "vacancy rate in the designated high street 8% or higher-No",
-            "name": "jPvjPM",
-            "value": {
-                "name": "vacancy rate in the designated high street 8% or higher-No",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.Mhzypt",
-                            "type": "YesNoField",
-                            "display": "Is the vacancy rate in the designated high street or town centre 8% or higher?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "defray all cost by 31 March 2025-No",
-            "name": "gVEhwH",
-            "value": {
-                "name": "defray all cost by 31 March 2025-No",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.WJoaFR",
-                            "type": "YesNoField",
-                            "display": "Do you expect us to defray all your costs by 31 March 2025?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Combined authority partnering with local authority",
-            "name": "HJMgWM",
-            "value": {
-                "name": "Combined authority partnering with local authority",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.nzFRGc",
-                            "type": "YesNoField",
-                            "display": "Is it a combined authority partnering with a planning authority?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "combined authority partnering with a planning authority-No",
-            "name": "vyEYUT",
-            "value": {
-                "name": "combined authority partnering with a planning authority-No",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.nzFRGc",
-                            "type": "YesNoField",
-                            "display": "Is it a combined authority partnering with a planning authority?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Fund a town centre or high street vacancy register",
-            "name": "vAVlwQ",
-            "value": {
-                "name": "Fund a town centre or high street vacancy register",
-                "conditions": [
-                    {
-                        "conditionName": "bAaXko",
-                        "conditionDisplayName": "combined authority partnering with a planning authority"
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "vr",
-            "name": "AcIfaL",
-            "value": {
-                "name": "vr",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.redirectToEligibleRound",
-                            "type": "RadiosField",
-                            "display": "Why are you applying for this grant?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "Fund a town centre or high street vacancy register",
-                            "display": "Fund a town centre or high street vacancy register"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Why are you applying for this grant is Refurbish property",
-            "name": "xhRSOL",
-            "value": {
-                "name": "Why are you applying for this grant is Refurbish property",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.redirectToEligibleRound",
-                            "type": "RadiosField",
-                            "display": "Why are you applying for this grant?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "Refurbish a property subject to a high street rental auction",
-                            "display": "Refurbish a property subject to a high street rental auction"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Why are you applying for this grant is vacancy register",
-            "name": "YKDDNQ",
-            "value": {
-                "name": "Why are you applying for this grant is vacancy register",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.redirectToEligibleRound",
-                            "type": "RadiosField",
-                            "display": "Why are you applying for this grant?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "Fund a town centre or high street vacancy register",
-                            "display": "Fund a town centre or high street vacancy register"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Fund a town centre or high street vacancy register - Selected",
-            "name": "luxXGh",
-            "value": {
-                "name": "Fund a town centre or high street vacancy register - Selected",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.redirectToEligibleRound",
-                            "type": "RadiosField",
-                            "display": "Why are you applying for this grant?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "VR",
-                            "display": "VR"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Refurbish a property subject to a high street rental auction - Selected",
-            "name": "miarua",
-            "value": {
-                "name": "Refurbish a property subject to a high street rental auction - Selected",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.redirectToEligibleRound",
-                            "type": "RadiosField",
-                            "display": "Why are you applying for this grant?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "RP",
-                            "display": "RP"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Has the high street or town centre subject to the HSRA been officially designated?-No",
-            "name": "zvZlrj",
-            "value": {
-                "name": "Has the high street or town centre subject to the HSRA been officially designated?-No",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "mwumLN.MaUaFc",
-                            "type": "YesNoField",
-                            "display": "Has the high street or town centre subject to the HSRA been officially designated?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
+          "path": "/not-eliglible/not-england-local-authority",
+          "condition": "hwhjge"
         }
-    ],
-    "fees": [],
-    "outputs": [],
-    "version": 2,
-    "skipSummary": false,
-    "markAsComplete": false,
-    "name": "Apply for funding to cover the cost of delivering a high street rental auction",
-    "feeOptions": {
-        "allowSubmissionWithoutPayment": true,
-        "maxAttempts": 3,
-        "showPaymentSkippedWarningPage": false
+      ],
+      "section": "mwumLN"
+    },
+    {
+      "title": "Summary",
+      "path": "/summary",
+      "controller": "./pages/confirm.js",
+      "components": [],
+      "next": [],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/which-grant-are-you-applying-for",
+      "title": "Which grant are you applying for?",
+      "components": [
+        {
+          "name": "redirectToEligibleRound",
+          "options": {},
+          "type": "RadiosField",
+          "list": "EhLAys",
+          "title": "Which grant are you applying for?",
+          "hint": "You must submit an application for every project you seek funding for.",
+          "values": {
+            "type": "listRef"
+          },
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/not-eligible/not-a-planning-authority",
+          "condition": "QHGUAo"
+        },
+        {
+          "path": "/summary",
+          "condition": "luxXGh"
+        },
+        {
+          "path": "/has-the-high-street-or-town-centre-subject-to-the-hsra-been-officially-designated",
+          "condition": "miarua"
+        }
+      ],
+      "section": "mwumLN"
+    },
+    {
+      "path": "/has-the-property-been-vacant-for-366-days-or-more-in-the-last-2-years",
+      "title": "Has the property been vacant for 366 days or more in the last 2 years?",
+      "components": [
+        {
+          "name": "pPNbfh",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Has the property been vacant for 366 days or more in the last 2 years?",
+          "schema": {},
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/is-the-vacancy-rate-in-the-designated-high-street-or-town-centre-8-or-higher",
+          "condition": "REqbHB"
+        },
+        {
+          "path": "/not-eligible/property-vacant-long-duration",
+          "condition": "zwwxkY"
+        }
+      ],
+      "section": "mwumLN"
+    },
+    {
+      "path": "/not-eligible/property-vacant-long-duration",
+      "title": "You cannot apply for this funding",
+      "components": [
+        {
+          "name": "oAnaAw",
+          "options": {},
+          "type": "Html",
+          "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">The property must have been vacant for 366 days or more in the last 2 years.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
+          "schema": {}
+        }
+      ],
+      "next": [],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/is-the-vacancy-rate-in-the-designated-high-street-or-town-centre-8-or-higher",
+      "title": "Is the vacancy rate in the designated high street or town centre 8% or higher?",
+      "components": [
+        {
+          "name": "Mhzypt",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Is the vacancy rate in the designated high street or town centre 8% or higher?",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary",
+          "condition": "Kkqowe"
+        },
+        {
+          "path": "/not-eligible/lower-vacancy-rate",
+          "condition": "jPvjPM"
+        }
+      ],
+      "section": "mwumLN"
+    },
+    {
+      "path": "/not-eligible/lower-vacancy-rate",
+      "title": "You cannot apply for this funding",
+      "components": [
+        {
+          "name": "LpLRZy",
+          "options": {},
+          "type": "Html",
+          "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">The property must be in a designated high street with a vacancy rate of 8% or higher.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
+          "schema": {}
+        }
+      ],
+      "next": [],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/not-eliglible/not-england-local-authority",
+      "title": "You cannot apply for this funding",
+      "components": [
+        {
+          "name": "GuqDsJ",
+          "options": {},
+          "type": "Html",
+          "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must be applying from local authority in England.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
+          "schema": {}
+        }
+      ],
+      "next": [],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/has-the-high-street-or-town-centre-subject-to-the-hsra-been-officially-designated",
+      "title": "Has the high street or town centre subject to the HSRA been officially designated?",
+      "components": [
+        {
+          "name": "MaUaFc",
+          "options": {
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Has the high street or town centre subject to the HSRA been officially designated?",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/has-the-property-been-vacant-for-366-days-or-more-in-the-last-2-years"
+        },
+        {
+          "path": "/you-cannot-apply-for-this-funding",
+          "condition": "zvZlrj"
+        }
+      ],
+      "section": "mwumLN"
+    },
+    {
+      "path": "/you-cannot-apply-for-this-funding",
+      "title": "You cannot apply for this funding",
+      "components": [
+        {
+          "name": "shDNbE",
+          "options": {},
+          "type": "Html",
+          "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must have officially designated high street or town centre subject to a HSRA.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
+          "schema": {}
+        }
+      ],
+      "next": [],
+      "section": "FabDefault"
     }
+  ],
+  "lists": [
+    {
+      "title": "hsra-vr-rp",
+      "name": "EhLAys",
+      "type": "string",
+      "items": [
+        {
+          "text": "Fund a town centre or high street vacancy register",
+          "value": "VR"
+        },
+        {
+          "text": "Refurbish a property subject to a high street rental auction",
+          "value": "RP"
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "name": "mwumLN",
+      "title": "",
+      "hideTitle": false
+    },
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    }
+  ],
+  "conditions": [
+    {
+      "displayName": "Applying from local authority in england-No",
+      "name": "hwhjge",
+      "value": {
+        "name": "Applying from a local authority in england-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.lHTLBl",
+              "type": "YesNoField",
+              "display": "Are you applying from a local authority in England?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Applying from local authority in England",
+      "name": "bXSKqL",
+      "value": {
+        "name": "Applying from local authority in England",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.lHTLBl",
+              "type": "YesNoField",
+              "display": "Are you applying from a local authority in England?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Is authority is planning authority",
+      "name": "OxSDmx",
+      "value": {
+        "name": "Is authority is planning authority",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.uztZUm",
+              "type": "YesNoField",
+              "display": "Is your local authority a planning authority?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "combined authority partnering with a planning authority",
+      "name": "bAaXko",
+      "value": {
+        "name": "combined authority partnering with a planning authority",
+        "conditions": [
+          {
+            "field": {
+              "name": "KaMFvv",
+              "type": "YesNoField",
+              "display": "Is it a combined authority partnering with a planning authority?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "property in a designated high street or town centre",
+      "name": "XgbLXU",
+      "value": {
+        "name": "property in a designated high street or town centre",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.VJrojB",
+              "type": "YesNoField",
+              "display": "Is the property in a designated high street or town centre?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "vacancy rate in designated high street 8% or higher",
+      "name": "Kkqowe",
+      "value": {
+        "name": "vacancy rate in designated high street 8% or higher",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.Mhzypt",
+              "type": "YesNoField",
+              "display": "Is the vacancy rate in the designated high street or town centre 8% or higher?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "has the proper been vacant for 365 days or more",
+      "name": "REqbHB",
+      "value": {
+        "name": "has the proper been vacant for 365 days or more",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.pPNbfh",
+              "type": "YesNoField",
+              "display": "In the last 2 years, has the property been vacant for 365 days or more?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "defray all cost by March 2015",
+      "name": "xIzxnn",
+      "value": {
+        "name": "defray all cost by March 2015",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.WJoaFR",
+              "type": "YesNoField",
+              "display": "Do you expect us to defray all your costs by 31 March 2025?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "local authority a planning authority-No",
+      "name": "QHGUAo",
+      "value": {
+        "name": "local authority a planning authority-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.uztZUm",
+              "type": "YesNoField",
+              "display": "Is your local authority a planning authority?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "combined authority parterning with planning authority-No",
+      "name": "vJFLLV",
+      "value": {
+        "name": "combined authority parterning with planning authority-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "KaMFvv",
+              "type": "YesNoField",
+              "display": "Is it a combined authority partnering with a planning authority?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "property in a designated high street or town centre-No",
+      "name": "OKnwMX",
+      "value": {
+        "name": "property in a designated high street or town centre-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.VJrojB",
+              "type": "YesNoField",
+              "display": "Is the property in a designated high street or town centre?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "is the property vacant for 365 days or more-No",
+      "name": "zwwxkY",
+      "value": {
+        "name": "is the property vacant for 365 days or more-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.pPNbfh",
+              "type": "YesNoField",
+              "display": "In the last 2 years, has the property been vacant for 365 days or more?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "vacancy rate in the designated high street 8% or higher-No",
+      "name": "jPvjPM",
+      "value": {
+        "name": "vacancy rate in the designated high street 8% or higher-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.Mhzypt",
+              "type": "YesNoField",
+              "display": "Is the vacancy rate in the designated high street or town centre 8% or higher?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "defray all cost by 31 March 2025-No",
+      "name": "gVEhwH",
+      "value": {
+        "name": "defray all cost by 31 March 2025-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.WJoaFR",
+              "type": "YesNoField",
+              "display": "Do you expect us to defray all your costs by 31 March 2025?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Combined authority partnering with local authority",
+      "name": "HJMgWM",
+      "value": {
+        "name": "Combined authority partnering with local authority",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.nzFRGc",
+              "type": "YesNoField",
+              "display": "Is it a combined authority partnering with a planning authority?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "combined authority partnering with a planning authority-No",
+      "name": "vyEYUT",
+      "value": {
+        "name": "combined authority partnering with a planning authority-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.nzFRGc",
+              "type": "YesNoField",
+              "display": "Is it a combined authority partnering with a planning authority?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Fund a town centre or high street vacancy register",
+      "name": "vAVlwQ",
+      "value": {
+        "name": "Fund a town centre or high street vacancy register",
+        "conditions": [
+          {
+            "conditionName": "bAaXko",
+            "conditionDisplayName": "combined authority partnering with a planning authority"
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "vr",
+      "name": "AcIfaL",
+      "value": {
+        "name": "vr",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.redirectToEligibleRound",
+              "type": "RadiosField",
+              "display": "Which grant are you applying for?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "Fund a town centre or high street vacancy register",
+              "display": "Fund a town centre or high street vacancy register"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Why are you applying for this grant is Refurbish property",
+      "name": "xhRSOL",
+      "value": {
+        "name": "Why are you applying for this grant is Refurbish property",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.redirectToEligibleRound",
+              "type": "RadiosField",
+              "display": "Which grant are you applying for?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "Refurbish a property subject to a high street rental auction",
+              "display": "Refurbish a property subject to a high street rental auction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Why are you applying for this grant is vacancy register",
+      "name": "YKDDNQ",
+      "value": {
+        "name": "Why are you applying for this grant is vacancy register",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.redirectToEligibleRound",
+              "type": "RadiosField",
+              "display": "Which grant are you applying for?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "Fund a town centre or high street vacancy register",
+              "display": "Fund a town centre or high street vacancy register"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Fund a town centre or high street vacancy register - Selected",
+      "name": "luxXGh",
+      "value": {
+        "name": "Fund a town centre or high street vacancy register - Selected",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.redirectToEligibleRound",
+              "type": "RadiosField",
+              "display": "Which grant are you applying for?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "VR",
+              "display": "VR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Refurbish a property subject to a high street rental auction - Selected",
+      "name": "miarua",
+      "value": {
+        "name": "Refurbish a property subject to a high street rental auction - Selected",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.redirectToEligibleRound",
+              "type": "RadiosField",
+              "display": "Which grant are you applying for?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "RP",
+              "display": "RP"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Has the high street or town centre subject to the HSRA been officially designated?-No",
+      "name": "zvZlrj",
+      "value": {
+        "name": "Has the high street or town centre subject to the HSRA been officially designated?-No",
+        "conditions": [
+          {
+            "field": {
+              "name": "mwumLN.MaUaFc",
+              "type": "YesNoField",
+              "display": "Has the high street or town centre subject to the HSRA been officially designated?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "markAsComplete": false,
+  "name": "Apply for funding to cover the cost of delivering a high street rental auction",
+  "feeOptions": {
+    "allowSubmissionWithoutPayment": true,
+    "maxAttempts": 3,
+    "showPaymentSkippedWarningPage": false
+  }
 }

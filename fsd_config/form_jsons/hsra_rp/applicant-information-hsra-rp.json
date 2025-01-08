@@ -1,102 +1,109 @@
 {
-    "startPage": "/applicant-information",
-    "pages": [
+  "startPage": "/applicant-information",
+  "pages": [
+    {
+      "path": "/summary",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/who-should-we-contact-about-this-application",
+      "title": "Who should we contact about this application?",
+      "components": [
         {
-            "path": "/summary",
-            "title": "Check your answers",
-            "components": [],
-            "next": [],
-            "section": "FabDefault",
-            "controller": "./pages/summary.js"
-        },
-        {
-            "path": "/who-should-we-contact-about-this-application",
-            "title": "Who should we contact about this application?",
-            "components": [
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "TextField",
-                    "title": "Full name",
-                    "hint": "<label class=\"govuk-label\" for=\"OkKkMd\">Full name</label>",
-                    "schema": {},
-                    "name": "OkKkMd"
-                },
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "TextField",
-                    "title": "Job title",
-                    "hint": "<label class=\"govuk-label\" for=\"Lwkcam\">Job title</label>",
-                    "schema": {},
-                    "name": "Lwkcam"
-                },
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "EmailAddressField",
-                    "title": "Email address",
-                    "hint": "<label class=\"govuk-label\" for=\"XfiUqN\">Email address</label>",
-                    "schema": {},
-                    "name": "XfiUqN"
-                },
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "TelephoneNumberField",
-                    "title": "Telephone number",
-                    "hint": "<label class=\"govuk-label\" for=\"DlZjvr\">Telephone number</label>",
-                    "schema": {},
-                    "name": "DlZjvr"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/summary"
-                }
-            ],
-            "section": "bnfUAs"
-        },
-        {
-            "path": "/applicant-information",
-            "title": "Applicant information",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "<label>In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>contact\u2019s name</li>\n<li>contact\u2019s job title</li>\n<li>contact\u2019s email address</li>\n<li>contact\u2019s telephone number</li>\n</ul>",
-                    "options": {},
-                    "schema": {},
-                    "name": "IxjdZq"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/who-should-we-contact-about-this-application"
-                }
-            ],
-            "section": "FabDefault",
-            "controller": "start.js"
-        }
-    ],
-    "lists": [],
-    "conditions": [],
-    "sections": [
-        {
-            "name": "FabDefault",
-            "title": "Default Section",
+          "options": {
             "hideTitle": true
+          },
+          "type": "TextField",
+          "title": "Full name",
+          "hint": "<label class=\"govuk-label\" for=\"OkKkMd\">Full name</label>",
+          "schema": {},
+          "name": "OkKkMd"
         },
         {
-            "name": "bnfUAs",
-            "title": "Applicant information",
-            "hideTitle": false
+          "options": {
+            "hideTitle": true
+          },
+          "type": "TextField",
+          "title": "Job title",
+          "hint": "<label class=\"govuk-label\" for=\"Lwkcam\">Job title</label>",
+          "schema": {},
+          "name": "Lwkcam"
+        },
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "EmailAddressField",
+          "title": "Email address",
+          "hint": "<label class=\"govuk-label\" for=\"XfiUqN\">Email address</label>",
+          "schema": {},
+          "name": "XfiUqN"
+        },
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "TelephoneNumberField",
+          "title": "Telephone number",
+          "hint": "<label class=\"govuk-label\" for=\"DlZjvr\">Telephone number</label>",
+          "schema": {},
+          "name": "DlZjvr"
         }
-    ],
-    "outputs": [],
-    "skipSummary": false,
-    "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction"
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "bnfUAs"
+    },
+    {
+      "path": "/applicant-information",
+      "title": "Applicant information",
+      "components": [
+        {
+          "type": "Para",
+          "content": "<label>In this section, we'll ask about:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>full name</li>\n<li>job title</li>\n<li>email address</li>\n<li>telephone number</li>\n</ul>",
+          "options": {},
+          "schema": {},
+          "name": "IxjdZq"
+        }
+      ],
+      "next": [
+        {
+          "path": "/who-should-we-contact-about-this-application"
+        }
+      ],
+      "section": "FabDefault",
+      "controller": "start.js"
+    }
+  ],
+  "lists": [],
+  "conditions": [],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    },
+    {
+      "name": "bnfUAs",
+      "title": "Applicant information",
+      "hideTitle": false
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for Funding to cover the cost of delivering a High Street Rental Auction",
+  "version": 2,
+  "feeOptions": {
+    "allowSubmissionWithoutPayment": true,
+    "maxAttempts": 3,
+    "showPaymentSkippedWarningPage": false
+  },
+  "markAsComplete": false
 }
