@@ -1,6 +1,5 @@
 {
-  "metadata": {
-  },
+  "metadata": {},
   "startPage": "/check-if-youre-eligible",
   "pages": [
     {
@@ -254,7 +253,7 @@
   "sections": [
     {
       "name": "mwumLN",
-      "title": "",
+      "title": " ",
       "hideTitle": false
     },
     {
