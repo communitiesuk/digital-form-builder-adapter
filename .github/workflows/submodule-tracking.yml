@@ -1,0 +1,57 @@
+name: Update Submodule Automatically
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # Run daily at 3:00 AM UTC
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository with submodules
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      # Step 2: Update all submodules to their latest commits
+      - name: Update submodules with latest changes
+        run: |
+          git submodule update --remote --merge
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Updating the submodule XGovFormBuilder to latest."
+            echo "submodule_updated=true" >> $GITHUB_ENV
+          else
+            echo "No updates found in submodules."
+            echo "submodule_updated=false" >> $GITHUB_ENV
+          fi
+
+      # Step 3: Extract the latest submodule commit hash (first 7 characters)
+      - name: Get submodule commit hash
+        if: env.submodule_updated == 'true' # Run only if submodule was updated
+        id: submodule_hash
+        run: |
+          # Extract the first 7 characters of the latest submodule commit
+          SUBMODULE_PATH=$(git config --file .gitmodules --get-regexp path | awk '{ print $2 }')
+          SUBMODULE_COMMIT=$(git rev-parse --short=7 HEAD:$SUBMODULE_PATH)
+          echo "submodule_hash=${SUBMODULE_COMMIT}" >> $GITHUB_ENV
+
+      # Step 4: Create a pull request with the dynamic branch name
+      - name: Create a pull request about the updates happen
+        if: env.submodule_updated == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "XGovFormBuilder-${{ env.submodule_hash }}"
+          base: main
+          title: "Updating the submodule XGovFormBuilder to latest"
+          body: |
+            Following Pr will contain the update that need to be done against the [XGovFormBuilder](https://github.com/XGovFormBuilder/digital-form-builder)
+            for the submodule
+            
+            Submodule updated to commit hash: `${{ env.submodule_hash }}`
+            
+            Please Do manual testing before merge.
