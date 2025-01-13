@@ -185,7 +185,7 @@
           "name": "GuqDsJ",
           "options": {},
           "type": "Html",
-          "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must be applying from local authority in England.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
+          "content": "<p class=\"govuk-body govuk-!\">\nBased on your answer, you’re not eligible to apply for funding to cover the cost of delivering a high street rental auction.</p>\n\n<p class=\"govuk-body govuk-!\">You must be applying from a local authority in England.</p>\n\n<p class=\"govuk-body\">\n  Check who can apply in the <a href=\"https://www.gov.uk/government/publications/high-street-rental-auctions-grants-for-local-authorities/high-street-rental-auctions-fund-prospectus\" class=\"govuk-link\">High Street Rental Auctions Fund prospectus</a>.\n</p>",
           "schema": {}
         }
       ],
