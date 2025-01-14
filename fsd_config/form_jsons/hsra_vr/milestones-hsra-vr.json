@@ -26,7 +26,7 @@
             ],
             "next": [
                 {
-                    "path": "/when-do-you-expect-the-post-payment-verification-ppv-form-to-be-submitted"
+                    "path": "/when-do-you-expect-the-post-payment-assurance-form-to-be-submitted"
                 }
             ],
             "section": "wtecPW"
@@ -37,7 +37,7 @@
             "components": [
                 {
                     "type": "Para",
-                    "content": "<label >In this section, we’ll ask about expected dates for:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>completing the vacancy register</li>\n<li>submitting your post-payment verification (PPV)</li>\n</ul>",
+                    "content": "<label >In this section, we’ll ask about expected dates for:</label>\n\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>completing the vacancy register</li>\n<li>submitting your post-payment assurance form</li>\n</ul>",
                     "options": {},
                     "schema": {},
                     "name": "EGjyyU"
@@ -52,15 +52,15 @@
             "controller": "start.js"
         },
         {
-            "path": "/when-do-you-expect-the-post-payment-verification-ppv-form-to-be-submitted",
-            "title": "When do you expect the post payment verification (PPV) form to be submitted?",
+            "path": "/when-do-you-expect-the-post-payment-assurance-form-to-be-submitted",
+            "title": "When do you expect the post payment assurance form to be submitted?",
             "components": [
                 {
                     "options": {
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
-                    "title": "When do you expect to submit your post-payment verification (PPV)?",
+                    "title": "When do you expect to submit your post-payment assurance form to be submitted?",
                     "hint": "This is the form submitted to your section 151 officer to ensure grant money is being spent appropriately.\n<br>\n<br>\nFor example, 27 10 2024\n",
                     "schema": {},
                     "name": "KFjxBs"
