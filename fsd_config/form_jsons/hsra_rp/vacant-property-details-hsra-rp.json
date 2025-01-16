@@ -40,8 +40,8 @@
             "section": "ISBazm"
         },
         {
-            "path": "/what-is-the-total-commercial-floorspace-of-the-property-in-meters-squared",
-            "title": "What is the total commercial floorspace of the property, in meters squared?",
+            "path": "/what-is-the-total-commercial-floorspace-of-the-property-in-metres-squared",
+            "title": "What is the total commercial floorspace of the property, in metres squared?",
             "components": [
                 {
                     "options": {
@@ -50,7 +50,7 @@
                         "classes": "govuk-input--width-5"
                     },
                     "type": "NumberField",
-                    "title": "What is the total commercial floorspace of the property, in meters squared?",
+                    "title": "What is the total commercial floorspace of the property, in metres squared?",
                     "hint": "",
                     "schema": {},
                     "name": "rFpLZQ"
@@ -100,7 +100,7 @@
             ],
             "next": [
                 {
-                    "path": "/what-is-the-total-commercial-floorspace-of-the-property-in-meters-squared"
+                    "path": "/what-is-the-total-commercial-floorspace-of-the-property-in-metres-squared"
                 }
             ],
             "section": "ISBazm"
