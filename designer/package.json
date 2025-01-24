@@ -5,9 +5,10 @@
   "scripts": {
     "watch": "NODE_ENV=development webpack",
     "dev": "NODE_OPTIONS=--openssl-legacy-provider && concurrently 'yarn watch' 'yarn start:local'",
-    "production": "yarn start:prod",
+    "production": "NODE_ENV=production yarn start:server",
+    "start:test": "NODE_ENV=test yarn start:server",
     "build": "NODE_ENV=production && NODE_OPTIONS=--openssl-legacy-provider && webpack",
-    "start:prod": "NODE_ENV=production nodemon dist/server.js",
+    "start:server": "node dist/server.js",
     "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect --respawn --transpile-only server/index.ts"
   },
   "author": "Communities UK",
