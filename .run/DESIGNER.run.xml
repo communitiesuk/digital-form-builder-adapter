@@ -11,7 +11,7 @@
       <env name="ACCESSIBILITY_STATEMENT_URL" value="http://localhost:3008/accessibility_statement" />
       <env name="ALLOW_USER_TEMPLATES" value="true" />
       <env name="AUTH_COOKIE_NAME" value="fsd_user_token" />
-      <env name="AUTH_ENABLED" value="false" />
+      <env name="AUTH_ENABLED" value="true" />
       <env name="AWS_ACCESS_KEY_ID" value="FSDIOSFODNN7EXAMPLE" />
       <env name="AWS_BUCKET_NAME" value="fsd-bucket" />
       <env name="AWS_DEFAULT_REGION" value="eu-west-2" />
@@ -30,6 +30,8 @@
       <env name="REDIRECT_TO_AUTHENTICATION_URL" value="http://localhost:3004/sessions/sign-out" />
       <env name="RSA256_PUBLIC_KEY_BASE64" value="&quot;LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHZU1BMEdDU3FHU0liM0RRRUJBUVVBQTRHTUFEQ0JpQUtCZ0hHYnRGMXlWR1crckNBRk9JZGFrVVZ3Q2Z1dgp4SEUzOGxFL2kwS1dwTXdkU0haRkZMWW5IakJWT09oMTVFaWl6WXphNEZUSlRNdkwyRTRRckxwcVlqNktFNnR2CkhyaHlQL041ZnlwU3p0OHZDajlzcFo4KzBrRnVjVzl6eU1rUHVEaXNZdG1rV0dkeEJta2QzZ3RZcDNtT0k1M1YKVkRnS2J0b0lGVTNzSWs1TkFnTUJBQUU9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQ\=\=&quot;" />
       <env name="SERVICE_START_PAGE" value="http://localhost:3008/account" />
+        <env name="SSL_CERT" value="$PROJECT_DIR$/../../certs/cert.pem"/>
+        <env name="SSL_KEY" value="$PROJECT_DIR$/../../certs/key.pem"/>
     </envs>
     <method v="2">
       <option name="NpmBeforeRunTask" enabled="true">
