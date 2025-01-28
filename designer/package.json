@@ -9,7 +9,7 @@
     "start:test": "NODE_ENV=test yarn start:server",
     "build": "NODE_ENV=production && NODE_OPTIONS=--openssl-legacy-provider && webpack",
     "start:server": "node dist/server.js",
-    "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect --respawn --transpile-only server/index.ts"
+    "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only server/index.ts"
   },
   "author": "Communities UK",
   "license": "SEE LICENSE IN LICENSE",
