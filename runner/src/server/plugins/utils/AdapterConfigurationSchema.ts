@@ -27,6 +27,8 @@ export function buildConfig(config) {
     allowUnknown: true,
   });
 
+  console.log('PASSWORD HERE:', config.sessionCookiePassword)
+
   // Throw if config is invalid
   if (result.error) {
     throw new Error(`The server config is invalid. ${result.error.message}`);
