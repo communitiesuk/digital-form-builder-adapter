@@ -34,6 +34,8 @@
       <env name="RSA256_PUBLIC_KEY_BASE64" value="TUlHZk1BMEdDU3FHU0liM0RRRUJBUVVBQTRHTkFEQ0JpUUtCZ1FDdUZBL2xrczcwM2JEeDZYN0duUVIwVlVSOAp6eW8yUEJ6L2E2MVd0TjJCUitYWlV5cjlGaHc4K3E4YVRsbzZ0K2VJa3hENjE4eWpaQkx0cGhZVjUwcTAvOW1OCkk0QStPSURhQ1J0aWd0NDJ4ZUlrbmpydWZ5a280Q0xjV3BFc1dzSkZWSnJnR2xQTHZrMzJHMVJ5WFErOGY1dWsKVmlKbjBKbGlzbWo4bGtzc2pRSURBUUFC" />
       <env name="SERVICE_START_PAGE" value="https://frontend.levellingup.gov.localhost:3008/account" />
       <env name="SINGLE_REDIS" value="true" />
+        <env name="SSL_CERT" value="$PROJECT_DIR$/../../certs/cert.pem"/>
+        <env name="SSL_KEY" value="$PROJECT_DIR$/../../certs/key.pem"/>
     </envs>
     <method v="2">
       <option name="NpmBeforeRunTask" enabled="true">
