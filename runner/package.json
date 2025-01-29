@@ -12,7 +12,7 @@
     "copy-forms": "node copy-form-json.js",
     "clean:build": "rm -rf dist",
     "dev": "NODE_ENV=development nodemon --watch src --ext js,json,ts,html,scss --exec 'yarn build && node dist/digital-form-builder-adapter/runner/index.js'",
-    "start:server": "node dist/digital-form-builder-adapter/runner/index.js",
+    "start:server": "nodemon dist/digital-form-builder-adapter/runner/index.js",
     "production": "NODE_ENV=production npm run start:server",
     "start:test": "NODE_ENV=development npm run start:server",
     "test-cov": "yarn run unit-test-cov",
