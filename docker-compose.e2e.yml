@@ -13,7 +13,7 @@ services:
       - LAST_COMMIT
       - LAST_TAG
       - AUTH_ENABLED=false
-    command: yarn designer start:test
+    command: yarn designer production
     depends_on:
       - runner
       - localstack
@@ -44,7 +44,7 @@ services:
       - SINGLE_REDIS=true
       - FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI=redis://redis-data:6379
       - PREVIEW_MODE=true
-    command: yarn runner start:test
+    command: yarn runner production
     logging:
       driver: "json-file"
     depends_on:
