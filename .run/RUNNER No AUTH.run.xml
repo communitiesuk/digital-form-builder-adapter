@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="RUNNER" type="js.build_tools.npm">
+  <configuration default="false" name="RUNNER No AUTH" type="js.build_tools.npm">
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
@@ -24,7 +24,7 @@
       <env name="FEEDBACK_LINK" value="https://frontend.levellingup.gov.localhost:3008/feedback" />
       <env name="FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI" value="redis://localhost:6379" />
       <env name="JWT_AUTH_COOKIE_NAME" value="fsd_user_token" />
-      <env name="JWT_AUTH_ENABLED" value="true" />
+      <env name="JWT_AUTH_ENABLED" value="false" />
       <env name="JWT_REDIRECT_TO_AUTHENTICATION_URL" value="https://authenticator.levellingup.gov.localhost:3004/sessions/sign-out" />
       <env name="LOG_LEVEL" value="debug" />
       <env name="LOGOUT_URL" value="https://authenticator.levellingup.gov.localhost:3004/sessions/sign-out" />
