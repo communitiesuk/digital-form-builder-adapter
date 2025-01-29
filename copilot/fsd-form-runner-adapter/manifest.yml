@@ -71,7 +71,7 @@ variables:
   SINGLE_REDIS: true
   JWT_AUTH_COOKIE_NAME: "fsd_user_token"
   ELIGIBILITY_RESULT_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
-  JWT_AUTH_ENABLED: true
+  JWT_AUTH_ENABLED: false
   LOG_PRETTY_PRINT: false
 
 secrets:
