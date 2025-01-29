@@ -41,8 +41,6 @@ import {TranslationLoaderService} from "./services/TranslationLoaderService";
 import {WebhookService} from "./services/WebhookService";
 import {pluginLog} from "./plugins/logging";
 
-const Sentry = require('@sentry/node');
-
 const serverOptions = async (): Promise<ServerOptions> => {
     const hasCertificate = config.sslKey && config.sslCert;
 
@@ -152,7 +150,6 @@ async function createServer(routeConfig: RouteConfig) {
             if ("isBoom" in response && response.isBoom
                 && response?.output?.statusCode >= 500
                 && response?.output?.statusCode < 600) {
-                Sentry.captureException(response);
                 return h.continue;
             }
 
@@ -212,9 +209,6 @@ async function createServer(routeConfig: RouteConfig) {
     server.state("cookies_policy", {
         encoding: "base64json",
     });
-
-    // Sentry error monitoring
-    await Sentry.setupHapiErrorHandler(server);
     return server;
 }
 
