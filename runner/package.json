@@ -11,7 +11,7 @@
     "scss:build": "node compile-scss.js",
     "copy-forms": "node copy-form-json.js",
     "clean:build": "rm -rf dist",
-    "dev": "NODE_ENV=development nodemon --watch src --ext js,json,ts,html,scss --exec 'yarn build && node dist/digital-form-builder-adapter/runner/index.js'",
+    "dev": "NODE_ENV=development nodemon --watch src --ext js,json,ts,html --exec 'yarn build && node dist/digital-form-builder-adapter/runner/index.js'",
     "production": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js",
     "test-cov": "yarn run unit-test-cov",
     "test:dev": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test --coverage-exclude",
