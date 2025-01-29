@@ -13,7 +13,7 @@
     "clean:build": "rm -rf dist",
     "dev": "NODE_ENV=development nodemon --watch src --ext js,json,ts,html,scss --exec 'yarn build && node --inspect=0.0.0.0:9228 dist/digital-form-builder-adapter/runner/index.js'",
     "start:server": "node dist/digital-form-builder-adapter/runner/index.js",
-    "production": "NODE_ENV=development nodemon dist/digital-form-builder-adapter/runner/index.js",
+    "production": "NODE_ENV=development npm run start:server",
     "start:test": "NODE_ENV=development npm run start:server",
     "test-cov": "yarn run unit-test-cov",
     "test:dev": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test --coverage-exclude",
