@@ -1,6 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="DOCKER-DEBUG" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" port="9228" restartOnDisconnect="true">
-    <mapping url="/usr/src/app/digital-form-builder-adapter/runner" local-file="$PROJECT_DIR$/runner" />
-    <method v="2" />
-  </configuration>
-</component>
