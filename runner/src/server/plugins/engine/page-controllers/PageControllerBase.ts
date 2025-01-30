@@ -556,6 +556,18 @@ export class PageControllerBase {
                 }
                 return redirectTo(request, h, `/${this.model.basePath}/summary`);
             }
+
+            if (state["metadata"] && state["metadata"]["change_requests"] && state.shouldGoToSummary !== false) {
+                // If there are Change Requests, redirect to Summary page, only the 1st time
+                await adapterCacheService.mergeState(request, {shouldGoToSummary: false});
+
+                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+                if (form_session_identifier) {
+                    return redirectTo(request, h, `/${this.model.basePath}/summary?form_session_identifier=${form_session_identifier}`)
+                }
+                return redirectTo(request, h, `/${this.model.basePath}/summary`);
+            }
+
             const progress = state.progress || [];
             const {num} = request.query;
             const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
@@ -647,6 +659,51 @@ export class PageControllerBase {
                     );
                 }
 
+                const changeRequests = state["metadata"]["change_requests"];
+                if (changeRequests === null) {
+                    // No Change Requests - Quick return
+
+                    return evaluatedComponent;
+                }
+                
+                // If there are Change Requests
+                const componentName = evaluatedComponent.model.name || "";
+                if (componentName in changeRequests) {
+                    // Component has Change Request - Add feedback to hint
+
+                    if (evaluatedComponent.model.hint === undefined) {
+                        evaluatedComponent.model.hint = {html: ""};
+                    }
+
+                    const messages = changeRequests[componentName];
+                    if (messages) {
+                        const hints = messages.map((msg) => `<p>${msg}</p>`).join("");
+                        evaluatedComponent.model.hint.html += `<div class="govuk-inset-text change-request-block"><header>Assessor feedback</header>${hints}</div>`;
+                    }
+
+                    return evaluatedComponent;
+                }
+            
+                // Component has no Change Request
+                const pageHasNoComponentWithChangeRequest = this.pageDef.components.find(component => component.name in changeRequests);
+                if (pageHasNoComponentWithChangeRequest === undefined) {
+                    // if no Change Request on page - We got here through a condition
+
+                    return evaluatedComponent;
+                }
+
+
+                // Change Request on page - Disable all other components on page
+                if (evaluatedComponent.model.classes === undefined) {
+                    evaluatedComponent.model.classes = "";
+                }
+                evaluatedComponent.model.classes += " govuk-input--disabled";
+
+                if (evaluatedComponent.model.hint === undefined) {
+                    evaluatedComponent.model.hint = {html: ""};
+                }
+                evaluatedComponent.model.hint.html += `<div class="govuk-inset-text change-request-disabled"><header>Cannot edit</header></div>`;
+            
                 return evaluatedComponent;
             });
 
