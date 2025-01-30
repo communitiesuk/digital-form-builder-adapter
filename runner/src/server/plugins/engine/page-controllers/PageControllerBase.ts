@@ -659,14 +659,14 @@ export class PageControllerBase {
                     );
                 }
 
-                const changeRequests = state["metadata"]["change_requests"];
-                if (!changeRequests) {
+                if (!(state["metadata"] && state["metadata"]["change_requests"])) {
                     // No Change Requests - Quick return
 
                     return evaluatedComponent;
                 }
-                
+
                 // If there are Change Requests
+                const changeRequests = state["metadata"]["change_requests"];
                 const componentName = evaluatedComponent.model.name || "";
                 if (componentName in changeRequests) {
                     // Component has Change Request - Add feedback to hint
