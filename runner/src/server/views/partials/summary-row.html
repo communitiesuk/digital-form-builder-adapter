@@ -1,4 +1,4 @@
-{% macro summaryRow(item, notSuppliedText, changeText, isReadOnlySummary=false) %}
+{% macro summaryRow(item, notSuppliedText, changeText, isReadOnlySummary=false, isResubmission=false, changeRequestsQuestionIDs=[]) %}
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
         {{item.label}}
@@ -39,10 +39,13 @@
         {% endif %}
     </dd>
     <dd class="govuk-summary-list__actions">
-        {% if not isReadOnlySummary %}
-        <a class="govuk-link" href="{{item.url}}">
-            {{changeText}}<span class="govuk-visually-hidden"> {{item.label}}</span>
-        </a>
+        {% if not isReadOnlySummary and (not isResubmission or (isResubmission and item.name in changeRequestsQuestionIDs)) %}
+            {% if (isResubmission and item.name in changeRequestsQuestionIDs) %}
+                <span class="govuk-tag govuk-tag--orange govuk-!-margin-right-2">TO REVIEW</span>
+            {% endif %}
+            <a class="govuk-link" href="{{item.url}}">
+                {{changeText}}<span class="govuk-visually-hidden"> {{item.label}}</span>
+            </a>
         {% endif %}
     </dd>
 </div>
