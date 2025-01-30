@@ -660,7 +660,7 @@ export class PageControllerBase {
                 }
 
                 const changeRequests = state["metadata"]["change_requests"];
-                if (changeRequests === null) {
+                if (!changeRequests) {
                     // No Change Requests - Quick return
 
                     return evaluatedComponent;
