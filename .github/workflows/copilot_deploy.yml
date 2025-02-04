@@ -475,10 +475,12 @@ jobs:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       SLACK_NOTIFICATION_CHANNEL_ID: ${{ secrets.SLACK_NOTIFICATION_CHANNEL_ID }}
+      SLACK_DEPLOYMENTS_CHANNEL_ID: ${{ secrets.SLACK_DEPLOYMENTS_CHANNEL_ID }}
     with:
       environment: prod
       app_name: form-runner-adapter
       run_db_migrations: false
       image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
       notify_slack: true
+      notify_slack_on_deployment: true
 
