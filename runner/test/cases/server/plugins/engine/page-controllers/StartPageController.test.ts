@@ -21,6 +21,7 @@ const {suite, test, before, after, beforeEach, afterEach} = lab;
 
 suite("StartPageController", () => {
     let server;
+    let response;
     let $;
     let sandbox;
     let adapterCacheService;
@@ -90,5 +91,31 @@ suite("StartPageController", () => {
 
         expect(viewModel.isStartPage).to.be.true();
         expect(viewModel.skipTimeoutWarning).to.be.true();
+    });
+
+    test("start page show change request message", async () => {
+        // Define the mock state with metadata
+        const mockState = {
+            metadata: {
+                change_requests: {
+                    "aBcDeFg": ["Change request message"],
+                }
+            }
+            // Add any other necessary metadata here
+        };
+
+        // Stub getState to return the mock state
+        adapterCacheService.getState.resolves(mockState);
+
+        const pages = [...form.pages];
+        const firstPage = pages.shift();
+        const formDef = {...form, pages: [firstPage, ...pages]};
+        let formModel = new AdapterFormModel(formDef, {});
+        const pageController = new StartPageController(formModel, firstPage);
+        const vm = pageController.getViewModel({}, formModel);
+        response = await server.render("summary", vm);
+
+        $ = cheerio.load(response);
+        expect($(".govuk-heading-m").text()).to.contain("Change requested");
     });
 });
