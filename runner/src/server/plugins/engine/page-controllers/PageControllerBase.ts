@@ -15,6 +15,7 @@ import {
     HapiResponseToolkit,
 } from "../../../types";
 import {
+    ChangeRequest,
     FormData,
     FormPayload,
     FormSubmissionErrors,
@@ -153,6 +154,7 @@ export class PageControllerBase {
         backLinkText?: string;
         continueButtonText?: string;
         phaseTag?: string | undefined;
+        changeRequests?: ChangeRequest[] | undefined;
     } {
         let showTitle = true;
         let pageTitle = this.title;
@@ -649,6 +651,24 @@ export class PageControllerBase {
 
                 return evaluatedComponent;
             });
+
+            viewModel.changeRequests = [];
+            if (state["metadata"] && state["metadata"]["change_requests"]) {
+                for (let componentName in state["metadata"]["change_requests"]) {
+                    const messages = state["metadata"]["change_requests"][componentName];
+
+                    // Find the component with the matching name
+                    const component = this.pageDef.components.find(component => component.name === componentName);
+
+                    if (component) {
+                        // Add an object to viewModel.changeRequests
+                        viewModel.changeRequests.push({
+                            title: component.title,
+                            messages: messages
+                        });
+                    }
+                }
+            }
 
             /**
              * used for when a user clicks the "back" link. Progress is stored in the state. This is a safer alternative to running javascript that pops the history `onclick`.
