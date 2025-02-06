@@ -76,6 +76,18 @@ export class SummaryPageController extends PageController {
                 viewModel.backLink = state.callback?.returnUrl;
             }
 
+            viewModel.isResubmission = false
+            if (state["metadata"] && state["metadata"]["is_resubmission"]) {
+                viewModel.isResubmission = state["metadata"]["is_resubmission"];
+            }
+
+            viewModel.changeRequestsQuestionIDs = [];
+            if (state["metadata"] && state["metadata"]["change_requests"]) {
+                for (let componentName in state["metadata"]["change_requests"]) {
+                    viewModel.changeRequestsQuestionIDs.push(componentName);
+                }
+            }
+
             /**
              * iterates through the errors. If there are errors, a user will be redirected to the page
              * with the error with returnUrl=`/${model.basePath}/<last page that shows summary details>` in the URL query parameter.

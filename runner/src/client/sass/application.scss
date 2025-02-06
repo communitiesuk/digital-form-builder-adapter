@@ -88,3 +88,34 @@ $govuk-global-styles: true;
   list-style-type: revert;
   padding-left: revert;
 }
+
+.change-request-block {
+  padding: 0 0 0 15px;
+  margin: 15px 0;
+  border-color: #1d70b8;
+  header {
+    margin-bottom: 5px;
+    font-weight: bold;
+    p {
+      margin: 5px 0 0;
+    }
+  }
+}
+
+.change-request-disabled {
+  padding: 0 0 0 15px;
+  margin: 15px 0;
+  header {
+    margin-bottom: 5px;
+    font-weight: bold;
+    p {
+      margin: 5px 0 0;
+    }
+  }
+}
+
+.govuk-input--disabled {
+  cursor: not-allowed; /* Changes the cursor to indicate it's not interactive */
+  opacity: 0.5;        /* Makes it visually appear disabled */
+  pointer-events: none; /* Disables click and other interactions */
+}
