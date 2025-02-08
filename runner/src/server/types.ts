@@ -18,6 +18,12 @@ import {AdapterStatusService} from "./services";
 import {WebhookService} from "./services/WebhookService";
 import {TranslationLoaderService} from "./services/TranslationLoaderService";
 
+
+export type ChangeRequest = {
+    title: string;
+    messages: string[];
+  }
+
 export type Services = (services: string[]) => {
     adapterCacheService: AdapterCacheService;
     notifyService: NotifyService;

@@ -4,6 +4,7 @@
 {% from "footer/macro.njk" import govukFooter -%}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "skip-link/macro.njk" import govukSkipLink -%}
+{% from "./partials/change-requests-banner.html" import changeRequestsBanner %}
 
 
 {% block head %}
@@ -193,29 +194,7 @@
     {% endif %}
 
     {% if changeRequests.length > 0 %}
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-            <div class="govuk-!-margin-top-4">
-                <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-                    <div class="govuk-notification-banner__header">
-                        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                            Change request
-                        </h2>
-                    </div>
-                    <div class="govuk-notification-banner__content">
-                        {% for question in changeRequests %}
-                            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                                {{ question.title }}
-                            </h3>
-                            {% for message in question.messages %}
-                                <p class="govuk-body govuk-!-margin-bottom-1">{{ message }}</p>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        {{ changeRequestsBanner(changeRequests) }}
     {% endif %}
 {% endblock %}
 
