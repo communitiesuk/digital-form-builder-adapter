@@ -1,5 +1,5 @@
 {
-  "startPage": "/project-name",
+  "startPage": "/project-details",
   "pages": [
     {
       "path": "/summary",
@@ -8,6 +8,25 @@
       "next": [],
       "section": "FabDefault",
       "controller": "./pages/summary.js"
+    },
+    {
+      "title": "Project details",
+      "path": "/project-details",
+      "components": [
+        {
+          "name": "orUXQc",
+          "options": {},
+          "type": "Para",
+          "content": "<label class=\"govuk-!-font-weight-bold\">In this section, we'll ask about:\n</label>\n\n<div class=\"govuk-body\">\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>project name</li>\n<li>project overview</li>\n</ul>\n</div>",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/project-name"
+        }
+      ],
+      "controller": "./pages/start.js"
     },
     {
       "path": "/project-overview",
@@ -47,8 +66,7 @@
           "path": "/project-overview"
         }
       ],
-      "section": "FabDefault",
-      "controller": "start.js"
+      "section": "FabDefault"
     }
   ],
   "lists": [],
