@@ -29,7 +29,7 @@ suite("ContinuePageController", () => {
         await server.stop();
     });
 
-    test("shouldDisplayContinueButtonWithLabelOnPageView_whenContinuePageControllerIsLoaded", async () => {
+    test("should display continue button with label on page view when continue page controller is loaded", async () => {
         const response = await server.inject({
             method: 'GET',
             url: '/continue-page.test/are-you-applying-from-a-local-authority-in-england'

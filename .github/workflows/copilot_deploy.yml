@@ -135,6 +135,9 @@ jobs:
           yarn model build
           echo "--  Building digital-form-builder queue-model locally  --"
           yarn queue-model build
+          echo "--  Building digital-form-builder-adapter model locally  --"
+          cd ..
+          yarn model build
           echo "--  Running unit tests  --"
           yarn runner test-cov
 

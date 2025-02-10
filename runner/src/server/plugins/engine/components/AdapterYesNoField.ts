@@ -9,7 +9,7 @@ export class AdapterYesNoField extends YesNoField {
         super(def, model);
         this.list.items[0].text = model.options.translationEn.components.yesOrNoField.yes;
         this.list.items[1].text = model.options.translationEn.components.yesOrNoField.no;
-        if (model.def.metadata?.isWelsh) {
+        if (model.def?.metadata?.isWelsh) {
             this.list.items[0].text = model.options.translationCy.components.yesOrNoField.yes;
             this.list.items[1].text = model.options.translationCy.components.yesOrNoField.no;
         }

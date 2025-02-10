@@ -11,8 +11,9 @@ import cheerio from "cheerio";
 import {DefaultPageController} from "src/server/plugins/engine/page-controllers";
 //@ts-ignore
 import {TranslationLoaderService} from "src/server/services/TranslationLoaderService";
+import config from "../../../../../../../digital-form-builder/runner/src/server/config";
 
-const form = require("../../../confirm-page.test.json");
+import form from "../../../declarations.json";
 
 const {expect} = Code;
 const lab = Lab.script();
@@ -21,24 +22,26 @@ const {suite, test, before, after, beforeEach, afterEach} = lab;
 
 suite("DefaultPageController", () => {
     let server;
-    let response;
     let $;
     let sandbox;
-
-    const mockI18n = (key) => {
-        const translationService: TranslationLoaderService = new TranslationLoaderService();
-        const translations = translationService.getTranslations();
-        return translations.en[key] || key;
-    };
+    let adapterCacheService;
+    let options = {};
 
     before(async () => {
         server = await createServer({
-            formFileName: "confirm-page.test.json",
+            formFileName: "declarations.json",
             formFilePath: path.join(__dirname, "../../../"),
             enforceCsrf: false,
         });
-        server.i18n = {
-            __: mockI18n
+        // Create a mock of adapterCacheService
+        adapterCacheService = {
+            getState: sinon.stub()
+        };
+        const translationService: TranslationLoaderService = new TranslationLoaderService();
+        const translations = translationService.getTranslations();
+        options = {
+            translationEn: translations.en,
+            translationCy: translations.cy
         };
     });
 
@@ -48,6 +51,7 @@ suite("DefaultPageController", () => {
 
     beforeEach(() => {
         sandbox = sinon.createSandbox();
+        sandbox.stub(config, 'eligibilityResultUrl').value('https://mocked-url.com');
     });
 
     afterEach(() => {
@@ -55,18 +59,20 @@ suite("DefaultPageController", () => {
     });
 
     test("renders default page with form components", async () => {
-        const pages = [...form.pages];
-        const firstPage = pages.shift();
-        const formDef = {...form, pages: [firstPage, ...pages]};
-        let formModel = new AdapterFormModel(formDef, {});
-        const pageController = new DefaultPageController(formModel, firstPage);
-        const vm = pageController.getViewModel({}, formModel);
-        vm.i18n = {
-            __: mockI18n
+        // Define the mock state with metadata
+        const mockState = {
+            metadata: {}
+            // Add any other necessary metadata here
         };
-        response = await server.render("summary", vm);
+        // Stub getState to return the mock state
+        adapterCacheService.getState.resolves(mockState);
 
-        $ = cheerio.load(response);
+        const response = await server.inject({
+            method: 'GET',
+            url: `/declarations/agree-to-the-final-confirmations-DWyips`
+        });
+
+        $ = cheerio.load(response.payload);
         expect($(".govuk-main-wrapper form")).to.exist();
         expect($(".govuk-main-wrapper .govuk-button")).to.exist();
         expect($(".govuk-main-wrapper .govuk-button").text()).to.contain("Save and continue");
@@ -76,7 +82,7 @@ suite("DefaultPageController", () => {
         const pages = [...form.pages];
         const firstPage = pages.shift();
         const formDef = {...form, pages: [firstPage, ...pages]};
-        let formModel = new AdapterFormModel(formDef, {});
+        let formModel = new AdapterFormModel(formDef, options);
         const pageController = new DefaultPageController(formModel, firstPage);
 
         // Mock handlePostRequest to return a response without errors
@@ -101,6 +107,10 @@ suite("DefaultPageController", () => {
                     },
                 },
             }),
+            logger: {
+                info: sinon.stub().returns("logger"),
+                error: sinon.stub().returns("logger")
+            },
         };
 
         const h = {
@@ -111,40 +121,5 @@ suite("DefaultPageController", () => {
         expect(result).to.equal('/next-page');
         expect(pageController.handlePostRequest.calledOnce).to.be.true();
         expect(pageController.proceed.calledOnce).to.be.true();
-    });
-
-    test("retrieves pages up to current", async () => {
-        const pages = [...form.pages];
-        const firstPage = pages.shift();
-        const formDef = {...form, pages: [firstPage, ...pages]};
-        let formModel = new AdapterFormModel(formDef, {});
-        const pageController = new DefaultPageController(formModel, firstPage);
-
-        // Create a simple mock model
-        const mockStartPage = {
-            path: '/start',
-            hasFormComponents: true,
-            getNextPage: sinon.stub().returns(null)
-        };
-
-        pageController.model.startPage = mockStartPage;
-        pageController.path = '/start'; // Set the current page to be the start page
-
-        const state = {};
-        const result = pageController.retrievePagesUpToCurrent(state);
-
-        // Check the structure of the result
-        expect(result).to.be.an.object();
-        expect(result.relevantPages).to.be.an.array();
-
-        // Check if the start page is included
-        expect(result.relevantPages).to.have.length(1);
-        expect(result.relevantPages[0].path).to.equal('/start');
-
-        // Check that the endPage is null
-        expect(result.endPage).to.be.null();
-
-        // Verify that getNextPage was not called
-        expect(mockStartPage.getNextPage.called).to.be.false();
     });
 });

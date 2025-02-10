@@ -10,8 +10,9 @@ import path from "path";
 import {PageController} from "src/server/plugins/engine/page-controllers";
 //@ts-ignore
 import {TranslationLoaderService} from "src/server/services/TranslationLoaderService";
+import * as sinon from "sinon";
 
-const form = require("../../../confirm-page.test.json");
+const form = require("../../../start-page.test.json");
 
 const {expect} = Code;
 const lab = Lab.script();
@@ -22,21 +23,17 @@ suite("PageController", () => {
     let server;
     let response;
     let $;
-
-    const mockI18n = (key) => {
-        const translationService: TranslationLoaderService = new TranslationLoaderService();
-        const translations = translationService.getTranslations();
-        return translations.en[key] || key;
-    };
+    let adapterCacheService;
 
     before(async () => {
         server = await createServer({
-            formFileName: "confirm-page.test.json",
+            formFileName: "start-page.test.json",
             formFilePath: path.join(__dirname, "../../../"),
             enforceCsrf: false,
         });
-        server.i18n = {
-            __: mockI18n
+        // Create a mock of adapterCacheService
+        adapterCacheService = {
+            getState: sinon.stub()
         };
     });
 
@@ -45,32 +42,28 @@ suite("PageController", () => {
     });
 
     test("GET request - renders page correctly", async () => {
-        const pages = [...form.pages];
-        const firstPage = pages.shift();
-        const formDef = {...form, pages: [firstPage, ...pages]};
-        const formModel = new AdapterFormModel(formDef, {});
-        const pageController = new PageController(formModel, firstPage);
-
-        const vm = pageController.getViewModel({}, formModel);
-        vm.i18n = {
-            __: mockI18n
+        // Define the mock state with metadata
+        const mockState = {
+            metadata: {}
+            // Add any other necessary metadata here
         };
-        response = await server.render("summary", vm);
+        // Stub getState to return the mock state
+        adapterCacheService.getState.resolves(mockState);
 
-        $ = cheerio.load(response);
+        const response = await server.inject({
+            method: 'GET',
+            url: '/start-page.test/before-you-start'
+        });
+
+        $ = cheerio.load(response.payload);
         expect($("h1.govuk-heading-l")).to.exist();
-        expect($("h1.govuk-heading-l").text()).to.contain("First page");
+        expect($("h1.govuk-heading-l").text()).to.contain("Before you start");
     });
 
     // TODO: Fix tests for S3 Upload
     test("POST request - processes upload successfully", async () => {
         const pages = [...form.pages];
         const firstPage = pages.shift();
-        const formDef = {...form, pages: [firstPage, ...pages]};
-        const formModel = new AdapterFormModel(formDef, {});
-        //@ts-ignore
-        const pageController = new PageController(formModel, firstPage);
-
         const mockS3UploadService = {
             handleUploadRequest: async () => {
                 return {success: true};

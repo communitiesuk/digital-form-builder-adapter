@@ -1,3 +1,4 @@
+/* TODO may be in future if needed we might need to add this feature
 import * as Code from "@hapi/code";
 import * as Lab from "@hapi/lab";
 //@ts-ignore
@@ -16,7 +17,7 @@ const lab = Lab.script();
 exports.lab = lab;
 const {suite, test, before, after} = lab;
 
-/*
+
 suite("PlaybackUploadPageController", () => {
     let server;
     let response;
