@@ -12,7 +12,7 @@ import {StartPageController} from "src/server/plugins/engine/page-controllers";
 //@ts-ignore
 import {TranslationLoaderService} from "src/server/services/TranslationLoaderService";
 
-const form = require("../../../confirm-page.test.json");
+const form = require("../../../start-page.test.json");
 
 const {expect} = Code;
 const lab = Lab.script();
@@ -21,24 +21,26 @@ const {suite, test, before, after, beforeEach, afterEach} = lab;
 
 suite("StartPageController", () => {
     let server;
-    let response;
     let $;
     let sandbox;
-
-    const mockI18n = (key) => {
-        const translationService: TranslationLoaderService = new TranslationLoaderService();
-        const translations = translationService.getTranslations();
-        return translations.en[key] || key;
-    };
+    let adapterCacheService;
+    let options = {};
 
     before(async () => {
         server = await createServer({
-            formFileName: "confirm-page.test.json",
+            formFileName: "start-page.test.json",
             formFilePath: path.join(__dirname, "../../../"),
             enforceCsrf: false,
         });
-        server.i18n = {
-            __: mockI18n
+        // Create a mock of adapterCacheService
+        adapterCacheService = {
+            getState: sinon.stub()
+        };
+        const translationService: TranslationLoaderService = new TranslationLoaderService();
+        const translations = translationService.getTranslations();
+        options = {
+            translationEn: translations.en,
+            translationCy: translations.cy
         };
     });
 
@@ -52,31 +54,34 @@ suite("StartPageController", () => {
 
     afterEach(() => {
         sandbox.restore();
+        sinon.restore();
     });
 
     test("renders start page with form components", async () => {
-        const pages = [...form.pages];
-        const firstPage = pages.shift();
-        const formDef = {...form, pages: [firstPage, ...pages]};
-        let formModel = new AdapterFormModel(formDef, {});
-        const pageController = new StartPageController(formModel, firstPage);
-        const vm = pageController.getViewModel({}, formModel);
-        vm.i18n = {
-            __: mockI18n
+        // Define the mock state with metadata
+        const mockState = {
+            metadata: {}
+            // Add any other necessary metadata here
         };
-        response = await server.render("summary", vm);
+        // Stub getState to return the mock state
+        adapterCacheService.getState.resolves(mockState);
 
-        $ = cheerio.load(response);
+        const response = await server.inject({
+            method: 'GET',
+            url: '/start-page.test/before-you-start'
+        });
+
+        $ = cheerio.load(response.payload);
         expect($(".govuk-main-wrapper form")).to.exist();
-        expect($(".govuk-main-wrapper .govuk-button")).to.exist();
-        expect($(".govuk-main-wrapper .govuk-button").text()).to.contain("Save and continue");
+        expect($(".govuk-button")).to.exist();
+        expect($(".govuk-button").text()).to.contain("Continue");
     });
 
     test("getViewModel includes isStartPage and skipTimeoutWarning", async () => {
         const pages = [...form.pages];
         const firstPage = pages.shift();
         const formDef = {...form, pages: [firstPage, ...pages]};
-        let formModel = new AdapterFormModel(formDef, {});
+        let formModel = new AdapterFormModel(formDef, options);
         const pageController = new StartPageController(formModel, firstPage);
 
         const formData = {};

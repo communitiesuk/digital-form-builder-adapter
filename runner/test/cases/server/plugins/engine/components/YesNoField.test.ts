@@ -1,7 +1,5 @@
 import * as Code from "@hapi/code";
 import * as Lab from "@hapi/lab";
-// @ts-ignore
-import {YesNoField} from "src/server/plugins/engine/components";
 
 const lab = Lab.script();
 exports.lab = lab;
@@ -9,20 +7,24 @@ const {expect} = Code;
 const {suite, describe, it} = lab;
 import sinon from "sinon";
 import {TranslationLoaderService} from "../../../../../../src/server/services/TranslationLoaderService";
+import {AdapterYesNoField} from "../../../../../../src/server/plugins/engine/components/AdapterYesNoField";
+import {AdapterComponentDef} from "@communitiesuk/model";
+import {AdapterFormModel} from "../../../../../../src/server/plugins/engine/models";
 
 suite("YesNoField", () => {
     describe("Generated schema", () => {
         const translationService: TranslationLoaderService = new TranslationLoaderService();
         const translations = translationService.getTranslations();
-        const componentDefinition = {
+        const componentDefinition: AdapterComponentDef = {
             subType: "field",
             type: "YesNoField",
             name: "speakEnglish",
             title: "Speak English?",
-            schema: {}
+            schema: {},
+            options: {},
         };
-
-        const formModel = {
+        //@ts-ignore
+        const formModel: AdapterFormModel = {
             makePage: () => sinon.stub(),
             getList: () => ({
                 name: "__yesNo",
@@ -83,13 +85,14 @@ suite("YesNoField", () => {
             };
 
             it("viewModel item Yes is checked when evaluating boolean true", () => {
-                const component = new YesNoField(componentDefinition, formModel);
+                const component = new AdapterYesNoField(componentDefinition, formModel);
                 const formData = {
                     speakEnglish: true,
                     lang: "en",
                 };
-
+                //@ts-ignore
                 const viewModel = component.getViewModel(formData);
+                //@ts-ignore
                 const yesItem = viewModel.items.filter(
                     (item) => item.text === "Yes"
                 )[0];
@@ -102,13 +105,14 @@ suite("YesNoField", () => {
             });
 
             it("viewModel item Yes is checked when evaluating string 'true'", () => {
-                const component = new YesNoField(componentDefinition, formModel);
+                const component = new AdapterYesNoField(componentDefinition, formModel);
                 const formData = {
                     speakEnglish: "true",
                     lang: "en",
                 };
-
+                //@ts-ignore
                 const viewModel = component.getViewModel(formData);
+                //@ts-ignore
                 const yesItem = viewModel.items.filter(
                     (item) => item.text === "Yes"
                 )[0];
@@ -121,13 +125,14 @@ suite("YesNoField", () => {
             });
 
             it("viewModel item No is checked when evaluating boolean false", () => {
-                const component = new YesNoField(componentDefinition, formModel);
+                const component = new AdapterYesNoField(componentDefinition, formModel);
                 const formData = {
                     speakEnglish: false,
                     lang: "en",
                 };
-
+                //@ts-ignore
                 const viewModel = component.getViewModel(formData);
+                //@ts-ignore
                 const noItem = viewModel.items.filter((item) => item.text === "No")[0];
 
                 expect(noItem).to.equal({
@@ -138,13 +143,14 @@ suite("YesNoField", () => {
             });
 
             it("viewModel item No is checked when evaluating string 'false'", () => {
-                const component = new YesNoField(componentDefinition, formModel);
+                const component = new AdapterYesNoField(componentDefinition, formModel);
                 const formData = {
                     speakEnglish: "false",
                     lang: "en",
                 };
-
+                //@ts-ignore
                 const viewModel = component.getViewModel(formData);
+                //@ts-ignore
                 const noItem = viewModel.items.filter((item) => item.text === "No")[0];
 
                 expect(noItem).to.equal({

@@ -136,6 +136,7 @@ jobs:
           echo "--  Building digital-form-builder queue-model locally  --"
           yarn queue-model build
           echo "--  Running unit tests  --"
+          cd ..
           yarn runner test-cov
 
       - name: Set up Docker Buildx property
