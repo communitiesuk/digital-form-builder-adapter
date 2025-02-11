@@ -4,7 +4,7 @@ const path = require('path');
 const NODE_INDEX = Number(process.argv[2] || 1);
 const NODE_TOTAL = Number(process.argv[3] || 1);
 
-const TEST_FOLDER = './cypress/e2e';
+const TEST_FOLDER = './e2e-test/cypress/e2e';
 
 console.log(getSpecFiles().join(','))
 
@@ -12,8 +12,8 @@ function getSpecFiles() {
   const allSpecFiles = traverse(TEST_FOLDER);
   const node_index = NODE_INDEX + 1;
   return allSpecFiles.sort()
-    .filter((_, index) => (index % NODE_TOTAL) === (node_index - 1));
-
+    .filter((_, index) => (index % NODE_TOTAL) === (node_index - 1))
+    .map(file => file.replace(/^e2e-test\//, ''));
 }
 
 function traverse(dir) {
