@@ -243,7 +243,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containers: [ 0, 1, 2, 3, 4 ]
+        containers: [ 0, 1, 2, 3, 4, 5 ]
     name: run e2e
     outputs:
       tag: ${{ steps.hashFile.outputs.tag }}
@@ -321,9 +321,9 @@ jobs:
         if: success() || failure()
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: e2e-test-report-application
+          name: e2e-test-report-application-${{ matrix.containers }}
           path: ./e2e-test/cypress/screenshots
-          retention-days: 5
+          retention-days: 2
 
       - name: Check for errors & exit the job
         run: |
