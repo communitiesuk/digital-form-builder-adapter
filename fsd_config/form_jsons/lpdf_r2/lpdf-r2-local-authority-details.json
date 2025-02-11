@@ -1,1770 +1,1770 @@
 {
-    "startPage": "/local-authority-details",
-    "pages": [
+  "startPage": "/local-authority-details",
+  "pages": [
+    {
+      "path": "/check-your-answers",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "CdGjnO",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/lead-contact-details",
+      "title": "Lead contact details",
+      "components": [
         {
-            "path": "/check-your-answers",
-            "title": "Check your answers",
-            "components": [],
-            "next": [],
-            "section": "CdGjnO",
-            "controller": "./pages/summary.js"
+          "type": "Para",
+          "content": "The main point of contact for this application.",
+          "options": {},
+          "schema": {},
+          "name": "bxcVpP"
         },
         {
-            "path": "/lead-contact-details",
-            "title": "Lead contact details",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "The main point of contact for this application.",
-                    "options": {},
-                    "schema": {},
-                    "name": "bxcVpP"
-                },
-                {
-                    "options": {},
-                    "type": "TextField",
-                    "title": "Lead contact name",
-                    "hint": "",
-                    "schema": {},
-                    "name": "sdrrOT"
-                },
-                {
-                    "options": {},
-                    "type": "TextField",
-                    "title": "Lead contact job title",
-                    "hint": "",
-                    "schema": {},
-                    "name": "gswBOa"
-                },
-                {
-                    "options": {},
-                    "type": "EmailAddressField",
-                    "title": "Lead contact email address",
-                    "hint": "",
-                    "schema": {},
-                    "name": "BkuACU"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/is-this-expression-of-interest-being-submitted-jointly-with-another-local-authority"
-                }
-            ],
-            "section": "CdGjnO"
+          "options": {},
+          "type": "TextField",
+          "title": "Lead contact name",
+          "hint": "",
+          "schema": {},
+          "name": "sdrrOT"
         },
         {
-            "path": "/is-this-expression-of-interest-being-submitted-jointly-with-another-local-authority",
-            "title": "Is this expression of interest being submitted jointly with another local authority?",
-            "components": [
-                {
-                    "options": {
-                        "exposeToContext": true,
-                        "hideTitle": true
-                    },
-                    "type": "YesNoField",
-                    "title": "Is this expression of interest being submitted jointly with another local authority?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "hRxtWX",
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/check-your-answers"
-                },
-                {
-                    "path": "/tell-us-which-local-authorities-you-are-submitting-this-joint-expression-of-interest-with",
-                    "condition": "JOjUrR"
-                }
-            ],
-            "section": "CdGjnO"
+          "options": {},
+          "type": "TextField",
+          "title": "Lead contact job title",
+          "hint": "",
+          "schema": {},
+          "name": "gswBOa"
         },
         {
-            "path": "/your-local-authority-name",
-            "title": "Your local authority name",
-            "components": [
-                {
-                    "options": {},
-                    "type": "AutocompleteField",
-                    "title": "Local authority name",
-                    "hint": "",
-                    "schema": {},
-                    "name": "RoLhhf",
-                    "list": "vlTWym",
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/lead-contact-details"
-                }
-            ],
-            "section": "CdGjnO"
-        },
-        {
-            "path": "/local-authority-details",
-            "title": "Local authority details",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your local authority name</li>\n<li>your lead contact's name</li>\n<li>your lead contact's job title</li>\n<li>your lead contact's email address</li>\n<li>whether the expression of interest is being submitted jointly with other local authorities</li>\n<li>which other local authorities you are submitting this joint expression of interest with (if applicable)</li>\n<li>whether you have agreement from all of the local authorities involved in this joint expression of interest (if applicable)</li>\n<li>which local authority will act as the accountable body for the funding and monitoring (if applicable)</li>\n</ul>",
-                    "options": {},
-                    "schema": {},
-                    "name": "nmKurP"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/your-local-authority-name"
-                }
-            ],
-            "section": "CdGjnO",
-            "controller": "start.js"
-        },
-        {
-            "path": "/which-local-authority-will-act-as-the-accountable-body-for-the-funding-and-monitoring",
-            "title": "Which local authority will act as the accountable body for the funding and monitoring?",
-            "components": [
-                {
-                    "options": {},
-                    "type": "AutocompleteField",
-                    "title": "Accountable local authority",
-                    "hint": "",
-                    "schema": {},
-                    "name": "OlCBjB",
-                    "list": "vlTWym",
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/check-your-answers"
-                }
-            ],
-            "section": "CdGjnO"
-        },
-        {
-            "path": "/tell-us-which-local-authorities-you-are-submitting-this-joint-expression-of-interest-with",
-            "title": "Tell us which local authorities you are submitting this joint expression of interest with",
-            "components": [
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "MultilineTextField",
-                    "title": "Tell us which local authorities you are submitting this joint expression of interest with",
-                    "hint": "If there is more than one other local authority, use a comma to separate the names.",
-                    "schema": {},
-                    "name": "MhgGgD"
-                },
-                {
-                    "options": {},
-                    "type": "YesNoField",
-                    "title": "Do you have agreement from all of the local authorities involved in this joint expression of interest?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "csFGxz",
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/which-local-authority-will-act-as-the-accountable-body-for-the-funding-and-monitoring"
-                }
-            ],
-            "section": "CdGjnO"
+          "options": {},
+          "type": "EmailAddressField",
+          "title": "Lead contact email address",
+          "hint": "",
+          "schema": {},
+          "name": "BkuACU"
         }
-    ],
-    "lists": [
+      ],
+      "next": [
         {
-            "type": "string",
-            "items": [
-                {
-                    "value": "Aberdeen City Council",
-                    "text": "Aberdeen City Council"
-                },
-                {
-                    "value": "Aberdeenshire Council",
-                    "text": "Aberdeenshire Council"
-                },
-                {
-                    "value": "Adur District Council",
-                    "text": "Adur District Council"
-                },
-                {
-                    "value": "Amber Valley Borough Council",
-                    "text": "Amber Valley Borough Council"
-                },
-                {
-                    "value": "Angus Council",
-                    "text": "Angus Council"
-                },
-                {
-                    "value": "Argyll and Bute Council",
-                    "text": "Argyll and Bute Council"
-                },
-                {
-                    "value": "Arun District Council",
-                    "text": "Arun District Council"
-                },
-                {
-                    "value": "Ashfield District Council",
-                    "text": "Ashfield District Council"
-                },
-                {
-                    "value": "Ashford Borough Council",
-                    "text": "Ashford Borough Council"
-                },
-                {
-                    "value": "Babergh District Council",
-                    "text": "Babergh District Council"
-                },
-                {
-                    "value": "Barking and Dagenham London Borough",
-                    "text": "Barking and Dagenham London Borough"
-                },
-                {
-                    "value": "Barnet London Borough",
-                    "text": "Barnet London Borough"
-                },
-                {
-                    "value": "Barnsley Metropolitan Borough Council",
-                    "text": "Barnsley Metropolitan Borough Council"
-                },
-                {
-                    "value": "Basildon Borough Council",
-                    "text": "Basildon Borough Council"
-                },
-                {
-                    "value": "Basingstoke and Deane Borough Council",
-                    "text": "Basingstoke and Deane Borough Council"
-                },
-                {
-                    "value": "Bassetlaw District Council",
-                    "text": "Bassetlaw District Council"
-                },
-                {
-                    "value": "Bath and North East Somerset Council",
-                    "text": "Bath and North East Somerset Council"
-                },
-                {
-                    "value": "Bedford UA",
-                    "text": "Bedford UA"
-                },
-                {
-                    "value": "Bexley London Borough",
-                    "text": "Bexley London Borough"
-                },
-                {
-                    "value": "Birmingham City Council",
-                    "text": "Birmingham City Council"
-                },
-                {
-                    "value": "Blaby District Council",
-                    "text": "Blaby District Council"
-                },
-                {
-                    "value": "Blackburn with Darwen Borough Council",
-                    "text": "Blackburn with Darwen Borough Council"
-                },
-                {
-                    "value": "Blackpool Borough Council",
-                    "text": "Blackpool Borough Council"
-                },
-                {
-                    "value": "Blaenau Gwent County Borough Council",
-                    "text": "Blaenau Gwent County Borough Council"
-                },
-                {
-                    "value": "Bolsover District Council",
-                    "text": "Bolsover District Council"
-                },
-                {
-                    "value": "Bolton Metropolitan Borough Council",
-                    "text": "Bolton Metropolitan Borough Council"
-                },
-                {
-                    "value": "Boston Borough Council",
-                    "text": "Boston Borough Council"
-                },
-                {
-                    "value": "Bournemouth, Christchurch and Poole (UA)",
-                    "text": "Bournemouth, Christchurch and Poole (UA)"
-                },
-                {
-                    "value": "Bracknell Forest Council",
-                    "text": "Bracknell Forest Council"
-                },
-                {
-                    "value": "Braintree District Council",
-                    "text": "Braintree District Council"
-                },
-                {
-                    "value": "Breckland District Council",
-                    "text": "Breckland District Council"
-                },
-                {
-                    "value": "Brent London Borough",
-                    "text": "Brent London Borough"
-                },
-                {
-                    "value": "Brentwood Borough Council",
-                    "text": "Brentwood Borough Council"
-                },
-                {
-                    "value": "Bridgend County Borough Council",
-                    "text": "Bridgend County Borough Council"
-                },
-                {
-                    "value": "Brighton and Hove City Council",
-                    "text": "Brighton and Hove City Council"
-                },
-                {
-                    "value": "Bristol City Council",
-                    "text": "Bristol City Council"
-                },
-                {
-                    "value": "Broadland District Council",
-                    "text": "Broadland District Council"
-                },
-                {
-                    "value": "Bromley London Borough",
-                    "text": "Bromley London Borough"
-                },
-                {
-                    "value": "Bromsgrove District Council",
-                    "text": "Bromsgrove District Council"
-                },
-                {
-                    "value": "Broxbourne Borough Council",
-                    "text": "Broxbourne Borough Council"
-                },
-                {
-                    "value": "Broxtowe Borough Council",
-                    "text": "Broxtowe Borough Council"
-                },
-                {
-                    "value": "Buckinghamshire UA",
-                    "text": "Buckinghamshire UA"
-                },
-                {
-                    "value": "Burnley Borough Council",
-                    "text": "Burnley Borough Council"
-                },
-                {
-                    "value": "Bury Metropolitan Borough Council",
-                    "text": "Bury Metropolitan Borough Council"
-                },
-                {
-                    "value": "Caerphilly County Borough Council",
-                    "text": "Caerphilly County Borough Council"
-                },
-                {
-                    "value": "Calderdale Metropolitan Borough Council",
-                    "text": "Calderdale Metropolitan Borough Council"
-                },
-                {
-                    "value": "Cambridge City Council",
-                    "text": "Cambridge City Council"
-                },
-                {
-                    "value": "Cambridge and Peterborough Combined Authority",
-                    "text": "Cambridge and Peterborough Combined Authority"
-                },
-                {
-                    "value": "Cambridgeshire County Council",
-                    "text": "Cambridgeshire County Council"
-                },
-                {
-                    "value": "Camden London Borough",
-                    "text": "Camden London Borough"
-                },
-                {
-                    "value": "Cannock Chase District Council",
-                    "text": "Cannock Chase District Council"
-                },
-                {
-                    "value": "Canterbury City Council",
-                    "text": "Canterbury City Council"
-                },
-                {
-                    "value": "Cardiff Council",
-                    "text": "Cardiff Council"
-                },
-                {
-                    "value": "Carmarthenshire County Council",
-                    "text": "Carmarthenshire County Council"
-                },
-                {
-                    "value": "Castle Point Borough Council",
-                    "text": "Castle Point Borough Council"
-                },
-                {
-                    "value": "Central Bedfordshire UA",
-                    "text": "Central Bedfordshire UA"
-                },
-                {
-                    "value": "Ceredigion County Council",
-                    "text": "Ceredigion County Council"
-                },
-                {
-                    "value": "Charnwood Borough Council",
-                    "text": "Charnwood Borough Council"
-                },
-                {
-                    "value": "Chelmsford City Council",
-                    "text": "Chelmsford City Council"
-                },
-                {
-                    "value": "Cheltenham Borough Council",
-                    "text": "Cheltenham Borough Council"
-                },
-                {
-                    "value": "Cherwell District Council",
-                    "text": "Cherwell District Council"
-                },
-                {
-                    "value": "Cheshire East UA",
-                    "text": "Cheshire East UA"
-                },
-                {
-                    "value": "Cheshire West and Chester UA",
-                    "text": "Cheshire West and Chester UA"
-                },
-                {
-                    "value": "Chesterfield Borough Council",
-                    "text": "Chesterfield Borough Council"
-                },
-                {
-                    "value": "Chichester District Council",
-                    "text": "Chichester District Council"
-                },
-                {
-                    "value": "Chorley Borough Council",
-                    "text": "Chorley Borough Council"
-                },
-                {
-                    "value": "City of Bradford Metropolitan District Council",
-                    "text": "City of Bradford Metropolitan District Council"
-                },
-                {
-                    "value": "City of Edinburgh Council",
-                    "text": "City of Edinburgh Council"
-                },
-                {
-                    "value": "City of London",
-                    "text": "City of London"
-                },
-                {
-                    "value": "City of York Council",
-                    "text": "City of York Council"
-                },
-                {
-                    "value": "Clackmannanshire Council",
-                    "text": "Clackmannanshire Council"
-                },
-                {
-                    "value": "Colchester Borough Council",
-                    "text": "Colchester Borough Council"
-                },
-                {
-                    "value": "Comhairle nan Eilean Siar",
-                    "text": "Comhairle nan Eilean Siar"
-                },
-                {
-                    "value": "Conwy County Borough Council",
-                    "text": "Conwy County Borough Council"
-                },
-                {
-                    "value": "Cornwall County UA",
-                    "text": "Cornwall County UA"
-                },
-                {
-                    "value": "Cotswold District Council",
-                    "text": "Cotswold District Council"
-                },
-                {
-                    "value": "Coventry City Council",
-                    "text": "Coventry City Council"
-                },
-                {
-                    "value": "Crawley Borough Council",
-                    "text": "Crawley Borough Council"
-                },
-                {
-                    "value": "Croydon London Borough",
-                    "text": "Croydon London Borough"
-                },
-                {
-                    "value": "Cumberland Council",
-                    "text": "Cumberland Council"
-                },
-                {
-                    "value": "Dacorum Borough Council",
-                    "text": "Dacorum Borough Council"
-                },
-                {
-                    "value": "Darlington Borough Council",
-                    "text": "Darlington Borough Council"
-                },
-                {
-                    "value": "Dartford Borough Council",
-                    "text": "Dartford Borough Council"
-                },
-                {
-                    "value": "Denbighshire County Council",
-                    "text": "Denbighshire County Council"
-                },
-                {
-                    "value": "Derby City Council",
-                    "text": "Derby City Council"
-                },
-                {
-                    "value": "Derbyshire County Council",
-                    "text": "Derbyshire County Council"
-                },
-                {
-                    "value": "Derbyshire Dales District Council",
-                    "text": "Derbyshire Dales District Council"
-                },
-                {
-                    "value": "Devon County Council",
-                    "text": "Devon County Council"
-                },
-                {
-                    "value": "Doncaster Metropolitan Borough Council",
-                    "text": "Doncaster Metropolitan Borough Council"
-                },
-                {
-                    "value": "Dorset Council (UA)",
-                    "text": "Dorset Council (UA)"
-                },
-                {
-                    "value": "Dover District Council",
-                    "text": "Dover District Council"
-                },
-                {
-                    "value": "Dudley Metropolitan Borough Council",
-                    "text": "Dudley Metropolitan Borough Council"
-                },
-                {
-                    "value": "Dumfries and Galloway Council",
-                    "text": "Dumfries and Galloway Council"
-                },
-                {
-                    "value": "Dundee City Council",
-                    "text": "Dundee City Council"
-                },
-                {
-                    "value": "Durham County UA",
-                    "text": "Durham County UA"
-                },
-                {
-                    "value": "Ealing London Borough",
-                    "text": "Ealing London Borough"
-                },
-                {
-                    "value": "East Ayrshire Council",
-                    "text": "East Ayrshire Council"
-                },
-                {
-                    "value": "East Cambridgeshire District Council",
-                    "text": "East Cambridgeshire District Council"
-                },
-                {
-                    "value": "East Devon District Council",
-                    "text": "East Devon District Council"
-                },
-                {
-                    "value": "East Dunbartonshire Council",
-                    "text": "East Dunbartonshire Council"
-                },
-                {
-                    "value": "East Hampshire District Council",
-                    "text": "East Hampshire District Council"
-                },
-                {
-                    "value": "East Hertfordshire District Council",
-                    "text": "East Hertfordshire District Council"
-                },
-                {
-                    "value": "East Lindsey District Council",
-                    "text": "East Lindsey District Council"
-                },
-                {
-                    "value": "East Lothian Council",
-                    "text": "East Lothian Council"
-                },
-                {
-                    "value": "East Midlands Combined County Authority",
-                    "text": "East Midlands Combined County Authority"
-                },
-                {
-                    "value": "East Renfrewshire Council",
-                    "text": "East Renfrewshire Council"
-                },
-                {
-                    "value": "East Riding of Yorkshire Council",
-                    "text": "East Riding of Yorkshire Council"
-                },
-                {
-                    "value": "East Staffordshire Borough Council",
-                    "text": "East Staffordshire Borough Council"
-                },
-                {
-                    "value": "East Suffolk Council",
-                    "text": "East Suffolk Council"
-                },
-                {
-                    "value": "East Sussex County Council",
-                    "text": "East Sussex County Council"
-                },
-                {
-                    "value": "Eastbourne Borough Council",
-                    "text": "Eastbourne Borough Council"
-                },
-                {
-                    "value": "Eastleigh Borough Council",
-                    "text": "Eastleigh Borough Council"
-                },
-                {
-                    "value": "Elmbridge Borough Council",
-                    "text": "Elmbridge Borough Council"
-                },
-                {
-                    "value": "Enfield London Borough",
-                    "text": "Enfield London Borough"
-                },
-                {
-                    "value": "Epping Forest District Council",
-                    "text": "Epping Forest District Council"
-                },
-                {
-                    "value": "Epsom and Ewell Borough Council",
-                    "text": "Epsom and Ewell Borough Council"
-                },
-                {
-                    "value": "Erewash Borough Council",
-                    "text": "Erewash Borough Council"
-                },
-                {
-                    "value": "Essex County Council",
-                    "text": "Essex County Council"
-                },
-                {
-                    "value": "Exeter City Council",
-                    "text": "Exeter City Council"
-                },
-                {
-                    "value": "Falkirk Council",
-                    "text": "Falkirk Council"
-                },
-                {
-                    "value": "Fareham Borough Council",
-                    "text": "Fareham Borough Council"
-                },
-                {
-                    "value": "Fenland District Council",
-                    "text": "Fenland District Council"
-                },
-                {
-                    "value": "Fife Council",
-                    "text": "Fife Council"
-                },
-                {
-                    "value": "Flintshire County Council",
-                    "text": "Flintshire County Council"
-                },
-                {
-                    "value": "Folkestone and Hythe District Council",
-                    "text": "Folkestone and Hythe District Council"
-                },
-                {
-                    "value": "Forest of Dean District Council",
-                    "text": "Forest of Dean District Council"
-                },
-                {
-                    "value": "Fylde Borough Council",
-                    "text": "Fylde Borough Council"
-                },
-                {
-                    "value": "Gateshead Metropolitan Borough Council",
-                    "text": "Gateshead Metropolitan Borough Council"
-                },
-                {
-                    "value": "Gedling Borough Council",
-                    "text": "Gedling Borough Council"
-                },
-                {
-                    "value": "Glasgow City Council",
-                    "text": "Glasgow City Council"
-                },
-                {
-                    "value": "Gloucester City Council",
-                    "text": "Gloucester City Council"
-                },
-                {
-                    "value": "Gloucestershire County Council",
-                    "text": "Gloucestershire County Council"
-                },
-                {
-                    "value": "Gosport Borough Council",
-                    "text": "Gosport Borough Council"
-                },
-                {
-                    "value": "Gravesham Borough Council",
-                    "text": "Gravesham Borough Council"
-                },
-                {
-                    "value": "Great Yarmouth Borough Council",
-                    "text": "Great Yarmouth Borough Council"
-                },
-                {
-                    "value": "Greater London Authority",
-                    "text": "Greater London Authority"
-                },
-                {
-                    "value": "Greater Manchester Combined Authority",
-                    "text": "Greater Manchester Combined Authority"
-                },
-                {
-                    "value": "Greenwich London Borough",
-                    "text": "Greenwich London Borough"
-                },
-                {
-                    "value": "Guildford Borough Council",
-                    "text": "Guildford Borough Council"
-                },
-                {
-                    "value": "Gwynedd Council",
-                    "text": "Gwynedd Council"
-                },
-                {
-                    "value": "Hackney London Borough",
-                    "text": "Hackney London Borough"
-                },
-                {
-                    "value": "Halton Borough Council",
-                    "text": "Halton Borough Council"
-                },
-                {
-                    "value": "Hammersmith and Fulham London Borough",
-                    "text": "Hammersmith and Fulham London Borough"
-                },
-                {
-                    "value": "Hampshire County Council",
-                    "text": "Hampshire County Council"
-                },
-                {
-                    "value": "Harborough District Council",
-                    "text": "Harborough District Council"
-                },
-                {
-                    "value": "Haringey London Borough",
-                    "text": "Haringey London Borough"
-                },
-                {
-                    "value": "Harlow District Council",
-                    "text": "Harlow District Council"
-                },
-                {
-                    "value": "Harrow London Borough",
-                    "text": "Harrow London Borough"
-                },
-                {
-                    "value": "Hart District Council",
-                    "text": "Hart District Council"
-                },
-                {
-                    "value": "Hartlepool Borough Council",
-                    "text": "Hartlepool Borough Council"
-                },
-                {
-                    "value": "Hastings Borough Council",
-                    "text": "Hastings Borough Council"
-                },
-                {
-                    "value": "Havant Borough Council",
-                    "text": "Havant Borough Council"
-                },
-                {
-                    "value": "Havering London Borough",
-                    "text": "Havering London Borough"
-                },
-                {
-                    "value": "Herefordshire Council",
-                    "text": "Herefordshire Council"
-                },
-                {
-                    "value": "Hertfordshire County Council",
-                    "text": "Hertfordshire County Council"
-                },
-                {
-                    "value": "Hertsmere Borough Council",
-                    "text": "Hertsmere Borough Council"
-                },
-                {
-                    "value": "High Peak Borough Council",
-                    "text": "High Peak Borough Council"
-                },
-                {
-                    "value": "Highland Council",
-                    "text": "Highland Council"
-                },
-                {
-                    "value": "Hillingdon London Borough",
-                    "text": "Hillingdon London Borough"
-                },
-                {
-                    "value": "Hinckley and Bosworth Borough Council",
-                    "text": "Hinckley and Bosworth Borough Council"
-                },
-                {
-                    "value": "Horsham District Council",
-                    "text": "Horsham District Council"
-                },
-                {
-                    "value": "Hounslow London Borough",
-                    "text": "Hounslow London Borough"
-                },
-                {
-                    "value": "Hull City Council",
-                    "text": "Hull City Council"
-                },
-                {
-                    "value": "Huntingdonshire District Council",
-                    "text": "Huntingdonshire District Council"
-                },
-                {
-                    "value": "Hyndburn Borough Council",
-                    "text": "Hyndburn Borough Council"
-                },
-                {
-                    "value": "Inverclyde Council",
-                    "text": "Inverclyde Council"
-                },
-                {
-                    "value": "Ipswich Borough Council",
-                    "text": "Ipswich Borough Council"
-                },
-                {
-                    "value": "Isle of Anglesey County Council",
-                    "text": "Isle of Anglesey County Council"
-                },
-                {
-                    "value": "Isle of Wight Council",
-                    "text": "Isle of Wight Council"
-                },
-                {
-                    "value": "Isles of Scilly Council",
-                    "text": "Isles of Scilly Council"
-                },
-                {
-                    "value": "Islington London Borough",
-                    "text": "Islington London Borough"
-                },
-                {
-                    "value": "Kensington and Chelsea Royal Borough",
-                    "text": "Kensington and Chelsea Royal Borough"
-                },
-                {
-                    "value": "Kent County Council",
-                    "text": "Kent County Council"
-                },
-                {
-                    "value": "King's Lynn and West Norfolk Borough Council",
-                    "text": "King's Lynn and West Norfolk Borough Council"
-                },
-                {
-                    "value": "Kingston upon Thames Royal Borough",
-                    "text": "Kingston upon Thames Royal Borough"
-                },
-                {
-                    "value": "Kirklees Council",
-                    "text": "Kirklees Council"
-                },
-                {
-                    "value": "Knowsley Metropolitan Borough Council",
-                    "text": "Knowsley Metropolitan Borough Council"
-                },
-                {
-                    "value": "Lambeth London Borough",
-                    "text": "Lambeth London Borough"
-                },
-                {
-                    "value": "Lancashire County Council",
-                    "text": "Lancashire County Council"
-                },
-                {
-                    "value": "Lancaster City Council",
-                    "text": "Lancaster City Council"
-                },
-                {
-                    "value": "Leeds City Council",
-                    "text": "Leeds City Council"
-                },
-                {
-                    "value": "Leicester City Council",
-                    "text": "Leicester City Council"
-                },
-                {
-                    "value": "Leicestershire County Council",
-                    "text": "Leicestershire County Council"
-                },
-                {
-                    "value": "Lewes District Council",
-                    "text": "Lewes District Council"
-                },
-                {
-                    "value": "Lewisham London Borough",
-                    "text": "Lewisham London Borough"
-                },
-                {
-                    "value": "Lichfield District Council",
-                    "text": "Lichfield District Council"
-                },
-                {
-                    "value": "Lincoln City Council",
-                    "text": "Lincoln City Council"
-                },
-                {
-                    "value": "Lincolnshire County Council",
-                    "text": "Lincolnshire County Council"
-                },
-                {
-                    "value": "Liverpool City Council",
-                    "text": "Liverpool City Council"
-                },
-                {
-                    "value": "Liverpool City Region Combined Authority",
-                    "text": "Liverpool City Region Combined Authority"
-                },
-                {
-                    "value": "London Borough of Richmond upon Thames",
-                    "text": "London Borough of Richmond upon Thames"
-                },
-                {
-                    "value": "Luton Borough Council",
-                    "text": "Luton Borough Council"
-                },
-                {
-                    "value": "Maidstone Borough Council",
-                    "text": "Maidstone Borough Council"
-                },
-                {
-                    "value": "Maldon District Council",
-                    "text": "Maldon District Council"
-                },
-                {
-                    "value": "Malvern Hills District Council",
-                    "text": "Malvern Hills District Council"
-                },
-                {
-                    "value": "Manchester City Council",
-                    "text": "Manchester City Council"
-                },
-                {
-                    "value": "Mansfield District Council",
-                    "text": "Mansfield District Council"
-                },
-                {
-                    "value": "Medway Council",
-                    "text": "Medway Council"
-                },
-                {
-                    "value": "Melton Borough Council",
-                    "text": "Melton Borough Council"
-                },
-                {
-                    "value": "Merthyr Tydfil County Borough Council",
-                    "text": "Merthyr Tydfil County Borough Council"
-                },
-                {
-                    "value": "Merton London Borough",
-                    "text": "Merton London Borough"
-                },
-                {
-                    "value": "Mid Devon District Council",
-                    "text": "Mid Devon District Council"
-                },
-                {
-                    "value": "Mid Suffolk District Council",
-                    "text": "Mid Suffolk District Council"
-                },
-                {
-                    "value": "Mid Sussex District Council",
-                    "text": "Mid Sussex District Council"
-                },
-                {
-                    "value": "Middlesbrough Council",
-                    "text": "Middlesbrough Council"
-                },
-                {
-                    "value": "Midlothian Council",
-                    "text": "Midlothian Council"
-                },
-                {
-                    "value": "Milton Keynes Council",
-                    "text": "Milton Keynes Council"
-                },
-                {
-                    "value": "Mole Valley District Council",
-                    "text": "Mole Valley District Council"
-                },
-                {
-                    "value": "Monmouthshire County Council",
-                    "text": "Monmouthshire County Council"
-                },
-                {
-                    "value": "Moray Council",
-                    "text": "Moray Council"
-                },
-                {
-                    "value": "Muckinghamshire Borough UA",
-                    "text": "Muckinghamshire Borough UA"
-                },
-                {
-                    "value": "Neath Port Talbot County Borough",
-                    "text": "Neath Port Talbot County Borough"
-                },
-                {
-                    "value": "New Forest District Council",
-                    "text": "New Forest District Council"
-                },
-                {
-                    "value": "Newark and Sherwood District Council",
-                    "text": "Newark and Sherwood District Council"
-                },
-                {
-                    "value": "Newcastle City Council",
-                    "text": "Newcastle City Council"
-                },
-                {
-                    "value": "Newcastle-under-Lyme Borough Council",
-                    "text": "Newcastle-under-Lyme Borough Council"
-                },
-                {
-                    "value": "Newham London Borough",
-                    "text": "Newham London Borough"
-                },
-                {
-                    "value": "Newport City Council",
-                    "text": "Newport City Council"
-                },
-                {
-                    "value": "Norfolk County Council",
-                    "text": "Norfolk County Council"
-                },
-                {
-                    "value": "North Ayrshire Council",
-                    "text": "North Ayrshire Council"
-                },
-                {
-                    "value": "North Devon District Council",
-                    "text": "North Devon District Council"
-                },
-                {
-                    "value": "North East Derbyshire District Council",
-                    "text": "North East Derbyshire District Council"
-                },
-                {
-                    "value": "North East Lincolnshire Council",
-                    "text": "North East Lincolnshire Council"
-                },
-                {
-                    "value": "North East Mayoral Combined Authority (Post May 2024)",
-                    "text": "North East Mayoral Combined Authority (Post May 2024)"
-                },
-                {
-                    "value": "North Hertfordshire District Council",
-                    "text": "North Hertfordshire District Council"
-                },
-                {
-                    "value": "North Kesteven District Council",
-                    "text": "North Kesteven District Council"
-                },
-                {
-                    "value": "North Lanarkshire Council",
-                    "text": "North Lanarkshire Council"
-                },
-                {
-                    "value": "North Lincolnshire Council",
-                    "text": "North Lincolnshire Council"
-                },
-                {
-                    "value": "North Norfolk District Council",
-                    "text": "North Norfolk District Council"
-                },
-                {
-                    "value": "North Northamptonshire Council",
-                    "text": "North Northamptonshire Council"
-                },
-                {
-                    "value": "North Somerset Council",
-                    "text": "North Somerset Council"
-                },
-                {
-                    "value": "North Tyneside Council",
-                    "text": "North Tyneside Council"
-                },
-                {
-                    "value": "North Warwickshire Borough Council",
-                    "text": "North Warwickshire Borough Council"
-                },
-                {
-                    "value": "North West Leicestershire District Council",
-                    "text": "North West Leicestershire District Council"
-                },
-                {
-                    "value": "North Yorkshire Council (UA)",
-                    "text": "North Yorkshire Council (UA)"
-                },
-                {
-                    "value": "North of Tyne Combined Authority",
-                    "text": "North of Tyne Combined Authority"
-                },
-                {
-                    "value": "Northumberland County UA",
-                    "text": "Northumberland County UA"
-                },
-                {
-                    "value": "Norwich City Council",
-                    "text": "Norwich City Council"
-                },
-                {
-                    "value": "Nottingham City Council",
-                    "text": "Nottingham City Council"
-                },
-                {
-                    "value": "Nottinghamshire County Council",
-                    "text": "Nottinghamshire County Council"
-                },
-                {
-                    "value": "Nuneaton and Bedworth Borough Council",
-                    "text": "Nuneaton and Bedworth Borough Council"
-                },
-                {
-                    "value": "Oadby and Wigston Borough Council",
-                    "text": "Oadby and Wigston Borough Council"
-                },
-                {
-                    "value": "Oldham Metropolitan Borough Council",
-                    "text": "Oldham Metropolitan Borough Council"
-                },
-                {
-                    "value": "Orkney Islands Council",
-                    "text": "Orkney Islands Council"
-                },
-                {
-                    "value": "Oxford City Council",
-                    "text": "Oxford City Council"
-                },
-                {
-                    "value": "Oxfordshire County Council",
-                    "text": "Oxfordshire County Council"
-                },
-                {
-                    "value": "Pembrokeshire County Council",
-                    "text": "Pembrokeshire County Council"
-                },
-                {
-                    "value": "Pendle Borough Council",
-                    "text": "Pendle Borough Council"
-                },
-                {
-                    "value": "Perth & Kinross Council",
-                    "text": "Perth & Kinross Council"
-                },
-                {
-                    "value": "Peterborough City Council",
-                    "text": "Peterborough City Council"
-                },
-                {
-                    "value": "Plymouth City Council",
-                    "text": "Plymouth City Council"
-                },
-                {
-                    "value": "Portsmouth City Council",
-                    "text": "Portsmouth City Council"
-                },
-                {
-                    "value": "Powys County Council",
-                    "text": "Powys County Council"
-                },
-                {
-                    "value": "Preston City Council",
-                    "text": "Preston City Council"
-                },
-                {
-                    "value": "Reading Borough Council",
-                    "text": "Reading Borough Council"
-                },
-                {
-                    "value": "Redbridge London Borough",
-                    "text": "Redbridge London Borough"
-                },
-                {
-                    "value": "Redcar and Cleveland Borough Council",
-                    "text": "Redcar and Cleveland Borough Council"
-                },
-                {
-                    "value": "Redditch Borough Council",
-                    "text": "Redditch Borough Council"
-                },
-                {
-                    "value": "Reigate and Banstead Borough Council",
-                    "text": "Reigate and Banstead Borough Council"
-                },
-                {
-                    "value": "Renfrewshire Council",
-                    "text": "Renfrewshire Council"
-                },
-                {
-                    "value": "Rhondda Cynon Taf County Borough Council",
-                    "text": "Rhondda Cynon Taf County Borough Council"
-                },
-                {
-                    "value": "Ribble Valley Borough Council",
-                    "text": "Ribble Valley Borough Council"
-                },
-                {
-                    "value": "Rochdale Metropolitan Borough Council",
-                    "text": "Rochdale Metropolitan Borough Council"
-                },
-                {
-                    "value": "Rochford District Council",
-                    "text": "Rochford District Council"
-                },
-                {
-                    "value": "Rossendale Borough Council",
-                    "text": "Rossendale Borough Council"
-                },
-                {
-                    "value": "Rother District Council",
-                    "text": "Rother District Council"
-                },
-                {
-                    "value": "Rotherham Metropolitan Borough Council",
-                    "text": "Rotherham Metropolitan Borough Council"
-                },
-                {
-                    "value": "Rugby Borough Council",
-                    "text": "Rugby Borough Council"
-                },
-                {
-                    "value": "Runnymede Borough Council",
-                    "text": "Runnymede Borough Council"
-                },
-                {
-                    "value": "Rushcliffe Borough Council",
-                    "text": "Rushcliffe Borough Council"
-                },
-                {
-                    "value": "Rushmoor Borough Council",
-                    "text": "Rushmoor Borough Council"
-                },
-                {
-                    "value": "Rutland County Council",
-                    "text": "Rutland County Council"
-                },
-                {
-                    "value": "Salford City Council",
-                    "text": "Salford City Council"
-                },
-                {
-                    "value": "Sandwell Metropolitan Borough Council",
-                    "text": "Sandwell Metropolitan Borough Council"
-                },
-                {
-                    "value": "Scottish Borders Council",
-                    "text": "Scottish Borders Council"
-                },
-                {
-                    "value": "Sefton Metropolitan Borough Council",
-                    "text": "Sefton Metropolitan Borough Council"
-                },
-                {
-                    "value": "Sevenoaks District Council",
-                    "text": "Sevenoaks District Council"
-                },
-                {
-                    "value": "Sheffield City Council",
-                    "text": "Sheffield City Council"
-                },
-                {
-                    "value": "Shetland Islands Council",
-                    "text": "Shetland Islands Council"
-                },
-                {
-                    "value": "Shropshire County UA",
-                    "text": "Shropshire County UA"
-                },
-                {
-                    "value": "Slough Borough Council",
-                    "text": "Slough Borough Council"
-                },
-                {
-                    "value": "Solihull Metropolitan Borough Council",
-                    "text": "Solihull Metropolitan Borough Council"
-                },
-                {
-                    "value": "Somerset Council (UA)",
-                    "text": "Somerset Council (UA)"
-                },
-                {
-                    "value": "South Ayrshire Council",
-                    "text": "South Ayrshire Council"
-                },
-                {
-                    "value": "South Cambridgeshire District Council",
-                    "text": "South Cambridgeshire District Council"
-                },
-                {
-                    "value": "South Derbyshire District Council",
-                    "text": "South Derbyshire District Council"
-                },
-                {
-                    "value": "South Gloucestershire Council",
-                    "text": "South Gloucestershire Council"
-                },
-                {
-                    "value": "South Hams District Council",
-                    "text": "South Hams District Council"
-                },
-                {
-                    "value": "South Holland District Council",
-                    "text": "South Holland District Council"
-                },
-                {
-                    "value": "South Kesteven District Council",
-                    "text": "South Kesteven District Council"
-                },
-                {
-                    "value": "South Lanarkshire Council",
-                    "text": "South Lanarkshire Council"
-                },
-                {
-                    "value": "South Norfolk Council",
-                    "text": "South Norfolk Council"
-                },
-                {
-                    "value": "South Oxfordshire District Council",
-                    "text": "South Oxfordshire District Council"
-                },
-                {
-                    "value": "South Ribble Borough Council",
-                    "text": "South Ribble Borough Council"
-                },
-                {
-                    "value": "South Staffordshire Council",
-                    "text": "South Staffordshire Council"
-                },
-                {
-                    "value": "South Tyneside Council",
-                    "text": "South Tyneside Council"
-                },
-                {
-                    "value": "South Yorkshire Mayoral Combined Authority",
-                    "text": "South Yorkshire Mayoral Combined Authority"
-                },
-                {
-                    "value": "Southampton City Council",
-                    "text": "Southampton City Council"
-                },
-                {
-                    "value": "Southend-on-Sea City Council",
-                    "text": "Southend-on-Sea City Council"
-                },
-                {
-                    "value": "Southwark London Borough",
-                    "text": "Southwark London Borough"
-                },
-                {
-                    "value": "Spelthorne Borough Council",
-                    "text": "Spelthorne Borough Council"
-                },
-                {
-                    "value": "St Albans City and District Council",
-                    "text": "St Albans City and District Council"
-                },
-                {
-                    "value": "St Helens Council",
-                    "text": "St Helens Council"
-                },
-                {
-                    "value": "Stafford Borough Council",
-                    "text": "Stafford Borough Council"
-                },
-                {
-                    "value": "Staffordshire County Council",
-                    "text": "Staffordshire County Council"
-                },
-                {
-                    "value": "Staffordshire Moorlands District Council",
-                    "text": "Staffordshire Moorlands District Council"
-                },
-                {
-                    "value": "Stevenage Borough Council",
-                    "text": "Stevenage Borough Council"
-                },
-                {
-                    "value": "Stirling Council",
-                    "text": "Stirling Council"
-                },
-                {
-                    "value": "Stockport Metropolitan Borough Council",
-                    "text": "Stockport Metropolitan Borough Council"
-                },
-                {
-                    "value": "Stockton-on-Tees Borough Council",
-                    "text": "Stockton-on-Tees Borough Council"
-                },
-                {
-                    "value": "Stoke-on-Trent City Council",
-                    "text": "Stoke-on-Trent City Council"
-                },
-                {
-                    "value": "Stratford-on-Avon District Council",
-                    "text": "Stratford-on-Avon District Council"
-                },
-                {
-                    "value": "Stroud District Council",
-                    "text": "Stroud District Council"
-                },
-                {
-                    "value": "Suffolk County Council",
-                    "text": "Suffolk County Council"
-                },
-                {
-                    "value": "Sunderland City Council",
-                    "text": "Sunderland City Council"
-                },
-                {
-                    "value": "Surrey County Council",
-                    "text": "Surrey County Council"
-                },
-                {
-                    "value": "Surrey Heath Borough Council",
-                    "text": "Surrey Heath Borough Council"
-                },
-                {
-                    "value": "Sutton London Borough",
-                    "text": "Sutton London Borough"
-                },
-                {
-                    "value": "Swale Borough Council",
-                    "text": "Swale Borough Council"
-                },
-                {
-                    "value": "Swansea Council",
-                    "text": "Swansea Council"
-                },
-                {
-                    "value": "Swindon Borough Council",
-                    "text": "Swindon Borough Council"
-                },
-                {
-                    "value": "Tameside Metropolitan Borough Council",
-                    "text": "Tameside Metropolitan Borough Council"
-                },
-                {
-                    "value": "Tamworth Borough Council",
-                    "text": "Tamworth Borough Council"
-                },
-                {
-                    "value": "Tandridge District Council",
-                    "text": "Tandridge District Council"
-                },
-                {
-                    "value": "Tees Valley Combined Authority",
-                    "text": "Tees Valley Combined Authority"
-                },
-                {
-                    "value": "Teignbridge District Council",
-                    "text": "Teignbridge District Council"
-                },
-                {
-                    "value": "Telford and Wrekin Council",
-                    "text": "Telford and Wrekin Council"
-                },
-                {
-                    "value": "Tendring District Council",
-                    "text": "Tendring District Council"
-                },
-                {
-                    "value": "Test Valley Borough Council",
-                    "text": "Test Valley Borough Council"
-                },
-                {
-                    "value": "Tewkesbury Borough Council",
-                    "text": "Tewkesbury Borough Council"
-                },
-                {
-                    "value": "Thanet District Council",
-                    "text": "Thanet District Council"
-                },
-                {
-                    "value": "Three Rivers District Council",
-                    "text": "Three Rivers District Council"
-                },
-                {
-                    "value": "Thurrock Council",
-                    "text": "Thurrock Council"
-                },
-                {
-                    "value": "Tonbridge and Malling Borough Council",
-                    "text": "Tonbridge and Malling Borough Council"
-                },
-                {
-                    "value": "Torbay Council",
-                    "text": "Torbay Council"
-                },
-                {
-                    "value": "Torfaen County Borough",
-                    "text": "Torfaen County Borough"
-                },
-                {
-                    "value": "Torridge District Council",
-                    "text": "Torridge District Council"
-                },
-                {
-                    "value": "Tower Hamlets London Borough",
-                    "text": "Tower Hamlets London Borough"
-                },
-                {
-                    "value": "Trafford Metropolitan Borough Council",
-                    "text": "Trafford Metropolitan Borough Council"
-                },
-                {
-                    "value": "Tunbridge Wells Borough Council",
-                    "text": "Tunbridge Wells Borough Council"
-                },
-                {
-                    "value": "Uttlesford District Council",
-                    "text": "Uttlesford District Council"
-                },
-                {
-                    "value": "Vale of Glamorgan Council",
-                    "text": "Vale of Glamorgan Council"
-                },
-                {
-                    "value": "Vale of White Horse District Council",
-                    "text": "Vale of White Horse District Council"
-                },
-                {
-                    "value": "Wakefield Metropolitan District Council",
-                    "text": "Wakefield Metropolitan District Council"
-                },
-                {
-                    "value": "Walsall Metropolitan Borough Council",
-                    "text": "Walsall Metropolitan Borough Council"
-                },
-                {
-                    "value": "Waltham Forest London Borough",
-                    "text": "Waltham Forest London Borough"
-                },
-                {
-                    "value": "Wandsworth London Borough",
-                    "text": "Wandsworth London Borough"
-                },
-                {
-                    "value": "Warrington Borough Council",
-                    "text": "Warrington Borough Council"
-                },
-                {
-                    "value": "Warwick District Council",
-                    "text": "Warwick District Council"
-                },
-                {
-                    "value": "Warwickshire County Council",
-                    "text": "Warwickshire County Council"
-                },
-                {
-                    "value": "Watford Borough Council",
-                    "text": "Watford Borough Council"
-                },
-                {
-                    "value": "Waverley Borough Council",
-                    "text": "Waverley Borough Council"
-                },
-                {
-                    "value": "Wealden District Council",
-                    "text": "Wealden District Council"
-                },
-                {
-                    "value": "Welwyn Hatfield Borough Council",
-                    "text": "Welwyn Hatfield Borough Council"
-                },
-                {
-                    "value": "West Berkshire Council",
-                    "text": "West Berkshire Council"
-                },
-                {
-                    "value": "West Devon Borough Council",
-                    "text": "West Devon Borough Council"
-                },
-                {
-                    "value": "West Dunbartonshire Council",
-                    "text": "West Dunbartonshire Council"
-                },
-                {
-                    "value": "West Lancashire Borough Council",
-                    "text": "West Lancashire Borough Council"
-                },
-                {
-                    "value": "West Lindsey District Council",
-                    "text": "West Lindsey District Council"
-                },
-                {
-                    "value": "West Lothian Council",
-                    "text": "West Lothian Council"
-                },
-                {
-                    "value": "West Midlands Combined Authority",
-                    "text": "West Midlands Combined Authority"
-                },
-                {
-                    "value": "West Northamptonshire Council",
-                    "text": "West Northamptonshire Council"
-                },
-                {
-                    "value": "West Oxfordshire District Council",
-                    "text": "West Oxfordshire District Council"
-                },
-                {
-                    "value": "West Suffolk Council",
-                    "text": "West Suffolk Council"
-                },
-                {
-                    "value": "West Sussex County Council",
-                    "text": "West Sussex County Council"
-                },
-                {
-                    "value": "West Yorkshire Combined Authority",
-                    "text": "West Yorkshire Combined Authority"
-                },
-                {
-                    "value": "West of England Combined Authority",
-                    "text": "West of England Combined Authority"
-                },
-                {
-                    "value": "Westminster City Council",
-                    "text": "Westminster City Council"
-                },
-                {
-                    "value": "Westmorland and Furness Council",
-                    "text": "Westmorland and Furness Council"
-                },
-                {
-                    "value": "Wigan Metropolitan Borough Council",
-                    "text": "Wigan Metropolitan Borough Council"
-                },
-                {
-                    "value": "Wiltshire County UA",
-                    "text": "Wiltshire County UA"
-                },
-                {
-                    "value": "Winchester City Council",
-                    "text": "Winchester City Council"
-                },
-                {
-                    "value": "Windsor and Maidenhead Royal Borough Council",
-                    "text": "Windsor and Maidenhead Royal Borough Council"
-                },
-                {
-                    "value": "Wirral Borough Council",
-                    "text": "Wirral Borough Council"
-                },
-                {
-                    "value": "Woking Borough Council",
-                    "text": "Woking Borough Council"
-                },
-                {
-                    "value": "Wokingham Borough Council",
-                    "text": "Wokingham Borough Council"
-                },
-                {
-                    "value": "Wolverhampton City Council",
-                    "text": "Wolverhampton City Council"
-                },
-                {
-                    "value": "Worcester City Council",
-                    "text": "Worcester City Council"
-                },
-                {
-                    "value": "Worcestershire County Council",
-                    "text": "Worcestershire County Council"
-                },
-                {
-                    "value": "Worthing Borough Council",
-                    "text": "Worthing Borough Council"
-                },
-                {
-                    "value": "Wrexham County Borough Council",
-                    "text": "Wrexham County Borough Council"
-                },
-                {
-                    "value": "Wychavon District Council",
-                    "text": "Wychavon District Council"
-                },
-                {
-                    "value": "Wyre Borough Council",
-                    "text": "Wyre Borough Council"
-                },
-                {
-                    "value": "Wyre Forest District Council",
-                    "text": "Wyre Forest District Council"
-                },
-                {
-                    "value": "York and North Yorkshire Mayoral Combined Authority",
-                    "text": "York and North Yorkshire Mayoral Combined Authority"
-                }
-            ],
-            "name": "vlTWym",
-            "title": "Local authorities"
+          "path": "/is-this-expression-of-interest-being-submitted-jointly-with-another-local-authority"
         }
-    ],
-    "conditions": [
+      ],
+      "section": "CdGjnO"
+    },
+    {
+      "path": "/is-this-expression-of-interest-being-submitted-jointly-with-another-local-authority",
+      "title": "Is this expression of interest being submitted jointly with another local authority?",
+      "components": [
         {
-            "displayName": "Other local authorities",
-            "name": "JOjUrR",
-            "value": {
-                "name": "Other local authorities",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "CdGjnO.hRxtWX",
-                            "type": "YesNoField",
-                            "display": "Is this expression of interest being submitted jointly with another local authority?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        }
-    ],
-    "sections": [
-        {
-            "name": "CdGjnO",
-            "title": "Local authority details",
+          "options": {
+            "exposeToContext": true,
             "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Is this expression of interest being submitted jointly with another local authority?",
+          "hint": "",
+          "schema": {},
+          "name": "hRxtWX",
+          "values": {
+            "type": "listRef"
+          }
         }
-    ],
-    "outputs": [],
-    "skipSummary": false,
-    "name": "Apply for local plan funding (Regulation 18)"
+      ],
+      "next": [
+        {
+          "path": "/check-your-answers"
+        },
+        {
+          "path": "/tell-us-which-local-authorities-you-are-submitting-this-joint-expression-of-interest-with",
+          "condition": "JOjUrR"
+        }
+      ],
+      "section": "CdGjnO"
+    },
+    {
+      "path": "/your-local-authority-name",
+      "title": "Your local authority name",
+      "components": [
+        {
+          "options": {},
+          "type": "AutocompleteField",
+          "title": "Local authority name",
+          "hint": "",
+          "schema": {},
+          "name": "RoLhhf",
+          "list": "vlTWym",
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/lead-contact-details"
+        }
+      ],
+      "section": "CdGjnO"
+    },
+    {
+      "path": "/local-authority-details",
+      "title": "Local authority details",
+      "components": [
+        {
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your local authority name</li>\n<li>your lead contact's name</li>\n<li>your lead contact's job title</li>\n<li>your lead contact's email address</li>\n<li>whether the expression of interest is being submitted jointly with other local authorities</li>\n<li>which other local authorities you are submitting this joint expression of interest with (if applicable)</li>\n<li>whether you have agreement from all of the local authorities involved in this joint expression of interest (if applicable)</li>\n<li>which local authority will act as the accountable body for the funding and monitoring (if applicable)</li>\n</ul>",
+          "options": {},
+          "schema": {},
+          "name": "nmKurP"
+        }
+      ],
+      "next": [
+        {
+          "path": "/your-local-authority-name"
+        }
+      ],
+      "section": "CdGjnO",
+      "controller": "start.js"
+    },
+    {
+      "path": "/which-local-authority-will-act-as-the-accountable-body-for-the-funding-and-monitoring",
+      "title": "Which local authority will act as the accountable body for the funding and monitoring?",
+      "components": [
+        {
+          "options": {},
+          "type": "AutocompleteField",
+          "title": "Accountable local authority",
+          "hint": "",
+          "schema": {},
+          "name": "OlCBjB",
+          "list": "vlTWym",
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/check-your-answers"
+        }
+      ],
+      "section": "CdGjnO"
+    },
+    {
+      "path": "/tell-us-which-local-authorities-you-are-submitting-this-joint-expression-of-interest-with",
+      "title": "Tell us which local authorities you are submitting this joint expression of interest with",
+      "components": [
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "MultilineTextField",
+          "title": "Tell us which local authorities you are submitting this joint expression of interest with",
+          "hint": "If there is more than one other local authority, use a comma to separate the names.",
+          "schema": {},
+          "name": "MhgGgD"
+        },
+        {
+          "options": {},
+          "type": "YesNoField",
+          "title": "Do you have agreement from all of the local authorities involved in this joint expression of interest?",
+          "hint": "",
+          "schema": {},
+          "name": "csFGxz",
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/which-local-authority-will-act-as-the-accountable-body-for-the-funding-and-monitoring"
+        }
+      ],
+      "section": "CdGjnO"
+    }
+  ],
+  "lists": [
+    {
+      "type": "string",
+      "items": [
+        {
+          "value": "Aberdeen City Council",
+          "text": "Aberdeen City Council"
+        },
+        {
+          "value": "Aberdeenshire Council",
+          "text": "Aberdeenshire Council"
+        },
+        {
+          "value": "Adur District Council",
+          "text": "Adur District Council"
+        },
+        {
+          "value": "Amber Valley Borough Council",
+          "text": "Amber Valley Borough Council"
+        },
+        {
+          "value": "Angus Council",
+          "text": "Angus Council"
+        },
+        {
+          "value": "Argyll and Bute Council",
+          "text": "Argyll and Bute Council"
+        },
+        {
+          "value": "Arun District Council",
+          "text": "Arun District Council"
+        },
+        {
+          "value": "Ashfield District Council",
+          "text": "Ashfield District Council"
+        },
+        {
+          "value": "Ashford Borough Council",
+          "text": "Ashford Borough Council"
+        },
+        {
+          "value": "Babergh District Council",
+          "text": "Babergh District Council"
+        },
+        {
+          "value": "Barking and Dagenham London Borough",
+          "text": "Barking and Dagenham London Borough"
+        },
+        {
+          "value": "Barnet London Borough",
+          "text": "Barnet London Borough"
+        },
+        {
+          "value": "Barnsley Metropolitan Borough Council",
+          "text": "Barnsley Metropolitan Borough Council"
+        },
+        {
+          "value": "Basildon Borough Council",
+          "text": "Basildon Borough Council"
+        },
+        {
+          "value": "Basingstoke and Deane Borough Council",
+          "text": "Basingstoke and Deane Borough Council"
+        },
+        {
+          "value": "Bassetlaw District Council",
+          "text": "Bassetlaw District Council"
+        },
+        {
+          "value": "Bath and North East Somerset Council",
+          "text": "Bath and North East Somerset Council"
+        },
+        {
+          "value": "Bedford UA",
+          "text": "Bedford UA"
+        },
+        {
+          "value": "Bexley London Borough",
+          "text": "Bexley London Borough"
+        },
+        {
+          "value": "Birmingham City Council",
+          "text": "Birmingham City Council"
+        },
+        {
+          "value": "Blaby District Council",
+          "text": "Blaby District Council"
+        },
+        {
+          "value": "Blackburn with Darwen Borough Council",
+          "text": "Blackburn with Darwen Borough Council"
+        },
+        {
+          "value": "Blackpool Borough Council",
+          "text": "Blackpool Borough Council"
+        },
+        {
+          "value": "Blaenau Gwent County Borough Council",
+          "text": "Blaenau Gwent County Borough Council"
+        },
+        {
+          "value": "Bolsover District Council",
+          "text": "Bolsover District Council"
+        },
+        {
+          "value": "Bolton Metropolitan Borough Council",
+          "text": "Bolton Metropolitan Borough Council"
+        },
+        {
+          "value": "Boston Borough Council",
+          "text": "Boston Borough Council"
+        },
+        {
+          "value": "Bournemouth, Christchurch and Poole (UA)",
+          "text": "Bournemouth, Christchurch and Poole (UA)"
+        },
+        {
+          "value": "Bracknell Forest Council",
+          "text": "Bracknell Forest Council"
+        },
+        {
+          "value": "Braintree District Council",
+          "text": "Braintree District Council"
+        },
+        {
+          "value": "Breckland District Council",
+          "text": "Breckland District Council"
+        },
+        {
+          "value": "Brent London Borough",
+          "text": "Brent London Borough"
+        },
+        {
+          "value": "Brentwood Borough Council",
+          "text": "Brentwood Borough Council"
+        },
+        {
+          "value": "Bridgend County Borough Council",
+          "text": "Bridgend County Borough Council"
+        },
+        {
+          "value": "Brighton and Hove City Council",
+          "text": "Brighton and Hove City Council"
+        },
+        {
+          "value": "Bristol City Council",
+          "text": "Bristol City Council"
+        },
+        {
+          "value": "Broadland District Council",
+          "text": "Broadland District Council"
+        },
+        {
+          "value": "Bromley London Borough",
+          "text": "Bromley London Borough"
+        },
+        {
+          "value": "Bromsgrove District Council",
+          "text": "Bromsgrove District Council"
+        },
+        {
+          "value": "Broxbourne Borough Council",
+          "text": "Broxbourne Borough Council"
+        },
+        {
+          "value": "Broxtowe Borough Council",
+          "text": "Broxtowe Borough Council"
+        },
+        {
+          "value": "Buckinghamshire UA",
+          "text": "Buckinghamshire UA"
+        },
+        {
+          "value": "Burnley Borough Council",
+          "text": "Burnley Borough Council"
+        },
+        {
+          "value": "Bury Metropolitan Borough Council",
+          "text": "Bury Metropolitan Borough Council"
+        },
+        {
+          "value": "Caerphilly County Borough Council",
+          "text": "Caerphilly County Borough Council"
+        },
+        {
+          "value": "Calderdale Metropolitan Borough Council",
+          "text": "Calderdale Metropolitan Borough Council"
+        },
+        {
+          "value": "Cambridge City Council",
+          "text": "Cambridge City Council"
+        },
+        {
+          "value": "Cambridge and Peterborough Combined Authority",
+          "text": "Cambridge and Peterborough Combined Authority"
+        },
+        {
+          "value": "Cambridgeshire County Council",
+          "text": "Cambridgeshire County Council"
+        },
+        {
+          "value": "Camden London Borough",
+          "text": "Camden London Borough"
+        },
+        {
+          "value": "Cannock Chase District Council",
+          "text": "Cannock Chase District Council"
+        },
+        {
+          "value": "Canterbury City Council",
+          "text": "Canterbury City Council"
+        },
+        {
+          "value": "Cardiff Council",
+          "text": "Cardiff Council"
+        },
+        {
+          "value": "Carmarthenshire County Council",
+          "text": "Carmarthenshire County Council"
+        },
+        {
+          "value": "Castle Point Borough Council",
+          "text": "Castle Point Borough Council"
+        },
+        {
+          "value": "Central Bedfordshire UA",
+          "text": "Central Bedfordshire UA"
+        },
+        {
+          "value": "Ceredigion County Council",
+          "text": "Ceredigion County Council"
+        },
+        {
+          "value": "Charnwood Borough Council",
+          "text": "Charnwood Borough Council"
+        },
+        {
+          "value": "Chelmsford City Council",
+          "text": "Chelmsford City Council"
+        },
+        {
+          "value": "Cheltenham Borough Council",
+          "text": "Cheltenham Borough Council"
+        },
+        {
+          "value": "Cherwell District Council",
+          "text": "Cherwell District Council"
+        },
+        {
+          "value": "Cheshire East UA",
+          "text": "Cheshire East UA"
+        },
+        {
+          "value": "Cheshire West and Chester UA",
+          "text": "Cheshire West and Chester UA"
+        },
+        {
+          "value": "Chesterfield Borough Council",
+          "text": "Chesterfield Borough Council"
+        },
+        {
+          "value": "Chichester District Council",
+          "text": "Chichester District Council"
+        },
+        {
+          "value": "Chorley Borough Council",
+          "text": "Chorley Borough Council"
+        },
+        {
+          "value": "City of Bradford Metropolitan District Council",
+          "text": "City of Bradford Metropolitan District Council"
+        },
+        {
+          "value": "City of Edinburgh Council",
+          "text": "City of Edinburgh Council"
+        },
+        {
+          "value": "City of London",
+          "text": "City of London"
+        },
+        {
+          "value": "City of York Council",
+          "text": "City of York Council"
+        },
+        {
+          "value": "Clackmannanshire Council",
+          "text": "Clackmannanshire Council"
+        },
+        {
+          "value": "Colchester Borough Council",
+          "text": "Colchester Borough Council"
+        },
+        {
+          "value": "Comhairle nan Eilean Siar",
+          "text": "Comhairle nan Eilean Siar"
+        },
+        {
+          "value": "Conwy County Borough Council",
+          "text": "Conwy County Borough Council"
+        },
+        {
+          "value": "Cornwall County UA",
+          "text": "Cornwall County UA"
+        },
+        {
+          "value": "Cotswold District Council",
+          "text": "Cotswold District Council"
+        },
+        {
+          "value": "Coventry City Council",
+          "text": "Coventry City Council"
+        },
+        {
+          "value": "Crawley Borough Council",
+          "text": "Crawley Borough Council"
+        },
+        {
+          "value": "Croydon London Borough",
+          "text": "Croydon London Borough"
+        },
+        {
+          "value": "Cumberland Council",
+          "text": "Cumberland Council"
+        },
+        {
+          "value": "Dacorum Borough Council",
+          "text": "Dacorum Borough Council"
+        },
+        {
+          "value": "Darlington Borough Council",
+          "text": "Darlington Borough Council"
+        },
+        {
+          "value": "Dartford Borough Council",
+          "text": "Dartford Borough Council"
+        },
+        {
+          "value": "Denbighshire County Council",
+          "text": "Denbighshire County Council"
+        },
+        {
+          "value": "Derby City Council",
+          "text": "Derby City Council"
+        },
+        {
+          "value": "Derbyshire County Council",
+          "text": "Derbyshire County Council"
+        },
+        {
+          "value": "Derbyshire Dales District Council",
+          "text": "Derbyshire Dales District Council"
+        },
+        {
+          "value": "Devon County Council",
+          "text": "Devon County Council"
+        },
+        {
+          "value": "Doncaster Metropolitan Borough Council",
+          "text": "Doncaster Metropolitan Borough Council"
+        },
+        {
+          "value": "Dorset Council (UA)",
+          "text": "Dorset Council (UA)"
+        },
+        {
+          "value": "Dover District Council",
+          "text": "Dover District Council"
+        },
+        {
+          "value": "Dudley Metropolitan Borough Council",
+          "text": "Dudley Metropolitan Borough Council"
+        },
+        {
+          "value": "Dumfries and Galloway Council",
+          "text": "Dumfries and Galloway Council"
+        },
+        {
+          "value": "Dundee City Council",
+          "text": "Dundee City Council"
+        },
+        {
+          "value": "Durham County UA",
+          "text": "Durham County UA"
+        },
+        {
+          "value": "Ealing London Borough",
+          "text": "Ealing London Borough"
+        },
+        {
+          "value": "East Ayrshire Council",
+          "text": "East Ayrshire Council"
+        },
+        {
+          "value": "East Cambridgeshire District Council",
+          "text": "East Cambridgeshire District Council"
+        },
+        {
+          "value": "East Devon District Council",
+          "text": "East Devon District Council"
+        },
+        {
+          "value": "East Dunbartonshire Council",
+          "text": "East Dunbartonshire Council"
+        },
+        {
+          "value": "East Hampshire District Council",
+          "text": "East Hampshire District Council"
+        },
+        {
+          "value": "East Hertfordshire District Council",
+          "text": "East Hertfordshire District Council"
+        },
+        {
+          "value": "East Lindsey District Council",
+          "text": "East Lindsey District Council"
+        },
+        {
+          "value": "East Lothian Council",
+          "text": "East Lothian Council"
+        },
+        {
+          "value": "East Midlands Combined County Authority",
+          "text": "East Midlands Combined County Authority"
+        },
+        {
+          "value": "East Renfrewshire Council",
+          "text": "East Renfrewshire Council"
+        },
+        {
+          "value": "East Riding of Yorkshire Council",
+          "text": "East Riding of Yorkshire Council"
+        },
+        {
+          "value": "East Staffordshire Borough Council",
+          "text": "East Staffordshire Borough Council"
+        },
+        {
+          "value": "East Suffolk Council",
+          "text": "East Suffolk Council"
+        },
+        {
+          "value": "East Sussex County Council",
+          "text": "East Sussex County Council"
+        },
+        {
+          "value": "Eastbourne Borough Council",
+          "text": "Eastbourne Borough Council"
+        },
+        {
+          "value": "Eastleigh Borough Council",
+          "text": "Eastleigh Borough Council"
+        },
+        {
+          "value": "Elmbridge Borough Council",
+          "text": "Elmbridge Borough Council"
+        },
+        {
+          "value": "Enfield London Borough",
+          "text": "Enfield London Borough"
+        },
+        {
+          "value": "Epping Forest District Council",
+          "text": "Epping Forest District Council"
+        },
+        {
+          "value": "Epsom and Ewell Borough Council",
+          "text": "Epsom and Ewell Borough Council"
+        },
+        {
+          "value": "Erewash Borough Council",
+          "text": "Erewash Borough Council"
+        },
+        {
+          "value": "Essex County Council",
+          "text": "Essex County Council"
+        },
+        {
+          "value": "Exeter City Council",
+          "text": "Exeter City Council"
+        },
+        {
+          "value": "Falkirk Council",
+          "text": "Falkirk Council"
+        },
+        {
+          "value": "Fareham Borough Council",
+          "text": "Fareham Borough Council"
+        },
+        {
+          "value": "Fenland District Council",
+          "text": "Fenland District Council"
+        },
+        {
+          "value": "Fife Council",
+          "text": "Fife Council"
+        },
+        {
+          "value": "Flintshire County Council",
+          "text": "Flintshire County Council"
+        },
+        {
+          "value": "Folkestone and Hythe District Council",
+          "text": "Folkestone and Hythe District Council"
+        },
+        {
+          "value": "Forest of Dean District Council",
+          "text": "Forest of Dean District Council"
+        },
+        {
+          "value": "Fylde Borough Council",
+          "text": "Fylde Borough Council"
+        },
+        {
+          "value": "Gateshead Metropolitan Borough Council",
+          "text": "Gateshead Metropolitan Borough Council"
+        },
+        {
+          "value": "Gedling Borough Council",
+          "text": "Gedling Borough Council"
+        },
+        {
+          "value": "Glasgow City Council",
+          "text": "Glasgow City Council"
+        },
+        {
+          "value": "Gloucester City Council",
+          "text": "Gloucester City Council"
+        },
+        {
+          "value": "Gloucestershire County Council",
+          "text": "Gloucestershire County Council"
+        },
+        {
+          "value": "Gosport Borough Council",
+          "text": "Gosport Borough Council"
+        },
+        {
+          "value": "Gravesham Borough Council",
+          "text": "Gravesham Borough Council"
+        },
+        {
+          "value": "Great Yarmouth Borough Council",
+          "text": "Great Yarmouth Borough Council"
+        },
+        {
+          "value": "Greater London Authority",
+          "text": "Greater London Authority"
+        },
+        {
+          "value": "Greater Manchester Combined Authority",
+          "text": "Greater Manchester Combined Authority"
+        },
+        {
+          "value": "Greenwich London Borough",
+          "text": "Greenwich London Borough"
+        },
+        {
+          "value": "Guildford Borough Council",
+          "text": "Guildford Borough Council"
+        },
+        {
+          "value": "Gwynedd Council",
+          "text": "Gwynedd Council"
+        },
+        {
+          "value": "Hackney London Borough",
+          "text": "Hackney London Borough"
+        },
+        {
+          "value": "Halton Borough Council",
+          "text": "Halton Borough Council"
+        },
+        {
+          "value": "Hammersmith and Fulham London Borough",
+          "text": "Hammersmith and Fulham London Borough"
+        },
+        {
+          "value": "Hampshire County Council",
+          "text": "Hampshire County Council"
+        },
+        {
+          "value": "Harborough District Council",
+          "text": "Harborough District Council"
+        },
+        {
+          "value": "Haringey London Borough",
+          "text": "Haringey London Borough"
+        },
+        {
+          "value": "Harlow District Council",
+          "text": "Harlow District Council"
+        },
+        {
+          "value": "Harrow London Borough",
+          "text": "Harrow London Borough"
+        },
+        {
+          "value": "Hart District Council",
+          "text": "Hart District Council"
+        },
+        {
+          "value": "Hartlepool Borough Council",
+          "text": "Hartlepool Borough Council"
+        },
+        {
+          "value": "Hastings Borough Council",
+          "text": "Hastings Borough Council"
+        },
+        {
+          "value": "Havant Borough Council",
+          "text": "Havant Borough Council"
+        },
+        {
+          "value": "Havering London Borough",
+          "text": "Havering London Borough"
+        },
+        {
+          "value": "Herefordshire Council",
+          "text": "Herefordshire Council"
+        },
+        {
+          "value": "Hertfordshire County Council",
+          "text": "Hertfordshire County Council"
+        },
+        {
+          "value": "Hertsmere Borough Council",
+          "text": "Hertsmere Borough Council"
+        },
+        {
+          "value": "High Peak Borough Council",
+          "text": "High Peak Borough Council"
+        },
+        {
+          "value": "Highland Council",
+          "text": "Highland Council"
+        },
+        {
+          "value": "Hillingdon London Borough",
+          "text": "Hillingdon London Borough"
+        },
+        {
+          "value": "Hinckley and Bosworth Borough Council",
+          "text": "Hinckley and Bosworth Borough Council"
+        },
+        {
+          "value": "Horsham District Council",
+          "text": "Horsham District Council"
+        },
+        {
+          "value": "Hounslow London Borough",
+          "text": "Hounslow London Borough"
+        },
+        {
+          "value": "Hull City Council",
+          "text": "Hull City Council"
+        },
+        {
+          "value": "Huntingdonshire District Council",
+          "text": "Huntingdonshire District Council"
+        },
+        {
+          "value": "Hyndburn Borough Council",
+          "text": "Hyndburn Borough Council"
+        },
+        {
+          "value": "Inverclyde Council",
+          "text": "Inverclyde Council"
+        },
+        {
+          "value": "Ipswich Borough Council",
+          "text": "Ipswich Borough Council"
+        },
+        {
+          "value": "Isle of Anglesey County Council",
+          "text": "Isle of Anglesey County Council"
+        },
+        {
+          "value": "Isle of Wight Council",
+          "text": "Isle of Wight Council"
+        },
+        {
+          "value": "Isles of Scilly Council",
+          "text": "Isles of Scilly Council"
+        },
+        {
+          "value": "Islington London Borough",
+          "text": "Islington London Borough"
+        },
+        {
+          "value": "Kensington and Chelsea Royal Borough",
+          "text": "Kensington and Chelsea Royal Borough"
+        },
+        {
+          "value": "Kent County Council",
+          "text": "Kent County Council"
+        },
+        {
+          "value": "King's Lynn and West Norfolk Borough Council",
+          "text": "King's Lynn and West Norfolk Borough Council"
+        },
+        {
+          "value": "Kingston upon Thames Royal Borough",
+          "text": "Kingston upon Thames Royal Borough"
+        },
+        {
+          "value": "Kirklees Council",
+          "text": "Kirklees Council"
+        },
+        {
+          "value": "Knowsley Metropolitan Borough Council",
+          "text": "Knowsley Metropolitan Borough Council"
+        },
+        {
+          "value": "Lambeth London Borough",
+          "text": "Lambeth London Borough"
+        },
+        {
+          "value": "Lancashire County Council",
+          "text": "Lancashire County Council"
+        },
+        {
+          "value": "Lancaster City Council",
+          "text": "Lancaster City Council"
+        },
+        {
+          "value": "Leeds City Council",
+          "text": "Leeds City Council"
+        },
+        {
+          "value": "Leicester City Council",
+          "text": "Leicester City Council"
+        },
+        {
+          "value": "Leicestershire County Council",
+          "text": "Leicestershire County Council"
+        },
+        {
+          "value": "Lewes District Council",
+          "text": "Lewes District Council"
+        },
+        {
+          "value": "Lewisham London Borough",
+          "text": "Lewisham London Borough"
+        },
+        {
+          "value": "Lichfield District Council",
+          "text": "Lichfield District Council"
+        },
+        {
+          "value": "Lincoln City Council",
+          "text": "Lincoln City Council"
+        },
+        {
+          "value": "Lincolnshire County Council",
+          "text": "Lincolnshire County Council"
+        },
+        {
+          "value": "Liverpool City Council",
+          "text": "Liverpool City Council"
+        },
+        {
+          "value": "Liverpool City Region Combined Authority",
+          "text": "Liverpool City Region Combined Authority"
+        },
+        {
+          "value": "London Borough of Richmond upon Thames",
+          "text": "London Borough of Richmond upon Thames"
+        },
+        {
+          "value": "Luton Borough Council",
+          "text": "Luton Borough Council"
+        },
+        {
+          "value": "Maidstone Borough Council",
+          "text": "Maidstone Borough Council"
+        },
+        {
+          "value": "Maldon District Council",
+          "text": "Maldon District Council"
+        },
+        {
+          "value": "Malvern Hills District Council",
+          "text": "Malvern Hills District Council"
+        },
+        {
+          "value": "Manchester City Council",
+          "text": "Manchester City Council"
+        },
+        {
+          "value": "Mansfield District Council",
+          "text": "Mansfield District Council"
+        },
+        {
+          "value": "Medway Council",
+          "text": "Medway Council"
+        },
+        {
+          "value": "Melton Borough Council",
+          "text": "Melton Borough Council"
+        },
+        {
+          "value": "Merthyr Tydfil County Borough Council",
+          "text": "Merthyr Tydfil County Borough Council"
+        },
+        {
+          "value": "Merton London Borough",
+          "text": "Merton London Borough"
+        },
+        {
+          "value": "Mid Devon District Council",
+          "text": "Mid Devon District Council"
+        },
+        {
+          "value": "Mid Suffolk District Council",
+          "text": "Mid Suffolk District Council"
+        },
+        {
+          "value": "Mid Sussex District Council",
+          "text": "Mid Sussex District Council"
+        },
+        {
+          "value": "Middlesbrough Council",
+          "text": "Middlesbrough Council"
+        },
+        {
+          "value": "Midlothian Council",
+          "text": "Midlothian Council"
+        },
+        {
+          "value": "Milton Keynes Council",
+          "text": "Milton Keynes Council"
+        },
+        {
+          "value": "Mole Valley District Council",
+          "text": "Mole Valley District Council"
+        },
+        {
+          "value": "Monmouthshire County Council",
+          "text": "Monmouthshire County Council"
+        },
+        {
+          "value": "Moray Council",
+          "text": "Moray Council"
+        },
+        {
+          "value": "Muckinghamshire Borough UA",
+          "text": "Muckinghamshire Borough UA"
+        },
+        {
+          "value": "Neath Port Talbot County Borough",
+          "text": "Neath Port Talbot County Borough"
+        },
+        {
+          "value": "New Forest District Council",
+          "text": "New Forest District Council"
+        },
+        {
+          "value": "Newark and Sherwood District Council",
+          "text": "Newark and Sherwood District Council"
+        },
+        {
+          "value": "Newcastle City Council",
+          "text": "Newcastle City Council"
+        },
+        {
+          "value": "Newcastle-under-Lyme Borough Council",
+          "text": "Newcastle-under-Lyme Borough Council"
+        },
+        {
+          "value": "Newham London Borough",
+          "text": "Newham London Borough"
+        },
+        {
+          "value": "Newport City Council",
+          "text": "Newport City Council"
+        },
+        {
+          "value": "Norfolk County Council",
+          "text": "Norfolk County Council"
+        },
+        {
+          "value": "North Ayrshire Council",
+          "text": "North Ayrshire Council"
+        },
+        {
+          "value": "North Devon District Council",
+          "text": "North Devon District Council"
+        },
+        {
+          "value": "North East Derbyshire District Council",
+          "text": "North East Derbyshire District Council"
+        },
+        {
+          "value": "North East Lincolnshire Council",
+          "text": "North East Lincolnshire Council"
+        },
+        {
+          "value": "North East Mayoral Combined Authority (Post May 2024)",
+          "text": "North East Mayoral Combined Authority (Post May 2024)"
+        },
+        {
+          "value": "North Hertfordshire District Council",
+          "text": "North Hertfordshire District Council"
+        },
+        {
+          "value": "North Kesteven District Council",
+          "text": "North Kesteven District Council"
+        },
+        {
+          "value": "North Lanarkshire Council",
+          "text": "North Lanarkshire Council"
+        },
+        {
+          "value": "North Lincolnshire Council",
+          "text": "North Lincolnshire Council"
+        },
+        {
+          "value": "North Norfolk District Council",
+          "text": "North Norfolk District Council"
+        },
+        {
+          "value": "North Northamptonshire Council",
+          "text": "North Northamptonshire Council"
+        },
+        {
+          "value": "North Somerset Council",
+          "text": "North Somerset Council"
+        },
+        {
+          "value": "North Tyneside Council",
+          "text": "North Tyneside Council"
+        },
+        {
+          "value": "North Warwickshire Borough Council",
+          "text": "North Warwickshire Borough Council"
+        },
+        {
+          "value": "North West Leicestershire District Council",
+          "text": "North West Leicestershire District Council"
+        },
+        {
+          "value": "North Yorkshire Council (UA)",
+          "text": "North Yorkshire Council (UA)"
+        },
+        {
+          "value": "North of Tyne Combined Authority",
+          "text": "North of Tyne Combined Authority"
+        },
+        {
+          "value": "Northumberland County UA",
+          "text": "Northumberland County UA"
+        },
+        {
+          "value": "Norwich City Council",
+          "text": "Norwich City Council"
+        },
+        {
+          "value": "Nottingham City Council",
+          "text": "Nottingham City Council"
+        },
+        {
+          "value": "Nottinghamshire County Council",
+          "text": "Nottinghamshire County Council"
+        },
+        {
+          "value": "Nuneaton and Bedworth Borough Council",
+          "text": "Nuneaton and Bedworth Borough Council"
+        },
+        {
+          "value": "Oadby and Wigston Borough Council",
+          "text": "Oadby and Wigston Borough Council"
+        },
+        {
+          "value": "Oldham Metropolitan Borough Council",
+          "text": "Oldham Metropolitan Borough Council"
+        },
+        {
+          "value": "Orkney Islands Council",
+          "text": "Orkney Islands Council"
+        },
+        {
+          "value": "Oxford City Council",
+          "text": "Oxford City Council"
+        },
+        {
+          "value": "Oxfordshire County Council",
+          "text": "Oxfordshire County Council"
+        },
+        {
+          "value": "Pembrokeshire County Council",
+          "text": "Pembrokeshire County Council"
+        },
+        {
+          "value": "Pendle Borough Council",
+          "text": "Pendle Borough Council"
+        },
+        {
+          "value": "Perth & Kinross Council",
+          "text": "Perth & Kinross Council"
+        },
+        {
+          "value": "Peterborough City Council",
+          "text": "Peterborough City Council"
+        },
+        {
+          "value": "Plymouth City Council",
+          "text": "Plymouth City Council"
+        },
+        {
+          "value": "Portsmouth City Council",
+          "text": "Portsmouth City Council"
+        },
+        {
+          "value": "Powys County Council",
+          "text": "Powys County Council"
+        },
+        {
+          "value": "Preston City Council",
+          "text": "Preston City Council"
+        },
+        {
+          "value": "Reading Borough Council",
+          "text": "Reading Borough Council"
+        },
+        {
+          "value": "Redbridge London Borough",
+          "text": "Redbridge London Borough"
+        },
+        {
+          "value": "Redcar and Cleveland Borough Council",
+          "text": "Redcar and Cleveland Borough Council"
+        },
+        {
+          "value": "Redditch Borough Council",
+          "text": "Redditch Borough Council"
+        },
+        {
+          "value": "Reigate and Banstead Borough Council",
+          "text": "Reigate and Banstead Borough Council"
+        },
+        {
+          "value": "Renfrewshire Council",
+          "text": "Renfrewshire Council"
+        },
+        {
+          "value": "Rhondda Cynon Taf County Borough Council",
+          "text": "Rhondda Cynon Taf County Borough Council"
+        },
+        {
+          "value": "Ribble Valley Borough Council",
+          "text": "Ribble Valley Borough Council"
+        },
+        {
+          "value": "Rochdale Metropolitan Borough Council",
+          "text": "Rochdale Metropolitan Borough Council"
+        },
+        {
+          "value": "Rochford District Council",
+          "text": "Rochford District Council"
+        },
+        {
+          "value": "Rossendale Borough Council",
+          "text": "Rossendale Borough Council"
+        },
+        {
+          "value": "Rother District Council",
+          "text": "Rother District Council"
+        },
+        {
+          "value": "Rotherham Metropolitan Borough Council",
+          "text": "Rotherham Metropolitan Borough Council"
+        },
+        {
+          "value": "Rugby Borough Council",
+          "text": "Rugby Borough Council"
+        },
+        {
+          "value": "Runnymede Borough Council",
+          "text": "Runnymede Borough Council"
+        },
+        {
+          "value": "Rushcliffe Borough Council",
+          "text": "Rushcliffe Borough Council"
+        },
+        {
+          "value": "Rushmoor Borough Council",
+          "text": "Rushmoor Borough Council"
+        },
+        {
+          "value": "Rutland County Council",
+          "text": "Rutland County Council"
+        },
+        {
+          "value": "Salford City Council",
+          "text": "Salford City Council"
+        },
+        {
+          "value": "Sandwell Metropolitan Borough Council",
+          "text": "Sandwell Metropolitan Borough Council"
+        },
+        {
+          "value": "Scottish Borders Council",
+          "text": "Scottish Borders Council"
+        },
+        {
+          "value": "Sefton Metropolitan Borough Council",
+          "text": "Sefton Metropolitan Borough Council"
+        },
+        {
+          "value": "Sevenoaks District Council",
+          "text": "Sevenoaks District Council"
+        },
+        {
+          "value": "Sheffield City Council",
+          "text": "Sheffield City Council"
+        },
+        {
+          "value": "Shetland Islands Council",
+          "text": "Shetland Islands Council"
+        },
+        {
+          "value": "Shropshire County UA",
+          "text": "Shropshire County UA"
+        },
+        {
+          "value": "Slough Borough Council",
+          "text": "Slough Borough Council"
+        },
+        {
+          "value": "Solihull Metropolitan Borough Council",
+          "text": "Solihull Metropolitan Borough Council"
+        },
+        {
+          "value": "Somerset Council (UA)",
+          "text": "Somerset Council (UA)"
+        },
+        {
+          "value": "South Ayrshire Council",
+          "text": "South Ayrshire Council"
+        },
+        {
+          "value": "South Cambridgeshire District Council",
+          "text": "South Cambridgeshire District Council"
+        },
+        {
+          "value": "South Derbyshire District Council",
+          "text": "South Derbyshire District Council"
+        },
+        {
+          "value": "South Gloucestershire Council",
+          "text": "South Gloucestershire Council"
+        },
+        {
+          "value": "South Hams District Council",
+          "text": "South Hams District Council"
+        },
+        {
+          "value": "South Holland District Council",
+          "text": "South Holland District Council"
+        },
+        {
+          "value": "South Kesteven District Council",
+          "text": "South Kesteven District Council"
+        },
+        {
+          "value": "South Lanarkshire Council",
+          "text": "South Lanarkshire Council"
+        },
+        {
+          "value": "South Norfolk Council",
+          "text": "South Norfolk Council"
+        },
+        {
+          "value": "South Oxfordshire District Council",
+          "text": "South Oxfordshire District Council"
+        },
+        {
+          "value": "South Ribble Borough Council",
+          "text": "South Ribble Borough Council"
+        },
+        {
+          "value": "South Staffordshire Council",
+          "text": "South Staffordshire Council"
+        },
+        {
+          "value": "South Tyneside Council",
+          "text": "South Tyneside Council"
+        },
+        {
+          "value": "South Yorkshire Mayoral Combined Authority",
+          "text": "South Yorkshire Mayoral Combined Authority"
+        },
+        {
+          "value": "Southampton City Council",
+          "text": "Southampton City Council"
+        },
+        {
+          "value": "Southend-on-Sea City Council",
+          "text": "Southend-on-Sea City Council"
+        },
+        {
+          "value": "Southwark London Borough",
+          "text": "Southwark London Borough"
+        },
+        {
+          "value": "Spelthorne Borough Council",
+          "text": "Spelthorne Borough Council"
+        },
+        {
+          "value": "St Albans City and District Council",
+          "text": "St Albans City and District Council"
+        },
+        {
+          "value": "St Helens Council",
+          "text": "St Helens Council"
+        },
+        {
+          "value": "Stafford Borough Council",
+          "text": "Stafford Borough Council"
+        },
+        {
+          "value": "Staffordshire County Council",
+          "text": "Staffordshire County Council"
+        },
+        {
+          "value": "Staffordshire Moorlands District Council",
+          "text": "Staffordshire Moorlands District Council"
+        },
+        {
+          "value": "Stevenage Borough Council",
+          "text": "Stevenage Borough Council"
+        },
+        {
+          "value": "Stirling Council",
+          "text": "Stirling Council"
+        },
+        {
+          "value": "Stockport Metropolitan Borough Council",
+          "text": "Stockport Metropolitan Borough Council"
+        },
+        {
+          "value": "Stockton-on-Tees Borough Council",
+          "text": "Stockton-on-Tees Borough Council"
+        },
+        {
+          "value": "Stoke-on-Trent City Council",
+          "text": "Stoke-on-Trent City Council"
+        },
+        {
+          "value": "Stratford-on-Avon District Council",
+          "text": "Stratford-on-Avon District Council"
+        },
+        {
+          "value": "Stroud District Council",
+          "text": "Stroud District Council"
+        },
+        {
+          "value": "Suffolk County Council",
+          "text": "Suffolk County Council"
+        },
+        {
+          "value": "Sunderland City Council",
+          "text": "Sunderland City Council"
+        },
+        {
+          "value": "Surrey County Council",
+          "text": "Surrey County Council"
+        },
+        {
+          "value": "Surrey Heath Borough Council",
+          "text": "Surrey Heath Borough Council"
+        },
+        {
+          "value": "Sutton London Borough",
+          "text": "Sutton London Borough"
+        },
+        {
+          "value": "Swale Borough Council",
+          "text": "Swale Borough Council"
+        },
+        {
+          "value": "Swansea Council",
+          "text": "Swansea Council"
+        },
+        {
+          "value": "Swindon Borough Council",
+          "text": "Swindon Borough Council"
+        },
+        {
+          "value": "Tameside Metropolitan Borough Council",
+          "text": "Tameside Metropolitan Borough Council"
+        },
+        {
+          "value": "Tamworth Borough Council",
+          "text": "Tamworth Borough Council"
+        },
+        {
+          "value": "Tandridge District Council",
+          "text": "Tandridge District Council"
+        },
+        {
+          "value": "Tees Valley Combined Authority",
+          "text": "Tees Valley Combined Authority"
+        },
+        {
+          "value": "Teignbridge District Council",
+          "text": "Teignbridge District Council"
+        },
+        {
+          "value": "Telford and Wrekin Council",
+          "text": "Telford and Wrekin Council"
+        },
+        {
+          "value": "Tendring District Council",
+          "text": "Tendring District Council"
+        },
+        {
+          "value": "Test Valley Borough Council",
+          "text": "Test Valley Borough Council"
+        },
+        {
+          "value": "Tewkesbury Borough Council",
+          "text": "Tewkesbury Borough Council"
+        },
+        {
+          "value": "Thanet District Council",
+          "text": "Thanet District Council"
+        },
+        {
+          "value": "Three Rivers District Council",
+          "text": "Three Rivers District Council"
+        },
+        {
+          "value": "Thurrock Council",
+          "text": "Thurrock Council"
+        },
+        {
+          "value": "Tonbridge and Malling Borough Council",
+          "text": "Tonbridge and Malling Borough Council"
+        },
+        {
+          "value": "Torbay Council",
+          "text": "Torbay Council"
+        },
+        {
+          "value": "Torfaen County Borough",
+          "text": "Torfaen County Borough"
+        },
+        {
+          "value": "Torridge District Council",
+          "text": "Torridge District Council"
+        },
+        {
+          "value": "Tower Hamlets London Borough",
+          "text": "Tower Hamlets London Borough"
+        },
+        {
+          "value": "Trafford Metropolitan Borough Council",
+          "text": "Trafford Metropolitan Borough Council"
+        },
+        {
+          "value": "Tunbridge Wells Borough Council",
+          "text": "Tunbridge Wells Borough Council"
+        },
+        {
+          "value": "Uttlesford District Council",
+          "text": "Uttlesford District Council"
+        },
+        {
+          "value": "Vale of Glamorgan Council",
+          "text": "Vale of Glamorgan Council"
+        },
+        {
+          "value": "Vale of White Horse District Council",
+          "text": "Vale of White Horse District Council"
+        },
+        {
+          "value": "Wakefield Metropolitan District Council",
+          "text": "Wakefield Metropolitan District Council"
+        },
+        {
+          "value": "Walsall Metropolitan Borough Council",
+          "text": "Walsall Metropolitan Borough Council"
+        },
+        {
+          "value": "Waltham Forest London Borough",
+          "text": "Waltham Forest London Borough"
+        },
+        {
+          "value": "Wandsworth London Borough",
+          "text": "Wandsworth London Borough"
+        },
+        {
+          "value": "Warrington Borough Council",
+          "text": "Warrington Borough Council"
+        },
+        {
+          "value": "Warwick District Council",
+          "text": "Warwick District Council"
+        },
+        {
+          "value": "Warwickshire County Council",
+          "text": "Warwickshire County Council"
+        },
+        {
+          "value": "Watford Borough Council",
+          "text": "Watford Borough Council"
+        },
+        {
+          "value": "Waverley Borough Council",
+          "text": "Waverley Borough Council"
+        },
+        {
+          "value": "Wealden District Council",
+          "text": "Wealden District Council"
+        },
+        {
+          "value": "Welwyn Hatfield Borough Council",
+          "text": "Welwyn Hatfield Borough Council"
+        },
+        {
+          "value": "West Berkshire Council",
+          "text": "West Berkshire Council"
+        },
+        {
+          "value": "West Devon Borough Council",
+          "text": "West Devon Borough Council"
+        },
+        {
+          "value": "West Dunbartonshire Council",
+          "text": "West Dunbartonshire Council"
+        },
+        {
+          "value": "West Lancashire Borough Council",
+          "text": "West Lancashire Borough Council"
+        },
+        {
+          "value": "West Lindsey District Council",
+          "text": "West Lindsey District Council"
+        },
+        {
+          "value": "West Lothian Council",
+          "text": "West Lothian Council"
+        },
+        {
+          "value": "West Midlands Combined Authority",
+          "text": "West Midlands Combined Authority"
+        },
+        {
+          "value": "West Northamptonshire Council",
+          "text": "West Northamptonshire Council"
+        },
+        {
+          "value": "West Oxfordshire District Council",
+          "text": "West Oxfordshire District Council"
+        },
+        {
+          "value": "West Suffolk Council",
+          "text": "West Suffolk Council"
+        },
+        {
+          "value": "West Sussex County Council",
+          "text": "West Sussex County Council"
+        },
+        {
+          "value": "West Yorkshire Combined Authority",
+          "text": "West Yorkshire Combined Authority"
+        },
+        {
+          "value": "West of England Combined Authority",
+          "text": "West of England Combined Authority"
+        },
+        {
+          "value": "Westminster City Council",
+          "text": "Westminster City Council"
+        },
+        {
+          "value": "Westmorland and Furness Council",
+          "text": "Westmorland and Furness Council"
+        },
+        {
+          "value": "Wigan Metropolitan Borough Council",
+          "text": "Wigan Metropolitan Borough Council"
+        },
+        {
+          "value": "Wiltshire County UA",
+          "text": "Wiltshire County UA"
+        },
+        {
+          "value": "Winchester City Council",
+          "text": "Winchester City Council"
+        },
+        {
+          "value": "Windsor and Maidenhead Royal Borough Council",
+          "text": "Windsor and Maidenhead Royal Borough Council"
+        },
+        {
+          "value": "Wirral Borough Council",
+          "text": "Wirral Borough Council"
+        },
+        {
+          "value": "Woking Borough Council",
+          "text": "Woking Borough Council"
+        },
+        {
+          "value": "Wokingham Borough Council",
+          "text": "Wokingham Borough Council"
+        },
+        {
+          "value": "Wolverhampton City Council",
+          "text": "Wolverhampton City Council"
+        },
+        {
+          "value": "Worcester City Council",
+          "text": "Worcester City Council"
+        },
+        {
+          "value": "Worcestershire County Council",
+          "text": "Worcestershire County Council"
+        },
+        {
+          "value": "Worthing Borough Council",
+          "text": "Worthing Borough Council"
+        },
+        {
+          "value": "Wrexham County Borough Council",
+          "text": "Wrexham County Borough Council"
+        },
+        {
+          "value": "Wychavon District Council",
+          "text": "Wychavon District Council"
+        },
+        {
+          "value": "Wyre Borough Council",
+          "text": "Wyre Borough Council"
+        },
+        {
+          "value": "Wyre Forest District Council",
+          "text": "Wyre Forest District Council"
+        },
+        {
+          "value": "York and North Yorkshire Mayoral Combined Authority",
+          "text": "York and North Yorkshire Mayoral Combined Authority"
+        }
+      ],
+      "name": "vlTWym",
+      "title": "Local authorities"
+    }
+  ],
+  "conditions": [
+    {
+      "displayName": "Other local authorities",
+      "name": "JOjUrR",
+      "value": {
+        "name": "Other local authorities",
+        "conditions": [
+          {
+            "field": {
+              "name": "CdGjnO.hRxtWX",
+              "type": "YesNoField",
+              "display": "Is this expression of interest being submitted jointly with another local authority?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "sections": [
+    {
+      "name": "CdGjnO",
+      "title": "Local authority details",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for local plan funding (Regulation 18)"
 }
