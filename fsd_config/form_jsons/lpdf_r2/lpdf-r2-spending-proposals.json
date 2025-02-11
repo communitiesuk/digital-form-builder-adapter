@@ -1,0 +1,158 @@
+{
+    "startPage": "/spending-proposals",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "LYpnCr",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/which-types-of-activities-will-this-funding-will-be-used-to-support",
+            "title": "Which types of activities will this funding be used to support?",
+            "components": [
+                {
+                    "options": {
+                        "exposeToContext": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which types of activities will this funding be used to support?",
+                    "hint": "Select all that apply",
+                    "schema": {},
+                    "name": "WIOGzl",
+                    "list": "yHOipF",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                },
+                {
+                    "path": "/tell-us-what-other-types-of-activities-this-funding-will-be-used-to-support",
+                    "condition": "ZJTMyR"
+                }
+            ],
+            "section": "LYpnCr"
+        },
+        {
+            "path": "/spending-proposals",
+            "title": "Spending proposals",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>types of activities that this funding will be used to support</li>\n<li>other types of activities that this funding will be used to support (if applicable)</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "RmHNjR"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-types-of-activities-will-this-funding-will-be-used-to-support"
+                }
+            ],
+            "section": "LYpnCr",
+            "controller": "start.js"
+        },
+        {
+            "path": "/tell-us-what-other-types-of-activities-this-funding-will-be-used-to-support",
+            "title": "Tell us what other types of activities this funding will be used to support",
+            "components": [
+                {
+                    "options": {
+                        "exposeToContext": true,
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us what other types of activities this funding will be used to support",
+                    "hint": "",
+                    "schema": {},
+                    "name": "cePdOW"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "LYpnCr"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "Preparing or updating the plan evidence base  ",
+                    "value": "Preparing or updating the plan evidence base  "
+                },
+                {
+                    "text": "Technical studies ",
+                    "value": "Technical studies "
+                },
+                {
+                    "text": "Site assessments ",
+                    "value": "Site assessments "
+                },
+                {
+                    "text": "Consultation or engagement work",
+                    "value": "Consultation or engagement work"
+                },
+                {
+                    "text": "Hiring additional staff ",
+                    "value": "Hiring additional staff "
+                },
+                {
+                    "text": "Hiring consultants ",
+                    "value": "Hiring consultants "
+                },
+                {
+                    "text": "Other",
+                    "value": "Other"
+                }
+            ],
+            "name": "yHOipF",
+            "title": "Activities"
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "Other activities",
+            "name": "ZJTMyR",
+            "value": {
+                "name": "Other activities",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "LYpnCr.WIOGzl",
+                            "type": "CheckboxesField",
+                            "display": "Which types of activities will this funding be used to support?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Other",
+                            "display": "Other"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "LYpnCr",
+            "title": "Spending proposals",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for local plan funding (Regulation 18)"
+}

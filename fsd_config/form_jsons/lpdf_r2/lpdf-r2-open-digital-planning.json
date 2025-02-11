@@ -1,0 +1,70 @@
+{
+    "startPage": "/open-digital-planning",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "sUTADw",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/would-you-like-to-receive-more-information-about-the-open-digital-planning-community-and-support-to-develop-digital-and-data-skills-in-your-planning-service",
+            "title": "Would you like to receive more information about the Open Digital Planning community and support to develop digital and data skills in your planning service?",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": false
+                    },
+                    "type": "YesNoField",
+                    "title": "Would you like to receive more information about the Open Digital Planning community and support to develop digital and data skills in your planning service?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "ncrZUY",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "sUTADw"
+        },
+        {
+            "path": "/open-digital-planning",
+            "title": "Open Digital Planning",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>whether you would like to receive more information about the Open Digital Planning community and support to develop digital and data skills in your planning service</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "oKuFsS"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/would-you-like-to-receive-more-information-about-the-open-digital-planning-community-and-support-to-develop-digital-and-data-skills-in-your-planning-service"
+                }
+            ],
+            "section": "sUTADw",
+            "controller": "start.js"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "sUTADw",
+            "title": "Open Digital Planning",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for local plan funding (Regulation 18)"
+}
