@@ -1,0 +1,234 @@
+{
+  "startPage": "/declarations",
+  "pages": [
+    {
+      "path": "/check-your-answers",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "utYlqF",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/declarations-uuKiTo",
+      "title": "Declarations",
+      "components": [
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "I confirm our emerging local plan is currently at Regulation 18 stage (as of 14 February 2025)",
+          "hint": "",
+          "schema": {},
+          "name": "FLpMfV",
+          "list": "CuOgoc",
+          "values": {
+            "type": "listRef"
+          }
+        },
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "I confirm I will submit our plan by the deadline set out in the National Planning Policy Framework (by December 2026)",
+          "hint": "",
+          "schema": {},
+          "name": "PnGUpK",
+          "list": "WOAlUc",
+          "values": {
+            "type": "listRef"
+          }
+        },
+        {
+          "options": {
+            "exposeToContext": false,
+            "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "I agree to respond to MHCLG\u2019s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG by 6 March 2025",
+          "hint": "",
+          "schema": {},
+          "name": "oYfyOJ",
+          "list": "ZglUiB",
+          "values": {
+            "type": "listRef"
+          }
+        },
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "I agree to provide regular updates on our progress against milestones",
+          "hint": "",
+          "schema": {},
+          "name": "KMcHcx",
+          "list": "StusyZ",
+          "values": {
+            "type": "listRef"
+          }
+        },
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "I commit to have proposals in place by March 2025 on how we will spend the funding",
+          "hint": "",
+          "schema": {},
+          "name": "VtcHob",
+          "list": "QXffzR",
+          "values": {
+            "type": "listRef"
+          }
+        },
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "I agree to collaborate with MHCLG over monitoring and evaluation requirements",
+          "hint": "",
+          "schema": {},
+          "name": "CTerDe",
+          "list": "YWixij",
+          "values": {
+            "type": "listRef"
+          }
+        },
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "I confirm our section 151 officer, or deputy section 151 officer, supports this submission",
+          "hint": "",
+          "schema": {},
+          "name": "uIGuiD",
+          "list": "seboBL",
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/check-your-answers"
+        }
+      ],
+      "section": "utYlqF"
+    },
+    {
+      "path": "/declarations",
+      "title": "Declarations",
+      "components": [
+        {
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask you to:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>confirm your emerging local plan is at Regulation 18 stage (as of 14 February 2025)</li>\n<li>agree to submit your plan by the deadline set out in the National Planning Policy Framework (by December 2026)</li>\n<li>agree to respond to MHCLG\u2019s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG by 6 March 2025</li>\n<li>agree to provide regular updates on your progress against milestones</li>\n<li>commit to have proposals in place by March 2025 on how you will spend the funding</li>\n<li>agree to collaborate with MHCLG over monitoring and evaluation requirements</li>\n<li>confirm your section 151 officer, or deputy section 151 officer, supports this submission</li>\n</ul>",
+          "options": {},
+          "schema": {},
+          "name": "LTyOhV"
+        }
+      ],
+      "next": [
+        {
+          "path": "/declarations-uuKiTo"
+        }
+      ],
+      "section": "utYlqF",
+      "controller": "start.js"
+    }
+  ],
+  "lists": [
+    {
+      "type": "string",
+      "items": [
+        {
+          "text": "I confirm our emerging local plan is currently at Regulation 18 stage (as of 14 February 2025)",
+          "value": "I confirm our emerging local plan is currently at Regulation 18 stage (as of 14 February 2025)"
+        }
+      ],
+      "name": "CuOgoc",
+      "title": "Emerging local plan"
+    },
+    {
+      "type": "string",
+      "items": [
+        {
+          "text": "I confirm I will submit our plan by the deadline set out in the National Planning Policy Framework (by December 2026)",
+          "value": "I confirm I will submit our plan by the deadline set out in the National Planning Policy Framework (by December 2026)"
+        }
+      ],
+      "name": "WOAlUc",
+      "title": "Submit plan"
+    },
+    {
+      "type": "string",
+      "items": [
+        {
+          "text": "I agree to respond to MHCLG\u2019s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG by 6 March 2025",
+          "value": "I agree to respond to MHCLG\u2019s requests to submit an updated local plan timetable (Local Development Scheme or LDS) to MHCLG by 6 March 2025"
+        }
+      ],
+      "name": "ZglUiB",
+      "title": "Updated LDS"
+    },
+    {
+      "type": "string",
+      "items": [
+        {
+          "text": "I agree to provide regular updates on our progress against milestones",
+          "value": "I agree to provide regular updates on our progress against milestones"
+        }
+      ],
+      "name": "StusyZ",
+      "title": "Regular updates"
+    },
+    {
+      "type": "string",
+      "items": [
+        {
+          "text": "I commit to have proposals in place by March 2025 on how we will spend the funding",
+          "value": "I commit to have proposals in place by March 2025 on how we will spend the funding"
+        }
+      ],
+      "name": "QXffzR",
+      "title": "Commit to proposals"
+    },
+    {
+      "type": "string",
+      "items": [
+        {
+          "text": "I agree to collaborate with MHCLG over monitoring and evaluation requirements",
+          "value": "I agree to collaborate with MHCLG over monitoring and evaluation requirements"
+        }
+      ],
+      "name": "YWixij",
+      "title": "Monitoring and evaluation"
+    },
+    {
+      "type": "string",
+      "items": [
+        {
+          "text": "I confirm our section 151 officer, or deputy section 151 officer, supports this submission",
+          "value": "I confirm our section 151 officer, or deputy section 151 officer, supports this submission"
+        }
+      ],
+      "name": "seboBL",
+      "title": "Section 151 officer"
+    }
+  ],
+  "conditions": [],
+  "sections": [
+    {
+      "name": "utYlqF",
+      "title": "Declarations",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for local plan funding (Regulation 18)"
+}
