@@ -299,7 +299,7 @@ jobs:
 
       - name: Run e2e tests
         id: e2e
-        run: yarn e2e-test cypress run --env --spec $(node cypress-parallel.js ${{ matrix.containers }} 5)
+        run: yarn e2e-test cypress run --env --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5)
         continue-on-error: true
 
       - name: Create Folders
