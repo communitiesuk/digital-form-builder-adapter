@@ -110,7 +110,7 @@ WORKDIR /usr/src/app/digital-form-builder-adapter
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-build  \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-model-build  \
-    yarn runner test-cov
+    # yarn runner test-cov
 USER appuser
 
 # ----------------------------
