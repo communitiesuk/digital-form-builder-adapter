@@ -100,4 +100,60 @@ suite("PageController", () => {
             console.error("Error during test:", error);
         }
     });
+
+    test("should display change request banner on page with feedback", async () => {
+        server = await createServer({
+            formFileName: "sample-page.test.json",
+            formFilePath: path.join(__dirname, "../../../"),
+            enforceCsrf: false,
+        });
+
+        const { adapterCacheService } = server.services();
+        adapterCacheService.getState = () => {
+            return Promise.resolve({
+                metadata: {
+                    change_requests: {
+                        "VcyKVN": ["Assessor Feedback"]
+                    }
+                }
+            });
+        };
+
+        const response = await server.inject({
+            method: 'GET',
+            url: '/sample-page.test/project-name',
+        });
+
+        $ = cheerio.load(response.payload);
+
+        expect($("h2").text()).to.contain("Change request");
+    });
+
+    test("should no display change request banner on page without feedback", async () => {
+        server = await createServer({
+            formFileName: "sample-page.test.json",
+            formFilePath: path.join(__dirname, "../../../"),
+            enforceCsrf: false,
+        });
+
+        const { adapterCacheService } = server.services();
+        adapterCacheService.getState = () => {
+            return Promise.resolve({
+                metadata: {
+                    change_requests: {
+                        "no_found": ["Assessor Feedback"]
+                    }
+                }
+            });
+        };
+
+        const response = await server.inject({
+            method: 'GET',
+            url: '/sample-page.test/project-name',
+        });
+
+        $ = cheerio.load(response.payload);
+
+        expect($("h2").text()).to.not.contain("Change request");
+    });
 });

@@ -1,0 +1,84 @@
+{
+  "startPage": "/project-details",
+  "pages": [
+    {
+      "path": "/summary",
+      "title": "Summary",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "title": "Project details",
+      "path": "/project-details",
+      "components": [
+        {
+          "name": "orUXQc",
+          "options": {},
+          "type": "Para",
+          "content": "<label class=\"govuk-!-font-weight-bold\">In this section, we'll ask about:\n</label>\n\n<div class=\"govuk-body\">\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>project name</li>\n<li>project overview</li>\n</ul>\n</div>",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/project-name"
+        }
+      ],
+      "controller": "./pages/start.js"
+    },
+    {
+      "path": "/project-overview",
+      "title": "Project overview",
+      "components": [
+        {
+          "options": {},
+          "type": "FreeTextField",
+          "title": "Project overview",
+          "hint": "Give a brief summary of your project, including what you hope to achieve",
+          "schema": {},
+          "name": "KJtdhs"
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/project-name",
+      "title": "Project name",
+      "components": [
+        {
+          "options": {},
+          "type": "TextField",
+          "title": "Project name",
+          "hint": "",
+          "schema": {},
+          "name": "VcyKVN"
+        }
+      ],
+      "next": [
+        {
+          "path": "/project-overview"
+        }
+      ],
+      "section": "FabDefault"
+    }
+  ],
+  "lists": [],
+  "conditions": [],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default section",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for Sample Fund"
+}

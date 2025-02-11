@@ -55,4 +55,43 @@ export class PageController extends PageControllerBase {
             },
         };
     }
+
+    makeGetRouteHandler() {
+        return async (request: HapiRequest, h: HapiResponseToolkit) => {
+            // Call the parent class's makeGetRouteHandler method and get the response
+            const parentResponse = await super.makeGetRouteHandler()(request, h);
+
+            const {adapterCacheService} = request.services([]);
+
+            // @ts-ignore
+            const state = await adapterCacheService.getState(request);
+
+            // Extract the viewModel from the parent's response
+            const viewModel = parentResponse.source.context;
+
+            viewModel.changeRequests = [];
+            const changeRequests = state.metadata?.change_requests;
+            if (changeRequests && Object.keys(changeRequests).length > 0) {
+                for (let componentName in changeRequests) {
+                    const messages = changeRequests[componentName];
+
+                    // Find the component with the matching the change request
+                    const pageComponents = this.pageDef.components;
+                    const component = pageComponents.find(component => {
+                        return component.name === componentName
+                    });
+
+                    if (component) {
+                        // Add an object to viewModel.changeRequests
+                        viewModel.changeRequests.push({
+                            title: component.title,
+                            messages: messages
+                        });
+                    }
+                }
+            }
+
+            return h.view(this.viewName, viewModel);
+        };
+    }
 }

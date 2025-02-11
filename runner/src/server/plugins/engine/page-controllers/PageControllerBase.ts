@@ -10,6 +10,7 @@ import {
     RelativeUrl,
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine";
 import {
+    ChangeRequest,
     HapiRequest,
     HapiResponseObject,
     HapiResponseToolkit,
@@ -153,6 +154,7 @@ export class PageControllerBase {
         backLinkText?: string;
         continueButtonText?: string;
         phaseTag?: string | undefined;
+        changeRequests?: ChangeRequest[] | undefined;
     } {
         let showTitle = true;
         let pageTitle = this.title;

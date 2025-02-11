@@ -4,6 +4,7 @@
 {% from "footer/macro.njk" import govukFooter -%}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "skip-link/macro.njk" import govukSkipLink -%}
+{% from "./partials/change-requests-banner.html" import changeRequestsBanner %}
 
 
 {% block head %}
@@ -190,6 +191,10 @@
             href: backLink,
             text: backLinkText
         }) }}
+    {% endif %}
+
+    {% if changeRequests.length > 0 %}
+        {{ changeRequestsBanner(changeRequests) }}
     {% endif %}
 {% endblock %}
 
