@@ -16,7 +16,7 @@ import sinon from 'sinon';
 import adapterCacheService from "../../../../../../src/server/services";
 import {PluginUtil} from "../../../../../../src/server/plugins/engine/util/PluginUtil";
 import cheerio from "cheerio";
-import mockView from "./shared/mockView";
+import mockView from "./shared/MockView";
 
 const {expect} = Code;
 const lab = Lab.script();
