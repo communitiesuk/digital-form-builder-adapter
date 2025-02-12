@@ -72,7 +72,7 @@ suite("UploadPageController", () => {
       });
   });
 
-  test("Redirects post handler to the playback page post handler when view=playback", async () => {
+  test("redirects post handler to the playback page post handler when view=playback", async () => {
     const pageController = new UploadPageController(model, def);
     const request = {
       query: {
@@ -82,7 +82,7 @@ suite("UploadPageController", () => {
     const result = await pageController.makePostRouteHandler()(request, {});
     expect(result).to.be.true();
   });
-  test("Redirects get handler to the playback page get handler when view=playback", async () => {
+  test("redirects get handler to the playback page get handler when view=playback", async () => {
     const pageController = new UploadPageController(model, def);
     const request = {
       query: {

@@ -52,7 +52,7 @@ suite("SummaryPageController", () => {
         sandbox.restore();
     });
 
-    test("shouldAddingPreFixesForTheSummaryIfThereAreAnyPrefixes", async () => {
+    test("should adding pre fixes for the summary if there are any prefixes", async () => {
         const pages = [...form.pages];
         const firstPage = pages.shift();
         const formDef = {...form, pages: [firstPage, ...pages]};
