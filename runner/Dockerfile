@@ -106,12 +106,12 @@ COPY --chown=appuser:appuser ../fsd_config ./fsd_config
 # Stage 9
 # Run unit test in the docker build
 FROM digital-form-builder-adapter-runner-pre-build AS digital-form-builder-adapter-runner-unit-test
-#WORKDIR /usr/src/app/digital-form-builder-adapter
-#RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-build  \
-#    --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
-#    --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-model-build  \
-    # yarn runner test-cov
-#USER appuser
+WORKDIR /usr/src/app/digital-form-builder-adapter
+RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-build  \
+    --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
+    --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-model-build  \
+    yarn runner test-cov
+USER appuser
 
 # ----------------------------
 # Stage 10
