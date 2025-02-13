@@ -215,6 +215,7 @@ jobs:
   e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
     strategy:
       fail-fast: false
       matrix:
@@ -301,6 +302,7 @@ jobs:
   aggregate-e2e-results:
     needs: e2e-test
     runs-on: ubuntu-latest
+    if: always() && github.ref != 'refs/heads/main'
     name: Aggregate e2e Test Results
     steps:
       - uses: actions/checkout@v4
@@ -323,7 +325,6 @@ jobs:
           # Display the aggregated test results
           echo "Aggregated e2e test results:"
           cat ./cypress/screenshots/results/aggregated-test-output.xml
-        if: always()
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
