@@ -280,6 +280,14 @@ jobs:
         run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5)
         continue-on-error: true
 
+      - name: Set job result output
+        if: failure()
+        run: echo "job_result=failure" >> $GITHUB_OUTPUT
+
+      - name: Set job result output
+        if: success()
+        run: echo "job_result=success" >> $GITHUB_OUTPUT
+
       - name: Create Folders
         run: mkdir -p ./e2e-test/cypress/screenshots/logs
 
@@ -309,19 +317,28 @@ jobs:
 
 
   aggregate-results:
-    needs: e2e-test
-    if: always()  # Ensures this job runs regardless of e2e-test's outcome
+    needs: [ e2e-test ]
     runs-on: ubuntu-latest
+    if: always()  # Ensure this job runs regardless of the matrix jobs' outcomes
     steps:
-      - name: Check e2e-test job result
+      - name: Aggregate matrix job results
         run: |
-          if [ "${{ needs.e2e-test.result }}" == "success" ]; then
-            echo "e2e-test job succeeded."
-          elif [ "${{ needs.e2e-test.result }}" == "failure" ]; then
-            echo "e2e-test job failed."
+          failed_jobs=0
+          for job_id in ${!NEEDS_*}; do
+            job_result="${!job_id}"
+            if [ "$job_result" == "failure" ]; then
+              echo "Job ${job_id#NEEDS_} failed."
+              failed_jobs=$((failed_jobs + 1))
+            fi
+          done
+          if [ "$failed_jobs" -gt 0 ]; then
+            echo "$failed_jobs job(s) failed."
+            exit 1
           else
-            echo "e2e-test job was skipped."
+            echo "All matrix jobs passed."
           fi
+        env:
+          NEEDS_E2E_TEST: ${{ toJson(needs.e2e-test.outputs) }}
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
