@@ -301,18 +301,18 @@ jobs:
 
 
   aggregate-test-results:
-  name: Aggregate test results
-  needs: e2e-test  # Make sure this job runs after 'e2e-test' job
-  if: github.ref != 'refs/heads/main'
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
-    # Download the artifact created in the e2e-test job
-    - name: Download E2E Test Reports
-      uses: actions/download-artifact@v3
-      with:
-        name: e2e-test-report-application-${{ matrix.containers }}
-        path: ./e2e-test/cypress/screenshots/results
+    name: Aggregate test results
+    needs: e2e-test  # Make sure this job runs after 'e2e-test' job
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Download the artifact created in the e2e-test job
+      - name: Download E2E Test Reports
+        uses: actions/download-artifact@v3
+        with:
+          name: e2e-test-report-application-${{ matrix.containers }}
+          path: ./e2e-test/cypress/screenshots/results
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
