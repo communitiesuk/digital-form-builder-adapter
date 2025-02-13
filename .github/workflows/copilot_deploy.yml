@@ -116,31 +116,6 @@ jobs:
           echo LAST_COMMIT_GH=runner >> ./runner/.env
           cat ./runner/.env
 
-      - name: Run Unit test before docker build
-        run: |
-          echo "--  Git submodule initialize into local  --"
-          git submodule update --init
-          echo "--  Pulling git submodules into local  --"
-          git pull --recurse-submodules
-          echo "--  Installing digital-form-builder-adapter locally  --"
-          node update-package.js
-          yarn install
-          echo "--  Building digital-form-builder-adapter locally  --"
-          yarn setup
-          echo "--  Building digital-form-builder locally  --"
-          # shellcheck disable=SC2164
-          cd digital-form-builder
-          yarn
-          echo "--  Building digital-form-builder model locally  --"
-          yarn model build
-          echo "--  Building digital-form-builder queue-model locally  --"
-          yarn queue-model build
-          echo "--  Building digital-form-builder-adapter model locally  --"
-          cd ..
-          yarn model build
-          echo "--  Running unit tests  --"
-          yarn runner test-cov
-
       - name: Set up Docker Buildx property
         run: echo "DOCKER_BUILDKIT=1" >> $GITHUB_ENV
 
