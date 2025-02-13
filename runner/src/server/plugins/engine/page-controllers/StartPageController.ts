@@ -46,8 +46,8 @@ export class StartPageController extends PageController {
           // if all components are HTML components, replace them with a change request message
           if (allComponentsAreParaOrHtml) {
               const title = "<h1 class='govuk-heading-m'>Change requested</h1>";
-              const paragraph = "<p class='govuk-body'>We need you to make some changes to parts of this section. You will need to go through the section to:</p>";
-              const list = "<ul class='govuk-list govuk-list--bullet govuk-!-margin-bottom-8'><li>amend the parts where a change request has been made</li><li>check your other information</li><li>send the changes back for approval</li></ul>";
+              const paragraph = "<p class='govuk-body'>The assessor has asked you to make a change to parts of this section or has asked for more information. You need to:</p>";
+              const list = "<ul class='govuk-list govuk-list--bullet govuk-!-margin-bottom-8'><li>amend parts where a change has been requested</li><li>check through the other information in the section</li><li>approve the changes</li></ul>";
               const changeRequestMessage = title + paragraph + list
 
               viewModel.components = [{
