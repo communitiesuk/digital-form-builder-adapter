@@ -689,7 +689,6 @@ export class PageControllerBase {
                     }
                 }
             }
-
             return h.view(this.viewName, viewModel);
         };
     }
