@@ -313,16 +313,16 @@ jobs:
           for i in {0..4}; do
             echo "Downloading e2e test results for container $i..."
             # Download the artifact and extract it into the results directory
-            actions/download-artifact@v4.4.3 --name "e2e-test-report-application-$i" --path "./e2e-test/cypress/screenshots/results/test-output-$i.xml"
+            actions/download-artifact@v4.4.3 --name "e2e-test-report-application-$i" --path "./cypress/screenshots/results/test-output-$i.xml"
           done
           
           # Aggregate the individual test result files into a single file
           echo "Aggregating e2e test results..."
-          cat ./e2e-test/cypress/screenshots/results/test-output-*.xml > ./e2e-test/cypress/screenshots/results/aggregated-test-output.xml
+          cat ./cypress/screenshots/results/test-output-*.xml > ./cypress/screenshots/results/aggregated-test-output.xml
           
           # Display the aggregated test results
           echo "Aggregated e2e test results:"
-          cat ./e2e-test/cypress/screenshots/results/aggregated-test-output.xml
+          cat ./cypress/screenshots/results/aggregated-test-output.xml
         if: always()
 
   dev_deploy:
