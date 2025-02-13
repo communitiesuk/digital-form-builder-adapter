@@ -3,7 +3,6 @@ name: Publish base image
 on:
   schedule:
     - cron: '0 3 * * *' # Run daily at 3:00 AM UTC
-  push: # testing purpose
   workflow_dispatch: # Allow manual trigger
 
 env:
