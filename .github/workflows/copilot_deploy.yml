@@ -307,12 +307,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # Download the artifact created in the e2e-test job
       - name: Download E2E Test Reports
-        uses: actions/download-artifact@v4
-        with:
-          name: e2e-test-report-application-${{ matrix.containers }}
-          path: ./e2e-test/cypress/screenshots/results
+        run: |
+          for i in {0..4}
+          do
+            echo "Processing iteration $i"
+            # Replace the following line with your actual command
+            # For example, downloading the artifact for each iteration
+            # actions/download-artifact@v4
+            #   with:
+            #     name: e2e-test-report-application-${i}
+            #     path: ./e2e-test/cypress/screenshots/results
+          done
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
