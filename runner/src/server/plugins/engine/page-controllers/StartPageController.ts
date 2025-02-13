@@ -21,31 +21,30 @@ export class StartPageController extends PageController {
 
   makeGetRouteHandler() {
     return async (request: HapiRequest, h: HapiResponseToolkit) => {
-        // call the parent class's makeGetRouteHandler method
-        super.makeGetRouteHandler()(request, h);
-
+        // Call the parent class's makeGetRouteHandler method and get the response
+        const parentResponse = await super.makeGetRouteHandler()(request, h)
         const {adapterCacheService} = request.services([]);
-        const {num} = request.query;
 
         // @ts-ignore
         const state = await adapterCacheService.getState(request);
 
-        const formData = this.getFormDataFromState(state, num - 1);
-        const viewModel = this.getViewModel(formData, num);
+        // Extract the viewModel from the parent's response
+        const viewModel = parentResponse.source.context;
+        const changeRequests = state.metadata?.change_requests;
 
         // if page is start page and we have change requests for the form
-        if (state.metadata?.change_requests) {
+        if (changeRequests && Object.keys(changeRequests).length > 0) {
           // make sure all components on the start page are HTML components
-          let allComponentsArePara = true;
+          let allComponentsAreParaOrHtml = true;
           for (let component of viewModel.components) {
-              if (component.type !== "Para") {
-                  allComponentsArePara = false;
+              if (component.type !== "Para" && component.type !== "Html") {
+                allComponentsAreParaOrHtml = false;
                   break;
               }
           }
 
           // if all components are HTML components, replace them with a change request message
-          if (allComponentsArePara) {
+          if (allComponentsAreParaOrHtml) {
               const title = "<h1 class='govuk-heading-m'>Change requested</h1>";
               const paragraph = "<p class='govuk-body'>We need you to make some changes to parts of this section. You will need to go through the section to:</p>";
               const list = "<ul class='govuk-list govuk-list--bullet govuk-!-margin-bottom-8'><li>amend the parts where a change request has been made</li><li>check your other information</li><li>send the changes back for approval</li></ul>";

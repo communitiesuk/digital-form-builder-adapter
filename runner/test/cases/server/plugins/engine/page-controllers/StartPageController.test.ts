@@ -113,6 +113,9 @@ suite("StartPageController", () => {
         let formModel = new AdapterFormModel(formDef, {});
         const pageController = new StartPageController(formModel, firstPage);
         const vm = pageController.getViewModel({}, formModel);
+        vm.i18n = {
+            __: mockI18n
+        };
         response = await server.render("summary", vm);
 
         $ = cheerio.load(response);
