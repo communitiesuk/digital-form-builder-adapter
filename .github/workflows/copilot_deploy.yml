@@ -299,32 +299,20 @@ jobs:
             exit 1
           fi
 
-  aggregate-e2e-results:
-    needs: e2e-test
-    runs-on: ubuntu-latest
-    if: always() && github.ref != 'refs/heads/main'
-    name: Aggregate e2e Test Results
-    steps:
-      - uses: actions/checkout@v4
-      - name: Download and Aggregate e2e Test Results
-        run: |
-          # Create a directory to store the downloaded test results
-          mkdir -p results
-          
-          # Loop through each container and download the corresponding artifact
-          for i in {0..4}; do
-            echo "Downloading e2e test results for container $i..."
-            # Download the artifact and extract it into the results directory
-            actions/download-artifact@v4.4.3 --name "e2e-test-report-application-$i" --path "./cypress/screenshots/results/test-output-$i.xml"
-          done
-          
-          # Aggregate the individual test result files into a single file
-          echo "Aggregating e2e test results..."
-          cat ./cypress/screenshots/results/test-output-*.xml > ./cypress/screenshots/results/aggregated-test-output.xml
-          
-          # Display the aggregated test results
-          echo "Aggregated e2e test results:"
-          cat ./cypress/screenshots/results/aggregated-test-output.xml
+
+  aggregate-test-results:
+  name: Aggregate test results
+  needs: e2e-test  # Make sure this job runs after 'e2e-test' job
+  if: github.ref != 'refs/heads/main'
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+    # Download the artifact created in the e2e-test job
+    - name: Download E2E Test Report Application
+      uses: actions/download-artifact@v3
+      with:
+        name: e2e-test-report-application-${{ matrix.containers }}
+        path: ./e2e-test/cypress/screenshots/results
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
