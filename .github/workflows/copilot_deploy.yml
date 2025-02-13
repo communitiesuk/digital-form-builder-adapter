@@ -307,17 +307,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download E2E Test Reports
+      - name: Download E2E Test Reports and Process XML Files
         run: |
           for i in {0..4}
           do
             echo "Processing iteration $i"
-            # Replace the following line with your actual command
-            # For example, downloading the artifact for each iteration
-            # actions/download-artifact@v4
-            #   with:
-            #     name: e2e-test-report-application-${i}
-            #     path: ./e2e-test/cypress/screenshots/results
+          
+            # Download the artifact for the current iteration
+            actions/download-artifact@v4
+              with:
+                name: e2e-test-report-application-${i}
+                path: ./e2e-test/cypress/screenshots/results
+          
+            # Find and process XML files in the specified folder
+            for xml_file in ./e2e-test/cypress/screenshots/results/*.xml; do
+              if [ -f "$xml_file" ]; then
+                echo "Found XML file: $xml_file"
+                # Print the contents of the XML file
+                cat "$xml_file"
+              fi
+            done
           done
 
   dev_deploy:
