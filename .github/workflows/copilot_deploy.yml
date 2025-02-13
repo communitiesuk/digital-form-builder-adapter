@@ -277,27 +277,11 @@ jobs:
 
       - name: Run e2e tests
         id: e2e
-        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter junit --reporter-options "mochaFile=results/test-output-${{ matrix.containers }}.xml,toConsole=true"
+        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter junit --reporter-options "mochaFile=./e2e-test/cypress/screenshots/results/test-output-${{ matrix.containers }}.xml,toConsole=true"
         continue-on-error: true
 
       - name: Create Folders
-        run: mkdir -p ./e2e-test/cypress/screenshots/logs
-
-      - name: Get Logs from localstack
-        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
-
-      - name: Get Logs from runner
-        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
-
-      - name: Get all the uploaded files in the bucket
-        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
-
-      - name: Upload e2e test results
-        uses: actions/upload-artifact@v4.4.3
-        with:
-          name: e2e-test-results-${{ matrix.containers }}
-          path: results/test-output-${{ matrix.containers }}.xml
-        continue-on-error: true
+        run: mkdir -p ./e2e-test/cypress/screenshots/results
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
@@ -305,7 +289,7 @@ jobs:
         with:
           name: e2e-test-report-application-${{ matrix.containers }}
           path: ./e2e-test/cypress/screenshots
-          retention-days: 2
+          retention-days: 1
 
       - name: Check for errors & exit the job
         run: |
@@ -329,16 +313,16 @@ jobs:
           for i in {0..4}; do
             echo "Downloading e2e test results for container $i..."
             # Download the artifact and extract it into the results directory
-            actions/download-artifact@v4.4.3 --name "e2e-test-results-$i" --path "results/test-output-$i.xml"
+            actions/download-artifact@v4.4.3 --name "e2e-test-report-application-$i" --path "./e2e-test/cypress/screenshots/results/test-output-$i.xml"
           done
           
           # Aggregate the individual test result files into a single file
           echo "Aggregating e2e test results..."
-          cat results/test-output-*.xml > results/aggregated-test-output.xml
+          cat ./e2e-test/cypress/screenshots/results/test-output-*.xml > ./e2e-test/cypress/screenshots/results/aggregated-test-output.xml
           
           # Display the aggregated test results
           echo "Aggregated e2e test results:"
-          cat results/aggregated-test-output.xml
+          cat ./e2e-test/cypress/screenshots/results/aggregated-test-output.xml
         if: always()
 
   dev_deploy:
