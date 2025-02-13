@@ -308,7 +308,7 @@ jobs:
   steps:
     - uses: actions/checkout@v4
     # Download the artifact created in the e2e-test job
-    - name: Download E2E Test Report Application
+    - name: Download E2E Test Reports
       uses: actions/download-artifact@v3
       with:
         name: e2e-test-report-application-${{ matrix.containers }}
