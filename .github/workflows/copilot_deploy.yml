@@ -331,18 +331,45 @@ jobs:
         with:
           name: e2e-test-report-application-4
           path: ./result-4
-      - name: Read and Display Test Results
         run: |
           echo "Aggregating test results..."
+          echo "----------------------------------"
+          printf "%-30s | %-10s | %-10s\n" "Test Name" "Status" "Time"
+          echo "----------------------------------"
+  
           for dir in result-*; do
             echo "Processing results from $dir"
             find "$dir" -name '*.xml' | while read file; do
-              echo "----------------------------------"
-              echo "Contents of $file:"
-              cat "$file"
-              echo "----------------------------------"
+              xmllint --xpath '//testcase' "$file" 2>/dev/null | \
+              awk -v file="$file" '
+                BEGIN {
+                  FS=" ";
+                  OFS=" | ";
+                }
+                /<testcase/ {
+                  for (i=1; i<=NF; i++) {
+                    if ($i ~ /name=/) {
+                      gsub("name=\"", "", $i);
+                      gsub("\"", "", $i);
+                      name=$i;
+                    }
+                    if ($i ~ /time=/) {
+                      gsub("time=\"", "", $i);
+                      gsub("\"", "", $i);
+                      time=$i;
+                    }
+                  }
+                  status = "PASSED";
+                }
+                /<failure/ { status = "FAILED"; }
+                /<error/ { status = "ERROR"; }
+                /<\/testcase>/ {
+                  printf "%-30s | %-10s | %-10s\n", name, status, time;
+                }
+              '
             done
           done
+          echo "----------------------------------"
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
