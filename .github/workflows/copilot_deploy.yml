@@ -278,7 +278,7 @@ jobs:
 
       - name: Run e2e tests
         id: e2e
-        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter junit --reporter-options "mochaFile=./cypress/screenshots/results/test-output-[hash].xml,toConsole=true,overwrite=false"
+        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter mochawesome --reporter-options reportDir="./cypress/screenshots/results",overwrite=false,html=false,json=true
         continue-on-error: true
 
       - name: Create Folders
@@ -306,79 +306,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
       - name: Download Report for task-0
         uses: actions/download-artifact@v4
         with:
           name: e2e-test-report-application-0
-          path: ./result-0
+          path: ./result
       - name: Download Report for task-1
         uses: actions/download-artifact@v4
         with:
           name: e2e-test-report-application-1
-          path: ./result-1
+          path: ./result
       - name: Download Report for task-2
         uses: actions/download-artifact@v4
         with:
           name: e2e-test-report-application-2
-          path: ./result-2
+          path: ./result
       - name: Download Report for task-3
         uses: actions/download-artifact@v4
         with:
           name: e2e-test-report-application-3
-          path: ./result-3
+          path: ./result
       - name: Download Report for task-4
         uses: actions/download-artifact@v4
         with:
           name: e2e-test-report-application-4
-          path: ./result-4
-      - name: Install XML Tools
-        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
-      - name: Generate Test Suite Report
+          path: ./result
+      - name: Test Report
         run: |
-          echo "Aggregating test suite results..."
-          echo "--------------------------------------------------------------"
-          printf "%-60s | %-20s | %-10s | %-10s\n" "File" "Timestamp" "Time (s)" "Failures"
-          echo "--------------------------------------------------------------"
-
-          for dir in result-*; do
-              echo "Processing results from $dir"
-            find "$dir" -name '*.xml' | while read file; do
-              xmllint --xpath '//testsuite' "$file" 2>/dev/null | \
-              awk '
-                BEGIN {
-                  FS=" ";
-                  OFS=" | ";
-                }
-                /<testsuite/ {
-                  file=""; timestamp=""; time="0"; failures="0";
-                  for (i=1; i<=NF; i++) {
-                    if ($i ~ /file=/) {
-                      gsub("file=\"", "", $i);
-                      gsub("\"", "", $i);
-                      file=$i;
-                    }
-                    if ($i ~ /timestamp=/) {
-                      gsub("timestamp=\"", "", $i);
-                      gsub("\"", "", $i);
-                      timestamp=$i;
-                    }
-                    if ($i ~ /time=/) {
-                      gsub("time=\"", "", $i);
-                      gsub("\"", "", $i);
-                      time=$i;
-                    }
-                    if ($i ~ /failures=/) {
-                      gsub("failures=\"", "", $i);
-                      gsub("\"", "", $i);
-                      failures=$i;
-                    }
-                  }
-                  printf "%-60s | %-20s | %-10s | %-10s\n", file, timestamp, time, failures;
-                }
-              '
-            done
-          done
-          echo "--------------------------------------------------------------"
+          npm install -g mochawesome-merge && npm mochawesome-merge "./results/*.json" > mochawesome.json && cat mochawesome.json
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
