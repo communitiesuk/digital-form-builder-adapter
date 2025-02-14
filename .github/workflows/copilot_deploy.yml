@@ -333,61 +333,49 @@ jobs:
           path: ./result-4
       - name: Install XML Tools
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
-      - name: Read and Display Test Results
+      - name: Generate Test Suite Report
         run: |
-            echo "Aggregating test results..."
-            echo "----------------------------------"
-            printf "%-30s | %-10s | %-10s\n" "Test Name" "Status" "Time"
-            echo "----------------------------------"
-            
-            for dir in result-*; do
-              echo "Processing results from $dir"
-              find "$dir" -name '*.xml' | while read file; do
-                xmllint --xpath '//testcase' "$file" 2>/dev/null | \
-                awk '
-                    BEGIN {
-                      FS=" ";
-                      OFS=" | ";
-                    }
-                    /<testcase/ {
-                      name=""; time=""; status="PASSED";
-                      for (i=1; i<=NF; i++) {
-                        if ($i ~ /name=/) {
-                          gsub("name=\"", "", $i);
-                          gsub("\"", "", $i);
-                          name=$i;
-                        }
-                        if ($i ~ /time=/) {
-                          gsub("time=\"", "", $i);
-                          gsub("\"", "", $i);
-                          time=$i;
-                        }
-                      }
-                    }
-                    /<failure/ { status="FAILED"; }
-                    /<\/testcase>/ {
-                    printf "%-60s | %-10s | %-6s\n", name, status, time;
+          echo "Aggregating test suite results..."
+          echo "--------------------------------------------------------------"
+          printf "%-60s | %-20s | %-10s | %-10s\n" "File" "Timestamp" "Time (s)" "Failures"
+          echo "--------------------------------------------------------------"
+
+          find . -name '*.xml' | while read file; do
+            xmllint --xpath '//testsuite' "$file" 2>/dev/null | \
+            awk '
+              BEGIN {
+                FS=" ";
+                OFS=" | ";
+              }
+              /<testsuite/ {
+                file="N/A"; timestamp="N/A"; time="0"; failures="0";
+                for (i=1; i<=NF; i++) {
+                  if ($i ~ /file=/) {
+                    gsub("file=\"", "", $i);
+                    gsub("\"", "", $i);
+                    file=$i;
                   }
-                '
-                echo "----------------------------------"
-                echo "Contents of $file:"
-                cat "$file"
-                echo "----------------------------------"
-              done
-            done
-            echo "----------------------------------"
-      - name: Read and Display Test Results
-        run: |
-          echo "Aggregating test results..."
-          for dir in result-*; do
-            echo "Processing results from $dir"
-            find "$dir" -name '*.xml' | while read file; do
-              echo "----------------------------------"
-              echo "Contents of $file:"
-              cat "$file"
-              echo "----------------------------------"
-            done
+                  if ($i ~ /timestamp=/) {
+                    gsub("timestamp=\"", "", $i);
+                    gsub("\"", "", $i);
+                    timestamp=$i;
+                  }
+                  if ($i ~ /time=/) {
+                    gsub("time=\"", "", $i);
+                    gsub("\"", "", $i);
+                    time=$i;
+                  }
+                  if ($i ~ /failures=/) {
+                    gsub("failures=\"", "", $i);
+                    gsub("\"", "", $i);
+                    failures=$i;
+                  }
+                }
+                printf "%-60s | %-20s | %-10s | %-10s\n", file, timestamp, time, failures;
+              }
+            '
           done
+          echo "--------------------------------------------------------------"
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
