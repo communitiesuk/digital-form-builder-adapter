@@ -344,30 +344,29 @@ jobs:
               echo "Processing results from $dir"
               find "$dir" -name '*.xml' | while read file; do
                 xmllint --xpath '//testcase' "$file" 2>/dev/null | \
-                awk -v file="$file" '
-                  BEGIN {
-                    FS=" ";
-                    OFS=" | ";
-                  }
-                  /<testcase/ {
-                    for (i=1; i<=NF; i++) {
-                      if ($i ~ /name=/) {
-                        gsub("name=\"", "", $i);
-                        gsub("\"", "", $i);
-                        name=$i;
-                      }
-                      if ($i ~ /time=/) {
-                        gsub("time=\"", "", $i);
-                        gsub("\"", "", $i);
-                        time=$i;
+                awk '
+                    BEGIN {
+                      FS=" ";
+                      OFS=" | ";
+                    }
+                    /<testcase/ {
+                      name=""; time=""; status="PASSED";
+                      for (i=1; i<=NF; i++) {
+                        if ($i ~ /name=/) {
+                          gsub("name=\"", "", $i);
+                          gsub("\"", "", $i);
+                          name=$i;
+                        }
+                        if ($i ~ /time=/) {
+                          gsub("time=\"", "", $i);
+                          gsub("\"", "", $i);
+                          time=$i;
+                        }
                       }
                     }
-                    status = "PASSED";
-                  }
-                  /<failure/ { status = "FAILED"; }
-                  /<error/ { status = "ERROR"; }
-                  /<\/testcase>/ {
-                    printf "%-30s | %-10s | %-10s\n", name, status, time;
+                    /<failure/ { status="FAILED"; }
+                    /<\/testcase>/ {
+                    printf "%-60s | %-10s | %-6s\n", name, status, time;
                   }
                 '
                 echo "----------------------------------"
