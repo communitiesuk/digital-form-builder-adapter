@@ -331,6 +331,7 @@ jobs:
         with:
           name: e2e-test-report-application-4
           path: ./result-4
+      - name: Read and Display Test Results
         run: |
           echo "Aggregating test results..."
           echo "----------------------------------"
