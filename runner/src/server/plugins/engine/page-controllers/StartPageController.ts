@@ -45,19 +45,25 @@ export class StartPageController extends PageController {
 
           // if all components are HTML components, replace them with a change request message
           if (allComponentsAreParaOrHtml) {
-              const title = "<h1 class='govuk-heading-m'>Change requested</h1>";
-              const paragraph = "<p class='govuk-body'>The assessor has asked you to make a change to parts of this section or has asked for more information. You need to:</p>";
-              const list = "<ul class='govuk-list govuk-list--bullet govuk-!-margin-bottom-8'><li>amend parts where a change has been requested</li><li>check through the other information in the section</li><li>approve the changes</li></ul>";
-              const changeRequestMessage = title + paragraph + list
+            const titleText = this.model.translationEn.components.changeRequestpage.title;
+            const subtitleText = this.model.translationEn.components.changeRequestpage.subtitle;
+            const itemOneText = this.model.translationEn.components.changeRequestpage.itemOne;
+            const itemTwoText = this.model.translationEn.components.changeRequestpage.itemTwo;
+            const itemThreeText = this.model.translationEn.components.changeRequestpage.itemThree;
 
-              viewModel.components = [{
-                  type: "Para",
-                  isFormComponent: true,
-                  model: {
-                      attributes: {},
-                      content: changeRequestMessage
-                  }
-              }];
+            const title = `<h1 class='govuk-heading-m'>${titleText}</h1>`;
+            const paragraph = `<p class='govuk-body'>${subtitleText}</p>`;
+            const list = `<ul class='govuk-list govuk-list--bullet govuk-!-margin-bottom-8'><li>${itemOneText}</li><li>${itemTwoText}</li><li>${itemThreeText}</li></ul>`;
+            const changeRequestMessage = title + paragraph + list
+
+            viewModel.components = [{
+                type: "Para",
+                isFormComponent: true,
+                model: {
+                    attributes: {},
+                    content: changeRequestMessage
+                }
+            }];
           }
       }
 

@@ -78,6 +78,13 @@
     "yesOrNoField": {
       "yes": "Yes",
       "no": "No"
+    },
+    "changeRequestpage": {
+      "title": "Change requested",
+      "subtitle": "Please provide details of the changes you would like to make to your application",
+      "itemOne": "amend parts where a change has been requested",
+      "itemTwo": "check through the other information in the section",
+      "itemThree": "approve the changes"
     }
   },
   "head": {
