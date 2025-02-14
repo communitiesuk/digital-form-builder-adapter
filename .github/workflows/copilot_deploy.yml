@@ -299,6 +299,51 @@ jobs:
             exit 1
           fi
 
+  aggregate-test-results:
+    name: Aggregate test results
+    needs: e2e-test  # Make sure this job runs after 'e2e-test' job
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Report for task-0
+        uses: actions/download-artifact@v4
+        with:
+          name: e2e-test-report-application-0
+          path: ./result-0
+      - name: Download Report for task-1
+        uses: actions/download-artifact@v4
+        with:
+          name: e2e-test-report-application-1
+          path: ./result-1
+      - name: Download Report for task-2
+        uses: actions/download-artifact@v4
+        with:
+          name: e2e-test-report-application-2
+          path: ./result-2
+      - name: Download Report for task-3
+        uses: actions/download-artifact@v4
+        with:
+          name: e2e-test-report-application-3
+          path: ./result-3
+      - name: Download Report for task-4
+        uses: actions/download-artifact@v4
+        with:
+          name: e2e-test-report-application-4
+          path: ./result-4
+      - name: Read and Display Test Results
+        run: |
+          echo "Aggregating test results..."
+          for dir in result-*; do
+            echo "Processing results from $dir"
+            find "$dir" -name '*.xml' | while read file; do
+              echo "----------------------------------"
+              echo "Contents of $file:"
+              cat "$file"
+              echo "----------------------------------"
+            done
+          done
+
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
