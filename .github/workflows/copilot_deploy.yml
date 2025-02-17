@@ -306,10 +306,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20.x"
       - name: Download Report for task-0
         uses: actions/download-artifact@v4
         with:
@@ -336,33 +332,51 @@ jobs:
           name: e2e-test-report-application-4
           path: ./result
       - name: Install XML Tools
-        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+        run: sudo apt-get update && sudo apt-get install -y xmllint
       - name: Generate Test Suite Report
         run: |
-          npm install -g junit-report-merger && jrm /results/combined-report.xml \"/results/*.xml\" && cat /results/combined-report.xml
+          # Print table header
+          printf "%-50s %-10s\n" "File" "Failures"
+          printf "%-50s %-10s\n" "----" "--------"
+          printf "%-50s %-10s\n" "Testcase" "Details"
+          
+          # Loop through all XML files in the directory
+          for file in "/result/"*.xml; do
+            filename=$(basename "$file")
+            failures=$(xmllint --xpath 'string(//testsuite/@failures)' "$file")
+            printf "%-50s %-10s\n" "$filename" "$failures"
+          
+            xmllint --xpath '//testcase/@name' "$file" 2>/dev/null | sed 's/name="//g' | sed 's/"//g' | while read testcase; do
+              printf "%-50s %-10s\n" "$testcase" "Details here"
+            done
+          
+            echo "------------------------------------------------------------"
+          done
 
-  dev_deploy:
-    needs: [ setup, docker-designer-build, docker-runner-build ]
-    if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
-    permissions:
-      id-token: write # This is required for requesting the JWT
-      contents: read # This is required for actions/checkout
-    strategy:
-      matrix:
-        include:
-          - appname: "form-runner-adapter"
-            image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
-          - appname: "form-designer-adapter"
-            image_location: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
-    secrets:
-      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
-    with:
-      environment: dev
-      app_name: ${{ matrix.appname }}
-      run_db_migrations: false
-      image_location: ${{ matrix.image_location }}
-      notify_slack: false
+
+
+dev_deploy:
+  needs: [ setup, docker-designer-build, docker-runner-build ]
+  if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
+  permissions:
+    id-token: write # This is required for requesting the JWT
+    contents: read # This is required for actions/checkout
+  strategy:
+    matrix:
+      include:
+        - appname: "form-runner-adapter"
+          image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
+        - appname: "form-designer-adapter"
+          image_location: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
+  uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
+  secrets:
+    AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+  with:
+    environment: dev
+    app_name: ${{ matrix.appname }}
+    run_db_migrations: false
+    image_location: ${{ matrix.image_location }}
+    notify_slack: false
 
   post_dev_deploy_tests:
     needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy ]
