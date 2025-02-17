@@ -339,7 +339,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
       - name: Generate Test Suite Report
         run: |
-          npm install -g junit-report-merger && jrm ./cypress/screenshots/results/combined-report.xml \"./cypress/screenshots/results/*.xml\" && cat ./cypress/screenshots/results/combined-report.xml
+          npm install -g junit-report-merger && jrm /results/combined-report.xml \"/results/*.xml\" && cat /results/combined-report.xml
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
