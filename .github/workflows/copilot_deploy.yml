@@ -335,25 +335,13 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y xmllint
       - name: Generate Test Suite Report
         run: |
-          # Print table header
-          printf "%-50s %-10s\n" "File" "Failures"
-          printf "%-50s %-10s\n" "----" "--------"
-          printf "%-50s %-10s\n" "Testcase" "Details"
-          
-          # Loop through all XML files in the directory
+          pwd
+          ls result
           for file in "/result/"*.xml; do
-            filename=$(basename "$file")
-            failures=$(xmllint --xpath 'string(//testsuite/@failures)' "$file")
-            printf "%-50s %-10s\n" "$filename" "$failures"
-          
-            xmllint --xpath '//testcase/@name' "$file" 2>/dev/null | sed 's/name="//g' | sed 's/"//g' | while read testcase; do
-              printf "%-50s %-10s\n" "$testcase" "Details here"
-            done
-          
+            feature_file=$(xmllint --xpath 'string(//testsuite/@file)' "$file")
+            printf "%-50s" "feature_file"
             echo "------------------------------------------------------------"
           done
-
-
 
 dev_deploy:
   needs: [ setup, docker-designer-build, docker-runner-build ]
