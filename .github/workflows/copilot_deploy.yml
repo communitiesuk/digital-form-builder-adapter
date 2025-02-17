@@ -335,13 +335,47 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
       - name: Generate Test Suite Report
         run: |
-          cd result
-          ls
-          for file in *.xml; do
-            feature_file=$(xmllint --xpath 'string(//testsuite/@file)' "$file")
-            printf "%-50s" "feature_file"
-            echo "------------------------------------------------------------"
+          echo "Aggregating test suite results..."
+          echo "--------------------------------------------------------------"
+          printf "%-60s | %-20s | %-10s | %-10s\n" "File" "Timestamp" "Time (s)" "Failures"
+          echo "--------------------------------------------------------------"
+
+          find "result" -name '*.xml' | while read file; do
+              xmllint --xpath '//testsuite' "$file" 2>/dev/null | \
+              awk '
+                BEGIN {
+                  FS=" ";
+                  OFS=" | ";
+                }
+                /<testsuite/ {
+                  file=""; timestamp=""; time="0"; failures="0";
+                  for (i=1; i<=NF; i++) {
+                    if ($i ~ /file=/) {
+                      gsub("file=\"", "", $i);
+                      gsub("\"", "", $i);
+                      file=$i;
+                    }
+                    if ($i ~ /timestamp=/) {
+                      gsub("timestamp=\"", "", $i);
+                      gsub("\"", "", $i);
+                      timestamp=$i;
+                    }
+                    if ($i ~ /time=/) {
+                      gsub("time=\"", "", $i);
+                      gsub("\"", "", $i);
+                      time=$i;
+                    }
+                    if ($i ~ /failures=/) {
+                      gsub("failures=\"", "", $i);
+                      gsub("\"", "", $i);
+                      failures=$i;
+                    }
+                  }
+                  printf "%-60s | %-20s | %-10s | %-10s\n", file, timestamp, time, failures;
+                }
+              '
           done
+          echo "--------------------------------------------------------------"
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
