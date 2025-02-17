@@ -248,6 +248,8 @@ jobs:
 
       - name: Setup e2e dependencies
         run: |
+          echo "--  Install report tool  --"
+          npm -g install mocha-junit-reporter
           echo "--  Git submodule initialize into local  --"
           git submodule update --init
           echo "--  Pulling git submodules into local  --"
