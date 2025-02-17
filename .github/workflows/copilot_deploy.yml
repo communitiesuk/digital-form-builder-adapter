@@ -335,9 +335,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
       - name: Generate Test Suite Report
         run: |
-          pwd
-          ls result
-          for file in "/result/"*.xml; do
+          cd result
+          ls
+          for file in *.xml; do
             feature_file=$(xmllint --xpath 'string(//testsuite/@file)' "$file")
             printf "%-50s" "feature_file"
             echo "------------------------------------------------------------"
