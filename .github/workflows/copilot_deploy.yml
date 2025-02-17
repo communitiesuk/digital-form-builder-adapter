@@ -341,7 +341,7 @@ jobs:
               printf "%-60s | %-20s | %-10s | %-10s\n" "File" "Timestamp" "Time (s)" "Failures"
               echo "--------------------------------------------------------------"
           
-              find "$dir" -name '*.xml' | while read file; do
+              find "result" -name '*.xml' | while read file; do
                 echo "Processing results from $file"
           
                 # Extract the file attribute using xmllint
