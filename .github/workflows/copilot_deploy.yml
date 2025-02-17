@@ -343,50 +343,50 @@ jobs:
             echo "------------------------------------------------------------"
           done
 
-dev_deploy:
-  needs: [ setup, docker-designer-build, docker-runner-build ]
-  if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
-  permissions:
-    id-token: write # This is required for requesting the JWT
-    contents: read # This is required for actions/checkout
-  strategy:
-    matrix:
-      include:
-        - appname: "form-runner-adapter"
-          image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
-        - appname: "form-designer-adapter"
-          image_location: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
-  uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
-  secrets:
-    AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
-  with:
-    environment: dev
-    app_name: ${{ matrix.appname }}
-    run_db_migrations: false
-    image_location: ${{ matrix.image_location }}
-    notify_slack: false
-
-  post_dev_deploy_tests:
-    needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy ]
+  dev_deploy:
+    needs: [ setup, docker-designer-build, docker-runner-build ]
+    if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'dev') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
+    strategy:
+      matrix:
+        include:
+          - appname: "form-runner-adapter"
+            image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
+          - appname: "form-designer-adapter"
+            image_location: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
+    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
     secrets:
-      FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
-      FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
-      FS_BASIC_AUTH_USERNAME: ${{ secrets.FS_BASIC_AUTH_USERNAME }}
-      FS_BASIC_AUTH_PASSWORD: ${{ secrets.FS_BASIC_AUTH_PASSWORD }}
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
     with:
-      run_performance_tests: ${{ inputs.run_performance_tests || true }}
-      run_e2e_tests_assessment: ${{ inputs.run_e2e_tests_assessment || false }}
-      run_e2e_tests_application: ${{ inputs.run_e2e_tests_application || false }}
-      run_static_security_python: false
-      run_zap_scan: true
-      app_name: forms
       environment: dev
+      app_name: ${{ matrix.appname }}
+      run_db_migrations: false
+      image_location: ${{ matrix.image_location }}
       notify_slack: false
+
+    post_dev_deploy_tests:
+      needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy ]
+      permissions:
+        id-token: write # This is required for requesting the JWT
+        contents: read # This is required for actions/checkout
+      secrets:
+        FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
+        FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
+        FS_BASIC_AUTH_USERNAME: ${{ secrets.FS_BASIC_AUTH_USERNAME }}
+        FS_BASIC_AUTH_PASSWORD: ${{ secrets.FS_BASIC_AUTH_PASSWORD }}
+        AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+      uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
+      with:
+        run_performance_tests: ${{ inputs.run_performance_tests || true }}
+        run_e2e_tests_assessment: ${{ inputs.run_e2e_tests_assessment || false }}
+        run_e2e_tests_application: ${{ inputs.run_e2e_tests_application || false }}
+        run_static_security_python: false
+        run_zap_scan: true
+        app_name: forms
+        environment: dev
+        notify_slack: false
 
   test_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, post_dev_deploy_tests ]
