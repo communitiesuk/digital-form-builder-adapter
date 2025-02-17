@@ -342,7 +342,6 @@ jobs:
               echo "--------------------------------------------------------------"
           
               find "result" -name '*.xml' | while read file; do
-                echo "Processing results from $file"
           
                 # Extract the file attribute using xmllint
                 file_name=$(xmllint --xpath 'string(//testsuite/@file)' "./$file" 2>/dev/null)
