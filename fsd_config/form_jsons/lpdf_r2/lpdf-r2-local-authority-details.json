@@ -1727,6 +1727,1526 @@
         {
           "value": "York and North Yorkshire Mayoral Combined Authority",
           "text": "York and North Yorkshire Mayoral Combined Authority"
+        },
+        {
+          "value": "County Durham Local Planning Authority",
+          "text": "County Durham Local Planning Authority"
+        },
+        {
+          "value": "Darlington Local Planning Authority",
+          "text": "Darlington Local Planning Authority"
+        },
+        {
+          "value": "Hartlepool Local Planning Authority",
+          "text": "Hartlepool Local Planning Authority"
+        },
+        {
+          "value": "Middlesbrough Local Planning Authority",
+          "text": "Middlesbrough Local Planning Authority"
+        },
+        {
+          "value": "Northumberland Local Planning Authority",
+          "text": "Northumberland Local Planning Authority"
+        },
+        {
+          "value": "Redcar and Cleveland Local Planning Authority",
+          "text": "Redcar and Cleveland Local Planning Authority"
+        },
+        {
+          "value": "Stockton-on-Tees Local Planning Authority",
+          "text": "Stockton-on-Tees Local Planning Authority"
+        },
+        {
+          "value": "Gateshead Local Planning Authority",
+          "text": "Gateshead Local Planning Authority"
+        },
+        {
+          "value": "Newcastle upon Tyne Local Planning Authority",
+          "text": "Newcastle upon Tyne Local Planning Authority"
+        },
+        {
+          "value": "North Tyneside Local Planning Authority",
+          "text": "North Tyneside Local Planning Authority"
+        },
+        {
+          "value": "South Tyneside Local Planning Authority",
+          "text": "South Tyneside Local Planning Authority"
+        },
+        {
+          "value": "Sunderland Local Planning Authority",
+          "text": "Sunderland Local Planning Authority"
+        },
+        {
+          "value": "Blackburn with Darwen Local Planning Authority",
+          "text": "Blackburn with Darwen Local Planning Authority"
+        },
+        {
+          "value": "Blackpool Local Planning Authority",
+          "text": "Blackpool Local Planning Authority"
+        },
+        {
+          "value": "Cheshire East Local Planning Authority",
+          "text": "Cheshire East Local Planning Authority"
+        },
+        {
+          "value": "Cheshire West and Chester Local Planning Authority",
+          "text": "Cheshire West and Chester Local Planning Authority"
+        },
+        {
+          "value": "Halton Local Planning Authority",
+          "text": "Halton Local Planning Authority"
+        },
+        {
+          "value": "Warrington Local Planning Authority",
+          "text": "Warrington Local Planning Authority"
+        },
+        {
+          "value": "Bolton Local Planning Authority",
+          "text": "Bolton Local Planning Authority"
+        },
+        {
+          "value": "Bury Local Planning Authority",
+          "text": "Bury Local Planning Authority"
+        },
+        {
+          "value": "Manchester Local Planning Authority",
+          "text": "Manchester Local Planning Authority"
+        },
+        {
+          "value": "Oldham Local Planning Authority",
+          "text": "Oldham Local Planning Authority"
+        },
+        {
+          "value": "Rochdale Local Planning Authority",
+          "text": "Rochdale Local Planning Authority"
+        },
+        {
+          "value": "Salford Local Planning Authority",
+          "text": "Salford Local Planning Authority"
+        },
+        {
+          "value": "Stockport Local Planning Authority",
+          "text": "Stockport Local Planning Authority"
+        },
+        {
+          "value": "Tameside Local Planning Authority",
+          "text": "Tameside Local Planning Authority"
+        },
+        {
+          "value": "Trafford Local Planning Authority",
+          "text": "Trafford Local Planning Authority"
+        },
+        {
+          "value": "Wigan Local Planning Authority",
+          "text": "Wigan Local Planning Authority"
+        },
+        {
+          "value": "Burnley Local Planning Authority",
+          "text": "Burnley Local Planning Authority"
+        },
+        {
+          "value": "Chorley Local Planning Authority",
+          "text": "Chorley Local Planning Authority"
+        },
+        {
+          "value": "Fylde Local Planning Authority",
+          "text": "Fylde Local Planning Authority"
+        },
+        {
+          "value": "Hyndburn Local Planning Authority",
+          "text": "Hyndburn Local Planning Authority"
+        },
+        {
+          "value": "Lancaster Local Planning Authority",
+          "text": "Lancaster Local Planning Authority"
+        },
+        {
+          "value": "Pendle Local Planning Authority",
+          "text": "Pendle Local Planning Authority"
+        },
+        {
+          "value": "Preston Local Planning Authority",
+          "text": "Preston Local Planning Authority"
+        },
+        {
+          "value": "Ribble Valley Local Planning Authority",
+          "text": "Ribble Valley Local Planning Authority"
+        },
+        {
+          "value": "Rossendale Local Planning Authority",
+          "text": "Rossendale Local Planning Authority"
+        },
+        {
+          "value": "South Ribble Local Planning Authority",
+          "text": "South Ribble Local Planning Authority"
+        },
+        {
+          "value": "West Lancashire Local Planning Authority",
+          "text": "West Lancashire Local Planning Authority"
+        },
+        {
+          "value": "Wyre Local Planning Authority",
+          "text": "Wyre Local Planning Authority"
+        },
+        {
+          "value": "Knowsley Local Planning Authority",
+          "text": "Knowsley Local Planning Authority"
+        },
+        {
+          "value": "Liverpool Local Planning Authority",
+          "text": "Liverpool Local Planning Authority"
+        },
+        {
+          "value": "Sefton Local Planning Authority",
+          "text": "Sefton Local Planning Authority"
+        },
+        {
+          "value": "St. Helens Local Planning Authority",
+          "text": "St. Helens Local Planning Authority"
+        },
+        {
+          "value": "Wirral Local Planning Authority",
+          "text": "Wirral Local Planning Authority"
+        },
+        {
+          "value": "East Riding of Yorkshire Local Planning Authority",
+          "text": "East Riding of Yorkshire Local Planning Authority"
+        },
+        {
+          "value": "Kingston upon Hull, City of Local Planning Authority",
+          "text": "Kingston upon Hull, City of Local Planning Authority"
+        },
+        {
+          "value": "North East Lincolnshire Local Planning Authority",
+          "text": "North East Lincolnshire Local Planning Authority"
+        },
+        {
+          "value": "North Lincolnshire Local Planning Authority",
+          "text": "North Lincolnshire Local Planning Authority"
+        },
+        {
+          "value": "York Local Planning Authority",
+          "text": "York Local Planning Authority"
+        },
+        {
+          "value": "Barnsley Local Planning Authority",
+          "text": "Barnsley Local Planning Authority"
+        },
+        {
+          "value": "Doncaster Local Planning Authority",
+          "text": "Doncaster Local Planning Authority"
+        },
+        {
+          "value": "Rotherham Local Planning Authority",
+          "text": "Rotherham Local Planning Authority"
+        },
+        {
+          "value": "Sheffield Local Planning Authority",
+          "text": "Sheffield Local Planning Authority"
+        },
+        {
+          "value": "Bradford Local Planning Authority",
+          "text": "Bradford Local Planning Authority"
+        },
+        {
+          "value": "Coventry Local Planning Authority",
+          "text": "Coventry Local Planning Authority"
+        },
+        {
+          "value": "Dudley Local Planning Authority",
+          "text": "Dudley Local Planning Authority"
+        },
+        {
+          "value": "Sandwell Local Planning Authority",
+          "text": "Sandwell Local Planning Authority"
+        },
+        {
+          "value": "Solihull Local Planning Authority",
+          "text": "Solihull Local Planning Authority"
+        },
+        {
+          "value": "Walsall Local Planning Authority",
+          "text": "Walsall Local Planning Authority"
+        },
+        {
+          "value": "Wolverhampton Local Planning Authority",
+          "text": "Wolverhampton Local Planning Authority"
+        },
+        {
+          "value": "Bromsgrove Local Planning Authority",
+          "text": "Bromsgrove Local Planning Authority"
+        },
+        {
+          "value": "Malvern Hills Local Planning Authority",
+          "text": "Malvern Hills Local Planning Authority"
+        },
+        {
+          "value": "Redditch Local Planning Authority",
+          "text": "Redditch Local Planning Authority"
+        },
+        {
+          "value": "Worcester Local Planning Authority",
+          "text": "Worcester Local Planning Authority"
+        },
+        {
+          "value": "Wychavon Local Planning Authority",
+          "text": "Wychavon Local Planning Authority"
+        },
+        {
+          "value": "Wyre Forest Local Planning Authority",
+          "text": "Wyre Forest Local Planning Authority"
+        },
+        {
+          "value": "Bedford Local Planning Authority",
+          "text": "Bedford Local Planning Authority"
+        },
+        {
+          "value": "Central Bedfordshire Local Planning Authority",
+          "text": "Central Bedfordshire Local Planning Authority"
+        },
+        {
+          "value": "Luton Local Planning Authority",
+          "text": "Luton Local Planning Authority"
+        },
+        {
+          "value": "Peterborough Local Planning Authority",
+          "text": "Peterborough Local Planning Authority"
+        },
+        {
+          "value": "Southend-on-Sea Local Planning Authority",
+          "text": "Southend-on-Sea Local Planning Authority"
+        },
+        {
+          "value": "Thurrock Local Planning Authority",
+          "text": "Thurrock Local Planning Authority"
+        },
+        {
+          "value": "Cambridge Local Planning Authority",
+          "text": "Cambridge Local Planning Authority"
+        },
+        {
+          "value": "East Cambridgeshire Local Planning Authority",
+          "text": "East Cambridgeshire Local Planning Authority"
+        },
+        {
+          "value": "Fenland Local Planning Authority",
+          "text": "Fenland Local Planning Authority"
+        },
+        {
+          "value": "Huntingdonshire Local Planning Authority",
+          "text": "Huntingdonshire Local Planning Authority"
+        },
+        {
+          "value": "South Cambridgeshire Local Planning Authority",
+          "text": "South Cambridgeshire Local Planning Authority"
+        },
+        {
+          "value": "Basildon Local Planning Authority",
+          "text": "Basildon Local Planning Authority"
+        },
+        {
+          "value": "Braintree Local Planning Authority",
+          "text": "Braintree Local Planning Authority"
+        },
+        {
+          "value": "Brentwood Local Planning Authority",
+          "text": "Brentwood Local Planning Authority"
+        },
+        {
+          "value": "Castle Point Local Planning Authority",
+          "text": "Castle Point Local Planning Authority"
+        },
+        {
+          "value": "Chelmsford Local Planning Authority",
+          "text": "Chelmsford Local Planning Authority"
+        },
+        {
+          "value": "Colchester Local Planning Authority",
+          "text": "Colchester Local Planning Authority"
+        },
+        {
+          "value": "Epping Forest Local Planning Authority",
+          "text": "Epping Forest Local Planning Authority"
+        },
+        {
+          "value": "Harlow Local Planning Authority",
+          "text": "Harlow Local Planning Authority"
+        },
+        {
+          "value": "Maldon Local Planning Authority",
+          "text": "Maldon Local Planning Authority"
+        },
+        {
+          "value": "Rochford Local Planning Authority",
+          "text": "Rochford Local Planning Authority"
+        },
+        {
+          "value": "Tendring Local Planning Authority",
+          "text": "Tendring Local Planning Authority"
+        },
+        {
+          "value": "Uttlesford Local Planning Authority",
+          "text": "Uttlesford Local Planning Authority"
+        },
+        {
+          "value": "Broxbourne Local Planning Authority",
+          "text": "Broxbourne Local Planning Authority"
+        },
+        {
+          "value": "Dacorum Local Planning Authority",
+          "text": "Dacorum Local Planning Authority"
+        },
+        {
+          "value": "East Hertfordshire Local Planning Authority",
+          "text": "East Hertfordshire Local Planning Authority"
+        },
+        {
+          "value": "Hertsmere Local Planning Authority",
+          "text": "Hertsmere Local Planning Authority"
+        },
+        {
+          "value": "North Hertfordshire Local Planning Authority",
+          "text": "North Hertfordshire Local Planning Authority"
+        },
+        {
+          "value": "St Albans Local Planning Authority",
+          "text": "St Albans Local Planning Authority"
+        },
+        {
+          "value": "Stevenage Local Planning Authority",
+          "text": "Stevenage Local Planning Authority"
+        },
+        {
+          "value": "Three Rivers Local Planning Authority",
+          "text": "Three Rivers Local Planning Authority"
+        },
+        {
+          "value": "Watford Local Planning Authority",
+          "text": "Watford Local Planning Authority"
+        },
+        {
+          "value": "Welwyn Hatfield Local Planning Authority",
+          "text": "Welwyn Hatfield Local Planning Authority"
+        },
+        {
+          "value": "Breckland Local Planning Authority",
+          "text": "Breckland Local Planning Authority"
+        },
+        {
+          "value": "Broadland Local Planning Authority",
+          "text": "Broadland Local Planning Authority"
+        },
+        {
+          "value": "Great Yarmouth Local Planning Authority",
+          "text": "Great Yarmouth Local Planning Authority"
+        },
+        {
+          "value": "King’s Lynn and West Norfolk Local Planning Authority",
+          "text": "King’s Lynn and West Norfolk Local Planning Authority"
+        },
+        {
+          "value": "North Norfolk Local Planning Authority",
+          "text": "North Norfolk Local Planning Authority"
+        },
+        {
+          "value": "Norwich Local Planning Authority",
+          "text": "Norwich Local Planning Authority"
+        },
+        {
+          "value": "South Norfolk Local Planning Authority",
+          "text": "South Norfolk Local Planning Authority"
+        },
+        {
+          "value": "Babergh Local Planning Authority",
+          "text": "Babergh Local Planning Authority"
+        },
+        {
+          "value": "East Suffolk Local Planning Authority",
+          "text": "East Suffolk Local Planning Authority"
+        },
+        {
+          "value": "Ipswich Local Planning Authority",
+          "text": "Ipswich Local Planning Authority"
+        },
+        {
+          "value": "East Devon Local Planning Authority",
+          "text": "East Devon Local Planning Authority"
+        },
+        {
+          "value": "Exeter Local Planning Authority",
+          "text": "Exeter Local Planning Authority"
+        },
+        {
+          "value": "Mid Devon Local Planning Authority",
+          "text": "Mid Devon Local Planning Authority"
+        },
+        {
+          "value": "North Devon Local Planning Authority",
+          "text": "North Devon Local Planning Authority"
+        },
+        {
+          "value": "South Hams Local Planning Authority",
+          "text": "South Hams Local Planning Authority"
+        },
+        {
+          "value": "Teignbridge Local Planning Authority",
+          "text": "Teignbridge Local Planning Authority"
+        },
+        {
+          "value": "Torridge Local Planning Authority",
+          "text": "Torridge Local Planning Authority"
+        },
+        {
+          "value": "West Devon Local Planning Authority",
+          "text": "West Devon Local Planning Authority"
+        },
+        {
+          "value": "Cheltenham Local Planning Authority",
+          "text": "Cheltenham Local Planning Authority"
+        },
+        {
+          "value": "Cotswold Local Planning Authority",
+          "text": "Cotswold Local Planning Authority"
+        },
+        {
+          "value": "Forest of Dean Local Planning Authority",
+          "text": "Forest of Dean Local Planning Authority"
+        },
+        {
+          "value": "Gloucester Local Planning Authority",
+          "text": "Gloucester Local Planning Authority"
+        },
+        {
+          "value": "Stroud Local Planning Authority",
+          "text": "Stroud Local Planning Authority"
+        },
+        {
+          "value": "Tewkesbury Local Planning Authority",
+          "text": "Tewkesbury Local Planning Authority"
+        },
+        {
+          "value": "Dartmoor National Park Local Planning Authority",
+          "text": "Dartmoor National Park Local Planning Authority"
+        },
+        {
+          "value": "Exmoor National Park Local Planning Authority",
+          "text": "Exmoor National Park Local Planning Authority"
+        },
+        {
+          "value": "Lake District National Park Local Planning Authority",
+          "text": "Lake District National Park Local Planning Authority"
+        },
+        {
+          "value": "New Forest National Park Local Planning Authority",
+          "text": "New Forest National Park Local Planning Authority"
+        },
+        {
+          "value": "North York Moors National Park Local Planning Authority",
+          "text": "North York Moors National Park Local Planning Authority"
+        },
+        {
+          "value": "Northumberland National Park Local Planning Authority",
+          "text": "Northumberland National Park Local Planning Authority"
+        },
+        {
+          "value": "Peak District National Park Local Planning Authority",
+          "text": "Peak District National Park Local Planning Authority"
+        },
+        {
+          "value": "South Downs National Park Local Planning Authority",
+          "text": "South Downs National Park Local Planning Authority"
+        },
+        {
+          "value": "The Broads Authority Local Planning Authority",
+          "text": "The Broads Authority Local Planning Authority"
+        },
+        {
+          "value": "Yorkshire Dales National Park Local Planning Authority",
+          "text": "Yorkshire Dales National Park Local Planning Authority"
+        },
+        {
+          "value": "Ebbsfleet Development Corporation Local Planning Authority",
+          "text": "Ebbsfleet Development Corporation Local Planning Authority"
+        },
+        {
+          "value": "London Legacy Development Corporation Local Planning Authority",
+          "text": "London Legacy Development Corporation Local Planning Authority"
+        },
+        {
+          "value": "Old Oak and Park Royal Development Corporation Local Planning Authority",
+          "text": "Old Oak and Park Royal Development Corporation Local Planning Authority"
+        },
+        {
+          "value": "Buckinghamshire Local Planning Authority",
+          "text": "Buckinghamshire Local Planning Authority"
+        },
+        {
+          "value": "North Northamptonshire Local Planning Authority",
+          "text": "North Northamptonshire Local Planning Authority"
+        },
+        {
+          "value": "West Northamptonshire Local Planning Authority",
+          "text": "West Northamptonshire Local Planning Authority"
+        },
+        {
+          "value": "Cumberland Local Planning Authority",
+          "text": "Cumberland Local Planning Authority"
+        },
+        {
+          "value": "Westmorland and Furness Local Planning Authority",
+          "text": "Westmorland and Furness Local Planning Authority"
+        },
+        {
+          "value": "North Yorkshire Local Planning Authority",
+          "text": "North Yorkshire Local Planning Authority"
+        },
+        {
+          "value": "Somerset Local Planning Authority",
+          "text": "Somerset Local Planning Authority"
+        },
+        {
+          "value": "Antrim and Newtownabbey Local Planning Authority",
+          "text": "Antrim and Newtownabbey Local Planning Authority"
+        },
+        {
+          "value": "Ards and North Down Local Planning Authority",
+          "text": "Ards and North Down Local Planning Authority"
+        },
+        {
+          "value": "Armagh City, Banbridge and Craigavon Local Planning Authority",
+          "text": "Armagh City, Banbridge and Craigavon Local Planning Authority"
+        },
+        {
+          "value": "Belfast Local Planning Authority",
+          "text": "Belfast Local Planning Authority"
+        },
+        {
+          "value": "Causeway Coast and Glens Local Planning Authority",
+          "text": "Causeway Coast and Glens Local Planning Authority"
+        },
+        {
+          "value": "Derry City and Strabane Local Planning Authority",
+          "text": "Derry City and Strabane Local Planning Authority"
+        },
+        {
+          "value": "Fermanagh and Omagh Local Planning Authority",
+          "text": "Fermanagh and Omagh Local Planning Authority"
+        },
+        {
+          "value": "Lisburn and Castlereagh Local Planning Authority",
+          "text": "Lisburn and Castlereagh Local Planning Authority"
+        },
+        {
+          "value": "Mid and East Antrim Local Planning Authority",
+          "text": "Mid and East Antrim Local Planning Authority"
+        },
+        {
+          "value": "Mid Ulster Local Planning Authority",
+          "text": "Mid Ulster Local Planning Authority"
+        },
+        {
+          "value": "Newry, Mourne and Down Local Planning Authority",
+          "text": "Newry, Mourne and Down Local Planning Authority"
+        },
+        {
+          "value": "Department for Infrastructure Local Planning Authority",
+          "text": "Department for Infrastructure Local Planning Authority"
+        },
+        {
+          "value": "Aberdeen City Local Planning Authority",
+          "text": "Aberdeen City Local Planning Authority"
+        },
+        {
+          "value": "Aberdeenshire Local Planning Authority",
+          "text": "Aberdeenshire Local Planning Authority"
+        },
+        {
+          "value": "Angus Local Planning Authority",
+          "text": "Angus Local Planning Authority"
+        },
+        {
+          "value": "Argyll and Bute Local Planning Authority",
+          "text": "Argyll and Bute Local Planning Authority"
+        },
+        {
+          "value": "City of Edinburgh Local Planning Authority",
+          "text": "City of Edinburgh Local Planning Authority"
+        },
+        {
+          "value": "Clackmannanshire Local Planning Authority",
+          "text": "Clackmannanshire Local Planning Authority"
+        },
+        {
+          "value": "Dumfries and Galloway Local Planning Authority",
+          "text": "Dumfries and Galloway Local Planning Authority"
+        },
+        {
+          "value": "Dundee City Local Planning Authority",
+          "text": "Dundee City Local Planning Authority"
+        },
+        {
+          "value": "East Ayrshire Local Planning Authority",
+          "text": "East Ayrshire Local Planning Authority"
+        },
+        {
+          "value": "Calderdale Local Planning Authority",
+          "text": "Calderdale Local Planning Authority"
+        },
+        {
+          "value": "Kirklees Local Planning Authority",
+          "text": "Kirklees Local Planning Authority"
+        },
+        {
+          "value": "Leeds Local Planning Authority",
+          "text": "Leeds Local Planning Authority"
+        },
+        {
+          "value": "Wakefield Local Planning Authority",
+          "text": "Wakefield Local Planning Authority"
+        },
+        {
+          "value": "Derby Local Planning Authority",
+          "text": "Derby Local Planning Authority"
+        },
+        {
+          "value": "Leicester Local Planning Authority",
+          "text": "Leicester Local Planning Authority"
+        },
+        {
+          "value": "Nottingham Local Planning Authority",
+          "text": "Nottingham Local Planning Authority"
+        },
+        {
+          "value": "Rutland Local Planning Authority",
+          "text": "Rutland Local Planning Authority"
+        },
+        {
+          "value": "Amber Valley Local Planning Authority",
+          "text": "Amber Valley Local Planning Authority"
+        },
+        {
+          "value": "Bolsover Local Planning Authority",
+          "text": "Bolsover Local Planning Authority"
+        },
+        {
+          "value": "Chesterfield Local Planning Authority",
+          "text": "Chesterfield Local Planning Authority"
+        },
+        {
+          "value": "Derbyshire Dales Local Planning Authority",
+          "text": "Derbyshire Dales Local Planning Authority"
+        },
+        {
+          "value": "Erewash Local Planning Authority",
+          "text": "Erewash Local Planning Authority"
+        },
+        {
+          "value": "High Peak Local Planning Authority",
+          "text": "High Peak Local Planning Authority"
+        },
+        {
+          "value": "North East Derbyshire Local Planning Authority",
+          "text": "North East Derbyshire Local Planning Authority"
+        },
+        {
+          "value": "South Derbyshire Local Planning Authority",
+          "text": "South Derbyshire Local Planning Authority"
+        },
+        {
+          "value": "Blaby Local Planning Authority",
+          "text": "Blaby Local Planning Authority"
+        },
+        {
+          "value": "Charnwood Local Planning Authority",
+          "text": "Charnwood Local Planning Authority"
+        },
+        {
+          "value": "Harborough Local Planning Authority",
+          "text": "Harborough Local Planning Authority"
+        },
+        {
+          "value": "Hinckley and Bosworth Local Planning Authority",
+          "text": "Hinckley and Bosworth Local Planning Authority"
+        },
+        {
+          "value": "Melton Local Planning Authority",
+          "text": "Melton Local Planning Authority"
+        },
+        {
+          "value": "North West Leicestershire Local Planning Authority",
+          "text": "North West Leicestershire Local Planning Authority"
+        },
+        {
+          "value": "Oadby and Wigston Local Planning Authority",
+          "text": "Oadby and Wigston Local Planning Authority"
+        },
+        {
+          "value": "Boston Local Planning Authority",
+          "text": "Boston Local Planning Authority"
+        },
+        {
+          "value": "East Lindsey Local Planning Authority",
+          "text": "East Lindsey Local Planning Authority"
+        },
+        {
+          "value": "Lincoln Local Planning Authority",
+          "text": "Lincoln Local Planning Authority"
+        },
+        {
+          "value": "North Kesteven Local Planning Authority",
+          "text": "North Kesteven Local Planning Authority"
+        },
+        {
+          "value": "South Holland Local Planning Authority",
+          "text": "South Holland Local Planning Authority"
+        },
+        {
+          "value": "South Kesteven Local Planning Authority",
+          "text": "South Kesteven Local Planning Authority"
+        },
+        {
+          "value": "West Lindsey Local Planning Authority",
+          "text": "West Lindsey Local Planning Authority"
+        },
+        {
+          "value": "Ashfield Local Planning Authority",
+          "text": "Ashfield Local Planning Authority"
+        },
+        {
+          "value": "Bassetlaw Local Planning Authority",
+          "text": "Bassetlaw Local Planning Authority"
+        },
+        {
+          "value": "Broxtowe Local Planning Authority",
+          "text": "Broxtowe Local Planning Authority"
+        },
+        {
+          "value": "Gedling Local Planning Authority",
+          "text": "Gedling Local Planning Authority"
+        },
+        {
+          "value": "Mansfield Local Planning Authority",
+          "text": "Mansfield Local Planning Authority"
+        },
+        {
+          "value": "Newark and Sherwood Local Planning Authority",
+          "text": "Newark and Sherwood Local Planning Authority"
+        },
+        {
+          "value": "Rushcliffe Local Planning Authority",
+          "text": "Rushcliffe Local Planning Authority"
+        },
+        {
+          "value": "Herefordshire, County of Local Planning Authority",
+          "text": "Herefordshire, County of Local Planning Authority"
+        },
+        {
+          "value": "Shropshire Local Planning Authority",
+          "text": "Shropshire Local Planning Authority"
+        },
+        {
+          "value": "Stoke-on-Trent Local Planning Authority",
+          "text": "Stoke-on-Trent Local Planning Authority"
+        },
+        {
+          "value": "Telford and Wrekin Local Planning Authority",
+          "text": "Telford and Wrekin Local Planning Authority"
+        },
+        {
+          "value": "Cannock Chase Local Planning Authority",
+          "text": "Cannock Chase Local Planning Authority"
+        },
+        {
+          "value": "East Staffordshire Local Planning Authority",
+          "text": "East Staffordshire Local Planning Authority"
+        },
+        {
+          "value": "Lichfield Local Planning Authority",
+          "text": "Lichfield Local Planning Authority"
+        },
+        {
+          "value": "Newcastle-under-Lyme Local Planning Authority",
+          "text": "Newcastle-under-Lyme Local Planning Authority"
+        },
+        {
+          "value": "South Staffordshire Local Planning Authority",
+          "text": "South Staffordshire Local Planning Authority"
+        },
+        {
+          "value": "Stafford Local Planning Authority",
+          "text": "Stafford Local Planning Authority"
+        },
+        {
+          "value": "Staffordshire Moorlands Local Planning Authority",
+          "text": "Staffordshire Moorlands Local Planning Authority"
+        },
+        {
+          "value": "Tamworth Local Planning Authority",
+          "text": "Tamworth Local Planning Authority"
+        },
+        {
+          "value": "North Warwickshire Local Planning Authority",
+          "text": "North Warwickshire Local Planning Authority"
+        },
+        {
+          "value": "Nuneaton and Bedworth Local Planning Authority",
+          "text": "Nuneaton and Bedworth Local Planning Authority"
+        },
+        {
+          "value": "Rugby Local Planning Authority",
+          "text": "Rugby Local Planning Authority"
+        },
+        {
+          "value": "Stratford-on-Avon Local Planning Authority",
+          "text": "Stratford-on-Avon Local Planning Authority"
+        },
+        {
+          "value": "Warwick Local Planning Authority",
+          "text": "Warwick Local Planning Authority"
+        },
+        {
+          "value": "Birmingham Local Planning Authority",
+          "text": "Birmingham Local Planning Authority"
+        },
+        {
+          "value": "East Dunbartonshire Local Planning Authority",
+          "text": "East Dunbartonshire Local Planning Authority"
+        },
+        {
+          "value": "East Lothian Local Planning Authority",
+          "text": "East Lothian Local Planning Authority"
+        },
+        {
+          "value": "East Renfrewshire Local Planning Authority",
+          "text": "East Renfrewshire Local Planning Authority"
+        },
+        {
+          "value": "Falkirk Local Planning Authority",
+          "text": "Falkirk Local Planning Authority"
+        },
+        {
+          "value": "Fife Local Planning Authority",
+          "text": "Fife Local Planning Authority"
+        },
+        {
+          "value": "Glasgow City Local Planning Authority",
+          "text": "Glasgow City Local Planning Authority"
+        },
+        {
+          "value": "Highland Local Planning Authority",
+          "text": "Highland Local Planning Authority"
+        },
+        {
+          "value": "Inverclyde Local Planning Authority",
+          "text": "Inverclyde Local Planning Authority"
+        },
+        {
+          "value": "Midlothian Local Planning Authority",
+          "text": "Midlothian Local Planning Authority"
+        },
+        {
+          "value": "Moray Local Planning Authority",
+          "text": "Moray Local Planning Authority"
+        },
+        {
+          "value": "Na h-Eileanan Siar Local Planning Authority",
+          "text": "Na h-Eileanan Siar Local Planning Authority"
+        },
+        {
+          "value": "North Ayrshire Local Planning Authority",
+          "text": "North Ayrshire Local Planning Authority"
+        },
+        {
+          "value": "North Lanarkshire Local Planning Authority",
+          "text": "North Lanarkshire Local Planning Authority"
+        },
+        {
+          "value": "Orkney Islands Local Planning Authority",
+          "text": "Orkney Islands Local Planning Authority"
+        },
+        {
+          "value": "Perth and Kinross Local Planning Authority",
+          "text": "Perth and Kinross Local Planning Authority"
+        },
+        {
+          "value": "Renfrewshire Local Planning Authority",
+          "text": "Renfrewshire Local Planning Authority"
+        },
+        {
+          "value": "Scottish Borders Local Planning Authority",
+          "text": "Scottish Borders Local Planning Authority"
+        },
+        {
+          "value": "Shetland Islands Local Planning Authority",
+          "text": "Shetland Islands Local Planning Authority"
+        },
+        {
+          "value": "South Ayrshire Local Planning Authority",
+          "text": "South Ayrshire Local Planning Authority"
+        },
+        {
+          "value": "South Lanarkshire Local Planning Authority",
+          "text": "South Lanarkshire Local Planning Authority"
+        },
+        {
+          "value": "Stirling Local Planning Authority",
+          "text": "Stirling Local Planning Authority"
+        },
+        {
+          "value": "Cairngorms National Park Local Planning Authority",
+          "text": "Cairngorms National Park Local Planning Authority"
+        },
+        {
+          "value": "Loch Lomond and the Trossachs National Park Local Planning Authority",
+          "text": "Loch Lomond and the Trossachs National Park Local Planning Authority"
+        },
+        {
+          "value": "West Dunbartonshire Local Planning Authority",
+          "text": "West Dunbartonshire Local Planning Authority"
+        },
+        {
+          "value": "West Lothian Local Planning Authority",
+          "text": "West Lothian Local Planning Authority"
+        },
+        {
+          "value": "Isle of Anglesey Local Planning Authority",
+          "text": "Isle of Anglesey Local Planning Authority"
+        },
+        {
+          "value": "Gwynedd Local Planning Authority",
+          "text": "Gwynedd Local Planning Authority"
+        },
+        {
+          "value": "Snowdonia National Park Local Planning Authority",
+          "text": "Snowdonia National Park Local Planning Authority"
+        },
+        {
+          "value": "Conwy Local Planning Authority",
+          "text": "Conwy Local Planning Authority"
+        },
+        {
+          "value": "Denbighshire Local Planning Authority",
+          "text": "Denbighshire Local Planning Authority"
+        },
+        {
+          "value": "Flintshire Local Planning Authority",
+          "text": "Flintshire Local Planning Authority"
+        },
+        {
+          "value": "Wrexham Local Planning Authority",
+          "text": "Wrexham Local Planning Authority"
+        },
+        {
+          "value": "Powys Local Planning Authority",
+          "text": "Powys Local Planning Authority"
+        },
+        {
+          "value": "Ceredigion Local Planning Authority",
+          "text": "Ceredigion Local Planning Authority"
+        },
+        {
+          "value": "Pembrokeshire Coast National Park Local Planning Authority",
+          "text": "Pembrokeshire Coast National Park Local Planning Authority"
+        },
+        {
+          "value": "Pembrokeshire Local Planning Authority",
+          "text": "Pembrokeshire Local Planning Authority"
+        },
+        {
+          "value": "Carmarthenshire Local Planning Authority",
+          "text": "Carmarthenshire Local Planning Authority"
+        },
+        {
+          "value": "Brecon Beacons National Park Local Planning Authority",
+          "text": "Brecon Beacons National Park Local Planning Authority"
+        },
+        {
+          "value": "Swansea Local Planning Authority",
+          "text": "Swansea Local Planning Authority"
+        },
+        {
+          "value": "Neath Port Talbot Local Planning Authority",
+          "text": "Neath Port Talbot Local Planning Authority"
+        },
+        {
+          "value": "Bridgend Local Planning Authority",
+          "text": "Bridgend Local Planning Authority"
+        },
+        {
+          "value": "Vale of Glamorgan Local Planning Authority",
+          "text": "Vale of Glamorgan Local Planning Authority"
+        },
+        {
+          "value": "Cardiff Local Planning Authority",
+          "text": "Cardiff Local Planning Authority"
+        },
+        {
+          "value": "Rhondda Cynon Taf Local Planning Authority",
+          "text": "Rhondda Cynon Taf Local Planning Authority"
+        },
+        {
+          "value": "Merthyr Tydfil Local Planning Authority",
+          "text": "Merthyr Tydfil Local Planning Authority"
+        },
+        {
+          "value": "Caerphilly Local Planning Authority",
+          "text": "Caerphilly Local Planning Authority"
+        },
+        {
+          "value": "Blaenau Gwent Local Planning Authority",
+          "text": "Blaenau Gwent Local Planning Authority"
+        },
+        {
+          "value": "Torfaen Local Planning Authority",
+          "text": "Torfaen Local Planning Authority"
+        },
+        {
+          "value": "Monmouthshire Local Planning Authority",
+          "text": "Monmouthshire Local Planning Authority"
+        },
+        {
+          "value": "Newport Local Planning Authority",
+          "text": "Newport Local Planning Authority"
+        },
+        {
+          "value": "Mid Suffolk Local Planning Authority",
+          "text": "Mid Suffolk Local Planning Authority"
+        },
+        {
+          "value": "West Suffolk Local Planning Authority",
+          "text": "West Suffolk Local Planning Authority"
+        },
+        {
+          "value": "Camden Local Planning Authority",
+          "text": "Camden Local Planning Authority"
+        },
+        {
+          "value": "City of London Local Planning Authority",
+          "text": "City of London Local Planning Authority"
+        },
+        {
+          "value": "Hackney Local Planning Authority",
+          "text": "Hackney Local Planning Authority"
+        },
+        {
+          "value": "Hammersmith and Fulham Local Planning Authority",
+          "text": "Hammersmith and Fulham Local Planning Authority"
+        },
+        {
+          "value": "Haringey Local Planning Authority",
+          "text": "Haringey Local Planning Authority"
+        },
+        {
+          "value": "Islington Local Planning Authority",
+          "text": "Islington Local Planning Authority"
+        },
+        {
+          "value": "Kensington and Chelsea Local Planning Authority",
+          "text": "Kensington and Chelsea Local Planning Authority"
+        },
+        {
+          "value": "Lambeth Local Planning Authority",
+          "text": "Lambeth Local Planning Authority"
+        },
+        {
+          "value": "Lewisham Local Planning Authority",
+          "text": "Lewisham Local Planning Authority"
+        },
+        {
+          "value": "Newham Local Planning Authority",
+          "text": "Newham Local Planning Authority"
+        },
+        {
+          "value": "Southwark Local Planning Authority",
+          "text": "Southwark Local Planning Authority"
+        },
+        {
+          "value": "Tower Hamlets Local Planning Authority",
+          "text": "Tower Hamlets Local Planning Authority"
+        },
+        {
+          "value": "Wandsworth Local Planning Authority",
+          "text": "Wandsworth Local Planning Authority"
+        },
+        {
+          "value": "Westminster Local Planning Authority",
+          "text": "Westminster Local Planning Authority"
+        },
+        {
+          "value": "Barking and Dagenham Local Planning Authority",
+          "text": "Barking and Dagenham Local Planning Authority"
+        },
+        {
+          "value": "Barnet Local Planning Authority",
+          "text": "Barnet Local Planning Authority"
+        },
+        {
+          "value": "Bexley Local Planning Authority",
+          "text": "Bexley Local Planning Authority"
+        },
+        {
+          "value": "Brent Local Planning Authority",
+          "text": "Brent Local Planning Authority"
+        },
+        {
+          "value": "Bromley Local Planning Authority",
+          "text": "Bromley Local Planning Authority"
+        },
+        {
+          "value": "Croydon Local Planning Authority",
+          "text": "Croydon Local Planning Authority"
+        },
+        {
+          "value": "Ealing Local Planning Authority",
+          "text": "Ealing Local Planning Authority"
+        },
+        {
+          "value": "Enfield Local Planning Authority",
+          "text": "Enfield Local Planning Authority"
+        },
+        {
+          "value": "Greenwich Local Planning Authority",
+          "text": "Greenwich Local Planning Authority"
+        },
+        {
+          "value": "Harrow Local Planning Authority",
+          "text": "Harrow Local Planning Authority"
+        },
+        {
+          "value": "Havering Local Planning Authority",
+          "text": "Havering Local Planning Authority"
+        },
+        {
+          "value": "Hillingdon Local Planning Authority",
+          "text": "Hillingdon Local Planning Authority"
+        },
+        {
+          "value": "Hounslow Local Planning Authority",
+          "text": "Hounslow Local Planning Authority"
+        },
+        {
+          "value": "Kingston upon Thames Local Planning Authority",
+          "text": "Kingston upon Thames Local Planning Authority"
+        },
+        {
+          "value": "Merton Local Planning Authority",
+          "text": "Merton Local Planning Authority"
+        },
+        {
+          "value": "Redbridge Local Planning Authority",
+          "text": "Redbridge Local Planning Authority"
+        },
+        {
+          "value": "Richmond upon Thames Local Planning Authority",
+          "text": "Richmond upon Thames Local Planning Authority"
+        },
+        {
+          "value": "Sutton Local Planning Authority",
+          "text": "Sutton Local Planning Authority"
+        },
+        {
+          "value": "Waltham Forest Local Planning Authority",
+          "text": "Waltham Forest Local Planning Authority"
+        },
+        {
+          "value": "Bracknell Forest Local Planning Authority",
+          "text": "Bracknell Forest Local Planning Authority"
+        },
+        {
+          "value": "Brighton and Hove Local Planning Authority",
+          "text": "Brighton and Hove Local Planning Authority"
+        },
+        {
+          "value": "Isle of Wight Local Planning Authority",
+          "text": "Isle of Wight Local Planning Authority"
+        },
+        {
+          "value": "Medway Local Planning Authority",
+          "text": "Medway Local Planning Authority"
+        },
+        {
+          "value": "Milton Keynes Local Planning Authority",
+          "text": "Milton Keynes Local Planning Authority"
+        },
+        {
+          "value": "Portsmouth Local Planning Authority",
+          "text": "Portsmouth Local Planning Authority"
+        },
+        {
+          "value": "Reading Local Planning Authority",
+          "text": "Reading Local Planning Authority"
+        },
+        {
+          "value": "Slough Local Planning Authority",
+          "text": "Slough Local Planning Authority"
+        },
+        {
+          "value": "Southampton Local Planning Authority",
+          "text": "Southampton Local Planning Authority"
+        },
+        {
+          "value": "West Berkshire Local Planning Authority",
+          "text": "West Berkshire Local Planning Authority"
+        },
+        {
+          "value": "Windsor and Maidenhead Local Planning Authority",
+          "text": "Windsor and Maidenhead Local Planning Authority"
+        },
+        {
+          "value": "Wokingham Local Planning Authority",
+          "text": "Wokingham Local Planning Authority"
+        },
+        {
+          "value": "Eastbourne Local Planning Authority",
+          "text": "Eastbourne Local Planning Authority"
+        },
+        {
+          "value": "Hastings Local Planning Authority",
+          "text": "Hastings Local Planning Authority"
+        },
+        {
+          "value": "Lewes Local Planning Authority",
+          "text": "Lewes Local Planning Authority"
+        },
+        {
+          "value": "Rother Local Planning Authority",
+          "text": "Rother Local Planning Authority"
+        },
+        {
+          "value": "Wealden Local Planning Authority",
+          "text": "Wealden Local Planning Authority"
+        },
+        {
+          "value": "Basingstoke and Deane Local Planning Authority",
+          "text": "Basingstoke and Deane Local Planning Authority"
+        },
+        {
+          "value": "East Hampshire Local Planning Authority",
+          "text": "East Hampshire Local Planning Authority"
+        },
+        {
+          "value": "Eastleigh Local Planning Authority",
+          "text": "Eastleigh Local Planning Authority"
+        },
+        {
+          "value": "Fareham Local Planning Authority",
+          "text": "Fareham Local Planning Authority"
+        },
+        {
+          "value": "Gosport Local Planning Authority",
+          "text": "Gosport Local Planning Authority"
+        },
+        {
+          "value": "Hart Local Planning Authority",
+          "text": "Hart Local Planning Authority"
+        },
+        {
+          "value": "Havant Local Planning Authority",
+          "text": "Havant Local Planning Authority"
+        },
+        {
+          "value": "New Forest Local Planning Authority",
+          "text": "New Forest Local Planning Authority"
+        },
+        {
+          "value": "Rushmoor Local Planning Authority",
+          "text": "Rushmoor Local Planning Authority"
+        },
+        {
+          "value": "Test Valley Local Planning Authority",
+          "text": "Test Valley Local Planning Authority"
+        },
+        {
+          "value": "Winchester Local Planning Authority",
+          "text": "Winchester Local Planning Authority"
+        },
+        {
+          "value": "Ashford Local Planning Authority",
+          "text": "Ashford Local Planning Authority"
+        },
+        {
+          "value": "Canterbury Local Planning Authority",
+          "text": "Canterbury Local Planning Authority"
+        },
+        {
+          "value": "Dartford Local Planning Authority",
+          "text": "Dartford Local Planning Authority"
+        },
+        {
+          "value": "Dover Local Planning Authority",
+          "text": "Dover Local Planning Authority"
+        },
+        {
+          "value": "Folkestone and Hythe Local Planning Authority",
+          "text": "Folkestone and Hythe Local Planning Authority"
+        },
+        {
+          "value": "Gravesham Local Planning Authority",
+          "text": "Gravesham Local Planning Authority"
+        },
+        {
+          "value": "Maidstone Local Planning Authority",
+          "text": "Maidstone Local Planning Authority"
+        },
+        {
+          "value": "Sevenoaks Local Planning Authority",
+          "text": "Sevenoaks Local Planning Authority"
+        },
+        {
+          "value": "Swale Local Planning Authority",
+          "text": "Swale Local Planning Authority"
+        },
+        {
+          "value": "Thanet Local Planning Authority",
+          "text": "Thanet Local Planning Authority"
+        },
+        {
+          "value": "Tonbridge and Malling Local Planning Authority",
+          "text": "Tonbridge and Malling Local Planning Authority"
+        },
+        {
+          "value": "Tunbridge Wells Local Planning Authority",
+          "text": "Tunbridge Wells Local Planning Authority"
+        },
+        {
+          "value": "Cherwell Local Planning Authority",
+          "text": "Cherwell Local Planning Authority"
+        },
+        {
+          "value": "Oxford Local Planning Authority",
+          "text": "Oxford Local Planning Authority"
+        },
+        {
+          "value": "South Oxfordshire Local Planning Authority",
+          "text": "South Oxfordshire Local Planning Authority"
+        },
+        {
+          "value": "Vale of White Horse Local Planning Authority",
+          "text": "Vale of White Horse Local Planning Authority"
+        },
+        {
+          "value": "West Oxfordshire Local Planning Authority",
+          "text": "West Oxfordshire Local Planning Authority"
+        },
+        {
+          "value": "Elmbridge Local Planning Authority",
+          "text": "Elmbridge Local Planning Authority"
+        },
+        {
+          "value": "Epsom and Ewell Local Planning Authority",
+          "text": "Epsom and Ewell Local Planning Authority"
+        },
+        {
+          "value": "Guildford Local Planning Authority",
+          "text": "Guildford Local Planning Authority"
+        },
+        {
+          "value": "Mole Valley Local Planning Authority",
+          "text": "Mole Valley Local Planning Authority"
+        },
+        {
+          "value": "Reigate and Banstead Local Planning Authority",
+          "text": "Reigate and Banstead Local Planning Authority"
+        },
+        {
+          "value": "Runnymede Local Planning Authority",
+          "text": "Runnymede Local Planning Authority"
+        },
+        {
+          "value": "Spelthorne Local Planning Authority",
+          "text": "Spelthorne Local Planning Authority"
+        },
+        {
+          "value": "Surrey Heath Local Planning Authority",
+          "text": "Surrey Heath Local Planning Authority"
+        },
+        {
+          "value": "Tandridge Local Planning Authority",
+          "text": "Tandridge Local Planning Authority"
+        },
+        {
+          "value": "Waverley Local Planning Authority",
+          "text": "Waverley Local Planning Authority"
+        },
+        {
+          "value": "Woking Local Planning Authority",
+          "text": "Woking Local Planning Authority"
+        },
+        {
+          "value": "Adur Local Planning Authority",
+          "text": "Adur Local Planning Authority"
+        },
+        {
+          "value": "Arun Local Planning Authority",
+          "text": "Arun Local Planning Authority"
+        },
+        {
+          "value": "Chichester Local Planning Authority",
+          "text": "Chichester Local Planning Authority"
+        },
+        {
+          "value": "Crawley Local Planning Authority",
+          "text": "Crawley Local Planning Authority"
+        },
+        {
+          "value": "Horsham Local Planning Authority",
+          "text": "Horsham Local Planning Authority"
+        },
+        {
+          "value": "Mid Sussex Local Planning Authority",
+          "text": "Mid Sussex Local Planning Authority"
+        },
+        {
+          "value": "Worthing Local Planning Authority",
+          "text": "Worthing Local Planning Authority"
+        },
+        {
+          "value": "Bath and North East Somerset Local Planning Authority",
+          "text": "Bath and North East Somerset Local Planning Authority"
+        },
+        {
+          "value": "Bournemouth, Christchurch and Poole Local Planning Authority",
+          "text": "Bournemouth, Christchurch and Poole Local Planning Authority"
+        },
+        {
+          "value": "Bristol, City of Local Planning Authority",
+          "text": "Bristol, City of Local Planning Authority"
+        },
+        {
+          "value": "Cornwall Local Planning Authority",
+          "text": "Cornwall Local Planning Authority"
+        },
+        {
+          "value": "Dorset Local Planning Authority",
+          "text": "Dorset Local Planning Authority"
+        },
+        {
+          "value": "Isles of Scilly Local Planning Authority",
+          "text": "Isles of Scilly Local Planning Authority"
+        },
+        {
+          "value": "North Somerset Local Planning Authority",
+          "text": "North Somerset Local Planning Authority"
+        },
+        {
+          "value": "Plymouth Local Planning Authority",
+          "text": "Plymouth Local Planning Authority"
+        },
+        {
+          "value": "South Gloucestershire Local Planning Authority",
+          "text": "South Gloucestershire Local Planning Authority"
+        },
+        {
+          "value": "Swindon Local Planning Authority",
+          "text": "Swindon Local Planning Authority"
+        },
+        {
+          "value": "Torbay Local Planning Authority",
+          "text": "Torbay Local Planning Authority"
+        },
+        {
+          "value": "Wiltshire Local Planning Authority",
+          "text": "Wiltshire Local Planning Authority"
         }
       ],
       "name": "vlTWym",
