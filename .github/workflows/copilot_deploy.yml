@@ -342,23 +342,33 @@ jobs:
               printf "%-60s | %-20s | %-10s | %-10s\n" "File" "Timestamp" "Time (s)" "Failures"
               echo "--------------------------------------------------------------"
           
+              test_count = 0
+          
               find "$dir" -name '*.xml' | while read file; do
+                echo "Processing results from $file"
+          
                 # Extract the file attribute using xmllint
-                file_name=$(xmllint --xpath 'string(//testsuite/@file)' "$file" 2>/dev/null)
-              
+                file_name=$(xmllint --xpath 'string(//testsuite/@file)' "./$file" 2>/dev/null)
+
                 # Extract the timestamp using xmllint
-                timestamp=$(xmllint --xpath 'string(//testsuite/@timestamp)' "$file" 2>/dev/null)
+                timestamp=$(xmllint --xpath 'string(//testsuite/@timestamp)' "./$file" 2>/dev/null)
+                
+                tests_in_file=$(xmllint --xpath 'string(//testsuites/@tests)' "./$file" 2>/dev/null)
+                test_count=$((test_count + tests_in_file))
               
                 # Extract the time using xmllint
-                time=$(xmllint --xpath 'string(//testsuite/@time)' "$file" 2>/dev/null)
+                time=$(xmllint --xpath 'string(//testsuite/@time)' "./$file" 2>/dev/null)
               
                 # Extract the number of failures using xmllint
-                failures=$(xmllint --xpath 'string(//testsuite/@failures)' "$file" 2>/dev/null)
+                failures=$(xmllint --xpath 'string(//testsuite/@failures)' "./$file" 2>/dev/null)
             
                 # Print the gathered information in a formatted manner
                 printf "%-60s | %-20s | %-10s | %-10s\n" "$file_name" "$timestamp" "$time" "$failures"
               done
-          echo "--------------------------------------------------------------"
+          
+              echo "--------------------------------------------------------------"
+              echo "Total tests: $test_count"
+              echo "--------------------------------------------------------------"
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
