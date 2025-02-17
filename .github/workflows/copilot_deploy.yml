@@ -332,7 +332,7 @@ jobs:
           name: e2e-test-report-application-4
           path: ./result
       - name: Install XML Tools
-        run: sudo apt-get update && sudo apt-get install -y xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
       - name: Generate Test Suite Report
         run: |
           pwd
