@@ -278,7 +278,7 @@ jobs:
 
       - name: Run e2e tests
         id: e2e
-        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter ../../node_modules/mocha-junit-reporter --reporter-options configFile=reporter-config.json
+        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter junit --reporter-options "mochaFile=./cypress/screenshots/results/test-output-[hash].xml,toConsole=true,overwrite=false"
         continue-on-error: true
 
       - name: Create Folders
