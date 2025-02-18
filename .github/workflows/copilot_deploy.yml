@@ -337,26 +337,24 @@ jobs:
         run: |
           echo "Aggregating test suite results..."
           echo -e "\n+----------------------------------+---------------------+---------------------+---------------------+---------------------+"
-          printf "| %-34s | %-19s | %-19s | %-19s | %-19s | %-19s |\n" "File Name" "Timestamp" "Tests Count" "Execution Time" "Failures" "Status"
+          printf "| %-34s | %-19s | %-19s | %-19s | %-19s |\n" "File Name" "Tests Count" "Execution Time" "Status"
           echo -e "+----------------------------------+---------------------+---------------------+---------------------+---------------------+"
           
           find "result" -name '*.xml' | while read file; do
           
             file_name=$(xmllint --xpath 'string(//testsuite/@file)' "./$file" 2>/dev/null)
-            timestamp=$(xmllint --xpath 'string(//testsuite[2]/@timestamp)' "./$file" 2>/dev/null)
-            tests_in_file=$(xmllint --xpath 'string(//testsuites[2]/@tests)' "./$file" 2>/dev/null)
+            tests_in_file=$(xmllint --xpath 'sum(//*[local-name()='testsuite']/@tests)' "./$file" 2>/dev/null)
             time=$(xmllint --xpath 'string(//testsuite[2]/@time)' "./$file" 2>/dev/null)
             failures=$(xmllint --xpath 'string(//testsuite[2]/@failures)' "./$file" 2>/dev/null)
           
-            status_marker = ""
             if [ "$failures" -eq 0 ]; then
-              status_marker="\033[0;32m✓\033[0m"  # Green tick
+              failures="\033[0;32m✓\033[0m"  # Green tick
             else
-              status_marker="\033[0;31m❌\033[0m"  # Red cross
+              failures="\033[0;31m❌\033[0m"  # Red cross
             fi
           
             # Print the gathered information in a formatted manner
-            printf "| %-34s | %-19s | %-19s | %-19s | %-19s |\n" "$file_name" "$timestamp" "$tests_in_file" "$time" "$failures" "$status_marker"
+            printf "| %-34s | %-19s | %-19s | %-19s |\n" "$file_name" "$tests_in_file" "$time" "$failures"
           done
           
           echo -e "+----------------------------------+---------------------+---------------------+---------------------+---------------------+"
