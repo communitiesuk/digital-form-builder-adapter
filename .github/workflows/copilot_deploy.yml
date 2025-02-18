@@ -336,10 +336,10 @@ jobs:
       - name: Generate Test Suite Report
         run: |
               echo "Aggregating test suite results..."
-              echo -e "\n+------------------+------------------+------------------+------------------+------------------+"
-                 printf "| %-18s | %-18s | %-18s | %-18s | %-18s |\n" "File Name" "Timestamp" "Tests Count" "Execution Time" "Failures"
-              echo -e "+------------------+------------------+------------------+------------------+------------------+"
-  
+              echo -e "\n+----------------------------------+---------------------+---------------------+---------------------+---------------------+"
+              printf "| %-34s | %-19s | %-19s | %-19s | %-19s |\n" "File Name" "Timestamp" "Tests Count" "Execution Time" "Failures"
+              echo -e "+----------------------------------+---------------------+---------------------+---------------------+---------------------+"
+
               find "result" -name '*.xml' | while read file; do
 
                 file_name=$(xmllint --xpath 'string(//testsuite/@file)' "./$file" 2>/dev/null)
@@ -349,11 +349,11 @@ jobs:
                 failures=$(xmllint --xpath 'string(//testsuite[2]/@failures)' "./$file" 2>/dev/null)
             
                 # Print the gathered information in a formatted manner
-                printf "| %-18s | %-18s | %-18s | %-18s | %-18s |\n" "$file_name" "$timestamp" "$tests_in_file" "$time" "$failures"          
+                printf "| %-34s | %-19s | %-19s | %-19s | %-19s |\n" "$file_name" "$timestamp" "$tests_in_file" "$time" "$failures"
           
               done
           
-              echo -e "+------------------+------------------+------------------+------------------+------------------+"
+              echo -e "+----------------------------------+---------------------+---------------------+---------------------+---------------------+"
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
