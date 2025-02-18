@@ -116,31 +116,6 @@ jobs:
           echo LAST_COMMIT_GH=runner >> ./runner/.env
           cat ./runner/.env
 
-      - name: Run Unit test before docker build
-        run: |
-          echo "--  Git submodule initialize into local  --"
-          git submodule update --init
-          echo "--  Pulling git submodules into local  --"
-          git pull --recurse-submodules
-          echo "--  Installing digital-form-builder-adapter locally  --"
-          node update-package.js
-          yarn install
-          echo "--  Building digital-form-builder-adapter locally  --"
-          yarn setup
-          echo "--  Building digital-form-builder locally  --"
-          # shellcheck disable=SC2164
-          cd digital-form-builder
-          yarn
-          echo "--  Building digital-form-builder model locally  --"
-          yarn model build
-          echo "--  Building digital-form-builder queue-model locally  --"
-          yarn queue-model build
-          echo "--  Building digital-form-builder-adapter model locally  --"
-          cd ..
-          yarn model build
-          echo "--  Running unit tests  --"
-          yarn runner test-cov
-
       - name: Set up Docker Buildx property
         run: echo "DOCKER_BUILDKIT=1" >> $GITHUB_ENV
 
@@ -240,6 +215,11 @@ jobs:
   e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [ 0, 1, 2, 3, 4 ]
     name: run e2e
     outputs:
       tag: ${{ steps.hashFile.outputs.tag }}
@@ -298,28 +278,19 @@ jobs:
 
       - name: Run e2e tests
         id: e2e
-        run: yarn e2e-test cypress run
+        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter junit --reporter-options "mochaFile=./cypress/screenshots/results/test-output-[hash].xml,toConsole=true,overwrite=false"
         continue-on-error: true
 
       - name: Create Folders
-        run: mkdir -p ./e2e-test/cypress/screenshots/logs
-
-      - name: Get Logs from localstack
-        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
-
-      - name: Get Logs from runner
-        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
-
-      - name: Get all the uploaded files in the bucket
-        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
+        run: mkdir -p ./e2e-test/cypress/screenshots/results
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: e2e-test-report-application
+          name: e2e-test-report-application-${{ matrix.containers }}
           path: ./e2e-test/cypress/screenshots
-          retention-days: 5
+          retention-days: 1
 
       - name: Check for errors & exit the job
         run: |
@@ -327,6 +298,55 @@ jobs:
             echo "Test failures please fix before deploying the service"
             exit 1
           fi
+
+  aggregate-test-results:
+    name: Aggregate test results
+    needs: e2e-test  # Make sure this job runs after 'e2e-test' job
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download All Reports
+        run: |
+          for i in {0..4}; do
+            gh run download --name "e2e-test-report-application-$i" --dir ./result || echo "Report $i not found"
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install XML Tools
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+      - name: Generate Test Suite Report
+        run: |
+          echo "Aggregating test suite results..."
+          echo -e "\n+---------------------------------------------------------------------------------------------------------------------------"
+          printf "| %-60s | %-19s | %-19s |\n" "File Name" "Tests Count" "Status"
+          echo -e "----------------------------------------------------------------------------------------------------------------------------"
+          total_tests=0
+          total_features_tests=0
+          
+          while read file; do
+          
+            file_name=$(xmllint --xpath 'string(//testsuite/@file)' "./$file" -o 2>/dev/null)
+            tests_in_file=$(xmllint --xpath 'string(//*[local-name()='\''testsuite'\''][2]/@tests)' "./$file" -o 2>/dev/null)
+            failures=$(xmllint --xpath 'string(//testsuite[2]/@failures)' "./$file" -o 2>/dev/null)
+          
+            status="Passed"
+            [ "$failures" -gt 0 ] && status="Failed"
+          
+            tests_in_file=${tests_in_file:-0}
+            tests_in_file=$((tests_in_file + 0))
+          
+            total_tests=$((total_tests + tests_in_file))
+            total_features_tests=$((total_features_tests + 1))
+          
+            printf "| %-60s | %-19s | %-19s |\n" "$file_name" "$tests_in_file" "$status"
+          
+          done < <(find "result" -name '*.xml')
+          
+          echo -e "----------------------------------------------------------------------------------------------------------------------------"
+          echo "Total Tests: $total_tests"
+          echo "Total Features: $total_features_tests"
+          echo -e "----------------------------------------------------------------------------------------------------------------------------"
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
