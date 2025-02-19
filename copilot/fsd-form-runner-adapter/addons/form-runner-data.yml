@@ -69,6 +69,8 @@ Resources:
         - !GetAtt "FormRunnerAdapterRedisSecurityGroup.GroupId"
       Engine: redis
       NumCacheClusters: 2
+      SnapshotRetentionLimit: 7
+      SnapshottingClusterId: !Join ["", [!Select [6, !Split [":", !GetAtt "FormRunnerAdapterRedisReplicationGroup.ARN"]], "-001"]]
 
   # Redis endpoint stored in SSM so that other services can retrieve the endpoint.
   FormRunnerAdapterRedisEndpointAddressParam:
