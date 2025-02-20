@@ -68,6 +68,9 @@ secrets:
 # You can override any of the values defined above by environment.
 environments:
   dev:
+    variables: 
+      PREVIEW_URL: "https://application-questions.access-funding.communities.${COPILOT_ENVIRONMENT_NAME}.gov.uk"
+      AUTH_SERVICE_URL: "https://account.access-funding.communities.${COPILOT_ENVIRONMENT_NAME}.levellingup.gov.uk"
     count:
       spot: 1
   test:
