@@ -69,8 +69,8 @@ secrets:
 environments:
   dev:
     variables: 
-      PREVIEW_URL: "https://application-questions.${COPILOT_ENVIRONMENT_NAME}.access-funding.communities.gov.uk"
-      AUTH_SERVICE_URL: "https://account.${COPILOT_ENVIRONMENT_NAME}.access-funding.communities.levellingup.gov.uk"
+      PREVIEW_URL: "https://application-questions.access-funding.communities.${COPILOT_ENVIRONMENT_NAME}.gov.uk"
+      AUTH_SERVICE_URL: "https://account.access-funding.communities.${COPILOT_ENVIRONMENT_NAME}.levellingup.gov.uk"
     count:
       spot: 1
   test:
