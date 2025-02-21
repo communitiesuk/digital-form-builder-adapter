@@ -25,7 +25,7 @@ export {
 export {Details} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/Details";
 export {
     EmailAddressField
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/EmailAddressField";
+} from "./EmailAddressField";
 export {
     FileUploadField
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/FileUploadField";
