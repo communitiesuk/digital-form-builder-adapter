@@ -303,11 +303,8 @@ jobs:
 
       - name: Run e2e tests
         id: e2e
-        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter junit --reporter-options "mochaFile=./cypress/screenshots/results/test-output-[hash].xml,toConsole=true,overwrite=false"
+        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter junit --reporter-options "mochaFile=./cypress/screenshots/results/test-output-[hash].xml,overwrite=false"
         continue-on-error: true
-
-      - name: Create Folders
-        run: mkdir -p ./e2e-test/cypress/screenshots/results
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
@@ -327,7 +324,7 @@ jobs:
   aggregate-test-results:
     name: Aggregate test results
     needs: e2e-test  # Make sure this job runs after 'e2e-test' job
-    if: github.ref != 'refs/heads/main'
+    if: always() && github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -348,6 +345,7 @@ jobs:
           echo -e "----------------------------------------------------------------------------------------------------------------------------"
           total_tests=0
           total_features_tests=0
+          failed_tests=0
           
           while read file; do
           
@@ -356,7 +354,10 @@ jobs:
             failures=$(xmllint --xpath 'string(//testsuite[2]/@failures)' "./$file" -o 2>/dev/null)
           
             status="Passed"
-            [ "$failures" -gt 0 ] && status="Failed"
+            if [ "$failures" -gt 0 ]; then
+              status="Failed"
+              failed_tests=$((failed_tests + 1))
+            fi
           
             tests_in_file=${tests_in_file:-0}
             tests_in_file=$((tests_in_file + 0))
@@ -371,7 +372,13 @@ jobs:
           echo -e "----------------------------------------------------------------------------------------------------------------------------"
           echo "Total Tests: $total_tests"
           echo "Total Features: $total_features_tests"
+          echo "Total Failures: $failed_tests"
           echo -e "----------------------------------------------------------------------------------------------------------------------------"
+          
+          if [ "$failed_tests" -gt 0 ]; then
+            echo "Test failures detected. Failing the job."
+            exit 1
+          fi
 
   dev_deploy:
     needs: [ setup, docker-designer-build, docker-runner-build ]
