@@ -240,6 +240,11 @@ jobs:
   e2e-test:
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [ 0, 1, 2, 3, 4 ]
     name: run e2e
     outputs:
       tag: ${{ steps.hashFile.outputs.tag }}
@@ -298,33 +303,80 @@ jobs:
 
       - name: Run e2e tests
         id: e2e
-        run: yarn e2e-test cypress run
+        run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter junit --reporter-options "mochaFile=./cypress/screenshots/results/test-output-[hash].xml,overwrite=false"
         continue-on-error: true
-
-      - name: Create Folders
-        run: mkdir -p ./e2e-test/cypress/screenshots/logs
-
-      - name: Get Logs from localstack
-        run: docker logs localstack > ./e2e-test/cypress/screenshots/logs/localstack.log
-
-      - name: Get Logs from runner
-        run: docker logs runner > ./e2e-test/cypress/screenshots/logs/runner.log
-
-      - name: Get all the uploaded files in the bucket
-        run: docker exec localstack /bin/sh -c "awslocal s3api list-objects --bucket fsd-bucket"
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: e2e-test-report-application
+          name: e2e-test-report-application-${{ matrix.containers }}
           path: ./e2e-test/cypress/screenshots
-          retention-days: 5
+          retention-days: 1
 
       - name: Check for errors & exit the job
         run: |
           if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
             echo "Test failures please fix before deploying the service"
+            exit 1
+          fi
+
+  aggregate-test-results:
+    name: Aggregate test results
+    needs: e2e-test  # Make sure this job runs after 'e2e-test' job
+    if: always() && github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download All Reports
+        run: |
+          for i in {0..4}; do
+            gh run download --name "e2e-test-report-application-$i" --dir ./result || echo "Report $i not found"
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install XML Tools
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+      - name: Generate Test Suite Report
+        run: |
+          echo "Aggregating test suite results..."
+          echo -e "\n+---------------------------------------------------------------------------------------------------------------------------"
+          printf "| %-60s | %-19s | %-19s |\n" "File Name" "Tests Count" "Status"
+          echo -e "----------------------------------------------------------------------------------------------------------------------------"
+          total_tests=0
+          total_features_tests=0
+          failed_tests=0
+          
+          while read file; do
+          
+            file_name=$(xmllint --xpath 'string(//testsuite/@file)' "./$file" -o 2>/dev/null)
+            tests_in_file=$(xmllint --xpath 'string(//*[local-name()='\''testsuite'\''][2]/@tests)' "./$file" -o 2>/dev/null)
+            failures=$(xmllint --xpath 'string(//testsuite[2]/@failures)' "./$file" -o 2>/dev/null)
+          
+            status="Passed"
+            if [ "$failures" -gt 0 ]; then
+              status="Failed"
+              failed_tests=$((failed_tests + 1))
+            fi
+          
+            tests_in_file=${tests_in_file:-0}
+            tests_in_file=$((tests_in_file + 0))
+          
+            total_tests=$((total_tests + tests_in_file))
+            total_features_tests=$((total_features_tests + 1))
+          
+            printf "| %-60s | %-19s | %-19s |\n" "$file_name" "$tests_in_file" "$status"
+          
+          done < <(find "result" -name '*.xml')
+          
+          echo -e "----------------------------------------------------------------------------------------------------------------------------"
+          echo "Total Tests: $total_tests"
+          echo "Total Features: $total_features_tests"
+          echo "Total Failures: $failed_tests"
+          echo -e "----------------------------------------------------------------------------------------------------------------------------"
+          
+          if [ "$failed_tests" -gt 0 ]; then
+            echo "Test failures detected. Failing the job."
             exit 1
           fi
 
