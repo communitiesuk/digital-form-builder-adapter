@@ -1,5 +1,5 @@
 {
-  "startPage": "/project-name",
+  "startPage": "/project-details",
   "pages": [
     {
       "path": "/summary",
@@ -8,6 +8,25 @@
       "next": [],
       "section": "FabDefault",
       "controller": "./pages/summary.js"
+    },
+    {
+      "title": "Project details",
+      "path": "/project-details",
+      "components": [
+        {
+          "name": "orUXQc",
+          "options": {},
+          "type": "Para",
+          "content": "<label class=\"govuk-!-font-weight-bold\">In this section, we'll ask about:\n</label>\n\n<div class=\"govuk-body\">\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>project name</li>\n<li>project overview</li>\n<li>upload the quote for the project</li>\n</ul>\n</div>",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/project-name"
+        }
+      ],
+      "controller": "./pages/start.js"
     },
     {
       "path": "/project-overview",
@@ -24,7 +43,7 @@
       ],
       "next": [
         {
-          "path": "/summary"
+          "path": "/upload-file"
         }
       ],
       "section": "FabDefault"
@@ -47,8 +66,37 @@
           "path": "/project-overview"
         }
       ],
-      "section": "FabDefault",
-      "controller": "start.js"
+      "section": "FabDefault"
+    },
+    {
+      "path": "/upload-file",
+      "title": "Upload file",
+      "components": [
+        {
+          "options": {
+            "dropzoneConfig": {
+              "maxFiles": 1,
+              "parallelUploads": 1,
+              "maxFilesize": 50,
+              "acceptedFiles": "image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            },
+            "showNoScriptWarning": false,
+            "minimumRequiredFiles": 1,
+            "hideTitle": false
+          },
+          "type": "ClientSideFileUploadField",
+          "title": "Upload the quote for the project",
+          "hint": "",
+          "schema": {},
+          "name": "SqqyyB"
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "FabDefault"
     }
   ],
   "lists": [],
