@@ -55,7 +55,7 @@
                 {% endif %}
 
                 {% for detail in details %}
-                    {{ summaryDetail(detail, isReadOnlySummary) }}
+                    {{ summaryDetail(detail, isReadOnlySummary, isResubmission, changeRequestsQuestionIDs) }}
                 {% endfor %}
 
                 {% if fees and fees.details|length %}
