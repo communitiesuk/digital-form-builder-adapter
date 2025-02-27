@@ -94,6 +94,9 @@ environments:
       PRIVACY_POLICY_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/privacy"
       SERVICE_START_PAGE: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
       ELIGIBILITY_RESULT_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
+    http:
+      alias: ['forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk', 'application-questions.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk']
+
     count:
       spot: 2
   test:
