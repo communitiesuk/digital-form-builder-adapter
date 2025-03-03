@@ -84,6 +84,19 @@ environments:
   dev:
     variables:
       PREVIEW_MODE: true
+      ACCESSIBILITY_STATEMENT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/accessibility_statement"
+      CONTACT_US_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/contact_us"
+      COOKIE_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/cookie_policy"
+      FEEDBACK_LINK: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/feedback"
+      JWT_REDIRECT_TO_AUTHENTICATION_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
+      LOGOUT_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
+      MULTIFUND_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
+      PRIVACY_POLICY_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/privacy"
+      SERVICE_START_PAGE: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
+      ELIGIBILITY_RESULT_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
+    http:
+      alias: ['forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk', 'application-questions.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk']
+
     count:
       spot: 2
   test:
