@@ -63,6 +63,19 @@ jobs:
     with:
       environment: ${{ inputs.environment }}
 
+  build_images:
+    name: Build images
+    needs: [ setup ]
+    concurrency: build-${{ github.sha }}
+    permissions:
+      packages: write
+    uses: ./.github/workflows/paketo-build.yml@feature/FS-4978-paketo-build
+    with:
+      version_to_build: ${{ github.sha }}
+      owner: ${{ github.repository_owner }}
+      application: ${{ github.event.repository.name }}
+      assets_required: true
+
   docker-runner-build:
     runs-on: ubuntu-latest
     needs: [ setup ]

@@ -19,9 +19,12 @@ on:
     #     type: string
     #     required: true
     outputs:
-      image_location:
-        description: "A URI pointing to the paketo-built image"
-        value: ${{ jobs.paketo_build.outputs.image_location }}
+      designer_image_location:
+        description: "A URI pointing to the paketo-built image for Form Designer"
+        value: ${{ jobs.paketo_build.outputs.designer_image_location }}
+      runner_image_location:
+        description: "A URI pointing to the paketo-built image for Form Runner"
+        value: ${{ jobs.paketo_build.outputs.runner_image_location }}
 
 env:
   REGISTRY: ghcr.io
