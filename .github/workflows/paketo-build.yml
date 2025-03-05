@@ -127,8 +127,6 @@ jobs:
 
       - name: Build and publish app image
         id: build_and_publish
-        env:
-          BP_NODE_PROJECT_PATH: ${{ matrix.app }}
         run: |
           IMAGE_ID=${{ env.REGISTRY }}/${{ env.OWNER }}/funding-service-design-form-${{ matrix.app }}-adapter
           # Change all uppercase to lowercase
@@ -141,6 +139,12 @@ jobs:
 
           IMAGE_LOCATION="$IMAGE_ID:$VERSION"
 
-          pack build $IMAGE_LOCATION --tag $IMAGE_ID:latest --buildpack paketo-buildpacks/nodejs --builder paketobuildpacks/builder-jammy-base --cache-image ${{ env.REGISTRY }}/${{ env.OWNER }}/funding-service-design-form-${{ matrix.app }}-adapter/buildpack-packeto-cache-image --publish
+          pack build $IMAGE_LOCATION \
+          --tag $IMAGE_ID:latest \
+          --buildpack paketo-buildpacks/nodejs \
+          --builder paketobuildpacks/builder-jammy-base \
+          --env BP_NODE_PROJECT_PATH=${{ matrix.app }} \
+          --cache-image ${{ env.REGISTRY }}/${{ env.OWNER }}/funding-service-design-form-${{ matrix.app }}-adapter/buildpack-packeto-cache-image \
+          --publish
 
           echo "${{ matrix.app }}_image_location=$IMAGE_LOCATION" >> $GITHUB_OUTPUT
