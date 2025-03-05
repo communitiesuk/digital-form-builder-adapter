@@ -1,0 +1,141 @@
+name: Use Paketo to package and build Node application
+
+permissions:
+  packages: write
+
+on:
+  workflow_call:
+    inputs:
+      assets_required:
+        type: boolean
+        default: false
+      version_to_build:
+        type: string
+        required: true
+      application:
+        type: string
+        required: true
+      owner:
+        type: string
+        required: true
+    outputs:
+      image_location:
+        description: "A URI pointing to the paketo-built image"
+        value: ${{ jobs.paketo_build.outputs.image_location }}
+
+env:
+  REGISTRY: ghcr.io
+  OWNER: ${{ github.repository_owner }}
+
+jobs:
+  paketo_build:
+    runs-on: ubuntu-latest
+    concurrency: build-${{ github.sha }}
+    name: Packaging and building the application
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - app: runner
+          - app: designer
+    outputs:
+      image_location: ${{ steps.build_and_publish.outputs.image_location }}
+    steps:
+      - name: Setup paketo
+        uses: buildpacks/github-actions/setup-pack@29954e5d009d40d4d043993f6f39b8ce3e8d9fa3 # v5.8.7
+
+      - name: Checkout repo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Set version in env"
+        id: set-version
+        run: |
+          source version
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Docker metadata
+        id: metadata
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{github.repository_owner}}/funding-service-design-form-${{ matrix.app }}-adapter
+          tags: |
+            type=sha,format=long
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=${{env.VERSION}},enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest
+            type=ref,event=branch
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        if: ${{ matrix.app == 'runner' }}
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      
+      - name: Get into the directory
+        id: change-dir
+        if: ${{ matrix.app == 'runner' }}
+        run: yarn config set enableImmutableInstalls false
+
+      - name: Create .env for app workspace
+        run: |
+          touch ./${{ matrix.app }}/.env
+          echo LAST_TAG_GH=${{ matrix.app }} >> ./${{ matrix.app }}/.env
+          echo LAST_COMMIT_GH=${{ matrix.app }} >> ./${{ matrix.app }}/.env
+          cat ./${{ matrix.app }}/.env
+      
+      - name: Run Unit test before docker build
+        if: ${{ matrix.app == 'runner' }}
+        run: |
+          echo "--  Git submodule initialize into local  --"
+          git submodule update --init
+          echo "--  Pulling git submodules into local  --"
+          git pull --recurse-submodules
+          echo "--  Installing digital-form-builder-adapter locally  --"
+          node update-package.js
+          yarn install
+          echo "--  Building digital-form-builder-adapter locally  --"
+          yarn setup
+          echo "--  Building digital-form-builder locally  --"
+          # shellcheck disable=SC2164
+          cd digital-form-builder
+          yarn
+          echo "--  Building digital-form-builder model locally  --"
+          yarn model build
+          echo "--  Building digital-form-builder queue-model locally  --"
+          yarn queue-model build
+          echo "--  Building digital-form-builder-adapter model locally  --"
+          cd ..
+          yarn model build
+          echo "--  Running unit tests  --"
+          yarn runner test-cov
+
+      - name: Build and publish app image
+        id: build_and_publish
+        env:
+          BP_NODE_PROJECT_PATH: ${{ matrix.app }}
+        run: |
+          IMAGE_ID=${{ env.REGISTRY }}/${{ env.OWNER }}/funding-service-design-form-${{ matrix.app }}-adapter
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          VERSION=${{ github.sha }}
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "main" ] && VERSION=latest
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          IMAGE_LOCATION="$IMAGE_ID:$VERSION"
+
+          pack build $IMAGE_LOCATION --tag $IMAGE_ID:latest --builder paketo-buildpacks/nodejs --builder paketobuildpacks/builder-jammy-base --cache-image ${{ env.REGISTRY }}/${{ env.OWNER }}/funding-service-design-form-${{ matrix.app }}-adapter/buildpack-packeto-cache-image --publish
+
+          echo "${{ matrix.app }}_image_location=$IMAGE_LOCATION" >> $GITHUB_OUTPUT
