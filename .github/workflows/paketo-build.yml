@@ -81,15 +81,15 @@ jobs:
         with:
           node-version: "20.x"
 
-      # - name: Get yarn cache directory path
-      #   id: yarn-cache-dir-path
-      #   if: ${{ matrix.app == 'runner' }}
-      #   run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        if: ${{ matrix.app == 'runner' }}
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       
-      # - name: Get into the directory
-      #   id: change-dir
-      #   if: ${{ matrix.app == 'runner' }}
-      #   run: yarn config set enableImmutableInstalls false
+      - name: Get into the directory
+        id: change-dir
+        if: ${{ matrix.app == 'runner' }}
+        run: yarn config set enableImmutableInstalls false
 
       - name: Create .env for app workspace
         run: |
