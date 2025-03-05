@@ -83,12 +83,10 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        if: ${{ matrix.app == 'runner' }}
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       
       - name: Get into the directory
         id: change-dir
-        if: ${{ matrix.app == 'runner' }}
         run: yarn config set enableImmutableInstalls false
 
       - name: Create .env for app workspace
@@ -98,8 +96,7 @@ jobs:
           echo LAST_COMMIT_GH=${{ matrix.app }} >> ./${{ matrix.app }}/.env
           cat ./${{ matrix.app }}/.env
       
-      - name: Run Unit test before docker build
-        if: ${{ matrix.app == 'runner' }}
+      - name: Initialize and build application
         run: |
           echo "--  Git submodule initialize into local  --"
           git submodule update --init
@@ -121,6 +118,10 @@ jobs:
           echo "--  Building digital-form-builder-adapter model locally  --"
           cd ..
           yarn model build
+
+      - name: Run Unit tests
+        if: ${{ matrix.app == 'runner' }}
+        run: |
           echo "--  Running unit tests  --"
           yarn runner test-cov
 
@@ -140,6 +141,6 @@ jobs:
 
           IMAGE_LOCATION="$IMAGE_ID:$VERSION"
 
-          pack build $IMAGE_LOCATION --tag $IMAGE_ID:latest --builder paketo-buildpacks/nodejs --builder paketobuildpacks/builder-jammy-base --cache-image ${{ env.REGISTRY }}/${{ env.OWNER }}/funding-service-design-form-${{ matrix.app }}-adapter/buildpack-packeto-cache-image --publish
+          pack build $IMAGE_LOCATION --tag $IMAGE_ID:latest --buildpack paketo-buildpacks/nodejs --builder paketobuildpacks/builder-jammy-base --cache-image ${{ env.REGISTRY }}/${{ env.OWNER }}/funding-service-design-form-${{ matrix.app }}-adapter/buildpack-packeto-cache-image --publish
 
           echo "${{ matrix.app }}_image_location=$IMAGE_LOCATION" >> $GITHUB_OUTPUT
