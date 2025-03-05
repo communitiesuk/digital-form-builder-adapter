@@ -5,19 +5,19 @@ permissions:
 
 on:
   workflow_call:
-    inputs:
-      assets_required:
-        type: boolean
-        default: false
-      version_to_build:
-        type: string
-        required: true
-      application:
-        type: string
-        required: true
-      owner:
-        type: string
-        required: true
+    # inputs:
+    #   assets_required:
+    #     type: boolean
+    #     default: false
+    #   version_to_build:
+    #     type: string
+    #     required: true
+    #   application:
+    #     type: string
+    #     required: true
+    #   owner:
+    #     type: string
+    #     required: true
     outputs:
       image_location:
         description: "A URI pointing to the paketo-built image"
@@ -77,15 +77,15 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        if: ${{ matrix.app == 'runner' }}
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      # - name: Get yarn cache directory path
+      #   id: yarn-cache-dir-path
+      #   if: ${{ matrix.app == 'runner' }}
+      #   run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       
-      - name: Get into the directory
-        id: change-dir
-        if: ${{ matrix.app == 'runner' }}
-        run: yarn config set enableImmutableInstalls false
+      # - name: Get into the directory
+      #   id: change-dir
+      #   if: ${{ matrix.app == 'runner' }}
+      #   run: yarn config set enableImmutableInstalls false
 
       - name: Create .env for app workspace
         run: |
