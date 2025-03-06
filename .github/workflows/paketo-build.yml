@@ -7,13 +7,7 @@ on:
   workflow_dispatch:
   workflow_call:
     # inputs:
-    #   assets_required:
-    #     type: boolean
-    #     default: false
     #   version_to_build:
-    #     type: string
-    #     required: true
-    #   application:
     #     type: string
     #     required: true
     #   owner:
@@ -34,7 +28,6 @@ env:
 jobs:
   paketo_build:
     runs-on: ubuntu-latest
-    concurrency: build-${{ github.sha }}
     name: Packaging and building the application
     strategy:
       fail-fast: false
@@ -83,7 +76,7 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
       
       - name: Get into the directory
         id: change-dir
@@ -141,6 +134,7 @@ jobs:
 
           pack build $IMAGE_LOCATION \
           --tag $IMAGE_ID:latest \
+          --buildpack paketo-buildpacks/yarn \
           --buildpack paketo-buildpacks/nodejs \
           --builder paketobuildpacks/builder-jammy-base \
           --env BP_NODE_PROJECT_PATH=${{ matrix.app }} \
