@@ -11,7 +11,7 @@ http:
   path: "/"
   # You can specify a custom health check path. The default is "/".
   healthcheck: "/health-check"
-  alias: forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk
+  alias: ['forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk', 'application-questions.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk']
 
 # Configuration for your containers and service.
 image:
@@ -94,8 +94,6 @@ environments:
       PRIVACY_POLICY_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/privacy"
       SERVICE_START_PAGE: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
       ELIGIBILITY_RESULT_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
-    http:
-      alias: ['forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk', 'application-questions.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk']
 
     count:
       spot: 2
@@ -112,8 +110,6 @@ environments:
       PRIVACY_POLICY_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/privacy"
       SERVICE_START_PAGE: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
       ELIGIBILITY_RESULT_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
-    http:
-      alias: ['forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk', 'application-questions.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk']
     count:
       spot: 2
   uat:
@@ -132,7 +128,7 @@ environments:
       response_time: 2s
   prod:
     http:
-      alias: forms.access-funding.levellingup.gov.uk
+      alias: ['forms.access-funding.levellingup.gov.uk', 'application-questions.access-funding.communities.gov.uk']
       hosted_zone: Z0686469NF3ZJTU9I02M
     variables:
       ACCESSIBILITY_STATEMENT_URL: "https://frontend.access-funding.levellingup.gov.uk/accessibility_statement"
