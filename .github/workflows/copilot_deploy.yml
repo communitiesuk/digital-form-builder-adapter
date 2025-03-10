@@ -393,7 +393,7 @@ jobs:
             image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
           - appname: "form-designer-adapter"
             image_location: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
+    uses: ./.github/workflows/deploy.yml
     secrets:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     with:
@@ -438,7 +438,7 @@ jobs:
             image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
           - appname: "form-designer-adapter"
             image_location: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
+    uses: ./.github/workflows/deploy.yml
     secrets:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -489,8 +489,7 @@ jobs:
             image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
           - appname: "form-designer-adapter"
             image_location: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
-  
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
+    uses: ./.github/workflows/deploy.yml
     secrets:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -533,7 +532,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
+    uses: ./.github/workflows/deploy.yml
     secrets:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
