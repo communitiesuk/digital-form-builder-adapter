@@ -129,7 +129,6 @@ environments:
   prod:
     http:
       alias: ['forms.access-funding.levellingup.gov.uk', 'application-questions.access-funding.communities.gov.uk']
-      hosted_zone: Z0686469NF3ZJTU9I02M
     variables:
       ACCESSIBILITY_STATEMENT_URL: "https://frontend.access-funding.levellingup.gov.uk/accessibility_statement"
       BASIC_AUTH_ON: false
