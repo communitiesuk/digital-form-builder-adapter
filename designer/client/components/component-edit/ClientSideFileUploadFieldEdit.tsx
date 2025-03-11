@@ -35,15 +35,17 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
         options: {
             dropzoneConfig: {
                 //@ts-ignore
-                maxFiles: selectedComponent.options.dropzoneConfig.maxFiles ? selectedComponent.options.dropzoneConfig.maxFiles : 0,
+                maxFiles: selectedComponent.options.dropzoneConfig.maxFiles ? selectedComponent.options.dropzoneConfig.maxFiles : 1,
                 //@ts-ignore
-                parallelUploads: selectedComponent.options.dropzoneConfig.parallelUploads ? selectedComponent.options.dropzoneConfig.parallelUploads : 0,
+                parallelUploads: selectedComponent.options.dropzoneConfig.parallelUploads ? selectedComponent.options.dropzoneConfig.parallelUploads : 1,
                 //@ts-ignore
-                maxFilesize: selectedComponent.options.dropzoneConfig.parallelUploads ? selectedComponent.options.dropzoneConfig.parallelUploads : 0,
+                maxFilesize: selectedComponent.options.dropzoneConfig.maxFilesize ? selectedComponent.options.dropzoneConfig.maxFilesize : 1,
                 //@ts-ignore
                 acceptedFiles: selectedComponent.options.dropzoneConfig.acceptedFiles
+                //@ts-ignore
+                && selectedComponent.options.dropzoneConfig.acceptedFiles.length > 0 ? Array.isArray(selectedComponent.options.dropzoneConfig.acceptedFiles) ?
                     //@ts-ignore
-                && selectedComponent.options.dropzoneConfig.acceptedFiles.length > 0 ? selectedComponent.options.dropzoneConfig.acceptedFiles.split(",") : []
+                    selectedComponent.options.dropzoneConfig.acceptedFiles : selectedComponent.options.dropzoneConfig.acceptedFiles.split(",") : []
             }
         },
         //@ts-ignore
@@ -135,20 +137,23 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
     // Handle change in checkbox selection
     const handleCheckboxChange = (e) => {
         const item = e.target.value;
-        setComponent(
-            {
-                ...component,
-                options: {
-                    ...component.options,
-                    dropzoneConfig: {
-                        ...component.options.dropzoneConfig,
-                        acceptedFiles: [...component.options.dropzoneConfig.acceptedFiles, item]
-                    }
+        const isItemSelected = component.options.dropzoneConfig.acceptedFiles.includes(item);
+        // Create new array - either add or remove item
+        const updatedAcceptedFiles = isItemSelected
+            ? component.options.dropzoneConfig.acceptedFiles.filter(file => file !== item)
+            : [...component.options.dropzoneConfig.acceptedFiles, item];
+        setComponent({
+            ...component,
+            options: {
+                ...component.options,
+                dropzoneConfig: {
+                    ...component.options.dropzoneConfig,
+                    acceptedFiles: updatedAcceptedFiles
                 }
             }
-        )
+        });
         //@ts-ignore
-        selectedComponent.options.dropzoneConfig.acceptedFiles = component.options.dropzoneConfig.acceptedFiles.join(",")
+        selectedComponent.options.dropzoneConfig.acceptedFiles = updatedAcceptedFiles.join(",");
     };
 
     return (
