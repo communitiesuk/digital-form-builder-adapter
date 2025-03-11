@@ -35,11 +35,11 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
         options: {
             dropzoneConfig: {
                 //@ts-ignore
-                maxFiles: selectedComponent.options.dropzoneConfig.maxFiles ? selectedComponent.options.dropzoneConfig.maxFiles : 0,
+                maxFiles: selectedComponent.options.dropzoneConfig.maxFiles ? selectedComponent.options.dropzoneConfig.maxFiles : 1,
                 //@ts-ignore
-                parallelUploads: selectedComponent.options.dropzoneConfig.parallelUploads ? selectedComponent.options.dropzoneConfig.parallelUploads : 0,
+                parallelUploads: selectedComponent.options.dropzoneConfig.parallelUploads ? selectedComponent.options.dropzoneConfig.parallelUploads : 1,
                 //@ts-ignore
-                maxFilesize: selectedComponent.options.dropzoneConfig.maxFilesize ? selectedComponent.options.dropzoneConfig.maxFilesize : 0,
+                maxFilesize: selectedComponent.options.dropzoneConfig.maxFilesize ? selectedComponent.options.dropzoneConfig.maxFilesize : 1,
                 //@ts-ignore
                 acceptedFiles: selectedComponent.options.dropzoneConfig.acceptedFiles
                 //@ts-ignore
