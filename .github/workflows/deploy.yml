@@ -2,21 +2,10 @@ on:
     # Triggers the workflow on push or pull request events but only for the main branch
     workflow_call:
       inputs:
-        app_name:
-          required: false
-          type: string
         environment:
           required: true
           type: string
-        run_db_migrations:
-          required: false
-          default: false
-          type: boolean
-        image_location:
-          description: "Location of the image to deploy."
-          type: string
-          required: false
-        notify_slack:
+        alert_slack_on_failure:
           description: "Sends an alert to the prod alerts channel if deployment fails"
           required: true
           default: false
@@ -37,10 +26,14 @@ on:
           required: false
 jobs:
     deploy:
-      if: ${{ github.actor != 'dependabot[bot]' }}
-      concurrency:
-        group: 'fsd-preaward-${{ inputs.environment }}-{{inputs.app_name}}'
-        cancel-in-progress: false
+      name: ${{ matrix.app_name }}
+      strategy:
+        matrix:
+          include:
+            - app_name: "form-runner-adapter"
+              image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
+            - app_name: "form-designer-adapter"
+              image_location: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
       permissions:
         id-token: write # This is required for requesting the JWT
         contents: read  # This is required for actions/checkout
@@ -50,22 +43,11 @@ jobs:
       - name: Git clone the repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
   
-      - name: Get current date
-        shell: bash
-        id: currentdatetime
-        run: echo "datetime=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
-  
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4
+      - name: Setup Copilot
+        uses: communitiesuk/funding-service-design-workflows/.github/actions/copilot_setup@main
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT }}:role/GithubCopilotDeploy
-          role-session-name: "${{ inputs.app_name }}_${{ inputs.environemnt }}_copilot_${{ steps.currentdatetime.outputs.datetime }}"
-          aws-region: eu-west-2
-  
-      - name: Install AWS Copilot CLI
-        shell: bash
-        run: |
-          curl -Lo aws-copilot https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux && chmod +x aws-copilot && sudo mv aws-copilot /usr/local/bin/copilot
+          copilot_environment: ${{ inputs.environment }}
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
   
       - name: confirm copilot env
         shell: bash
@@ -77,11 +59,11 @@ jobs:
   
       - name: Inject Git SHA into manifest
         run: |
-          yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/fsd-${{ inputs.app_name }}/manifest.yml
+          yq -i '.variables.GITHUB_SHA = "${{ github.sha }}"'  copilot/fsd-${{ matrix.app_name }}/manifest.yml
   
       - name: Inject replacement image into manifest
         run: |
-          yq -i ".image.location = \"${{ inputs.image_location }}\""  copilot/fsd-${{ inputs.app_name }}/manifest.yml
+          yq -i ".image.location = \"${{ matrix.image_location }}\""  copilot/fsd-${{ matrix.app_name }}/manifest.yml
   
       - name: Slack message for start of deployment
         id: slack_start_deployment_message
@@ -89,45 +71,41 @@ jobs:
         uses: communitiesuk/funding-service-design-workflows/.github/actions/slack_deployment_message@main
         with:
           stage: 'start'
-          app_name: ${{ inputs.app_name }}
+          app_name: ${{ matrix.app_name }}
           environment: ${{ inputs.environment }}
           workflow_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
           slack_channel_id: ${{ secrets.SLACK_DEPLOYMENTS_CHANNEL_ID }}
   
-      - name: Run database migrations
-        id: db_migrations
-        if: ${{ inputs.run_db_migrations }}
-        run: scripts/migration-task-script.py ${{ inputs.environment }} ${{ inputs.image_location }}
-  
       - name: Copilot ${{ inputs.environment }} deploy
         id: deploy_build
         run: |
-          copilot svc init --app pre-award --name fsd-${{ inputs.app_name }}
-          copilot svc deploy --env ${{ inputs.environment }} --app pre-award --name fsd-${{ inputs.app_name }}
+          copilot svc init --app pre-award --name fsd-${{ matrix.app_name }}
+          copilot svc deploy --env ${{ inputs.environment }} --app pre-award --name fsd-${{ matrix.app_name }}
   
       - name: Slack message for end of deployment
         if: ${{ always() && inputs.notify_slack_on_deployment && steps.slack_start_deployment_message.outcome == 'success' }}
         uses: communitiesuk/funding-service-design-workflows/.github/actions/slack_deployment_message@main
         with:
           stage: 'end'
-          app_name: ${{ inputs.app_name }}
+          app_name: ${{ matrix.app_name }}
           environment: ${{ inputs.environment }}
           workflow_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
           slack_channel_id: ${{ secrets.SLACK_DEPLOYMENTS_CHANNEL_ID }}
   
-          status: "${{ ( (steps.db_migrations.outcome == 'skipped' || steps.db_migrations.outcome == 'success') && steps.deploy_build.outcome == 'success') && 'success' || 'failed' }}"
+          status: "${{ ( steps.deploy_build.outcome == 'success') && 'success' || 'failed' }}"
           slack_message_ts: ${{ steps.slack_start_deployment_message.outputs.slack_start_message_ts }}
           deployment_start_ts: ${{ steps.slack_start_deployment_message.outputs.timestamp }}
   
     notify_slack:
+      name: Alert Slack if deployment fails
       needs:
         - deploy
-      if: ${{ inputs.notify_slack && always() && needs.deploy.result == 'failure' }}
-      uses: ./.github/workflows/notify-slack-deployment-failed.yml
+      if: ${{ inputs.alert_slack_on_failure && always() && needs.deploy.result == 'failure' }}
+      uses: communitiesuk/funding-service-design-workflows/.github/workflows/notify-slack-deployment-failed.yml@main
       with:
-        app_name: ${{ inputs.app_name }}
+        app_name: digital-form-builder-adapter
         env_name: ${{ inputs.environment }}
         github_username: ${{ github.actor }}
         workflow_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
