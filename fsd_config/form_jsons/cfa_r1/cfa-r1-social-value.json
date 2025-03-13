@@ -1,75 +1,75 @@
 {
-    "startPage": "/before-you-start",
-    "pages": [
+  "startPage": "/before-you-start",
+  "pages": [
+    {
+      "path": "/check-your-answers",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/how-will-you-plan-to-achieve-social-value-through-explicit-delivery-of-this-specific-grant",
+      "title": "How will you plan to achieve social value through explicit delivery of this specific grant?",
+      "components": [
         {
-            "path": "/check-your-answers",
-            "title": "Check your answers",
-            "components": [],
-            "next": [],
-            "section": "FabDefault",
-            "controller": "./pages/summary.js"
+          "type": "Para",
+          "content": "MHCLG aims to secure and maximise tangible social value benefits as outlined under the wellbeing theme in the Social Value Model. This includes improving health and wellbeing and community cohesion. For example, integration support and dealing with trauma.",
+          "options": {},
+          "schema": {},
+          "name": "tmhcxL"
         },
         {
-            "path": "/how-will-you-plan-to-achieve-social-value-through-explicit-delivery-of-this-specific-grant",
-            "title": "How will you plan to achieve social value through explicit delivery of this specific grant?",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "MHCLG aims to secure and maximise tangible social value benefits as outlined under the wellbeing theme in the Social Value Model. This includes improving health and wellbeing and community cohesion. For example, integration support and dealing with trauma.",
-                    "options": {},
-                    "schema": {},
-                    "name": "tmhcxL"
-                },
-                {
-                    "options": {
-                        "hideTitle": true,
-                        "maxWords": "500"
-                    },
-                    "type": "MultilineTextField",
-                    "title": "How will you plan to achieve social value through explicit delivery of this specific grant?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "GLAQXc"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/check-your-answers"
-                }
-            ],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/before-you-start",
-            "title": "Before you start",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body govuk-!\">In this section, we'll ask about how you plan to achieve social value through explicit delivery of this specific grant.</p>",
-                    "options": {},
-                    "schema": {},
-                    "name": "IYJduz"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/how-will-you-plan-to-achieve-social-value-through-explicit-delivery-of-this-specific-grant"
-                }
-            ],
-            "section": "FabDefault",
-            "controller": "start.js"
+          "options": {
+            "hideTitle": true,
+            "maxWords": "500"
+          },
+          "type": "MultilineTextField",
+          "title": "How will you plan to achieve social value through explicit delivery of this specific grant?",
+          "hint": "",
+          "schema": {},
+          "name": "GLAQXc"
         }
-    ],
-    "lists": [],
-    "conditions": [],
-    "sections": [
+      ],
+      "next": [
         {
-            "name": "FabDefault",
-            "title": "Default Section",
-            "hideTitle": true
+          "path": "/check-your-answers"
         }
-    ],
-    "outputs": [],
-    "skipSummary": false,
-    "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/before-you-start",
+      "title": "Before you start",
+      "components": [
+        {
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!\">In this section, we'll ask about how you plan to achieve social value through explicit delivery of this specific grant.</p>",
+          "options": {},
+          "schema": {},
+          "name": "IYJduz"
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-will-you-plan-to-achieve-social-value-through-explicit-delivery-of-this-specific-grant"
+        }
+      ],
+      "section": "FabDefault",
+      "controller": "start.js"
+    }
+  ],
+  "lists": [],
+  "conditions": [],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
 }

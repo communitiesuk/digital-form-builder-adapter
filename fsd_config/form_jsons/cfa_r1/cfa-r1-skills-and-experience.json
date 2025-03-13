@@ -1,155 +1,155 @@
 {
-    "startPage": "/before-you-start",
-    "pages": [
+  "startPage": "/before-you-start",
+  "pages": [
+    {
+      "path": "/check-your-answers",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/before-you-start",
+      "title": "Before you start",
+      "components": [
         {
-            "path": "/check-your-answers",
-            "title": "Check your answers",
-            "components": [],
-            "next": [],
-            "section": "FabDefault",
-            "controller": "./pages/summary.js"
-        },
-        {
-            "path": "/before-you-start",
-            "title": "Before you start",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body govuk-!\">In this section, we\u2019ll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>what experience you, and partner organisations where applicable, have of delivering this type of activity or project</li>\n<li>skills you will bring to the project</li>\n<li>relevant experience you have of working with local authorities, Devolved Administrations and Strategic Migration Partners</li>\n<li>how much you have engaged with Strategic Migration Partners on your specific plans for this scheme</li>\n<li>what resources, including staff, you will use to deliver this project</li>\n</ul>",
-                    "options": {},
-                    "schema": {},
-                    "name": "kYjafn"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/what-experience-do-you-and-partner-organisations-where-applicable-have-of-delivering-this-type-of-activity-or-project"
-                }
-            ],
-            "section": "FabDefault",
-            "controller": "start.js"
-        },
-        {
-            "path": "/how-much-have-you-engaged-with-strategic-migration-partners-on-your-specific-plans-for-this-scheme",
-            "title": "How much have you engaged with Strategic Migration Partners on your specific plans for this scheme?",
-            "components": [
-                {
-                    "options": {
-                        "maxWords": "250"
-                    },
-                    "type": "MultilineTextField",
-                    "title": "How much have you engaged with Strategic Migration Partners on your specific plans for this scheme?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "BarOeX"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/what-resources-including-staff-will-you-use-to-deliver-this-project"
-                }
-            ],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/what-relevant-experience-do-you-have-of-working-with-local-authorities-devolved-administrations-and-strategic-migration-partners",
-            "title": "What relevant experience do you have of working with local authorities, Devolved Administrations and Strategic Migration Partners?",
-            "components": [
-                {
-                    "options": {
-                        "maxWords": "250"
-                    },
-                    "type": "MultilineTextField",
-                    "title": "What relevant experience do you have of working with local authorities, Devolved Administrations and Strategic Migration Partners?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "SsbjgJ"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/how-much-have-you-engaged-with-strategic-migration-partners-on-your-specific-plans-for-this-scheme"
-                }
-            ],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/what-resources-including-staff-will-you-use-to-deliver-this-project",
-            "title": "What resources, including staff, will you use to deliver this project?",
-            "components": [
-                {
-                    "options": {
-                        "maxWords": "250"
-                    },
-                    "type": "MultilineTextField",
-                    "title": "What resources, including staff, will you use to deliver this project?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "caAJpc"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/check-your-answers"
-                }
-            ],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/what-experience-do-you-and-partner-organisations-where-applicable-have-of-delivering-this-type-of-activity-or-project",
-            "title": "What experience do you, and partner organisations where applicable, have of delivering this type of activity or project?",
-            "components": [
-                {
-                    "options": {
-                        "maxWords": "250"
-                    },
-                    "type": "MultilineTextField",
-                    "title": "What experience do you, and partner organisations where applicable, have of delivering this type of activity or project?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "pIOZGN"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/what-skills-will-you-bring-to-the-project"
-                }
-            ],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/what-skills-will-you-bring-to-the-project",
-            "title": "What skills will you bring to the project?",
-            "components": [
-                {
-                    "options": {
-                        "maxWords": "250"
-                    },
-                    "type": "MultilineTextField",
-                    "title": "What skills will you bring to the project?",
-                    "hint": "",
-                    "schema": {},
-                    "name": "ngDQMq"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/what-relevant-experience-do-you-have-of-working-with-local-authorities-devolved-administrations-and-strategic-migration-partners"
-                }
-            ],
-            "section": "FabDefault"
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!\">In this section, we\u2019ll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>what experience you, and partner organisations where applicable, have of delivering this type of activity or project</li>\n<li>skills you will bring to the project</li>\n<li>relevant experience you have of working with local authorities, Devolved Administrations and Strategic Migration Partners</li>\n<li>how much you have engaged with Strategic Migration Partners on your specific plans for this scheme</li>\n<li>what resources, including staff, you will use to deliver this project</li>\n</ul>",
+          "options": {},
+          "schema": {},
+          "name": "kYjafn"
         }
-    ],
-    "lists": [],
-    "conditions": [],
-    "sections": [
+      ],
+      "next": [
         {
-            "name": "FabDefault",
-            "title": "Default Section",
-            "hideTitle": true
+          "path": "/what-experience-do-you-and-partner-organisations-where-applicable-have-of-delivering-this-type-of-activity-or-project"
         }
-    ],
-    "outputs": [],
-    "skipSummary": false,
-    "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
+      ],
+      "section": "FabDefault",
+      "controller": "start.js"
+    },
+    {
+      "path": "/how-much-have-you-engaged-with-strategic-migration-partners-on-your-specific-plans-for-this-scheme",
+      "title": "How much have you engaged with Strategic Migration Partners on your specific plans for this scheme?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "250"
+          },
+          "type": "MultilineTextField",
+          "title": "How much have you engaged with Strategic Migration Partners on your specific plans for this scheme?",
+          "hint": "",
+          "schema": {},
+          "name": "BarOeX"
+        }
+      ],
+      "next": [
+        {
+          "path": "/what-resources-including-staff-will-you-use-to-deliver-this-project"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/what-relevant-experience-do-you-have-of-working-with-local-authorities-devolved-administrations-and-strategic-migration-partners",
+      "title": "What relevant experience do you have of working with local authorities, Devolved Administrations and Strategic Migration Partners?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "250"
+          },
+          "type": "MultilineTextField",
+          "title": "What relevant experience do you have of working with local authorities, Devolved Administrations and Strategic Migration Partners?",
+          "hint": "",
+          "schema": {},
+          "name": "SsbjgJ"
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-much-have-you-engaged-with-strategic-migration-partners-on-your-specific-plans-for-this-scheme"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/what-resources-including-staff-will-you-use-to-deliver-this-project",
+      "title": "What resources, including staff, will you use to deliver this project?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "250"
+          },
+          "type": "MultilineTextField",
+          "title": "What resources, including staff, will you use to deliver this project?",
+          "hint": "",
+          "schema": {},
+          "name": "caAJpc"
+        }
+      ],
+      "next": [
+        {
+          "path": "/check-your-answers"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/what-experience-do-you-and-partner-organisations-where-applicable-have-of-delivering-this-type-of-activity-or-project",
+      "title": "What experience do you, and partner organisations where applicable, have of delivering this type of activity or project?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "250"
+          },
+          "type": "MultilineTextField",
+          "title": "What experience do you, and partner organisations where applicable, have of delivering this type of activity or project?",
+          "hint": "",
+          "schema": {},
+          "name": "pIOZGN"
+        }
+      ],
+      "next": [
+        {
+          "path": "/what-skills-will-you-bring-to-the-project"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/what-skills-will-you-bring-to-the-project",
+      "title": "What skills will you bring to the project?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "250"
+          },
+          "type": "MultilineTextField",
+          "title": "What skills will you bring to the project?",
+          "hint": "",
+          "schema": {},
+          "name": "ngDQMq"
+        }
+      ],
+      "next": [
+        {
+          "path": "/what-relevant-experience-do-you-have-of-working-with-local-authorities-devolved-administrations-and-strategic-migration-partners"
+        }
+      ],
+      "section": "FabDefault"
+    }
+  ],
+  "lists": [],
+  "conditions": [],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
 }

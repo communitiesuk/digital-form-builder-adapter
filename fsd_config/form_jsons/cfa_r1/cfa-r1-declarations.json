@@ -1,90 +1,90 @@
 {
-    "startPage": "/before-you-start",
-    "pages": [
+  "startPage": "/before-you-start",
+  "pages": [
+    {
+      "path": "/check-your-answers",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/before-you-start",
+      "title": "Before you start",
+      "components": [
         {
-            "path": "/check-your-answers",
-            "title": "Check your answers",
-            "components": [],
-            "next": [],
-            "section": "FabDefault",
-            "controller": "./pages/summary.js"
+          "type": "Para",
+          "content": "<p class=\"govuk-body\">In this section, we\u2019ll ask you to confirm:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation is based in the UK</li>\n<li>your organisation meets all the eligibility criteria listed in the associated prospectus</li>\n<li>you are able to commence and deliver the project within the timescales set out in the prospectus</li>\n<li>within the past 5 years your organisation, or any person who has powers of representation, decision or control within the organisation, has not been convicted anywhere in the world of the offences listed</li>\n<li>your organisation adheres to the government code of conduct</li>\n<li>your organisation has a data handling process in place</li>\n<li>you have a bank account set up for your organisation</li>\n<li>your organisation\u2019s safeguarding policies are up to date</li>\n<li>the information you have provided is accurate</li>\n</ul>",
+          "options": {},
+          "schema": {},
+          "name": "Avrfrn"
+        }
+      ],
+      "next": [
+        {
+          "path": "/confirm-declarations"
+        }
+      ],
+      "section": "FabDefault",
+      "controller": "start.js"
+    },
+    {
+      "path": "/confirm-declarations",
+      "title": "Confirm declarations",
+      "components": [
+        {
+          "type": "Para",
+          "content": "<p class=\"govuk-body\">You are confirming that:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation is based in the UK</li>\n<li>your organisation meets all the eligibility criteria listed in the associated prospectus</li>\n<li>you are able to commence and deliver the project within the timescales set out in the prospectus</li>\n<li>within the past 5 years your organisation, or any person who has powers of representation, decision or control within the organisation, has not been convicted anywhere in the world of the list of offences</li>\n<li>your organisation adheres to the government code of conduct</li>\n<li>your organisation has a data handling process in place</li>\n<li>you have a bank account set up for your organisation</li>\n<li>your organisation\u2019s safeguarding policies are up to date</li>\n<li>the information you have provided is accurate</li>\n</ul>\n\n<details class=\"govuk-details\">\n  <summary class=\"govuk-details__summary\">\n    <span class=\"govuk-details__summary-text\">\n      List of offences\n    </span>\n  </summary>\n  <div class=\"govuk-details__text\"> <p class=\"govuk-body\">Offences include:</p>\n    <ul class=\"govuk-list govuk-list--bullet\">\n<li>corruption</li>\n<li>fraud</li>\n<li>money laundering or terrorist financing</li>\n<li>participation in a criminal organisation</li>\n<li>terrorist offences or links to terrorist activity</li></ul>\n  </div>\n</details>",
+          "options": {},
+          "schema": {},
+          "name": "mTCXkc"
         },
         {
-            "path": "/before-you-start",
-            "title": "Before you start",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body\">In this section, we\u2019ll ask you to confirm:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation is based in the UK</li>\n<li>your organisation meets all the eligibility criteria listed in the associated prospectus</li>\n<li>you are able to commence and deliver the project within the timescales set out in the prospectus</li>\n<li>within the past 5 years your organisation, or any person who has powers of representation, decision or control within the organisation, has not been convicted anywhere in the world of the offences listed</li>\n<li>your organisation adheres to the government code of conduct</li>\n<li>your organisation has a data handling process in place</li>\n<li>you have a bank account set up for your organisation</li>\n<li>your organisation\u2019s safeguarding policies are up to date</li>\n<li>the information you have provided is accurate</li>\n</ul>",
-                    "options": {},
-                    "schema": {},
-                    "name": "Avrfrn"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/confirm-declarations"
-                }
-            ],
-            "section": "FabDefault",
-            "controller": "start.js"
-        },
-        {
-            "path": "/confirm-declarations",
-            "title": "Confirm declarations",
-            "components": [
-                {
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body\">You are confirming that:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation is based in the UK</li>\n<li>your organisation meets all the eligibility criteria listed in the associated prospectus</li>\n<li>you are able to commence and deliver the project within the timescales set out in the prospectus</li>\n<li>within the past 5 years your organisation, or any person who has powers of representation, decision or control within the organisation, has not been convicted anywhere in the world of the list of offences</li>\n<li>your organisation adheres to the government code of conduct</li>\n<li>your organisation has a data handling process in place</li>\n<li>you have a bank account set up for your organisation</li>\n<li>your organisation\u2019s safeguarding policies are up to date</li>\n<li>the information you have provided is accurate</li>\n</ul>\n\n<details class=\"govuk-details\">\n  <summary class=\"govuk-details__summary\">\n    <span class=\"govuk-details__summary-text\">\n      List of offences\n    </span>\n  </summary>\n  <div class=\"govuk-details__text\"> <p class=\"govuk-body\">Offences include:</p>\n    <ul class=\"govuk-list govuk-list--bullet\">\n<li>corruption</li>\n<li>fraud</li>\n<li>money laundering or terrorist financing</li>\n<li>participation in a criminal organisation</li>\n<li>terrorist offences or links to terrorist activity</li></ul>\n  </div>\n</details>",
-                    "options": {},
-                    "schema": {},
-                    "name": "mTCXkc"
-                },
-                {
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "CheckboxesField",
-                    "title": "I confirm these declarations",
-                    "hint": "",
-                    "schema": {},
-                    "name": "teNDNM",
-                    "list": "fasQVR",
-                    "values": {
-                        "type": "listRef"
-                    }
-                }
-            ],
-            "next": [
-                {
-                    "path": "/check-your-answers"
-                }
-            ],
-            "section": "FabDefault"
-        }
-    ],
-    "lists": [
-        {
-            "type": "string",
-            "items": [
-                {
-                    "text": "I confirm these declarations",
-                    "value": "I confirm these declarations"
-                }
-            ],
-            "name": "fasQVR",
-            "title": "Declarations"
-        }
-    ],
-    "conditions": [],
-    "sections": [
-        {
-            "name": "FabDefault",
-            "title": "Default Section",
+          "options": {
             "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "I confirm these declarations",
+          "hint": "",
+          "schema": {},
+          "name": "teNDNM",
+          "list": "fasQVR",
+          "values": {
+            "type": "listRef"
+          }
         }
-    ],
-    "outputs": [],
-    "skipSummary": false,
-    "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
+      ],
+      "next": [
+        {
+          "path": "/check-your-answers"
+        }
+      ],
+      "section": "FabDefault"
+    }
+  ],
+  "lists": [
+    {
+      "type": "string",
+      "items": [
+        {
+          "text": "I confirm these declarations",
+          "value": "I confirm these declarations"
+        }
+      ],
+      "name": "fasQVR",
+      "title": "Declarations"
+    }
+  ],
+  "conditions": [],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
 }
