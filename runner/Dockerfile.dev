@@ -7,7 +7,7 @@ RUN mkdir -p /usr/src/app/digital-form-builder-adapter/runner/public/static && \
     addgroup -g 1001 appuser && \
     adduser -S -u 1001 -G appuser appuser && \
     chown -R appuser:appuser /usr/src/app/digital-form-builder-adapter && \
-    chmod -R +x  /usr/src/app/digital-form-builder-adapter && \
+    find /usr/src/app/digital-form-builder-adapter -type d -exec chmod 755 {} \; && \
     apk update && \
     apk add --no-cache bash git
 RUN npm install -g nodemon
@@ -113,6 +113,9 @@ RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-bui
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-model-build  \
     yarn runner build
+
+RUN chown -R appuser:appuser /usr/src/app/digital-form-builder-adapter/runner
+
 USER appuser
 CMD ["yarn", "runner", "dev"]
 
