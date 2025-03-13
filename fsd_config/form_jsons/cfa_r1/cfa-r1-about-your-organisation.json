@@ -1,0 +1,565 @@
+{
+    "startPage": "/before-you-start",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/is-this-a-joint-bid-with-a-partner-organisation",
+            "title": "Is this a joint bid with a partner organisation?",
+            "components": [
+                {
+                    "options": {
+                        "exposeToContext": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Is this a joint bid with partner organisations (as a consortium)? ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "gjeIPR",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-consortiums-name-uGieXU",
+                    "condition": "VtMiKa"
+                },
+                {
+                    "path": "/check-your-answers",
+                    "condition": "dfclaK"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-lead-organisations-name-vveheu",
+            "title": "What is the lead organisation\u2019s name?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "What is the lead organisation\u2019s name?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "Astkjl"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-lead-organisations-address-UfmBCE"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-charity-commission-number",
+            "title": "What is your Charity Commission number?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "NumberField",
+                    "title": "What is your Charity Commission number?",
+                    "hint": "<p class=\"govuk-body\">\n  The number registered with the <a href=\"https://www.gov.uk/government/organisations/charity-commission\" class=\"govuk-link\" rel=\"noreferrer noopener\" target=\"_blank\">Charity Commission Service (opens in new tab)</a>\n</p>",
+                    "schema": {},
+                    "name": "Ppwwyg"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-lead-organisations-name-vveheu"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-primary-contacts-telephone-number",
+            "title": "What is the primary contact\u2019s telephone number?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "NumberField",
+                    "title": "What is the primary contact\u2019s telephone number?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "urKQni"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-primary-contacts-email-address"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-lead-organisations-address-UfmBCE",
+            "title": "What is your lead organisation\u2019s address?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "UkAddressField",
+                    "title": "What is your lead organisation\u2019s address?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "OJWKUa"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-primary-contact-for-this-application"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/before-you-start",
+            "title": "Before you start",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!\">In this section, we\u2019ll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>which category the lead organisation falls under</li>\n<li>how your organisation meets the eligibility criteria (if applicable)</li>\n<li>your Charity Commission number (if applicable)</li>\n<li>your company registration number (if applicable)</li>\n<li>your lead organisation\u2019s name and address</li>\n<li>your primary contact\u2019s name, role, telephone number and email address</li>\n<li>your lead organisation\u2019s website and social media (if applicable)</li>\n<li>whether you are submitting a joint bid with partner organisations</li>\n<li>your consortium\u2019s name (if applicable)</li>\n<li>the names of other organisations involved in this bid (if applicable)</li>\n<li>if there is a formal agreement between the lead organisation and the partner organisations (if applicable)</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "TgqslE"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-category-does-the-lead-organisation-fall-under"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/what-is-your-consortiums-name-uGieXU",
+            "title": "What is your consortium\u2019s name?",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "The name you want MHCLG to use when referring to your group of organisations (consortium).",
+                    "options": {},
+                    "schema": {},
+                    "name": "YNlvyI"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "What is your consortium\u2019s name?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "BiAIwm"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/list-all-the-partner-organisations-involved-in-this-bid"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-are-the-social-media-profiles-for-your-lead-organisation-optional",
+            "title": "What are the social media profiles for your lead organisation? (Optional)",
+            "components": [
+                {
+                    "options": {
+                        "required": false
+                    },
+                    "type": "WebsiteField",
+                    "title": "Social media link 1",
+                    "hint": "For example, your lead organisation's Facebook page",
+                    "schema": {},
+                    "name": "AnyXcs"
+                },
+                {
+                    "options": {
+                        "required": false
+                    },
+                    "type": "WebsiteField",
+                    "title": "Social media link 2",
+                    "hint": "",
+                    "schema": {},
+                    "name": "tRrlJR"
+                },
+                {
+                    "options": {
+                        "required": false
+                    },
+                    "type": "WebsiteField",
+                    "title": "Social media link 3",
+                    "hint": "",
+                    "schema": {},
+                    "name": "IbqMYE"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-this-a-joint-bid-with-a-partner-organisation"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-company-registration-number",
+            "title": "What is your company registration number?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "NumberField",
+                    "title": "What is your company registration number?",
+                    "hint": "<p class=\"govuk-body\">\n  The number your organisation is registered with on <a href=\"https://www.gov.uk/government/organisations/companies-house\" class=\"govuk-link\" rel=\"noreferrer noopener\" target=\"_blank\">Companies House (opens in new tab)</a>\n</p>",
+                    "schema": {},
+                    "name": "fDoPMl"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-lead-organisations-name-vveheu"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-primary-contacts-email-address",
+            "title": "What is the primary contact\u2019s email address?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "EmailAddressField",
+                    "title": "What is the primary contact\u2019s email address? ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "nvLzWR"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-website-address-for-your-lead-organisation-optional"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/is-there-a-formal-agreement-between-the-lead-organisation-and-the-partner-organisations",
+            "title": "Is there a formal agreement between the lead organisation and the partner organisations?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Is there a formal agreement between the lead organisation and the partner organisations?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "XQAWBC",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/who-is-the-primary-contact-for-this-application",
+            "title": "Who is the primary contact for this application?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Who is the primary contact for this application? ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "wgBNKO"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-primary-contacts-role"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-category-does-the-lead-organisation-fall-under",
+            "title": "Which category does the lead organisation fall under?",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "The lead partner in a joint bid (a consortium) must be a charity or a community group with a charitable purpose.",
+                    "options": {},
+                    "schema": {},
+                    "name": "tTIvtR"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "RadiosField",
+                    "title": "Which category does the lead organisation fall under?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "ogsYzS",
+                    "list": "RLVTKQ",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-company-registration-number"
+                },
+                {
+                    "path": "/explain-how-your-organisation-meets-the-eligibility-criteria",
+                    "condition": "gCOMex"
+                },
+                {
+                    "path": "/what-is-your-charity-commission-number",
+                    "condition": "OXiMMn"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-website-address-for-your-lead-organisation-optional",
+            "title": "What is the website address for your lead organisation? (Optional)",
+            "components": [
+                {
+                    "options": {
+                        "required": false
+                    },
+                    "type": "WebsiteField",
+                    "title": "What is the website address for your lead organisation?",
+                    "hint": "For example, https://www.organisation.com",
+                    "schema": {},
+                    "name": "JbEBkn"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-are-the-social-media-profiles-for-your-lead-organisation-optional"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-primary-contacts-role",
+            "title": "What is the primary contact\u2019s role?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "What is the primary contact\u2019s role? ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "OywVnm"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-primary-contacts-telephone-number"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/list-all-the-partner-organisations-involved-in-this-bid",
+            "title": "List all the partner organisations involved in this bid",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "List all the partner organisations involved in this bid",
+                    "hint": "Use commas to separate each organisation name.",
+                    "schema": {},
+                    "name": "ICLrLp"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-there-a-formal-agreement-between-the-lead-organisation-and-the-partner-organisations"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/explain-how-your-organisation-meets-the-eligibility-criteria",
+            "title": "Explain how your organisation meets the eligibility criteria",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!\">The organisation must:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>be established for charitable, benevolent, or philanthropic purposes (see list of eligible organisations)</li>\n<li>have a governing body with at least 3 members</li> \n<li>have a governing document they can produce</li> \n<li>have capacity to deliver an expected minimum of 125 sponsorship arrangements. Submissions below this number may be unsuccessful should minimum requirements be satisfactorily provided by other Principal Sponsors</li>\n<li>set out the minimum and maximum (between 125 and 500 sponsor arrangements) number that will be financially viable</li></ul>\n<p class=\"govuk-body govuk-!\">The \u00a34.145 million will be divided by the number of sponsor arrangements a Principal Sponsor and MHCLG agree they will deliver.</p>\n<br>\n<details class=\"govuk-details\">\n  <summary class=\"govuk-details__summary\">\n    <span class=\"govuk-details__summary-text\">\n      Eligible organisations\n    </span>\n  </summary>\n  <div class=\"govuk-details__text\">\n    \u2018Charity\u2019\u202f\u2013 A registered charity with a UK charity number or a registered CIC (community interest company).\u202f\n    <br> \n    <br>\n\u2018Community group\u2019\u202f\u2013 A group which meets all the following criteria:\u202f \n<ul class=\"govuk-list govuk-list--bullet\">\n<li>established for charitable, benevolent or philanthropic purposes</li>\u202f \n<li>has a governing body with at least three members</li>\u202f \n<li>has a governing document which they are able to produce</li>\u202f \n<li>can provide accounts for the last two financial years</li></ul>\u202f\n<br> \n\u2018Community Interest Company\u2019\u202f- a special type of limited company which exists to benefit the community rather than private shareholders.\u202f \n<br>\n<br>\n\u2018Social enterprise\u2019 - a business with primarily social objectives whose surpluses are principally reinvested for that purpose in the business or in the community, rather than being driven by the need to maximise profit for shareholders and owners. \u202f \nOther voluntary and community organisations.\u202f \n<br>\n<br>\n\u2018Consortium\u2019\u202f\u2013 a group of applicants, with a designated lead partner to manage the scheme, and a system for dividing the work and funds appropriately and effectively. The lead partner must be a charity or a community group with a charitable purpose.\u202f\u202f\n<br>\n<br>\nOrganisations must be based in the United Kingdom and provide an offer that can cover England, Scotland, Wales and Northern Ireland.\u202f\n  </div>\n</details>  \n",
+                    "options": {},
+                    "schema": {},
+                    "name": "UDnwcP"
+                },
+                {
+                    "options": {
+                        "maxWords": "250",
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Explain how your organisation meets the eligibility criteria",
+                    "hint": "",
+                    "schema": {},
+                    "name": "Oodyxh"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-company-registration-number"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "Charity",
+                    "value": "Charity"
+                },
+                {
+                    "text": "Community Group",
+                    "value": "Community Group"
+                },
+                {
+                    "text": "Community Interest Company",
+                    "value": "Community Interest Company"
+                },
+                {
+                    "text": "Social Enterprise",
+                    "value": "Social Enterprise"
+                },
+                {
+                    "text": "Other voluntary/community organisation",
+                    "value": "Other voluntary/community organisation"
+                },
+                {
+                    "text": "Other type of organisation",
+                    "value": "Other type of organisation"
+                }
+            ],
+            "name": "RLVTKQ",
+            "title": "Organisation categories"
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "Joint bid",
+            "name": "VtMiKa",
+            "value": {
+                "name": "Joint bid",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.gjeIPR",
+                            "type": "YesNoField",
+                            "display": "Is this a joint bid with a partner organisation? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Not a joint bid",
+            "name": "dfclaK",
+            "value": {
+                "name": "Not a joint bid",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.gjeIPR",
+                            "type": "YesNoField",
+                            "display": "Is this a joint bid with a partner organisation? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Other organisation type",
+            "name": "gCOMex",
+            "value": {
+                "name": "Other organisation type",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.ogsYzS",
+                            "type": "RadiosField",
+                            "display": "Which of the following categories does your organisation fall under? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Other type of organisation",
+                            "display": "Other type of organisation"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Charity",
+            "name": "OXiMMn",
+            "value": {
+                "name": "Charity",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.ogsYzS",
+                            "type": "RadiosField",
+                            "display": "Which of the following categories does your organisation fall under? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Charity",
+                            "display": "Charity"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
+}

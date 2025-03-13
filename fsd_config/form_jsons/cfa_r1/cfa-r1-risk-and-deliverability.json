@@ -1,0 +1,207 @@
+{
+    "startPage": "/before-you-start",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/what-is-your-governance-and-management-structure",
+            "title": "What is your governance and management structure?",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "300"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "What is your governance and management structure?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "MqWUHI"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-are-your-governance-processes-and-procedures"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/before-you-start",
+            "title": "Before you start",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!\">In this section, we\u2019ll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your governance and management structure</li>\n<li>your governance processes and procedures, including how  matters are escalated and resolved</li>\n<li>how you will monitor and manage delivery of your plan</li>\n<li>how you will deal with issues arising, risks (including fraud risk) and mitigations</li>\n<li>how you will check the quality of accommodation, safeguarding and welfare of households and Sponsor Groups</li>\n<li>how you will ensure the funding awarded is only used for this project</li>\n<li>what processes you will put in place when making payments to Sponsor Groups</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "ZUQzSK"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-governance-and-management-structure"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/how-will-you-deal-with-issues-arising-risks-including-fraud-risk-and-mitigations",
+            "title": "How will you deal with issues arising, risks (including fraud risk) and mitigations?",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "300"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "How will you deal with issues arising, risks (including fraud risk) and mitigations?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "YyJtli"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-check-the-quality-of-accommodation-safeguarding-and-welfare-of-households-and-sponsor-groups"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/how-will-you-monitor-and-manage-delivery-of-your-plan",
+            "title": "How will you monitor and manage delivery of your plan?",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "300"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "How will you monitor and manage delivery of your plan?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "xrcpRz"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-deal-with-issues-arising-risks-including-fraud-risk-and-mitigations"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-are-your-governance-processes-and-procedures",
+            "title": "What are your governance processes and procedures?",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "You should include how  matters are escalated and resolved.",
+                    "options": {},
+                    "schema": {},
+                    "name": "ysvCOB"
+                },
+                {
+                    "options": {
+                        "maxWords": "300",
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "What are your governance processes and procedures?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "ArKxtQ"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-monitor-and-manage-delivery-of-your-plan"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-processes-will-you-put-in-place-when-making-payments-to-sponsor-groups",
+            "title": "What processes will you put in place when making payments to Sponsor Groups?",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "What processes will you put in place when making payments to Sponsor Groups?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "Pnrxwa"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/how-will-you-ensure-the-funding-awarded-is-only-used-for-this-project",
+            "title": "How will you ensure the funding awarded is only used for this project?",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "300"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "How will you ensure the funding awarded is only used for this project?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "WwCgTH"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-processes-will-you-put-in-place-when-making-payments-to-sponsor-groups"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/how-will-you-check-the-quality-of-accommodation-safeguarding-and-welfare-of-households-and-sponsor-groups",
+            "title": "How will you check the quality of accommodation, safeguarding and welfare of households and Sponsor Groups?",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "400"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "How will you check the quality of accommodation, safeguarding and welfare of households and Sponsor Groups?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "cUrMJq"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-ensure-the-funding-awarded-is-only-used-for-this-project"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
+}

@@ -1,0 +1,444 @@
+{
+  "metadata": {},
+  "startPage": "/before-you-start",
+  "pages": [
+    {
+      "title": "Before you start",
+      "path": "/before-you-start",
+      "components": [
+        {
+          "name": "eVEKAI",
+          "options": {},
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!\">In this section, we’ll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>how much funding you are bidding for</li>\n<li>the number of households that you (and your consortium, if applicable) intend to support by the end of March 2031</li>\n<li>your funding spreadsheet for 125 households</li>\n<li>your second funding spreadsheet (if applicable)</li>\n<li>whether you have secured additional funding outside of this grant</li>\n<li>the source of these funds and how you will ensure activities are not double-funded (if applicable)</li>\n<li>how you would scale up or scale down your project</li>\n<li>whether your Sponsor Groups will fundraise</li>\n<li>details on how your Sponsor Groups will fundraise and how you will keep this funding separate from this grant’s funding</li>\n</ul>",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-much-funding-will-you-need-for-your-preferred-number-of-households-in-pounds"
+        }
+      ],
+      "section": "FabDefault",
+      "controller": "./pages/start.js"
+    },
+    {
+      "path": "/how-much-funding-will-you-need-for-your-preferred-number-of-households-in-pounds",
+      "title": "How much funding will you need for your preferred number of households, in pounds?",
+      "components": [
+        {
+          "name": "LzgNzF",
+          "options": {},
+          "type": "Para",
+          "content": "Exact funding amounts and number of households to be supported will be agreed in the negotiation period, before Grant Funding Agreements are signed.",
+          "schema": {}
+        },
+        {
+          "name": "GAqCNS",
+          "options": {
+            "prefix": "£",
+            "hideTitle": true,
+            "classes": "govuk-input govuk-!-width-one-third"
+          },
+          "type": "NumberField",
+          "schema": {
+            "min": 900001,
+            "max": 4145000
+          },
+          "title": "How much funding will you need for your preferred number of households, in pounds?",
+          "hint": "This must be more than £900,000 and less than £4,145,000."
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-many-households-do-you-and-your-consortium-if-applicable-intend-to-support-by-the-end-of-march-2031"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "title": "Check your answers",
+      "path": "/check-your-answers",
+      "controller": "./pages/summary.js",
+      "components": [],
+      "section": "FabDefault",
+      "next": []
+    },
+    {
+      "path": "/how-many-households-do-you-and-your-consortium-if-applicable-intend-to-support-by-the-end-of-march-2031",
+      "title": "How many households do you (and your consortium, if applicable) intend to support by the end of March 2031?",
+      "components": [
+        {
+          "name": "yHsrjy",
+          "options": {
+            "classes": "govuk-input govuk-!-width-one-third"
+          },
+          "type": "NumberField",
+          "title": "How many households do you (and your consortium, if applicable) intend to support by the end of March 2031?",
+          "hint": "This should be a minimum of 125 and maximum of 500 households.",
+          "schema": {
+            "min": 125,
+            "max": 500
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/upload-your-funding-spreadsheet-for-125-households"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/upload-your-funding-spreadsheet-for-125-households",
+      "title": "Upload your funding spreadsheet for 125 households",
+      "components": [
+        {
+          "name": "MrmSgl",
+          "options": {},
+          "type": "Para",
+          "content": "<p class=\"govuk-body\">Provide the total cost of your project based on 125 households with a breakdown of the costs by year and activity. Ensure that they add up to the amount you are bidding for or provide an explanation. This should not exceed a total of £1,036,250 for the 125 households. This will be used as a benchmark for assessment.</p>\n\n<p class=\"govuk-body\">Your funding spreadsheet should include:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>Gross salaries</li>\n  <li>Staff expenses</li>\n  <li>Project costs (for example, IT)</li>\n  <li>Sponsor related costs (for example, DBS checks)</li>\n  <li>Any professional fees</li>\n  <li>Central costs</li>\n  <li>Any additional funding</li></ul>\n\n<div class=\"govuk-inset-text\">\n  If you would like a funding spreadsheet template, email sponsorship@communities.gov.uk\n</div>\n \n<p class=\"govuk-body\">MHCLG reserves the right to award varied funding per household, for example if one Principal Sponsor is going to carry out more of the Principal Sponsor activities across the entire scheme.</p>\n\n<details class=\"govuk-details\">\n  <summary class=\"govuk-details__summary\">\n    <span class=\"govuk-details__summary-text\">\n      How value for money will be scored \n    </span>\n  </summary>\n  <div class=\"govuk-details__text\">\n    <p class=\"govuk-body\">For all bids that score a total of over 50% in the initial assessment, we will then score the value for money of full bids (including bids for higher number of families). At that point, the applicant achieving the lowest cost per household across either 125 households or any number of households greater than 125 will achieve the 7%.</p>\n    \n    <p class=\"govuk-body\">The 7% funding weighting section within the ‘Value for money’ section will be scored in order of the lowest cost per household receiving the highest score (7%), with the next lowest cost receiving the next highest score (6%), reducing by one each time to 0%, as follows:</p> \n \n<ul class=\"govuk-list govuk-list--bullet\">\n<li>Lowest cost = 7%</li>\n<li>Second lowest cost = 6%</li>\n<li>Third lowest cost = 5%</li> \n<li>Fourth lowest cost = 4%</li> \n<li>Fifth lowest cost = 3%</li> \n<li>Sixth lowest cost = 2%</li> \n<li>Seventh lowest cost = 1%</li> \n<li>Eighth lowest cost = 0%</li></ul> \n \n \n<p class=\"govuk-body\">In the first instance we will assess value for money against proposals for 125 households as a benchmark to compare to other applicants.</p>  \n  </div>\n</details>",
+          "schema": {}
+        },
+        {
+          "name": "spRfxi",
+          "options": {
+            "dropzoneConfig": {
+              "maxFiles": 1,
+              "parallelUploads": 1,
+              "maxFilesize": 10,
+              "acceptedFiles": "text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
+            },
+            "hideTitle": true,
+            "minimumRequiredFiles": 1
+          },
+          "type": "ClientSideFileUploadField",
+          "title": "Upload your funding spreadsheet for 125 households",
+          "hint": "",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/upload-your-second-funding-spreadsheet",
+          "condition": "iACtiN"
+        },
+        {
+          "path": "/have-you-secured-additional-funding-outside-of-this-grant",
+          "condition": "tvgfTU"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/upload-your-second-funding-spreadsheet",
+      "title": "Upload your second funding spreadsheet",
+      "components": [
+        {
+          "name": "JVGfyh",
+          "options": {},
+          "type": "Para",
+          "content": "<p class=\"govuk-body\">Provide the total cost of your project for your preferred total number of households with a breakdown of the costs by year and activity. Ensure that they add up to the amount you are bidding for or provide an explanation. This should include:</p>\n\n<p class=\"govuk-body\">Your funding spreadsheet should include:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>Gross salaries</li>\n  <li>Staff expenses</li>\n  <li>Project costs (for example, IT)</li>\n  <li>Sponsor related costs (for example, DBS checks)</li>\n  <li>Any professional fees</li>\n  <li>Central costs</li>\n  <li>Any additional funding</li></ul>\n  \n  <div class=\"govuk-inset-text\">\n  If you would like a funding spreadsheet template, email sponsorship@communities.gov.uk\n</div>\n \n<p class=\"govuk-body\">MHCLG reserves the right to award varied funding per household, for example if one Principal Sponsor is going to carry out more of the Principal Sponsor activities across the entire scheme.</p>\n\n<details class=\"govuk-details\">\n  <summary class=\"govuk-details__summary\">\n    <span class=\"govuk-details__summary-text\">\n      How value for money will be scored \n    </span>\n  </summary>\n  <div class=\"govuk-details__text\">\n    <p class=\"govuk-body\">The 7% funding weighting section within the ‘Value for money’ section will be scored in order of the lowest cost per household receiving the highest score (7%), with the next lowest cost receiving the next highest score (6%), reducing by one each time to 0%, as follows:</p> \n \n<ul class=\"govuk-list govuk-list--bullet\">\n<li>Lowest cost = 7%</li>\n<li>Second lowest cost = 6%</li>\n<li>Third lowest cost = 5%</li> \n<li>Fourth lowest cost = 4%</li> \n<li>Fifth lowest cost = 3%</li> \n<li>Sixth lowest cost = 2%</li> \n<li>Seventh lowest cost = 1%</li> \n<li>Eighth lowest cost = 0%</li></ul> \n \n\n  </div>\n</details>",
+          "schema": {}
+        },
+        {
+          "name": "ewdBKl",
+          "options": {
+            "dropzoneConfig": {
+              "maxFiles": 1,
+              "parallelUploads": 1,
+              "maxFilesize": 10,
+              "acceptedFiles": "text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
+            },
+            "minimumRequiredFiles": 1
+          },
+          "type": "ClientSideFileUploadField",
+          "title": "Upload your second funding spreadsheet",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/have-you-secured-additional-funding-outside-of-this-grant"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/have-you-secured-additional-funding-outside-of-this-grant",
+      "title": "Have you secured additional funding outside of this grant?",
+      "components": [
+        {
+          "name": "VpZrUi",
+          "options": {
+            "exposeToContext": true
+          },
+          "type": "YesNoField",
+          "title": "Have you secured additional funding outside of this grant?",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/state-the-source-of-these-funds-and-how-you-will-ensure-activities-are-not-double-funded",
+          "condition": "GeRmdz"
+        },
+        {
+          "path": "/how-would-you-scale-up-or-scale-down-your-project",
+          "condition": "hSzymp"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/state-the-source-of-these-funds-and-how-you-will-ensure-activities-are-not-double-funded",
+      "title": "State the source of these funds and how you will ensure activities are not double-funded",
+      "components": [
+        {
+          "name": "KIgQjE",
+          "options": {
+            "maxWords": "300"
+          },
+          "type": "MultilineTextField",
+          "title": "State the source of these funds and how you will ensure activities are not double-funded",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-would-you-scale-up-or-scale-down-your-project"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/how-would-you-scale-up-or-scale-down-your-project",
+      "title": "How would you scale up or scale down your project?",
+      "components": [
+        {
+          "name": "yYfMSD",
+          "options": {
+            "maxWords": "500"
+          },
+          "type": "MultilineTextField",
+          "title": "How would you scale up or scale down your project?",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/will-your-sponsor-groups-fundraise-DBmmqU"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/will-your-sponsor-groups-fundraise-DBmmqU",
+      "title": "Will your Sponsor Groups fundraise?",
+      "components": [
+        {
+          "name": "ZoZCpJ",
+          "options": {
+            "exposeToContext": true
+          },
+          "type": "YesNoField",
+          "title": "Will your Sponsor Groups fundraise?",
+          "schema": {},
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/provide-details-on-how-your-sponsor-groups-will-fundraise-and-how-you-will-keep-this-funding-separate-from-this-grants-funding-GDJtga",
+          "condition": "fVDizM"
+        },
+        {
+          "path": "/check-your-answers",
+          "condition": "ZucKyQ"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/provide-details-on-how-your-sponsor-groups-will-fundraise-and-how-you-will-keep-this-funding-separate-from-this-grants-funding-GDJtga",
+      "title": "Provide details on how your Sponsor Groups will fundraise and how you will keep this funding separate from this grant’s funding",
+      "components": [
+        {
+          "name": "FMuqzc",
+          "options": {
+            "maxWords": "350"
+          },
+          "type": "MultilineTextField",
+          "title": "Provide details on how your Sponsor Groups will fundraise and how you will keep this funding separate from this grant’s funding",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/check-your-answers"
+        }
+      ],
+      "section": "FabDefault"
+    }
+  ],
+  "lists": [],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    }
+  ],
+  "conditions": [
+    {
+      "displayName": "Additional funding secured",
+      "name": "GeRmdz",
+      "value": {
+        "name": "Additional funding secured",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.VpZrUi",
+              "type": "YesNoField",
+              "display": "Have you secured additional funding outside of this grant?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "No additional funding secured",
+      "name": "hSzymp",
+      "value": {
+        "name": "No additional funding secured",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.VpZrUi",
+              "type": "YesNoField",
+              "display": "Have you secured additional funding outside of this grant?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Sponsor groups will fundraise",
+      "name": "fVDizM",
+      "value": {
+        "name": "Sponsor groups will fundraise",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.ZoZCpJ",
+              "type": "YesNoField",
+              "display": "Will your sponsor groups fundraise?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Sponsor groups will not fundraise",
+      "name": "ZucKyQ",
+      "value": {
+        "name": "Sponsor groups will not fundraise",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.ZoZCpJ",
+              "type": "YesNoField",
+              "display": "Will your sponsor groups fundraise?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "More than 125 households test condition",
+      "name": "iACtiN",
+      "value": {
+        "name": "More than 125 households test condition",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.yHsrjy",
+              "type": "NumberField",
+              "display": "How many number of households do you (and your consortium, if applicable) intend to support by the end of March 2031?"
+            },
+            "operator": "is at least",
+            "value": {
+              "type": "Value",
+              "value": "126",
+              "display": "126"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "Not more than 125 households test condition",
+      "name": "tvgfTU",
+      "value": {
+        "name": "Not more than 125 households test condition",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.yHsrjy",
+              "type": "NumberField",
+              "display": "How many number of households do you (and your consortium, if applicable) intend to support by the end of March 2031?"
+            },
+            "operator": "is at most",
+            "value": {
+              "type": "Value",
+              "value": "125",
+              "display": "125"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "fees": [],
+  "outputs": [],
+  "version": 2,
+  "skipSummary": false,
+  "feeOptions": {
+    "allowSubmissionWithoutPayment": true,
+    "maxAttempts": 3,
+    "showPaymentSkippedWarningPage": false
+  },
+  "markAsComplete": false,
+  "name": "Communities for Afghans - Value for money - March 2025",
+  "feedback": {
+    "feedbackForm": false,
+    "url": "/bfdbd"
+  },
+  "phaseBanner": {}
+}
