@@ -41,39 +41,41 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
                 //@ts-ignore
                 maxFilesize: selectedComponent.options.dropzoneConfig.maxFilesize ? selectedComponent.options.dropzoneConfig.maxFilesize : 1,
                 //@ts-ignore
-                acceptedFiles: selectedComponent.options.dropzoneConfig.acceptedFiles
-                //@ts-ignore
-                && selectedComponent.options.dropzoneConfig.acceptedFiles.length > 0 ? Array.isArray(selectedComponent.options.dropzoneConfig.acceptedFiles) ?
-                    //@ts-ignore
-                    selectedComponent.options.dropzoneConfig.acceptedFiles : selectedComponent.options.dropzoneConfig.acceptedFiles.split(",") : []
-            }
+                acceptedFiles: selectedComponent.options.dropzoneConfig.acceptedFiles ? selectedComponent.options.dropzoneConfig.acceptedFiles : "",
+            },
+            //@ts-ignore
+            showNoScriptWarning: selectedComponent.options.showNoScriptWarning ? selectedComponent.options.showNoScriptWarning : false,
+            //@ts-ignore
+            minimumRequiredFiles: selectedComponent.options.minimumRequiredFiles ? selectedComponent.options.minimumRequiredFiles : 0
         },
-        //@ts-ignore
-        showNoScriptWarning: selectedComponent.showNoScriptWarning ? selectedComponent.showNoScriptWarning : false,
-        //@ts-ignore
-        minimumRequiredFiles: selectedComponent.minimumRequiredFiles ? selectedComponent.minimumRequiredFiles : 0
     });
 
 
     const handleOnchangeEvent = (value) => {
         if (value.type === EDIT_NO_SCRIPT_WARNING) {
-            const updatedComponent = {
-                ...component,
-                showNoScriptWarning: !component.showNoScriptWarning
-            }
-            setComponent(updatedComponent)
+            setComponent(
+                {
+                    ...component,
+                    options: {
+                        ...component.options,
+                        showNoScriptWarning: !component.options.showNoScriptWarning
+                    },
+                }
+            )
             //@ts-ignore
-            selectedComponent.showNoScriptWarning = updatedComponent.showNoScriptWarning
+            selectedComponent.options.showNoScriptWarning = updatedComponent.options.showNoScriptWarning
         } else if (value.type === EDIT_MINIMUM_REQUIRED_FILES) {
             setComponent(
                 {
                     ...component,
-                    //@ts-ignore
-                    minimumRequiredFiles: parseInt(value.payload)
+                    options: {
+                        ...component.options,
+                        minimumRequiredFiles: parseInt(value.payload)
+                    },
                 }
             )
             //@ts-ignore
-            selectedComponent.minimumRequiredFiles = parseInt(value.payload)
+            selectedComponent.options.minimumRequiredFiles = parseInt(value.payload)
         } else if (value.type === OPTIONS_MAX_FILES) {
             setComponent(
                 {
@@ -137,11 +139,12 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
     // Handle change in checkbox selection
     const handleCheckboxChange = (e) => {
         const item = e.target.value;
-        const isItemSelected = component.options.dropzoneConfig.acceptedFiles.includes(item);
+        const acceptedFilesArr = component.options.dropzoneConfig.acceptedFiles.split(",")
+        const isItemSelected = acceptedFilesArr.includes(item);
         // Create new array - either add or remove item
         const updatedAcceptedFiles = isItemSelected
-            ? component.options.dropzoneConfig.acceptedFiles.filter(file => file !== item)
-            : [...component.options.dropzoneConfig.acceptedFiles, item];
+            ? acceptedFilesArr.filter(file => file !== item)
+            : [...acceptedFilesArr, item];
         setComponent({
             ...component,
             options: {
@@ -166,7 +169,7 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
                             id="show-no-script-warning"
                             name="showNoScriptWarning"
                             type="checkbox"
-                            checked={component.showNoScriptWarning}
+                            checked={component.options.showNoScriptWarning}
                             onChange={(e) =>
                                 handleOnchangeEvent({
                                     type: EDIT_NO_SCRIPT_WARNING,
@@ -197,7 +200,7 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
                     name="minimumRequiredFiles"
                     value={
                         //@ts-ignore
-                        component.minimumRequiredFiles}
+                        component.options.minimumRequiredFiles}
                     type="number"
                     onChange={(e) => handleOnchangeEvent({
                         type: EDIT_MINIMUM_REQUIRED_FILES,
@@ -294,7 +297,7 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
                                     type="checkbox"
                                     value={item}
                                     onChange={handleCheckboxChange}
-                                    checked={component.options.dropzoneConfig.acceptedFiles.includes(item)}
+                                    checked={component.options.dropzoneConfig.acceptedFiles.split(",").includes(item)}
                                 />
                                 <label className="govuk-label govuk-checkboxes__label"
                                        htmlFor={`file-type-item-${item}`}>
