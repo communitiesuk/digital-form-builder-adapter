@@ -1,6 +1,6 @@
 import {AdapterComponentContext} from "../../reducers/component/AdapterComponentReducer";
 // @ts-ignore
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 
 const EDIT_NO_SCRIPT_WARNING = "EDIT_NO_SCRIPT_WARNING";
@@ -31,6 +31,12 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
         // @ts-ignore
         selectedComponent.options.dropzoneConfig = {}
     }
+    //@ts-ignore
+    const options = selectedComponent.options;
+    //@ts-ignore
+    const isRequired = options.required === undefined || options.required === true;
+    //@ts-ignore
+    options.minimumRequiredFiles = isRequired ? options.minimumRequiredFiles || 1 : 0;
     const [component, setComponent] = useState({
         options: {
             dropzoneConfig: {
@@ -46,9 +52,14 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
             //@ts-ignore
             showNoScriptWarning: selectedComponent.options.showNoScriptWarning ? selectedComponent.options.showNoScriptWarning : false,
             //@ts-ignore
-            minimumRequiredFiles: selectedComponent.options.minimumRequiredFiles ? selectedComponent.options.minimumRequiredFiles : 0
+            minimumRequiredFiles: selectedComponent.options.minimumRequiredFiles
         },
     });
+
+    useEffect(() => {
+        //@ts-ignore
+        setComponent({options: {...selectedComponent.options}});
+    }, [selectedComponent.options]);
 
 
     const handleOnchangeEvent = (value) => {
@@ -151,7 +162,7 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
                 ...component.options,
                 dropzoneConfig: {
                     ...component.options.dropzoneConfig,
-                    acceptedFiles: updatedAcceptedFiles
+                    acceptedFiles: updatedAcceptedFiles.join(',')
                 }
             }
         });
