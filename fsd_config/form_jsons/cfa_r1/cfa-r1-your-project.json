@@ -1,0 +1,392 @@
+{
+  "startPage": "/before-you-start",
+  "pages": [
+    {
+      "path": "/check-your-answers",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/do-you-have-alternative-proposals-for-matching-households-to-sponsor-groups",
+      "title": "Do you have alternative proposals for matching households to Sponsor Groups?",
+      "components": [
+        {
+          "type": "Para",
+          "content": "Alternative proposals are worth 3% of your total score.",
+          "options": {},
+          "schema": {},
+          "name": "sQBEiR"
+        },
+        {
+          "options": {
+            "exposeToContext": true,
+            "hideTitle": true
+          },
+          "type": "YesNoField",
+          "title": "Do you have alternative proposals for matching households to Sponsor Groups? ",
+          "hint": "",
+          "schema": {},
+          "name": "lIaJIh",
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/what-are-your-alternative-proposals-for-matching-households-to-sponsor-groups",
+          "condition": "CEXqDF"
+        },
+        {
+          "path": "/how-will-awarded-funding-budgets-and-costs-be-monitored-against-delivery-of-the-programme",
+          "condition": "qErvIv"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/what-are-the-contingency-measures-and-escalation-routes-to-address-issues-in-delivery-in-contrast-to-overall-fundingproject-risk-management",
+      "title": "What are the contingency measures and escalation routes to address issues in delivery in contrast to overall funding/project risk management?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "400"
+          },
+          "type": "MultilineTextField",
+          "title": "What are the contingency measures and escalation routes to address issues in delivery in contrast to overall funding/project risk management?",
+          "hint": "",
+          "schema": {},
+          "name": "KAIPNG"
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-will-you-ensure-the-households-are-successfully-integrated-into-the-local-community"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/how-will-you-deal-with-over-or-underperformance-against-your-delivery-plan",
+      "title": "How will you deal with over or underperformance against your delivery plan?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "400"
+          },
+          "type": "MultilineTextField",
+          "title": "How will you deal with over or underperformance against your delivery plan?",
+          "hint": "",
+          "schema": {},
+          "name": "ODXhvT"
+        }
+      ],
+      "next": [
+        {
+          "path": "/what-are-the-contingency-measures-and-escalation-routes-to-address-issues-in-delivery-in-contrast-to-overall-fundingproject-risk-management"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/how-will-accommodation-be-sourced-and-what-steps-will-be-takento-ensure-that-the-properties-secured-and-the-tenancies-provided-are-in-alignment-with-housing-legislation",
+      "title": "How will accommodation be sourced and what steps will be taken\u202fto ensure that the properties secured and the tenancies provided are in alignment with housing legislation?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "450"
+          },
+          "type": "MultilineTextField",
+          "title": "How will accommodation be sourced and what steps will be taken\u202fto ensure that the properties secured and the tenancies provided are in alignment with housing legislation?",
+          "hint": "",
+          "schema": {},
+          "name": "TXFOoA"
+        }
+      ],
+      "next": [
+        {
+          "path": "/what-are-the-intended-geographical-areas-for-supporting-and-accommodating-households"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/upload-your-delivery-plan",
+      "title": "Upload your delivery plan",
+      "components": [
+        {
+          "type": "Para",
+          "content": "<p class=\"govuk-body\">Your delivery plan should include a fully detailed breakdown of your provision offer.</p>\n\n<p class=\"govuk-body\">You should highlight any activities you propose to carry out across the entire project (not just for the households in your bid) and associated costs outside of core costs. For example, matching across the scheme.</p>\n\n<p class=\"govuk-body\">Your delivery plan will be assessed if you score over 50% across all of the word-limited answers. The maximum weighting will be 15% for the full submitted delivery plan when this is assessed.</p>\n",
+          "options": {},
+          "schema": {},
+          "name": "XHZgie"
+        },
+        {
+          "options": {
+            "dropzoneConfig": {
+              "maxFiles": 1,
+              "parallelUploads": 1,
+              "maxFilesize": 10,
+              "acceptedFiles": "application/vnd.oasis.opendocument.spreadsheet,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv"
+            },
+            "hideTitle": true,
+            "minimumRequiredFiles": 1
+          },
+          "type": "ClientSideFileUploadField",
+          "title": "Upload your delivery plan",
+          "hint": "",
+          "schema": {},
+          "name": "MKjOJT"
+        }
+      ],
+      "next": [
+        {
+          "path": "/check-your-answers"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/what-are-the-intended-geographical-areas-for-supporting-and-accommodating-households",
+      "title": "What are the intended geographical areas for supporting and accommodating households?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "300"
+          },
+          "type": "MultilineTextField",
+          "title": "What are the intended geographical areas for supporting and accommodating households?",
+          "hint": "",
+          "schema": {},
+          "name": "wGBlPx"
+        }
+      ],
+      "next": [
+        {
+          "path": "/what-is-the-proposed-delivery-model"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/before-you-start",
+      "title": "Before you start",
+      "components": [
+        {
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>how you will work with and build relationships with devolved administrations, local authorities and Strategic Migration Partners</li>\n<li>how you will recruit and train Sponsor Groups</li>\n<li>how accommodation will be sourced and what steps will be taken\u202fto ensure that the properties secured and the tenancies provided are in alignment with housing legislation</li>\n<li>what the intended geographical areas are for supporting and accommodating households</li>\n<li>the proposed delivery model</li>\n<li>whether you have alternative proposals for matching households to Sponsor Groups</li>\n<li>your alternative proposals for matching households to Sponsor Groups (if applicable)</li>\n<li>how awarded funding, budgets and costs will be monitored against delivery of the programme</li>\n<li>how you will deal with over or underperformance against your delivery plan</li>\n<li>what the contingency measures and escalation routes are to address issues in delivery in contrast to overall funding/project risk management</li>\n<li>how you will ensure the households are successfully integrated into the local community</li>\n<li>your delivery plan, including a fully detailed breakdown of your provision offer and activities you propose to carry out across the entire project</li>\n</ul>",
+          "options": {},
+          "schema": {},
+          "name": "zdbxTq"
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-will-you-work-with-and-build-relationships-with-devolved-administrations-local-authorities-and-strategic-migration-partners"
+        }
+      ],
+      "section": "FabDefault",
+      "controller": "start.js"
+    },
+    {
+      "path": "/what-is-the-proposed-delivery-model",
+      "title": "What is the proposed delivery model?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "400"
+          },
+          "type": "MultilineTextField",
+          "title": "What is the proposed delivery model? ",
+          "hint": "<p class=\"govuk-body\">This should include:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>your organisation/consortium structure</li>\n  <li>staffing within your organisation or consortium including staff and volunteers, and the number of households and sponsor groups supported by staff and volunteers </li>\n  <li>the geographical spread of your staff and volunteers</li>\n</ul>",
+          "schema": {},
+          "name": "TgMsJk"
+        }
+      ],
+      "next": [
+        {
+          "path": "/do-you-have-alternative-proposals-for-matching-households-to-sponsor-groups"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/how-will-you-work-with-and-build-relationships-with-devolved-administrations-local-authorities-and-strategic-migration-partners",
+      "title": "How will you work with and build relationships with devolved administrations, local authorities and Strategic Migration Partners?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "350"
+          },
+          "type": "MultilineTextField",
+          "title": "How will you work with and build relationships with devolved administrations, local authorities and Strategic Migration Partners?",
+          "hint": "",
+          "schema": {},
+          "name": "lWEpUn"
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-will-you-recruit-and-train-sponsor-groups"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/how-will-you-ensure-the-households-are-successfully-integrated-into-the-local-community",
+      "title": "How will you ensure the households are successfully integrated into the local community?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "450"
+          },
+          "type": "MultilineTextField",
+          "title": "How will you ensure the households are successfully integrated into the local community?",
+          "hint": "",
+          "schema": {},
+          "name": "xMwPbL"
+        }
+      ],
+      "next": [
+        {
+          "path": "/upload-your-delivery-plan"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/what-are-your-alternative-proposals-for-matching-households-to-sponsor-groups",
+      "title": "What are your alternative proposals for matching households to Sponsor Groups?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "500"
+          },
+          "type": "MultilineTextField",
+          "title": "What are your alternative proposals for matching households to Sponsor Groups?",
+          "hint": "",
+          "schema": {},
+          "name": "rmpsUZ"
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-will-awarded-funding-budgets-and-costs-be-monitored-against-delivery-of-the-programme"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/how-will-you-recruit-and-train-sponsor-groups",
+      "title": "How will you recruit and train Sponsor Groups?",
+      "components": [
+        {
+          "type": "Para",
+          "content": "You must provide training at least until training can be carried out by a single provider.",
+          "options": {},
+          "schema": {},
+          "name": "FCzdWX"
+        },
+        {
+          "options": {
+            "maxWords": "300",
+            "hideTitle": true
+          },
+          "type": "MultilineTextField",
+          "title": "How will you recruit and train Sponsor Groups?",
+          "hint": "",
+          "schema": {},
+          "name": "LFWPdc"
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-will-accommodation-be-sourced-and-what-steps-will-be-takento-ensure-that-the-properties-secured-and-the-tenancies-provided-are-in-alignment-with-housing-legislation"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/how-will-awarded-funding-budgets-and-costs-be-monitored-against-delivery-of-the-programme",
+      "title": "How will awarded funding, budgets and costs be monitored against delivery of the programme?",
+      "components": [
+        {
+          "options": {
+            "maxWords": "400"
+          },
+          "type": "MultilineTextField",
+          "title": "How will awarded funding, budgets and costs be monitored against delivery of the programme?",
+          "hint": "",
+          "schema": {},
+          "name": "rucZXo"
+        }
+      ],
+      "next": [
+        {
+          "path": "/how-will-you-deal-with-over-or-underperformance-against-your-delivery-plan"
+        }
+      ],
+      "section": "FabDefault"
+    }
+  ],
+  "lists": [],
+  "conditions": [
+    {
+      "displayName": "Alternative proposals for matching to Sponsor Groups",
+      "name": "CEXqDF",
+      "value": {
+        "name": "Alternative proposals for matching to Sponsor Groups",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.lIaJIh",
+              "type": "YesNoField",
+              "display": "Do you have alternative proposals for matching households to Sponsor Groups? "
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "No alternative proposals for matching to Sponsor Groups",
+      "name": "qErvIv",
+      "value": {
+        "name": "No alternative proposals for matching to Sponsor Groups",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.lIaJIh",
+              "type": "YesNoField",
+              "display": "Do you have alternative proposals for matching households to Sponsor Groups? "
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "false",
+              "display": "false"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
+}

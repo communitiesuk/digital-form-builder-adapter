@@ -1,0 +1,65 @@
+{
+  "startPage": "/application-name",
+  "pages": [
+    {
+      "path": "/check-your-answers",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/application-name",
+      "title": "Application name",
+      "components": [
+        {
+          "type": "Para",
+          "content": "<p class=\"govuk-body govuk-!\">In this section, we'll ask you to name your application.</p>",
+          "options": {},
+          "schema": {},
+          "name": "ZwQdPz"
+        }
+      ],
+      "next": [
+        {
+          "path": "/name-your-application-SgTIrf"
+        }
+      ],
+      "section": "FabDefault",
+      "controller": "start.js"
+    },
+    {
+      "path": "/name-your-application-SgTIrf",
+      "title": "Name your application",
+      "components": [
+        {
+          "options": {},
+          "type": "TextField",
+          "title": "Name your application",
+          "hint": "",
+          "schema": {},
+          "name": "FuWchF"
+        }
+      ],
+      "next": [
+        {
+          "path": "/check-your-answers"
+        }
+      ],
+      "section": "FabDefault"
+    }
+  ],
+  "lists": [],
+  "conditions": [],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default Section",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for grant funding to be a Principal Sponsor for the Communities for Afghans scheme"
+}
