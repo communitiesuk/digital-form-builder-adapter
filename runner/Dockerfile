@@ -4,13 +4,11 @@
 # It also configures the non-root user that will be given permission to copied files/folders in every subsequent stages
 FROM node:20-alpine AS base-image
 RUN mkdir -p /usr/src/app/digital-form-builder-adapter/runner/public/static && \
-    addgroup -g 1001 appuser && \
-    adduser -S -u 1001 -G appuser appuser && \
-    chown -R appuser:appuser /usr/src/app/digital-form-builder-adapter && \
-    chmod -R +x  /usr/src/app/digital-form-builder-adapter && \
+    addgroup -g 1002 runuser && \
+    adduser -S -u 1002 -G runuser runuser && \
+    find /usr/src/app/digital-form-builder-adapter -type d -exec chmod 755 {} \; && \
     apk update && \
     apk add --no-cache bash git
-RUN npm install -g nodemon
 
 
 # ----------------------------
@@ -19,9 +17,8 @@ RUN npm install -g nodemon
 # It will re-run only if there is a yarn configuration change
 FROM base-image AS yarn-build
 WORKDIR /usr/src/app/digital-form-builder-adapter
-COPY --chown=appuser:appuser ../.yarn .yarn
-COPY --chown=appuser:appuser ../.yarnrc.yml .yarnrc.yml
-USER 1001
+COPY --chown=root:root --chmod=644 ../.yarn .yarn
+COPY --chown=root:root --chmod=644 ../.yarnrc.yml .yarnrc.yml
 
 
 # ----------------------------
@@ -30,19 +27,18 @@ USER 1001
 # It will re-run only if there is a configuration change
 FROM yarn-build AS digital-form-builder-adapter-pre-build
 WORKDIR /usr/src/app/digital-form-builder-adapter
-USER 1001
-COPY --chown=appuser:appuser .git ./.git
-COPY --chown=appuser:appuser .gitmodules ./.gitmodules
+COPY --chown=root:root --chmod=644 .git ./.git
+COPY --chown=root:root --chmod=644 .gitmodules ./.gitmodules
 RUN git submodule update --init --recursive
 RUN rm -rf .git
 RUN rm -rf digital-form-builder/.git
-COPY --chown=appuser:appuser ../package.json package.json
-COPY --chown=appuser:appuser ../tsconfig.json tsconfig.json
-COPY --chown=appuser:appuser ../update-package.js update-package.js
-COPY --chown=appuser:appuser ../yarn.lock yarn.lock
-COPY --chown=appuser:appuser ../designer/package.json ./designer/package.json
-COPY --chown=appuser:appuser ../runner/package.json ./runner/package.json
-COPY --chown=appuser:appuser ../model/package.json ./model/package.json
+COPY --chown=root:root --chmod=644 ../package.json package.json
+COPY --chown=root:root --chmod=644 ../tsconfig.json tsconfig.json
+COPY --chown=root:root --chmod=644 ../update-package.js update-package.js
+COPY --chown=root:root --chmod=644 ../yarn.lock yarn.lock
+COPY --chown=root:root --chmod=644 ../designer/package.json ./designer/package.json
+COPY --chown=root:root --chmod=644 ../runner/package.json ./runner/package.json
+COPY --chown=root:root --chmod=644 ../model/package.json ./model/package.json
 
 
 # ----------------------------
@@ -51,7 +47,7 @@ COPY --chown=appuser:appuser ../model/package.json ./model/package.json
 # It will re-run only if there is a dependency change
 FROM digital-form-builder-adapter-pre-build AS digital-form-builder-adapter-install
 WORKDIR /usr/src/app/digital-form-builder-adapter
-USER 1001
+RUN chmod 755 update-package.js
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
     node update-package.js && yarn setup && yarn install
 
@@ -62,7 +58,6 @@ RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-bui
 # It will re-run only if there is a XGovFormBuilder change
 FROM digital-form-builder-adapter-install AS digital-form-builder-build
 WORKDIR /usr/src/app/digital-form-builder-adapter
-USER 1001
 WORKDIR /usr/src/app/digital-form-builder-adapter/digital-form-builder
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-build \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
@@ -75,8 +70,7 @@ RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-bui
 # It will re-run only if there is a model change
 FROM digital-form-builder-build AS digital-form-builder-adapter-model-pre-build
 WORKDIR /usr/src/app/digital-form-builder-adapter
-USER 1001
-COPY --chown=appuser:appuser ../model ./model
+COPY --chown=root:root --chmod=644 ../model ./model
 
 
 # ----------------------------
@@ -85,7 +79,6 @@ COPY --chown=appuser:appuser ../model ./model
 # It will re-run only if there is a model change and a build change
 FROM digital-form-builder-adapter-model-pre-build AS digital-form-builder-adapter-model-build
 WORKDIR /usr/src/app/digital-form-builder-adapter
-USER 1001
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-build  \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-model-build
@@ -98,9 +91,8 @@ RUN yarn model build
 # It will re-run only if there is a designer change
 FROM digital-form-builder-adapter-model-build AS digital-form-builder-adapter-runner-pre-build
 WORKDIR /usr/src/app/digital-form-builder-adapter
-USER 1001
-COPY --chown=appuser:appuser ../runner ./runner
-COPY --chown=appuser:appuser ../fsd_config ./fsd_config
+COPY --chown=root:root --chmod=644 ../runner ./runner
+COPY --chown=root:root --chmod=644 ../fsd_config ./fsd_config
 
 
 # ----------------------------
@@ -113,7 +105,16 @@ RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-bui
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-model-build  \
     yarn runner build
-USER appuser
+
+
+# ----------------------------
+# Stage 10
+# Update permissions
+RUN find . -type d -exec chmod 755 {} \; && \
+    find . -type f -not -path "*/\.*" -exec chmod 644 {} \; && \
+    find . -type f -name "*.js" -exec chmod 755 {} \; && \
+    find . -type f -name "*.ts" -exec chmod 755 {} \;
+USER runuser
 CMD ["yarn", "runner", "production"]
 
 
