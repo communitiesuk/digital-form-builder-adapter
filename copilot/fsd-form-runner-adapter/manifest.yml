@@ -91,9 +91,9 @@ environments:
       JWT_REDIRECT_TO_AUTHENTICATION_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
       LOGOUT_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
       MULTIFUND_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
-      PRIVACY_POLICY_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/privacy"
-      SERVICE_START_PAGE: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
-      ELIGIBILITY_RESULT_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
+      PRIVACY_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/privacy"
+      SERVICE_START_PAGE: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
+      ELIGIBILITY_RESULT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/eligibility-result"
 
     count:
       spot: 2
@@ -107,9 +107,9 @@ environments:
       JWT_REDIRECT_TO_AUTHENTICATION_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
       LOGOUT_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
       MULTIFUND_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
-      PRIVACY_POLICY_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/privacy"
-      SERVICE_START_PAGE: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
-      ELIGIBILITY_RESULT_URL: "https://apply.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
+      PRIVACY_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/privacy"
+      SERVICE_START_PAGE: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
+      ELIGIBILITY_RESULT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/eligibility-result"
     count:
       spot: 2
   uat:
