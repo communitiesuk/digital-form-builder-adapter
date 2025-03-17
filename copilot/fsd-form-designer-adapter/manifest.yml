@@ -53,9 +53,9 @@ network:
 variables:
   NODE_ENV: production
   CHOKIDAR_USEPOLLING: true
-  PREVIEW_URL: "https://forms.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk"
+  PREVIEW_URL: "https://application-questions.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk"
   PUBLISH_URL: "http://fsd-form-runner-adapter:3009"
-  AUTH_SERVICE_URL: "https://authenticator.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk"
+  AUTH_SERVICE_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk"
   SSO_LOGIN_URL: "/sso/login?return_app=form-designer"
   SSO_LOGOUT_URL: "/sessions/sign-out"
   AUTH_COOKIE_NAME: "fsd_user_token"
@@ -68,15 +68,9 @@ secrets:
 # You can override any of the values defined above by environment.
 environments:
   dev:
-    variables:
-      PREVIEW_URL: "https://application-questions.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk"
-      AUTH_SERVICE_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk"
     count:
       spot: 1
   test:
-    variables:
-      PREVIEW_URL: "https://application-questions.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk"
-      AUTH_SERVICE_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk"
     count:
       spot: 2
   uat:
