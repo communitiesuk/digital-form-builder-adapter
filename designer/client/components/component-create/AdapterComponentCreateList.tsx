@@ -15,6 +15,11 @@ const selectionFields: AdapterComponentDef[] = [];
 const inputFields: AdapterComponentDef[] = [];
 
 sortBy(AdapterComponentTypes, ["type"]).forEach((component) => {
+    // Skip the FileUpload component entirely
+    if (component.type === "FileUploadField") {
+        return;
+    }
+
     if (component.subType === "content") {
         contentFields.push(component);
     } else if (SelectionFieldsTypes.indexOf(component.type) > -1) {
