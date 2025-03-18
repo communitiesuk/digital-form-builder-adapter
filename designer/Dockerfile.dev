@@ -17,11 +17,15 @@ RUN mkdir -p /usr/src/app/digital-form-builder-adapter && \
 # It will re-run only if there is a yarn configuration change
 FROM base-image AS yarn-build
 WORKDIR /usr/src/app/digital-form-builder-adapter
-RUN mkdir -p .yarn/cache && chmod 777 .yarn/cache
-COPY --chown=root:root --chmod=644 ../.yarn .yarn
+# Create directory structure with proper permissions
+RUN mkdir -p .yarn/cache .yarn/releases .yarn/plugins/@yarnpkg && \
+    chmod 777 .yarn/cache && \
+    chmod 755 .yarn/releases .yarn/plugins .yarn/plugins/@yarnpkg
 COPY --chown=root:root --chmod=644 ../.yarnrc.yml .yarnrc.yml
-RUN chmod 755 .yarn/releases/yarn-*.cjs
-
+COPY --chown=root:root --chmod=644 ../.yarn/plugins/@yarnpkg/*.cjs .yarn/plugins/@yarnpkg/
+COPY --chown=root:root --chmod=755 ../.yarn/releases/*.cjs .yarn/releases/
+RUN find .yarn -type d -exec chmod 755 {} \; && \
+    find .yarn/releases -name "*.cjs" -exec chmod 755 {} \;
 
 
 # ----------------------------
@@ -105,6 +109,10 @@ RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0777,id=digital-form-bui
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0777,id=digital-form-builder-adapter-install  \
     --mount=type=cache,target=.yarn/cache,uid=1001,mode=0777,id=digital-form-builder-adapter-model-build  \
     yarn designer build
+
+RUN find /usr/src/app/digital-form-builder-adapter -type d -exec chmod 755 {} \; && \
+    find /usr/src/app/digital-form-builder-adapter -type f -name "*.js" -exec chmod 755 {} \; && \
+    find /usr/src/app/digital-form-builder-adapter -type f -name "*.cjs" -exec chmod 755 {} \;
 
 RUN chown -R appuser:appuser /usr/src/app/digital-form-builder-adapter/designer
 USER appuser
