@@ -39,7 +39,9 @@ function MultiInputField() {
 function ClientSideFileUploadField() {
     return (
         <ComponentField>
-            <span className="box tall thick-top-border"/>
+            <div className="govuk-!-margin-bottom-1">
+                {"🗂"} <span className="line short" />
+            </div>
         </ComponentField>
     );
 }
