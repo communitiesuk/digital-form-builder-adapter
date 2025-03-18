@@ -51,26 +51,26 @@ network:
 #
 # Pass environment variables as key value pairs.
 variables:
+  ACCESSIBILITY_STATEMENT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/accessibility_statement"
+  CONTACT_US_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/contact_us"
+  COOKIE_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/cookie_policy"
+  FEEDBACK_LINK: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/feedback"
+  JWT_REDIRECT_TO_AUTHENTICATION_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
+  LOGOUT_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
+  MULTIFUND_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
+  PRIVACY_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/privacy"
+  SERVICE_START_PAGE: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
+  ELIGIBILITY_RESULT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/eligibility-result"
   SENTRY_DSN: "https://6724d8df633d3f4599fbd4cf9c537e3c@o1432034.ingest.us.sentry.io/4508573162864640"
   SENTRY_TRACES_SAMPLE_RATE: 0.02
-  ACCESSIBILITY_STATEMENT_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/accessibility_statement"
   SENTRY_ENV: ${COPILOT_ENVIRONMENT_NAME}
   AWS_BUCKET_NAME:
     from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-FormUploadsBucket
   BASIC_AUTH_ON: false
-  CONTACT_US_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/contact_us"
-  COOKIE_POLICY_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/cookie_policy"
-  FEEDBACK_LINK: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/feedback"
-  JWT_REDIRECT_TO_AUTHENTICATION_URL: "https://authenticator.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/sessions/sign-out"
-  LOGOUT_URL: "https://authenticator.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/sessions/sign-out"
-  MULTIFUND_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
   NODE_CONFIG: '{"safelist": ["fsd-application-store", "fsd-pre-award-stores", "fsd-pre-award", "fsd-pre-award.${COPILOT_ENVIRONMENT_NAME}.pre-award.local"]}'
   NODE_ENV: production
-  PRIVACY_POLICY_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/privacy"
-  SERVICE_START_PAGE: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/account"
   SINGLE_REDIS: true
   JWT_AUTH_COOKIE_NAME: "fsd_user_token"
-  ELIGIBILITY_RESULT_URL: "https://frontend.${COPILOT_ENVIRONMENT_NAME}.access-funding.test.levellingup.gov.uk/eligibility-result"
   JWT_AUTH_ENABLED: true
   LOG_PRETTY_PRINT: false
 
@@ -84,32 +84,12 @@ environments:
   dev:
     variables:
       PREVIEW_MODE: true
-      ACCESSIBILITY_STATEMENT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/accessibility_statement"
-      CONTACT_US_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/contact_us"
-      COOKIE_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/cookie_policy"
-      FEEDBACK_LINK: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/feedback"
-      JWT_REDIRECT_TO_AUTHENTICATION_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
-      LOGOUT_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
-      MULTIFUND_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
-      PRIVACY_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/privacy"
-      SERVICE_START_PAGE: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
-      ELIGIBILITY_RESULT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/eligibility-result"
 
     count:
       spot: 2
   test:
     variables:
       PREVIEW_MODE: true
-      ACCESSIBILITY_STATEMENT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/accessibility_statement"
-      CONTACT_US_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/contact_us"
-      COOKIE_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/cookie_policy"
-      FEEDBACK_LINK: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/feedback"
-      JWT_REDIRECT_TO_AUTHENTICATION_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
-      LOGOUT_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/sessions/sign-out"
-      MULTIFUND_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
-      PRIVACY_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/privacy"
-      SERVICE_START_PAGE: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
-      ELIGIBILITY_RESULT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/eligibility-result"
     count:
       spot: 2
   uat:
