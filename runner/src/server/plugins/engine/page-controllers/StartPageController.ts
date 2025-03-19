@@ -46,16 +46,14 @@ export class StartPageController extends PageController {
           // if all components are HTML components, replace them with a change request message
           if (allComponentsAreParaOrHtml) {
             const titleText = this.model.translationEn.components.changeRequestpage.title;
-            const subtitleText = this.model.translationEn.components.changeRequestpage.subtitle;
             const itemOneText = this.model.translationEn.components.changeRequestpage.itemOne;
             const itemTwoText = this.model.translationEn.components.changeRequestpage.itemTwo;
             const itemThreeText = this.model.translationEn.components.changeRequestpage.itemThree;
 
-            const title = `<h1 class='govuk-heading-m'>${titleText}</h1>`;
-            const paragraph = `<p class='govuk-body'>${subtitleText}</p>`;
-            const list = `<ul class='govuk-list govuk-list--bullet govuk-!-margin-bottom-8'><li>${itemOneText}</li><li>${itemTwoText}</li><li>${itemThreeText}</li></ul>`;
-            const changeRequestMessage = title + paragraph + list
+            const changeRequestMessage = `<div class="govuk-body govuk-!-margin-bottom-6"><p>${itemOneText}</p><p>${itemTwoText}</p><p>${itemThreeText}</p></div>`;
 
+            viewModel.sectionTitle = this.title;
+            viewModel.pageTitle = titleText;
             viewModel.components = [{
                 type: "Para",
                 isFormComponent: true,

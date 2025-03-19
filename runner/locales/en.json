@@ -80,11 +80,10 @@
       "no": "No"
     },
     "changeRequestpage": {
-      "title": "Change requested",
-      "subtitle": "Please provide details of the changes you would like to make to your application",
-      "itemOne": "amend parts where a change has been requested",
-      "itemTwo": "check through the other information in the section",
-      "itemThree": "approve the changes"
+      "title": "We need you to make changes",
+      "itemOne": "The assessor has asked you to make a change to specific parts of this section.",
+      "itemTwo": "The pages where you need to make a change will be highlighted.",
+      "itemThree": "You do not need to make changes to any other pages."
     }
   },
   "head": {

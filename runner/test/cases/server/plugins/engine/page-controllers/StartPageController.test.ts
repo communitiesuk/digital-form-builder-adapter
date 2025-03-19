@@ -110,6 +110,27 @@ suite("StartPageController", () => {
         });
 
         $ = cheerio.load(response.payload);
-        expect($(".govuk-heading-m").text()).to.contain("Change requested");
+        expect($(".govuk-heading-l").text()).to.contain("We need you to make changes");
+    });
+
+    test("start page should never show the tag", async () => {
+        const {adapterCacheService} = server.services();
+        adapterCacheService.getState = () => {
+            return Promise.resolve({
+                metadata: {
+                    change_requests: {
+                        "VcyKVN": ["Assessor Feedback"]
+                    }
+                }
+            });
+        };
+
+        const response = await server.inject({
+            method: 'GET',
+            url: '/start-page.test/before-you-start',
+        });
+
+        $ = cheerio.load(response.payload);
+        expect($("#form-page-title-tag").length).to.equal(0);
     });
 });
