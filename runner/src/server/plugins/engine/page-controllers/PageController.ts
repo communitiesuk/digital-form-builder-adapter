@@ -69,6 +69,7 @@ export class PageController extends PageControllerBase {
             // Extract the viewModel from the parent's response
             const viewModel = parentResponse.source.context;
 
+            viewModel.isResubmission = state.metadata?.is_resubmission
             viewModel.changeRequests = [];
             const changeRequests = state.metadata?.change_requests;
             if (changeRequests && Object.keys(changeRequests).length > 0) {
