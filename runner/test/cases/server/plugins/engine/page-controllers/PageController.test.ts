@@ -149,4 +149,89 @@ suite("PageController", () => {
 
         expect($("h2").text()).to.not.contain("Change request");
     });
+
+    test("should display not change needed tag on page without feedback", async () => {
+        server = await createServer({
+            formFileName: "sample-page.test.json",
+            formFilePath: path.join(__dirname, "../../../"),
+            enforceCsrf: false,
+        });
+
+        const { adapterCacheService } = server.services();
+        adapterCacheService.getState = () => {
+            return Promise.resolve({
+                metadata: {
+                    change_requests: {
+                        "no_found": ["Assessor Feedback"]
+                    },
+                    is_resubmission: true
+                }
+            });
+        };
+
+        const response = await server.inject({
+            method: 'GET',
+            url: '/sample-page.test/project-name',
+        });
+
+        $ = cheerio.load(response.payload);
+
+        expect($("#form-page-title-tag").text()).to.contain("No change required");
+    });
+
+    test("should not display not change needed tag on page with feedback", async () => {
+        server = await createServer({
+            formFileName: "sample-page.test.json",
+            formFilePath: path.join(__dirname, "../../../"),
+            enforceCsrf: false,
+        });
+
+        const { adapterCacheService } = server.services();
+        adapterCacheService.getState = () => {
+            return Promise.resolve({
+                metadata: {
+                    change_requests: {
+                        "VcyKVN": ["Assessor Feedback"]
+                    },
+                    is_resubmission: true
+                }
+            });
+        };
+
+        const response = await server.inject({
+            method: 'GET',
+            url: '/sample-page.test/project-name',
+        });
+
+        $ = cheerio.load(response.payload);
+
+        expect($("#form-page-title-tag").length).to.equal(0);
+    });
+
+    test("should not display not change needed tag on first submission", async () => {
+        server = await createServer({
+            formFileName: "sample-page.test.json",
+            formFilePath: path.join(__dirname, "../../../"),
+            enforceCsrf: false,
+        });
+
+        const { adapterCacheService } = server.services();
+        adapterCacheService.getState = () => {
+            return Promise.resolve({
+                metadata: {
+                    change_requests: {},
+                    is_resubmission: false
+                }
+            });
+        };
+
+        const response = await server.inject({
+            method: 'GET',
+            url: '/sample-page.test/project-name',
+        });
+
+        $ = cheerio.load(response.payload);
+
+        expect($("#form-page-title-tag").length).to.equal(0);
+    });
 });

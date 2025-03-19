@@ -88,3 +88,7 @@ $govuk-global-styles: true;
   list-style-type: revert;
   padding-left: revert;
 }
+
+#form-page-title-tag span {
+  text-transform: none;
+}
