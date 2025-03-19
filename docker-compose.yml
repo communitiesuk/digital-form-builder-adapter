@@ -26,7 +26,7 @@ services:
     image: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:latest
     build:
       context: .
-      dockerfile: ./runner/Dockerfile
+      dockerfile: ./runner/Dockerfile.dev
       cache_from:
         - ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:latest
     ports:
@@ -37,5 +37,4 @@ services:
       - LAST_COMMIT
       - LAST_TAG
       - JWT_AUTH_ENABLED=false
-      - PREVIEW_MODE=true
     command: yarn runner production
