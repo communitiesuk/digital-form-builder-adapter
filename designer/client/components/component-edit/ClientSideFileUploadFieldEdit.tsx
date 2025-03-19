@@ -26,56 +26,52 @@ const ALLOWED_FILE_TYPES: string[] = [
 export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentContext}) => {
     const {state} = useContext(context);
     const {selectedComponent} = state;
-    //@ts-ignore
-    if (!selectedComponent.options.dropzoneConfig) {
-        // @ts-ignore
-        selectedComponent.options.dropzoneConfig = {}
-    }
-    const [component, setComponent] = useState({
-        options: {
-            dropzoneConfig: {
-                //@ts-ignore
-                maxFiles: selectedComponent.options.dropzoneConfig.maxFiles ? selectedComponent.options.dropzoneConfig.maxFiles : 1,
-                //@ts-ignore
-                parallelUploads: selectedComponent.options.dropzoneConfig.parallelUploads ? selectedComponent.options.dropzoneConfig.parallelUploads : 1,
-                //@ts-ignore
-                maxFilesize: selectedComponent.options.dropzoneConfig.maxFilesize ? selectedComponent.options.dropzoneConfig.maxFilesize : 1,
-                //@ts-ignore
-                acceptedFiles: selectedComponent.options.dropzoneConfig.acceptedFiles
-                //@ts-ignore
-                && selectedComponent.options.dropzoneConfig.acceptedFiles.length > 0 ? Array.isArray(selectedComponent.options.dropzoneConfig.acceptedFiles) ?
-                    //@ts-ignore
-                    selectedComponent.options.dropzoneConfig.acceptedFiles : selectedComponent.options.dropzoneConfig.acceptedFiles.split(",") : []
-            }
-        },
-        //@ts-ignore
-        showNoScriptWarning: selectedComponent.showNoScriptWarning ? selectedComponent.showNoScriptWarning : false,
-        //@ts-ignore
-        minimumRequiredFiles: selectedComponent.minimumRequiredFiles ? selectedComponent.minimumRequiredFiles : 0
-    });
 
+    if (selectedComponent.options && Object.keys(selectedComponent.options).length == 0) {
+        selectedComponent.options = {
+            dropzoneConfig: {
+                maxFiles: 1,
+                parallelUploads: 1,
+                maxFilesize: 1,
+                acceptedFiles: "",
+            },
+            showNoScriptWarning: false,
+            minimumRequiredFiles: 0,
+        }
+    }
+
+    const [component, setComponent] = useState({...selectedComponent});
 
     const handleOnchangeEvent = (value) => {
         if (value.type === EDIT_NO_SCRIPT_WARNING) {
-            const updatedComponent = {
-                ...component,
-                showNoScriptWarning: !component.showNoScriptWarning
-            }
-            setComponent(updatedComponent)
-            //@ts-ignore
-            selectedComponent.showNoScriptWarning = updatedComponent.showNoScriptWarning
-        } else if (value.type === EDIT_MINIMUM_REQUIRED_FILES) {
             setComponent(
+                //@ts-ignore
                 {
                     ...component,
-                    //@ts-ignore
-                    minimumRequiredFiles: parseInt(value.payload)
+                    options: {
+                        ...component.options,
+                        showNoScriptWarning: !component.options.showNoScriptWarning
+                    },
                 }
             )
             //@ts-ignore
-            selectedComponent.minimumRequiredFiles = parseInt(value.payload)
+            selectedComponent.options.showNoScriptWarning = updatedComponent.options.showNoScriptWarning
+        } else if (value.type === EDIT_MINIMUM_REQUIRED_FILES) {
+            setComponent(
+                //@ts-ignore
+                {
+                    ...component,
+                    options: {
+                        ...component.options,
+                        minimumRequiredFiles: parseInt(value.payload)
+                    },
+                }
+            )
+            //@ts-ignore
+            selectedComponent.options.minimumRequiredFiles = parseInt(value.payload)
         } else if (value.type === OPTIONS_MAX_FILES) {
             setComponent(
+                //@ts-ignore
                 {
                     ...component,
                     options: {
@@ -95,6 +91,7 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
             }
         } else if (value.type === OPTIONS_MAX_PARALLEL_UPLOAD_FILES) {
             setComponent(
+                //@ts-ignore
                 {
                     ...component,
                     options: {
@@ -114,6 +111,7 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
             }
         } else if (value.type === OPTIONS_MAX_FILES_SIZE) {
             setComponent(
+                //@ts-ignore
                 {
                     ...component,
                     options: {
@@ -137,21 +135,25 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
     // Handle change in checkbox selection
     const handleCheckboxChange = (e) => {
         const item = e.target.value;
-        const isItemSelected = component.options.dropzoneConfig.acceptedFiles.includes(item);
+        const acceptedFilesArr = component.options.dropzoneConfig.acceptedFiles.split(",")
+        const isItemSelected = acceptedFilesArr.includes(item);
         // Create new array - either add or remove item
         const updatedAcceptedFiles = isItemSelected
-            ? component.options.dropzoneConfig.acceptedFiles.filter(file => file !== item)
-            : [...component.options.dropzoneConfig.acceptedFiles, item];
-        setComponent({
-            ...component,
-            options: {
-                ...component.options,
-                dropzoneConfig: {
-                    ...component.options.dropzoneConfig,
-                    acceptedFiles: updatedAcceptedFiles
+            ? acceptedFilesArr.filter(file => file !== item)
+            : [...acceptedFilesArr, item];
+        setComponent(
+            //@ts-ignore
+            {
+                ...component,
+                options: {
+                    ...component.options,
+                    dropzoneConfig: {
+                        ...component.options.dropzoneConfig,
+                        acceptedFiles: updatedAcceptedFiles.join(",")
+                    }
                 }
             }
-        });
+        );
         //@ts-ignore
         selectedComponent.options.dropzoneConfig.acceptedFiles = updatedAcceptedFiles.join(",");
     };
@@ -166,7 +168,7 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
                             id="show-no-script-warning"
                             name="showNoScriptWarning"
                             type="checkbox"
-                            checked={component.showNoScriptWarning}
+                            checked={component.options.showNoScriptWarning}
                             onChange={(e) =>
                                 handleOnchangeEvent({
                                     type: EDIT_NO_SCRIPT_WARNING,
@@ -197,7 +199,7 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
                     name="minimumRequiredFiles"
                     value={
                         //@ts-ignore
-                        component.minimumRequiredFiles}
+                        component.options.minimumRequiredFiles}
                     type="number"
                     onChange={(e) => handleOnchangeEvent({
                         type: EDIT_MINIMUM_REQUIRED_FILES,
@@ -294,7 +296,7 @@ export const ClientSideFileUploadFieldEdit: any = ({context = AdapterComponentCo
                                     type="checkbox"
                                     value={item}
                                     onChange={handleCheckboxChange}
-                                    checked={component.options.dropzoneConfig.acceptedFiles.includes(item)}
+                                    checked={component.options.dropzoneConfig.acceptedFiles.split(",").includes(item)}
                                 />
                                 <label className="govuk-label govuk-checkboxes__label"
                                        htmlFor={`file-type-item-${item}`}>
