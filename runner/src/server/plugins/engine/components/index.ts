@@ -36,9 +36,7 @@ export {
 export {Html} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/Html";
 export {InsetText} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/InsetText";
 export {List} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/List";
-export {
-    MultilineTextField
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/MultilineTextField";
+export {MultilineTextField} from "./MultilineTextField"
 export {
     NumberField
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/NumberField";
