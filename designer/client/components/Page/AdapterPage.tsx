@@ -14,7 +14,7 @@ import {AdapterDataContext} from "../../context/AdapterDataContext";
 import {AdapterComponentContextProvider} from "../../reducers/component/AdapterComponentReducer";
 import AdapterComponentCreate from "../component-create/AdapterComponentCreate";
 import {AdapterPageEdit} from "../component-edit/AdapterPageEdit";
-
+import {v4 as uuidv4} from 'uuid';
 
 const SortableItem = SortableElement(({index, page, component, data}) => (
     <div className="component-item">
@@ -174,7 +174,8 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
         if (isMultiInputUpdated) {
             await save(data);
         }
-        const url = new URL(`${id}${page.path}`, previewUrl).toString();
+
+        const url = new URL(`${id}${page.path}?form_session_identifier=preview/${uuidv4()}`, previewUrl).toString();
         // Check if Cypress is running because in cypress it will not detect the new tabs created by the window.open,
         // and it will be a separate browser context for that so to avoid that using this check
         //@ts-ignore
