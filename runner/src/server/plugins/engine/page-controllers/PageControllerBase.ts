@@ -689,6 +689,22 @@ export class PageControllerBase {
                     }
                 }
             }
+
+            // handling preview mode
+            const {form_session_identifier} = request.query;
+            if (form_session_identifier && form_session_identifier.includes("preview")) {
+                //@ts-ignore
+                await adapterCacheService.mergeState(request, {
+                    "previewMode": true,
+                });
+                //@ts-ignore
+                viewModel.previewMode = true;
+                viewModel.backLinkText = ""
+                this.backLinkText = ""
+                viewModel.backLink = ""
+                this.backLink = ""
+            }
+
             return h.view(this.viewName, viewModel);
         };
     }
