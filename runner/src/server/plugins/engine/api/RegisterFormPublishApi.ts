@@ -210,7 +210,9 @@ export class RegisterFormPublishApi implements RegisterApi {
             }
         }
 
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+        // TODO: Stop being naughty! Conditionally disabling auth for UAT env is a temporary measure for getting FAB
+        // into production
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && config.copilotEnv !== "uat") {
             getOptions.options.auth = jwtAuthStrategyName
         }
 
@@ -275,7 +277,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                 handler: postHandler,
             }
         }
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && config.copilotEnv !== "uat") {
             postConfig.options.auth = jwtAuthStrategyName
         }
         server.route(postConfig);

@@ -70,5 +70,5 @@
   "ignoreSectionsFromSummary": "IGNORE_SECTIONS_FROM_SUMMARY_PAGE",
   "sentryDsn": "SENTRY_DSN",
   "sentryTracesSampleRate": "SENTRY_TRACES_SAMPLE_RATE",
-  "sentryEnv": "SENTRY_ENV"
+  "copilotEnv": "COPILOT_ENV"
 }
