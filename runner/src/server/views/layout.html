@@ -196,6 +196,13 @@
     {% if changeRequests.length > 0 %}
         {{ changeRequestsBanner(changeRequests) }}
     {% endif %}
+    {% if not isStartPage and changeRequests.length == 0 and isResubmission %}
+        <div class="govuk-!-margin-top-4">
+            <p id="form-page-title-tag" class="govuk-!-margin-0">
+                <span class="govuk-tag govuk-tag--green">No change required</span>
+            </p>
+        </div>
+    {% endif %}
 {% endblock %}
 
 
