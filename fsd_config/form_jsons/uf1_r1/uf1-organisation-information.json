@@ -1,0 +1,144 @@
+{
+  "startPage": "/organisation-information",
+  "pages": [
+    {
+      "path": "/summary",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "title": "Organisation information",
+      "path": "/organisation-information",
+      "components": [
+        {
+          "name": "orUXQc",
+          "options": {},
+          "type": "Para",
+          "content": "<label class=\"govuk-!-font-weight-bold\">In this section, we'll ask about:\n</label>\n\n<div class=\"govuk-body\">\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>organisation name</li>\n<li>alternative names of your organisation (if applicable)</li>\n</ul>\n</div>",
+          "schema": {}
+        }
+      ],
+      "next": [
+        {
+          "path": "/organisation-name"
+        }
+      ],
+      "controller": "./pages/start.js"
+    },
+    {
+      "path": "/organisation-name",
+      "title": "Organisation name",
+      "components": [
+        {
+          "options": {},
+          "type": "TextField",
+          "title": "Organisation name",
+          "hint": "This must match your registered legal \norganisation name.",
+          "schema": {},
+          "name": "yptqZX"
+        },
+        {
+          "options": {
+            "exposeToContext": true
+          },
+          "type": "YesNoField",
+          "title": "Does your organisation use any  other names?",
+          "hint": "",
+          "schema": {},
+          "name": "BIxPht",
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        },
+        {
+          "path": "/alternative-organisation-names",
+          "condition": "lgQzEs"
+        }
+      ],
+      "section": "FabDefault"
+    },
+    {
+      "path": "/alternative-organisation-names",
+      "title": "Alternative organisation names",
+      "components": [
+        {
+          "options": {},
+          "type": "TextField",
+          "title": "Alternative name 1",
+          "hint": "",
+          "schema": {},
+          "name": "Ianpnw"
+        },
+        {
+          "options": {
+            "required": false
+          },
+          "type": "TextField",
+          "title": "Alternative name 2",
+          "hint": "",
+          "schema": {},
+          "name": "CTyQWf"
+        },
+        {
+          "options": {
+            "required": false
+          },
+          "type": "TextField",
+          "title": "Alternative name 3",
+          "hint": "",
+          "schema": {},
+          "name": "XWsTKi"
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "FabDefault"
+    }
+  ],
+  "lists": [],
+  "conditions": [
+    {
+      "displayName": "Alternative organisation name",
+      "name": "lgQzEs",
+      "value": {
+        "name": "Alternative organisation name",
+        "conditions": [
+          {
+            "field": {
+              "name": "BIxPht",
+              "type": "YesNoField",
+              "display": "Does your organisation use any  other names?"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "true",
+              "display": "true"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default section",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for Sample Fund"
+}
