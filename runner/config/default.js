@@ -113,5 +113,5 @@ module.exports = {
   /*sentry configurations*/
   sentryDsn: "",
   sentryTracesSampleRate: "",
-  sentryEnv: ""
+  copilotEnv: ""
 };
