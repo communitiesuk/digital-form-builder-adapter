@@ -1,0 +1,97 @@
+{
+    "startPage": "/lead-contact-information",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Summary",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/lead-contact-information",
+            "title": "Lead contact information",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "In this section, we will ask about the details of the lead contact for your project.",
+                    "options": {},
+                    "schema": {},
+                    "name": "BzizWk"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-lead-contact-for-your-project"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/who-is-the-lead-contact-for-your-project",
+            "title": "Who is the lead contact for your project?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Full name",
+                    "hint": "",
+                    "schema": {},
+                    "name": "PSFujj"
+                },
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Organisation",
+                    "hint": "",
+                    "schema": {},
+                    "name": "MUvyMa"
+                },
+                {
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Role",
+                    "hint": "",
+                    "schema": {},
+                    "name": "KrgFXy"
+                },
+                {
+                    "options": {},
+                    "type": "EmailAddressField",
+                    "title": "Email address",
+                    "hint": "",
+                    "schema": {},
+                    "name": "OPgJWR"
+                },
+                {
+                    "options": {},
+                    "type": "TelephoneNumberField",
+                    "title": "Telephone number",
+                    "hint": "",
+                    "schema": {},
+                    "name": "MZMsaO"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to monitor and report anti-Muslim hate to better support victims "
+}
