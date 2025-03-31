@@ -1,0 +1,71 @@
+{
+    "startPage": "/declarations",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/declarations",
+            "title": "Declarations",
+            "components": [
+                {
+                    "type": "Html",
+                    "content": "<p class=\"govuk-body govuk-!\">If successful for grant funding, as part of the programme, you declare that your organisation is willing to:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>participate in an evaluation of the project\u2019s impact and be able to reliably capture the relevant data as set out in the prospectus</li>\n<li>monitor and record instances of anti-Muslim hate that is consistent with any definitions adopted for this term, should the government choose to adopt a definition in future</li>\n<li>share anonymised data with the Ministry of Housing, Communities and Local Government (MHCLG), the police and other public sector bodies, as required</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "LueaTx"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "I confirm that I have read and agree with the declarations",
+                    "hint": "",
+                    "schema": {},
+                    "name": "hPIzIm",
+                    "list": "VkxVVL",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "I confirm that I have read and agree with the declarations",
+                    "value": "I confirm that I have read and agree with the declarations"
+                }
+            ],
+            "name": "VkxVVL",
+            "title": "Declaration"
+        }
+    ],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to monitor and report anti-Muslim hate to better support victims "
+}

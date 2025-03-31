@@ -1,0 +1,164 @@
+{
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "path": "/what-we-need-to-know",
+            "title": "What we need to know",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "In this section, we will ask: \n<ul>\n<li>whether you are submitting a consortium bid for funding</li>\n<li>if you are submitting a consortium bid, whether you will be creating a memorandum of understanding (MoU) or other legal agreement</li>\n<li>if you are submitting a consortium bid, the names and details of the other partner organisations involved in the consortium bid</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "mbuoCF"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/are-you-submitting-a-consortium-bid-for-funding-with-one-or-more-organisations"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/will-you-create-a-memorandum-of-understanding-mou-or-other-legal-agreement-between-partner-organisations",
+            "title": "Will you create a memorandum of understanding (MoU), or other legal agreement, between partner organisations?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Will you create a memorandum of understanding (MoU) between partner organisations?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "iJgTSg",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/provide-the-names-and-details-of-the-partner-organisations-involved-in-the-consortium-bid"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/are-you-submitting-a-consortium-bid-for-funding-with-one-or-more-organisations",
+            "title": "Are you submitting a consortium bid for funding with one or more organisations?",
+            "components": [
+                {
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Are you submitting a joint bid for funding with one or more organisations?",
+                    "hint": "Consortium bids must have an accountable body. ",
+                    "schema": {},
+                    "name": "QBlbsv",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/will-you-create-a-memorandum-of-understanding-mou-or-other-legal-agreement-between-partner-organisations",
+                    "condition": "TluPzu"
+                },
+                {
+                    "path": "/check-your-answers",
+                    "condition": "lapjEF"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/provide-the-names-and-details-of-the-partner-organisations-involved-in-the-consortium-bid",
+            "title": "Provide the names and details of the partner organisations involved in the consortium bid.",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "Provide the names and details of the partner organisations involved in the joint bid.",
+                    "hint": "Include the organisation name, address, company registration number and charity number (if applicable). ",
+                    "schema": {},
+                    "name": "mexLSQ"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "conditions": [
+        {
+            "displayName": "If submitting joint bid",
+            "name": "TluPzu",
+            "value": {
+                "name": "If submitting joint bid",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.QBlbsv",
+                            "type": "YesNoField",
+                            "display": "Are you submitting a joint bid for funding with one or more organisations?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If not submitting joint bid",
+            "name": "lapjEF",
+            "value": {
+                "name": "If not submitting joint bid",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.QBlbsv",
+                            "type": "YesNoField",
+                            "display": "Are you submitting a joint bid for funding with one or more organisations?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to monitor and report anti-Muslim hate to better support victims "
+}
