@@ -544,6 +544,24 @@ export class PageControllerBase {
         return relevantState;
     }
 
+    protected async handlePreviewMode(request: HapiRequest, viewModel: any): Promise<void> {
+        const {adapterCacheService} = request.services([]);
+        const {form_session_identifier} = request.query;
+        
+        if (form_session_identifier && form_session_identifier.includes("preview")) {
+            //@ts-ignore
+            await adapterCacheService.mergeState(request, {
+                "previewMode": true,
+            });
+            //@ts-ignore
+            viewModel.previewMode = true;
+            viewModel.backLinkText = "";
+            this.backLinkText = "";
+            viewModel.backLink = "";
+            this.backLink = "";
+        }
+    }
+
     makeGetRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {adapterCacheService} = request.services([]);
@@ -691,19 +709,7 @@ export class PageControllerBase {
             }
 
             // handling preview mode
-            const {form_session_identifier} = request.query;
-            if (form_session_identifier && form_session_identifier.includes("preview")) {
-                //@ts-ignore
-                await adapterCacheService.mergeState(request, {
-                    "previewMode": true,
-                });
-                //@ts-ignore
-                viewModel.previewMode = true;
-                viewModel.backLinkText = ""
-                this.backLinkText = ""
-                viewModel.backLink = ""
-                this.backLink = ""
-            }
+            await this.handlePreviewMode(request, viewModel);
 
             return h.view(this.viewName, viewModel);
         };
