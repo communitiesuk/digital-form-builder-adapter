@@ -12,6 +12,9 @@
         },
         html: i18nGetTranslation("head.banner.title")
     }) }}
+    {% if previewMode %}
+        {{ previewBanner() }}
+    {% endif %}
     {% if page.isEligibility or isReadOnlySummary %}
         {{ govukBackLink({
             href: backLink or page.backLink,

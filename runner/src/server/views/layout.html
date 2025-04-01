@@ -5,6 +5,7 @@
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "skip-link/macro.njk" import govukSkipLink -%}
 {% from "./partials/change-requests-banner.html" import changeRequestsBanner %}
+{% from "./partials/preview-banner.html" import previewBanner %}
 
 
 {% block head %}
@@ -181,16 +182,19 @@
             }) }}
         {% endif %}
     {% endif %}
-    {% if page.backLink %}
-        {{ govukBackLink({
-            href: page.backLink,
-            text: page.backLinkText
-        }) }}
-    {% else %}
-        {{ govukBackLink({
-            href: backLink,
-            text: backLinkText
-        }) }}
+
+    {% if page.backLink or backLink %}
+        {% if page.backLink %}
+            {{ govukBackLink({
+                href: page.backLink,
+                text: page.backLinkText
+            }) }}
+        {% else %}
+            {{ govukBackLink({
+                href: backLink,
+                text: backLinkText
+            }) }}
+        {% endif %}
     {% endif %}
 
     {% if changeRequests.length > 0 %}
@@ -203,6 +207,11 @@
             </p>
         </div>
     {% endif %}
+
+    {% if previewMode %}
+        {{ previewBanner() }}
+    {% endif %}
+
 {% endblock %}
 
 

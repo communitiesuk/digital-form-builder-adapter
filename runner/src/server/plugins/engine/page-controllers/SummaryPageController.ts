@@ -63,6 +63,9 @@ export class SummaryPageController extends PageController {
             }
             //@ts-ignore
             const viewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
+            
+            await this.handlePreviewMode(request, viewModel);
+            
             if (viewModel.endPage) {
                 return redirectTo(request, h, `/${model.basePath}${viewModel.endPage.path}`);
             }
