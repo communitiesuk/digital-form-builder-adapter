@@ -1,0 +1,83 @@
+{
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/what-we-need-to-know",
+            "title": "What we need to know",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "In this section, we will ask you to upload your detailed business plan.",
+                    "options": {},
+                    "schema": {},
+                    "name": "ijmymz"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-your-business-plan"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/upload-your-business-plan",
+            "title": "Upload your business plan.",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "This will be assessed alongside your answers provided in the other sections of the application form. The <a href =' https://www.gov.uk/government/publications/combatting-hate-against-muslims-fund-prospectus/combatting-hate-against-muslims-fund-business-plan-checklist'>business plan checklist</a> contains more guidance on what needs to be included.<br><br>\n\nYour business plan can be used to expand on other questions in this form. Reference the corresponding page number in your answers where possible to highlight any areas you have expanded on a question.<br><br>\nTables should only be included in the business plan, not in the answers to this form. ",
+                    "options": {},
+                    "schema": {},
+                    "name": "ZAiSQP"
+                },
+                {
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 1,
+                            "parallelUploads": 1,
+                            "maxFilesize": 1,
+                            "acceptedFiles": ",application/pdf"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 1,
+                        "hideTitle": true
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload your business plan.",
+                    "hint": "PDF files only, maximum file size: 10MB",
+                    "schema": {},
+                    "name": "wObUkP"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to monitor and report anti-Muslim hate to better support victims "
+}

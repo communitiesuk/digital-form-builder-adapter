@@ -1,0 +1,105 @@
+{
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/15-describe-how-you-will-protect-against-fraud-and-other-key-risks",
+            "title": "15. Describe how you will protect against fraud and other key risks. ",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Your business plan should include a full risk assessment.",
+                    "options": {},
+                    "schema": {},
+                    "name": "JfOrbo"
+                },
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "15. Describe how you will protect against fraud and other key risks. ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "YlivDw"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/16-describe-how-you-will-report-to-the-ministry-of-housing-communities-and-local-government-mhclg"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/16-describe-how-you-will-report-to-the-ministry-of-housing-communities-and-local-government-mhclg",
+            "title": "16. Describe how you will report to the Ministry of Housing, Communities and Local Government (MHCLG).",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Include:\n<ul>\n<li>what data you would provide </li>\n<li>how you will analyse, interpret and present data and recommendations for action</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "mFhKXs"
+                },
+                {
+                    "options": {
+                        "maxWords": "500",
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "16. Describe how you will report to the Ministry of Housing, Communities and Local Government (MHCLG).",
+                    "hint": "",
+                    "schema": {},
+                    "name": "YxXPoy"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-we-need-to-know",
+            "title": "What we need to know",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "This section contains questions 15 to 16. We will ask you about:\n\n<ul>\n<li>risk management</li>\n<li>your reporting approach</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "IMUYhU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/15-describe-how-you-will-protect-against-fraud-and-other-key-risks"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to monitor and report anti-Muslim hate to better support victims "
+}

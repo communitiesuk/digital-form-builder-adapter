@@ -1,0 +1,340 @@
+{
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "path": "/6-outline-the-key-milestones-for-the-implementation-of-your-project",
+            "title": "6. Outline the key milestones for the implementation of your project.",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "This should include principal activities and milestones, with a particular focus on demonstrating the time needed to mobilise and bring the services into operation. ",
+                    "options": {},
+                    "schema": {},
+                    "name": "XkVltI"
+                },
+                {
+                    "options": {
+                        "maxWords": "500",
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "6. Outline the key milestones for the implementation of your project.",
+                    "hint": "",
+                    "schema": {},
+                    "name": "vuLooU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/7-how-will-you-establish-a-network-of-local-and-national-partners-and-use-these-to-help-deliver-outcomes"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/9-describe-the-anticipated-experience-for-an-individual-wishing-to-report-an-anti-muslim-hate-incident-and-the-support-they-might-expect-to-receive",
+            "title": "9. Describe the anticipated experience for an individual wishing to report an anti-Muslim hate incident and the support they might expect to receive.",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Include:\n<ul>\n<li>detail of how complainants will be able to submit reports</li>\n<li>how reports will be verified</li>\n<li>what support will be made available to victims</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "AwShVd"
+                },
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "9. Describe the anticipated experience for an individual wishing to report an anti-Muslim hate incident and the support they might expect to receive. ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "UTdjiQ"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/10-describe-your-proposed-key-performance-indicators-and-detail-the-expected-outcomes-of-your-programme"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-we-need-to-know",
+            "title": "What we need to know",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "This section contains questions 5 to 12. We will ask you about:\n",
+                    "options": {},
+                    "schema": {},
+                    "name": "oltYaf"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "List",
+                    "title": "Programme delivery - What we need to know",
+                    "hint": "",
+                    "schema": {},
+                    "name": "woDYZI",
+                    "list": "rFtwVz",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "type": "Para",
+                    "content": "Include information about your organisation and any consortium members.",
+                    "options": {},
+                    "schema": {},
+                    "name": "FmEhDh"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/5-describe-the-activities-you-are-proposing-for-the-project-and-why"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/10-describe-your-proposed-key-performance-indicators-and-detail-the-expected-outcomes-of-your-programme",
+            "title": "10. Describe your proposed key performance indicators and detail the expected outcomes of your programme.",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "This includes:\n<ul>\n  <li>the process you have for measuring success</li>\n  <li>how you would manage and improve the service to ensure that it remains effective</li>\n  <li>how the government would expect to be able to monitor and evaluate your progress</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "ncYhPh"
+                },
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "10. Describe your proposed key performance indicators and detail the expected outcomes of your programme. ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "hYrOSx"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/11-what-technical-systems-need-to-be-adopted-for-the-reporting-service-and-how-will-they-be-managed"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/8-how-will-you-build-effective-and-trusted-working-relationships-with-the-government-other-public-bodies-and-other-faith-and-belief-groups",
+            "title": "8. How will you build effective and trusted working relationships with the government, other public bodies, and other faith and belief groups?",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Include:\n<ul>\n  <li>a summary of previous work undertaken and the outcomes</li>\n  <li>evidence of collaborative working with stakeholders</li>\n  <li>key organisations you intend to form strong working relationships with</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "ioLzHH"
+                },
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "8. How will you build effective and trusted working relationships with the government, other public bodies, and other faith and belief groups",
+                    "hint": "",
+                    "schema": {},
+                    "name": "MdgkZt"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/9-describe-the-anticipated-experience-for-an-individual-wishing-to-report-an-anti-muslim-hate-incident-and-the-support-they-might-expect-to-receive"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/7-how-will-you-establish-a-network-of-local-and-national-partners-and-use-these-to-help-deliver-outcomes",
+            "title": "7. How will you establish a network of local and national partners, and use these to help deliver outcomes?",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "For example, partners may help to promote the service, build confidence, encourage engagement, support complainants, provide data and insight.",
+                    "options": {},
+                    "schema": {},
+                    "name": "dTyVhp"
+                },
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "7. How will you establish a network of local and national partners, and use these to help deliver outcomes?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "hFwOXS"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/8-how-will-you-build-effective-and-trusted-working-relationships-with-the-government-other-public-bodies-and-other-faith-and-belief-groups"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/11-what-technical-systems-need-to-be-adopted-for-the-reporting-service-and-how-will-they-be-managed",
+            "title": "11. What technical systems need to be adopted for the reporting service and how will they be managed?",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Describe the systems you will implement and how data will be treated securely and in accordance with the data protection acts.",
+                    "options": {},
+                    "schema": {},
+                    "name": "KIgzhH"
+                },
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "11. What technical systems need to be adopted for the reporting service and how will they be managed?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "fwPHTY"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/12-describe-the-type-of-data-you-will-collect-from-complainants-and-how-it-will-be-collected-and-verified"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/5-describe-the-activities-you-are-proposing-for-the-project-and-why",
+            "title": "5. Describe the activities you are proposing for the project and why. ",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Include details on:\n<ul>\n  <li>the marketing approach</li>\n  <li>key milestones for delivery</li>\n  <li>the use of varied and digital platforms</li>\n  <li>any staffing requirements</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "aAWfDB"
+                },
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "1000"
+                    },
+                    "type": "FreeTextField",
+                    "title": "5. Describe the activities you are proposing for the project and why. ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "Jpikbj"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/6-outline-the-key-milestones-for-the-implementation-of-your-project"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/12-describe-the-type-of-data-you-will-collect-from-complainants-and-how-it-will-be-collected-and-verified",
+            "title": "12. Describe the type of data you will collect from complainants, and how it will be collected and verified.",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "12. Describe the type of data you will collect from complainants, and how it will be collected and verified. ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "lXdDPK"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "activities proposed",
+                    "value": "activities proposed"
+                },
+                {
+                    "text": "programme for mobilisation and delivery",
+                    "value": "programme for mobilisation and delivery"
+                },
+                {
+                    "text": "approach to partner and stakeholder management",
+                    "value": "approach to partner and stakeholder management"
+                },
+                {
+                    "text": "facilitating and nurturing stakeholder relationships",
+                    "value": "facilitating and nurturing stakeholder relationships"
+                },
+                {
+                    "text": "complainant journey",
+                    "value": "complainant journey"
+                },
+                {
+                    "text": "key success factors \u2013 outputs and outcomes",
+                    "value": "key success factors \u2013 outputs and outcomes"
+                },
+                {
+                    "text": "technical proposal",
+                    "value": "technical proposal"
+                },
+                {
+                    "text": "capturing and verifying data",
+                    "value": "capturing and verifying data"
+                }
+            ],
+            "name": "rFtwVz",
+            "title": "Programme delivery - What we need to know"
+        }
+    ],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to monitor and report anti-Muslim hate to better support victims "
+}
