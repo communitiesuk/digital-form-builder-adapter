@@ -1,0 +1,130 @@
+{
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/what-we-need-to-know",
+            "title": "What we need to know",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "This section contains questions 13 to 14. We will ask you about:\n<ul>\n<li>the applicant\u2019s budget proposal</li>\n<li>value for money</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "injojv"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/13-what-are-your-total-expected-costs-for-the-next-3-financial-years"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/14-explain-how-the-expected-project-outcomes-will-provide-value-for-money-and-justify-the-investment",
+            "title": "14. Explain how the expected project outcomes will provide value for money and justify the investment.",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "14. Explain how the expected project outcomes will provide value for money and justify the investment. ",
+                    "hint": "",
+                    "schema": {},
+                    "name": "EEZGWu"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/13-what-are-your-total-expected-costs-for-the-next-3-financial-years",
+            "title": "13. What are your total expected costs for the next 3 financial years?",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Your business plan should include a detailed 3-year budget, including assumptions and calculations used to assess the budget lines of expenditure.",
+                    "options": {},
+                    "schema": {},
+                    "name": "WoaTeX"
+                },
+                {
+                    "options": {
+                        "hideTitle": false,
+                        "prefix": "\u00a3"
+                    },
+                    "type": "NumberField",
+                    "title": "Year 1 (2025/2026 financial year)",
+                    "hint": "",
+                    "schema": {},
+                    "name": "oADTGM"
+                },
+                {
+                    "options": {
+                        "hideTitle": false,
+                        "prefix": "\u00a3"
+                    },
+                    "type": "NumberField",
+                    "title": "Year 2 (2026/2027 financial year)\t",
+                    "hint": "",
+                    "schema": {},
+                    "name": "OpwBcM"
+                },
+                {
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "type": "NumberField",
+                    "title": "Year 3 (2027/2028 financial year)\t",
+                    "hint": "",
+                    "schema": {},
+                    "name": "wfrkZN"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/14-explain-how-the-expected-project-outcomes-will-provide-value-for-money-and-justify-the-investment"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "",
+                    "samePageTableItemName": ""
+                }
+            }
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to monitor and report anti-Muslim hate to better support victims "
+}

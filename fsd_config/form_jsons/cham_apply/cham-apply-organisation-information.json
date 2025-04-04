@@ -1,0 +1,210 @@
+{
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "path": "/1-provide-a-summary-of-your-organisation",
+            "title": "1. Provide a summary of your organisation.",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Include details about its mission statement, goals and governance arrangements.",
+                    "options": {},
+                    "schema": {},
+                    "name": "BulHrW"
+                },
+                {
+                    "options": {
+                        "maxWords": "500",
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "1. Provide a summary of your organisation.",
+                    "hint": "",
+                    "schema": {},
+                    "name": "sShZrO"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/2-how-will-the-skills-and-experience-of-the-organisation-and-its-staff-lead-to-the-success-of-the-project"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-we-need-to-know",
+            "title": "What we need to know",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "This section contains questions 1 to 4. We will ask you about:\n<ul>\n  <li>governance of the organisation including consortium and partner management</li>\n  <li>\u200bskills and experience of the organisation</li>\n  <li>relationship with government and other public sector stakeholders</li>\n  <li>the organisation\u2019s ability to garner the trust of diverse Muslim communities</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "iEsIke"
+                },
+                {
+                    "type": "Para",
+                    "content": "Include information about your organisation and any consortium members.",
+                    "options": {},
+                    "schema": {},
+                    "name": "jOMKrJ"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/1-provide-a-summary-of-your-organisation"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/3-describe-your-current-working-relationship-with-government-and-other-public-sector-organisations",
+            "title": "3. Describe your current working relationship with government and other public sector organisations.",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Include your experience of delivering projects for, and working with, central government and other public sector organisations.",
+                    "options": {},
+                    "schema": {},
+                    "name": "HyuSBl"
+                },
+                {
+                    "options": {
+                        "maxWords": "500",
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "3. Describe your current working relationship with government and other public sector organisations.",
+                    "hint": "",
+                    "schema": {},
+                    "name": "zvxncU"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/4-describe-how-you-plan-to-gain-and-develop-the-trust-of-diverse-muslim-communities-throughout-england"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/2-how-will-the-skills-and-experience-of-the-organisation-and-its-staff-lead-to-the-success-of-the-project",
+            "title": "2. How will the skills and experience of the organisation and its staff lead to the success of the project?",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "500",
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "2. How will the skills and experience of the organisation and its staff lead to the success of the project?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "ghzCjW"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/3-describe-your-current-working-relationship-with-government-and-other-public-sector-organisations"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/declaration",
+            "title": "Declaration",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "To be eligible for grant funding, you must declare that you are not aware of any reason that grant funding your organisation would bring the government into any disrepute.",
+                    "options": {},
+                    "schema": {},
+                    "name": "xuaQTB"
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "I confirm I have read and agree with the declaration above",
+                    "hint": "",
+                    "schema": {},
+                    "name": "NhzpDk",
+                    "list": "ftPPWK",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/4-describe-how-you-plan-to-gain-and-develop-the-trust-of-diverse-muslim-communities-throughout-england",
+            "title": "4. Describe how you plan to gain and develop the trust of diverse Muslim communities throughout England.",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Include existing or planned relationships with Muslim organisations, places of worship and faith institutions.",
+                    "options": {},
+                    "schema": {},
+                    "name": "CMDuXx"
+                },
+                {
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "type": "FreeTextField",
+                    "title": "4. Describe how you plan to gain and develop the trust of diverse Muslim communities throughout England.",
+                    "hint": "",
+                    "schema": {},
+                    "name": "aulnWx"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/declaration"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "I confirm I have read and agree with the declaration above",
+                    "value": "I confirm I have read and agree with the declaration above"
+                }
+            ],
+            "name": "ftPPWK",
+            "title": "Declaration"
+        }
+    ],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to monitor and report anti-Muslim hate to better support victims "
+}
