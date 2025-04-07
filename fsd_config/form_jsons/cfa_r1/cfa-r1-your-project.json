@@ -130,7 +130,7 @@
               "maxFiles": 1,
               "parallelUploads": 1,
               "maxFilesize": 10,
-              "acceptedFiles": "application/vnd.oasis.opendocument.spreadsheet,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv"
+              "acceptedFiles": "application/vnd.oasis.opendocument.spreadsheet,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv,application/pdf"
             },
             "hideTitle": true,
             "minimumRequiredFiles": 1
