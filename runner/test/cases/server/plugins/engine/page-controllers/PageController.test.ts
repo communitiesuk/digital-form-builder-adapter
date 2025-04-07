@@ -176,7 +176,7 @@ suite("PageController", () => {
 
         $ = cheerio.load(response.payload);
 
-        expect($("#form-page-title-tag").text()).to.contain("No change required");
+        expect($("#form-page-title-tag").text()).to.contain("No change needed");
     });
 
     test("should not display not change needed tag on page with feedback", async () => {
