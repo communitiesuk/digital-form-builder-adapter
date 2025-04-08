@@ -49,7 +49,6 @@ pluginViews.options.context = (request: HapiRequest) => ({
     language: request.i18n.getLocale(request),
     navigation: request?.auth.isAuthenticated
         ? [
-            {text: request.i18n.__('viewAllApplications'), href: config.multifundDashboard},
             {text: request.i18n.__('signOut'), href: config.logoutUrl},
         ]
         : null,

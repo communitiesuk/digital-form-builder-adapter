@@ -53,7 +53,6 @@
   "awsEndpointOverride": "AWS_ENDPOINT_OVERRIDE",
   "rsa256PublicKeyBase64": "RSA256_PUBLIC_KEY_BASE64",
   "logoutUrl": "LOGOUT_URL",
-  "multifundDashboard": "MULTIFUND_URL",
   "eligibilityResultUrl": "ELIGIBILITY_RESULT_URL",
   "isE2EModeEnabled": "E2E_MODE_ENABLED",
   "initialisedSessionTimeout": "INITIALISED_SESSION_TIMEOUT",
