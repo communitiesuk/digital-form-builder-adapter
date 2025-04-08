@@ -90,7 +90,6 @@ module.exports = {
   jwtAuthCookieName: "fsd_user_token",
   jwtRedirectToAuthenticationUrl: "http://localhost:3004/sessions/sign-out",
   logoutUrl: "/logout",
-  multifundDashboard: "/account", //This is used to redirect to the multifund dashboard
   basicAuthOn: false,
   overwriteInitialisedSession: true,
 
