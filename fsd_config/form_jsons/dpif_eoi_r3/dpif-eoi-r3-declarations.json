@@ -1,0 +1,64 @@
+{
+  "startPage": "/declaration",
+  "pages": [
+    {
+      "path": "/summary",
+      "title": "Check your answers",
+      "components": [],
+      "next": [],
+      "section": "FabDefault",
+      "controller": "./pages/summary.js"
+    },
+    {
+      "path": "/declaration",
+      "title": "Declaration",
+      "components": [
+        {
+          "options": {
+            "hideTitle": true
+          },
+          "type": "CheckboxesField",
+          "title": "I confirm the information I've provided is correct",
+          "hint": "",
+          "schema": {},
+          "name": "oXFEkV",
+          "list": "nHHnuf",
+          "values": {
+            "type": "listRef"
+          }
+        }
+      ],
+      "next": [
+        {
+          "path": "/summary"
+        }
+      ],
+      "section": "FabDefault",
+      "controller": "start.js"
+    }
+  ],
+  "lists": [
+    {
+      "type": "string",
+      "items": [
+        {
+          "text": "I confirm the information I've provided is correct",
+          "value": "confirm"
+        }
+      ],
+      "name": "nHHnuf",
+      "title": "Declaration"
+    }
+  ],
+  "conditions": [],
+  "sections": [
+    {
+      "name": "FabDefault",
+      "title": "Default section",
+      "hideTitle": true
+    }
+  ],
+  "outputs": [],
+  "skipSummary": false,
+  "name": "Apply for Apply for funding to begin your digital planning improvement journey"
+}
