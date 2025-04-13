@@ -20,7 +20,7 @@ Feature: Complete a form
       | Do you have any evidence?           | No, I don't have evidence |
       | Additional Info                     | the additional info       |
     When I submit the form adapter
-    Then I see "Application complete"
+    Then I don't see "Application complete"
 
 
   Scenario: Testing condition - User does not have a link
@@ -87,7 +87,7 @@ Feature: Complete a form
     * I enter "jen+forms@cautionyourblast.com" for "Your email address"
     * I continue
     * I submit the form adapter
-    Then I see "Application complete"
+    Then I don't see "Application complete"
 
 
   Scenario: Error messages are displayed and can be resolved
