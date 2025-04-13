@@ -56,7 +56,7 @@ module.exports = {
    * Session storage
    * Redis integration is optional, but recommended for production environments.
    */
-  sessionTimeout: 20 * minute,
+  sessionTimeout: minute * 60 * 24 * 14, // Hopefully avoiding session expiry during a long form
 
   /**
    * SSL
