@@ -26,7 +26,7 @@ Feature: Rich Text Field
       | title                       | value                      |
       | Free Text Field test max 10 | this is an free text field |
     When I submit the form adapter
-    Then I see "Application complete"
+    Then I don't see "Application complete"
 
   Scenario: Testing if free text field is non optional and adding formatted text
     And I navigate to the "free-text-field" form
@@ -37,5 +37,5 @@ Feature: Rich Text Field
       | title                       | value                                   |
       | Free Text Field test max 10 | <ul><li>item 1</li><li>item 2</li></ul> |
     When I submit the form adapter
-    Then I see "Application complete"
+    Then I don't see "Application complete"
 

@@ -36,6 +36,7 @@ export class RegisterApplicationStatusApi implements RegisterApi {
                         return h.redirect(state.metadata.round_close_notification_url);
                     }
 
+                    // a session will always have a callback
                     if (state.callback?.skipSummary?.redirectUrl || state.callback?.returnUrl) {
                         let redirectUrl = state.callback?.skipSummary?.redirectUrl;
                         if (redirectUrl == undefined && state.callback?.returnUrl != undefined) {
@@ -52,12 +53,19 @@ export class RegisterApplicationStatusApi implements RegisterApi {
                         return h.redirect(redirectUrl);
                     }
 
+                    // if you are here the session likely dropped
+                    // or you are previewing the form
+                    request.logger.info(
+                        ["applicationStatus"],
+                        `Showing confirmation page ${request.yar.id} - session likely dropped`
+                    );
+
                     const viewModel = adapterStatusService.getViewModel(state, form, newReference);
                     //@ts-ignore
                     await adapterCacheService.setConfirmationState(request, {confirmation: viewModel,});
                     //@ts-ignore
                     await adapterCacheService.clearState(request);
-                    return h.view("confirmation", viewModel);
+                    return h.view("500", viewModel);
                 },
             },
         });
