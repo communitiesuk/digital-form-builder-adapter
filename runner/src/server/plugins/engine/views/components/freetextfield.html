@@ -21,7 +21,7 @@
                                 resizeHandle.setAttribute('aria-valuenow', height);
                             }
 
-                            // Rvent listener to update aria-valuenow when height changes
+                            // Event listener to update aria-valuenow when height changes
                             const observer = new MutationObserver(updateAriaValueNow);
                             observer.observe(editor.getContainer(), { attributes: true, attributeFilter: ['style'] });
                         }
