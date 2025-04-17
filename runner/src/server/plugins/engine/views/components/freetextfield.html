@@ -1,5 +1,4 @@
 {% macro FreeTextField(component) %}
-
     <head>
         <script type="text/javascript">
             tinymce.init({
@@ -8,6 +7,24 @@
                 setup: function (editor) {
                     editor.on('init input setcontent change', function () {
                         setWordCount(editor);
+
+                        const resizeHandle = editor.getContainer().querySelector('.tox-statusbar__resize-handle');
+                        if (resizeHandle) {
+                            resizeHandle.setAttribute('role', 'slider');
+                            resizeHandle.setAttribute('aria-valuenow', '150');
+                            resizeHandle.setAttribute('aria-valuemin', '100');
+                            resizeHandle.setAttribute('aria-valuemax', '1000');
+
+                            // Function to update aria-valuenow based on height
+                            function updateAriaValueNow() {
+                                const height = editor.getContainer().style.height.replace('px', '');
+                                resizeHandle.setAttribute('aria-valuenow', height);
+                            }
+
+                            // Rvent listener to update aria-valuenow when height changes
+                            const observer = new MutationObserver(updateAriaValueNow);
+                            observer.observe(editor.getContainer(), { attributes: true, attributeFilter: ['style'] });
+                        }
                     });
                 },
                 selector: '#{{ component.model.id }}',
@@ -93,5 +110,4 @@
             </div>
         {% endif %}
     </div>
-
 {% endmacro %}
