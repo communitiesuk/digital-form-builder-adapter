@@ -6,6 +6,7 @@ import createServer from "src/server";
 import cheerio from "cheerio";
 //@ts-ignore
 import {config} from "../../../../../../src/server/plugins/utils/AdapterConfigurationSchema";
+import * as sinon from "sinon";
 
 const {expect} = Code;
 const lab = Lab.script();
@@ -15,6 +16,7 @@ const {suite, test, before, after} = lab;
 suite("ContinuePageController", () => {
     let server;
     let $;
+    let adapterCacheService;
 
     before(async () => {
         config.jwtAuthEnabled = false;
@@ -23,6 +25,10 @@ suite("ContinuePageController", () => {
             formFilePath: path.join(__dirname, "../../../"),
             enforceCsrf: false,
         });
+        // Create a mock of adapterCacheService
+        adapterCacheService = {
+            getState: sinon.stub()
+        };
     });
 
     after(async () => {
@@ -30,6 +36,18 @@ suite("ContinuePageController", () => {
     });
 
     test("should display continue button with label on page view when continue page controller is loaded", async () => {
+        const { adapterCacheService } = server.services();
+        adapterCacheService.getState = () => {
+            return Promise.resolve({
+                metadata: {
+                    "any": "metadata"
+                },
+                callback: {
+                    "any": "callback"
+                }
+            });
+        };
+
         const response = await server.inject({
             method: 'GET',
             url: '/continue-page.test/are-you-applying-from-a-local-authority-in-england'

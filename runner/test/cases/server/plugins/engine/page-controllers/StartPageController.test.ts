@@ -58,13 +58,17 @@ suite("StartPageController", () => {
     });
 
     test("renders start page with form components", async () => {
-        // Define the mock state with metadata
-        const mockState = {
-            metadata: {}
-            // Add any other necessary metadata here
+        const { adapterCacheService } = server.services();
+        adapterCacheService.getState = () => {
+            return Promise.resolve({
+                metadata: {
+                    "any": "metadata"
+                },
+                callback: {
+                    "any": "callback"
+                }
+            });
         };
-        // Stub getState to return the mock state
-        adapterCacheService.getState.resolves(mockState);
 
         const response = await server.inject({
             method: 'GET',
@@ -100,6 +104,9 @@ suite("StartPageController", () => {
                     change_requests: {
                         "VcyKVN": ["Assessor Feedback"]
                     }
+                },
+                callback: {
+                    "any": "callback"
                 }
             });
         };
@@ -121,6 +128,9 @@ suite("StartPageController", () => {
                     change_requests: {
                         "VcyKVN": ["Assessor Feedback"]
                     }
+                },
+                callback: {
+                    "any": "callback"
                 }
             });
         };

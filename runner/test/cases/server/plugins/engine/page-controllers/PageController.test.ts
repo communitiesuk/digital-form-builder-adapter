@@ -42,13 +42,17 @@ suite("PageController", () => {
     });
 
     test("GET request - renders page correctly", async () => {
-        // Define the mock state with metadata
-        const mockState = {
-            metadata: {}
-            // Add any other necessary metadata here
+        const { adapterCacheService } = server.services();
+        adapterCacheService.getState = () => {
+            return Promise.resolve({
+                metadata: {
+                    "any": "metadata"
+                },
+                callback: {
+                    "any": "callback"
+                }
+            });
         };
-        // Stub getState to return the mock state
-        adapterCacheService.getState.resolves(mockState);
 
         const response = await server.inject({
             method: 'GET',
@@ -108,6 +112,9 @@ suite("PageController", () => {
                     change_requests: {
                         "VcyKVN": ["Assessor Feedback"]
                     }
+                },
+                callback: {
+                    "any": "callback"
                 }
             });
         };
@@ -136,6 +143,9 @@ suite("PageController", () => {
                     change_requests: {
                         "no_found": ["Assessor Feedback"]
                     }
+                },
+                callback: {
+                    "any": "callback"
                 }
             });
         };
@@ -165,6 +175,9 @@ suite("PageController", () => {
                         "no_found": ["Assessor Feedback"]
                     },
                     is_resubmission: true
+                },
+                callback: {
+                    "any": "callback"
                 }
             });
         };
@@ -194,6 +207,9 @@ suite("PageController", () => {
                         "VcyKVN": ["Assessor Feedback"]
                     },
                     is_resubmission: true
+                },
+                callback: {
+                    "any": "callback"
                 }
             });
         };
@@ -221,6 +237,9 @@ suite("PageController", () => {
                 metadata: {
                     change_requests: {},
                     is_resubmission: false
+                },
+                callback: {
+                    "any": "callback"
                 }
             });
         };

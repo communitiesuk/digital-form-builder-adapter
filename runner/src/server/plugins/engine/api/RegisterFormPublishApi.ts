@@ -107,6 +107,27 @@ export class RegisterFormPublishApi implements RegisterApi {
             }
         });
 
+        const checkUserSession = async (
+            request: HapiRequest,
+            h: HapiResponseToolkit
+        ) => {
+            const {adapterCacheService} = request.services([]);
+
+            // @ts-ignore
+            const state = await adapterCacheService.getState(request);
+
+            // @ts-ignore isNotPreview is always false on production
+            const isNotPreview = !previewMode || previewMode==="false"
+
+            if (isNotPreview && (!state.callback || !state.metadata)) {
+                // if you are here the session likely dropped
+                request.logger.error(["checkUserSession"], `Session expired ${request.yar.id}`);
+                throw Boom.clientTimeout("Session expired");
+            }
+
+            return h.continue;
+        }
+
         server.route({
             method: "get",
             path: "/",
@@ -168,6 +189,9 @@ export class RegisterFormPublishApi implements RegisterApi {
                 pre: [
                     {
                         method: queryParamPreHandler
+                    },
+                    {
+                        method: checkUserSession
                     }
                 ]
             },
@@ -190,6 +214,9 @@ export class RegisterFormPublishApi implements RegisterApi {
                 pre: [
                     {
                         method: queryParamPreHandler
+                    },
+                    {
+                        method: checkUserSession
                     }
                 ],
             },
