@@ -62,7 +62,7 @@ variables:
   SERVICE_START_PAGE: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
   ELIGIBILITY_RESULT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/eligibility-result"
   SENTRY_DSN: "https://6724d8df633d3f4599fbd4cf9c537e3c@o1432034.ingest.us.sentry.io/4508573162864640"
-  SENTRY_TRACES_SAMPLE_RATE: 0.02
+  SENTRY_TRACES_SAMPLE_RATE: 0.002
   COPILOT_ENV: ${COPILOT_ENVIRONMENT_NAME}
   AWS_BUCKET_NAME:
     from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-FormUploadsBucket
@@ -121,7 +121,7 @@ environments:
       PRIVACY_POLICY_URL: "https://apply.access-funding.communities.gov.uk/privacy"
       SERVICE_START_PAGE: "https://apply.access-funding.communities.gov.uk/account"
       ELIGIBILITY_RESULT_URL: "https://apply.access-funding.communities.gov.uk/eligibility-result"
-      SENTRY_TRACES_SAMPLE_RATE: 1
+      SENTRY_TRACES_SAMPLE_RATE: 0.1
     count:
       range: 2-4
       cooldown:
