@@ -160,6 +160,34 @@ export class RegisterFormPublishApi implements RegisterApi {
             return h.continue;
         };
 
+        /**
+         * Middleware to check if the user session is still valid.
+         *
+         * Changes behaviour only when previewMode is FALSE, meaning PRODUCTION
+         * If the session is dropped, it will throw a client timeout error
+         */
+        const checkUserSession = async (
+            request: HapiRequest,
+            h: HapiResponseToolkit
+        ) => {
+            const {adapterCacheService} = request.services([]);
+
+            // @ts-ignore
+            const state = await adapterCacheService.getState(request);
+
+            // @ts-ignore isNotPreview is always false on production
+            const isNotPreview = !previewMode || previewMode==="false"
+
+            if (isNotPreview && !state.callback) {
+                // if you are here the session likely dropped
+                request.logger.error(["checkUserSession"], `Session expired ${request.yar.id}`);
+
+                throw Boom.clientTimeout("Session expired");
+            }
+
+            return h.continue;
+        }
+
         server.route({
             method: "get",
             path: "/{id}",
@@ -168,6 +196,9 @@ export class RegisterFormPublishApi implements RegisterApi {
                 pre: [
                     {
                         method: queryParamPreHandler
+                    },
+                    {
+                        method: checkUserSession
                     }
                 ]
             },
@@ -190,6 +221,9 @@ export class RegisterFormPublishApi implements RegisterApi {
                 pre: [
                     {
                         method: queryParamPreHandler
+                    },
+                    {
+                        method: checkUserSession
                     }
                 ],
             },
