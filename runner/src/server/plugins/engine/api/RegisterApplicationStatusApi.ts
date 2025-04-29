@@ -4,6 +4,7 @@ import {Options} from "../types/PluginOptions";
 import {retryPay} from "../application-status/RetryPay";
 import {handleUserWithConfirmationViewModel} from "../application-status/HandleUserWithConfirmationViewModel";
 import {checkUserCompletedSummary} from "../application-status/CheckUserCompletedSummary";
+import {config} from "../../utils/AdapterConfigurationSchema";
 
 export class RegisterApplicationStatusApi implements RegisterApi {
 
@@ -57,7 +58,29 @@ export class RegisterApplicationStatusApi implements RegisterApi {
                     await adapterCacheService.setConfirmationState(request, {confirmation: viewModel,});
                     //@ts-ignore
                     await adapterCacheService.clearState(request);
-                    return h.view("confirmation", viewModel);
+
+                    /*
+                    * If non-prod environment, show confirmation page
+                    * If prod environment, show 500 page
+                    * The behaviour is not changing for non-prod environments
+                    */
+                    if (["dev", "test", "uat", ""].includes(config.copilotEnv)) {
+                        // you are previewing the form
+                        request.logger.info(
+                            ["applicationStatus"],
+                            `Showing confirmation page ${request.yar.id} - You are in preview mode`
+                        );
+
+                        return h.view("confirmation", viewModel);
+                    }
+
+                    // if you are here the session dropped
+                    request.logger.error(
+                        ["applicationStatus"],
+                        `Showing 500 page ${request.yar.id} - session dropped`
+                    );
+
+                    return h.view("500", viewModel);
                 },
             },
         });
