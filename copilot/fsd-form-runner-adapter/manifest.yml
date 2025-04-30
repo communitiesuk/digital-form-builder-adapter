@@ -122,6 +122,7 @@ environments:
       SERVICE_START_PAGE: "https://apply.access-funding.communities.gov.uk/account"
       ELIGIBILITY_RESULT_URL: "https://apply.access-funding.communities.gov.uk/eligibility-result"
       SENTRY_TRACES_SAMPLE_RATE: 0.1
+      PREVIEW_MODE: false
     count:
       range: 2-4
       cooldown:
