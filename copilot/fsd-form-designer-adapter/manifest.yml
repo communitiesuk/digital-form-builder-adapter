@@ -54,7 +54,6 @@ variables:
   NODE_ENV: production
   CHOKIDAR_USEPOLLING: true
   PREVIEW_URL: "https://application-questions.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk"
-  PUBLISH_URL: "http://fsd-form-runner-adapter:3009"
   AUTH_SERVICE_URL: "https://account.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk"
   SSO_LOGIN_URL: "/sso/login?return_app=form-designer"
   SSO_LOGOUT_URL: "/sessions/sign-out"
@@ -62,6 +61,7 @@ variables:
   AUTH_ENABLED: true
 
 secrets:
+  PUBLISH_URL: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/FORM_RUNNER_INTERNAL_HOST
   RSA256_PUBLIC_KEY_BASE64: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/RSA256_PUBLIC_KEY_BASE64
   SESSION_COOKIE_PASSWORD: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/SESSION_COOKIE_PASSWORD
 

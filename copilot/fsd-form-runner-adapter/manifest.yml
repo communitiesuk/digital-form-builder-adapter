@@ -66,7 +66,6 @@ variables:
   COPILOT_ENV: ${COPILOT_ENVIRONMENT_NAME}
   AWS_BUCKET_NAME:
     from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-FormUploadsBucket
-  BASIC_AUTH_ON: false
   NODE_CONFIG: '{"safelist": ["fsd-application-store", "fsd-pre-award-stores", "fsd-pre-award", "fsd-pre-award.${COPILOT_ENVIRONMENT_NAME}.pre-award.local"]}'
   NODE_ENV: production
   SINGLE_REDIS: true
@@ -84,14 +83,47 @@ environments:
   dev:
     variables:
       PREVIEW_MODE: true
-
     count:
       spot: 2
+    sidecars:
+      nginx:
+        port: 8087
+        image:
+          location: xscys/nginx-sidecar-basic-auth
+        variables:
+          FORWARD_PORT: 3009
+          CLIENT_MAX_BODY_SIZE: 10m
+        secrets:
+          BASIC_AUTH_USERNAME: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/BASIC_AUTH_USERNAME
+          BASIC_AUTH_PASSWORD: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/BASIC_AUTH_PASSWORD
+    http:
+      target_container: nginx
+      healthcheck:
+        path: /health-check
+        port: 3009
+
   test:
     variables:
       PREVIEW_MODE: true
     count:
       spot: 2
+    sidecars:
+      nginx:
+        port: 8087
+        image:
+          location: xscys/nginx-sidecar-basic-auth
+        variables:
+          FORWARD_PORT: 3009
+          CLIENT_MAX_BODY_SIZE: 10m
+        secrets:
+          BASIC_AUTH_USERNAME: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/BASIC_AUTH_USERNAME
+          BASIC_AUTH_PASSWORD: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/BASIC_AUTH_PASSWORD
+    http:
+      target_container: nginx
+      healthcheck:
+        path: /health-check
+        port: 3009
+
   uat:
     variables:
       PREVIEW_MODE: true
@@ -106,12 +138,28 @@ environments:
         value: 80
       requests: 30
       response_time: 2s
+    sidecars:
+      nginx:
+        port: 8087
+        image:
+          location: xscys/nginx-sidecar-basic-auth
+        variables:
+          FORWARD_PORT: 3009
+          CLIENT_MAX_BODY_SIZE: 10m
+        secrets:
+          BASIC_AUTH_USERNAME: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/BASIC_AUTH_USERNAME
+          BASIC_AUTH_PASSWORD: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/BASIC_AUTH_PASSWORD
+    http:
+      target_container: nginx
+      healthcheck:
+        path: /health-check
+        port: 3009
+
   prod:
     http:
       alias: ['forms.access-funding.levellingup.gov.uk', 'application-questions.access-funding.communities.gov.uk']
     variables:
       ACCESSIBILITY_STATEMENT_URL: "https://apply.access-funding.communities.gov.uk/accessibility_statement"
-      BASIC_AUTH_ON: false
       CONTACT_US_URL: "https://apply.access-funding.communities.gov.uk/contact_us"
       COOKIE_POLICY_URL: "https://apply.access-funding.communities.gov.uk/cookie_policy"
       FEEDBACK_LINK: "https://apply.access-funding.communities.gov.uk/feedback"
