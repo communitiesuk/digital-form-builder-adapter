@@ -1,100 +1,105 @@
 {
-  "signOut": "Sign out",
-  "markAsComplete": "Do you want to mark this section as complete ?",
-  "removeText": "Remove",
-  "validation": {
-    "required": "{#label} is required",
-    "max": "{#label} must be {#limit} characters or less",
-    "min": "{#label} must be {#limit} characters or more",
-    "regex": "enter a valid {#label}",
-    "email": "{#label} must be a valid email address",
-    "number": "{#label} must be a number",
-    "numberMin": "{#label} must be {#limit} or higher",
-    "numberMax": "{#label} must be {#limit} or lower",
-    "format": "Enter a valid {#label}",
-    "maxWords": "{#label} must be {#limit} words or fewer",
-    "dateRequired": "{#label} must be a real date",
-    "dateFormat": "{#label} must be a real date",
-    "dateMin": "{#label} must be the same as or after {#limit}",
-    "dateMax": "{#label} must be the same as or before {#limit}",
-    "selectRequired": "{#label} is required",
-    "title1": "There is a problem",
-    "title2": "Fix the following errors",
-    "fileUpload": {
-      "filePartiallyUploadError": "The files have not fully uploaded",
-      "fileUploadSizeError": "File must be under ",
-      "fileUploadCombinedSizeError": "Combined filesize must be under ",
-      "fileUploadTypeError": "You can't upload files of this type.",
-      "fileUploadCountSingleError": "You can only upload a single file",
-      "fileUploadCountMaxError": "You can only upload {maxFiles} files",
-      "fileUploadCountMinError": "{labelText} requires {minimumRequiredFiles} files",
-      "fileUploadSelectedFileMaxError": "The selected file must be smaller than {size}MB"
-    },
-    "ukAddressField": {
-      "invalidPostCodeError": "Enter a valid postcode"
-    },
-    "telephoneNumberField": {
-      "incorrectFormat": "Enter a telephone number in the correct format"
-    }
-  },
-  "components": {
-    "clientSideFileUpload": {
-      "javascriptEnableMessageTitle": "You need to have JavaScript enabled to see your selected files",
-      "description1": "Why is JavaScript required?",
-      "description2": "Without JavaScript, you will be able to select files to upload, but you won't be able to see them on this page.",
-      "description3": "Your files will still be uploaded when you hit \"Save and continue\". If you revisit this page, you will be able to see your previously uploaded files.",
-      "fileUploadBtn": "Choose file",
-      "filesUploadBtn": "Choose files",
-      "table": {
-        "fileNameCol": "File name",
-        "fileSizeCol": "File size",
-        "fileProgressCol": "Progress",
-        "fileActionCol": "Action",
-        "fileActionComplete": "Complete",
-        "fileActionFailed": "Failed",
-        "deleteBtn": "Delete"
-      }
-    },
-    "freeTextField": {
-      "wordCountReminder": "You have {count} words remaining",
-      "wordCountRemainingError": "You have {count} words too many",
-      "wordCountError": "You can enter up to {count} words",
-      "error": "Error:"
-    },
-    "markAsComplete": {
-      "error": "You must select yes or no"
-    },
-    "declaration": {
-      "error": "You must declare to be able to submit this application"
-    },
-    "ukAddressField": {
-      "addressLine1": "Address line 1",
-      "addressLine2": "Address line 2",
-      "townOrCity": "Town or city",
-      "county": "County",
-      "postcode": "Postcode"
-    },
-    "yesOrNoField": {
-      "yes": "Yes",
-      "no": "No"
-    },
-    "changeRequestpage": {
-      "title": "We need you to make changes",
-      "itemOne": "The assessor has asked you to make a change to specific parts of this section.",
-      "itemTwo": "The pages where you need to make a change will be highlighted.",
-      "itemThree": "You do not need to make changes to any other pages."
-    }
-  },
-  "head": {
-    "banner": {
-      "title": "This is a new service.",
-      "tag": "beta"
-    }
-  },
-  "footer": {
-    "privacy": "Privacy",
-    "cookies": "Cookies",
-    "accessibilityStatement": "Accessibility Statement",
-    "contactUs": "Contact Us"
-  }
+	"signOut": "Sign out",
+	"markAsComplete": "Have you completed this section?",
+	"removeText": "Remove",
+	"validation": {
+		"required": "{#label} is required",
+		"max": "{#label} must be {#limit} characters or less",
+		"min": "{#label} must be {#limit} characters or more",
+		"regex": "enter a valid {#label}",
+		"email": "{#label} must be a valid email address",
+		"number": "{#label} must be a number",
+		"numberMin": "{#label} must be {#limit} or higher",
+		"numberMax": "{#label} must be {#limit} or lower",
+		"format": "Enter a valid {#label}",
+		"maxWords": "{#label} must be {#limit} words or fewer",
+		"dateRequired": "{#label} must be a real date",
+		"dateFormat": "{#label} must be a real date",
+		"dateMin": "{#label} must be the same as or after {#limit}",
+		"dateMax": "{#label} must be the same as or before {#limit}",
+		"selectRequired": "{#label} is required",
+		"title1": "There is a problem",
+		"title2": "Fix the following errors",
+		"fileUpload": {
+			"filePartiallyUploadError": "The files have not fully uploaded",
+			"fileUploadSizeError": "File must be under ",
+			"fileUploadCombinedSizeError": "Combined filesize must be under ",
+			"fileUploadTypeError": "You can't upload files of this type.",
+			"fileUploadCountSingleError": "You can only upload a single file",
+			"fileUploadCountMaxError": "You can only upload {maxFiles} files",
+			"fileUploadCountMinError": "{labelText} requires {minimumRequiredFiles} files",
+			"fileUploadSelectedFileMaxError": "The selected file must be smaller than {size}MB"
+		},
+		"ukAddressField": {
+			"invalidPostCodeError": "Enter a valid postcode"
+		},
+		"telephoneNumberField": {
+			"incorrectFormat": "Enter a telephone number in the correct format"
+		}
+	},
+	"components": {
+		"clientSideFileUpload": {
+			"javascriptEnableMessageTitle": "You need to have JavaScript enabled to see your selected files",
+			"description1": "Why is JavaScript required?",
+			"description2": "Without JavaScript, you will be able to select files to upload, but you won't be able to see them on this page.",
+			"description3": "Your files will still be uploaded when you hit \"Save and continue\". If you revisit this page, you will be able to see your previously uploaded files.",
+			"fileUploadBtn": "Choose file",
+			"filesUploadBtn": "Choose files",
+			"table": {
+				"fileNameCol": "File name",
+				"fileSizeCol": "File size",
+				"fileProgressCol": "Progress",
+				"fileActionCol": "Action",
+				"fileActionComplete": "Complete",
+				"fileActionFailed": "Failed",
+				"deleteBtn": "Delete"
+			}
+		},
+		"freeTextField": {
+			"wordCountReminder": "You have {count} words remaining",
+			"wordCountRemainingError": "You have {count} words too many",
+			"wordCountError": "You can enter up to {count} words",
+			"error": "Error:"
+		},
+		"markAsComplete": {
+			"error": "You must select yes or no"
+		},
+		"declaration": {
+			"error": "You must declare to be able to submit this application"
+		},
+		"ukAddressField": {
+			"addressLine1": "Address line 1",
+			"addressLine2": "Address line 2",
+			"townOrCity": "Town or city",
+			"county": "County",
+			"postcode": "Postcode"
+		},
+		"yesOrNoField": {
+			"yes": "Yes",
+			"no": "No"
+		},
+		"changeRequestpage": {
+			"title": "We need you to make changes",
+			"itemOne": "The assessor has asked you to make a change to specific parts of this section.",
+			"itemTwo": "The pages where you need to make a change will be highlighted.",
+			"itemThree": "You do not need to make changes to any other pages."
+		},
+		"sectionCompletedField": {
+			"yes": "Yes, I’ve completed this section",
+			"no": "No, I’ll come back to it later",
+      "hint": "You can still edit this section before submitting your application."
+		}
+	},
+	"head": {
+		"banner": {
+			"title": "This is a new service.",
+			"tag": "beta"
+		}
+	},
+	"footer": {
+		"privacy": "Privacy",
+		"cookies": "Cookies",
+		"accessibilityStatement": "Accessibility Statement",
+		"contactUs": "Contact Us"
+	}
 }
