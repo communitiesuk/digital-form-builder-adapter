@@ -45,6 +45,9 @@
       "description3": "Bydd eich ffeiliau yn dal i gael eu llwytho i fyny pan fyddwch yn taro \"Cadw a pharhau\". Os byddwch yn ailymweld â'r dudalen hon, byddwch yn gallu gweld eich ffeiliau a uwchlwythwyd yn flaenorol.",
       "fileUploadBtn": "Dewiswch ffeil",
       "filesUploadBtn": "Dewiswch ffeiliau",
+      "uploadFileTitle": "Upload file",
+      "formatMustBe": "Format must be",
+      "fileSizeLimitPart": "The selected file must be smaller than",
       "table": {
         "fileNameCol": "Enw'r ffeil",
         "fileSizeCol": "Maint y ffeil",

@@ -74,12 +74,18 @@
     <div id="{{ component.model.id }}"
          class="govuk-form-group {% if component.model.errorMessage %}govuk-form-group--error{% endif %}">
 
-        {% if component.model.hideTitle == false %}
-            {{ govukLabel(component.model.label) }}
-        {% endif %}
+        <label class="govuk-label govuk-label--s" for="{{ component.model.id }}" id="{{ component.model.id }}-label">
+         {{ i18nGetTranslation("components.clientSideFileUpload.uploadFileTitle") }}
+        </label>
 
         {% if component.model.hint %}
-            {{ govukHint(component.model.hint) }}
+            <div id="{{ component.model.id }}-hint" class="govuk-hint">
+                {{ component.model.hint.text }}
+            </div>
+        {% else %}
+            <div id="{{ component.model.id }}-hint" class="govuk-hint" aria-hidden="true">
+               <!-- File requirements will be populated using js only if exist else empty -->
+            </div>
         {% endif %}
 
         <p class="govuk-error-message">
@@ -191,6 +197,55 @@
     </div>
 
     <script>
+        const formatAcceptedFileTypes = () => {
+            const mimeToExt = {
+                'image/jpeg': 'jpg',
+                'image/jpg': 'jpg',
+                'image/png': 'png',
+                'application/pdf': 'pdf',
+                'text/plain': 'txt',
+                'application/msword': 'doc',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
+                'application/vnd.oasis.opendocument.text': 'odf',
+                'text/csv': 'csv',
+                'application/vnd.ms-excel': 'xls',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'xlsx'
+            };
+
+            const acceptedFiles = "{{ component.model.dropzoneConfig.acceptedFiles | safe }}";
+            if (!acceptedFiles) return "pdf, jpg, png, or xlsx";
+
+            const fileTypes = new Set();
+            acceptedFiles.split(',').forEach(type => {
+                type = type.trim();
+                if (mimeToExt[type]) {
+                    fileTypes.add(mimeToExt[type]);
+                }
+            });
+
+            const types = Array.from(fileTypes);
+            if (types.length === 0) return "pdf, jpg, png, docx, csv, odf or xlsx";
+            if (types.length === 1) return types[0];
+            if (types.length === 2) return `${types[0]} or ${types[1]}`;
+
+            const lastType = types[types.length - 1];
+            return `${types.slice(0, -1).join(', ')} or ${lastType}`;
+        };
+
+        const overrideHintText = () => {
+            const hintElement = document.getElementById("{{ component.model.id }}-hint");
+            if (!hintElement) return;
+
+            const fileTypes = formatAcceptedFileTypes();
+            const maxSize = {{ component.model.dropzoneConfig.maxFilesize | default(10) }};
+
+            const formatPart = "{{ i18nGetTranslation('components.clientSideFileUpload.formatMustBe') }}";
+            const sizePart = "{{ i18nGetTranslation('components.clientSideFileUpload.fileSizeLimitPart') }}";
+
+            hintElement.textContent = `${formatPart} ${fileTypes}, ${sizePart} ${maxSize}MB.`;
+        };
+
+        document.addEventListener('DOMContentLoaded', overrideHintText);
 
         const _FILE_SIZE_BASE = 1024;
         const previewTemplate = `
