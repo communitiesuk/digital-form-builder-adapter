@@ -46,7 +46,7 @@ export class RegisterS3FileUploadApi implements RegisterApi {
             },
         }
 
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && config.copilotEnv === "prod") {
             s3PresignUrlOption.options = {
                 auth: jwtAuthStrategyName
             }
@@ -79,7 +79,7 @@ export class RegisterS3FileUploadApi implements RegisterApi {
             },
         }
 
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && config.copilotEnv === "prod") {
             s3GetDataOptions.options = {
                 auth: jwtAuthStrategyName
             }
@@ -117,7 +117,7 @@ export class RegisterS3FileUploadApi implements RegisterApi {
             },
         }
 
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && config.copilotEnv === "prod") {
             deleteOptions.options = {
                 auth: jwtAuthStrategyName
             }
