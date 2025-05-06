@@ -83,7 +83,12 @@
       "itemOne": "The assessor has asked you to make a change to specific parts of this section.",
       "itemTwo": "The pages where you need to make a change will be highlighted.",
       "itemThree": "You do not need to make changes to any other pages."
-    }
+    },
+    "sectionCompletedField": {
+			"yes": "Yes, I’ve completed this section",
+			"no": "No, I’ll come back to it later",
+      "hint": "You can still edit this section before submitting your application."
+		}
   },
   "head": {
     "banner": {
