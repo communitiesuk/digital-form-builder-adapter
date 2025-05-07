@@ -82,6 +82,7 @@ secrets:
 environments:
   dev:
     variables:
+      JWT_AUTH_ENABLED: false
       PREVIEW_MODE: true
     count:
       spot: 2
@@ -104,6 +105,7 @@ environments:
 
   test:
     variables:
+      JWT_AUTH_ENABLED: false
       PREVIEW_MODE: true
     count:
       spot: 2
@@ -126,6 +128,7 @@ environments:
 
   uat:
     variables:
+      JWT_AUTH_ENABLED: false
       PREVIEW_MODE: true
     count:
       range: 2-4
