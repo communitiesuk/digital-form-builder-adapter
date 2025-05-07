@@ -33,7 +33,7 @@ As usual, always run commands in the root directory, not in the workspace direct
 1. Install the dependencies `yarn e2e install`
 2. Ensure the runner and designer are running. It can be running locally or pointed at a URL.
   - The defaults are set in cypress.config.js. `DESIGNER_URL: http://localhost:3000` and `RUNNER_URL: http://localhost:3009`. You may change this via environment variables by prepending the variable name with cypress_, e.g. `cypress_designer_url=https://..`
-  - yarn e2e-test cypress open --env DESIGNER_URL=https://form-designer.dev.access-funding.test.levellingup.gov.uk,RUNNER_URL=https://forms.dev.access-funding.test.levellingup.gov.uk
+  - yarn e2e-test cypress open --env DESIGNER_URL=https://form-designer.access-funding.dev.communities.gov.uk,RUNNER_URL=https://application-questions.access-funding.dev.communities.gov.uk
 3. Run, from the root directory
   - in headless mode `yarn e2e cypress run`
   - in interactive mode `yarn e2e cypress open` (this will open your browser)
