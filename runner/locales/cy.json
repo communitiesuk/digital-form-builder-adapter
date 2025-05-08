@@ -85,9 +85,9 @@
       "itemThree": "You do not need to make changes to any other pages."
     },
     "sectionCompletedField": {
-			"yes": "Yes, I’ve completed this section",
-			"no": "No, I’ll come back to it later",
-      "hint": "You can still edit this section before submitting your application."
+			"yes": "Ydw, rydw i wedi cwblhau'r adran hon",
+			"no": "Na, byddaf yn dod yn ôl ati yn nes ymlaen",
+      "hint": "Gallwch chi barhau i olygu'r adran hon cyn cyflwyno'ch cais."
 		}
   },
   "head": {
