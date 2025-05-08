@@ -73,6 +73,3 @@ environments:
   test:
     count:
       spot: 2
-  uat:
-    count:
-      spot: 2

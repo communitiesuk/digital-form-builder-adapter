@@ -1,5 +1,5 @@
 name: Deploy to AWS
-run-name: ${{ github.event_name == 'workflow_dispatch' && format('Deploy to {0}', github.event.inputs.environment) || (github.ref == 'refs/heads/main' && 'Deploy to Test-UAT-Prod' || 'Build & Unit Test') }}
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Deploy to {0}', github.event.inputs.environment) || (github.ref == 'refs/heads/main' && 'Deploy to Test-Prod' || 'Build & Unit Test') }}
 
 permissions:
   packages: write
@@ -23,7 +23,6 @@ on:
         options:
           - dev
           - test
-          - uat
           - prod
       run_performance_tests:
         required: false
@@ -464,53 +463,9 @@ jobs:
       app_name: forms
       environment: test
       notify_slack: true
-  
-  uat_deploy:
-    needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, test_deploy, post_test_deploy_tests ]
-    if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'uat') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
-    concurrency:
-      group: 'fsd-adapter-uat'
-      cancel-in-progress: false
-    permissions:
-      id-token: write # This is required for requesting the JWT
-      contents: read # This is required for actions/checkout
-    uses: ./.github/workflows/deploy.yml
-    secrets:
-      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
-      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      SLACK_NOTIFICATION_CHANNEL_ID: ${{ secrets.SLACK_NOTIFICATION_CHANNEL_ID }}
-    with:
-      environment: uat
-      alert_slack_on_failure: true
-      notify_slack_on_deployment: false
-
-  post_uat_deploy_tests:
-    needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, test_deploy, uat_deploy ]
-    permissions:
-      id-token: write # This is required for requesting the JWT
-      contents: read # This is required for actions/checkout
-    if: ${{ always()  && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'uat') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') )  }}
-    secrets:
-      FSD_GH_APP_ID: ${{ secrets.FSD_GH_APP_ID }}
-      FSD_GH_APP_KEY: ${{ secrets.FSD_GH_APP_KEY }}
-      FS_BASIC_AUTH_USERNAME: ${{ secrets.FS_BASIC_AUTH_USERNAME }}
-      FS_BASIC_AUTH_PASSWORD: ${{ secrets.FS_BASIC_AUTH_PASSWORD }}
-      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
-      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      SLACK_NOTIFICATION_CHANNEL_ID: ${{ secrets.SLACK_NOTIFICATION_CHANNEL_ID }}
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
-    with:
-      run_performance_tests: ${{ inputs.run_performance_tests || true }}
-      run_e2e_tests_assessment: ${{ inputs.run_e2e_tests_assessment || false }}
-      run_e2e_tests_application: ${{ inputs.run_e2e_tests_application || true }}
-      run_static_security_python: false
-      run_zap_scan: true
-      app_name: forms
-      environment: uat
-      notify_slack: true
 
   prod_deploy:
-    needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, test_deploy, uat_deploy, post_uat_deploy_tests ]
+    needs: [ setup, docker-designer-build, docker-runner-build, dev_deploy, test_deploy ]
     if: ${{ always() && contains(fromJSON(needs.setup.outputs.jobs_to_run), 'prod') && (! contains(needs.*.result, 'failure') ) && (! contains(needs.*.result, 'cancelled') ) }}
     permissions:
       id-token: write # This is required for requesting the JWT
