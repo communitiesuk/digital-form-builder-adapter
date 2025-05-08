@@ -64,7 +64,7 @@ export class RegisterApplicationStatusApi implements RegisterApi {
                     * If prod environment, show 500 page
                     * The behaviour is not changing for non-prod environments
                     */
-                    if (["dev", "test", "uat", ""].includes(config.copilotEnv)) {
+                    if (["dev", "test", ""].includes(config.copilotEnv)) {
                         // you are previewing the form
                         request.logger.info(
                             ["applicationStatus"],
