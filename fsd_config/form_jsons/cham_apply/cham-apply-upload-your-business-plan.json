@@ -45,7 +45,7 @@
                         "dropzoneConfig": {
                             "maxFiles": 1,
                             "parallelUploads": 1,
-                            "maxFilesize": 1,
+                            "maxFilesize": 10,
                             "acceptedFiles": ",application/pdf"
                         },
                         "showNoScriptWarning": false,
