@@ -1,0 +1,73 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "FkYoBq",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we will ask you about the resources and skills within the Neighbourhood Board, accountable body and other parties that will be in place for work related to the fund."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-about-the-resources-and-skills-available-to-support-delivery-in-the-first-investment-period"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-about-the-resources-and-skills-available-to-support-delivery-in-the-first-investment-period",
+            "title": "Tell us about the resources and skills available to support delivery in the first investment period.",
+            "components": [
+                {
+                    "name": "uXGSbF",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Include information about:\n<ul>\n<li>those within the local authority, Neighbourhood Board and contracted resources</li>\n<li>both paid resources, and in-kind time provided by organisations</li>\n<li>the experience and skills in place, or how capability will be developed to support delivery</li>\n</ul>"
+                },
+                {
+                    "name": "vbKOOv",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us about the resources and skills available to support delivery in the first investment period."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Check your answers",
+            "path": "/check-your-answers",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {},
+    "markAsComplete": false
+}
