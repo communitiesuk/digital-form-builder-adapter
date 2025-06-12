@@ -105,8 +105,13 @@ export class AdapterCacheService extends CacheService {
      */
     //@ts-ignore
     Key(request: HapiRequest, additionalIdentifier?: ADDITIONAL_IDENTIFIER) {
-        let id = `${request.yar.id}:${request.params.id}`;
-
+        let id: string;
+        if (request.auth && request.auth.credentials && request.auth.credentials.accountId) {
+            id = `${request.auth.credentials.accountId}:${request.params.id}`;
+            request.logger.info(`[ACTIVATE-SESSION] get user account id for the session key ${id}`);
+        } else {
+            id = `${request.yar.id}:${request.params.id}`;
+        }
         if (request.query.form_session_identifier) {
             id = `${id}:${request.query.form_session_identifier}`;
         }
