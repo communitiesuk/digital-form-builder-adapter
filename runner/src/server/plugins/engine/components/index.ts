@@ -9,7 +9,7 @@ export {
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/AutocompleteField";
 export {
     CheckboxesField
-} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/CheckboxesField";
+} from "./CheckboxesField";
 export {ComponentBase as Component} from "./ComponentBase";
 export {ComponentCollection} from "./ComponentCollection";
 export {DateField} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/components/DateField";
