@@ -322,11 +322,10 @@ export class RepeatingFieldPageController extends PageController {
                         }
                     }
                 }
-
                 if (typeof query.returnUrl !== "undefined") {
                     return h.redirect(`${query.returnUrl}?${form_session_identifier}`);
                 }
-                return h.redirect(`${this.getNext(rest)}?${form_session_identifier}`);
+                return h.redirect(`${this.getNext(savedState)}?${form_session_identifier}`);
             }
 
             const modifyUpdate = (update) => {
