@@ -10,7 +10,7 @@
                     "name": "oBsEvA",
                     "options": {},
                     "type": "Para",
-                    "content": "In this section, we'll ask you about how you will deliver your programme of activity.<br><br>\nWe understand that during delivery you may fund different interventions to those selected as you respond to new or emerging local need, or to align with other local plans and availability of funding sources. Therefore, your answers in this section can be indicative.<br>\n<p class=\"govuk-body\">We’ll ask about the interventions you plan to fund in the first investment period, if known. These can be found on the <a href=\"https://www.gov.uk/government/publications/plan-for-neighbourhoods-prospectus-and-tools/plan-for-neighbourhoods-pre-approved-interventions\" class=\"govuk-link\">pre-approved interventions page</a>, and include the following categories:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>cohesion</li>\n<li>education and opportunity</li>\n<li>health and wellbeing</li>\n<li>housing</li>\n<li>regeneration, high streets and heritage</li>\n<li>safety and security</li>\n<li>transport</li>\n<li>work, productivity and skills</li>\n</ul>",
+                    "content": "In this section, we'll ask you about how you will deliver your programme of activity.<br><br>\nWe understand that during delivery you may fund different interventions to those selected as you respond to new or emerging local need, or to align with other local plans and availability of funding sources. Therefore, your answers in this section can be indicative.<br>\n<p class=\"govuk-body\">We’ll ask about the interventions you plan to fund in the first investment period, if known. These can be found on the <a href=\"https://www.gov.uk/government/publications/plan-for-neighbourhoods-prospectus-and-tools/plan-for-neighbourhoods-pre-approved-interventions\" target=\"_blank\" class=\"govuk-link\">pre-approved interventions page</a>, and include the following categories:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>cohesion</li>\n<li>education and opportunity</li>\n<li>health and wellbeing</li>\n<li>housing</li>\n<li>regeneration, high streets and heritage</li>\n<li>safety and security</li>\n<li>transport</li>\n<li>work, productivity and skills</li>\n</ul>",
                     "schema": {}
                 },
                 {
@@ -328,7 +328,9 @@
                 {
                     "name": "Itcjmg",
                     "options": {
-                        "hideTitle": true
+                        "hideTitle": true,
+                        "required": false,
+                        "optionalText": false
                     },
                     "type": "CheckboxesField",
                     "title": "Not sure which pre-approved interventions we plan to fund at this stage",

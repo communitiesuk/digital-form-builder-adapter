@@ -37,7 +37,7 @@
                     "name": "sZyAJS",
                     "options": {},
                     "type": "Para",
-                    "content": "It must include the section headings and content as set out in the <a href=\"https://www.gov.uk/government/publications/plan-for-neighbourhoods-regeneration-plan-guidance/plan-for-neighbourhoods-10-year-vision-content-checklist\" class=\"govuk-link\">10-year vision content checklist (opens in new tab)</a>.",
+                    "content": "It must include the section headings and content as set out in the <a href=\"https://www.gov.uk/government/publications/plan-for-neighbourhoods-regeneration-plan-guidance/plan-for-neighbourhoods-10-year-vision-content-checklist\" target=\"_blank\" class=\"govuk-link\">10-year vision content checklist (opens in new tab)</a>.",
                     "schema": {}
                 },
                 {
