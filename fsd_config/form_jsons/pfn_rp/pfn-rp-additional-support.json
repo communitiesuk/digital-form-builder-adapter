@@ -29,7 +29,7 @@
                     "name": "NKLAZE",
                     "options": {
                         "hideTitle": true,
-                        "required": false,
+                        "required": true,
                         "optionalText": false
                     },
                     "type": "CheckboxesField",
@@ -47,23 +47,6 @@
                     },
                     "type": "TextField",
                     "title": "Other (please specify)"
-                },
-                {
-                    "name": "XUloQj",
-                    "options": {},
-                    "type": "Para",
-                    "content": "Or"
-                },
-                {
-                    "name": "vYjrtn",
-                    "options": {
-                        "hideTitle": true,
-                        "required": false,
-                        "optionalText": false
-                    },
-                    "type": "CheckboxesField",
-                    "title": "Tell us which areas of support you may be interested in.",
-                    "list": "zSihcs"
                 }
             ],
             "next": [
@@ -119,6 +102,10 @@
                 {
                     "text": "Subsidy Control Act",
                     "value": "Subsidy Control Act"
+                },
+                {
+                    "text": "I am not interested in any additional support",
+                    "value": "I am not interested in any additional support"
                 },
                 {
                     "text": "Other (please specify)",

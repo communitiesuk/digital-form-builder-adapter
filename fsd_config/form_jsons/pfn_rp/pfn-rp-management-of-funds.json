@@ -106,7 +106,7 @@
                     "condition": "LhBdrH"
                 },
                 {
-                    "path": "/tell-us-when-arrangements-will-be-put-in-place-KWsPrO",
+                    "path": "/tell-us-when-environmental-duty-arrangements-will-be-put-in-place",
                     "condition": "imIiwu"
                 }
             ],
@@ -139,7 +139,7 @@
                     "condition": "DtqssY"
                 },
                 {
-                    "path": "/tell-us-when-arrangements-will-be-put-in-place-lhyZkZ",
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-funds-awarded-are-done-in-compliance-with-appropriate-public-contract-regulations",
                     "condition": "qixcyA"
                 }
             ],
@@ -165,7 +165,7 @@
                     "condition": "emjPAo"
                 },
                 {
-                    "path": "/tell-us-when-arrangements-will-be-put-in-place-xbBlZB",
+                    "path": "/tell-us-when-a-programme-risk-register-will-be-conducted",
                     "condition": "QQKKzT"
                 }
             ],
@@ -194,7 +194,7 @@
                     "condition": "uEwEkQ"
                 },
                 {
-                    "path": "/tell-us-when-arrangements-will-be-put-in-place-LJGcMC",
+                    "path": "/tell-us-when-a-fraud-risk-assessment-will-be-conducted",
                     "condition": "tiwzLj"
                 }
             ],
@@ -254,7 +254,7 @@
                     "condition": "WHbXFm"
                 },
                 {
-                    "path": "/tell-us-when-arrangements-will-be-put-in-place",
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-consider-the-public-sector-equality-duty",
                     "condition": "OdhIti"
                 }
             ],
@@ -287,7 +287,7 @@
                     "condition": "CoXwYg"
                 },
                 {
-                    "path": "/tell-us-when-arrangements-will-be-put-in-place-hTEtxf",
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-consider-section-75-of-the-northern-ireland-act",
                     "condition": "uvGvaF"
                 }
             ],
@@ -320,7 +320,7 @@
                     "condition": "Xrydrg"
                 },
                 {
-                    "path": "/tell-us-when-arrangements-will-be-put-in-place-rzmMyj",
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-that-the-requirements-of-the-subsidy-control-act-will-be-followed",
                     "condition": "gCpWVE"
                 }
             ],
@@ -353,7 +353,7 @@
                     "condition": "dYqvcI"
                 },
                 {
-                    "path": "/tell-us-when-arrangements-will-be-put-in-place-dBXBuC",
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-that-the-requirements-of-the-subsidy-control-act-and-state-aid-regulations-will-be-followed",
                     "condition": "UxOvAt"
                 }
             ],
@@ -368,8 +368,8 @@
             "section": "FabDefault"
         },
         {
-            "path": "/tell-us-when-arrangements-will-be-put-in-place",
-            "title": "Tell us when arrangements will be put in place.",
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-consider-the-public-sector-equality-duty",
+            "title": "Tell us when arrangements will be put in place to consider the public sector equality duty.",
             "components": [
                 {
                     "name": "msMpIW",
@@ -384,7 +384,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
-                    "title": "Tell us when arrangements will be put in place.",
+                    "title": "Tell us when arrangements will be put in place to consider the public sector equality duty.",
                     "hint": "For example, 27 3 2024",
                     "schema": {}
                 }
@@ -397,8 +397,8 @@
             "section": "FabDefault"
         },
         {
-            "path": "/tell-us-when-arrangements-will-be-put-in-place-hTEtxf",
-            "title": "Tell us when arrangements will be put in place.",
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-consider-section-75-of-the-northern-ireland-act",
+            "title": "Tell us when arrangements will be put in place to consider Section 75 of the Northern Ireland Act.",
             "components": [
                 {
                     "name": "gdPUWh",
@@ -413,7 +413,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
-                    "title": "Tell us when arrangements will be put in place.",
+                    "title": "Tell us when arrangements will be put in place to consider Section 75 of the Northern Ireland Act.",
                     "hint": "For example, 27 3 2024",
                     "schema": {}
                 }
@@ -426,8 +426,8 @@
             "section": "FabDefault"
         },
         {
-            "path": "/tell-us-when-arrangements-will-be-put-in-place-rzmMyj",
-            "title": "Tell us when arrangements will be put in place.",
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-that-the-requirements-of-the-subsidy-control-act-will-be-followed",
+            "title": "Tell us when arrangements will be put in place to ensure that the requirements of the Subsidy Control Act will be followed.",
             "components": [
                 {
                     "name": "DPCAAm",
@@ -442,7 +442,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
-                    "title": "Tell us when arrangements will be put in place.",
+                    "title": "Tell us when arrangements will be put in place to ensure that the requirements of the Subsidy Control Act will be followed.",
                     "hint": "For example, 27 3 2024",
                     "schema": {}
                 }
@@ -455,8 +455,8 @@
             "section": "FabDefault"
         },
         {
-            "path": "/tell-us-when-arrangements-will-be-put-in-place-dBXBuC",
-            "title": "Tell us when arrangements will be put in place.",
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-that-the-requirements-of-the-subsidy-control-act-and-state-aid-regulations-will-be-followed",
+            "title": "Tell us when arrangements will be put in place to ensure that the requirements of the Subsidy Control Act and state aid regulations will be followed.",
             "components": [
                 {
                     "name": "NxKUzE",
@@ -471,7 +471,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
-                    "title": "Tell us when arrangements will be put in place.",
+                    "title": "Tell us when arrangements will be put in place to ensure that the requirements of the Subsidy Control Act and state aid regulations will be followed.",
                     "hint": "For example, 27 3 2024",
                     "schema": {}
                 }
@@ -484,8 +484,8 @@
             "section": "FabDefault"
         },
         {
-            "path": "/tell-us-when-arrangements-will-be-put-in-place-KWsPrO",
-            "title": "Tell us when arrangements will be put in place.",
+            "path": "/tell-us-when-environmental-duty-arrangements-will-be-put-in-place",
+            "title": "Tell us when environmental duty arrangements will be put in place.",
             "components": [
                 {
                     "name": "gnTqOX",
@@ -500,7 +500,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
-                    "title": "Tell us when arrangements will be put in place.",
+                    "title": "Tell us when environmental duty arrangements will be put in place.",
                     "hint": "For example, 27 3 2024",
                     "schema": {}
                 }
@@ -513,8 +513,8 @@
             "section": "FabDefault"
         },
         {
-            "path": "/tell-us-when-arrangements-will-be-put-in-place-lhyZkZ",
-            "title": "Tell us when arrangements will be put in place.",
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-funds-awarded-are-done-in-compliance-with-appropriate-public-contract-regulations",
+            "title": "Tell us when arrangements will be put in place to ensure funds awarded are done in compliance with appropriate public contract regulations.",
             "components": [
                 {
                     "name": "fJiqoc",
@@ -529,7 +529,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
-                    "title": "Tell us when arrangements will be put in place.",
+                    "title": "Tell us when arrangements will be put in place to ensure funds awarded are done in compliance with appropriate public contract regulations.",
                     "hint": "For example, 27 3 2024",
                     "schema": {}
                 }
@@ -542,8 +542,8 @@
             "section": "FabDefault"
         },
         {
-            "path": "/tell-us-when-arrangements-will-be-put-in-place-xbBlZB",
-            "title": "Tell us when arrangements will be put in place.",
+            "path": "/tell-us-when-a-programme-risk-register-will-be-conducted",
+            "title": "Tell us when a programme risk register will be conducted.",
             "components": [
                 {
                     "name": "JzDttP",
@@ -558,7 +558,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
-                    "title": "Tell us when arrangements will be put in place.",
+                    "title": "Tell us when a programme risk register will be conducted.",
                     "hint": "For example, 27 3 2024",
                     "schema": {}
                 }
@@ -571,8 +571,8 @@
             "section": "FabDefault"
         },
         {
-            "path": "/tell-us-when-arrangements-will-be-put-in-place-LJGcMC",
-            "title": "Tell us when arrangements will be put in place.",
+            "path": "/tell-us-when-a-fraud-risk-assessment-will-be-conducted",
+            "title": "Tell us when a fraud risk assessment will be conducted.",
             "components": [
                 {
                     "name": "ZpzkwC",
@@ -587,7 +587,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
-                    "title": "Tell us when arrangements will be put in place.",
+                    "title": "Tell us when a fraud risk assessment will be conducted.",
                     "hint": "For example, 27 3 2024",
                     "schema": {}
                 }
