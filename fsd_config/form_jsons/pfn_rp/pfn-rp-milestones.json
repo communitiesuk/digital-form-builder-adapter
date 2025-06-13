@@ -1,0 +1,823 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "oXGmLF",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about your delivery milestones that you will complete as part of the Plan for Neighbourhoods programme, over the first 4 years of the investment period. \n<p class=\"govuk-body\">The high-level milestones include:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>consulting the community</li> \n<li>running a feasibility study</li>\n<li>call for projects and project selection round</li>\n<li>commissioning services</li>\n<li>project procurement</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "uALJjd",
+                    "options": {},
+                    "type": "Para",
+                    "content": "You will also be able to add any bespoke milestones not listed.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-milestones-are-relevant-for-your-place"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/which-milestones-are-relevant-for-your-place",
+            "title": "Which milestones are relevant for your place?",
+            "components": [
+                {
+                    "name": "ZRERCV",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which milestones are relevant for your place?",
+                    "list": "ZYZpYD",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/consulting-the-community",
+                    "condition": "XlUFgL"
+                },
+                {
+                    "path": "/running-a-feasibility-study",
+                    "condition": "ntKXZH"
+                },
+                {
+                    "path": "/call-for-projects-and-project-selection-round",
+                    "condition": "xGXVHb"
+                },
+                {
+                    "path": "/commissioning-services",
+                    "condition": "dBRGdn"
+                },
+                {
+                    "path": "/project-procurement",
+                    "condition": "NRutUR"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Consulting the community",
+            "path": "/consulting-the-community",
+            "components": [
+                {
+                    "name": "xqfcPh",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\nSummarise the activities for this milestone, and provide the estimated start and completion dates.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "rwrobL",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Include any key activities that you will undertake to deliver the programme. This does not need to include project-level information, but you may include information on any major programmes of activity that you intend to fund.<br><br>\n\n\nOnce you have completed the fields, 'Save and add another' to add more or continue to the next question. ",
+                    "schema": {}
+                },
+                {
+                    "name": "rrPXVD",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Summary of activities",
+                            "Estimated start date",
+                            "Estimated completion date"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Summarise the activities for this milestone, and provide the estimated start and completion dates.",
+                    "children": [
+                        {
+                            "type": "MultilineTextField",
+                            "name": "wllxCG",
+                            "options": {
+                                "hideTitle": true
+                            },
+                            "title": "Summarise the activities for this milestone.",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "WYTlBX",
+                            "options": {},
+                            "title": "Estimated start date",
+                            "hint": "For example, 27 3 2024\n",
+                            "schema": {}
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "ljJuGk",
+                            "options": {},
+                            "title": "Estimated completion date",
+                            "hint": "For example, 27 3 2024\n",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/call-for-projects-and-project-selection-round",
+                    "condition": "xGXVHb"
+                },
+                {
+                    "path": "/commissioning-services",
+                    "condition": "dBRGdn"
+                },
+                {
+                    "path": "/project-procurement",
+                    "condition": "NRutUR"
+                },
+                {
+                    "path": "/would-you-like-to-add-any-bespoke-milestones"
+                },
+                {
+                    "path": "/running-a-feasibility-study",
+                    "condition": "ntKXZH"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Consulting the community - key activities and dates",
+                    "samePageTableItemName": "milestone"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/running-a-feasibility-study",
+            "title": "Running a feasibility study",
+            "components": [
+                {
+                    "name": "qwZDSd",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\nSummarise the activities for this milestone, and provide the estimated start and completion dates.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "nylYnU",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Include any key activities that you will undertake to deliver the programme. This does not need to include project-level information, but you may include information on any major programmes of activity that you intend to fund.<br><br>\nOnce you have completed the fields, 'Save and add another' to add more or continue to the next question.",
+                    "schema": {}
+                },
+                {
+                    "name": "POAlfg",
+                    "options": {
+                        "columnTitles": [
+                            "Summary of activities",
+                            "Estimated start date",
+                            "Estimated completion date"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Summarise the activities for this milestone, and provide the estimated start and completion dates.",
+                    "children": [
+                        {
+                            "type": "MultilineTextField",
+                            "name": "itoWXB",
+                            "options": {
+                                "hideTitle": true
+                            },
+                            "title": "Summarise the activities for this milestone.",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "guCDSi",
+                            "options": {},
+                            "title": "Estimated start date",
+                            "hint": "For example, 27 3 2024",
+                            "schema": {}
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "gJRNzf",
+                            "options": {},
+                            "title": "Estimated completion date",
+                            "hint": "For example, 27 3 2024\n",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/call-for-projects-and-project-selection-round",
+                    "condition": "xGXVHb"
+                },
+                {
+                    "path": "/commissioning-services",
+                    "condition": "dBRGdn"
+                },
+                {
+                    "path": "/project-procurement",
+                    "condition": "NRutUR"
+                },
+                {
+                    "path": "/would-you-like-to-add-any-bespoke-milestones"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Running a feasibility study - key activities and dates",
+                    "samePageTableItemName": "milestone"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/call-for-projects-and-project-selection-round",
+            "title": "Call for projects and project selection round",
+            "components": [
+                {
+                    "name": "hdQaAV",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\nSummarise the activities for this milestone, and provide the estimated start and completion dates.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "FuTTFL",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Include any key activities that you will undertake to deliver the programme. This does not need to include project-level information, but you may include information on any major programmes of activity that you intend to fund.<br><br>\nOnce you have completed the fields, 'Save and add another' to add more or continue to the next question.",
+                    "schema": {}
+                },
+                {
+                    "name": "PHFgHg",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Summary of activities",
+                            "Estimated start date",
+                            "Estimated completion date"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Summarise the activities for this milestone, and provide the estimated start and completion dates.",
+                    "children": [
+                        {
+                            "type": "MultilineTextField",
+                            "name": "AqETPA",
+                            "options": {
+                                "hideTitle": true
+                            },
+                            "title": "Summarise the activities for this milestone",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "ZLZXdp",
+                            "options": {},
+                            "title": "Estimated start date",
+                            "hint": "For example, 27 3 2024",
+                            "schema": {}
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "RbGxAS",
+                            "options": {},
+                            "title": "Estimated completion date",
+                            "hint": "For example, 27 3 2024",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/commissioning-services",
+                    "condition": "dBRGdn"
+                },
+                {
+                    "path": "/project-procurement",
+                    "condition": "NRutUR"
+                },
+                {
+                    "path": "/would-you-like-to-add-any-bespoke-milestones"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Call for projects and project selection round - key activities and dates",
+                    "samePageTableItemName": "milestone"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/commissioning-services",
+            "title": "Commissioning services",
+            "components": [
+                {
+                    "name": "SphGhx",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\nSummarise the activities for this milestone, and provide the estimated start and completion dates.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "CsSrKs",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Include any key activities that you will undertake to deliver the programme. This does not need to include project-level information, but you may include information on any major programmes of activity that you intend to fund.<br><br>\nOnce you have completed the fields, 'Save and add another' to add more or continue to the next question.",
+                    "schema": {}
+                },
+                {
+                    "name": "mFpuWM",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Summary of activities",
+                            "Estimated start date",
+                            "Estimated completion date"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Summarise the activities for this milestone, and provide the estimated start and completion dates.",
+                    "children": [
+                        {
+                            "type": "MultilineTextField",
+                            "name": "teTxKx",
+                            "options": {
+                                "hideTitle": true
+                            },
+                            "title": "Summarise the activities for this milestone",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "yzJgwQ",
+                            "options": {},
+                            "title": "Estimated start date",
+                            "hint": "For example, 27 3 2024",
+                            "schema": {}
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "icvTMw",
+                            "options": {},
+                            "title": "Estimated completion date",
+                            "hint": "For example, 27 3 2024",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-procurement",
+                    "condition": "NRutUR"
+                },
+                {
+                    "path": "/would-you-like-to-add-any-bespoke-milestones"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Commissioning services - key activities and dates",
+                    "samePageTableItemName": "milestone"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/project-procurement",
+            "title": "Project procurement",
+            "components": [
+                {
+                    "name": "ATUYqX",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\nSummarise the activities for this milestone, and provide the estimated start and completion dates.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "xnabxE",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Include any key activities that you will undertake to deliver the programme. This does not need to include project-level information, but you may include information on any major programmes of activity that you intend to fund.<br><br>\nOnce you have completed the fields, 'Save and add another' to add more or continue to the next question.",
+                    "schema": {}
+                },
+                {
+                    "name": "wnHKSa",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Summary of activities",
+                            "Estimated start date",
+                            "Estimated completion date"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Summarise the activities for this milestone, and provide the estimated start and completion dates.",
+                    "children": [
+                        {
+                            "type": "MultilineTextField",
+                            "name": "fOrPxA",
+                            "options": {
+                                "hideTitle": true
+                            },
+                            "title": "Summarise the activities for this milestone",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "GbzGDA",
+                            "options": {},
+                            "title": "Estimated start date",
+                            "hint": "For example, 27 3 2024",
+                            "schema": {}
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "DCINPC",
+                            "options": {},
+                            "title": "Estimated completion date",
+                            "hint": "For example, 27 3 2024",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/would-you-like-to-add-any-bespoke-milestones"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Project procurement - key activities and dates",
+                    "samePageTableItemName": "milestone"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/would-you-like-to-add-any-bespoke-milestones",
+            "title": "Would you like to add any bespoke milestones?",
+            "components": [
+                {
+                    "name": "fXhfQu",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Would you like to add any bespoke milestones?",
+                    "schema": {},
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-about-the-milestone",
+                    "condition": "vpEWdl"
+                },
+                {
+                    "path": "/check-your-answers",
+                    "condition": "esxgfJ"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-about-the-milestone",
+            "title": "Tell us about the milestone.",
+            "components": [
+                {
+                    "name": "cfiJyU",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Brief description of milestone",
+                            "Summary of activities",
+                            "Estimated start date",
+                            "Estimated completion date"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us about the milestone.",
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "ZWYplj",
+                            "options": {},
+                            "title": "Brief description of milestone",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "MultilineTextField",
+                            "name": "HYGqTl",
+                            "options": {},
+                            "title": "Summarise the activities for this milestone",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "WBbwfO",
+                            "options": {},
+                            "title": "Estimated start date",
+                            "hint": "For example, 27 3 2024",
+                            "schema": {}
+                        },
+                        {
+                            "type": "DatePartsField",
+                            "name": "HZuYud",
+                            "options": {},
+                            "title": "Estimated completion date",
+                            "hint": "For example, 27 3 2024",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Additional milestones",
+                    "samePageTableItemName": "milestone"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "title": "Key milestones",
+            "name": "ZYZpYD",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Consulting the community",
+                    "value": "Consulting the community"
+                },
+                {
+                    "text": "Running a feasibility study",
+                    "value": "Running a feasibility study"
+                },
+                {
+                    "text": "Call for projects and project selection round",
+                    "value": "Call for projects and project selection round"
+                },
+                {
+                    "text": "Commissioning services",
+                    "value": "Commissioning services"
+                },
+                {
+                    "text": "Project procurement",
+                    "value": "Project procurement"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "If Consulting the community",
+            "name": "XlUFgL",
+            "value": {
+                "name": "If Consulting the community",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.ZRERCV",
+                            "type": "CheckboxesField",
+                            "display": "Which key milestones are relevant for your place?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Consulting the community",
+                            "display": "Consulting the community"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Running a feasibility study",
+            "name": "ntKXZH",
+            "value": {
+                "name": "If Running a feasibility study",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.ZRERCV",
+                            "type": "CheckboxesField",
+                            "display": "Which key milestones are relevant for your place?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Running a feasibility study",
+                            "display": "Running a feasibility study"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Call for projects and project selection round",
+            "name": "xGXVHb",
+            "value": {
+                "name": "If Call for projects and project selection round",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.ZRERCV",
+                            "type": "CheckboxesField",
+                            "display": "Which key milestones are relevant for your place?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Call for projects and project selection round",
+                            "display": "Call for projects and project selection round"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Commissioning services",
+            "name": "dBRGdn",
+            "value": {
+                "name": "If Commissioning services",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.ZRERCV",
+                            "type": "CheckboxesField",
+                            "display": "Which key milestones are relevant for your place?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Commissioning services",
+                            "display": "Commissioning services"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Project procurement",
+            "name": "NRutUR",
+            "value": {
+                "name": "If Project procurement",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.ZRERCV",
+                            "type": "CheckboxesField",
+                            "display": "Which key milestones are relevant for your place?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Project procurement",
+                            "display": "Project procurement"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Is add a bespoke milestone",
+            "name": "vpEWdl",
+            "value": {
+                "name": "Is add a bespoke milestone",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.fXhfQu",
+                            "type": "YesNoField",
+                            "display": "Would you like to add any bespoke milestones?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If no bespoke milestones",
+            "name": "esxgfJ",
+            "value": {
+                "name": "If no bespoke milestones",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.fXhfQu",
+                            "type": "YesNoField",
+                            "display": "Would you like to add any bespoke milestones?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

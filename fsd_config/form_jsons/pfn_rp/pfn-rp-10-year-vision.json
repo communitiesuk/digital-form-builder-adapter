@@ -1,0 +1,206 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "wtrAoP",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask you to upload your Neighbourhood Board's 10-year vision, and any supporting documents you may have.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-your-10-year-vision"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/upload-your-10-year-vision",
+            "title": "Upload your 10-year vision.",
+            "components": [
+                {
+                    "name": "cAzmvt",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body\">Your 10-Year vision should outline how:<p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>Plan for Neighbourhoods funding will be used to address local needs and deliver programme objectives over the next decade</li>\n<li>funds will be managed compliantly and effectively</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "sZyAJS",
+                    "options": {},
+                    "type": "Para",
+                    "content": "It must include the section headings and content as set out in the <a href=\"https://www.gov.uk/government/publications/plan-for-neighbourhoods-regeneration-plan-guidance/plan-for-neighbourhoods-10-year-vision-content-checklist\" target=\"_blank\" class=\"govuk-link\">10-year vision content checklist (opens in new tab)</a>.",
+                    "schema": {}
+                },
+                {
+                    "name": "QdfSRQ",
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 1,
+                            "parallelUploads": 1,
+                            "maxFilesize": 30,
+                            "acceptedFiles": ",application/pdf"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 0,
+                        "hideTitle": true
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload your 10-year vision.",
+                    "schema": {},
+                    "hint": "Your file must be under 30MB and in PDF format"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/would-you-like-to-upload-any-supporting-documents"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Would you like to upload any supporting documents?",
+            "path": "/would-you-like-to-upload-any-supporting-documents",
+            "components": [
+                {
+                    "name": "yMWAhw",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Would you like to upload any supporting documents?",
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/upload-any-supporting-documents-and-provide-a-brief-description-of-their-purpose",
+                    "condition": "cJsBRO"
+                },
+                {
+                    "path": "/check-your-answers",
+                    "condition": "cZyrAV"
+                }
+            ]
+        },
+        {
+            "path": "/upload-any-supporting-documents-and-provide-a-brief-description-of-their-purpose",
+            "title": "Upload any supporting documents and provide a brief description of their purpose.",
+            "components": [
+                {
+                    "name": "lVzOPc",
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 20,
+                            "parallelUploads": 1,
+                            "maxFilesize": 30,
+                            "acceptedFiles": ",application/pdf,application/msword,image/jpeg,image/png,text/plain,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 0,
+                        "hideTitle": true
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload any supporting documents and provide a brief description of their purpose.",
+                    "schema": {},
+                    "hint": "Files must be under 30MB."
+                },
+                {
+                    "name": "HzWBci",
+                    "options": {},
+                    "type": "MultilineTextField",
+                    "title": "Specify the purpose for each document using the format: 'File name - purpose'. ",
+                    "hint": "Make sure the file name uploaded matches the one you have outlined so that we can locate the correct document for review",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "If supporting docs",
+            "name": "cJsBRO",
+            "value": {
+                "name": "If supporting docs",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.yMWAhw",
+                            "type": "YesNoField",
+                            "display": "Would you like to upload any supporting documents?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If no supporting docs",
+            "name": "cZyrAV",
+            "value": {
+                "name": "If no supporting docs",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.yMWAhw",
+                            "type": "YesNoField",
+                            "display": "Would you like to upload any supporting documents?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

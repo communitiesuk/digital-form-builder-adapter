@@ -1,0 +1,1394 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "QCGZGM",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll provide the figures for your allocated capacity funding (revenue) and programme delivery funding (capital and revenue), which will be paid to your accountable body.\n<br><br>\nWe'll then ask you about:\n<ul>\n<li>your indicative spend forecast throughout the programme, split by:</li>\n<ul>\n<li>capacity funding</li>\n<li>programme delivery funding (capital)</li>\n<li>programme delivery funding (revenue)</li>\n</ul>\n<li>how you have developed your indicative spend forecast and why it is important for spend to occur in these years</li>\n<li>your planned use of programme delivery funding for the first investment period, split by:</li>\n<ul>\n<li>pre-approved interventions</li>\n<li>off-menu interventions</li>\n<li>management costs</li>\n<li>unknown uses of funding</li>\n</ul>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/your-payment-profile"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/your-payment-profile",
+            "title": "Your payment profile",
+            "components": [
+                {
+                    "name": "yRKdUm",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Your place has been allocated capacity funding (revenue) and programme delivery funding (capital and revenue). This will be paid to your accountable body following the payment profiles shown in the table. <br><br>\n\nThe investment periods run as follows:\n<ul>\n<li>Investment period 1 - 2026 to 2030 (4 financial years)</li>\n<li>Investment period 2 - 2030 to 2033 (3 financial years)</li>\n<li>Investment period 3 - 2033 to 2036 (3 financial years)</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "DXJSVm",
+                    "options": {},
+                    "type": "Para",
+                    "content": "£250,000 and £200,000 were also allocated for capacity funding (revenue) in the 2024 to 2025 and 2025 to 2026 financial years.",
+                    "schema": {}
+                },
+                {
+                    "name": "ykdusa",
+                    "options": {},
+                    "type": "Html",
+                    "content": "<table class=\"govuk-table\">\n  <caption class=\"govuk-table__caption govuk-table__caption--s\">Your payment profile for the Plan for Neighbourhoods programme (000s)</caption>\n  <thead class=\"govuk-table__head\">\n    <tr class=\"govuk-table__row\">\n      <th scope=\"col\" class=\"govuk-table__header\">Type of funding</th>\n      <th scope=\"col\" class=\"govuk-table__header\">2024-25</th>\n      <th scope=\"col\" class=\"govuk-table__header\">2025-26</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 1 (2026-27)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 2 (2027-28)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 3 (2028-29)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 4 (2029-30)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 5 (2030-31)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 6 (2031-32)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 7 (2032-33)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 8 (2033-34)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 9 (2034-35)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Year 10 (2035-36)</th>\n      <th scope=\"col\" class=\"govuk-table__header\">Total</th>\n    </tr>\n  </thead>\n  <tbody class=\"govuk-table__body\">\n    <tr class=\"govuk-table__row\">\n      <th scope=\"row\" class=\"govuk-table__header\">Capacity funding (revenue)</th>\n      <td class=\"govuk-table__cell\">250</td>\n      <td class=\"govuk-table__cell\">200</td>\n      <td class=\"govuk-table__cell\">150</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\"><b>600</b></td>\n    </tr>\n    <tr class=\"govuk-table__row\">\n      <th scope=\"row\" class=\"govuk-table__header\">Programme delivery funding (capital)</th>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">360</td>\n      <td class=\"govuk-table__cell\">1,736</td>\n      <td class=\"govuk-table__cell\">1,605</td>\n      <td class=\"govuk-table__cell\">1,605</td>\n      <td class=\"govuk-table__cell\">1,605</td>\n      <td class=\"govuk-table__cell\">1,605</td>\n      <td class=\"govuk-table__cell\">1,605</td>\n      <td class=\"govuk-table__cell\">1,605</td>\n      <td class=\"govuk-table__cell\">1,605</td>\n      <td class=\"govuk-table__cell\">1,605</td>\n      <td class=\"govuk-table__cell\"><b>14,936</b></td>\n    </tr>\n    <tr class=\"govuk-table__row\">\n      <th scope=\"row\" class=\"govuk-table__header\">Programme delivery funding (revenue)</th>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">0</td>\n      <td class=\"govuk-table__cell\">232</td>\n      <td class=\"govuk-table__cell\">256</td>\n      <td class=\"govuk-table__cell\">432</td>\n      <td class=\"govuk-table__cell\">432</td>\n      <td class=\"govuk-table__cell\">432</td>\n      <td class=\"govuk-table__cell\">432</td>\n      <td class=\"govuk-table__cell\">437</td>\n      <td class=\"govuk-table__cell\">450</td>\n      <td class=\"govuk-table__cell\">450</td>\n      <td class=\"govuk-table__cell\">450</td>\n      <td class=\"govuk-table__cell\"><b>4,003</b></td>\n    </tr>\n    <tr class=\"govuk-table__row\">\n      <th scope=\"row\" class=\"govuk-table__header\">Total</th>\n      <td class=\"govuk-table__cell\"><b>250</b></td>\n      <td class=\"govuk-table__cell\"><b>200</b></td>\n      <td class=\"govuk-table__cell\"><b>742</b></td>\n      <td class=\"govuk-table__cell\"><b>1,992</b></td>\n      <td class=\"govuk-table__cell\"><b>2,037</b></td>\n      <td class=\"govuk-table__cell\"><b>2,037</b></td>\n      <td class=\"govuk-table__cell\"><b>2,037</b></td>\n      <td class=\"govuk-table__cell\"><b>2,037</b></td>\n      <td class=\"govuk-table__cell\"><b>2,042</b></td>\n      <td class=\"govuk-table__cell\"><b>2,055</b></td>\n      <td class=\"govuk-table__cell\"><b>2,055</b></td>\n      <td class=\"govuk-table__cell\"><b>2,055</b></td>\n      <td class=\"govuk-table__cell\"><b>19,539</b></td>\n    </tr>\n    </tr>\n  </tbody>\n</table>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-your-indicative-spend-forecast-for-capacity-funding-throughout-the-programme"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": true
+                },
+                "customText": {
+                    "samePageTitle": "Your spend for the Plan for Neighbourhoods programme",
+                    "samePageTableItemName": ""
+                }
+            }
+        },
+        {
+            "title": "Summary",
+            "path": "/summary",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        },
+        {
+            "path": "/tell-us-your-indicative-spend-forecast-for-capacity-funding-throughout-the-programme",
+            "title": "Tell us your indicative spend forecast for capacity funding throughout the programme.",
+            "components": [
+                {
+                    "name": "gHyqDp",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This should be consistent with the narrative in your Regeneration Plan, and may differ from the payment profile.<br><br>\n\nBoth capacity funding and programme delivery funding may be profiled into later years, or your may propose to move funding to investment period 2 and 3. However, funds cannot be brought forward into earlier years of the programme.",
+                    "schema": {}
+                },
+                {
+                    "name": "lREPmq",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Capacity funding (2024-25)",
+                            "Capacity funding (2025-26)",
+                            "Capacity funding (2026-27)",
+                            "Capacity funding (2027-28)",
+                            "Capacity funding (2028-29)",
+                            "Capacity funding (2029-30)",
+                            "Capacity funding (2030-31)",
+                            "Capacity funding (2031-32)",
+                            "Capacity funding (2032-33)",
+                            "Capacity funding (2033-34)",
+                            "Capacity funding (2034-35)",
+                            "Capacity funding (2035-36)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us your indicative spend forecast for capacity funding throughout the programme.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "kzCRNQ",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2024-25)",
+                            "hint": "",
+                            "schema": {
+                                "precision": "0"
+                            }
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "hWffef",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2025-26)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "exKKtD",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "SWBFvn",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "OdZjMh",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "DbQDzt",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "mjXkxo",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2030-31)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "jhEJRB",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2031-32)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "nZFwqm",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2032-33)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "IlUUxg",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2033-34)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "GCnfMS",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2034-35)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "rQUbSC",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Capacity funding (2035-36)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-your-indicative-spend-forecast-for-programme-delivery-funding-capital-throughout-the-programme"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Capacity funding spend forecast",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-your-indicative-spend-forecast-for-programme-delivery-funding-capital-throughout-the-programme",
+            "title": "Tell us your indicative spend forecast for programme delivery funding (capital) throughout the programme.",
+            "components": [
+                {
+                    "name": "HnJxWz",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This should be consistent with the narrative in your Regeneration Plan, and may differ from the payment profile.<br><br>\n\nBoth capacity funding and programme delivery funding may be profiled into later years, or your may propose to move funding to investment period 2 and 3. However, funds cannot be brought forward into earlier years of the programme."
+                },
+                {
+                    "name": "igStco",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Programme delivery funding - capital (2026-27)",
+                            "Programme delivery funding - capital (2027-28)",
+                            "Programme delivery funding - capital (2028-29)",
+                            "Programme delivery funding - capital (2029-30)",
+                            "Programme delivery funding - capital (2030-31)",
+                            "Programme delivery funding - capital (2031-32)",
+                            "Programme delivery funding - capital (2032-33)",
+                            "Programme delivery funding - capital (2033-34)",
+                            "Programme delivery funding - capital (2034-35)",
+                            "Programme delivery funding - capital (2035-36)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us your indicative spend forecast for programme delivery funding (capital) throughout the programme.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "JoEKPs",
+                            "options": {
+                                "hideTitle": false,
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "MaHzlK",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "cSAvLl",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "lXHVDo",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "yksYVj",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2030-31)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "foBOGa",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2031-32)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "BmNYxJ",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2032-33)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "UYiAHd",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2033-34)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "LzXJTJ",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2034-35)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "LwEzPI",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - capital (2035-36)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-your-indicative-spend-forecast-for-programme-delivery-funding-revenue-throughout-the-programme"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Programme delivery funding (capital) spend forecast",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-your-indicative-spend-forecast-for-programme-delivery-funding-revenue-throughout-the-programme",
+            "title": "Tell us your indicative spend forecast for programme delivery funding (revenue) throughout the programme.",
+            "components": [
+                {
+                    "name": "IPKtnQ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This should be consistent with the narrative in your Regeneration Plan, and may differ from the payment profile.<br><br>\n\nBoth capacity funding and programme delivery funding may be profiled into later years, or your may propose to move funding to investment period 2 and 3. However, funds cannot be brought forward into earlier years of the programme."
+                },
+                {
+                    "name": "ZaxlkA",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Programme delivery funding - revenue (2026-27)",
+                            "Programme delivery funding - revenue (2027-28)",
+                            "Programme delivery funding - revenue (2028-29)",
+                            "Programme delivery funding - revenue (2029-30)",
+                            "Programme delivery funding - revenue (2030-31)",
+                            "Programme delivery funding - revenue (2031-32)",
+                            "Programme delivery funding - revenue (2032-33)",
+                            "Programme delivery funding - revenue (2033-34)",
+                            "Programme delivery funding - revenue (2034-35)",
+                            "Programme delivery funding - revenue (2035-36)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us your indicative spend forecast for programme delivery funding (revenue) throughout the programme.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "YQGJbm",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "VmCcNW",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "pCCkfZ",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "aaOhAH",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "ehgQSG",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2030-31)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "mmMPXd",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2031-32)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "iLMwbk",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2032-33)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "ThaiNt",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2033-34)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "ROCfYU",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2034-35)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "qMNUxP",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Programme delivery funding - revenue (2035-36)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-how-you-have-developed-your-indicative-spend-forecast-and-why-it-is-important-for-spend-to-occur-in-these-years"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Programme delivery funding (revenue) spend forecast",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-how-you-have-developed-your-indicative-spend-forecast-and-why-it-is-important-for-spend-to-occur-in-these-years",
+            "title": "Tell us how you have developed your indicative spend forecast and why it is important for spend to occur in these years.",
+            "components": [
+                {
+                    "name": "ZzaODW",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us how you have developed your indicative spend forecast and why it is important for spend to occur in these years."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-your-indicative-spend-forecast-for-pre-approved-interventions-in-year-1"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-your-indicative-spend-forecast-for-pre-approved-interventions-in-year-1",
+            "title": "Tell us your indicative spend forecast for pre-approved interventions in year 1.",
+            "components": [
+                {
+                    "name": "qWMGVJ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This indicative forecast should be consistent with the narrative put forward in your Regeneration Plan and the overall annual amounts shown in your 10-year funding profile.<br><br>\n\nEnter '0' if any of the categories of pre-approved interventions are not relevant for your place."
+                },
+                {
+                    "name": "MEaRya",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Cohesion (2026-27)",
+                            "Education and opportunity (2026-27)",
+                            "Health and wellbeing (2026-27)",
+                            "Housing (2026-27)",
+                            "Regeneration, high streets and heritage (2026-27)",
+                            "Safety and security (2026-27)",
+                            "Transport (2026-27)",
+                            "Work, productivity and skills (2026-27)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us your indicative spend forecast for pre-approved interventions in year 1.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "zsdDQk",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Cohesion (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "DBqPzO",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Education and opportunity (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "MNzARq",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Health and wellbeing (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "IVFTCQ",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Housing (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "nqmOwu",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Regeneration, high streets and heritage (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "UbTbvU",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Safety and security (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "qNiSsO",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Transport (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "hNACOp",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Work, productivity and skills (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-your-indicative-spend-forecast-for-pre-approved-interventions-in-year-2"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Pre-approved interventions spend forecast (Year 1)",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-your-indicative-spend-forecast-for-pre-approved-interventions-in-year-2",
+            "title": "Tell us your indicative spend forecast for pre-approved interventions in year 2.",
+            "components": [
+                {
+                    "name": "dzqGNV",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This indicative forecast should be consistent with the narrative put forward in your Regeneration Plan and the overall annual amounts shown in your 10-year funding profile.<br><br>\n\nEnter '0' if any of the categories of pre-approved interventions are not relevant for your place."
+                },
+                {
+                    "name": "Grlvkx",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Cohesion (2027-28)",
+                            "Education and opportunity (2027-28)",
+                            "Health and wellbeing (2027-28)",
+                            "Housing (2027-28)",
+                            "Regeneration, high streets and heritage (2027-28)",
+                            "Safety and security (2027-28)",
+                            "Transport (2027-28)",
+                            "Work, productivity and skills (2027-28)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us your indicative spend forecast for pre-approved interventions in year 2.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "wYgMdi",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Cohesion (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "YlgCLY",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Education and opportunity (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "ESRHVS",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Health and wellbeing (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "qUrvtI",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Housing (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "VsEWYE",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Regeneration, high streets and heritage (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "YIpOAe",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Safety and security (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "lSlyHK",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Transport (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "TaXzeh",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Work, productivity and skills (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-your-indicative-spend-forecast-for-pre-approved-interventions-in-year-3"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Pre-approved interventions spend forecast (Year 2)",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-your-indicative-spend-forecast-for-pre-approved-interventions-in-year-3",
+            "title": "Tell us your indicative spend forecast for pre-approved interventions in year 3.",
+            "components": [
+                {
+                    "name": "gciLIS",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This indicative forecast should be consistent with the narrative put forward in your Regeneration Plan and the overall annual amounts shown in your 10-year funding profile.<br><br>\n\nEnter '0' if any of the categories of pre-approved interventions are not relevant for your place."
+                },
+                {
+                    "name": "gEOHHl",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Cohesion (2028-29)",
+                            "Education and opportunity (2028-29)",
+                            "Health and wellbeing (2028-29)",
+                            "Housing (2028-29)",
+                            "Regeneration, high streets and heritage (2028-29)",
+                            "Safety and security (2028-29)",
+                            "Transport (2028-29)",
+                            "Work, productivity and skills (2028-29)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us your indicative spend forecast for pre-approved interventions in year 3.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "FwurgE",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Cohesion (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "tmOkiG",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Education and opportunity (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "sSQLwH",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Health and wellbeing (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "uUTyWH",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Housing (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "ZsNcbA",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Regeneration, high streets and heritage (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "iuTXHe",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Safety and security (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "lXTtKN",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Transport (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "FfSahl",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Work, productivity and skills (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-your-indicative-spend-forecast-for-pre-approved-interventions-in-year-4"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Pre-approved interventions spend forecast (Year 3)",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-your-indicative-spend-forecast-for-pre-approved-interventions-in-year-4",
+            "title": "Tell us your indicative spend forecast for pre-approved interventions in year 4.",
+            "components": [
+                {
+                    "name": "naYcYM",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This indicative forecast should be consistent with the narrative put forward in your Regeneration Plan and the overall annual amounts shown in your 10-year funding profile.<br><br>\n\nEnter '0' if any of the categories of pre-approved interventions are not relevant for your place."
+                },
+                {
+                    "name": "yYqyaG",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Cohesion (2029-30)",
+                            "Education and opportunity (2029-30)",
+                            "Health and wellbeing (2029-30)",
+                            "Housing (2029-30)",
+                            "Regeneration, high streets and heritage (2029-30)",
+                            "Safety and security (2029-30)",
+                            "Transport (2029-30)",
+                            "Work, productivity and skills (2029-30)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us your indicative spend forecast for pre-approved interventions in year 4.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "ygHERI",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Cohesion (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "QoEuWY",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Education and opportunity (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "QpOTwg",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Health and wellbeing (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "jCEizE",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Housing (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "zODcnS",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Regeneration, high streets and heritage (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "pAnzYr",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Safety and security (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "ZKFXMr",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Transport (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "flkyla",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Work, productivity and skills (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-your-indicative-spend-forecast-for-any-off-menu-interventions-in-the-first-investment-period-financial-years-2026-to-2030"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Pre-approved interventions spend forecast (Year 4)",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-your-indicative-spend-forecast-for-any-off-menu-interventions-in-the-first-investment-period-financial-years-2026-to-2030",
+            "title": "Tell us your indicative spend forecast for any off-menu interventions in the first investment period (financial years 2026 to 2030).",
+            "components": [
+                {
+                    "name": "LIoclC",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This indicative forecast should be consistent with the narrative put forward in your Regeneration Plan and the overall annual amounts shown in your 10-year funding profile.<br><br>\n\nEnter '0' if off-menu interventions are not relevant for your place."
+                },
+                {
+                    "name": "QEywSA",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Off-menu interventions (2026-27)",
+                            "Off-menu interventions (2027-28)",
+                            "Off-menu interventions (2028-29)",
+                            "Off-menu interventions (2029-30)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us your indicative spend forecast for any off-menu interventions in the first investment period.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "NCgxYf",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Off-menu interventions (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "afjufs",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Off-menu interventions (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "EbZeKz",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Off-menu interventions (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "MRjEso",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Off-menu interventions (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-your-indicative-spend-forecast-for-management-costs-in-the-first-investment-period-financial-years-2026-to-2030"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Off-menu interventions spend forecast",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-your-indicative-spend-forecast-for-management-costs-in-the-first-investment-period-financial-years-2026-to-2030",
+            "title": "Tell us your indicative spend forecast for management costs in the first investment period (financial years 2026 to 2030).",
+            "components": [
+                {
+                    "name": "RnWfWy",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This indicative forecast should be consistent with the narrative put forward in your Regeneration Plan and the overall annual amounts shown in your 10-year funding profile.<br><br>\n\nEnter '0' if you do not plan to use programme delivery funding to cover management costs."
+                },
+                {
+                    "name": "aUQnBP",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Management costs (2026-27)",
+                            "Management costs (2027-28)",
+                            "Management costs (2028-29)",
+                            "Management costs (2029-30)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us your indicative spend forecast for management costs in the first investment period.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "QVuIFv",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Management costs (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "GHFRTw",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Management costs (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "sAelLv",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Management costs (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "ZvlDXd",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Management costs (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-about-any-unknown-uses-of-funding-in-the-first-investment-period-financial-years-2026-to-2030"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Management costs spend forecast",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-about-any-unknown-uses-of-funding-in-the-first-investment-period-financial-years-2026-to-2030",
+            "title": "Tell us about any unknown uses of funding in the first investment period (financial years 2026 to 2030).",
+            "components": [
+                {
+                    "name": "JwmCYK",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Enter '0' if you do not have any unknown uses funding in any year."
+                },
+                {
+                    "name": "aLeDKy",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Unknown uses of funding (2026-27)",
+                            "Unknown uses of funding (2027-28)",
+                            "Unknown uses of funding (2028-29)",
+                            "Unknown uses of funding (2029-30)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Tell us about any unknown uses of funding in the first investment period.",
+                    "children": [
+                        {
+                            "type": "NumberField",
+                            "name": "wajlvP",
+                            "options": {
+                                "hideTitle": false,
+                                "prefix": "£"
+                            },
+                            "title": "Unknown uses of funding (2026-27)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "bPbTEe",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Unknown uses of funding (2027-28)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "XGBxKK",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Unknown uses of funding (2028-29)",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "fqmDlx",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Unknown uses of funding (2029-30)",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Unknown uses of funding forecast",
+                    "samePageTableItemName": ""
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false,
+    "name": "PfN - Payment profile and spend forecast",
+    "feedback": {
+        "feedbackForm": false,
+        "url": "/bfdbd"
+    },
+    "phaseBanner": {}
+}

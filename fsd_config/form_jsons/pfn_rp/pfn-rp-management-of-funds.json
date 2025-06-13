@@ -1,0 +1,1134 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "qlYsDZ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body\">In this section, we’ll ask you about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>how your Neighbourhood Board and accountable body will ensure that funds are awarded, managed, and monitored fairly and effectively</li>\n<li>the processes that you will put in place to select projects</li>\n<li>how you will manage risk</li>\n<li>how your board and accountable body will ensure compliance with:</li>\n<ul>\n<li>environmental duty</li>\n<li>public sector equality duty (England, Scotland and Wales) or an Equality Impact Assessment (Northern Ireland)</li>\n<li>Subsidy Control Act 2022 and state aid regulations</li>\n<li>appropriate public contract regulations</li> \n</ul>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "TXsMcw",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Places must provide assurance that public funds will be managed appropriately and in line with relevant standards and legislation."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-how-your-neighbourhood-board-will-identify-and-select-specific-projects-for-investment-across-the-first-investment-period"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/tell-us-how-the-accountable-body-will-carry-out-fund-oversight-functions-in-the-first-investment-period",
+            "title": "Tell us how the accountable body will carry out fund oversight functions in the first investment period.",
+            "components": [
+                {
+                    "name": "XEsauj",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Oversight functions include awarding funding to project delivery organisations, paying projects and ensuring they are delivered effectively and compliantly.<br><br>\n\nInclude details about how the local authority will ensure that relevant obligations are passed on to grant recipients to manage project performance, delivery risks and ensure compliance.",
+                    "schema": {}
+                },
+                {
+                    "name": "CiZzLy",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us how the accountable body will carry out fund oversight functions in the first investment period.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/have-you-considered-environmental-impacts-when-designing-your-investment-plan"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Have you considered environmental impacts when designing your investment plan? ",
+            "path": "/have-you-considered-environmental-impacts-when-designing-your-investment-plan",
+            "components": [
+                {
+                    "name": "kWXPPv",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Have you considered environmental impacts when designing your investment plan? ",
+                    "values": {
+                        "type": "listRef"
+                    },
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-consider-their-environmental-duty-when-implementing-the-investment-plan",
+                    "condition": "WDaTyT"
+                },
+                {
+                    "path": "/tell-us-why-you-have-not-considered-environmental-impacts-when-designing-your-investment-plan",
+                    "condition": "AITOMc"
+                }
+            ]
+        },
+        {
+            "path": "/has-the-accountable-body-made-appropriate-arrangements-to-consider-their-environmental-duty-when-implementing-the-investment-plan",
+            "title": "Has the accountable body made appropriate arrangements to consider their environmental duty when implementing the investment plan?",
+            "components": [
+                {
+                    "name": "hRNQGR",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This includes when selecting projects.",
+                    "schema": {}
+                },
+                {
+                    "name": "EIcoEK",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the accountable body made appropriate arrangements to consider their environmental duty when implementing the investment plan?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-ensure-that-any-funds-awarded-through-the-programme-are-done-in-compliance-with-the-appropriate-public-contract-regulations",
+                    "condition": "LhBdrH"
+                },
+                {
+                    "path": "/tell-us-when-environmental-duty-arrangements-will-be-put-in-place",
+                    "condition": "imIiwu"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/has-the-accountable-body-made-appropriate-arrangements-to-ensure-that-any-funds-awarded-through-the-programme-are-done-in-compliance-with-the-appropriate-public-contract-regulations",
+            "title": "Has the accountable body made appropriate arrangements to ensure that any funds awarded through the programme are done in compliance with the appropriate public contract regulations?",
+            "components": [
+                {
+                    "name": "XLTnbI",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This includes any third party funds awarded through the programme.",
+                    "schema": {}
+                },
+                {
+                    "name": "RYVPtY",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the accountable body made appropriate arrangements to ensure that any funds awarded through the programme are done in compliance with the appropriate public contract regulations?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-have-a-programme-risk-register-with-appropriate-arrangements-in-place-to-manage-risks-identified",
+                    "condition": "DtqssY"
+                },
+                {
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-funds-awarded-are-done-in-compliance-with-appropriate-public-contract-regulations",
+                    "condition": "qixcyA"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/do-you-have-a-programme-risk-register-with-appropriate-arrangements-in-place-to-manage-risks-identified",
+            "title": "Do you have a programme risk register with appropriate arrangements in place to manage risks identified?",
+            "components": [
+                {
+                    "name": "WipKsj",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Do you have a programme risk register with appropriate arrangements in place to manage risks identified?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-have-a-fraud-risk-assessment-for-this-programme-with-appropriate-arrangements-in-place-to-manage-risks-identified",
+                    "condition": "emjPAo"
+                },
+                {
+                    "path": "/tell-us-when-a-programme-risk-register-will-be-conducted",
+                    "condition": "QQKKzT"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/do-you-have-a-fraud-risk-assessment-for-this-programme-with-appropriate-arrangements-in-place-to-manage-risks-identified",
+            "title": "Do you have a fraud risk assessment for this programme with appropriate arrangements in place to manage risks identified?",
+            "components": [
+                {
+                    "name": "OrenNF",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Do you have a fraud risk assessment for this programme with appropriate arrangements in place to manage risks identified?",
+                    "schema": {},
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-country-is-your-place-based-in",
+                    "condition": "uEwEkQ"
+                },
+                {
+                    "path": "/tell-us-when-a-fraud-risk-assessment-will-be-conducted",
+                    "condition": "tiwzLj"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-country-is-your-place-based-in",
+            "title": "Which country is your place based in?",
+            "components": [
+                {
+                    "name": "AWQFzI",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "RadiosField",
+                    "title": "Which country is your place based in?",
+                    "list": "rjiJNl",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-consider-section-75-of-the-northern-ireland-act-when-implementing-the-investment-plan",
+                    "condition": "ZegRLg"
+                },
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-consider-their-public-sector-equality-duty-when-implementing-the-investment-plan",
+                    "condition": "qPCuRx"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/has-the-accountable-body-made-appropriate-arrangements-to-consider-their-public-sector-equality-duty-when-implementing-the-investment-plan",
+            "title": "Has the accountable body made appropriate arrangements to consider their public sector equality duty when implementing the investment plan?",
+            "components": [
+                {
+                    "name": "SKWJJk",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This includes when selecting projects.",
+                    "schema": {}
+                },
+                {
+                    "name": "vVSvhr",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the accountable body made appropriate arrangements to consider their public sector equality duty when implementing the investment plan?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-ensure-that-the-requirements-of-the-subsidy-control-act-will-be-followed-when-administering-the-funding",
+                    "condition": "WHbXFm"
+                },
+                {
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-consider-the-public-sector-equality-duty",
+                    "condition": "OdhIti"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/has-the-accountable-body-made-appropriate-arrangements-to-consider-section-75-of-the-northern-ireland-act-when-implementing-the-investment-plan",
+            "title": "Has the accountable body made appropriate arrangements to consider Section 75 of the Northern Ireland Act when implementing the investment plan?",
+            "components": [
+                {
+                    "name": "MlQqqj",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This includes when selecting projects.",
+                    "schema": {}
+                },
+                {
+                    "name": "NlrBUG",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the accountable body made appropriate arrangements to consider Section 75 of the Northern Ireland Act when implementing the investment plan?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-ensure-that-the-requirements-of-the-subsidy-control-act-and-state-aid-regulations-will-be-followed-when-administering-the-funding",
+                    "condition": "CoXwYg"
+                },
+                {
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-consider-section-75-of-the-northern-ireland-act",
+                    "condition": "uvGvaF"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/has-the-accountable-body-made-appropriate-arrangements-to-ensure-that-the-requirements-of-the-subsidy-control-act-will-be-followed-when-administering-the-funding",
+            "title": "Has the accountable body made appropriate arrangements to ensure that the requirements of the Subsidy Control Act will be followed when administering the funding?",
+            "components": [
+                {
+                    "name": "XwpxGd",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This includes arrangements for ensuring the compliance of any awards made to the local authority itself for project activity.",
+                    "schema": {}
+                },
+                {
+                    "name": "bqBGRA",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the accountable body made appropriate arrangements to ensure that the requirements of the Subsidy Control Act will be followed when administering the funding? ",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers",
+                    "condition": "Xrydrg"
+                },
+                {
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-that-the-requirements-of-the-subsidy-control-act-will-be-followed",
+                    "condition": "gCpWVE"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/has-the-accountable-body-made-appropriate-arrangements-to-ensure-that-the-requirements-of-the-subsidy-control-act-and-state-aid-regulations-will-be-followed-when-administering-the-funding",
+            "title": "Has the accountable body made appropriate arrangements to ensure that the requirements of the Subsidy Control Act and state aid regulations will be followed when administering the funding?",
+            "components": [
+                {
+                    "name": "BLMjfm",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This includes arrangements for ensuring the compliance of any awards made to the local authority itself for project activity.",
+                    "schema": {}
+                },
+                {
+                    "name": "PdPQIB",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the accountable body made appropriate arrangements to ensure that the requirements of the Subsidy Control Act and state aid regulations will be followed when administering the funding? ",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers",
+                    "condition": "dYqvcI"
+                },
+                {
+                    "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-that-the-requirements-of-the-subsidy-control-act-and-state-aid-regulations-will-be-followed",
+                    "condition": "UxOvAt"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-consider-the-public-sector-equality-duty",
+            "title": "Tell us when arrangements will be put in place to consider the public sector equality duty.",
+            "components": [
+                {
+                    "name": "msMpIW",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This can be an estimate if a specific date is not known.",
+                    "schema": {}
+                },
+                {
+                    "name": "cvQuzc",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "title": "Tell us when arrangements will be put in place to consider the public sector equality duty.",
+                    "hint": "For example, 27 3 2024",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-ensure-that-the-requirements-of-the-subsidy-control-act-will-be-followed-when-administering-the-funding"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-consider-section-75-of-the-northern-ireland-act",
+            "title": "Tell us when arrangements will be put in place to consider Section 75 of the Northern Ireland Act.",
+            "components": [
+                {
+                    "name": "gdPUWh",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This can be an estimate if a specific date is not known.",
+                    "schema": {}
+                },
+                {
+                    "name": "lQDKjX",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "title": "Tell us when arrangements will be put in place to consider Section 75 of the Northern Ireland Act.",
+                    "hint": "For example, 27 3 2024",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-ensure-that-the-requirements-of-the-subsidy-control-act-and-state-aid-regulations-will-be-followed-when-administering-the-funding"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-that-the-requirements-of-the-subsidy-control-act-will-be-followed",
+            "title": "Tell us when arrangements will be put in place to ensure that the requirements of the Subsidy Control Act will be followed.",
+            "components": [
+                {
+                    "name": "DPCAAm",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This can be an estimate if a specific date is not known.",
+                    "schema": {}
+                },
+                {
+                    "name": "fhcfgc",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "title": "Tell us when arrangements will be put in place to ensure that the requirements of the Subsidy Control Act will be followed.",
+                    "hint": "For example, 27 3 2024",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-that-the-requirements-of-the-subsidy-control-act-and-state-aid-regulations-will-be-followed",
+            "title": "Tell us when arrangements will be put in place to ensure that the requirements of the Subsidy Control Act and state aid regulations will be followed.",
+            "components": [
+                {
+                    "name": "NxKUzE",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This can be an estimate if a specific date is not known.",
+                    "schema": {}
+                },
+                {
+                    "name": "ctidtw",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "title": "Tell us when arrangements will be put in place to ensure that the requirements of the Subsidy Control Act and state aid regulations will be followed.",
+                    "hint": "For example, 27 3 2024",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-when-environmental-duty-arrangements-will-be-put-in-place",
+            "title": "Tell us when environmental duty arrangements will be put in place.",
+            "components": [
+                {
+                    "name": "gnTqOX",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This can be an estimate if a specific date is not known.",
+                    "schema": {}
+                },
+                {
+                    "name": "ahjTmQ",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "title": "Tell us when environmental duty arrangements will be put in place.",
+                    "hint": "For example, 27 3 2024",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-ensure-that-any-funds-awarded-through-the-programme-are-done-in-compliance-with-the-appropriate-public-contract-regulations"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-when-arrangements-will-be-put-in-place-to-ensure-funds-awarded-are-done-in-compliance-with-appropriate-public-contract-regulations",
+            "title": "Tell us when arrangements will be put in place to ensure funds awarded are done in compliance with appropriate public contract regulations.",
+            "components": [
+                {
+                    "name": "fJiqoc",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This can be an estimate if a specific date is not known.",
+                    "schema": {}
+                },
+                {
+                    "name": "vtaqXE",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "title": "Tell us when arrangements will be put in place to ensure funds awarded are done in compliance with appropriate public contract regulations.",
+                    "hint": "For example, 27 3 2024",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-have-a-programme-risk-register-with-appropriate-arrangements-in-place-to-manage-risks-identified"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-when-a-programme-risk-register-will-be-conducted",
+            "title": "Tell us when a programme risk register will be conducted.",
+            "components": [
+                {
+                    "name": "JzDttP",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This can be an estimate if a specific date is not known.",
+                    "schema": {}
+                },
+                {
+                    "name": "huYOGb",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "title": "Tell us when a programme risk register will be conducted.",
+                    "hint": "For example, 27 3 2024",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-have-a-fraud-risk-assessment-for-this-programme-with-appropriate-arrangements-in-place-to-manage-risks-identified"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-when-a-fraud-risk-assessment-will-be-conducted",
+            "title": "Tell us when a fraud risk assessment will be conducted.",
+            "components": [
+                {
+                    "name": "ZpzkwC",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This can be an estimate if a specific date is not known.",
+                    "schema": {}
+                },
+                {
+                    "name": "UVGygK",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "title": "Tell us when a fraud risk assessment will be conducted.",
+                    "hint": "For example, 27 3 2024",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-country-is-your-place-based-in"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-how-your-neighbourhood-board-will-identify-and-select-specific-projects-for-investment-across-the-first-investment-period",
+            "title": "Tell us how your Neighbourhood Board will identify and select specific projects for investment across the first investment period.",
+            "components": [
+                {
+                    "name": "RGpczk",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Include information about how:\n<ul>\n<li>the local authority or other organisations will support this process and be involved in decision-making</li>\n<li>conflicts of interest will be managed</li>\n<li>any awards to the local authority, if they occur, will be evaluated and approved in a robust and fair process</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "qjonxe",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us how your Neighbourhood Board will identify and select specific projects for investment across the first investment period.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-how-the-accountable-body-will-carry-out-fund-oversight-functions-in-the-first-investment-period"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-why-you-have-not-considered-environmental-impacts-when-designing-your-investment-plan",
+            "title": "Tell us why you have not considered environmental impacts when designing your investment plan.",
+            "components": [
+                {
+                    "name": "hKHuoX",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us why you have not considered environmental impacts when designing your investment plan.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-accountable-body-made-appropriate-arrangements-to-consider-their-environmental-duty-when-implementing-the-investment-plan"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "title": "Countries",
+            "name": "rjiJNl",
+            "type": "string",
+            "items": [
+                {
+                    "text": "England, Scotland or Wales",
+                    "value": "England, Scotland or Wales"
+                },
+                {
+                    "text": "Northern Ireland",
+                    "value": "Northern Ireland"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "If public sector equality duty = No",
+            "name": "OdhIti",
+            "value": {
+                "name": "If public sector equality duty = No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.vVSvhr",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to consider their public sector equality duty when implementing the investment plan?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If public sector equality duty = Yes",
+            "name": "WHbXFm",
+            "value": {
+                "name": "If public sector equality duty = Yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.vVSvhr",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to consider their public sector equality duty when implementing the investment plan?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Section 75 = No",
+            "name": "uvGvaF",
+            "value": {
+                "name": "If Section 75 = No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.NlrBUG",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to consider Section 75 of the Northern Ireland Act when implementing the investment plan?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Section 75 = Yes",
+            "name": "CoXwYg",
+            "value": {
+                "name": "If Section 75 = Yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.NlrBUG",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to consider Section 75 of the Northern Ireland Act when implementing the investment plan?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Subsidy control = Yes",
+            "name": "Xrydrg",
+            "value": {
+                "name": "If Subsidy control = Yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.bqBGRA",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to ensure that the requirements of the Subsidy Control Act will be followed when administering the funding? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Subsidy control = No",
+            "name": "gCpWVE",
+            "value": {
+                "name": "If Subsidy control = No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.bqBGRA",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to ensure that the requirements of the Subsidy Control Act will be followed when administering the funding? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Subsidy control and state aid = Yes",
+            "name": "dYqvcI",
+            "value": {
+                "name": "If Subsidy control and state aid = Yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.PdPQIB",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to ensure that the requirements of the Subsidy Control Act and state aid regulations will be followed when administering the funding? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Subsidy control and state aid = No",
+            "name": "UxOvAt",
+            "value": {
+                "name": "If Subsidy control and state aid = No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.PdPQIB",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to ensure that the requirements of the Subsidy Control Act and state aid regulations will be followed when administering the funding? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If environmental duty = Yes",
+            "name": "LhBdrH",
+            "value": {
+                "name": "If environmental duty = Yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.EIcoEK",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to consider their environmental duty when implementing the investment plan?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If environmental duty = No",
+            "name": "imIiwu",
+            "value": {
+                "name": "If environmental duty = No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.EIcoEK",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to consider their environmental duty when implementing the investment plan?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If public contract regs = Yes",
+            "name": "DtqssY",
+            "value": {
+                "name": "If public contract regs = Yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.RYVPtY",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to ensure that any funds awarded through the programme are done in compliance with the appropriate public contract regulations?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If public contract regs = No",
+            "name": "qixcyA",
+            "value": {
+                "name": "If public contract regs = No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.RYVPtY",
+                            "type": "YesNoField",
+                            "display": "Has the accountable body made appropriate arrangements to ensure that any funds awarded through the programme are done in compliance with the appropriate public contract regulations?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Risk register = Yes",
+            "name": "emjPAo",
+            "value": {
+                "name": "If Risk register = Yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WipKsj",
+                            "type": "YesNoField",
+                            "display": "Do you have a programme risk register with appropriate arrangements in place to manage risks identified?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Risk register = No",
+            "name": "QQKKzT",
+            "value": {
+                "name": "If Risk register = No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WipKsj",
+                            "type": "YesNoField",
+                            "display": "Do you have a programme risk register with appropriate arrangements in place to manage risks identified?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If fraud risk assessment = Yes",
+            "name": "uEwEkQ",
+            "value": {
+                "name": "If fraud risk assessment = Yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.OrenNF",
+                            "type": "YesNoField",
+                            "display": "Do you have fraud risk assessment for this programme with appropriate arrangements in place to manage risks identified?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If fraud risk assessment = No",
+            "name": "tiwzLj",
+            "value": {
+                "name": "If fraud risk assessment = No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.OrenNF",
+                            "type": "YesNoField",
+                            "display": "Do you have fraud risk assessment for this programme with appropriate arrangements in place to manage risks identified?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If England, Scotland or Wales",
+            "name": "qPCuRx",
+            "value": {
+                "name": "If England, Scotland or Wales",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.AWQFzI",
+                            "type": "RadiosField",
+                            "display": "Which country is your place based in?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "England, Scotland or Wales",
+                            "display": "England, Scotland or Wales"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Northern Ireland",
+            "name": "ZegRLg",
+            "value": {
+                "name": "If Northern Ireland",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.AWQFzI",
+                            "type": "RadiosField",
+                            "display": "Which country is your place based in?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Northern Ireland",
+                            "display": "Northern Ireland"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If environmental impacts not considered",
+            "name": "AITOMc",
+            "value": {
+                "name": "If environmental impacts not considered",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.kWXPPv",
+                            "type": "YesNoField",
+                            "display": "Have you considered environmental impacts when designing your investment plan? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If environmental impacts considered",
+            "name": "WDaTyT",
+            "value": {
+                "name": "If environmental impacts considered",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.kWXPPv",
+                            "type": "YesNoField",
+                            "display": "Have you considered environmental impacts when designing your investment plan? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

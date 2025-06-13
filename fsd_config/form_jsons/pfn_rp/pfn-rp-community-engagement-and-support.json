@@ -1,0 +1,842 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "DJAjqc",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>how you have engaged with your local community and key stakeholders to develop your Regeneration Plan</li>\n<li>whether you have consulted with your Mayoral Combined Authority on the content for your Regeneration Plan (if applicable)</li>\n<li>whether you have consulted on the MP for your place, and that they have reviewed your plan prior to submission</li>\n<li>whether other relevant MPs have been consulted on, or reviewed, the plan (if applicable)</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "naAsVa",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Your Regeneration Plan should follow extensive consultation and collaboration with the local community and key local stakeholders. \n\n<p class=\"govuk-body\">A key element of this process will be to assure the government that you have:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>adopted a community-led approach to developing the plan</li>\n<li>consulted key stakeholders</li>\n<li>followed our guidance appropriately</li>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-how-you-have-engaged-with-your-local-community-and-key-stakeholders-to-develop-your-regeneration-plan"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/tell-us-how-you-have-engaged-with-your-local-community-and-key-stakeholders-to-develop-your-regeneration-plan",
+            "title": "Tell us how you have engaged with your local community and key stakeholders to develop your Regeneration Plan.",
+            "components": [
+                {
+                    "name": "vfdkoz",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body\">Give examples of:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>the numbers of people engaged</li>\n<li>the range of local community groups and organisations engaged</li>\n<li>when the engagement took place and the methods used</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "gAJCVy",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us how you have engaged with your local community and key stakeholders to develop your Regeneration Plan.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-your-place-in-a-mayoral-combined-authority"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Is your place in a Mayoral Combined Authority?",
+            "path": "/is-your-place-in-a-mayoral-combined-authority",
+            "components": [
+                {
+                    "name": "kFlcRf",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Is your place in a Mayoral Combined Authority?",
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/has-the-mp-for-your-place-been-consulted-during-development-of-this-plan-and-reviewed-it-prior-to-submission",
+                    "condition": "QFQVxf"
+                },
+                {
+                    "path": "/have-you-consulted-with-the-relevant-mayoral-combined-authority-on-the-content-of-your-regeneration-plan",
+                    "condition": "ShsTWr"
+                }
+            ]
+        },
+        {
+            "path": "/has-the-mp-for-your-place-been-consulted-during-development-of-this-plan-and-reviewed-it-prior-to-submission",
+            "title": "Has the MP for your place been consulted during development of this plan and reviewed it prior to submission?",
+            "components": [
+                {
+                    "name": "cRASmW",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the MP for your place been consulted during development of this plan and reviewed it prior to submission?",
+                    "schema": {},
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-the-name-and-constituency-for-the-mp",
+                    "condition": "dQMvAJ"
+                },
+                {
+                    "path": "/tell-us-why-you-have-not-consulted-your-mp-during-development-of-this-plan-and-why-they-have-not-reviewed-it-prior-to-submission",
+                    "condition": "zOOWfc"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-the-name-and-constituency-for-the-mp",
+            "title": "Tell us the name and constituency for the MP.",
+            "components": [
+                {
+                    "name": "nfJFsF",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Full name"
+                },
+                {
+                    "name": "CCRPQy",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Constituency"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-the-constituency-of-another-mp-make-up-more-than-25-of-your-agreed-place-geography"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "MPs and constituency",
+                    "samePageTableItemName": "MP"
+                }
+            }
+        },
+        {
+            "path": "/have-you-consulted-with-the-relevant-mayoral-combined-authority-on-the-content-of-your-regeneration-plan",
+            "title": "Have you consulted with the relevant Mayoral Combined Authority on the content of your Regeneration Plan?",
+            "components": [
+                {
+                    "name": "TwPCIx",
+                    "options": {},
+                    "type": "Para",
+                    "content": "You should have consulted with your relevant Mayoral Combined Authority on your plan before submitting.",
+                    "schema": {}
+                },
+                {
+                    "name": "IvRZON",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Have you consulted with the relevant Mayoral Combined Authority on the content of your Regeneration Plan?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-why-you-havent-consulted-with-the-relevant-mayoral-combined-authority",
+                    "condition": "ZOyWbR"
+                },
+                {
+                    "path": "/has-the-mp-for-your-place-been-consulted-during-development-of-this-plan-and-reviewed-it-prior-to-submission",
+                    "condition": "EENcxQ"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-why-you-havent-consulted-with-the-relevant-mayoral-combined-authority",
+            "title": "Tell us why you haven't consulted with the relevant Mayoral Combined Authority.",
+            "components": [
+                {
+                    "name": "iMOpXS",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us why you haven't consulted with the relevant Mayoral Combined Authority.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-mp-for-your-place-been-consulted-during-development-of-this-plan-and-reviewed-it-prior-to-submission"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-why-you-have-not-consulted-your-mp-during-development-of-this-plan-and-why-they-have-not-reviewed-it-prior-to-submission",
+            "title": "Tell us why you have not consulted your MP during development of this plan and why they have not reviewed it prior to submission.",
+            "components": [
+                {
+                    "name": "TCoatJ",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us why you have not consulted your MP during development of this plan and why they have not reviewed it prior to submission.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-the-constituency-of-another-mp-make-up-more-than-25-of-your-agreed-place-geography"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/does-the-constituency-of-another-mp-make-up-more-than-25-of-your-agreed-place-geography",
+            "title": "Does the constituency of another MP make up more than 25% of your agreed place geography?",
+            "components": [
+                {
+                    "name": "QKZRpI",
+                    "options": {},
+                    "type": "Para",
+                    "content": "If their constituency makes up more than 25% of agreed geography, they should have reviewed your Regeneration Plan.",
+                    "schema": {}
+                },
+                {
+                    "name": "VqIKfJ",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Does the constituency of another MP make up 25% or more of your agreed place geography?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-the-constituency-of-another-mp-make-up-between-10-to-25-of-your-agreed-place-geography",
+                    "condition": "CStCLc"
+                },
+                {
+                    "path": "/has-the-mp-for-the-constituency-making-up-more-than-25-reviewed-the-plan-prior-to-submission",
+                    "condition": "dcmhwo"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/does-the-constituency-of-another-mp-make-up-between-10-to-25-of-your-agreed-place-geography",
+            "title": "Does the constituency of another MP make up between 10% to 25% of your agreed place geography?",
+            "components": [
+                {
+                    "name": "POsScJ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Where the percentage share is 10% to 25%, those MPs should be consulted on any plans that impact an area within that MP's constituency. ",
+                    "schema": {}
+                },
+                {
+                    "name": "VhbSCH",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Does the constituency of another MP make up between 10% to 25% of your agreed place geography?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-mp-been-consulted-on-any-parts-of-your-plan-that-impact-on-areas-within-their-constituency",
+                    "condition": "LvqqIR"
+                },
+                {
+                    "path": "/check-your-answers",
+                    "condition": "yAaEZd"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/has-the-mp-for-the-constituency-making-up-more-than-25-reviewed-the-plan-prior-to-submission",
+            "title": "Has the MP for the constituency making up more than 25% reviewed the plan prior to submission?",
+            "components": [
+                {
+                    "name": "zsVooC",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the MP for the constituency making up more than 25% been consulted, and reviewed the plan prior to submission?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-the-name-and-constituency-for-the-mps-who-have-reviewed-the-plan-jzSEMv",
+                    "condition": "ccGlOI"
+                },
+                {
+                    "path": "/tell-us-why-the-mp-for-the-constituency-making-up-more-than-25-of-agreed-place-geography-has-not-reviewed-the-plan",
+                    "condition": "BhIsHO"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/has-the-mp-been-consulted-on-any-parts-of-your-plan-that-impact-on-areas-within-their-constituency",
+            "title": "Has the MP been consulted on any parts of your plan that impact on areas within their constituency?",
+            "components": [
+                {
+                    "name": "ZOTBdq",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Has the MP been consulted on any parts of your plan that impact on areas within their constituency?",
+                    "schema": {},
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-the-name-and-constituency-for-the-mps-you-have-consulted-and-details-about-what-was-consulted",
+                    "condition": "OgRdbe"
+                },
+                {
+                    "path": "/tell-us-why-you-have-not-consulted-the-mp-for-the-constituency-making-up-between-10-to-25-of-agreed-geography",
+                    "condition": "enzQhH"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-the-name-and-constituency-for-the-mps-you-have-consulted-and-details-about-what-was-consulted",
+            "title": "Tell us the name and constituency for the MPs you have consulted, and details about what was consulted.",
+            "components": [
+                {
+                    "name": "ZbXfEw",
+                    "options": {
+                        "columnTitles": [
+                            "Full name",
+                            "Constituency",
+                            "Details about what was consulted"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "schema": {},
+                    "title": "Tell us the name and constituency for the MPs you have consulted, and details about what was consulted.",
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "FWoJhP",
+                            "options": {},
+                            "title": "Full name",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "TextField",
+                            "name": "dFYGfU",
+                            "options": {},
+                            "title": "Constituency",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "MultilineTextField",
+                            "name": "zvmMVY",
+                            "options": {},
+                            "title": "Details about what was consulted",
+                            "hint": "",
+                            "schema": ""
+                        }
+                    ]
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "MPs, constituency and consultation details",
+                    "samePageTableItemName": "MP"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/tell-us-the-name-and-constituency-for-the-mps-who-have-reviewed-the-plan-jzSEMv",
+            "title": "Tell us the name and constituency for the MPs who have reviewed the plan.",
+            "components": [
+                {
+                    "name": "EdCIXR",
+                    "options": {
+                        "columnTitles": [
+                            "Full name",
+                            "Constituency"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "schema": {},
+                    "title": "Tell us the name and constituency for the MPs who have reviewed the plan.",
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "JlWvYC",
+                            "options": {},
+                            "title": "Full name",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "TextField",
+                            "name": "QdIjUH",
+                            "options": {},
+                            "title": "Constituency",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ]
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-the-constituency-of-another-mp-make-up-between-10-to-25-of-your-agreed-place-geography"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "MPs and constituency",
+                    "samePageTableItemName": "MP"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-why-you-have-not-consulted-the-mp-for-the-constituency-making-up-between-10-to-25-of-agreed-geography",
+            "title": "Tell us why you have not consulted the MP for the constituency making up between 10% to 25% of agreed geography.",
+            "components": [
+                {
+                    "name": "WBXREe",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us why you have not consulted the MP for the constituency making up between 10% to 25% of agreed geography.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-why-the-mp-for-the-constituency-making-up-more-than-25-of-agreed-place-geography-has-not-reviewed-the-plan",
+            "title": "Tell us why the MP for the constituency making up more than 25% of agreed place geography has not reviewed the plan.",
+            "components": [
+                {
+                    "name": "OKvzvc",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us why the MP for the constituency making up more than 25% of agreed place geography has not reviewed the plan.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-the-constituency-of-another-mp-make-up-between-10-to-25-of-your-agreed-place-geography"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "If place is not a Mayoral Combined Authority",
+            "name": "QFQVxf",
+            "value": {
+                "name": "If place is not a Mayoral Combined Authority",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.kFlcRf",
+                            "type": "YesNoField",
+                            "display": "Is your place in a Mayoral Combined Authority?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If place is a Mayoral Combined Authority",
+            "name": "ShsTWr",
+            "value": {
+                "name": "If place is a Mayoral Combined Authority",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.kFlcRf",
+                            "type": "YesNoField",
+                            "display": "Is your place in a Mayoral Combined Authority?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If not consulted with MCA",
+            "name": "ZOyWbR",
+            "value": {
+                "name": "If not consulted with MCA",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.IvRZON",
+                            "type": "YesNoField",
+                            "display": "Have you consulted with the relevant Mayoral Combined Authority on the content of your Regeneration Plan?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If consulted with MCA",
+            "name": "EENcxQ",
+            "value": {
+                "name": "If consulted with MCA",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.IvRZON",
+                            "type": "YesNoField",
+                            "display": "Have you consulted with the relevant Mayoral Combined Authority on the content of your Regeneration Plan?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If consulted MP",
+            "name": "dQMvAJ",
+            "value": {
+                "name": "If consulted MP",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.cRASmW",
+                            "type": "YesNoField",
+                            "display": "Has the MP for your place been consulted during development of this plan and reviewed it prior to submission? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If not consulted MP",
+            "name": "zOOWfc",
+            "value": {
+                "name": "If not consulted MP",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.cRASmW",
+                            "type": "YesNoField",
+                            "display": "Has the MP for your place been consulted during development of this plan and reviewed it prior to submission? "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If another constituency makes up 10-25%",
+            "name": "LvqqIR",
+            "value": {
+                "name": "If another constituency makes up 10-25%",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.VhbSCH",
+                            "type": "YesNoField",
+                            "display": "Does the constituency of another MP make up between 10% to 25% of your agreed place geography?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If another constituency makes up more than 25%",
+            "name": "dcmhwo",
+            "value": {
+                "name": "If another constituency makes up more than 25%",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.VqIKfJ",
+                            "type": "YesNoField",
+                            "display": "Does the constituency of another MP make up 25% or more of your agreed place geography?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If another constituency is not more than 25%",
+            "name": "CStCLc",
+            "value": {
+                "name": "If another constituency is not more than 25%",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.VqIKfJ",
+                            "type": "YesNoField",
+                            "display": "Does the constituency of another MP make up 25% or more of your agreed place geography?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If another constituency is not between 10% to 25%",
+            "name": "yAaEZd",
+            "value": {
+                "name": "If another constituency is not between 10% to 25%",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.VhbSCH",
+                            "type": "YesNoField",
+                            "display": "Does the constituency of another MP make up between 10% to 25% of your agreed place geography?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If MP between 10% to 25% has not been consulted",
+            "name": "enzQhH",
+            "value": {
+                "name": "If MP between 10% to 25% has not been consulted",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.ZOTBdq",
+                            "type": "YesNoField",
+                            "display": "Has the MP for the constituency making up between 10% to 25% been consulted, and reviewed the plan prior to submission?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If MP between 10% to 25% has been consulted",
+            "name": "OgRdbe",
+            "value": {
+                "name": "If MP between 10% to 25% has been consulted",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.ZOTBdq",
+                            "type": "YesNoField",
+                            "display": "Has the MP for the constituency making up between 10% to 25% been consulted, and reviewed the plan prior to submission?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If MP more than 25% has been consulted",
+            "name": "ccGlOI",
+            "value": {
+                "name": "If MP more than 25% has been consulted",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.zsVooC",
+                            "type": "YesNoField",
+                            "display": "Has the MP for the constituency making up more than 25% been consulted, and reviewed the plan prior to submission?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If MP more than 25% has not been consulted",
+            "name": "BhIsHO",
+            "value": {
+                "name": "If MP more than 25% has not been consulted",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.zsVooC",
+                            "type": "YesNoField",
+                            "display": "Has the MP for the constituency making up more than 25% been consulted, and reviewed the plan prior to submission?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

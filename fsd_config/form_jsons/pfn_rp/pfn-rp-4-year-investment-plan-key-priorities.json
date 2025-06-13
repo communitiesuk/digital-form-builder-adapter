@@ -1,0 +1,228 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "tLMhTS",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we’ll collect information about how you intend to deliver against the 3 objectives of the programme in the first investment period. The first investment period includes 4 financial years from 2026 to 2030.\n<br><br>\n\nWe’ll ask about:<ul>\n<li>your key priorities for improvement and investment across the 3 programme objectives (thriving places, stronger communities and taking back control)</li>\n<li>why you have selected these priorities</li>\n<li>how you will deliver change</li>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/objective-1-thriving-places"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/objective-1-thriving-places",
+            "title": "Objective 1: Thriving places",
+            "components": [
+                {
+                    "name": "iantlI",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\n                Tell us about the local challenges you have identified as priorities to address in the first investment period and why.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "dspHeg",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Give specific examples, linked to this objective, of challenges and evidence to illustrate them where possible.<br><br>\n\nIf you are not pursuing activities for this objective, tell us why.",
+                    "schema": {}
+                },
+                {
+                    "name": "SZrPXB",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us about the local challenges you have identified as priorities to address in the first investment period and why.",
+                    "schema": {}
+                },
+                {
+                    "name": "GrCVji",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\nTell us about any local opportunities for improvement or investment that you have identified and wish to pursue in the first investment period.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "uhzixL",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Give evidence, linked to this objective, of each opportunity and explain why these opportunities are being prioritised in this investment plan period. Include how your proposals reflect the priorities identified by local people as part of your engagement.",
+                    "schema": {}
+                },
+                {
+                    "name": "DOWpEu",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us about any local opportunities for improvement or investment that you have identified and wish to pursue in the first investment period.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/objective-2-stronger-communities"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/objective-2-stronger-communities",
+            "title": "Objective 2: Stronger communities",
+            "components": [
+                {
+                    "name": "kVOtEJ",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\n                Tell us about the local challenges you have identified as priorities to address in the first investment period and why.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "HhRGOw",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Give specific examples, linked to this objective, of challenges and evidence to illustrate them where possible.<br><br>\nIf you are not pursuing activities for this objective, tell us why.",
+                    "schema": {}
+                },
+                {
+                    "name": "XaZCkd",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us about the local challenges you have identified as priorities to address in the first investment period and why.",
+                    "schema": {}
+                },
+                {
+                    "name": "gnrfWi",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\nTell us about any local opportunities for improvement or investment that you have identified and wish to pursue in the first investment period.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "yDhpnw",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Give evidence, linked to this objective, of each opportunity and explain why these opportunities are being prioritised in this investment plan period. Include how your proposals reflect the priorities identified by local people as part of your engagement.",
+                    "schema": {}
+                },
+                {
+                    "name": "aJyHdS",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us about any local opportunities for improvement or investment that you have identified and wish to pursue in the first investment period.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/objective-3-taking-back-control"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/objective-3-taking-back-control",
+            "title": "Objective 3: Taking back control",
+            "components": [
+                {
+                    "name": "HKtlkt",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\n                Tell us about the local challenges you have identified as priorities to address in the first investment period and why.\n              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "akZppy",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Give specific examples, linked to this objective, of challenges and evidence to illustrate them where possible.<br><br>\nIf you are not pursuing activities for this objective, tell us why.",
+                    "schema": {}
+                },
+                {
+                    "name": "PjdnJZ",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us about the local challenges you have identified as priorities to address in the first investment period and why.",
+                    "schema": {}
+                },
+                {
+                    "name": "TrKuRn",
+                    "options": {},
+                    "type": "Html",
+                    "content": "              <legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\nTell us about any local opportunities for improvement or investment that you have identified and wish to pursue in the first investment period.              </legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "YtZsAZ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Give evidence, linked to this objective, of each opportunity and explain why these opportunities are being prioritised in this investment plan period. Include how your proposals reflect the priorities identified by local people as part of your engagement.",
+                    "schema": {}
+                },
+                {
+                    "name": "AORTLp",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us about any local opportunities for improvement or investment that you have identified and wish to pursue in the first investment period.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

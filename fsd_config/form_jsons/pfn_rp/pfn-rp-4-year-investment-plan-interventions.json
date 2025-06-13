@@ -1,0 +1,1289 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "oBsEvA",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask you about how you will deliver your programme of activity.<br><br>\nWe understand that during delivery you may fund different interventions to those selected as you respond to new or emerging local need, or to align with other local plans and availability of funding sources. Therefore, your answers in this section can be indicative.<br>\n<p class=\"govuk-body\">We’ll ask about the interventions you plan to fund in the first investment period, if known. These can be found on the <a href=\"https://www.gov.uk/government/publications/plan-for-neighbourhoods-prospectus-and-tools/plan-for-neighbourhoods-pre-approved-interventions\" target=\"_blank\" class=\"govuk-link\">pre-approved interventions page</a>, and include the following categories:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>cohesion</li>\n<li>education and opportunity</li>\n<li>health and wellbeing</li>\n<li>housing</li>\n<li>regeneration, high streets and heritage</li>\n<li>safety and security</li>\n<li>transport</li>\n<li>work, productivity and skills</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "sfxYql",
+                    "options": {},
+                    "type": "Para",
+                    "content": "We will also ask about any off-menu interventions you wish to deliver.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-categories-of-pre-approved-interventions-do-you-plan-to-fund"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "title": "Which categories of pre-approved interventions do you plan to fund?",
+            "path": "/which-categories-of-pre-approved-interventions-do-you-plan-to-fund",
+            "components": [
+                {
+                    "name": "WFRgIa",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true,
+                        "optionalText": false
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which categories of pre-approved interventions do you plan to fund?",
+                    "list": "ZTjetP",
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/which-interventions-relating-to-cohesion-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "kZRBDk"
+                },
+                {
+                    "path": "/which-interventions-relating-to-education-and-opportunity-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "TEFJEy"
+                },
+                {
+                    "path": "/which-interventions-relating-to-health-and-wellbeing-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "UbsMrB"
+                },
+                {
+                    "path": "/which-interventions-relating-to-housing-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "yTBfKP"
+                },
+                {
+                    "path": "/which-interventions-relating-to-regeneration-high-streets-and-heritage-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "jOGEsn"
+                },
+                {
+                    "path": "/which-interventions-relating-to-safety-and-security-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "ChAFkp"
+                },
+                {
+                    "path": "/which-interventions-relating-to-transport-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "cGnYeW"
+                },
+                {
+                    "path": "/which-interventions-relating-to-work-productivity-and-skills-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "HhBhsL"
+                },
+                {
+                    "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions",
+                    "condition": "edbYfn"
+                }
+            ]
+        },
+        {
+            "path": "/which-interventions-relating-to-cohesion-do-you-plan-to-fund-in-the-first-investment-period",
+            "title": "Which interventions relating to 'Cohesion' do you plan to fund in the first investment period?",
+            "components": [
+                {
+                    "name": "xFBFbU",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true,
+                        "optionalText": false
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which interventions relating to 'Cohesion' do you plan to fund in the first investment period?",
+                    "hint": "Select all that apply",
+                    "list": "CYDcIl",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions"
+                },
+                {
+                    "path": "/which-interventions-relating-to-education-and-opportunity-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "TEFJEy"
+                },
+                {
+                    "path": "/which-interventions-relating-to-health-and-wellbeing-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "UbsMrB"
+                },
+                {
+                    "path": "/which-interventions-relating-to-housing-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "yTBfKP"
+                },
+                {
+                    "path": "/which-interventions-relating-to-regeneration-high-streets-and-heritage-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "jOGEsn"
+                },
+                {
+                    "path": "/which-interventions-relating-to-safety-and-security-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "ChAFkp"
+                },
+                {
+                    "path": "/which-interventions-relating-to-transport-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "cGnYeW"
+                },
+                {
+                    "path": "/which-interventions-relating-to-work-productivity-and-skills-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "HhBhsL"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-interventions-relating-to-education-and-opportunity-do-you-plan-to-fund-in-the-first-investment-period",
+            "title": "Which interventions relating to 'Education and opportunity' do you plan to fund in the first investment period?",
+            "components": [
+                {
+                    "name": "AHJYFi",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true,
+                        "optionalText": false
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which interventions relating to 'Education and opportunity' do you plan to fund in the first investment period?",
+                    "list": "yKIJRT",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions"
+                },
+                {
+                    "path": "/which-interventions-relating-to-health-and-wellbeing-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "UbsMrB"
+                },
+                {
+                    "path": "/which-interventions-relating-to-housing-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "yTBfKP"
+                },
+                {
+                    "path": "/which-interventions-relating-to-regeneration-high-streets-and-heritage-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "jOGEsn"
+                },
+                {
+                    "path": "/which-interventions-relating-to-safety-and-security-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "ChAFkp"
+                },
+                {
+                    "path": "/which-interventions-relating-to-transport-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "cGnYeW"
+                },
+                {
+                    "path": "/which-interventions-relating-to-work-productivity-and-skills-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "HhBhsL"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-interventions-relating-to-health-and-wellbeing-do-you-plan-to-fund-in-the-first-investment-period",
+            "title": "Which interventions relating to 'Health and wellbeing' do you plan to fund in the first investment period?",
+            "components": [
+                {
+                    "name": "vUIIVo",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true,
+                        "optionalText": false
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which interventions relating to 'Health and wellbeing' do you plan to fund in the first investment period?",
+                    "hint": "Select all that apply",
+                    "list": "ZMsLAi",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions"
+                },
+                {
+                    "path": "/which-interventions-relating-to-housing-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "yTBfKP"
+                },
+                {
+                    "path": "/which-interventions-relating-to-regeneration-high-streets-and-heritage-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "jOGEsn"
+                },
+                {
+                    "path": "/which-interventions-relating-to-safety-and-security-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "ChAFkp"
+                },
+                {
+                    "path": "/which-interventions-relating-to-transport-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "cGnYeW"
+                },
+                {
+                    "path": "/which-interventions-relating-to-work-productivity-and-skills-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "HhBhsL"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-interventions-relating-to-housing-do-you-plan-to-fund-in-the-first-investment-period",
+            "title": "Which interventions relating to 'Housing' do you plan to fund in the first investment period?",
+            "components": [
+                {
+                    "name": "EqLMxj",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true,
+                        "optionalText": false
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which interventions relating to 'Housing' do you plan to fund in the first investment period?",
+                    "hint": "Select all that apply",
+                    "list": "HaWXtg",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions"
+                },
+                {
+                    "path": "/which-interventions-relating-to-regeneration-high-streets-and-heritage-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "jOGEsn"
+                },
+                {
+                    "path": "/which-interventions-relating-to-safety-and-security-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "ChAFkp"
+                },
+                {
+                    "path": "/which-interventions-relating-to-transport-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "cGnYeW"
+                },
+                {
+                    "path": "/which-interventions-relating-to-work-productivity-and-skills-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "HhBhsL"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-interventions-relating-to-regeneration-high-streets-and-heritage-do-you-plan-to-fund-in-the-first-investment-period",
+            "title": "Which interventions relating to 'Regeneration, high streets and heritage' do you plan to fund in the first investment period?",
+            "components": [
+                {
+                    "name": "GrBsow",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true,
+                        "optionalText": false
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which interventions relating to 'Regeneration, high streets and heritage' do you plan to fund in the first investment period?",
+                    "hint": "Select all that apply",
+                    "list": "JEmDlF",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions"
+                },
+                {
+                    "path": "/which-interventions-relating-to-safety-and-security-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "ChAFkp"
+                },
+                {
+                    "path": "/which-interventions-relating-to-transport-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "cGnYeW"
+                },
+                {
+                    "path": "/which-interventions-relating-to-work-productivity-and-skills-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "HhBhsL"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-interventions-relating-to-safety-and-security-do-you-plan-to-fund-in-the-first-investment-period",
+            "title": "Which interventions relating to 'Safety and security' do you plan to fund in the first investment period?",
+            "components": [
+                {
+                    "name": "NwlpeY",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true,
+                        "optionalText": false
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which interventions relating to 'Safety and security' do you plan to fund in the first investment period?",
+                    "hint": "Select all that apply",
+                    "list": "sPFJcL",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions"
+                },
+                {
+                    "path": "/which-interventions-relating-to-transport-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "cGnYeW"
+                },
+                {
+                    "path": "/which-interventions-relating-to-work-productivity-and-skills-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "HhBhsL"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-interventions-relating-to-transport-do-you-plan-to-fund-in-the-first-investment-period",
+            "title": "Which interventions relating to 'Transport' do you plan to fund in the first investment period?",
+            "components": [
+                {
+                    "name": "RsMYwj",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which interventions relating to 'Transport' do you plan to fund in the first investment period?",
+                    "hint": "Select all that apply",
+                    "list": "SBfiOt",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions"
+                },
+                {
+                    "path": "/which-interventions-relating-to-work-productivity-and-skills-do-you-plan-to-fund-in-the-first-investment-period",
+                    "condition": "HhBhsL"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-interventions-relating-to-work-productivity-and-skills-do-you-plan-to-fund-in-the-first-investment-period",
+            "title": "Which interventions relating to 'Work, productivity and skills' do you plan to fund in the first investment period?",
+            "components": [
+                {
+                    "name": "RAcQRK",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true,
+                        "optionalText": false
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Which interventions relating to 'Work, productivity and skills' do you plan to fund in the first investment period?",
+                    "hint": "Select all that apply",
+                    "list": "wfIJMS",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/does-your-neighbourhood-board-wish-to-deliver-off-menu-interventions",
+            "title": "Does your Neighbourhood Board wish to deliver off-menu interventions?",
+            "components": [
+                {
+                    "name": "DgNaHl",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Does your Neighbourhood Board wish to deliver off-menu interventions?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/describe-the-proposed-intervention",
+                    "condition": "viiUCi"
+                },
+                {
+                    "path": "/check-your-answers",
+                    "condition": "eXpkNo"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/describe-the-proposed-intervention",
+            "title": "Describe the proposed intervention.",
+            "components": [
+                {
+                    "name": "MJwkNS",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Once you have completed the fields, 'Save and add another' to add another off-menu intervention or continue to the next question. ",
+                    "schema": {}
+                },
+                {
+                    "name": "cpsPOw",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Brief description",
+                            "Estimated cost",
+                            "Why the proposed intervention cannot be delivered through pre-approved interventions",
+                            "How the proposed intervention will support delivery of one or more of the strategic objectives",
+                            "How the proposed intervention will be value for money and the outcomes and outputs that you aim to deliver through the investment",
+                            "How you have consulted with relevant bodies, where relevant, when developing this proposal"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "title": "Describe the proposed intervention.",
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "iSuQcm",
+                            "options": {},
+                            "title": "Brief description of proposed intervention and related expenditure",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "vhDdtP",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "title": "Estimated cost of intervention",
+                            "hint": "",
+                            "schema": {
+                                "precision": "0"
+                            }
+                        },
+                        {
+                            "type": "MultilineTextField",
+                            "name": "Urvfex",
+                            "options": {},
+                            "title": "Tell us why the proposed intervention cannot be delivered through those set out in the pre-approved intervention list",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "MultilineTextField",
+                            "name": "hjOHaG",
+                            "options": {},
+                            "title": "Tell us how the proposed intervention will support delivery of one or more of the strategic objectives for the Plan for Neighbourhoods programme",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "MultilineTextField",
+                            "name": "eyyfUI",
+                            "options": {},
+                            "title": "Tell us how the proposed intervention will be value for money and the outcomes and outputs that you aim to deliver through the investment",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "MultilineTextField",
+                            "name": "FiPgJD",
+                            "options": {},
+                            "title": "Tell us how you have consulted with relevant bodies, where relevant, when developing this proposal and the outcome of these discussions",
+                            "hint": "",
+                            "schema": ""
+                        }
+                    ],
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Your proposed off-menu interventions",
+                    "samePageTableItemName": "off-menu intervention"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "title": "Intervention categories",
+            "name": "ZTjetP",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Cohesion",
+                    "value": "Cohesion"
+                },
+                {
+                    "text": "Education and opportunity",
+                    "value": "Education and opportunity"
+                },
+                {
+                    "text": "Health and wellbeing",
+                    "value": "Health and wellbeing"
+                },
+                {
+                    "text": "Housing",
+                    "value": "Housing"
+                },
+                {
+                    "text": "Regeneration, high streets and heritage",
+                    "value": "Regeneration, high streets and heritage"
+                },
+                {
+                    "text": "Safety and security",
+                    "value": "Safety and security"
+                },
+                {
+                    "text": "Transport",
+                    "value": "Transport"
+                },
+                {
+                    "text": "Work, productivity and skills",
+                    "value": "Work, productivity and skills"
+                },
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        },
+        {
+            "title": "Cohesion interventions",
+            "name": "CYDcIl",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Funding for impactful volunteering and social action projects to develop social and human capital in local place ",
+                    "value": "Funding for impactful volunteering and social action projects to develop social and human capital in local place "
+                },
+                {
+                    "text": "Investment in capacity building and infrastructure support for local civil society, youth and community groups ",
+                    "value": "Investment in capacity building and infrastructure support for local civil society, youth and community groups "
+                },
+                {
+                    "text": "Measures to improve community cohesion ",
+                    "value": "Measures to improve community cohesion "
+                },
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        },
+        {
+            "title": "Education and opportunity interventions",
+            "name": "yKIJRT",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Funding to help families with the cost of childcare where it may alleviate cost of living pressures, or support employment",
+                    "description": "",
+                    "value": "Funding to help families with the cost of childcare where it may alleviate cost of living pressures, or support employment"
+                },
+                {
+                    "text": "School-based programmes to support young people's development",
+                    "value": "School-based programmes to support young people's development"
+                },
+                {
+                    "text": "Support for community-based learning and development ",
+                    "value": "Support for community-based learning and development "
+                },
+                {
+                    "text": "Support for families and young children",
+                    "value": "Support for families and young children"
+                },
+                {
+                    "text": "Support for growing the local social economy, including community businesses, cooperatives and social enterprises",
+                    "value": "Support for growing the local social economy, including community businesses, cooperatives and social enterprises"
+                },
+                {
+                    "text": "Support to both reduce levels of child poverty and to prevent the negative impacts of child poverty on children and families",
+                    "value": "Support to both reduce levels of child poverty and to prevent the negative impacts of child poverty on children and families"
+                },
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        },
+        {
+            "title": "Health and wellbeing interventions",
+            "name": "ZMsLAi",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Funding for local sport and activity facilities, events, teams and leagues, to foster community engagement and connection ",
+                    "value": "Funding for local sport and activity facilities, events, teams and leagues, to foster community engagement and connection "
+                },
+                {
+                    "text": "Funding to support preventative public health initiatives and campaigns",
+                    "value": "Funding to support preventative public health initiatives and campaigns"
+                },
+                {
+                    "text": "Integration and co-location of health and wellbeing services ",
+                    "value": "Integration and co-location of health and wellbeing services "
+                },
+                {
+                    "text": "Provide drug and alcohol support for people with experience of homelessness and rough sleeping",
+                    "value": "Provide drug and alcohol support for people with experience of homelessness and rough sleeping"
+                },
+                {
+                    "text": "Supporting community-level health provision ",
+                    "value": "Supporting community-level health provision "
+                },
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        },
+        {
+            "title": "Housing interventions",
+            "name": "HaWXtg",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Establish land trusts for the purpose of creating community-led housing to meet local needs ",
+                    "value": "Establish land trusts for the purpose of creating community-led housing to meet local needs "
+                },
+                {
+                    "text": "Modernisation of social housing ",
+                    "value": "Modernisation of social housing "
+                },
+                {
+                    "text": "Provide healthy and climate-resilient homes support locally ",
+                    "value": "Provide healthy and climate-resilient homes support locally "
+                },
+                {
+                    "text": "Provide safe and supportive environments for people with experience of homelessness and rough sleeping ",
+                    "value": "Provide safe and supportive environments for people with experience of homelessness and rough sleeping "
+                },
+                {
+                    "text": "Support local community initiatives that support people in bringing down their home energy bills and improve the energy efficiency of their homes. ",
+                    "value": "Support local community initiatives that support people in bringing down their home energy bills and improve the energy efficiency of their homes. "
+                },
+                {
+                    "text": "Support wider neighbourhood renewal by improving the attractiveness and liveability of homes and their surroundings ",
+                    "value": "Support wider neighbourhood renewal by improving the attractiveness and liveability of homes and their surroundings "
+                },
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        },
+        {
+            "title": "Regeneration, high streets and heritage interventions",
+            "name": "JEmDlF",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Creating and improving green spaces, community gardens, watercourses and embankments in the local area, along with incorporating natural features into wider public spaces",
+                    "value": "Creating and improving green spaces, community gardens, watercourses and embankments in the local area, along with incorporating natural features into wider public spaces"
+                },
+                {
+                    "text": "Funding for improvements to town centres, neighbourhoods, and high streets, including capital spend and running costs",
+                    "value": "Funding for improvements to town centres, neighbourhoods, and high streets, including capital spend and running costs"
+                },
+                {
+                    "text": "Funding for local arts, cultural, heritage and creative initiatives ",
+                    "value": "Funding for local arts, cultural, heritage and creative initiatives "
+                },
+                {
+                    "text": "Funding for new community and neighbourhood infrastructure projects, or for improvements to existing ones, including facilities that house public services or enhance community resilience to natural hazards, such as flooding",
+                    "value": "Funding for new community and neighbourhood infrastructure projects, or for improvements to existing ones, including facilities that house public services or enhance community resilience to natural hazards, such as flooding"
+                },
+                {
+                    "text": "Support for non-domestic energy efficiency measures and decarbonisation in local businesses, high streets, and community infrastructure",
+                    "value": "Support for non-domestic energy efficiency measures and decarbonisation in local businesses, high streets, and community infrastructure"
+                },
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        },
+        {
+            "title": "Safety and security interventions",
+            "name": "sPFJcL",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Co-location of crime reduction services ",
+                    "value": "Co-location of crime reduction services "
+                },
+                {
+                    "text": "Design and oversight of the built and landscaped environment to ‘design out’ crime and encourage positive behaviour ",
+                    "value": "Design and oversight of the built and landscaped environment to ‘design out’ crime and encourage positive behaviour "
+                },
+                {
+                    "text": "Improved town centre management ",
+                    "value": "Improved town centre management "
+                },
+                {
+                    "text": "Initiatives to reduce burglary ",
+                    "value": "Initiatives to reduce burglary "
+                },
+                {
+                    "text": "Interventions to tackle anti-social behaviour, crime and minimise reoffending ",
+                    "value": "Interventions to tackle anti-social behaviour, crime and minimise reoffending "
+                },
+                {
+                    "text": "Policing interventions to target crime prevention in specific locations, in particular town centres ",
+                    "value": "Policing interventions to target crime prevention in specific locations, in particular town centres "
+                },
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        },
+        {
+            "title": "Transport interventions",
+            "name": "SBfiOt",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Funding to improve local bus services",
+                    "value": "Funding to improve local bus services"
+                },
+                {
+                    "text": "Funding for new, or improvements to local road networks to improve access within and to the town ",
+                    "value": "Funding for new, or improvements to local road networks to improve access within and to the town "
+                },
+                {
+                    "text": "Funding to improve rail connectivity and access ",
+                    "value": "Funding to improve rail connectivity and access "
+                },
+                {
+                    "text": "Reducing vehicle emissions ",
+                    "value": "Reducing vehicle emissions "
+                },
+                {
+                    "text": "Support for active travel enhancements in the local area",
+                    "value": "Support for active travel enhancements in the local area"
+                },
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        },
+        {
+            "title": "Work, productivity and skills interventions",
+            "name": "wfIJMS",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Developing and expanding existing local business support and networks for smaller businesses and social enterprises ",
+                    "value": "Developing and expanding existing local business support and networks for smaller businesses and social enterprises "
+                },
+                {
+                    "text": "Enabling community wealth building ",
+                    "value": "Enabling community wealth building "
+                },
+                {
+                    "text": "Funding to support for the development, improvement, and promotion of the visitor economy, such as local attractions, historical trails, cultural tours, campaigns and other related tourism products ",
+                    "value": "Funding to support for the development, improvement, and promotion of the visitor economy, such as local attractions, historical trails, cultural tours, campaigns and other related tourism products "
+                },
+                {
+                    "text": "Skills provision tailored to local opportunities and skills gaps, such as those identified in an area’s Local Skills Improvement Plan ",
+                    "value": "Skills provision tailored to local opportunities and skills gaps, such as those identified in an area’s Local Skills Improvement Plan "
+                },
+                {
+                    "text": "Support to improve awareness of and access to local provision that moves people closer to and into sustained employment, in line with an area’s Get Britain Working Plan ",
+                    "value": "Support to improve awareness of and access to local provision that moves people closer to and into sustained employment, in line with an area’s Get Britain Working Plan "
+                },
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        },
+        {
+            "title": "Not sure",
+            "name": "ULvhCK",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Not sure which pre-approved interventions we plan to fund at this stage",
+                    "value": "Not sure"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "If Cohesion",
+            "name": "kZRBDk",
+            "value": {
+                "name": "If Cohesion",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories do the interventions you plan to fund relate to?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Cohesion",
+                            "display": "Cohesion"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Education and opportunity",
+            "name": "TEFJEy",
+            "value": {
+                "name": "If Education and opportunity",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories do the interventions you plan to fund relate to?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Education and opportunity",
+                            "display": "Education and opportunity"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Health and wellbeing",
+            "name": "UbsMrB",
+            "value": {
+                "name": "If Health and wellbeing",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories do the interventions you plan to fund relate to?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Health and wellbeing",
+                            "display": "Health and wellbeing"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Housing",
+            "name": "yTBfKP",
+            "value": {
+                "name": "If Housing",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories do the interventions you plan to fund relate to?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Housing",
+                            "display": "Housing"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Safety and security",
+            "name": "ChAFkp",
+            "value": {
+                "name": "If Safety and security",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories do the interventions you plan to fund relate to?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Safety and security",
+                            "display": "Safety and security"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Transport",
+            "name": "cGnYeW",
+            "value": {
+                "name": "If Transport",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories do the interventions you plan to fund relate to?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Transport",
+                            "display": "Transport"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Work, productivity and skills",
+            "name": "HhBhsL",
+            "value": {
+                "name": "If Work, productivity and skills",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories do the interventions you plan to fund relate to?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Work, productivity and skills",
+                            "display": "Work, productivity and skills"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If off menu intervention is Yes",
+            "name": "viiUCi",
+            "value": {
+                "name": "If off menu intervention is Yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.DgNaHl",
+                            "type": "YesNoField",
+                            "display": "Does your Neighbourhood Board wish to deliver off-menu interventions?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If off menu interventions is No",
+            "name": "eXpkNo",
+            "value": {
+                "name": "If off menu interventions is No",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.DgNaHl",
+                            "type": "YesNoField",
+                            "display": "Does your Neighbourhood Board wish to deliver off-menu interventions?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If more than one off menu intervention",
+            "name": "YTpclZ",
+            "value": {
+                "name": "If more than one off menu intervention",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.hiwKPJ",
+                            "type": "YesNoField",
+                            "display": "Do you wish to add another off-menu intervention?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If only one off menu intervention",
+            "name": "zGpmBS",
+            "value": {
+                "name": "If only one off menu intervention",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.hiwKPJ",
+                            "type": "YesNoField",
+                            "display": "Do you wish to add another off-menu intervention?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Regeneration, high streets and heritage",
+            "name": "jOGEsn",
+            "value": {
+                "name": "If Regeneration, high streets and heritage",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories do the interventions you plan to fund relate to?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Regeneration, high streets and heritage",
+                            "display": "Regeneration, high streets and heritage"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If not sure",
+            "name": "wfNYma",
+            "value": {
+                "name": "If not sure",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Not sure ",
+                            "display": "Not sure "
+                        }
+                    },
+                    {
+                        "coordinator": "and",
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "does not contain",
+                        "value": {
+                            "type": "Value",
+                            "value": "Cohesion",
+                            "display": "Cohesion"
+                        }
+                    },
+                    {
+                        "coordinator": "and",
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "does not contain",
+                        "value": {
+                            "type": "Value",
+                            "value": "Education and opportunity",
+                            "display": "Education and opportunity"
+                        }
+                    },
+                    {
+                        "coordinator": "and",
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "does not contain",
+                        "value": {
+                            "type": "Value",
+                            "value": "Health and wellbeing",
+                            "display": "Health and wellbeing"
+                        }
+                    },
+                    {
+                        "coordinator": "and",
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "does not contain",
+                        "value": {
+                            "type": "Value",
+                            "value": "Housing",
+                            "display": "Housing"
+                        }
+                    },
+                    {
+                        "coordinator": "and",
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "does not contain",
+                        "value": {
+                            "type": "Value",
+                            "value": "Regeneration, high streets and heritage",
+                            "display": "Regeneration, high streets and heritage"
+                        }
+                    },
+                    {
+                        "coordinator": "and",
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "does not contain",
+                        "value": {
+                            "type": "Value",
+                            "value": "Safety and security",
+                            "display": "Safety and security"
+                        }
+                    },
+                    {
+                        "coordinator": "and",
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "does not contain",
+                        "value": {
+                            "type": "Value",
+                            "value": "Transport",
+                            "display": "Transport"
+                        }
+                    },
+                    {
+                        "coordinator": "and",
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "does not contain",
+                        "value": {
+                            "type": "Value",
+                            "value": "Work, productivity and skills",
+                            "display": "Work, productivity and skills"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If not sure only",
+            "name": "edbYfn",
+            "value": {
+                "name": "If not sure only",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WFRgIa",
+                            "type": "CheckboxesField",
+                            "display": "Which categories of pre-approved interventions do you plan to fund?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "Not sure",
+                            "display": "Not sure"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false,
+    "name": "PfN - 4-year investment plan - interventions",
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
+}

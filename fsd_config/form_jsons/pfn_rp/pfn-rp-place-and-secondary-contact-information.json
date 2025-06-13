@@ -1,0 +1,785 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "TWsknh",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body\">In this section, we will ask about the details of the:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>place you are submitting on behalf of</li>\n<li>secondary contact for your place</li>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-place-are-you-submitting-on-behalf-of"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/who-is-the-secondary-contact-for-your-place",
+            "title": "Who is the secondary contact for your place?",
+            "components": [
+                {
+                    "name": "NVKrqL",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This is the person we can contact if the nominated representative is not available."
+                },
+                {
+                    "name": "YGzHEh",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Full name",
+                    "schema": {}
+                },
+                {
+                    "name": "PAFzPq",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Organisation",
+                    "schema": {}
+                },
+                {
+                    "name": "kxHEjr",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Role",
+                    "schema": {}
+                },
+                {
+                    "name": "nfSIJu",
+                    "options": {},
+                    "type": "EmailAddressField",
+                    "title": "Email address",
+                    "schema": {}
+                },
+                {
+                    "name": "KDdOxr",
+                    "options": {},
+                    "type": "TelephoneNumberField",
+                    "title": "Contact number",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Which place are you submitting on behalf of?",
+            "path": "/which-place-are-you-submitting-on-behalf-of",
+            "components": [
+                {
+                    "name": "lrRGwN",
+                    "options": {},
+                    "type": "SelectField",
+                    "title": "Place",
+                    "list": "NLRctD"
+                },
+                {
+                    "name": "UNlQWk",
+                    "options": {
+                        "allowPrePopulation": true
+                    },
+                    "type": "SelectField",
+                    "title": "Local authority",
+                    "list": "NBXypk"
+                },
+                {
+                    "name": "fAlBnc",
+                    "options": {},
+                    "type": "SelectField",
+                    "title": "Country",
+                    "list": "hOdjys"
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/who-is-the-secondary-contact-for-your-place"
+                }
+            ]
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "title": "Country",
+            "name": "hOdjys",
+            "type": "string",
+            "items": [
+                {
+                    "text": "England",
+                    "value": "England"
+                },
+                {
+                    "text": "Scotland",
+                    "value": "Scotland"
+                },
+                {
+                    "text": "Wales",
+                    "value": "Wales"
+                },
+                {
+                    "text": "Northern Ireland",
+                    "value": "Northern Ireland"
+                }
+            ]
+        },
+        {
+            "title": "Place",
+            "name": "NLRctD",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Accrington",
+                    "value": "Accrington"
+                },
+                {
+                    "text": "Arbroath",
+                    "value": "Arbroath"
+                },
+                {
+                    "text": "Ashton-under-Lyne",
+                    "value": "Ashton-under-Lyne"
+                },
+                {
+                    "text": "Barnsley",
+                    "value": "Barnsley"
+                },
+                {
+                    "text": "Barry (Vale of Glamorgan)",
+                    "value": "Barry (Vale of Glamorgan)"
+                },
+                {
+                    "text": "Bedworth",
+                    "value": "Bedworth"
+                },
+                {
+                    "text": "Bexhill-on-Sea",
+                    "value": "Bexhill-on-Sea"
+                },
+                {
+                    "text": "Bilston (Wolverhampton)",
+                    "value": "Bilston (Wolverhampton)"
+                },
+                {
+                    "text": "Blyth (Northumberland)",
+                    "value": "Blyth (Northumberland)"
+                },
+                {
+                    "text": "Boston",
+                    "value": "Boston"
+                },
+                {
+                    "text": "Burnley",
+                    "value": "Burnley"
+                },
+                {
+                    "text": "Canvey Island",
+                    "value": "Canvey Island"
+                },
+                {
+                    "text": "Carlton",
+                    "value": "Carlton"
+                },
+                {
+                    "text": "Castleford",
+                    "value": "Castleford"
+                },
+                {
+                    "text": "Chadderton",
+                    "value": "Chadderton"
+                },
+                {
+                    "text": "Chesterfield",
+                    "value": "Chesterfield"
+                },
+                {
+                    "text": "Clacton-on-Sea",
+                    "value": "Clacton-on-Sea"
+                },
+                {
+                    "text": "Clifton (Nottingham)",
+                    "value": "Clifton (Nottingham)"
+                },
+                {
+                    "text": "Clydebank",
+                    "value": "Clydebank"
+                },
+                {
+                    "text": "Coatbridge",
+                    "value": "Coatbridge"
+                },
+                {
+                    "text": "Coleraine",
+                    "value": "Coleraine"
+                },
+                {
+                    "text": "Cwmbrân",
+                    "value": "Cwmbrân"
+                },
+                {
+                    "text": "Darlaston",
+                    "value": "Darlaston"
+                },
+                {
+                    "text": "Darlington",
+                    "value": "Darlington"
+                },
+                {
+                    "text": "Darwen",
+                    "value": "Darwen"
+                },
+                {
+                    "text": "Derry~Londonderry",
+                    "value": "Derry~Londonderry"
+                },
+                {
+                    "text": "Dewsbury",
+                    "value": "Dewsbury"
+                },
+                {
+                    "text": "Doncaster",
+                    "value": "Doncaster"
+                },
+                {
+                    "text": "Dudley (Dudley)",
+                    "value": "Dudley (Dudley)"
+                },
+                {
+                    "text": "Dumfries",
+                    "value": "Dumfries"
+                },
+                {
+                    "text": "Eastbourne",
+                    "value": "Eastbourne"
+                },
+                {
+                    "text": "Elgin",
+                    "value": "Elgin"
+                },
+                {
+                    "text": "Eston",
+                    "value": "Eston"
+                },
+                {
+                    "text": "Farnworth",
+                    "value": "Farnworth"
+                },
+                {
+                    "text": "Great Yarmouth",
+                    "value": "Great Yarmouth"
+                },
+                {
+                    "text": "Greenock",
+                    "value": "Greenock"
+                },
+                {
+                    "text": "Grimsby",
+                    "value": "Grimsby"
+                },
+                {
+                    "text": "Harlow",
+                    "value": "Harlow"
+                },
+                {
+                    "text": "Hartlepool",
+                    "value": "Hartlepool"
+                },
+                {
+                    "text": "Hastings",
+                    "value": "Hastings"
+                },
+                {
+                    "text": "Heywood",
+                    "value": "Heywood"
+                },
+                {
+                    "text": "Irvine",
+                    "value": "Irvine"
+                },
+                {
+                    "text": "Jarrow",
+                    "value": "Jarrow"
+                },
+                {
+                    "text": "Keighley",
+                    "value": "Keighley"
+                },
+                {
+                    "text": "Kilmarnock",
+                    "value": "Kilmarnock"
+                },
+                {
+                    "text": "King’s Lynn",
+                    "value": "King’s Lynn"
+                },
+                {
+                    "text": "Kirkby",
+                    "value": "Kirkby"
+                },
+                {
+                    "text": "Kirkby-in-Ashfield",
+                    "value": "Kirkby-in-Ashfield"
+                },
+                {
+                    "text": "Leigh (Wigan)",
+                    "value": "Leigh (Wigan)"
+                },
+                {
+                    "text": "Mansfield",
+                    "value": "Mansfield"
+                },
+                {
+                    "text": "Merthyr Tydfil",
+                    "value": "Merthyr Tydfil"
+                },
+                {
+                    "text": "Nelson (Pendle)",
+                    "value": "Nelson (Pendle)"
+                },
+                {
+                    "text": "Newark-on-Trent",
+                    "value": "Newark-on-Trent"
+                },
+                {
+                    "text": "Newton-le-Willows",
+                    "value": "Newton-le-Willows"
+                },
+                {
+                    "text": "Orkney Islands (Kirkwall)",
+                    "value": "Orkney Islands (Kirkwall)"
+                },
+                {
+                    "text": "Peterhead",
+                    "value": "Peterhead"
+                },
+                {
+                    "text": "Ramsgate",
+                    "value": "Ramsgate"
+                },
+                {
+                    "text": "Rawtenstall",
+                    "value": "Rawtenstall"
+                },
+                {
+                    "text": "Rhyl",
+                    "value": "Rhyl"
+                },
+                {
+                    "text": "Rotherham",
+                    "value": "Rotherham"
+                },
+                {
+                    "text": "Royal Sutton Coldfield",
+                    "value": "Royal Sutton Coldfield"
+                },
+                {
+                    "text": "Runcorn",
+                    "value": "Runcorn"
+                },
+                {
+                    "text": "Ryde",
+                    "value": "Ryde"
+                },
+                {
+                    "text": "Scarborough",
+                    "value": "Scarborough"
+                },
+                {
+                    "text": "Scunthorpe",
+                    "value": "Scunthorpe"
+                },
+                {
+                    "text": "Skegness",
+                    "value": "Skegness"
+                },
+                {
+                    "text": "Smethwick",
+                    "value": "Smethwick"
+                },
+                {
+                    "text": "Spalding",
+                    "value": "Spalding"
+                },
+                {
+                    "text": "Spennymoor",
+                    "value": "Spennymoor"
+                },
+                {
+                    "text": "Thetford",
+                    "value": "Thetford"
+                },
+                {
+                    "text": "Torquay",
+                    "value": "Torquay"
+                },
+                {
+                    "text": "Washington",
+                    "value": "Washington"
+                },
+                {
+                    "text": "Wisbech",
+                    "value": "Wisbech"
+                },
+                {
+                    "text": "Worksop",
+                    "value": "Worksop"
+                },
+                {
+                    "text": "Wrexham",
+                    "value": "Wrexham"
+                }
+            ]
+        },
+        {
+            "title": "Local authority",
+            "name": "NBXypk",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Aberdeenshire Council",
+                    "value": "Aberdeenshire Council"
+                },
+                {
+                    "text": "Angus Council",
+                    "value": "Angus Council"
+                },
+                {
+                    "text": "Ashfield District Council",
+                    "value": "Ashfield District Council"
+                },
+                {
+                    "text": "Barnsley Council",
+                    "value": "Barnsley Council"
+                },
+                {
+                    "text": "Bassetlaw District Council",
+                    "value": "Bassetlaw District Council"
+                },
+                {
+                    "text": "Blackburn with Darwen Borough Council",
+                    "value": "Blackburn with Darwen Borough Council"
+                },
+                {
+                    "text": "Bolton Council",
+                    "value": "Bolton Council"
+                },
+                {
+                    "text": "Borough Council of King’s Lynn and West Norfolk",
+                    "value": "Borough Council of King’s Lynn and West Norfolk"
+                },
+                {
+                    "text": "Boston Borough Council",
+                    "value": "Boston Borough Council"
+                },
+                {
+                    "text": "Bradford Council",
+                    "value": "Bradford Council"
+                },
+                {
+                    "text": "Breckland Council",
+                    "value": "Breckland Council"
+                },
+                {
+                    "text": "Burnley Council",
+                    "value": "Burnley Council"
+                },
+                {
+                    "text": "Castle Point Borough Council",
+                    "value": "Castle Point Borough Council"
+                },
+                {
+                    "text": "Causeway Coast and Glens Borough Council",
+                    "value": "Causeway Coast and Glens Borough Council"
+                },
+                {
+                    "text": "Chesterfield Borough Council",
+                    "value": "Chesterfield Borough Council"
+                },
+                {
+                    "text": "City of Doncaster Council",
+                    "value": "City of Doncaster Council"
+                },
+                {
+                    "text": "City Of Wolverhampton Council",
+                    "value": "City Of Wolverhampton Council"
+                },
+                {
+                    "text": "Darlington Borough Council",
+                    "value": "Darlington Borough Council"
+                },
+                {
+                    "text": "Denbighshire County Council",
+                    "value": "Denbighshire County Council"
+                },
+                {
+                    "text": "Derry City and Strabane District Council",
+                    "value": "Derry City and Strabane District Council"
+                },
+                {
+                    "text": "Dudley Council",
+                    "value": "Dudley Council"
+                },
+                {
+                    "text": "Dumfries and Galloway Council",
+                    "value": "Dumfries and Galloway Council"
+                },
+                {
+                    "text": "Durham County Council",
+                    "value": "Durham County Council"
+                },
+                {
+                    "text": "East Ayrshire Council",
+                    "value": "East Ayrshire Council"
+                },
+                {
+                    "text": "East Lindsey District Council",
+                    "value": "East Lindsey District Council"
+                },
+                {
+                    "text": "Eastbourne Council",
+                    "value": "Eastbourne Council"
+                },
+                {
+                    "text": "Fenland District Council",
+                    "value": "Fenland District Council"
+                },
+                {
+                    "text": "Gedling Borough Council",
+                    "value": "Gedling Borough Council"
+                },
+                {
+                    "text": "Great Yarmouth Borough Council",
+                    "value": "Great Yarmouth Borough Council"
+                },
+                {
+                    "text": "Halton Borough Council",
+                    "value": "Halton Borough Council"
+                },
+                {
+                    "text": "Harlow Council",
+                    "value": "Harlow Council"
+                },
+                {
+                    "text": "Hartlepool Borough Council",
+                    "value": "Hartlepool Borough Council"
+                },
+                {
+                    "text": "Hastings Borough Council",
+                    "value": "Hastings Borough Council"
+                },
+                {
+                    "text": "Hyndburn Borough Council",
+                    "value": "Hyndburn Borough Council"
+                },
+                {
+                    "text": "Inverclyde Council",
+                    "value": "Inverclyde Council"
+                },
+                {
+                    "text": "Isle of Wight Council",
+                    "value": "Isle of Wight Council"
+                },
+                {
+                    "text": "Kirklees Council",
+                    "value": "Kirklees Council"
+                },
+                {
+                    "text": "Knowsley Council",
+                    "value": "Knowsley Council"
+                },
+                {
+                    "text": "Mansfield District Council",
+                    "value": "Mansfield District Council"
+                },
+                {
+                    "text": "Merthyr Tydfil County Borough Council",
+                    "value": "Merthyr Tydfil County Borough Council"
+                },
+                {
+                    "text": "Moray Council",
+                    "value": "Moray Council"
+                },
+                {
+                    "text": "Newark and Sherwood District Council",
+                    "value": "Newark and Sherwood District Council"
+                },
+                {
+                    "text": "North Ayrshire Council",
+                    "value": "North Ayrshire Council"
+                },
+                {
+                    "text": "North East Lincolnshire Council",
+                    "value": "North East Lincolnshire Council"
+                },
+                {
+                    "text": "North Lanarkshire Council",
+                    "value": "North Lanarkshire Council"
+                },
+                {
+                    "text": "North Lincolnshire Council",
+                    "value": "North Lincolnshire Council"
+                },
+                {
+                    "text": "North Yorkshire Council",
+                    "value": "North Yorkshire Council"
+                },
+                {
+                    "text": "Northumberland County Council",
+                    "value": "Northumberland County Council"
+                },
+                {
+                    "text": "Nottingham City Council",
+                    "value": "Nottingham City Council"
+                },
+                {
+                    "text": "Nuneaton and Bedworth Borough Council",
+                    "value": "Nuneaton and Bedworth Borough Council"
+                },
+                {
+                    "text": "Oldham Council",
+                    "value": "Oldham Council"
+                },
+                {
+                    "text": "Orkney Islands Council",
+                    "value": "Orkney Islands Council"
+                },
+                {
+                    "text": "Pendle Borough Council",
+                    "value": "Pendle Borough Council"
+                },
+                {
+                    "text": "Redcar and Cleveland Borough Council",
+                    "value": "Redcar and Cleveland Borough Council"
+                },
+                {
+                    "text": "Rochdale Borough Council",
+                    "value": "Rochdale Borough Council"
+                },
+                {
+                    "text": "Rossendale Borough Council",
+                    "value": "Rossendale Borough Council"
+                },
+                {
+                    "text": "Rother District Council",
+                    "value": "Rother District Council"
+                },
+                {
+                    "text": "Rotherham Metropolitan Borough Council",
+                    "value": "Rotherham Metropolitan Borough Council"
+                },
+                {
+                    "text": "Royal Sutton Coldfield Town Council",
+                    "value": "Royal Sutton Coldfield Town Council"
+                },
+                {
+                    "text": "Sandwell Council",
+                    "value": "Sandwell Council"
+                },
+                {
+                    "text": "South Holland District Council",
+                    "value": "South Holland District Council"
+                },
+                {
+                    "text": "South Tyneside Council",
+                    "value": "South Tyneside Council"
+                },
+                {
+                    "text": "St Helens Borough Council",
+                    "value": "St Helens Borough Council"
+                },
+                {
+                    "text": "Sunderland City Council",
+                    "value": "Sunderland City Council"
+                },
+                {
+                    "text": "Tameside Metropolitan Borough Council",
+                    "value": "Tameside Metropolitan Borough Council"
+                },
+                {
+                    "text": "Tendring District Council",
+                    "value": "Tendring District Council"
+                },
+                {
+                    "text": "Thanet District Council",
+                    "value": "Thanet District Council"
+                },
+                {
+                    "text": "Torbay Council",
+                    "value": "Torbay Council"
+                },
+                {
+                    "text": "Torfaen County Borough Council",
+                    "value": "Torfaen County Borough Council"
+                },
+                {
+                    "text": "Vale of Glamorgan Council",
+                    "value": "Vale of Glamorgan Council"
+                },
+                {
+                    "text": "Wakefield Council",
+                    "value": "Wakefield Council"
+                },
+                {
+                    "text": "Walsall Council",
+                    "value": "Walsall Council"
+                },
+                {
+                    "text": "West Dunbartonshire Council",
+                    "value": "West Dunbartonshire Council"
+                },
+                {
+                    "text": "Wigan Council",
+                    "value": "Wigan Council"
+                },
+                {
+                    "text": "Wrexham County Borough Council",
+                    "value": "Wrexham County Borough Council"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false,
+    "name": "Place and secondary contact information",
+    "feedback": {
+        "feedbackForm": false,
+        "url": "/bfdbd"
+    },
+    "phaseBanner": {}
+}

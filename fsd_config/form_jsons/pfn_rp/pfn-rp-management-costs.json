@@ -1,0 +1,242 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "OpjLdR",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body\">In this section, we'll ask you:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>whether you plan to use programme funding to cover management costs</li>\n<li>if so, how the funding will be used and whether you have received approval from your Neighbourhood Board</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "OqlDBZ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Once your Regeneration Plan has been approved, the first tranche of programme funding for delivery will be released. This will be at the beginning of the 2026 to 2027 financial year, and will include a revenue allocation. \n<br><br>\nThe funding can be used for revenue-based interventions, and management costs incurred in delivering funding during the delivery phase. This may include covering costs incurred by the local authority or other parties involved in managing the funds.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-plan-to-use-any-programme-delivery-funding-to-cover-management-costs-in-the-first-investment-period"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/do-you-plan-to-use-any-programme-delivery-funding-to-cover-management-costs-in-the-first-investment-period",
+            "title": "Do you plan to use any programme delivery funding to cover management costs in the first investment period?  ",
+            "components": [
+                {
+                    "name": "WgghkV",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Do you plan to use any programme delivery funding to cover management costs in the first investment period?  ",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                },
+                {
+                    "path": "/tell-us-how-the-funding-will-be-used-to-cover-management-costs",
+                    "condition": "ToZxdn"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Check your answers",
+            "path": "/check-your-answers",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        },
+        {
+            "path": "/tell-us-how-the-funding-will-be-used-to-cover-management-costs",
+            "title": "Tell us how the funding will be used to cover management costs.",
+            "components": [
+                {
+                    "name": "BTswKL",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us what the programme delivery funding will be used for.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/have-you-received-approval-from-your-neighbourhood-board-to-use-revenue-funding-for-management-costs-and-approval-on-how-much-funding-will-be-used"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/have-you-received-approval-from-your-neighbourhood-board-to-use-revenue-funding-for-management-costs-and-approval-on-how-much-funding-will-be-used",
+            "title": "Have you received approval from your Neighbourhood Board to use revenue funding for management costs, and approval on how much funding will be used?",
+            "components": [
+                {
+                    "name": "dpeZBx",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Have you received approval from your Neighbourhood Board to use revenue funding for management costs, and approval on how much funding will be used?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-why-you-have-not-received-approval-from-your-neighbourhood-board-on-the-funding",
+                    "condition": "bPAiuV"
+                },
+                {
+                    "path": "/check-your-answers",
+                    "condition": "OLjytf"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-why-you-have-not-received-approval-from-your-neighbourhood-board-on-the-funding",
+            "title": "Tell us why you have not received approval from your Neighbourhood Board on the funding.",
+            "components": [
+                {
+                    "name": "WLsVkX",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us why you have not received approval from your Neighbourhood Board on the funding.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "If using programme delivery funding for management costs",
+            "name": "ToZxdn",
+            "value": {
+                "name": "If using programme delivery funding for management costs",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WgghkV",
+                            "type": "YesNoField",
+                            "display": "Do you plan to use any programme delivery funding to cover management costs in the first investment period?  "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If not using programme delivery funding for management costs",
+            "name": "tTYmCg",
+            "value": {
+                "name": "If not using programme delivery funding for management costs",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WgghkV",
+                            "type": "YesNoField",
+                            "display": "Do you plan to use any programme delivery funding to cover management costs in the first investment period?  "
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Not received approval",
+            "name": "bPAiuV",
+            "value": {
+                "name": "Not received approval",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.dpeZBx",
+                            "type": "YesNoField",
+                            "display": "Have you received approval from your Neighbourhood Board to use revenue funding for management costs, and approval on how much funding will be used?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "Received approval",
+            "name": "OLjytf",
+            "value": {
+                "name": "Received approval",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.dpeZBx",
+                            "type": "YesNoField",
+                            "display": "Have you received approval from your Neighbourhood Board to use revenue funding for management costs, and approval on how much funding will be used?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

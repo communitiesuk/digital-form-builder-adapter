@@ -1,0 +1,280 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "jSLCpp",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we will ask you to confirm you agree with the declarations for the Plan for Neighbourhoods programme.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/which-country-is-your-place-based-in"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/which-country-is-your-place-based-in",
+            "title": "Which country is your place based in?",
+            "components": [
+                {
+                    "name": "lsLcXO",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "RadiosField",
+                    "title": "Which country is your place based in?",
+                    "list": "gzyCzL",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/confirm-you-have-read-and-agree-with-the-declarations",
+                    "condition": "zFifjH"
+                },
+                {
+                    "path": "/confirm-you-have-read-and-agree-with-the-declarations-vCeoCD",
+                    "condition": "hZOZKo"
+                },
+                {
+                    "path": "/confirm-you-have-read-and-agree-with-the-declarations-ZCcynw",
+                    "condition": "bSCdWA"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Summary",
+            "path": "/summary",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        },
+        {
+            "path": "/confirm-you-have-read-and-agree-with-the-declarations",
+            "title": "Confirm you have read and agree with the declarations.",
+            "components": [
+                {
+                    "name": "PfcNKV",
+                    "options": {},
+                    "type": "Para",
+                    "content": "You must confirm that:\n<ul>\n<li>the Neighbourhood Board has reviewed and approved this Regeneration Plan prior to submission</li>\n<li>the Section 151 Officer from the local authority acting as accountable body, or an individual with responsibility for finance where an alternative governance arrangement is in place, has reviewed and approved this Regeneration Plan</li>\n<li>you have considered the public sector equality duty when designing your investment plan</li>\n</ul>"
+                },
+                {
+                    "name": "qpeEcB",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Confirm you have read and agree with the declarations.",
+                    "list": "wscIvg"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/confirm-you-have-read-and-agree-with-the-declarations-vCeoCD",
+            "title": "Confirm you have read and agree with the declarations.",
+            "components": [
+                {
+                    "name": "mkspJY",
+                    "options": {},
+                    "type": "Para",
+                    "content": "You must confirm that:\n<ul>\n<li>the Neighbourhood Board has reviewed and approved this Regeneration Plan prior to submission</li>\n<li>the Section 95 Officer from the local authority acting as accountable body, or an individual with responsibility for finance where an alternative governance arrangement is in place, has reviewed and approved this Regeneration Plan</li>\n<li>you have considered the public sector equality duty when designing your investment plan</li>\n</ul>"
+                },
+                {
+                    "name": "rSvAwx",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Confirm you have read and agree with the declarations.",
+                    "list": "wscIvg"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/confirm-you-have-read-and-agree-with-the-declarations-ZCcynw",
+            "title": "Confirm you have read and agree with the declarations.",
+            "components": [
+                {
+                    "name": "HKbvoH",
+                    "options": {},
+                    "type": "Para",
+                    "content": "You must confirm that:\n<ul>\n<li>the Neighbourhood Board has reviewed and approved this Regeneration Plan prior to submission</li>\n<li>the Chief Financial Officer from the local authority acting as accountable body, or an individual with responsibility for finance where an alternative governance arrangement is in place, has reviewed and approved this Regeneration Plan</li>\n<li>the Neighbourhood Board has ensured the interventions contained in this Regeneration Plan are aligned with the policies and priorities of relevant Northern Ireland Executive’s <a href=\"https://www.northernireland.gov.uk/articles/programme-government-2024-2027-our-plan-doing-what-matters-most\" target=\"_blank\" class=\"govuk-link\">Programme for Government</a></li>\n<li>you have considered Section 75 of the Northern Ireland Act when designing your investment plan</li>\n</ul>"
+                },
+                {
+                    "name": "xJzeTP",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Confirm you have read and agree with the declarations.",
+                    "list": "wscIvg"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "title": "Countries",
+            "name": "gzyCzL",
+            "type": "string",
+            "items": [
+                {
+                    "text": "England",
+                    "value": "England"
+                },
+                {
+                    "text": "Scotland",
+                    "value": "Scotland"
+                },
+                {
+                    "text": "Wales",
+                    "value": "Wales"
+                },
+                {
+                    "text": "Northern Ireland",
+                    "value": "Northern Ireland"
+                }
+            ]
+        },
+        {
+            "title": "I confirm that I have read and agree with the declarations",
+            "name": "wscIvg",
+            "type": "string",
+            "items": [
+                {
+                    "text": "I confirm that I have read and agree with the declarations",
+                    "value": "I confirm that I have read and agree with the declarations"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "If England or Wales",
+            "name": "zFifjH",
+            "value": {
+                "name": "If England or Wales",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.lsLcXO",
+                            "type": "RadiosField",
+                            "display": "Which country is your place based in?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "England",
+                            "display": "England"
+                        }
+                    },
+                    {
+                        "coordinator": "or",
+                        "field": {
+                            "name": "FabDefault.lsLcXO",
+                            "type": "RadiosField",
+                            "display": "Which country is your place based in?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Wales",
+                            "display": "Wales"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Scotland",
+            "name": "hZOZKo",
+            "value": {
+                "name": "If Scotland",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.lsLcXO",
+                            "type": "RadiosField",
+                            "display": "Which country is your place based in?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Scotland",
+                            "display": "Scotland"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Northern Ireland",
+            "name": "bSCdWA",
+            "value": {
+                "name": "If Northern Ireland",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.lsLcXO",
+                            "type": "RadiosField",
+                            "display": "Which country is your place based in?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Northern Ireland",
+                            "display": "Northern Ireland"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

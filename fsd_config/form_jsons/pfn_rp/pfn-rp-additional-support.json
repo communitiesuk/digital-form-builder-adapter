@@ -1,0 +1,142 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "sNxzrP",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we will ask you if you would be interested in any further support to help with your delivery of the programme.\n<br><br>\nThis will help us develop our support offer for places."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-which-areas-of-support-you-may-be-interested-in"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/tell-us-which-areas-of-support-you-may-be-interested-in",
+            "title": "Tell us which areas of support you may be interested in.",
+            "components": [
+                {
+                    "name": "NKLAZE",
+                    "options": {
+                        "hideTitle": true,
+                        "required": true,
+                        "optionalText": false
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Tell us which areas of support you may be interested in.",
+                    "hint": "Select all that apply",
+                    "list": "lPaLDB"
+                },
+                {
+                    "name": "BzezVX",
+                    "options": {
+                        "hideTitle": true,
+                        "exposeToContext": true,
+                        "required": false,
+                        "optionalText": false
+                    },
+                    "type": "TextField",
+                    "title": "Other (please specify)"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Check your answers",
+            "path": "/check-your-answers",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        }
+    ],
+    "lists": [
+        {
+            "title": "Support categories",
+            "name": "lPaLDB",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Building data capabilities",
+                    "value": "Building data capabilities"
+                },
+                {
+                    "text": "Central training resources for Neighbourhood Boards",
+                    "value": "Central training resources for Neighbourhood Boards"
+                },
+                {
+                    "text": "Community engagement ",
+                    "value": "Community engagement "
+                },
+                {
+                    "text": "Longer-term partnership support from MHCLG",
+                    "value": "Longer-term partnership support from MHCLG"
+                },
+                {
+                    "text": "Planning and property",
+                    "value": "Planning and property"
+                },
+                {
+                    "text": "Procurement regulations",
+                    "value": "Procurement regulations"
+                },
+                {
+                    "text": "Shared learning on best practices ",
+                    "value": "Shared learning on best practices "
+                },
+                {
+                    "text": "Subsidy Control Act",
+                    "value": "Subsidy Control Act"
+                },
+                {
+                    "text": "I am not interested in any additional support",
+                    "value": "I am not interested in any additional support"
+                },
+                {
+                    "text": "Other (please specify)",
+                    "value": "Other (please specify)"
+                }
+            ]
+        },
+        {
+            "title": "I am not interested in any additional support",
+            "name": "zSihcs",
+            "type": "string",
+            "items": [
+                {
+                    "text": "I am not interested in any additional support",
+                    "value": "I am not interested in any additional support"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {},
+    "markAsComplete": false
+}

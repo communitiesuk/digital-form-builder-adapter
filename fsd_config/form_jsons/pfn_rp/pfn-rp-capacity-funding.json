@@ -1,0 +1,85 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "ijBfhL",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we’ll ask about:\n<ul>\n<li>your capacity funding usage since you submitted your Neighbourhood Board and place boundary form</li>\n<li>how you plan to use any remaining capacity funding allocations</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "hZXALe",
+                    "options": {},
+                    "type": "Para",
+                    "content": "You have been allocated capacity funding to support with developing your establishment of your Neighbourhood Board, development of your Regeneration Plan and your community engagement activity. \n<br><br>\nIn your Neighbourhood Board and place boundary confirmation form, you told us how you had used capacity funding, and plans for the next round of capacity funding (2025 to 2026 financial year)."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-how-you-have-used-capacity-funding-since-you-submitted-your-neighbourhood-board-and-place-boundary-form"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-how-you-have-used-capacity-funding-since-you-submitted-your-neighbourhood-board-and-place-boundary-form",
+            "title": "Tell us how you have used capacity funding since you submitted your Neighbourhood Board and place boundary form.",
+            "components": [
+                {
+                    "name": "ZGBqtE",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Outline how you plan to use any remaining capacity funding allocations."
+                },
+                {
+                    "name": "vQurBX",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Tell us how you will use any remaining capacity funding since your last submission and outline how you plan to use your remaining capacity funding allocations.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Check your answers",
+            "path": "/check-your-answers",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}
