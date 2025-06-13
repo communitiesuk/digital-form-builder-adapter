@@ -10,8 +10,14 @@
                     "name": "qlYsDZ",
                     "options": {},
                     "type": "Para",
-                    "content": "<p class=\"govuk-body\">In this section, we’ll ask you about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>how your Neighbourhood Board and accountable body will ensure that funds are awarded, managed, and monitored fairly and effectively</li>\n<li>the processes that you will put in place to select projects</li>\n<li>how you will manage risk</li>\n<li>how your board and accountable body will ensure compliance with:</li>\n<ul>\n<li>environmental duty</li>\n<li>appropriate public contract regulations</li> \n<li>public sector equality duty (England, Scotland and Wales) or an Equality Impact Assessment (Northern Ireland)</li>\n<li>Subsidy Control Act 2022 and state aid regulations</li>\n</ul>\n</ul>",
+                    "content": "<p class=\"govuk-body\">In this section, we’ll ask you about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>how your Neighbourhood Board and accountable body will ensure that funds are awarded, managed, and monitored fairly and effectively</li>\n<li>the processes that you will put in place to select projects</li>\n<li>how you will manage risk</li>\n<li>how your board and accountable body will ensure compliance with:</li>\n<ul>\n<li>environmental duty</li>\n<li>public sector equality duty (England, Scotland and Wales) or an Equality Impact Assessment (Northern Ireland)</li>\n<li>Subsidy Control Act 2022 and state aid regulations</li>\n<li>appropriate public contract regulations</li> \n</ul>\n</ul>",
                     "schema": {}
+                },
+                {
+                    "name": "TXsMcw",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Places must provide assurance that public funds will be managed appropriately and in line with relevant standards and legislation."
                 }
             ],
             "next": [
