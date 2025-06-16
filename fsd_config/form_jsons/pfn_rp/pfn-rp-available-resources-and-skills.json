@@ -69,5 +69,11 @@
     "version": 2,
     "skipSummary": false,
     "feeOptions": {},
-    "markAsComplete": false
+    "markAsComplete": false,
+    "name": "Available Resources and Skills",
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
 }

@@ -138,5 +138,11 @@
     "version": 2,
     "skipSummary": false,
     "feeOptions": {},
-    "markAsComplete": false
+    "markAsComplete": false,
+    "name": "Additional Support",
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
 }

@@ -1385,10 +1385,10 @@
         "showPaymentSkippedWarningPage": false
     },
     "markAsComplete": false,
-    "name": "PfN - Payment profile and spend forecast",
+    "name": "Payment Profile and Indicative Spend Forecast",
     "feedback": {
         "feedbackForm": false,
-        "url": "/bfdbd"
+        "url": ""
     },
     "phaseBanner": {}
 }
