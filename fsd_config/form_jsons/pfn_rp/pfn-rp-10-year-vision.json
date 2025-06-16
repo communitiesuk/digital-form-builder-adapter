@@ -50,7 +50,7 @@
                             "acceptedFiles": ",application/pdf"
                         },
                         "showNoScriptWarning": false,
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "hideTitle": true
                     },
                     "type": "ClientSideFileUploadField",
@@ -106,7 +106,7 @@
                             "acceptedFiles": ",application/pdf,application/msword,image/jpeg,image/png,text/plain,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
                         },
                         "showNoScriptWarning": false,
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "hideTitle": true
                     },
                     "type": "ClientSideFileUploadField",
@@ -202,5 +202,11 @@
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
     },
-    "markAsComplete": false
+    "markAsComplete": false,
+    "name": "[3] PfN - 10-year vision",
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
 }
