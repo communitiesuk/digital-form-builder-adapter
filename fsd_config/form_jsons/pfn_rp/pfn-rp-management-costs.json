@@ -238,5 +238,11 @@
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
     },
-    "markAsComplete": false
+    "markAsComplete": false,
+    "name": "Management Costs",
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
 }

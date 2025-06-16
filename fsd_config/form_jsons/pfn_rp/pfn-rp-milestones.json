@@ -819,5 +819,11 @@
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
     },
-    "markAsComplete": false
+    "markAsComplete": false,
+    "name": "Milestones",
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
 }

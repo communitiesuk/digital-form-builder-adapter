@@ -776,10 +776,10 @@
         "showPaymentSkippedWarningPage": false
     },
     "markAsComplete": false,
-    "name": "Place and secondary contact information",
+    "name": "Place and Secondary Contact Information",
     "feedback": {
         "feedbackForm": false,
-        "url": "/bfdbd"
+        "url": ""
     },
     "phaseBanner": {}
 }

@@ -1130,5 +1130,11 @@
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
     },
-    "markAsComplete": false
+    "markAsComplete": false,
+    "name": "Management of Funds",
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
 }

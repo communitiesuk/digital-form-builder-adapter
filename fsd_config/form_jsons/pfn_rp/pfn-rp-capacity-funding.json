@@ -81,5 +81,11 @@
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
     },
-    "markAsComplete": false
+    "markAsComplete": false,
+    "name": "Capacity Funding",
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
 }

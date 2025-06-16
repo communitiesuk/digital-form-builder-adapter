@@ -67,21 +67,36 @@
             "title": "Tell us about your project.",
             "components": [
                 {
-                    "name": "NznEbN",
-                    "options": {},
-                    "type": "Para",
-                    "content": "Once you have completed the fields, 'Save and add another' to add another project or continue to the next question. "
-                },
-                {
                     "name": "dEyfRq",
-                    "options": {},
+                    "options": {
+                        "columnTitles": [
+                            "Project name",
+                            "Brief description of project",
+                            "Primary intervention",
+                            "Project status",
+                            "Name of delivery organisation",
+                            "Type of organisation",
+                            "Amount of funding allocated",
+                            "Other sources of project funding",
+                            "Total project budget"
+                        ]
+                    },
                     "type": "MultiInputField",
                     "title": "Tell us about your project.",
                     "children": [
                         {
                             "type": "TextField",
                             "name": "AeuWAj",
-                            "options": {},
+                            "options": {
+                                "columnTitles": [
+                                    "Project name",
+                                    "Brief description of project",
+                                    "Primary intervention",
+                                    "Project status",
+                                    "Name of delivery organisation",
+                                    "Type of organisation"
+                                ]
+                            },
                             "title": "Project name",
                             "hint": "",
                             "schema": {}
@@ -169,6 +184,13 @@
                             "schema": {}
                         }
                     ],
+                    "schema": {}
+                },
+                {
+                    "name": "NznEbN",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Once you have completed the fields, 'Save and add another' to add another project or continue to the next question. ",
                     "schema": {}
                 }
             ],
@@ -314,5 +336,11 @@
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
     },
-    "markAsComplete": false
+    "markAsComplete": false,
+    "name": "Projects",
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
 }
