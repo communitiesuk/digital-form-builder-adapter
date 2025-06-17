@@ -1,0 +1,80 @@
+{
+    "startPage": "/engaging-the-odp-open-digital-planning-community",
+    "pages": [
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "cxcLmF",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/engaging-the-odp-open-digital-planning-community",
+            "title": "Engaging the ODP (Open Digital Planning) community",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "\n\n<p class=\"govuk-body\"><strong>In this section, we'll ask about:</strong></p>\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>why you want to be a part of the ODP (Open Digital Planning) community\n</li>\n\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "mFxqVx"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/why-do-you-want-to-be-a-part-of-the-odp-open-digital-planning-community"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/why-do-you-want-to-be-a-part-of-the-odp-open-digital-planning-community",
+            "title": "Why do you want to be a part of the ODP (Open Digital Planning) community?",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<div class=\"govuk-body\">Tell us:\n<ul class=\"govuk-list govuk-list--bullet\">\n  <li>what you will get from the community\n</li>\n  <li>what you will give to the community\n</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "FwzEBm"
+                },
+                {
+                    "options": {
+                        "maxWords": "250",
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Why do you want to be a part of the ODP (Open Digital Planning) community?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "puJoCy"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "cxcLmF"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "cxcLmF",
+            "title": "Engaging the ODP community",
+            "hideTitle": true
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to begin your digital planning improvement journey"
+}
