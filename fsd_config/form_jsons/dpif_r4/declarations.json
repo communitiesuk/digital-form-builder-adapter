@@ -1,0 +1,175 @@
+{
+    "startPage": "/declarations",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "HgUinB",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/declarations",
+            "title": "Declarations",
+            "components": [
+                {
+                    "type": "Html",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask you to:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>confirm you have signed the Local Digital Declaration and agree to follow the 5 principles</li>\n<li>confirm your section 151 officer is aware of this funding and it is managed in line with your internal budget managing process</li>\n<li>confirm you agree to let all outputs from this work be published under open licence with a view to any organisation accessing, using or adopting them freely</li>\n<li>confirm the information you have provided is accurate</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "rhgBAM"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/agree-to-the-final-confirmations-DWyips"
+                }
+            ],
+            "section": "HgUinB",
+            "controller": "start.js"
+        },
+        {
+            "path": "/agree-to-the-final-confirmations-DWyips",
+            "title": "Agree to the final confirmations",
+            "components": [
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Confirmation you have signed the Local Digital Declaration and agree to follow the 5 principles",
+                    "hint": "",
+                    "schema": {},
+                    "name": "WVciwy",
+                    "list": "oPbYLL",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Confirmation your section 151 officer is aware of this funding and it is managed in line with your internal budget managing process",
+                    "hint": "",
+                    "schema": {},
+                    "name": "kQMvMh",
+                    "list": "YWsqpa",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Confirmation you agree to let all outputs from this work be published under open licence with a view to any organisation accessing, using or adopting them freely",
+                    "hint": "",
+                    "schema": {},
+                    "name": "kassVI",
+                    "list": "Xuqipi",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "Confirmation the information you have provided is accurate",
+                    "hint": "",
+                    "schema": {},
+                    "name": "bFQXxj",
+                    "list": "ijIKGQ",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "HgUinB"
+        }
+    ],
+    "lists": [
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "You have signed the Local Digital Declaration and agree to follow the 5 principles",
+                    "value": "You have signed the Local Digital Declaration and agree to follow the 5 principles"
+                }
+            ],
+            "name": "oPbYLL",
+            "title": "Local Digital Declaration and 5 principles"
+        },
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "Your section 151 officer is aware of this funding and it is managed in line with your internal budget managing process",
+                    "value": "Your section 151 officer is aware of this funding and it is managed in line with your internal budget managing process"
+                }
+            ],
+            "name": "YWsqpa",
+            "title": "Section 151 officer consent"
+        },
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "You agree to let all outputs from this work be published under open licence with a view to any organisation accessing, using or adopting them freely",
+                    "value": "You agree to let all outputs from this work be published under open licence with a view to any organisation accessing, using or adopting them freely"
+                }
+            ],
+            "name": "Xuqipi",
+            "title": "Open licence"
+        },
+        {
+            "type": "string",
+            "items": [
+                {
+                    "text": "The information you have provided is accurate",
+                    "value": "The information you have provided is accurate"
+                }
+            ],
+            "name": "ijIKGQ",
+            "title": "Accurate information"
+        }
+    ],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "HgUinB",
+            "title": "Declarations",
+            "hideTitle": true
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "DPIF round 4 - Declarations",
+    "version": 2,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false,
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "phaseBanner": {}
+}

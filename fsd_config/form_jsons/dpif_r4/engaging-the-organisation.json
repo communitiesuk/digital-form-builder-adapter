@@ -1,0 +1,102 @@
+{
+    "startPage": "/engaging-the-organisation",
+    "pages": [
+        {
+            "path": "/summary",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "LjAoZK",
+            "controller": "./pages/summary.js"
+        },
+        {
+            "path": "/how-will-you-make-sure-team-members-engage-with-other-parts-of-your-organisation",
+            "title": "How will you make sure team members engage with other parts of your organisation?",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<div class= \"govuk-body\"> We expect you to regularly engage with:\n<ul class=\"govuk-list govuk-list--bullet\"> \n<li>planning departments</li>\n<li>transformation departments</li>\n<li>data departments</li>\n<li>GIS (geographical information system) teams</li>\n<li>senior leadership</li>\n<li>information technology teams</li> \n</ul>\n</div>",
+                    "options": {},
+                    "schema": {},
+                    "name": "STGvhf"
+                },
+                {
+                    "options": {
+                        "maxWords": "250",
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "How will you make sure team members engage with other parts of your organisation?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "zUeJhF"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-share-the-progress-of-the-work-across-your-organisation"
+                }
+            ],
+            "section": "LjAoZK"
+        },
+        {
+            "path": "/engaging-the-organisation",
+            "title": "Engaging the organisation",
+            "components": [
+                {
+                    "type": "Html",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>how you will make sure team members engage with other parts of your organisation</li>\n<li>how you will share the progress of the work across your organisation</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "qnNciV"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-make-sure-team-members-engage-with-other-parts-of-your-organisation"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/how-will-you-share-the-progress-of-the-work-across-your-organisation",
+            "title": "How will you share the progress of the work across your organisation?",
+            "components": [
+                {
+                    "options": {
+                        "maxWords": "250"
+                    },
+                    "type": "MultilineTextField",
+                    "title": "How will you share the progress of the work across your organisation?",
+                    "hint": "",
+                    "schema": {},
+                    "name": "OyKcuE"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "LjAoZK"
+        }
+    ],
+    "lists": [],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "LjAoZK",
+            "title": "Engaging the organisation",
+            "hideTitle": true
+        },
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Apply for funding to begin your digital planning improvement journey"
+}
