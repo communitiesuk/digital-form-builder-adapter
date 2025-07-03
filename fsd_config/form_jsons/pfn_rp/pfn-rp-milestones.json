@@ -132,6 +132,10 @@
             "section": "FabDefault",
             "next": [
                 {
+                  "path": "/running-a-feasibility-study",
+                  "condition": "ntKXZH"
+                },
+                {
                     "path": "/call-for-projects-and-project-selection-round",
                     "condition": "xGXVHb"
                 },
@@ -145,10 +149,6 @@
                 },
                 {
                     "path": "/would-you-like-to-add-any-bespoke-milestones"
-                },
-                {
-                    "path": "/running-a-feasibility-study",
-                    "condition": "ntKXZH"
                 }
             ],
             "options": {
