@@ -87,6 +87,37 @@ export class RegisterS3FileUploadApi implements RegisterApi {
 
         server.route(s3GetDataOptions);
 
+        const s3GetFileTags: any = {
+            method: "GET",
+            path: "/s3/{id}/{pageKey}/{componentKey}/get-file-tags",
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                const {query} = request;
+                const {s3UploadService, adapterCacheService} = request.services([]);
+                //@ts-ignore
+                const state = await adapterCacheService.getState(request);
+                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+                if (query.form_session_identifier) {
+                    form_session_identifier = query.form_session_identifier;
+                }
+                if (!form_session_identifier) {
+                    return h.response({ok: false}).code(401);
+                }
+                const {id, pageKey, componentKey} = request.params as any;
+                const {filename} = request.query;
+
+                const key = `${form_session_identifier}/${id}/${pageKey}/${componentKey}/${filename}`;
+                return await s3UploadService.getFileTagsS3(key);
+            },
+        }
+
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+            s3GetFileTags.options = {
+                auth: jwtAuthStrategyName
+            }
+        }
+
+        server.route(s3GetFileTags);
+
         const deleteOptions: any = {
             method: "DELETE",
             path: "/s3/{id}/{pageKey}/{componentKey}/delete-file-by-key",
