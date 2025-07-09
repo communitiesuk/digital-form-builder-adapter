@@ -460,7 +460,7 @@
                         file.scanStatus = 'ready';
                     } else {
                         file.pollingTimeoutId = setTimeout(() => checkTagsUntilFound(file), POLL_INTERVAL_MS);
-                        updateProgressBarContent(file, `{{ i18nGetTranslation("components.clientSideFileUpload.table.fileProgressCol") }}`);
+                        updateProgressBarContent(file, `{{ i18nGetTranslation("components.clientSideFileUpload.table.fileActionInProgress") }}`);
                     }
                 } else {
                     updateProgressBarContent(file, `{{ i18nGetTranslation("components.clientSideFileUpload.table.fileActionFailed") }}`);

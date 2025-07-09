@@ -53,6 +53,7 @@
         "fileActionCol": "Gweithredu",
         "fileActionComplete": "Cyflawn",
         "fileActionFailed": "Wedi methu",
+        "fileActionInProgress": "In progress",
         "deleteBtn": "Dileu"
       }
     },
