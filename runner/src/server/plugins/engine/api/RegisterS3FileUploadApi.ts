@@ -106,7 +106,19 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                 const {filename} = request.query;
 
                 const key = `${form_session_identifier}/${id}/${pageKey}/${componentKey}/${filename}`;
-                return await s3UploadService.getFileTagsS3(key);
+                if (config.enableVirusScan || config.enableVirusScan === "true") {
+                    return await s3UploadService.getFileTagsS3(key);
+                } else {
+                    // Local development purposes we ignore using actual Guard-duty service
+                    return {
+                        tags: [
+                            {
+                                Key: "GuardDutyMalwareScanStatus",
+                                Value: "NO_THREATS_FOUND"
+                            }
+                        ]
+                    };
+                }
             },
         }
 
