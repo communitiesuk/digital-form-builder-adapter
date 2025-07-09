@@ -295,6 +295,11 @@ jobs:
       - name: Start containers
         run: docker compose -f docker-compose.e2e.yml up -d
 
+      - name: Add localstack to /etc/hosts
+        run: |
+            echo "127.0.0.1 localhost localstack host.docker.internal" | sudo tee -a /etc/hosts
+            cat /etc/hosts
+
       - name: Create S3 bucket
         run: docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
 

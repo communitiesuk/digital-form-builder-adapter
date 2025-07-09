@@ -452,9 +452,9 @@
                             const encodedFilename = encodeURIComponent(file.name);
                             hrefContainer.href = `/s3/${uniquePath}/download-file${window.location.search}&filename=${encodedFilename}`;
                         } else {
-                            //TODO need to update and this is a placeholder
                             this.removeFile(file);
-                            handleError('The selected file contains a virus');
+                            handleError(`{{ i18nGetTranslation("validation.fileUpload.fileUploadVirusError") }}`);
+                            handleErrorSummary(`{{ i18nGetTranslation("validation.fileUpload.fileUploadVirusError") }}`);
                             await deleteFileBackend(file);
                         }
                         file.scanStatus = 'ready';

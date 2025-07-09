@@ -24,6 +24,7 @@
 			"filePartiallyUploadError": "The files have not fully uploaded",
 			"fileUploadSizeError": "File must be under ",
 			"fileUploadCombinedSizeError": "Combined filesize must be under ",
+      "fileUploadVirusError": "The selected file contains a virus",
 			"fileUploadTypeError": "You can't upload files of this type.",
 			"fileUploadCountSingleError": "You can only upload a single file",
 			"fileUploadCountMaxError": "You can only upload {maxFiles} files",
