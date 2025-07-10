@@ -30,6 +30,7 @@
     "@aws-sdk/s3-request-presigner": "3.633.0",
     "@sentry/node": "^8.47.0",
     "dropzone": "5.9.3",
+    "govuk-frontend": "^5.10.2",
     "hapi-i18n": "3.0.1",
     "joi": "17.13.3",
     "tinymce": "7.3.0"

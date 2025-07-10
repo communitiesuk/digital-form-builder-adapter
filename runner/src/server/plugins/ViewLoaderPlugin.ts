@@ -5,7 +5,8 @@ import {HapiRequest} from "../types";
 import {capitalize} from "lodash";
 import {config} from "./utils/AdapterConfigurationSchema";
 
-const basedir = path.join(process.cwd(), "..");
+const basedir = path.join(process.cwd());
+console.log('FFFFFFFF' + basedir);
 const xGovFormsPath = path.resolve(__dirname, "../../../../");
 
 pluginViews.options.path = [
