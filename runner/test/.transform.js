@@ -10,7 +10,7 @@ const { suite, test } = lab;
 
 let internals = {};
 internals.transform = function (content, filename) {
-  const regexp = new RegExp("node_modules");
+  const regexp = new RegExp("(?:^|/)(node_modules)(/|$)");
   if (regexp.test(filename)) {
     return content;
   }
