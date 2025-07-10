@@ -53,7 +53,7 @@
 				"fileActionCol": "Action",
 				"fileActionComplete": "Complete",
 				"fileActionFailed": "Failed",
-				"fileActionInProgress": "In progress",
+        "fileActionInProgress": "In progress",
 				"deleteBtn": "Delete"
 			}
 		},

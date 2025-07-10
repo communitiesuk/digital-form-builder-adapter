@@ -4,6 +4,12 @@ import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
 
 
+const GUARD_DUTY_MALWARE_SCAN_STATUS = 'GuardDutyMalwareScanStatus';
+
+const THREATS_FOUND = 'THREATS_FOUND';
+
+const NO_THREATS_FOUND = "NO_THREATS_FOUND";
+
 export class RegisterS3FileUploadApi implements RegisterApi {
     register(server: HapiServer): void {
 
@@ -87,7 +93,7 @@ export class RegisterS3FileUploadApi implements RegisterApi {
 
         server.route(s3GetDataOptions);
 
-        const s3GetFileTags: any = {
+        const s3CheckTagsAndDelete: any = {
             method: "POST",
             path: "/s3/{id}/{pageKey}/{componentKey}/check-tags-and-delete",
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
@@ -103,13 +109,14 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                     return h.response({ok: false}).code(401);
                 }
                 const {id, pageKey, componentKey} = request.params as any;
-                const {filename} = request.query;
+                //@ts-ignore
+                const {filename} = request.payload;
 
                 const key = `${form_session_identifier}/${id}/${pageKey}/${componentKey}/${filename}`;
-                if (config.enableVirusScan || config.enableVirusScan === "true") {
+                if (config.enableVirusScan === "true") {
                     const tagsForTheFile = await s3UploadService.getFileTagsS3(key);
-                    const malwareScanTag = tagsForTheFile.tags.find(tag => tag.Key === 'GuardDutyMalwareScanStatus');
-                    if (malwareScanTag && malwareScanTag.Value === 'THREATS_FOUND') {
+                    const malwareScanTag = tagsForTheFile.tags.find(tag => tag.Key === GUARD_DUTY_MALWARE_SCAN_STATUS);
+                    if (malwareScanTag && malwareScanTag.Value === THREATS_FOUND) {
                         await s3UploadService.deleteFileS3(key);
                     }
                     return tagsForTheFile;
@@ -118,8 +125,8 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                     return {
                         tags: [
                             {
-                                Key: "GuardDutyMalwareScanStatus",
-                                Value: "NO_THREATS_FOUND"
+                                Key: GUARD_DUTY_MALWARE_SCAN_STATUS,
+                                Value: NO_THREATS_FOUND
                             }
                         ]
                     };
@@ -128,12 +135,12 @@ export class RegisterS3FileUploadApi implements RegisterApi {
         }
 
         if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
-            s3GetFileTags.options = {
+            s3CheckTagsAndDelete.options = {
                 auth: jwtAuthStrategyName
             }
         }
 
-        server.route(s3GetFileTags);
+        server.route(s3CheckTagsAndDelete);
 
         const deleteOptions: any = {
             method: "DELETE",

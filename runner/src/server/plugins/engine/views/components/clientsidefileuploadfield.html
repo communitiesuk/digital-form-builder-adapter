@@ -429,18 +429,18 @@
 
         myDropzone.on('success', async function (file, _response) {
             file.scanStatus = 'pending';
-            const POLL_INTERVAL_MS = 5000;
+            const POLL_INTERVAL_MS = 2000;
             const checkTagsUntilFound = async (file) => {
-                const encodedFilename = encodeURIComponent(file.name);
                 const params = new URLSearchParams(window.location.search);
-                params.set('filename', encodedFilename);
                 const response = await fetch(window.location.origin + `/s3/${uniquePath}/check-tags-and-delete?${params.toString()}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     credentials: 'include',
-                    body: JSON.stringify({}),
+                    body: JSON.stringify({
+                        filename: file.name
+                    }),
                 });
                 if (response.ok) {
                     const result = await response.json();
