@@ -88,8 +88,8 @@ export class RegisterS3FileUploadApi implements RegisterApi {
         server.route(s3GetDataOptions);
 
         const s3GetFileTags: any = {
-            method: "GET",
-            path: "/s3/{id}/{pageKey}/{componentKey}/get-file-tags",
+            method: "POST",
+            path: "/s3/{id}/{pageKey}/{componentKey}/check-tags-and-delete",
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {query} = request;
                 const {s3UploadService, adapterCacheService} = request.services([]);
@@ -107,7 +107,12 @@ export class RegisterS3FileUploadApi implements RegisterApi {
 
                 const key = `${form_session_identifier}/${id}/${pageKey}/${componentKey}/${filename}`;
                 if (config.enableVirusScan || config.enableVirusScan === "true") {
-                    return await s3UploadService.getFileTagsS3(key);
+                    const tagsForTheFile = await s3UploadService.getFileTagsS3(key);
+                    const malwareScanTag = tagsForTheFile.tags.find(tag => tag.Key === 'GuardDutyMalwareScanStatus');
+                    if (malwareScanTag && malwareScanTag.Value === 'THREATS_FOUND') {
+                        await s3UploadService.deleteFileS3(key);
+                    }
+                    return tagsForTheFile;
                 } else {
                     // Local development purposes we ignore using actual Guard-duty service
                     return {

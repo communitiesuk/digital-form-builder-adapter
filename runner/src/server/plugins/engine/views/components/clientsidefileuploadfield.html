@@ -434,12 +434,13 @@
                 const encodedFilename = encodeURIComponent(file.name);
                 const params = new URLSearchParams(window.location.search);
                 params.set('filename', encodedFilename);
-                const response = await fetch(window.location.origin + `/s3/${uniquePath}/get-file-tags?${params.toString()}`, {
-                    method: 'GET',
+                const response = await fetch(window.location.origin + `/s3/${uniquePath}/check-tags-and-delete?${params.toString()}`, {
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    credentials: 'include'
+                    credentials: 'include',
+                    body: JSON.stringify({}),
                 });
                 if (response.ok) {
                     const result = await response.json();
@@ -455,7 +456,6 @@
                             this.removeFile(file);
                             handleError(`{{ i18nGetTranslation("validation.fileUpload.fileUploadVirusError") }}`);
                             handleErrorSummary(`{{ i18nGetTranslation("validation.fileUpload.fileUploadVirusError") }}`);
-                            await deleteFileBackend(file);
                         }
                         file.scanStatus = 'ready';
                     } else {
