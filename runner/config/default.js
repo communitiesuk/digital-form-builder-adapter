@@ -112,5 +112,7 @@ module.exports = {
   /*sentry configurations*/
   sentryDsn: "",
   sentryTracesSampleRate: "",
-  copilotEnv: ""
+  copilotEnv: "",
+
+  enableVirusScan: false,
 };

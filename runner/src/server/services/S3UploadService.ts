@@ -5,7 +5,7 @@ import http from "http";
 import {get} from "../../../../digital-form-builder/runner/src/server/services/httpService";
 import {
     DeleteObjectCommand,
-    GetObjectCommand,
+    GetObjectCommand, GetObjectTaggingCommand,
     ListObjectsCommand,
     PutObjectCommand,
     S3Client
@@ -440,6 +440,23 @@ export class S3UploadService {
         const command = new GetObjectCommand(params);
         this.logger.info(`[S3UploadService] getting the presign url to download ${params.Key}`);
         return getSignedUrl(s3, command);
+    }
+
+    async getFileTagsS3(key: string): Promise<{ tags: { Key: string, Value: string }[] }> {
+        const params = {
+            Bucket: bucketName,
+            Key: key,
+        };
+
+        try {
+            this.logger.info(`[S3UploadService] Getting tags for key: ${params.Key}`);
+            const command = new GetObjectTaggingCommand(params);
+            const response = await s3.send(command);
+            return { tags: response.TagSet || [] };
+        } catch (err) {
+            this.logger.error(`[S3UploadService] Error getting tags for key: ${params.Key}`, err);
+            return { tags: [] };
+        }
     }
 
     async getPreSignedUrlS3(key: string) {

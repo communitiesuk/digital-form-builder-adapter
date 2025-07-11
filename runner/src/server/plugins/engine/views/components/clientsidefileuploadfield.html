@@ -308,14 +308,14 @@
         const myDropzone = new Dropzone('#dropzoneWrapper', dropzoneConfig);
 
         myDropzone.on('addedfile', function (file) {
-
+            file.scanStatus = 'pending';
             // Intercept save and continue button to prevent submitting the form if files still uploading
             // Also we need to add the listner here since button is not rendered when this js is being executed in the UI
             if (!eventListenerAdded) {
                 const saveContinueBtn = document.querySelector('[data-module="govuk-button"]');
                 if (saveContinueBtn) {
                     saveContinueBtn.addEventListener('click', function (event) {
-                        const fileProcessingInprogress = getAllFiles().filter(f => f.status === "added" || f.status === "uploading");
+                        const fileProcessingInprogress = getAllFiles().filter(f => f.status === "added" || f.status === "uploading" || f.scanStatus === 'pending');
                         if (fileProcessingInprogress && fileProcessingInprogress.length > 0) {
                             event.preventDefault();
                             const errorMessage = `{{ i18nGetTranslation("validation.fileUpload.filePartiallyUploadError") }}`;
@@ -380,6 +380,9 @@
         });
 
         const deleteFileBackend = (file) => {
+            if (file.pollingTimeoutId) {
+                clearTimeout(file.pollingTimeoutId);
+            }
             let fetchUrl = `/s3/${uniquePath}/delete-file-by-key${window.location.search}`;
             fetch(window.location.origin + fetchUrl, {
                 method: "DELETE",
@@ -402,10 +405,17 @@
         });
 
         const updateProgressBarContent = (file, text) => {
-            const progressBarContainer = file.previewElement.querySelector('.dz-progress-bar');
-            const progressBarSpan = progressBarContainer.querySelector('span');
-            [progressBarSpan, progressBarContainer].forEach(el => el.removeAttribute('class'));
-            progressBarSpan.textContent = text;
+            let tableFileUploadStatusIndicatorArea = file.previewElement.querySelector('.dz-progress-bar');
+            if (!tableFileUploadStatusIndicatorArea) {
+                tableFileUploadStatusIndicatorArea = document.querySelector('[data-dz-uploadprogress]');
+                if (tableFileUploadStatusIndicatorArea !== null) {
+                    tableFileUploadStatusIndicatorArea.textContent = text;
+                }
+            } else {
+                const progressBarSpan = tableFileUploadStatusIndicatorArea.querySelector('span');
+                [progressBarSpan, tableFileUploadStatusIndicatorArea].forEach(el => el.removeAttribute('class'));
+                progressBarSpan.textContent = text;
+            }
         }
 
         myDropzone.on('error', function (file, error) {
@@ -417,11 +427,46 @@
             }
         });
 
-        myDropzone.on('success', function (file, _response) {
-            updateProgressBarContent(file, `{{ i18nGetTranslation("components.clientSideFileUpload.table.fileActionComplete") }}`);
-            const hrefContainer = file.previewElement.querySelector('a');
-            const encodedFilename = encodeURIComponent(file.name);
-            hrefContainer.href = `/s3/${uniquePath}/download-file${window.location.search}&filename=${encodedFilename}`;
+        myDropzone.on('success', async function (file, _response) {
+            file.scanStatus = 'pending';
+            const POLL_INTERVAL_MS = 2000;
+            const checkTagsUntilFound = async (file) => {
+                const params = new URLSearchParams(window.location.search);
+                const response = await fetch(window.location.origin + `/s3/${uniquePath}/check-tags-and-delete?${params.toString()}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        filename: file.name
+                    }),
+                });
+                if (response.ok) {
+                    const result = await response.json();
+                    const tags = result.tags;
+                    const malwareScanTag = tags.find(tag => tag.Key === 'GuardDutyMalwareScanStatus');
+                    if (malwareScanTag) {
+                        if (malwareScanTag.Value === 'NO_THREATS_FOUND') {
+                            updateProgressBarContent(file, `{{ i18nGetTranslation("components.clientSideFileUpload.table.fileActionComplete") }}`);
+                            const hrefContainer = file.previewElement.querySelector('a');
+                            const encodedFilename = encodeURIComponent(file.name);
+                            hrefContainer.href = `/s3/${uniquePath}/download-file${window.location.search}&filename=${encodedFilename}`;
+                        } else {
+                            this.removeFile(file);
+                            handleError(`{{ i18nGetTranslation("validation.fileUpload.fileUploadVirusError") }}`);
+                            handleErrorSummary(`{{ i18nGetTranslation("validation.fileUpload.fileUploadVirusError") }}`);
+                        }
+                        file.scanStatus = 'ready';
+                    } else {
+                        file.pollingTimeoutId = setTimeout(() => checkTagsUntilFound(file), POLL_INTERVAL_MS);
+                        updateProgressBarContent(file, `{{ i18nGetTranslation("components.clientSideFileUpload.table.fileActionInProgress") }}`);
+                    }
+                } else {
+                    updateProgressBarContent(file, `{{ i18nGetTranslation("components.clientSideFileUpload.table.fileActionFailed") }}`);
+                }
+            };
+            await checkTagsUntilFound(file);
         });
 
         let preExistingFiles = [];
@@ -431,7 +476,7 @@
 
         const existingFiles = {{ component.model.existingFiles | dump | safe }};
         existingFiles.forEach(file => {
-            const mockFile = {name: file.Key, size: file.Size, processed: false};
+            const mockFile = {name: file.Key, size: file.Size, processed: false, scanStatus: 'pending'};
             preExistingFiles.push(mockFile);
             myDropzone.emit('addedfile', mockFile);
             myDropzone.emit('success', mockFile, "");

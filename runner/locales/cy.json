@@ -24,6 +24,7 @@
       "filePartiallyUploadError": "Nid yw'r ffeiliau wedi'u llwytho i fyny yn llawn",
       "fileUploadSizeError": "Rhaid i'r ffeil fod o dan ",
       "fileUploadCombinedSizeError": "Rhaid i faint ffeiliau cyfun fod o dan ",
+      "fileUploadVirusError": "The selected file contains a virus",
       "fileUploadTypeError": "Ni allwch uwchlwytho ffeiliau o'r math hwn.",
       "fileUploadCountSingleError": "Dim ond un ffeil y gallwch ei uwchlwytho",
       "fileUploadCountMaxError": "Dim ond ffeiliau {maxFiles} y gallwch chi eu huwchlwytho",
@@ -52,6 +53,7 @@
         "fileActionCol": "Gweithredu",
         "fileActionComplete": "Cyflawn",
         "fileActionFailed": "Wedi methu",
+        "fileActionInProgress": "In progress",
         "deleteBtn": "Dileu"
       }
     },
