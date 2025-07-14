@@ -3,6 +3,9 @@ import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
 import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
 
+const GUARD_DUTY_MALWARE_SCAN_STATUS = 'GuardDutyMalwareScanStatus';
+const THREATS_FOUND = 'THREATS_FOUND';
+const NO_THREATS_FOUND = "NO_THREATS_FOUND";
 
 export class RegisterS3FileUploadApi implements RegisterApi {
     register(server: HapiServer): void {
@@ -11,18 +14,10 @@ export class RegisterS3FileUploadApi implements RegisterApi {
             method: "POST",
             path: "/s3/{id}/{pageKey}/{componentKey}/create-pre-signed-url",
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {query} = request;
-                const {s3UploadService, adapterCacheService} = request.services([]);
-                //@ts-ignore
-                const state = await adapterCacheService.getState(request);
-                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
-                if (query.form_session_identifier) {
-                    form_session_identifier = query.form_session_identifier;
-                }
-                if (!form_session_identifier) {
-                    return h.response({ok: false}).code(401);
-                }
-                const {id, pageKey, componentKey} = request.params as any;
+                const {
+                    //@ts-ignore
+                    s3UploadService, adapterCacheService, form_session_identifier, id, pageKey, componentKey
+                } = await this.extractRequestData(request, h);
                 //@ts-ignore
                 const {filename} = request.payload;
                 request.logger.info(`[RegisterS3FileUploadApi] uploading the file ${filename}`);
@@ -59,18 +54,11 @@ export class RegisterS3FileUploadApi implements RegisterApi {
             method: "GET",
             path: "/s3/{id}/{pageKey}/{componentKey}/download-file",
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {query} = request;
-                const {s3UploadService, adapterCacheService} = request.services([]);
+                const {
+                    //@ts-ignore
+                    s3UploadService, form_session_identifier, id, pageKey, componentKey
+                } = await this.extractRequestData(request, h);
                 //@ts-ignore
-                const state = await adapterCacheService.getState(request);
-                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
-                if (query.form_session_identifier) {
-                    form_session_identifier = query.form_session_identifier;
-                }
-                if (!form_session_identifier) {
-                    return h.response({ok: false}).code(401);
-                }
-                const {id, pageKey, componentKey} = request.params as any;
                 const {filename} = request.query;
 
                 const key = `${form_session_identifier}/${id}/${pageKey}/${componentKey}/${filename}`;
@@ -87,22 +75,55 @@ export class RegisterS3FileUploadApi implements RegisterApi {
 
         server.route(s3GetDataOptions);
 
+        const s3CheckTagsAndDelete: any = {
+            method: "POST",
+            path: "/s3/{id}/{pageKey}/{componentKey}/check-tags-and-delete",
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                const {
+                    //@ts-ignore
+                    s3UploadService, form_session_identifier, id, pageKey, componentKey
+                } = await this.extractRequestData(request, h);
+                //@ts-ignore
+                const {filename} = request.payload;
+
+                const key = `${form_session_identifier}/${id}/${pageKey}/${componentKey}/${filename}`;
+                if (config.enableVirusScan === "true") {
+                    const tagsForTheFile = await s3UploadService.getFileTagsS3(key);
+                    const malwareScanTag = tagsForTheFile.tags.find(tag => tag.Key === GUARD_DUTY_MALWARE_SCAN_STATUS);
+                    if (malwareScanTag && malwareScanTag.Value === THREATS_FOUND) {
+                        await s3UploadService.deleteFileS3(key);
+                    }
+                    return tagsForTheFile;
+                } else {
+                    // Local development purposes we ignore using actual Guard-duty service
+                    return {
+                        tags: [
+                            {
+                                Key: GUARD_DUTY_MALWARE_SCAN_STATUS,
+                                Value: NO_THREATS_FOUND
+                            }
+                        ]
+                    };
+                }
+            },
+        }
+
+        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
+            s3CheckTagsAndDelete.options = {
+                auth: jwtAuthStrategyName
+            }
+        }
+
+        server.route(s3CheckTagsAndDelete);
+
         const deleteOptions: any = {
             method: "DELETE",
             path: "/s3/{id}/{pageKey}/{componentKey}/delete-file-by-key",
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {query} = request;
-                const {s3UploadService, adapterCacheService} = request.services([]);
-                //@ts-ignore
-                const state = await adapterCacheService.getState(request);
-                let form_session_identifier = state.metadata?.form_session_identifier ?? "";
-                if (query.form_session_identifier) {
-                    form_session_identifier = query.form_session_identifier;
-                }
-                if (!form_session_identifier) {
-                    return h.response({ok: false}).code(401);
-                }
-                const {id, pageKey, componentKey} = request.params as any;
+                const {
+                    //@ts-ignore
+                    s3UploadService, form_session_identifier, id, pageKey, componentKey
+                } = await this.extractRequestData(request, h);
                 //@ts-ignore
                 const {filename} = request.payload;
 
@@ -125,5 +146,29 @@ export class RegisterS3FileUploadApi implements RegisterApi {
 
         server.route(deleteOptions);
 
+    }
+
+    private async extractRequestData(request: HapiRequest, h: HapiResponseToolkit) {
+        const {query} = request;
+        const {s3UploadService, adapterCacheService} = request.services([]);
+        //@ts-ignore
+        const state = await adapterCacheService.getState(request);
+        let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+        if (query.form_session_identifier) {
+            form_session_identifier = query.form_session_identifier;
+        }
+        if (!form_session_identifier) {
+            return h.response({ok: false}).code(401);
+        }
+        const {id, pageKey, componentKey} = request.params as any;
+
+        return {
+            s3UploadService,
+            adapterCacheService,
+            form_session_identifier,
+            id,
+            pageKey,
+            componentKey
+        };
     }
 }

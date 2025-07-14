@@ -13,7 +13,6 @@ Feature: Client Side File Upload
     And I continue
     Then I see the error "Test Client Side file Upload is required" for "Upload the independent survey of works" component with problem title
 
-  @wip
   Scenario: Adding a single file into the client side file upload
     And the form session will be initiated with the given component type "text" key "clientSideFileUploadField1" title "Upload the independent survey of works" answer "" question "Upload the independent survey of works" and finally form "client-side-file-upload-single" and session "045a5791-1d76-45e6-a926-7d4ff26b4113"
       | form                           | redirectPath |
@@ -33,5 +32,12 @@ Feature: Client Side File Upload
     When I upload the file "passes.png" wait till upload
     Then I see the error "Test Client Side file Upload requires 2 files" for "Upload the independent survey of works" component with problem title
 
-
+  Scenario: Adding a single file into the client side file upload with a virus
+    And the form session will be initiated with the given component type "text" key "clientSideFileUploadField1" title "Upload the independent survey of works" answer "" question "Upload the independent survey of works" and finally form "client-side-file-upload-single" and session "045a5791-1d76-45e6-a926-7d4ff26b4113"
+      | form                           | redirectPath |
+      | client-side-file-upload-single | /            |
+    And I go to the initialised session URL with generated token
+    And I continue
+    When I upload the file "passes.png" with virus then wait till upload
+    Then I see the error "The selected file contains a virus" for "Upload the independent survey of works" component with problem title
 

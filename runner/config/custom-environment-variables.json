@@ -69,5 +69,6 @@
   "ignoreSectionsFromSummary": "IGNORE_SECTIONS_FROM_SUMMARY_PAGE",
   "sentryDsn": "SENTRY_DSN",
   "sentryTracesSampleRate": "SENTRY_TRACES_SAMPLE_RATE",
-  "copilotEnv": "COPILOT_ENV"
+  "copilotEnv": "COPILOT_ENV",
+  "enableVirusScan": "ENABLE_VIRUS_SCAN"
 }
