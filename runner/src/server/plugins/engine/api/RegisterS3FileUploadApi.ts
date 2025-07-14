@@ -56,7 +56,7 @@ export class RegisterS3FileUploadApi implements RegisterApi {
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {
                     //@ts-ignore
-                    s3UploadService, adapterCacheService, form_session_identifier, id, pageKey, componentKey
+                    s3UploadService, form_session_identifier, id, pageKey, componentKey
                 } = await this.extractRequestData(request, h);
                 //@ts-ignore
                 const {filename} = request.query;
@@ -81,7 +81,7 @@ export class RegisterS3FileUploadApi implements RegisterApi {
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {
                     //@ts-ignore
-                    s3UploadService, adapterCacheService, form_session_identifier, id, pageKey, componentKey
+                    s3UploadService, form_session_identifier, id, pageKey, componentKey
                 } = await this.extractRequestData(request, h);
                 //@ts-ignore
                 const {filename} = request.payload;
@@ -122,7 +122,7 @@ export class RegisterS3FileUploadApi implements RegisterApi {
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {
                     //@ts-ignore
-                    s3UploadService, adapterCacheService, form_session_identifier, id, pageKey, componentKey
+                    s3UploadService, form_session_identifier, id, pageKey, componentKey
                 } = await this.extractRequestData(request, h);
                 //@ts-ignore
                 const {filename} = request.payload;
@@ -161,10 +161,6 @@ export class RegisterS3FileUploadApi implements RegisterApi {
             return h.response({ok: false}).code(401);
         }
         const {id, pageKey, componentKey} = request.params as any;
-
-        if (request.payload) {
-
-        }
 
         return {
             s3UploadService,
