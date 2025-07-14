@@ -248,7 +248,8 @@
                 "customText": {
                     "samePageTitle": "Capacity funding spend forecast",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -402,7 +403,8 @@
                 "customText": {
                     "samePageTitle": "Programme delivery funding (capital) spend forecast",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -555,7 +557,8 @@
                 "customText": {
                     "samePageTitle": "Programme delivery funding (revenue) spend forecast",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -706,7 +709,8 @@
                 "customText": {
                     "samePageTitle": "Pre-approved interventions spend forecast (Year 1)",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -837,7 +841,8 @@
                 "customText": {
                     "samePageTitle": "Pre-approved interventions spend forecast (Year 2)",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -968,7 +973,8 @@
                 "customText": {
                     "samePageTitle": "Pre-approved interventions spend forecast (Year 3)",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -1099,7 +1105,8 @@
                 "customText": {
                     "samePageTitle": "Pre-approved interventions spend forecast (Year 4)",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -1186,7 +1193,8 @@
                 "customText": {
                     "samePageTitle": "Off-menu interventions spend forecast",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -1273,7 +1281,8 @@
                 "customText": {
                     "samePageTitle": "Management costs spend forecast",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -1361,7 +1370,8 @@
                 "customText": {
                     "samePageTitle": "Unknown uses of funding forecast",
                     "samePageTableItemName": ""
-                }
+                },
+                "maxMultiInputFieldRows": 1
             },
             "controller": "RepeatingFieldPageController"
         }

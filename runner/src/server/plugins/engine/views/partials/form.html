@@ -5,12 +5,23 @@
     <input type="hidden" name="crumb" value="{{ crumb }}"/>
 
     {% if page.isRepeatingFieldPageController and details %}
-        {{ componentList(components) }}
-        {{ govukButton({
-            attributes: { id: "add-another"},
-            classes: "govuk-button govuk-button--secondary",
-            text: page.saveText
-        }) }}
+        {# maxMultiInputFieldRows allow the users to control how many data rows that can be added in MultiInputField component in a page #}
+        {% if not page.options.maxMultiInputFieldRows or not details.rows.length or page.options.maxMultiInputFieldRows > details.rows.length %}
+            {{ componentList(components) }}
+            {{ govukButton({
+                attributes: { id: "add-another" },
+                classes: "govuk-button govuk-button--secondary",
+                text: page.saveText
+            }) }}
+        {% else %}
+            {% set filteredComponents = [] %}
+            {% for component in components %}
+                {% if component.type != "MultiInputField" %}
+                    {% set _ = filteredComponents.push(component) %}
+                {% endif %}
+            {% endfor %}
+            {{ componentList(filteredComponents) }}
+        {% endif %}
         {% if page.options.customText.samePageTitle %}
             <table class="govuk-table">
                 <caption
