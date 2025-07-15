@@ -219,6 +219,8 @@ export class RepeatingFieldPageController extends PageController {
                 headings: this.inputComponent.options.columnTitles,
                 rows,
             };
+            
+            response.source.context.maxMultiInputFieldRows = this.inputComponent.options?.maxMultiInputFieldRows;
         }
     }
 
