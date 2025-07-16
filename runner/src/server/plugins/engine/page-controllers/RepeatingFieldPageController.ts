@@ -97,13 +97,11 @@ export class RepeatingFieldPageController extends PageController {
         this.tableEmptyMessageTitle = this.options.customText && this.options.customText.samePageTableItemName ? `You have not added any ${this.options.customText.samePageTableItemName}s yet` : "You have not added any costs yet";
         //@ts-ignore
         this.tableEmptyMessageHint = this.options.customText && this.options.customText.samePageTableItemName ? `Each ${this.options.customText.samePageTableItemName} you add will be shown here` : "Each cost you add will be shown here";
-        this.saveText = "Save and add another";
         if (model?.def?.metadata?.isWelsh) {
             //@ts-ignore
             this.tableEmptyMessageTitle = this.options.customText && this.options.customText.samePageTableItemName ? `Nid ydych chi wedi ychwanegu unrhyw ${this.options.customText.samePageTableItemName} eto` : "Nid ydych chi wedi ychwanegu unrhyw gostau eto";
             //@ts-ignore
             this.tableEmptyMessageHint = this.options.customText && this.options.customText.samePageTableItemName ? `Bydd pob ${this.options.customText.samePageTableItemName} yr ychwanegwch yn cael ei dangos yma` : "Bydd pob cost yr ychwanegwch yn cael ei dangos yma";
-            this.saveText = "Cadw ac ychwanegu un arall";
         }
     }
 
@@ -246,7 +244,9 @@ export class RepeatingFieldPageController extends PageController {
             const currentRowCount = rows ? rows.length : 0;
 
             if (maxRows && (currentRowCount >= maxRows - 1)) {
-                this.saveText = this.model?.def?.metadata?.isWelsh ? "Cadw" : "Save";
+                this.saveText = request.i18n.__("saveText");
+            } else {
+                this.saveText = request.i18n.__("saveAndAddAnotherText");
             }
         }
     }

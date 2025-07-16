@@ -2,6 +2,8 @@
   "signOut": "Allgofnodi",
   "markAsComplete": "A ydych chi eisiau marcio bod yr adran hon wedi'i chwblhau?",
   "removeText": "Dileu",
+  "saveText": "Cadw",
+  "saveAndAddAnotherText": "Cadw ac ychwanegu un arall",
   "validation": {
     "required": "{#label} yn ofynnol",
     "max": "{#label} rhaid iddo fod yn {#limit} nod neu lai",
