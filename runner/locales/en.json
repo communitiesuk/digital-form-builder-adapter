@@ -2,6 +2,8 @@
 	"signOut": "Sign out",
 	"markAsComplete": "Have you completed this section?",
 	"removeText": "Remove",
+	"saveText": "Save",
+	"saveAndAddAnotherText": "Save and add another",
 	"validation": {
 		"required": "{#label} is required",
 		"max": "{#label} must be {#limit} characters or less",

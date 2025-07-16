@@ -42,6 +42,7 @@ enum MultiInputFieldAction {
     EDIT_OPTIONS_HIDE_ROW_TITLE = "EDIT_OPTIONS_HIDE_ROW_TITLE",
     EDIT_OPTIONS_SHOW_TABLE_TITLE = "EDIT_OPTIONS_SHOW_TABLE_TITLE",
     EDIT_OPTIONS_SHOW_TABLE_ITEM_NAME = "EDIT_OPTIONS_SHOW_TABLE_ITEM_NAME",
+    EDIT_MAX_MULTI_INPUT_FIELD_ROWS = "EDIT_MAX_MULTI_INPUT_FIELD_ROWS",
 }
 
 export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) => {
@@ -92,6 +93,9 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
     const [tableTitles, setTableTitles] = useState<string[]>(options.columnTitles ? options.columnTitles : []);
 
     const [showEditor, setShowEditor] = useState(false);
+
+    const [maxRows, setMaxRows] = useState<string>(selectedComponent.options?.maxMultiInputFieldRows?.toString() || "");
+
     const subComponentRef = useRef(null);
 
     const toggleShowEditor = () => {
@@ -622,6 +626,14 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
                 }
             })
         }
+        if (e.type === MultiInputFieldAction.EDIT_MAX_MULTI_INPUT_FIELD_ROWS) {
+            setMaxRows(e.payload);
+            const numValue = parseInt(e.payload);
+            if (!selectedComponent.options) {
+                selectedComponent.options = {};
+            }
+            selectedComponent.options.maxMultiInputFieldRows = isNaN(numValue) || numValue <= 0 ? undefined : numValue;
+        }
     }
 
     const renderSelectedSubComponentConfigEdit = () => {
@@ -932,6 +944,26 @@ export const MultiInputFieldEdit: any = ({context = AdapterComponentContext}) =>
                            children: ["Table Item Name"]
                        }}/>
             </div>
+
+            <div className="govuk-form-group" data-test-id="max-multi-input-field-rows-wrapper">
+                <Input id="max-multi-input-field-rows" name="maxMultiInputFieldRows"
+                        onChange={(e) =>
+                            handleData({
+                                type: MultiInputFieldAction.EDIT_MAX_MULTI_INPUT_FIELD_ROWS,
+                                payload: e.target.value,
+                            })
+                        }
+                        value={maxRows}
+                        type="number"
+                        label={{
+                            className: "govuk-label--s",
+                            children: ["Maximum number of rows"]
+                        }}
+                        hint={{
+                            children: ["Set the maximum number of rows users can add. Leave empty for unlimited rows."]
+                        }}/>
+            </div>
+
             <div className="govuk-label govuk-label--s">----- Sub Components list -----</div>
             <div className="govuk-form-group">
                 <label className="govuk-label govuk-label--s" htmlFor="select-field-types">

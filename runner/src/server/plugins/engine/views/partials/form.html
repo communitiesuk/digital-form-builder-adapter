@@ -6,7 +6,12 @@
 
     {% if page.isRepeatingFieldPageController and details %}
         {# maxMultiInputFieldRows allow the users to control how many data rows that can be added in MultiInputField component in a page #}
-        {% if not page.options.maxMultiInputFieldRows or not details.rows.length or page.options.maxMultiInputFieldRows > details.rows.length %}
+        {% set multiInputLimitReached = false %}
+        {% if maxMultiInputFieldRows and details.rows.length >= maxMultiInputFieldRows %}
+            {% set multiInputLimitReached = true %}
+        {% endif %}
+
+        {% if not multiInputLimitReached %}
             {{ componentList(components) }}
             {{ govukButton({
                 attributes: { id: "add-another" },

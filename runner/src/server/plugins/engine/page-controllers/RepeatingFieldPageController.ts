@@ -97,13 +97,11 @@ export class RepeatingFieldPageController extends PageController {
         this.tableEmptyMessageTitle = this.options.customText && this.options.customText.samePageTableItemName ? `You have not added any ${this.options.customText.samePageTableItemName}s yet` : "You have not added any costs yet";
         //@ts-ignore
         this.tableEmptyMessageHint = this.options.customText && this.options.customText.samePageTableItemName ? `Each ${this.options.customText.samePageTableItemName} you add will be shown here` : "Each cost you add will be shown here";
-        this.saveText = "Save and add another";
         if (model?.def?.metadata?.isWelsh) {
             //@ts-ignore
             this.tableEmptyMessageTitle = this.options.customText && this.options.customText.samePageTableItemName ? `Nid ydych chi wedi ychwanegu unrhyw ${this.options.customText.samePageTableItemName} eto` : "Nid ydych chi wedi ychwanegu unrhyw gostau eto";
             //@ts-ignore
             this.tableEmptyMessageHint = this.options.customText && this.options.customText.samePageTableItemName ? `Bydd pob ${this.options.customText.samePageTableItemName} yr ychwanegwch yn cael ei dangos yma` : "Bydd pob cost yr ychwanegwch yn cael ei dangos yma";
-            this.saveText = "Cadw ac ychwanegu un arall";
         }
     }
 
@@ -124,6 +122,26 @@ export class RepeatingFieldPageController extends PageController {
         //@ts-ignore
         super.stateSchema = parentSchema;
         return parentSchema;
+    }
+
+    async validateComponentFunctions(request, viewModel) {
+        let errors = await super.validateComponentFunctions(request, viewModel);
+        const maxRows = this.inputComponent.options?.maxMultiInputFieldRows;
+        if (maxRows) {
+            const {adapterCacheService} = request.services([]);
+            const state = await adapterCacheService.getState(request);
+            const currentRows = this.getPartialState(state) || [];
+            if (currentRows.length >= maxRows) {
+                const rowText = maxRows === 1 ? "row" : "rows";
+                errors.push({
+                    path: this.inputComponent.name,
+                    name: this.inputComponent.name,
+                    text: `You cannot add more than ${maxRows} ${rowText}`,
+                });
+            }
+        }
+        
+        return errors;
     }
 
     makeGetRouteHandler() {
@@ -219,6 +237,17 @@ export class RepeatingFieldPageController extends PageController {
                 headings: this.inputComponent.options.columnTitles,
                 rows,
             };
+            
+            response.source.context.maxMultiInputFieldRows = this.inputComponent.options?.maxMultiInputFieldRows;
+
+            const maxRows = this.inputComponent.options?.maxMultiInputFieldRows;
+            const currentRowCount = rows ? rows.length : 0;
+
+            if (maxRows && (currentRowCount >= maxRows - 1)) {
+                this.saveText = request.i18n.__("saveText");
+            } else {
+                this.saveText = request.i18n.__("saveAndAddAnotherText");
+            }
         }
     }
 

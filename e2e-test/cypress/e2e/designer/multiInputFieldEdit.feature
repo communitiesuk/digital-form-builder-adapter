@@ -140,3 +140,22 @@ Feature: Multi Input Field Edit
       | YesNoField         | This is a yes no field    |                                                 |
       | MonthYearField     | This is a month field     | {"items": [{"name": "Month"},{"name": "Year"}]} |
       | MultilineTextField | This is a multiline field |                                                 |
+
+  Scenario: Test multi input field with maximum rows configuration
+    And I continue create a component
+      | page       | component         | title                   |
+      | First page | Multi Input Field | Which eggs do you like? |
+    And I add table title name "MaxRowsTest"
+    And I configure maximum rows as "2"
+    And I add child components
+      | component | title      | options | additional | listItem | name     |
+      | TextField | Item name  | {}      | false      |          | itemname |
+    And I save component
+    And I preview the page "First page" without href
+    When I enter "First item" for "Item name"
+    And I click "Save and add another"
+    When I enter "Second item" for "Item name"
+    And I click "Save"
+    Then I should not see the "Save and add another" button
+    And I should not see the "Save" button
+    And I should see the "Save and continue" button

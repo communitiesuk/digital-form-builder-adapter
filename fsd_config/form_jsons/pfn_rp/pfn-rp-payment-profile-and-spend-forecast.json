@@ -102,7 +102,8 @@
                             "Capacity funding (2033-34)",
                             "Capacity funding (2034-35)",
                             "Capacity funding (2035-36)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us your indicative spend forecast for capacity funding throughout the programme.",
@@ -248,8 +249,7 @@
                 "customText": {
                     "samePageTitle": "Capacity funding spend forecast",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -278,7 +278,8 @@
                             "Programme delivery funding - capital (2033-34)",
                             "Programme delivery funding - capital (2034-35)",
                             "Programme delivery funding - capital (2035-36)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us your indicative spend forecast for programme delivery funding (capital) throughout the programme.",
@@ -403,8 +404,7 @@
                 "customText": {
                     "samePageTitle": "Programme delivery funding (capital) spend forecast",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -433,7 +433,8 @@
                             "Programme delivery funding - revenue (2033-34)",
                             "Programme delivery funding - revenue (2034-35)",
                             "Programme delivery funding - revenue (2035-36)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us your indicative spend forecast for programme delivery funding (revenue) throughout the programme.",
@@ -557,8 +558,7 @@
                 "customText": {
                     "samePageTitle": "Programme delivery funding (revenue) spend forecast",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -605,7 +605,8 @@
                             "Safety and security (2026-27)",
                             "Transport (2026-27)",
                             "Work, productivity and skills (2026-27)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us your indicative spend forecast for pre-approved interventions in year 1.",
@@ -709,8 +710,7 @@
                 "customText": {
                     "samePageTitle": "Pre-approved interventions spend forecast (Year 1)",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -737,7 +737,8 @@
                             "Safety and security (2027-28)",
                             "Transport (2027-28)",
                             "Work, productivity and skills (2027-28)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us your indicative spend forecast for pre-approved interventions in year 2.",
@@ -841,8 +842,7 @@
                 "customText": {
                     "samePageTitle": "Pre-approved interventions spend forecast (Year 2)",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -869,7 +869,8 @@
                             "Safety and security (2028-29)",
                             "Transport (2028-29)",
                             "Work, productivity and skills (2028-29)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us your indicative spend forecast for pre-approved interventions in year 3.",
@@ -973,8 +974,7 @@
                 "customText": {
                     "samePageTitle": "Pre-approved interventions spend forecast (Year 3)",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -1001,7 +1001,8 @@
                             "Safety and security (2029-30)",
                             "Transport (2029-30)",
                             "Work, productivity and skills (2029-30)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us your indicative spend forecast for pre-approved interventions in year 4.",
@@ -1105,8 +1106,7 @@
                 "customText": {
                     "samePageTitle": "Pre-approved interventions spend forecast (Year 4)",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -1129,7 +1129,8 @@
                             "Off-menu interventions (2027-28)",
                             "Off-menu interventions (2028-29)",
                             "Off-menu interventions (2029-30)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us your indicative spend forecast for any off-menu interventions in the first investment period.",
@@ -1193,8 +1194,7 @@
                 "customText": {
                     "samePageTitle": "Off-menu interventions spend forecast",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -1217,7 +1217,8 @@
                             "Management costs (2027-28)",
                             "Management costs (2028-29)",
                             "Management costs (2029-30)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us your indicative spend forecast for management costs in the first investment period.",
@@ -1281,8 +1282,7 @@
                 "customText": {
                     "samePageTitle": "Management costs spend forecast",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         },
@@ -1305,7 +1305,8 @@
                             "Unknown uses of funding (2027-28)",
                             "Unknown uses of funding (2028-29)",
                             "Unknown uses of funding (2029-30)"
-                        ]
+                        ],
+                        "maxMultiInputFieldRows": 1
                     },
                     "type": "MultiInputField",
                     "title": "Tell us about any unknown uses of funding in the first investment period.",
@@ -1370,8 +1371,7 @@
                 "customText": {
                     "samePageTitle": "Unknown uses of funding forecast",
                     "samePageTableItemName": ""
-                },
-                "maxMultiInputFieldRows": 1
+                }
             },
             "controller": "RepeatingFieldPageController"
         }
