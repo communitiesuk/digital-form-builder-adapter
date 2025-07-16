@@ -126,6 +126,26 @@ export class RepeatingFieldPageController extends PageController {
         return parentSchema;
     }
 
+    async validateComponentFunctions(request, viewModel) {
+        let errors = await super.validateComponentFunctions(request, viewModel);
+        const maxRows = this.inputComponent.options?.maxMultiInputFieldRows;
+        if (maxRows) {
+            const {adapterCacheService} = request.services([]);
+            const state = await adapterCacheService.getState(request);
+            const currentRows = this.getPartialState(state) || [];
+            if (currentRows.length >= maxRows) {
+                const rowText = maxRows === 1 ? "row" : "rows";
+                errors.push({
+                    path: this.inputComponent.name,
+                    name: this.inputComponent.name,
+                    text: `You cannot add more than ${maxRows} ${rowText}`,
+                });
+            }
+        }
+        
+        return errors;
+    }
+
     makeGetRouteHandler() {
         return async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {query} = request;
