@@ -8,6 +8,7 @@ import {AdapterVisualisation} from "./components/Visualization";
 import {AdapterFormDefinition} from "@communitiesuk/model";
 import {AdapterDataContext} from "./context/AdapterDataContext";
 import AdapterMenu from "./components/menu/AdapterMenu";
+import {sortConditionsBySourceFieldOrder} from "./utils/conditionOrdering";
 
 interface Props {
     match?: any;
@@ -54,13 +55,14 @@ export default class AdapterDesigner extends Component<Props, State> {
         this.setState({flyoutCount: --currentCount}, callback());
     };
 
-    save = async (toUpdate, callback = () => {
-    }) => {
+    save = async (toUpdate, callback = () => {}) => {
         try {
-            await this.designerApi.save(this.id, toUpdate);
+            const sortedData = sortConditionsBySourceFieldOrder(toUpdate);
+            
+            await this.designerApi.save(this.id, sortedData);
             // @ts-ignore
-            this.setState({data: toUpdate, updatedAt: new Date().toLocaleTimeString(), error: undefined,}, callback());
-            return toUpdate;
+            this.setState({data: sortedData, updatedAt: new Date().toLocaleTimeString(), error: undefined,}, callback());
+            return sortedData;
         } catch (e) {
             //@ts-ignore
             this.setState({error: e.message});
