@@ -241,6 +241,13 @@ export class RepeatingFieldPageController extends PageController {
             };
             
             response.source.context.maxMultiInputFieldRows = this.inputComponent.options?.maxMultiInputFieldRows;
+
+            const maxRows = this.inputComponent.options?.maxMultiInputFieldRows;
+            const currentRowCount = rows ? rows.length : 0;
+
+            if (maxRows && (currentRowCount >= maxRows - 1)) {
+                this.saveText = this.model?.def?.metadata?.isWelsh ? "Cadw" : "Save";
+            }
         }
     }
 
