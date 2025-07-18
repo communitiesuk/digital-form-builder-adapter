@@ -1,19 +1,6 @@
-import path from "path";
-import {configure} from "nunjucks";
 import {Options} from "./types/PluginOptions";
 import {HapiServer} from "../../types";
 import {RegisterFormPublishApi} from "./api";
-
-
-configure([
-    // Configure Nunjucks to allow rendering of content that is revealed conditionally.
-    path.resolve(__dirname, "/views"),
-    path.resolve(__dirname, "/views/partials"),
-    "node_modules/govuk-frontend/govuk/",
-    "node_modules/govuk-frontend/govuk/components/",
-    "node_modules/@xgovformbuilder/designer/views",
-    "node_modules/hmpo-components/components"
-]);
 
 
 const LOGGER_DATA = {
