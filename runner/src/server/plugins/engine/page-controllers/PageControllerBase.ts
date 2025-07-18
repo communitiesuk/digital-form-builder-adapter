@@ -187,12 +187,8 @@ export class PageControllerBase {
             label.isPageHeading = true;
             label.classes = "govuk-fieldset__legend--l";
 
-            if (singleFormComponent.type === "RadiosField"
-                || singleFormComponent.type === "CheckboxesField"
-                || singleFormComponent.type === "YesNoField") {
-                singleFormComponent.model.fieldset = {
-                    legend: label,
-                };
+            if (singleFormComponent.model?.fieldset) {
+                singleFormComponent.model.fieldset.legend = label;
             }
 
             pageTitle = pageTitle || label.text;
