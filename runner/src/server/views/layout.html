@@ -3,7 +3,6 @@
 
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "footer/macro.njk" import govukFooter -%}
-{% from "header/macro.njk" import govukHeader -%}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "skip-link/macro.njk" import govukSkipLink -%}
 {% from "./partials/change-requests-banner.html" import changeRequestsBanner %}
@@ -116,9 +115,7 @@
 {% block skipLink %}
     {{ govukSkipLink({
         href: '#main-content',
-        text: 'Skip to main content',
-        useTudorCrown: true,
-        rebrand: true
+        text: 'Skip to main content'
     }) }}
 {% endblock %}
 
@@ -207,7 +204,7 @@
     {% include "partials/modal-dialog.html" %}
     <script src="{{ assetPath }}/jquery-3.5.1.min.js"></script>
     <script src="{{ assetPath }}/object-from-entries-polyfill.js"></script>
-    <script type="module" src="{{ assetPath }}/all.mjs"></script>
+    <script type="module" src="{{ assetPath }}/all.bundle.js"></script>
     <script src="{{ assetPath }}/govuk-template.js"></script>
     <script src="{{ assetPath }}/dialog-polyfill.0.4.3.js"></script>
     <script src="{{ assetPath }}/modal-dialog.js"></script>

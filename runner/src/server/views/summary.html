@@ -88,7 +88,7 @@
                         <input type="hidden" name="crumb" value="{{ crumb }}"/>
 
                         {% if declaration %}
-                            <h2 class="govuk-heading-m" id="declaration">Declaration</h2>
+                            <h2 class="govuk-fieldset__legend govuk-fieldset__legend--m" id="declaration">Declaration</h2>
                             {{ declaration | safe }}
                             <div class="govuk-form-group {{ 'govuk-form-group--error' if declarationError }}">
                                 {% if declarationError %}
