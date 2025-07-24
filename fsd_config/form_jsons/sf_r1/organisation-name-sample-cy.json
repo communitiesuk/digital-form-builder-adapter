@@ -44,8 +44,7 @@
           "condition": "lgQzEs"
         }
       ],
-      "section": "FabDefault",
-      "controller": "start.js"
+      "section": "FabDefault"
     },
     {
       "path": "/alternative-organisation-names",

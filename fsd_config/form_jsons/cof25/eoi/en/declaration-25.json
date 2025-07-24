@@ -33,8 +33,7 @@
                     "path": "/summary"
                 }
             ],
-            "section": "FabDefault",
-            "controller": "start.js"
+            "section": "FabDefault"
         }
     ],
     "lists": [

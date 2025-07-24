@@ -47,8 +47,7 @@
           "path": "/project-overview"
         }
       ],
-      "section": "FabDefault",
-      "controller": "start.js"
+      "section": "FabDefault"
     }
   ],
   "lists": [],
