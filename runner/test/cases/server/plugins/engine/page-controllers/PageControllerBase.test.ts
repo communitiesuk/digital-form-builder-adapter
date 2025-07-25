@@ -81,7 +81,7 @@ suite("PageControllerBase", () => {
             auth: {isAuthenticated: true},
         };
         expect(page.getErrors(error, mockRequest)).to.equal({
-            titleText: "Fix the following errors",
+            titleText: "There is a problem",
             errorList: [
                 {
                     path: "approximate",
