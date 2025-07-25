@@ -457,7 +457,7 @@ export class PageControllerBase {
             });
 
             return {
-                titleText: request.i18n.__('validation.title2'),
+                titleText: request.i18n.__('validation.title1'),
                 errorList: errorList.filter(
                     ({text}, index) =>
                         index === errorList.findIndex((err) => err.text === text)
@@ -863,7 +863,7 @@ export class PageControllerBase {
             });
 
             formResult.errors = Object.is(formResult.errors, null)
-                ? {titleText: request.i18n.__('validation.title2'),}
+                ? {titleText: request.i18n.__('validation.title1'),}
                 : formResult.errors;
             formResult.errors.errorList = reformattedErrors;
         }
@@ -890,7 +890,7 @@ export class PageControllerBase {
             });
 
             formResult.errors = Object.is(formResult.errors, null)
-                ? {titleText: request.i18n.__('validation.title2'),}
+                ? {titleText: request.i18n.__('validation.title1'),}
                 : formResult.errors;
             formResult.errors.errorList = reformattedErrors;
         }
