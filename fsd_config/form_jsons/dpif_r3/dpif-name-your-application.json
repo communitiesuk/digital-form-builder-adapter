@@ -30,8 +30,7 @@
                     "path": "/summary"
                 }
             ],
-            "section": "ScxYon",
-            "controller": "start.js"
+            "section": "ScxYon"
         }
     ],
     "lists": [],
