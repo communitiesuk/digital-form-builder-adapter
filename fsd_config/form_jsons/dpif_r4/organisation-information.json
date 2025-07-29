@@ -200,7 +200,9 @@
             "title": "Local Planning Authority code",
             "components": [
                 {
-                    "options": {},
+                    "options": {
+                        "required": false
+                    },
                     "type": "TextField",
                     "title": "Local Planning Authority code",
                     "hint": "",
