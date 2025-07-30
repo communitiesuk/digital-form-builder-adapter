@@ -82,9 +82,6 @@ secrets:
 # You can override any of the values defined above by environment.
 environments:
   dev:
-    variables:
-      JWT_AUTH_ENABLED: false
-      PREVIEW_MODE: true
     count:
       spot: 2
     sidecars:
@@ -105,9 +102,6 @@ environments:
         port: 3009
 
   test:
-    variables:
-      JWT_AUTH_ENABLED: false
-      PREVIEW_MODE: true
     count:
       spot: 2
     sidecars:
@@ -128,9 +122,6 @@ environments:
         port: 3009
 
   uat:
-    variables:
-      JWT_AUTH_ENABLED: false
-      PREVIEW_MODE: true
     count:
       range: 2-4
       cooldown:
@@ -174,7 +165,6 @@ environments:
       SERVICE_START_PAGE: "https://apply.access-funding.communities.gov.uk/account"
       ELIGIBILITY_RESULT_URL: "https://apply.access-funding.communities.gov.uk/eligibility-result"
       SENTRY_TRACES_SAMPLE_RATE: 0.1
-      PREVIEW_MODE: false
     count:
       range: 2-4
       cooldown:

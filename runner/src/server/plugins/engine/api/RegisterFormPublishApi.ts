@@ -32,17 +32,11 @@ export class RegisterFormPublishApi implements RegisterApi {
             path: "/publish",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                ...(config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && { auth: jwtAuthStrategyName }),
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
                 // @ts-ignore
-                if (!previewMode || previewMode==="false") {
-                    request.logger.error(
-                        [`POST /publish`, "previewModeError"],
-                        disabledRouteDetailString
-                    );
-                    throw Boom.forbidden("Publishing is disabled");
-                }
                 const payload = request.payload as FormPayload;
                 const {id, configuration} = payload;
 
@@ -51,9 +45,9 @@ export class RegisterFormPublishApi implements RegisterApi {
                         ? JSON.parse(configuration)
                         : configuration;
                 if (parsedConfiguration.configuration) {
-                    await adapterCacheService.setFormConfiguration(id, parsedConfiguration, request.server)
+                    await adapterCacheService.setFormConfiguration(id, parsedConfiguration, request.server, previewMode)
                 } else {
-                    await adapterCacheService.setFormConfiguration(id, {configuration: parsedConfiguration}, request.server)
+                    await adapterCacheService.setFormConfiguration(id, {configuration: parsedConfiguration}, request.server, previewMode)
                 }
                 return h.response({}).code(204);
             }
@@ -64,6 +58,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             path: "/published/{id}",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                ...(config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && { auth: jwtAuthStrategyName })
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
@@ -90,6 +85,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             path: "/published",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                ...(config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && { auth: jwtAuthStrategyName })
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
@@ -112,6 +108,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             path: "/",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                ...(config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && { auth: jwtAuthStrategyName })
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
@@ -200,7 +197,8 @@ export class RegisterFormPublishApi implements RegisterApi {
                     {
                         method: checkUserSession
                     }
-                ]
+                ],
+                ...(config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && { auth: jwtAuthStrategyName })
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
@@ -213,7 +211,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             }
         });
 
-        const getOptions: any = {
+        server.route({
             method: "get",
             path: "/{id}/{path*}",
             options: {
@@ -226,6 +224,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                         method: checkUserSession
                     }
                 ],
+                ...(config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && { auth: jwtAuthStrategyName })
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {path, id} = request.params;
@@ -242,15 +241,7 @@ export class RegisterFormPublishApi implements RegisterApi {
                 }
                 throw Boom.notFound("No form or page found");
             }
-        }
-
-        // TODO: Stop being naughty! Conditionally disabling auth for pre-prod envs is a temporary measure for getting
-        // FAB into production
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
-            getOptions.options.auth = jwtAuthStrategyName
-        }
-
-        server.route(getOptions);
+        });
 
         const {s3UploadService} = server.services([]);
 
@@ -286,7 +277,7 @@ export class RegisterFormPublishApi implements RegisterApi {
             throw Boom.notFound("No form of path found");
         };
 
-        let postConfig: any = {
+        server.route({
             method: "post",
             path: "/{id}/{path*}",
             options: {
@@ -309,14 +300,8 @@ export class RegisterFormPublishApi implements RegisterApi {
                 },
                 pre: [{method: handleFiles}],
                 handler: postHandler,
+                ...(config.jwtAuthEnabled && config.jwtAuthEnabled === "true" && { auth: jwtAuthStrategyName })
             }
-        }
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
-            postConfig.options.auth = jwtAuthStrategyName
-        }
-        server.route(postConfig);
-
+        });
     }
-
-
 }

@@ -36,7 +36,8 @@ if (process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI) {
     redisUri = process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI;
 }
 
-export const FORMS_KEY_PREFIX = "forms:cache:"
+export const FORMS_KEY_PREFIX_PREVIEW = "forms:cache:preview"
+export const FORMS_KEY_PREFIX_PERMANENT = "forms:cache:permanent"
 
 enum ADDITIONAL_IDENTIFIER {
     Confirmation = ":confirmation",
@@ -125,21 +126,22 @@ export class AdapterCacheService extends CacheService {
      * @param configuration form definition configurations
      * @param server server object
      */
-    async setFormConfiguration(formId: string, configuration: any, server: HapiServer) {
+    async setFormConfiguration(formId: string, configuration: any, server: HapiServer, previewMode: boolean) {
         if (formId && configuration) {
             //@ts-ignore
+            const prefix = previewMode ? FORMS_KEY_PREFIX_PREVIEW : FORMS_KEY_PREFIX_PERMANENT;
             if (server.app.redis) {
-                await this.addConfigurationsToRedisCache(server, configuration, formId);
+                await this.addConfigurationsToRedisCache(server, configuration, formId, prefix);
             } else {
-                await this.addConfigurationIntoInMemoryCache(configuration, formId, server);
+                await this.addConfigurationIntoInMemoryCache(configuration, formId, server, prefix);
             }
         }
     }
 
-    private async addConfigurationIntoInMemoryCache(configuration: any, formId: string, server: HapiServer) {
+    private async addConfigurationIntoInMemoryCache(configuration: any, formId: string, server: HapiServer, prefix: string) {
         const hashValue = Crypto.createHash('sha256').update(JSON.stringify(configuration)).digest('hex')
         try {
-            const jsonDataString = await this.cache.get(`${FORMS_KEY_PREFIX}${formId}`);
+            const jsonDataString = await this.cache.get(`${prefix}${formId}`);
             if (jsonDataString === null) {
                 // Adding new config into redis cache service with the hash value
                 const stringConfig = JSON.stringify({
@@ -148,9 +150,9 @@ export class AdapterCacheService extends CacheService {
                     hash: hashValue
                 });
                 //@ts-ignore
-                server.app.inMemoryFormKeys.push(`${FORMS_KEY_PREFIX}${formId}`)
+                server.app.inMemoryFormKeys.push(`${prefix}${formId}`)
                 // Adding data into redis cache
-                await this.cache.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig, {expiresIn: 0});
+                await this.cache.set(`${prefix}${formId}`, stringConfig, {expiresIn: 0});
             } else {
                 // Redis has the data and gets current data set to check hash
                 const configObj = JSON.parse(jsonDataString);
@@ -161,7 +163,7 @@ export class AdapterCacheService extends CacheService {
                         id: configuration.id,
                         hash: hashValue
                     });
-                    await this.cache.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig, {expiresIn: 0});
+                    await this.cache.set(`${prefix}${formId}`, stringConfig, {expiresIn: 0});
                 }
             }
         } catch (error) {
@@ -169,12 +171,12 @@ export class AdapterCacheService extends CacheService {
         }
     }
 
-    private async addConfigurationsToRedisCache(server: HapiServer, configuration: any, formId: string) {
+    private async addConfigurationsToRedisCache(server: HapiServer, configuration: any, formId: string, prefix: string) {
         //@ts-ignore
         const redisClient: Redis = server.app.redis
         const hashValue = Crypto.createHash('sha256').update(JSON.stringify(configuration)).digest('hex')
         if (redisClient) {
-            const jsonDataString = await redisClient.get(`${FORMS_KEY_PREFIX}${formId}`);
+            const jsonDataString = await redisClient.get(`${prefix}${formId}`);
             if (jsonDataString === null) {
                 // Adding new config into redis cache service with the hash value
                 const stringConfig = JSON.stringify({
@@ -183,7 +185,8 @@ export class AdapterCacheService extends CacheService {
                     hash: hashValue
                 });
                 // Adding data into redis cache
-                await redisClient.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig);
+                
+                await redisClient.set(`${prefix}${formId}`, stringConfig);
             } else {
                 // Redis has the data and gets current data set to check hash
                 const configObj = JSON.parse(jsonDataString);
@@ -194,7 +197,7 @@ export class AdapterCacheService extends CacheService {
                         id: configuration.id,
                         hash: hashValue
                     });
-                    await redisClient.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig);
+                    await redisClient.set(`${prefix}${formId}`, stringConfig);
                 }
             }
         }
@@ -202,17 +205,18 @@ export class AdapterCacheService extends CacheService {
 
     async getFormAdapterModel(formId: string, request: HapiRequest) {
         //@ts-ignore
+        const prefix = this.cache.previewMode ? FORMS_KEY_PREFIX_PREVIEW : FORMS_KEY_PREFIX_PERMANENT;
         if (request.server.app.redis) {
-            return await this.getConfigurationFromRedisCache(request, formId);
+            return await this.getConfigurationFromRedisCache(request, formId, prefix);
         } else {
-            return await this.getConfigurationFromInMemoryCache(request, formId);
+            return await this.getConfigurationFromInMemoryCache(request, formId, prefix);
         }
     }
 
-    private async getConfigurationFromInMemoryCache(request: HapiRequest, formId: string) {
+    private async getConfigurationFromInMemoryCache(request: HapiRequest, formId: string, prefix: string) {
         const {translationLoaderService} = request.services([]);
         const translations = translationLoaderService.getTranslations();
-        const jsonDataString = await this.cache.get(`${FORMS_KEY_PREFIX}${formId}`);
+        const jsonDataString = await this.cache.get(`${prefix}${formId}`);
         if (jsonDataString !== null) {
             const configObj = JSON.parse(jsonDataString);
             return new AdapterFormModel(configObj.configuration, {
@@ -230,12 +234,12 @@ export class AdapterCacheService extends CacheService {
         throw Boom.notFound("Cannot find the given form");
     }
 
-    private async getConfigurationFromRedisCache(request: HapiRequest, formId: string) {
+    private async getConfigurationFromRedisCache(request: HapiRequest, formId: string, prefix: string) {
         //@ts-ignore
         const redisClient: Redis = request.server.app.redis
         const {translationLoaderService} = request.services([]);
         const translations = translationLoaderService.getTranslations();
-        const jsonDataString = await redisClient.get(`${FORMS_KEY_PREFIX}${formId}`);
+        const jsonDataString = await redisClient.get(`${prefix}${formId}`);
         if (jsonDataString !== null) {
             const configObj = JSON.parse(jsonDataString);
             return new AdapterFormModel(configObj.configuration, {
@@ -255,23 +259,27 @@ export class AdapterCacheService extends CacheService {
 
     async getFormConfigurations(request: HapiRequest) {
         //@ts-ignore
+        const prefix = request.cache.previewMode ? FORMS_KEY_PREFIX_PREVIEW : FORMS_KEY_PREFIX_PERMANENT;
         if (request.server.app.redis) {
-            return await this.getFormDisplayConfigurationsFromRedisCache(request);
+            return await this.getFormDisplayConfigurationsFromRedisCache(request, prefix);
         } else {
-            return await this.getFormConfigurationsFromInMemoryCache(request);
+            return await this.getFormConfigurationsFromInMemoryCache(request, prefix);
         }
 
     }
 
-    private async getFormConfigurationsFromInMemoryCache(request: HapiRequest) {
+    private async getFormConfigurationsFromInMemoryCache(request: HapiRequest, prefix: string) {
         const configs: FormConfiguration[] = []
         //@ts-ignore
         for (const key of request.server.app.inMemoryFormKeys) {
+            if (!key.startsWith(prefix)) {
+                continue;
+            }
             const configObj = JSON.parse(await this.cache.get(`${key}`));
             const result = AdapterSchema.validate(configObj.configuration, {abortEarly: false});
             configs.push(
                 new FormConfiguration(
-                    key.replace(FORMS_KEY_PREFIX, ""),
+                    key.replace(prefix, ""),
                     result.value.name,
                     undefined,
                     result.value.feedback?.feedbackForm
@@ -281,17 +289,17 @@ export class AdapterCacheService extends CacheService {
         return configs;
     }
 
-    private async getFormDisplayConfigurationsFromRedisCache(request: HapiRequest) {
+    private async getFormDisplayConfigurationsFromRedisCache(request: HapiRequest, prefix: string) {
         //@ts-ignore
         const redisClient: Redis = request.server.app.redis;
-        const keys = await redisClient.keys(`${FORMS_KEY_PREFIX}*`);
+        const keys = await redisClient.keys(`${prefix}*`);
         const configs: FormConfiguration[] = []
         for (const key of keys) {
             const configObj = JSON.parse(await redisClient.get(`${key}`));
             const result = AdapterSchema.validate(configObj.configuration, {abortEarly: false});
             configs.push(
                 new FormConfiguration(
-                    key.replace(FORMS_KEY_PREFIX, ""),
+                    key.replace(prefix, ""),
                     result.value.name,
                     undefined,
                     result.value.feedback?.feedbackForm
