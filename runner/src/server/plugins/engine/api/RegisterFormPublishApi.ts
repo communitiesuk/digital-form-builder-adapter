@@ -32,6 +32,9 @@ export class RegisterFormPublishApi implements RegisterApi {
             path: "/publish",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                ...(config.jwtAuthEnabled && config.jwtAuthEnabled === "true"
+                    ? { auth: jwtAuthStrategyName }
+                    : {}),
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
@@ -50,10 +53,13 @@ export class RegisterFormPublishApi implements RegisterApi {
                     typeof configuration === "string"
                         ? JSON.parse(configuration)
                         : configuration;
+
+                const isPreview = previewMode === true || previewMode === "true";
+
                 if (parsedConfiguration.configuration) {
-                    await adapterCacheService.setFormConfiguration(id, parsedConfiguration, request.server)
+                    await adapterCacheService.setFormConfiguration(id, parsedConfiguration, request.server, isPreview)
                 } else {
-                    await adapterCacheService.setFormConfiguration(id, {configuration: parsedConfiguration}, request.server)
+                    await adapterCacheService.setFormConfiguration(id, {configuration: parsedConfiguration}, request.server, isPreview)
                 }
                 return h.response({}).code(204);
             }
