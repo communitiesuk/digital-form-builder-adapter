@@ -1,0 +1,52 @@
+{% macro mhclgHeader(params, currentUser) %}
+
+{%- set _productName = params.productName if params and params.productName else 'MHCLG' -%}
+{%- set _hmgInsignia = '<img src="/assets/images/mhclg-crest.png" alt="MHCLG Crest" width="32" height="32" style="color: white; filter: brightness(0) invert(1);" />' -%}
+
+<header class="govuk-header" data-module="govuk-header">
+    <div class="govuk-header__container govuk-width-container">
+        <div class="govuk-header__logo govuk-!-margin-bottom-2">
+            <span class="govuk-header__logotype">
+            <a href="#" class="govuk-header__link govuk-header__link--homepage">
+            {{ _hmgInsignia | safe | trim | indent(8) }}
+            {% if (_productName) %}
+                <span class="govuk-header__logotype-text">{{ _productName }}</span>
+            {% endif %}
+            </a>
+            </span>
+        </div>
+        {% if params.serviceName or _navigation | length %}
+        <div class="govuk-header__content">
+            {% if params.serviceName %}
+            {% if params.serviceUrl %}
+            <a href="{{ params.serviceUrl }}" class="govuk-header__link govuk-header__service-name govuk-!-margin-top-2">{{ params.serviceName }}</a>
+            {% else %}
+            <span class="app-service-name govuk-header__service-name govuk-!-margin-top-2">{{ params.serviceName }}</span>
+            {% endif %}
+            {% endif %}
+            {% if _navigation | length %}
+            <nav aria-label="{{ params.navigationLabel | default(menuButtonText, true) }}" class="govuk-header__navigation {% if _navigationClasses %}{{ _navigationClasses }}{% endif %}">
+                {# <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" {%- if params.menuButtonLabel and params.menuButtonLabel != menuButtonText %} aria-label="{{ params.menuButtonLabel }}"{% endif %} hidden>
+                {{ menuButtonText }}
+            </button> #}
+
+                <ul class="govuk-header__navigation-list">
+                    {% for item in _navigation %}
+                    {% if item.text or item.html %}
+                    <li class="govuk-header__navigation-item {% if item.active %}govuk-header__navigation-item--active{% endif %}">
+                        {% if item.href %}
+                        <a class="govuk-header__link" href="{{ item.href }}" {{- govukAttributes(item.attributes) -}}>{{ item.text }}</a>
+                        {% else %}
+                        {{ item.html | safe | trim | indent(14) if item.html else item.text }}
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</header>
+{% endmacro %}
