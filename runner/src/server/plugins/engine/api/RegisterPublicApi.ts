@@ -45,9 +45,9 @@ export class RegisterPublicApi implements RegisterApi {
                             path: [
                                 path.join(adapterRunnerFolder, "public", "static"),
                                 path.join(adapterRunnerFolder, "public", "build"),
+                                path.join(adapterRunnerFolder, "public"),
                                 govukFolder,
                                 path.join(govukFolder, "assets"),
-                                path.join(govukFolder, "assets", "rebrand"),
                                 path.join(rootNodeModules, "hmpo-components", "assets"),
                                 path.join(rootNodeModules, "tinymce"),
                                 path.join(rootNodeModules, "dropzone", "dist", "min"),

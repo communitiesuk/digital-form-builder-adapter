@@ -1,4 +1,3 @@
-{% set govukRebrand = true %}
 {% extends "template.njk" %}
 
 {% from "back-link/macro.njk" import govukBackLink %}
@@ -7,17 +6,7 @@
 {% from "skip-link/macro.njk" import govukSkipLink -%}
 {% from "./partials/change-requests-banner.html" import changeRequestsBanner %}
 {% from "./partials/preview-banner.html" import previewBanner %}
-{% from "service-navigation/macro.njk" import govukServiceNavigation %}
-
-{% block headIcons %}
-{# TODO: remove this block when rebrand assets are no longer in /rebrand (likely in v5 upgrade) #}
-<link rel="icon" sizes="48x48" href="{{ assetPath }}/rebrand/images/favicon.ico">
-<link rel="icon" sizes="any" href="{{ assetPath }}/rebrand/images/favicon.svg" type="image/svg+xml">
-<link rel="mask-icon" href="{{ assetPath }}/rebrand/images/govuk-icon-mask.svg" color="{{ themeColor }}">
-<link rel="apple-touch-icon" href="{{ assetPath }}/rebrand/images/govuk-icon-180.png">
-<link rel="manifest" href="{{ assetPath }}/manifest.json">
-{% endblock %}
-
+{% from "./partials/mhclg-header.html" import mhclgHeader %}
 
 {% block head %}
     <!--[if !IE 8]><!-->
@@ -120,19 +109,13 @@
 {% endblock %}
 
 {% block header %}
-    {{ govukHeader({
-        homepageUrl: "https://gov.uk",
-        containerClasses: "govuk-width-container",
-        useTudorCrown: true,
-        rebrand: true
-        })
-    }}
-    {{ govukServiceNavigation({
-        serviceName: name if name else serviceName,
-        serviceUrl: serviceStartPage if serviceStartPage,
-        navigation: navigation if navigation,
-        rebrand: true
-        })
+    {{
+        mhclgHeader(
+            params={
+                "serviceName": name if name else serviceName,
+                "homepageUrl": "#"
+            }
+        )
     }}
 {% endblock %}
 
@@ -254,7 +237,6 @@
         }] %}
     {% endif %}
     {{ govukFooter({
-        rebrand: true,
         meta: {
             items: footerItems
         }
