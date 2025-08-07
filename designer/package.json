@@ -7,7 +7,8 @@
     "dev": "NODE_OPTIONS=--openssl-legacy-provider && concurrently 'yarn watch' 'yarn start:local'",
     "production": "NODE_ENV=production yarn start:server",
     "start:test": "NODE_ENV=test yarn start:server",
-    "build": "NODE_ENV=production && NODE_OPTIONS=--openssl-legacy-provider && webpack",
+    "static-content:dist-push": "cp -r ../designer/public/images dist/client/assets",
+    "build": "NODE_ENV=production && NODE_OPTIONS=--openssl-legacy-provider && webpack && yarn run static-content:dist-push",
     "start:server": "node dist/server.js",
     "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only server/index.ts"
   },
