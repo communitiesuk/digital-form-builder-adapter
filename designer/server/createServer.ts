@@ -76,6 +76,11 @@ export async function createServer() {
             determinePersistenceService(config.persistentBackend, server)
         ),
     ]);
+    server.ext('onPreResponse', (request, h) => {
+        const response = h.response(request.response);
+        response.header('Content-Security-Policy', "style-src 'self' 'unsafe-inline'");
+        return response;
+    });
     await server.register(designerPlugin);
     await server.register(router);
     await server.register(logging);

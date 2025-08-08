@@ -13,7 +13,7 @@ const i18nGetTranslation = (key, lang) => {
 // Singleton instance
 let mockView: nunjucks.Environment = null;
 
-const basedir = _path.join(process.cwd(), "..");
+const basedir = _path.join(process.cwd(), "..", "runner");
 const xGovFormsPath = _path.resolve(__dirname, "../../../../../.../../../../");
 
 mockView = nunjucks.configure([
