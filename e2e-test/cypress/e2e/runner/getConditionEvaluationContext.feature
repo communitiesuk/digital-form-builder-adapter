@@ -13,7 +13,7 @@ Feature: Get Condition Evaluation Context
     * I enter "d'egg" for "Surname"
     * I continue
     Then I see "There Is Someone Called Applicant"
-    When I go back to application overview
+    When I go back to previous page
     And I enter "{selectAll}{backspace}Scrambled" for "First name"
     * I continue
     * I see "TestConditions"
