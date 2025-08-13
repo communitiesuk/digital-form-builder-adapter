@@ -68,9 +68,13 @@ export function SubMenu({id, updateDownloadedAt}: Props) {
 
     return (
         <div className="menu__row">
-            <a href="/app" className="govuk-link submenu__link">
+            <button
+                type="button"
+                className="govuk-body govuk-link submenu__link"
+                onClick={() => { window.location.href = "/app"; }}
+            >
                 Create new form
-            </a>
+            </button>
             <button
                 className="govuk-body govuk-link submenu__link"
                 onClick={onClickUpload}
@@ -91,9 +95,13 @@ export function SubMenu({id, updateDownloadedAt}: Props) {
                 onChange={onFileUpload}
                 aria-label="Import saved form"
             />
-            <a href="/app/choose-existing" className="govuk-link submenu__link">
+            <button
+                type="button"
+                className="govuk-body govuk-link submenu__link"
+                onClick={() => { window.location.href = "/app/choose-existing"; }}
+            >
                 Existing forms
-            </a>
+            </button>
         </div>
     );
 }

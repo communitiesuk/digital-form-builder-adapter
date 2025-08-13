@@ -78,7 +78,14 @@ export async function createServer() {
     ]);
     server.ext('onPreResponse', (request, h) => {
         const response = h.response(request.response);
-        response.header('Content-Security-Policy', "style-src 'self' 'unsafe-inline'");
+        response.header('Content-Security-Policy',
+            "style-src " +
+            "'self'" +
+            " 'unsafe-hashes'" +
+            " 'sha256-9/aFFbAwf+Mwl6MrBQzrJ/7ZK5vo7HdOUR7iKlBk78U='" + // color: white; filter: brightness(0) invert(1);
+            " 'sha256-Avl+ScT4jGeaW8pHTDv8KcMb1I0qxEWb3YqO3l3VQ2g='" + // text-transform: lowercase;
+            " 'sha256-5UVjE4ptkS47dTbf7RQHqlOoA177/uQ3ECUDPCM7iXU='" // color: white !important;
+        );
         return response;
     });
     await server.register(designerPlugin);
