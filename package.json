@@ -23,6 +23,8 @@
     "e2e-test": "yarn workspace e2e-test"
   },
   "resolutions": {
+    "@xgovformbuilder/model": "link:./digital-form-builder/model",
+    "@xgovformbuilder/queue-model": "link:./digital-form-builder/queue-model",
     "joi": "17.13.3"
   },
   "author": "Communities UK",
