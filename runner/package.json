@@ -7,7 +7,7 @@
     "babel-build": "babel --config-file ../digital-form-builder/runner/.babelrc --extensions '.ts' ../digital-form-builder/runner/src -d dist/digital-form-builder/runner/src --copy-files -s inline",
     "babel-build:adapter": "babel --config-file ../runner/.babelrc --extensions '.ts' ../runner/src -d dist/digital-form-builder-adapter/runner --copy-files -s inline",
     "package-json:copy": "cp package.json dist/digital-form-builder/runner && cp package.json dist/digital-form-builder-adapter",
-    "static-content:dist-push": "mkdir -p dist/digital-form-builder-adapter/runner/public/static && cp -r ../digital-form-builder/runner/public/static dist/digital-form-builder-adapter/runner/public",
+    "static-content:dist-push": "mkdir -p dist/digital-form-builder-adapter/runner/public/static && cp -r ../digital-form-builder/runner/public/static dist/digital-form-builder-adapter/runner/public && cp -r ../runner/public/images dist/digital-form-builder-adapter/runner/public",
     "scss:build": "node compile-scss.js",
     "copy-forms": "node copy-form-json.js",
     "clean:build": "rm -rf dist",
@@ -30,6 +30,7 @@
     "@aws-sdk/s3-request-presigner": "3.633.0",
     "@sentry/node": "^8.47.0",
     "dropzone": "5.9.3",
+    "govuk-frontend": "^5.10.2",
     "hapi-i18n": "3.0.1",
     "joi": "17.13.3",
     "tinymce": "7.3.0"

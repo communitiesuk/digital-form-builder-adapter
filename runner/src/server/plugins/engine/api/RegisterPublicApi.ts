@@ -22,6 +22,13 @@ interface CookiePayload {
 
 const adapterRunnerFolder = path.join(__dirname, "..", "..", "..", "..");
 const rootNodeModules = path.join(adapterRunnerFolder, "..", "..", "..", "..", "node_modules");
+const govukFolder = path.join(
+    adapterRunnerFolder, "..", "..", "..", "..", "runner",
+    "node_modules",
+    "govuk-frontend",
+    "dist",
+    "govuk"
+);
 
 export class RegisterPublicApi implements RegisterApi {
     register(server: any): void {
@@ -38,9 +45,10 @@ export class RegisterPublicApi implements RegisterApi {
                             path: [
                                 path.join(adapterRunnerFolder, "public", "static"),
                                 path.join(adapterRunnerFolder, "public", "build"),
+                                path.join(adapterRunnerFolder, "public"),
+                                govukFolder,
+                                path.join(govukFolder, "assets"),
                                 path.join(rootNodeModules, "hmpo-components", "assets"),
-                                path.join(rootNodeModules, "govuk-frontend", "govuk"),
-                                path.join(rootNodeModules, "govuk-frontend", "govuk", "assets"),
                                 path.join(rootNodeModules, "tinymce"),
                                 path.join(rootNodeModules, "dropzone", "dist", "min"),
                             ],
