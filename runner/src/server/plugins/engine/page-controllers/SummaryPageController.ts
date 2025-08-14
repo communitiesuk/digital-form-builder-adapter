@@ -7,7 +7,7 @@ import {PageController} from "./PageController";
 import {isMultipleApiKey} from "@xgovformbuilder/model";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {redirectTo} from "../util/helper";
-import {UtilHelper} from "../../utils/UtilHelper";
+import {UtilHelper, BackLinkType} from "../../utils/UtilHelper";
 import {UkAddressField} from "../components";
 
 const LOGGER_DATA = {
@@ -51,7 +51,7 @@ export class SummaryPageController extends PageController {
             }
             if (state["metadata"] && state["metadata"]["has_eligibility"]) {
                 this.isEligibility = state["metadata"]["has_eligibility"];
-                this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+                this.backLinkText = UtilHelper.getBackLinkText(BackLinkType.Eligibility, this.model.def?.metadata?.isWelsh);
                 this.backLink = state.callback?.returnUrl;
             }
 
@@ -63,9 +63,9 @@ export class SummaryPageController extends PageController {
             }
             //@ts-ignore
             const viewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
-            
+
             await this.handlePreviewMode(request, viewModel);
-            
+
             if (viewModel.endPage) {
                 return redirectTo(request, h, `/${model.basePath}${viewModel.endPage.path}`);
             }
@@ -74,7 +74,7 @@ export class SummaryPageController extends PageController {
                 //@ts-ignore
                 viewModel.isReadOnlySummary = true;
                 //@ts-ignore
-                viewModel.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+                viewModel.backLinkText = UtilHelper.getBackLinkText(BackLinkType.Eligibility, this.model.def?.metadata?.isWelsh);
                 //@ts-ignore
                 viewModel.backLink = state.callback?.returnUrl;
             }

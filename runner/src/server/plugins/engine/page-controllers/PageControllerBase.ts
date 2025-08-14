@@ -30,7 +30,7 @@ import {AdapterFormModel} from "../models";
 import {ComponentCollection} from "../components";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {proceed, redirectTo} from "../util/helper";
-import {UtilHelper} from "../../utils/UtilHelper";
+import {UtilHelper, BackLinkType } from "../../utils/UtilHelper";
 import {validationOptions} from "./ValidationOptions";
 
 const FORM_SCHEMA = Symbol("FORM_SCHEMA");
@@ -125,7 +125,9 @@ export class PageControllerBase {
         }
 
         this.backLink = "";
-        this.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh)
+        this.backLinkText = this.model.def?.backLinkText ??
+        UtilHelper.getBackLinkText(BackLinkType.ApplicationOverview, this.model.def?.metadata?.isWelsh);
+
 
         this[FORM_SCHEMA] = this.components.formSchema;
         this[STATE_SCHEMA] = this.components.stateSchema;
@@ -598,7 +600,7 @@ export class PageControllerBase {
 
             this.backLink = state.callback?.returnUrl ?? progress[progress.length - 2];
             if (state["metadata"] && state["metadata"]["has_eligibility"]) {
-                this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+                this.backLinkText = UtilHelper.getBackLinkText(BackLinkType.Eligibility, this.model.def?.metadata?.isWelsh);
             }
 
             if (shouldRedirectToStartPage) {
@@ -692,11 +694,20 @@ export class PageControllerBase {
             state = await adapterCacheService.getState(request);
 
             viewModel.backLinkText = this.backLinkText;
-            if (state.callback?.returnUrl) {
-                viewModel.backLink = state.callback?.returnUrl;
+
+            const isFirstPage = this.path === `${startPage}`;
+            const hasReturnUrl = !!state.callback?.returnUrl;
+
+            if (isFirstPage && hasReturnUrl) {
+                viewModel.backLink = state.callback.returnUrl;
             } else {
-                this.backLink = viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
+                const currentIndex = progress.lastIndexOf(currentPath);
+                const previousPage = currentIndex > 0 ? progress[currentIndex - 1] : undefined;
+                const safeBackLink = previousPage ?? this.backLinkFallback ?? "/";
+                this.backLink = viewModel.backLink = safeBackLink;
+                this.backLinkText = UtilHelper.getBackLinkText(BackLinkType.PreviousPage, this.model.def?.metadata?.isWelsh);
             }
+
             viewModel.continueButtonText = "Save and continue"
             request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary value ${JSON.stringify(viewModel.components)}`);
             this.updatePrivacyPolicyUrlAndContactUsUrl(state, viewModel)
@@ -1052,7 +1063,7 @@ export class PageControllerBase {
     private renderWithErrors(request, h, payload, num, progress, errors) {
         const viewModel = this.getViewModel(payload, num, errors);
         viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
-        viewModel.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh);
+        viewModel.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(BackLinkType.ApplicationOverview, this.model.def?.metadata?.isWelsh);
         this.setPhaseTag(viewModel);
         this.setFeedbackDetails(viewModel, request);
 
