@@ -9,6 +9,7 @@ import {config} from "../../utils/AdapterConfigurationSchema";
 import {redirectTo} from "../util/helper";
 import {UtilHelper, BackLinkType} from "../../utils/UtilHelper";
 import {UkAddressField} from "../components";
+import { updateProgress, getBackLink } from '../util/navigationUtils';
 
 const LOGGER_DATA = {
     class: "SummaryPageController",
@@ -32,16 +33,18 @@ export class SummaryPageController extends PageController {
 
             const {adapterCacheService} = request.services([]);
             const model = this.model;
+            const startPage = model.def.startPage;
+            //@ts-ignore
+            let state = await adapterCacheService.getState(request);
+            const progress = state.progress || [];
+            const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
 
             // @ts-ignore - ignoring so docs can be generated. Remove when properly typed
             if (this.model.def.skipSummary) {
                 return this.makePostRouteHandler()(request, h);
             }
-            //@ts-ignore
-            let state = await adapterCacheService.getState(request);
-            if (!state.progress) {
+            if (!progress) {
                 const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
-                const progress = state.progress || [];
                 //@ts-ignore
                 progress.push(currentPath);
                 //@ts-ignore
@@ -78,6 +81,29 @@ export class SummaryPageController extends PageController {
                 //@ts-ignore
                 viewModel.backLink = state.callback?.returnUrl;
             }
+
+            /**
+             * used for when a user clicks the "back" link. Progress is stored in the state. This is a safer alternative to running javascript that pops the history `onclick`.
+             */
+            updateProgress(progress, currentPath);
+
+            await adapterCacheService.mergeState(request, { progress });
+            state = await adapterCacheService.getState(request);
+
+            // Compute back link
+            const { backLink, backLinkText } = getBackLink({
+            progress,
+            thisPath: this.path,
+            currentPath,
+            startPage,
+            backLinkFallback: this.backLinkFallback,
+            returnUrl: state.callback?.returnUrl,
+            isWelsh: this.model.def?.metadata?.isWelsh
+            });
+            //@ts-ignore
+            viewModel.backLink = backLink;
+            //@ts-ignore
+            viewModel.backLinkText = backLinkText;
 
             /**
              * iterates through the errors. If there are errors, a user will be redirected to the page
