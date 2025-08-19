@@ -22,6 +22,18 @@
             href: backLink or page.backLink,
             text: (backLinkText or page.backLinkText) if not isReadOnlySummary else "Back to application for funding overview"
         }) }}
+    {% elif page.backLink or backLink %}
+        {% if page.backLink %}
+            {{ govukBackLink({
+                href: page.backLink,
+                text: page.backLinkText
+            }) }}
+        {% else %}
+            {{ govukBackLink({
+                href: backLink,
+                text: backLinkText
+            }) }}
+        {% endif %}
     {% endif %}
 {% endblock %}
 {% block content %}
