@@ -70,6 +70,9 @@ suite("ConfirmPageController", () => {
             query: {
                 lang: "en"
             },
+            url: {
+                search: ""
+            },
             yar: {
                 get: sinon.stub().returns("en"),
                 flash: sinon.stub().returns("en")
