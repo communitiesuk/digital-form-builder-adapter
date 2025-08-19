@@ -27,6 +27,8 @@ We use [@badeball/cypress-cucumber-preprocessor](https://www.npmjs.com/package/@
 This package recently has changed hands, so documentation is also moving around. Here is [@badeball's documentation](https://github.com/badeball/cypress-cucumber-preprocessor/blob/HEAD/docs/readme.md).
 Older documentation can be found here [https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor)
 
+## Demo
+
 ## Running the tests
 As usual, always run commands in the root directory, not in the workspace directory.
 
