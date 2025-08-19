@@ -61,6 +61,7 @@ suite("ConfirmPageController", () => {
         // Mock adapterCacheService with the methods you need
         const mockAdapterCacheService: any = {
             getState: sinon.stub().resolves(mockState),
+            mergeState: sinon.stub().resolves(),
         };
         // Mock request with state
         const request = {
