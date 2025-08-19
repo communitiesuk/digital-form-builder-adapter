@@ -32,6 +32,7 @@ import {config} from "../../utils/AdapterConfigurationSchema";
 import {proceed, redirectTo} from "../util/helper";
 import {UtilHelper, BackLinkType } from "../../utils/UtilHelper";
 import {validationOptions} from "./ValidationOptions";
+import { updateProgress, getBackLink } from '../util/navigationUtils';
 
 const FORM_SCHEMA = Symbol("FORM_SCHEMA");
 const STATE_SCHEMA = Symbol("STATE_SCHEMA");
@@ -680,33 +681,25 @@ export class PageControllerBase {
             /**
              * used for when a user clicks the "back" link. Progress is stored in the state. This is a safer alternative to running javascript that pops the history `onclick`.
              */
-            const lastVisited = progress[progress.length - 1];
-            if (!lastVisited || !lastVisited.startsWith(currentPath)) {
-                if (progress[progress.length - 2] === currentPath) {
-                    progress.pop();
-                } else {
-                    progress.push(currentPath);
-                }
-            }
-            //@ts-ignore
-            await adapterCacheService.mergeState(request, {progress});
-            //@ts-ignore
+            updateProgress(progress, currentPath);
+
+            await adapterCacheService.mergeState(request, { progress });
             state = await adapterCacheService.getState(request);
 
-            viewModel.backLinkText = this.backLinkText;
-
-            const isFirstPage = this.path === `${startPage}`;
-            const hasReturnUrl = !!state.callback?.returnUrl;
-
-            if (isFirstPage && hasReturnUrl) {
-                viewModel.backLink = state.callback.returnUrl;
-            } else {
-                const currentIndex = progress.lastIndexOf(currentPath);
-                const previousPage = currentIndex > 0 ? progress[currentIndex - 1] : undefined;
-                const safeBackLink = previousPage ?? this.backLinkFallback ?? "/";
-                this.backLink = viewModel.backLink = safeBackLink;
-                this.backLinkText = UtilHelper.getBackLinkText(BackLinkType.PreviousPage, this.model.def?.metadata?.isWelsh);
-            }
+            // Compute back link
+            const { backLink, backLinkText } = getBackLink({
+            progress,
+            thisPath: this.path,
+            currentPath,
+            startPage,
+            backLinkFallback: this.backLinkFallback,
+            returnUrl: state.callback?.returnUrl,
+            isWelsh: this.model.def?.metadata?.isWelsh
+            });
+            //@ts-ignore
+            this.backLink = viewModel.backLink = backLink;
+            //@ts-ignore
+            this.backLinkText = viewModel.backLinkText = backLinkText;
 
             viewModel.continueButtonText = "Save and continue"
             request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary value ${JSON.stringify(viewModel.components)}`);
