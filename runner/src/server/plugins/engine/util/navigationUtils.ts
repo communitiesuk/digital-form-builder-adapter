@@ -8,6 +8,7 @@ interface BackLinkParams {
   backLinkFallback?: string;
   returnUrl?: string;
   isWelsh: boolean;
+  isEligibilityForm: boolean;
 }
 
 export function updateProgress(progress: any, currentPath: string): void {
@@ -28,9 +29,17 @@ export function getBackLink({
   startPage,
   backLinkFallback = '/',
   returnUrl,
-  isWelsh
+  isWelsh,
+  isEligibilityForm
 }: BackLinkParams) {
   const isFirstPage = thisPath === startPage;
+
+  if (isEligibilityForm && isFirstPage && returnUrl) {
+    return {
+      backLink: returnUrl,
+      backLinkText: UtilHelper.getBackLinkText(BackLinkType.Eligibility, isWelsh)
+    };
+  }
 
   if (isFirstPage && returnUrl) {
     return {
