@@ -43,7 +43,7 @@ export class SummaryPageController extends PageController {
             if (this.model.def.skipSummary) {
                 return this.makePostRouteHandler()(request, h);
             }
-            if (!progress) {
+            if (!progress || progress.length === 0) {
                 const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
                 //@ts-ignore
                 progress.push(currentPath);
