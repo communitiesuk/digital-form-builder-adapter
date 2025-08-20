@@ -37,7 +37,7 @@
     {% endif %}
 {% endblock %}
 {% block content %}
-    <div class="govuk-main-wrapper">
+    <div class="govuk-main-wrapper govuk-!-static-padding-top-0">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
                 {% set hasMultipleSections = (details and details.length > 1 and details[0].items[0] | isArray) %}
