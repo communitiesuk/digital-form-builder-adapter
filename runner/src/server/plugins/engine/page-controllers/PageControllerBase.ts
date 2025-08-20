@@ -599,11 +599,6 @@ export class PageControllerBase {
                 !isStartPage &&
                 !isInitialisedSession;
 
-            this.backLink = state.callback?.returnUrl ?? progress[progress.length - 2];
-            if (state["metadata"] && state["metadata"]["has_eligibility"]) {
-                this.backLinkText = UtilHelper.getBackLinkText(BackLinkType.Eligibility, this.model.def?.metadata?.isWelsh);
-            }
-
             if (shouldRedirectToStartPage) {
                 // @ts-ignore
                 return startPage!.startsWith("http")
@@ -694,7 +689,8 @@ export class PageControllerBase {
             startPage,
             backLinkFallback: this.backLinkFallback,
             returnUrl: state.callback?.returnUrl,
-            isWelsh: this.model.def?.metadata?.isWelsh
+            isWelsh: this.model.def?.metadata?.isWelsh,
+            isEligibilityForm: state["metadata"]?.has_eligibility ?? false,
             });
             //@ts-ignore
             this.backLink = viewModel.backLink = backLink;
@@ -828,13 +824,13 @@ export class PageControllerBase {
          * If there are any errors, render the page with the parsed errors
          */
         if (formResult.errors) {
-            return this.renderWithErrors(request, h, payload, num, progress, formResult.errors);
+            return this.renderWithErrors(request, h, payload, num, progress, formResult.errors, state);
         }
 
         const newState = this.getStateFromValidForm(formResult.value);
         const stateResult = this.validateState(newState, request);
         if (stateResult.errors) {
-            return this.renderWithErrors(request, h, payload, num, progress, stateResult.errors);
+            return this.renderWithErrors(request, h, payload, num, progress, stateResult.errors, state);
         }
 
         let update = this.getPartialMergeState(stateResult.value);
@@ -1053,10 +1049,24 @@ export class PageControllerBase {
         }
     }
 
-    private renderWithErrors(request, h, payload, num, progress, errors) {
+    private renderWithErrors(request, h, payload, num, progress, errors, state) {
         const viewModel = this.getViewModel(payload, num, errors);
-        viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
-        viewModel.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(BackLinkType.ApplicationOverview, this.model.def?.metadata?.isWelsh);
+
+        // Compute back link
+        const { backLink, backLinkText } = getBackLink({
+            progress,
+            thisPath: this.path,
+            currentPath: `/${this.model.basePath}${this.path}${request.url.search}`,
+            startPage: this.model.def.startPage,
+            backLinkFallback: this.backLinkFallback,
+            returnUrl: state.callback?.returnUrl,
+            isWelsh: this.model.def?.metadata?.isWelsh
+        });
+        //@ts-ignore
+        this.backLink = viewModel.backLink = backLink;
+        //@ts-ignore
+        this.backLinkText = viewModel.backLinkText = backLinkText;
+
         this.setPhaseTag(viewModel);
         this.setFeedbackDetails(viewModel, request);
 
