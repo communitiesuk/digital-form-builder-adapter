@@ -15,7 +15,6 @@
   "version": "1.0.0",
   "description": "Mono repo for communitiesuk's designer, model and runner adapter for xgovformbuilder",
   "scripts": {
-    "setup": "node update-package.js && yarn",
     "runner": "yarn workspace @communitiesuk/runner",
     "designer": "yarn workspace @communitiesuk/designer",
     "model": "yarn workspace @communitiesuk/model",
@@ -23,7 +22,10 @@
     "e2e-test": "yarn workspace e2e-test"
   },
   "resolutions": {
-    "joi": "17.13.3"
+    "@xgovformbuilder/model": "link:./digital-form-builder/model",
+    "@xgovformbuilder/queue-model": "link:./digital-form-builder/queue-model",
+    "joi": "17.13.3",
+    "@hapi/hapi": "21.4.3"
   },
   "author": "Communities UK",
   "license": "MIT"
