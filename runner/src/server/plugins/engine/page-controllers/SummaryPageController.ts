@@ -85,6 +85,8 @@ export class SummaryPageController extends PageController {
             await adapterCacheService.mergeState(request, { progress });
             state = await adapterCacheService.getState(request);
 
+            const isEligibilityForm = this.isEligibility = state["metadata"]?.has_eligibility ?? false
+
             // Compute back link
             const { backLink, backLinkText } = getBackLink({
             progress,
@@ -93,7 +95,8 @@ export class SummaryPageController extends PageController {
             startPage,
             backLinkFallback: this.backLinkFallback,
             returnUrl: state.callback?.returnUrl,
-            isWelsh: this.model.def?.metadata?.isWelsh
+            isWelsh: this.model.def?.metadata?.isWelsh,
+            isEligibilityForm: isEligibilityForm
             });
             //@ts-ignore
             viewModel.backLink = backLink;
