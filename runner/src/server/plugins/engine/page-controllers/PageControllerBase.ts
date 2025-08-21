@@ -690,7 +690,7 @@ export class PageControllerBase {
             backLinkFallback: this.backLinkFallback,
             returnUrl: state.callback?.returnUrl,
             isWelsh: this.model.def?.metadata?.isWelsh,
-            isEligibilityForm: state["metadata"]?.has_eligibility ?? false,
+            isEligibilityForm: state["metadata"]?.has_eligibility ?? false
             });
             //@ts-ignore
             this.backLink = viewModel.backLink = backLink;
@@ -1060,7 +1060,8 @@ export class PageControllerBase {
             startPage: this.model.def.startPage,
             backLinkFallback: this.backLinkFallback,
             returnUrl: state.callback?.returnUrl,
-            isWelsh: this.model.def?.metadata?.isWelsh
+            isWelsh: this.model.def?.metadata?.isWelsh,
+            isEligibilityForm: state["metadata"]?.has_eligibility ?? false
         });
         //@ts-ignore
         this.backLink = viewModel.backLink = backLink;
