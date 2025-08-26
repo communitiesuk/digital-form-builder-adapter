@@ -146,7 +146,7 @@
         {% endif %}
     {% endif %}
 
-    {% if page.backLink or backLink %}
+    {% if not previewMode and (page.backLink or backLink) %}
         {% if page.backLink %}
             {{ govukBackLink({
                 href: page.backLink,

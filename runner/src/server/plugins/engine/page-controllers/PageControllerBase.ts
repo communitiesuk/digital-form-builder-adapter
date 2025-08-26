@@ -1052,21 +1052,25 @@ export class PageControllerBase {
     private renderWithErrors(request, h, payload, num, progress, errors, state) {
         const viewModel = this.getViewModel(payload, num, errors);
 
-        // Compute back link
-        const { backLink, backLinkText } = getBackLink({
-            progress,
-            thisPath: this.path,
-            currentPath: `/${this.model.basePath}${this.path}${request.url.search}`,
-            startPage: this.model.def.startPage,
-            backLinkFallback: this.backLinkFallback,
-            returnUrl: state.callback?.returnUrl,
-            isWelsh: this.model.def?.metadata?.isWelsh,
-            isEligibilityForm: state["metadata"]?.has_eligibility ?? false
-        });
-        //@ts-ignore
-        this.backLink = viewModel.backLink = backLink;
-        //@ts-ignore
-        this.backLinkText = viewModel.backLinkText = backLinkText;
+        const previewMode = state?.previewMode || false;
+
+        if (!previewMode) {
+            // Compute back link
+            const { backLink, backLinkText } = getBackLink({
+                progress,
+                thisPath: this.path,
+                currentPath: `/${this.model.basePath}${this.path}${request.url.search}`,
+                startPage: this.model.def.startPage,
+                backLinkFallback: this.backLinkFallback,
+                returnUrl: state.callback?.returnUrl,
+                isWelsh: this.model.def?.metadata?.isWelsh,
+                isEligibilityForm: state["metadata"]?.has_eligibility ?? false
+            });
+            //@ts-ignore
+            this.backLink = viewModel.backLink = backLink;
+            //@ts-ignore
+            this.backLinkText = viewModel.backLinkText = backLinkText;
+        }
 
         this.setPhaseTag(viewModel);
         this.setFeedbackDetails(viewModel, request);
