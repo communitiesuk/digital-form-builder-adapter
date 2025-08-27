@@ -125,3 +125,42 @@ jobs:
             LAST_TAG='${{env.VERSION}}'
             LAST_COMMIT='${{ github.sha }}'
 
+      - name: Injecting image into docker compose e2e
+        run: |
+          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+
+      - name: Start containers
+        run: docker compose -f docker-compose.e2e.yml up -d
+
+      - name: Add localstack to /etc/hosts
+        run: |
+          echo "127.0.0.1 localhost localstack host.docker.internal" | sudo tee -a /etc/hosts
+          cat /etc/hosts
+
+      - name: Create S3 bucket
+        run: docker exec localstack /bin/sh -c "awslocal s3api create-bucket --bucket fsd-bucket --create-bucket-configuration LocationConstraint=eu-west-2 --region eu-west-2"
+
+      - name: Create S3 cors
+        run: |
+          docker exec localstack /bin/sh -c "awslocal s3api put-bucket-cors --bucket fsd-bucket --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"*\"],\"AllowedMethods\": [\"GET\", \"PUT\", \"POST\", \"DELETE\", \"HEAD\"],\"AllowedHeaders\": [\"*\"]}]}'"
+
+      - name: Run e2e tests
+        id: e2e
+        run: yarn e2e-test cypress run
+        continue-on-error: true
+
+      - name: Upload E2E Test Report Application
+        if: success() || failure()
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: e2e-test-report-application
+          path: ./e2e-test/cypress/screenshots
+          retention-days: 1
+
+      - name: Check for errors & exit the job
+        run: |
+          if [ "${{ steps.e2e.outcome }}" == "failure" ]; then
+            echo "Test failures please fix before deploying the service"
+            exit 1
+          fi
