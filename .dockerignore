@@ -1,0 +1,6 @@
+.git
+**/.git
+**/.cache
+**/coverage
+**/.DS_Store
+**/*.log
