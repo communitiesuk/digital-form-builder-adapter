@@ -4,8 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const nodeExternals = require("webpack-node-externals");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const autoprefixer = require("autoprefixer");
 
 const devMode = process.env.NODE_ENV !== "production";
@@ -13,7 +12,7 @@ const prodMode = process.env.NODE_ENV === "production";
 const environment = prodMode ? "production" : "development";
 const logLevel = process.env.REACT_LOG_LEVEL || (prodMode ? "warn" : "debug");
 const reactEnvVariables = new webpack.DefinePlugin({
-  ["REACT_LOG_LEVEL"]: JSON.stringify(`${logLevel}`),
+  ["process.env.REACT_LOG_LEVEL"]: JSON.stringify(`${logLevel}`),
 });
 console.log("****************** building client ******************")
 console.log(`application entry : [${path.resolve(__dirname, "../digital-form-builder/designer/client", "index.tsx")}]\n`)
@@ -21,6 +20,32 @@ console.log(`adapter application entry : [${path.resolve(__dirname, "client", "i
 console.log(`application output : [${path.resolve(__dirname, "dist", "client")}]\n`)
 console.log(`application node_modules : [${path.resolve(__dirname, "../digital-form-builder/node_modules")}]\n`)
 console.log(`adapter application node_modules : [${path.resolve(__dirname, "../digital-form-builder-adapter/node_modules")}\n]`)
+
+function fixGovukImports(url /*, prev */) {
+  const n = url.replace(/\\/g, "/");
+  const m = n.match(/(?:^|\/)node_modules\/govuk-frontend\/(.+)$/);
+  if (m) {
+    const suffix = m[1];
+    if (
+      suffix === "govuk/helpers/colour" ||
+      suffix === "govuk/helpers/_colour.scss"
+    ) {
+      return {
+        file: require.resolve("govuk-frontend/govuk/helpers/_colour.scss"),
+      };
+    }
+    if (suffix === "govuk/all.scss" || suffix === "govuk/all") {
+      return { file: require.resolve("govuk-frontend/govuk/all.scss") };
+    }
+    return {
+      file: path.join(
+        path.dirname(require.resolve("govuk-frontend/package.json")),
+        suffix
+      ),
+    };
+  }
+  return null;
+}
 
 const client = {
   target: "web",
@@ -37,25 +62,30 @@ const client = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
-    modules: [
-      path.resolve(__dirname, "../node_modules")
-    ],
-  },
-  node: {
-    __dirname: false,
+    modules: ["node_modules"],
+    fallback: {
+      fs: false,
+      path: false,
+      crypto: false,
+      stream: false,
+    },
   },
   devtool: "eval-cheap-module-source-map",
   module: {
     rules: [
       {
+        test: /\.m?js$/,
+        resolve: {
+          fullySpecified: false,
+        },
+      },
+      {
         test: /\.(js|jsx|tsx|ts)$/,
-        exclude: [
-          {
-            test: /node_modules/,
-            exclude: /pino/,
-          },
-        ],
-        loader: "babel-loader",
+        exclude: (modulePath) =>
+          /node_modules/.test(modulePath) && !/node_modules[\\/](pino)/.test(modulePath),
+        use: {
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -63,8 +93,6 @@ const client = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: devMode,
-              reloadAll: true,
               publicPath: "../../",
             },
           },
@@ -74,12 +102,19 @@ const client = {
           },
           {
             loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [autoprefixer()],
+              },
+            },
           },
           {
             loader: "sass-loader",
             options: {
+              implementation: require("sass"),
               sassOptions: {
                 outputStyle: "expanded",
+                importer: fixGovukImports,
               },
             },
           },
@@ -111,12 +146,8 @@ const client = {
       hash: prodMode,
     }),
     new MiniCssExtractPlugin({
-      filename: devMode
-        ? "assets/css/[name].css"
-        : "assets/css/[name].[hash].css",
-      chunkFilename: devMode
-        ? "assets/css/[id].css"
-        : "assets/css/[id].[hash].css",
+      filename: devMode ? "assets/css/[name].css" : "assets/css/[name].[contenthash].css",
+      chunkFilename: devMode ? "assets/css/[id].css" : "assets/css/[id].[contenthash].css",
     }),
     new CopyPlugin({
       patterns: [
@@ -145,9 +176,7 @@ const server = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
-    modules: [
-      path.resolve(__dirname, "../node_modules")
-    ],
+    modules: ["node_modules"],
   },
   node: {
     __dirname: false,
@@ -160,17 +189,15 @@ const server = {
       {
         test: /\.(js|jsx|tsx|ts)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        use: {
+          loader: "babel-loader",
+        },
       },
     ],
   },
   externals: [
-    nodeExternals({
-      modulesDir: path.resolve(__dirname, "../digital-form-builder/node_modules"),
-    }),
-    nodeExternals({
-      modulesDir: path.resolve(__dirname, "../digital-form-builder-adapter/node_modules"),
-    }),
+    nodeExternals(),
+    { fsevents: "commonjs fsevents" },
   ],
 };
 
