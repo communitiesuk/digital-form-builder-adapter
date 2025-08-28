@@ -203,21 +203,12 @@ jobs:
           DEFAULT_REGION: eu-west-2
         ports:
           - 4566:4566
-        options: >-
-          --health-cmd="awslocal s3 ls || exit 1"
-          --health-interval=5s --health-retries=30 --health-timeout=3s
       runner:
         image: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
-        options: >-
-          --health-cmd="curl -fsS http://localhost:3000/health || exit 1"
-          --health-interval=5s --health-retries=30 --health-timeout=3s
         ports:
           - 3000:3000
       designer:
         image: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
-        options: >-
-          --health-cmd="curl -fsS http://localhost:3001/health || exit 1"
-          --health-interval=5s --health-retries=30 --health-timeout=3s
         ports:
           - 3001:3001
     needs: [ setup, docker-runner-build, docker-designer-build ]
