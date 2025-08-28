@@ -19,7 +19,9 @@
     "designer": "yarn workspace @communitiesuk/designer",
     "model": "yarn workspace @communitiesuk/model",
     "e2e": "yarn workspace e2e",
-    "e2e-test": "yarn workspace e2e-test"
+    "e2e-test": "yarn workspace e2e-test",
+    "submodules:init": "git submodule sync --recursive && git submodule update --init --recursive",
+    "setup": "yarn run submodules:init && yarn install"
   },
   "resolutions": {
     "@xgovformbuilder/model": "link:./digital-form-builder/model",
