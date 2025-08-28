@@ -197,7 +197,7 @@ jobs:
   e2e-test:
     services:
       localstack:
-        image: localstack/localstack:2
+        image: localstack/localstack:stable
         env:
           SERVICES: s3
           DEFAULT_REGION: eu-west-2
