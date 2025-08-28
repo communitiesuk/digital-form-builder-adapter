@@ -195,6 +195,31 @@ jobs:
           cache-to: type=gha,mode=max,scope=designer
 
   e2e-test:
+    services:
+      localstack:
+        image: localstack/localstack:2
+        env:
+          SERVICES: s3
+          DEFAULT_REGION: eu-west-2
+        ports:
+          - 4566:4566
+        options: >-
+          --health-cmd="awslocal s3 ls || exit 1"
+          --health-interval=5s --health-retries=30 --health-timeout=3s
+      runner:
+        image: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
+        options: >-
+          --health-cmd="curl -fsS http://localhost:3000/health || exit 1"
+          --health-interval=5s --health-retries=30 --health-timeout=3s
+        ports:
+          - 3000:3000
+      designer:
+        image: ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}
+        options: >-
+          --health-cmd="curl -fsS http://localhost:3001/health || exit 1"
+          --health-interval=5s --health-retries=30 --health-timeout=3s
+        ports:
+          - 3001:3001
     needs: [ setup, docker-runner-build, docker-designer-build ]
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/main'
@@ -215,40 +240,12 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: Use Yarn 3.2.2 via Corepack
-        run: |
-          corepack enable
-          corepack prepare yarn@3.2.2 --activate
-          yarn -v
-
-      - name: Ensure workspace-tools plugin
-        run: yarn plugin import workspace-tools
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: |
-            node_modules  # Cache the installed node modules
-            **/node_modules  # Include subfolders if using workspaces
-          key: ${{ runner.os }}-yarn-e2e-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-e2e
-            ${{ runner.os }}-yarn
-
       - name: Setup e2e dependencies
         run: |
           echo "--  Installing dependencies  --"
           yarn install
           echo "--  Install e2e dependencies  --"
           yarn e2e-test install
-
-      - name: Injecting image into docker compose e2e
-        run: |
-          yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
-          yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
-
-      - name: Start containers
-        run: docker compose -f docker-compose.e2e.yml up -d
 
       - name: Add localstack to /etc/hosts
         run: |
