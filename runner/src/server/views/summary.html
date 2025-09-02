@@ -22,10 +22,22 @@
             href: backLink or page.backLink,
             text: (backLinkText or page.backLinkText) if not isReadOnlySummary else "Back to application for funding overview"
         }) }}
+    {% elif not previewMode and (page.backLink or backLink) %}
+        {% if page.backLink %}
+            {{ govukBackLink({
+                href: page.backLink,
+                text: page.backLinkText
+            }) }}
+        {% else %}
+            {{ govukBackLink({
+                href: backLink,
+                text: backLinkText
+            }) }}
+        {% endif %}
     {% endif %}
 {% endblock %}
 {% block content %}
-    <div class="govuk-main-wrapper">
+    <div class="govuk-main-wrapper govuk-!-static-padding-top-0">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
                 {% set hasMultipleSections = (details and details.length > 1 and details[0].items[0] | isArray) %}

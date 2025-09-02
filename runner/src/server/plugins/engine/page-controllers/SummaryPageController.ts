@@ -7,8 +7,9 @@ import {PageController} from "./PageController";
 import {isMultipleApiKey} from "@xgovformbuilder/model";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {redirectTo} from "../util/helper";
-import {UtilHelper} from "../../utils/UtilHelper";
+import {UtilHelper, BackLinkType} from "../../utils/UtilHelper";
 import {UkAddressField} from "../components";
+import { updateProgress, getBackLink } from '../util/navigationUtils';
 
 const LOGGER_DATA = {
     class: "SummaryPageController",
@@ -32,27 +33,24 @@ export class SummaryPageController extends PageController {
 
             const {adapterCacheService} = request.services([]);
             const model = this.model;
+            const startPage = model.def.startPage;
+            //@ts-ignore
+            let state = await adapterCacheService.getState(request);
+            const progress = state.progress || [];
+            const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
 
             // @ts-ignore - ignoring so docs can be generated. Remove when properly typed
             if (this.model.def.skipSummary) {
                 return this.makePostRouteHandler()(request, h);
             }
-            //@ts-ignore
-            let state = await adapterCacheService.getState(request);
-            if (!state.progress) {
+            if (!progress || progress.length === 0) {
                 const currentPath = `/${this.model.basePath}${this.path}${request.url.search}`;
-                const progress = state.progress || [];
                 //@ts-ignore
                 progress.push(currentPath);
                 //@ts-ignore
                 await adapterCacheService.mergeState(request, {progress});
                 //@ts-ignore
                 state = await adapterCacheService.getState(request);
-            }
-            if (state["metadata"] && state["metadata"]["has_eligibility"]) {
-                this.isEligibility = state["metadata"]["has_eligibility"];
-                this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
-                this.backLink = state.callback?.returnUrl;
             }
 
             if (state["metadata"] && state["metadata"]["is_read_only_summary"]) {
@@ -63,9 +61,9 @@ export class SummaryPageController extends PageController {
             }
             //@ts-ignore
             const viewModel = new AdapterSummaryViewModel(this.title, model, state, request, this);
-            
+
             await this.handlePreviewMode(request, viewModel);
-            
+
             if (viewModel.endPage) {
                 return redirectTo(request, h, `/${model.basePath}${viewModel.endPage.path}`);
             }
@@ -74,10 +72,36 @@ export class SummaryPageController extends PageController {
                 //@ts-ignore
                 viewModel.isReadOnlySummary = true;
                 //@ts-ignore
-                viewModel.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
+                viewModel.backLinkText = UtilHelper.getBackLinkText(BackLinkType.Eligibility, this.model.def?.metadata?.isWelsh);
                 //@ts-ignore
                 viewModel.backLink = state.callback?.returnUrl;
             }
+
+            /**
+             * used for when a user clicks the "back" link. Progress is stored in the state. This is a safer alternative to running javascript that pops the history `onclick`.
+             */
+            updateProgress(progress, currentPath);
+
+            await adapterCacheService.mergeState(request, { progress });
+            state = await adapterCacheService.getState(request);
+
+            const isEligibilityForm = this.isEligibility = state["metadata"]?.has_eligibility ?? false
+
+            // Compute back link
+            const { backLink, backLinkText } = getBackLink({
+            progress,
+            thisPath: this.path,
+            currentPath,
+            startPage,
+            backLinkFallback: this.backLinkFallback,
+            returnUrl: state.callback?.returnUrl,
+            isWelsh: this.model.def?.metadata?.isWelsh,
+            isEligibilityForm: isEligibilityForm
+            });
+            //@ts-ignore
+            viewModel.backLink = backLink;
+            //@ts-ignore
+            viewModel.backLinkText = backLinkText;
 
             /**
              * iterates through the errors. If there are errors, a user will be redirected to the page

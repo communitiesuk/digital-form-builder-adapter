@@ -108,6 +108,7 @@ suite("SummaryPageController", () => {
         // Mock adapterCacheService with the methods you need
         const mockAdapterCacheService: any = {
             getState: sinon.stub().resolves(mockState),
+            mergeState: sinon.stub().resolves(),
         };
         // Mock request with state
         const request = {
@@ -116,6 +117,9 @@ suite("SummaryPageController", () => {
             }),
             query: {
                 lang: "en"
+            },
+            url: {
+                search: ""
             },
             yar: {
                 get: sinon.stub().returns("en"),

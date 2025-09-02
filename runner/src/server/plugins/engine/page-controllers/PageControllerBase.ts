@@ -30,8 +30,9 @@ import {AdapterFormModel} from "../models";
 import {ComponentCollection} from "../components";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {proceed, redirectTo} from "../util/helper";
-import {UtilHelper} from "../../utils/UtilHelper";
+import {UtilHelper, BackLinkType } from "../../utils/UtilHelper";
 import {validationOptions} from "./ValidationOptions";
+import { updateProgress, getBackLink } from '../util/navigationUtils';
 
 const FORM_SCHEMA = Symbol("FORM_SCHEMA");
 const STATE_SCHEMA = Symbol("STATE_SCHEMA");
@@ -125,7 +126,9 @@ export class PageControllerBase {
         }
 
         this.backLink = "";
-        this.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh)
+        this.backLinkText = this.model.def?.backLinkText ??
+        UtilHelper.getBackLinkText(BackLinkType.ApplicationOverview, this.model.def?.metadata?.isWelsh);
+
 
         this[FORM_SCHEMA] = this.components.formSchema;
         this[STATE_SCHEMA] = this.components.stateSchema;
@@ -596,11 +599,6 @@ export class PageControllerBase {
                 !isStartPage &&
                 !isInitialisedSession;
 
-            this.backLink = state.callback?.returnUrl ?? progress[progress.length - 2];
-            if (state["metadata"] && state["metadata"]["has_eligibility"]) {
-                this.backLinkText = UtilHelper.getBackLinkText(true, this.model.def?.metadata?.isWelsh);
-            }
-
             if (shouldRedirectToStartPage) {
                 // @ts-ignore
                 return startPage!.startsWith("http")
@@ -678,25 +676,27 @@ export class PageControllerBase {
             /**
              * used for when a user clicks the "back" link. Progress is stored in the state. This is a safer alternative to running javascript that pops the history `onclick`.
              */
-            const lastVisited = progress[progress.length - 1];
-            if (!lastVisited || !lastVisited.startsWith(currentPath)) {
-                if (progress[progress.length - 2] === currentPath) {
-                    progress.pop();
-                } else {
-                    progress.push(currentPath);
-                }
-            }
-            //@ts-ignore
-            await adapterCacheService.mergeState(request, {progress});
-            //@ts-ignore
+            updateProgress(progress, currentPath);
+
+            await adapterCacheService.mergeState(request, { progress });
             state = await adapterCacheService.getState(request);
 
-            viewModel.backLinkText = this.backLinkText;
-            if (state.callback?.returnUrl) {
-                viewModel.backLink = state.callback?.returnUrl;
-            } else {
-                this.backLink = viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
-            }
+            // Compute back link
+            const { backLink, backLinkText } = getBackLink({
+            progress,
+            thisPath: this.path,
+            currentPath,
+            startPage,
+            backLinkFallback: this.backLinkFallback,
+            returnUrl: state.callback?.returnUrl,
+            isWelsh: this.model.def?.metadata?.isWelsh,
+            isEligibilityForm: state["metadata"]?.has_eligibility ?? false
+            });
+            //@ts-ignore
+            this.backLink = viewModel.backLink = backLink;
+            //@ts-ignore
+            this.backLinkText = viewModel.backLinkText = backLinkText;
+
             viewModel.continueButtonText = "Save and continue"
             request.logger.info(`[PageControllerBase][${state.metadata?.form_session_identifier}] summary value ${JSON.stringify(viewModel.components)}`);
             this.updatePrivacyPolicyUrlAndContactUsUrl(state, viewModel)
@@ -824,13 +824,13 @@ export class PageControllerBase {
          * If there are any errors, render the page with the parsed errors
          */
         if (formResult.errors) {
-            return this.renderWithErrors(request, h, payload, num, progress, formResult.errors);
+            return this.renderWithErrors(request, h, payload, num, progress, formResult.errors, state);
         }
 
         const newState = this.getStateFromValidForm(formResult.value);
         const stateResult = this.validateState(newState, request);
         if (stateResult.errors) {
-            return this.renderWithErrors(request, h, payload, num, progress, stateResult.errors);
+            return this.renderWithErrors(request, h, payload, num, progress, stateResult.errors, state);
         }
 
         let update = this.getPartialMergeState(stateResult.value);
@@ -1049,10 +1049,29 @@ export class PageControllerBase {
         }
     }
 
-    private renderWithErrors(request, h, payload, num, progress, errors) {
+    private renderWithErrors(request, h, payload, num, progress, errors, state) {
         const viewModel = this.getViewModel(payload, num, errors);
-        viewModel.backLink = progress[progress.length - 2] ?? this.backLinkFallback;
-        viewModel.backLinkText = this.model.def?.backLinkText ?? UtilHelper.getBackLinkText(false, this.model.def?.metadata?.isWelsh);
+
+        const previewMode = state?.previewMode || false;
+
+        if (!previewMode) {
+            // Compute back link
+            const { backLink, backLinkText } = getBackLink({
+                progress,
+                thisPath: this.path,
+                currentPath: `/${this.model.basePath}${this.path}${request.url.search}`,
+                startPage: this.model.def.startPage,
+                backLinkFallback: this.backLinkFallback,
+                returnUrl: state.callback?.returnUrl,
+                isWelsh: this.model.def?.metadata?.isWelsh,
+                isEligibilityForm: state["metadata"]?.has_eligibility ?? false
+            });
+            //@ts-ignore
+            this.backLink = viewModel.backLink = backLink;
+            //@ts-ignore
+            this.backLinkText = viewModel.backLinkText = backLinkText;
+        }
+
         this.setPhaseTag(viewModel);
         this.setFeedbackDetails(viewModel, request);
 
