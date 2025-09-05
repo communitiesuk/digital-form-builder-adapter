@@ -735,7 +735,13 @@ export class PageControllerBase {
 
     private async setExistingFilesToClientSideFileUpload(state: FormSubmissionState, viewModel: any, currentPath: string, request: HapiRequest) {
         const {s3UploadService} = request.services([]);
-        const form_session_identifier = state.metadata?.form_session_identifier ?? "";
+        let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+        
+        // Also check query parameter if not in state
+        if (!form_session_identifier && request.query.form_session_identifier) {
+            form_session_identifier = request.query.form_session_identifier;
+        }
+        
         if (form_session_identifier) {
             const comp = viewModel.components.find((c) => c.type === "ClientSideFileUploadField");
             if (comp) {
@@ -750,14 +756,21 @@ export class PageControllerBase {
 
     async existingFilesToClientSideFileUpload(state: FormSubmissionState, viewModel: any, request: HapiRequest) {
         const {s3UploadService} = request.services([]);
-        const form_session_identifier = state.metadata?.form_session_identifier ?? "";
+        let form_session_identifier = state.metadata?.form_session_identifier ?? "";
+        
+        // Also check query parameter if not in state
+        if (!form_session_identifier && request.query.form_session_identifier) {
+            form_session_identifier = request.query.form_session_identifier;
+        }
+        
         if (form_session_identifier) {
             for (const detail of viewModel.details) {
                 const comps = detail.items.filter((c) => c.type === "ClientSideFileUploadField");
                 for (const comp of comps) {
                     const folderPath = `${comp.pageId}/${comp.name}`;
-                    const files = await s3UploadService.listFilesInBucketFolder(`${form_session_identifier}${folderPath}`, form_session_identifier);
-                    comp.value = {folderPath, files,};
+                    const s3Key = `${form_session_identifier}${folderPath}`;
+                    const files = await s3UploadService.listFilesInBucketFolder(s3Key, form_session_identifier);
+                    comp.value = {folderPath, files};
                 }
             }
         }
