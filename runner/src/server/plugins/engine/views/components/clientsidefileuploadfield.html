@@ -407,7 +407,7 @@
         const updateProgressBarContent = (file, text) => {
             let tableFileUploadStatusIndicatorArea = file.previewElement.querySelector('.dz-progress-bar');
             if (!tableFileUploadStatusIndicatorArea) {
-                tableFileUploadStatusIndicatorArea = document.querySelector('[data-dz-uploadprogress]');
+                tableFileUploadStatusIndicatorArea = file.previewElement.querySelector('[data-dz-uploadprogress]');
                 if (tableFileUploadStatusIndicatorArea !== null) {
                     tableFileUploadStatusIndicatorArea.textContent = text;
                 }
