@@ -459,14 +459,18 @@
                         }
                         file.scanStatus = 'ready';
                     } else {
-                        file.pollingTimeoutId = setTimeout(() => checkTagsUntilFound(file), POLL_INTERVAL_MS);
+                        // Add random delay (0-500ms) to stagger polling requests and avoid race conditions
+                        const randomDelay = Math.floor(Math.random() * 500);
+                        file.pollingTimeoutId = setTimeout(() => checkTagsUntilFound(file), POLL_INTERVAL_MS + randomDelay);
                         updateProgressBarContent(file, `{{ i18nGetTranslation("components.clientSideFileUpload.table.fileActionInProgress") }}`);
                     }
                 } else {
                     updateProgressBarContent(file, `{{ i18nGetTranslation("components.clientSideFileUpload.table.fileActionFailed") }}`);
                 }
             };
-            await checkTagsUntilFound(file);
+            // Add initial random delay to stagger the first polling request
+            const initialDelay = Math.floor(Math.random() * 1000);
+            setTimeout(() => checkTagsUntilFound(file), initialDelay);
         });
 
         let preExistingFiles = [];
