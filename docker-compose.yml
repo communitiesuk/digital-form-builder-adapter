@@ -33,7 +33,6 @@ services:
       - "3009:3009"
     environment:
       - CHOKIDAR_USEPOLLING=true
-      - PREVIEW_MODE=true
       - LAST_COMMIT
       - LAST_TAG
       - JWT_AUTH_ENABLED=false

@@ -1,6 +1,5 @@
 import {RegisterApi} from "./RegisterApi";
 import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
-import {Options} from "../types/PluginOptions";
 import {FormPayload} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 // @ts-ignore
 import Boom from "boom";
@@ -22,11 +21,7 @@ export class RegisterFormsApi implements RegisterApi {
      * for its own purposes so if you're changing these endpoints you likely need to go and amend
      * the designer too!
      */
-    register(server: HapiServer, options: Options) {
-        const {previewMode} = options;
-        const disabledRouteDetailString =
-            "A request was made however previewing is disabled. See environment variable details in runner/README.md if this error is not expected.";
-
+    register(server: HapiServer) {
         server.route({
             method: "post",
             path: "/publish",
@@ -35,17 +30,8 @@ export class RegisterFormsApi implements RegisterApi {
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
-                // @ts-ignore
-                if (!previewMode || previewMode==="false") {
-                    request.logger.error(
-                        [`POST /publish`, "previewModeError"],
-                        disabledRouteDetailString
-                    );
-                    throw Boom.forbidden("Publishing is disabled");
-                }
                 const payload = request.payload as FormPayload;
                 const {id, configuration} = payload;
-
                 const parsedConfiguration =
                     typeof configuration === "string"
                         ? JSON.parse(configuration)
@@ -67,14 +53,6 @@ export class RegisterFormsApi implements RegisterApi {
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
-                // @ts-ignore
-                if (!previewMode || previewMode==="false") {
-                    request.logger.error(
-                        [`GET /published/${id}`, "previewModeError"],
-                        disabledRouteDetailString
-                    );
-                    throw Boom.unauthorized("publishing is disabled");
-                }
                 const {adapterCacheService} = request.services([]);
                 const form = await adapterCacheService.getFormAdapterModel(id, request);
                 if (!form) {
@@ -93,14 +71,6 @@ export class RegisterFormsApi implements RegisterApi {
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
-                // @ts-ignore
-                if (!previewMode || previewMode==="false") {
-                    request.logger.error(
-                        [`GET /published`, "previewModeError"],
-                        disabledRouteDetailString
-                    );
-                    throw Boom.unauthorized("publishing is disabled.");
-                }
                 return h
                     .response(JSON.stringify(await adapterCacheService.getFormConfigurations(request)))
                     .code(200);
@@ -163,7 +133,6 @@ export class RegisterFormsApi implements RegisterApi {
         /**
          * Middleware to check if the user session is still valid.
          *
-         * Changes behaviour only when previewMode is FALSE, meaning PRODUCTION
          * If the session is dropped, it will throw a client timeout error
          */
         const checkUserSession = async (
@@ -175,10 +144,7 @@ export class RegisterFormsApi implements RegisterApi {
             // @ts-ignore
             const state = await adapterCacheService.getState(request);
 
-            // @ts-ignore isNotPreview is always false on production
-            const isNotPreview = !previewMode || previewMode==="false"
-
-            if (isNotPreview && !state.callback) {
+            if (config.copilotEnv == "prod" && !state.callback) {
                 // if you are here the session likely dropped
                 request.logger.error(["checkUserSession"], `Session expired ${request.yar.id}`);
 
