@@ -12,7 +12,7 @@ import {PluginSpecificConfiguration} from "@hapi/hapi";
 import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
 
-export class RegisterFormPublishApi implements RegisterApi {
+export class RegisterFormsApi implements RegisterApi {
 
     /**
      * The following publish endpoints (/publish, /published/{id}, /published)
