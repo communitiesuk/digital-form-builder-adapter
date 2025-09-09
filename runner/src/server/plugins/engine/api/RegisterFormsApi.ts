@@ -12,71 +12,7 @@ import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
 
 export class RegisterFormsApi implements RegisterApi {
-
-    /**
-     * The following publish endpoints (/publish, /published/{id}, /published)
-     * are used from the designer for operating in 'preview' mode.
-     * I.E. Designs saved in the designer can be accessed in the runner for viewing.
-     * The designer also uses these endpoints as a persistence mechanism for storing and retrieving data
-     * for its own purposes so if you're changing these endpoints you likely need to go and amend
-     * the designer too!
-     */
     register(server: HapiServer) {
-        server.route({
-            method: "post",
-            path: "/publish",
-            options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-            },
-            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {adapterCacheService} = request.services([]);
-                const payload = request.payload as FormPayload;
-                const {id, configuration} = payload;
-                const parsedConfiguration =
-                    typeof configuration === "string"
-                        ? JSON.parse(configuration)
-                        : configuration;
-                if (parsedConfiguration.configuration) {
-                    await adapterCacheService.setFormConfiguration(id, parsedConfiguration, request.server)
-                } else {
-                    await adapterCacheService.setFormConfiguration(id, {configuration: parsedConfiguration}, request.server)
-                }
-                return h.response({}).code(204);
-            }
-        });
-
-        server.route({
-            method: "get",
-            path: "/published/{id}",
-            options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-            },
-            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {id} = request.params;
-                const {adapterCacheService} = request.services([]);
-                const form = await adapterCacheService.getFormAdapterModel(id, request);
-                if (!form) {
-                    return h.response({}).code(204);
-                }
-                const {values} = await adapterCacheService.getFormAdapterModel(id, request);
-                return h.response(JSON.stringify({id, values})).code(200);
-            }
-        });
-
-        server.route({
-            method: "get",
-            path: "/published",
-            options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-            },
-            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {adapterCacheService} = request.services([]);
-                return h
-                    .response(JSON.stringify(await adapterCacheService.getFormConfigurations(request)))
-                    .code(200);
-            }
-        });
-
         server.route({
             method: "get",
             path: "/",
