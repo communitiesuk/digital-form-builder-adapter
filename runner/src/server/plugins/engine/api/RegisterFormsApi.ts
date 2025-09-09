@@ -1,6 +1,5 @@
 import {RegisterApi} from "./RegisterApi";
 import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
-import {FormPayload} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 // @ts-ignore
 import Boom from "boom";
 import {PluginUtil} from "../util/PluginUtil";
@@ -13,11 +12,62 @@ import {config} from "../../utils/AdapterConfigurationSchema";
 
 export class RegisterFormsApi implements RegisterApi {
     register(server: HapiServer) {
+        const {s3UploadService} = server.services([]);
+
+        // Middleware to prepopulate fields from query parameters
+        const queryParamPreHandler = async (request: HapiRequest, h: HapiResponseToolkit) => {
+            const {query} = request;
+            const {id} = request.params;
+            const {adapterCacheService} = request.services([]);
+            const model = await adapterCacheService.getFormAdapterModel(id, request);
+            if (!model) {
+                throw Boom.notFound("No form found for id");
+            }
+            const prePopFields = model.fieldsForPrePopulation;
+            if (Object.keys(query).length === 0 || Object.keys(prePopFields).length === 0) {
+                return h.continue;
+            }
+            // @ts-ignore
+            const state = await adapterCacheService.getState(request);
+            const newValues = getValidStateFromQueryParameters(prePopFields, query, state);
+            // @ts-ignore
+            await adapterCacheService.mergeState(request, newValues);
+            if (Object.keys(newValues).length > 0) {
+                h.request.pre.hasPrepopulatedSessionFromQueryParameter = true;
+            }
+            return h.continue;
+        };
+
+        // Middleware to check if the user session is still valid
+        const checkUserSession = async (request: HapiRequest, h: HapiResponseToolkit) => {
+            const {adapterCacheService} = request.services([]);
+            // @ts-ignore
+            const state = await adapterCacheService.getState(request);
+            if (config.copilotEnv == "prod" && !state.callback) {
+                // If you are here the session likely dropped
+                request.logger.error(["checkUserSession"], `Session expired ${request.yar.id}`);
+                throw Boom.clientTimeout("Session expired");
+            }
+            return h.continue;
+        };
+
+        // Middleware to handle file uploads
+        const handleFiles = async (request: HapiRequest, h: HapiResponseToolkit) => {
+            const {path, id} = request.params;
+            const {adapterCacheService} = request.services([]);
+            const model = await adapterCacheService.getFormAdapterModel(id, request);
+            const page = model?.pages.find(
+                (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
+            );
+            // @ts-ignore
+            return s3UploadService.handleUploadRequest(request, h, page.pageDef);
+        };
+
         server.route({
             method: "get",
             path: "/",
             options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                description: "Default route - redirects to a default form if configured",
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
@@ -32,77 +82,12 @@ export class RegisterFormsApi implements RegisterApi {
             }
         });
 
-        const queryParamPreHandler = async (
-            request: HapiRequest,
-            h: HapiResponseToolkit
-        ) => {
-            const {query} = request;
-            const {id} = request.params;
-            const {adapterCacheService} = request.services([]);
-            const model = await adapterCacheService.getFormAdapterModel(id, request);
-            if (!model) {
-                throw Boom.notFound("No form found for id");
-            }
-
-            const prePopFields = model.fieldsForPrePopulation;
-            if (
-                Object.keys(query).length === 0 ||
-                Object.keys(prePopFields).length === 0
-            ) {
-                return h.continue;
-            }
-            // @ts-ignore
-            const state = await adapterCacheService.getState(request);
-            const newValues = getValidStateFromQueryParameters(
-                prePopFields,
-                query,
-                state
-            );
-            // @ts-ignore
-            await adapterCacheService.mergeState(request, newValues);
-            if (Object.keys(newValues).length > 0) {
-                h.request.pre.hasPrepopulatedSessionFromQueryParameter = true;
-            }
-            return h.continue;
-        };
-
-        /**
-         * Middleware to check if the user session is still valid.
-         *
-         * If the session is dropped, it will throw a client timeout error
-         */
-        const checkUserSession = async (
-            request: HapiRequest,
-            h: HapiResponseToolkit
-        ) => {
-            const {adapterCacheService} = request.services([]);
-
-            // @ts-ignore
-            const state = await adapterCacheService.getState(request);
-
-            if (config.copilotEnv == "prod" && !state.callback) {
-                // if you are here the session likely dropped
-                request.logger.error(["checkUserSession"], `Session expired ${request.yar.id}`);
-
-                throw Boom.clientTimeout("Session expired");
-            }
-
-            return h.continue;
-        }
-
         server.route({
             method: "get",
             path: "/{id}",
             options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-                pre: [
-                    {
-                        method: queryParamPreHandler
-                    },
-                    {
-                        method: checkUserSession
-                    }
-                ]
+                description: "Form start page",
+                pre: [{method: queryParamPreHandler}, {method: checkUserSession}],
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
@@ -115,19 +100,13 @@ export class RegisterFormsApi implements RegisterApi {
             }
         });
 
-        const getOptions: any = {
+        server.route({
             method: "get",
             path: "/{id}/{path*}",
             options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-                pre: [
-                    {
-                        method: queryParamPreHandler
-                    },
-                    {
-                        method: checkUserSession
-                    }
-                ],
+                description: "Form page",
+                pre: [{method: queryParamPreHandler}, {method: checkUserSession}],
+                auth: config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {path, id} = request.params;
@@ -144,55 +123,13 @@ export class RegisterFormsApi implements RegisterApi {
                 }
                 throw Boom.notFound("No form or page found");
             }
-        }
+        });
 
-        // TODO: Stop being naughty! Conditionally disabling auth for pre-prod envs is a temporary measure for getting
-        // FAB into production
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
-            getOptions.options.auth = jwtAuthStrategyName
-        }
-
-        server.route(getOptions);
-
-        const {s3UploadService} = server.services([]);
-
-        const handleFiles = async (request: HapiRequest, h: HapiResponseToolkit) => {
-            const {path, id} = request.params;
-            const {adapterCacheService} = request.services([]);
-            const model = await adapterCacheService.getFormAdapterModel(id, request);
-            const page = model?.pages.find(
-                (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
-            );
-            // @ts-ignore
-            return s3UploadService.handleUploadRequest(request, h, page.pageDef);
-        };
-
-        const postHandler = async (
-            request: HapiRequest,
-            h: HapiResponseToolkit
-        ) => {
-            const {path, id} = request.params;
-            const {adapterCacheService} = request.services([]);
-            const model = await adapterCacheService.getFormAdapterModel(id, request);
-
-            if (model) {
-                const page = model.pages.find(
-                    (page) => page.path.replace(/^\//, "") === path.replace(/^\//, "")
-                );
-
-                if (page) {
-                    return page.makePostRouteHandler()(request, h);
-                }
-            }
-
-            throw Boom.notFound("No form of path found");
-        };
-
-        let postConfig: any = {
+        server.route({
             method: "post",
             path: "/{id}/{path*}",
             options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                description: "Form submission",
                 plugins: <PluginSpecificConfiguration>{
                     "hapi-rate-limit": {
                         userPathLimit: 10
@@ -210,15 +147,22 @@ export class RegisterFormsApi implements RegisterApi {
                     }
                 },
                 pre: [{method: handleFiles}],
-                handler: postHandler,
-            }
-        }
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
-            postConfig.options.auth = jwtAuthStrategyName
-        }
-        server.route(postConfig);
-
+                auth: config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
+            },
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                const {path, id} = request.params;
+                const {adapterCacheService} = request.services([]);
+                const model = await adapterCacheService.getFormAdapterModel(id, request);
+                if (model) {
+                    const page = model.pages.find(
+                        (page) => page.path.replace(/^\//, "") === path.replace(/^\//, "")
+                    );
+                    if (page) {
+                        return page.makePostRouteHandler()(request, h);
+                    }
+                }
+                throw Boom.notFound("No form or path found");
+            },
+        });
     }
-
-
 }
