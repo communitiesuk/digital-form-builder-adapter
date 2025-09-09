@@ -15,7 +15,7 @@ import sinon from 'sinon';
 //@ts-ignore
 import adapterCacheService from "../../../../../../src/server/services";
 import {PluginUtil} from "../../../../../../src/server/plugins/engine/util/PluginUtil";
-import cheerio from "cheerio";
+const cheerio = require("cheerio");
 import mockView from "./shared/MockView";
 
 const {expect} = Code;
