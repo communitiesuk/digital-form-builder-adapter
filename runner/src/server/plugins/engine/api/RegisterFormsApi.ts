@@ -18,44 +18,6 @@ export class RegisterFormsApi implements RegisterApi {
     register(server: HapiServer, options: Options) {
 
         server.route({
-            method: "post",
-            path: "/publish",
-            options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-                // Require JWT authentication for publishing
-                auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
-            },
-            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {adapterCacheService} = request.services([]);
-                const payload = request.payload as FormPayload;
-                const {id, configuration} = payload;
-
-                const parsedConfiguration =
-                    typeof configuration === "string"
-                        ? JSON.parse(configuration)
-                        : configuration;
-                
-                // Always publish to preview namespace
-                if (parsedConfiguration.configuration) {
-                    await adapterCacheService.setFormConfiguration(
-                        id, 
-                        parsedConfiguration, 
-                        request.server,
-                        FormNamespace.Preview
-                    )
-                } else {
-                    await adapterCacheService.setFormConfiguration(
-                        id, 
-                        {configuration: parsedConfiguration}, 
-                        request.server,
-                        FormNamespace.Preview
-                    )
-                }
-                return h.response({}).code(204);
-            }
-        });
-
-        server.route({
             method: "get",
             path: "/",
             options: {
