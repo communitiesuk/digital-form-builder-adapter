@@ -13,7 +13,7 @@ import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
 import {FormNamespace, getNamespaceFromRequest} from "../../../services/AdapterCacheService";
 
-export class RegisterFormPublishApi implements RegisterApi {
+export class RegisterFormsApi implements RegisterApi {
 
     register(server: HapiServer, options: Options) {
 
