@@ -9,7 +9,6 @@ import inert from "@hapi/inert";
 import Schmervice from "schmervice";
 import blipp from "blipp";
 
-import {ConfigureFormsPlugin} from "./plugins/ConfigureFormsPlugin";
 import {configureRateLimitPlugin} from "../../../digital-form-builder/runner/src/server/plugins/rateLimit";
 import {configureBlankiePlugin} from "../../../digital-form-builder/runner/src/server/plugins/blankie";
 import {configureCrumbPlugin} from "../../../digital-form-builder/runner/src/server/plugins/crumb";
@@ -40,6 +39,7 @@ import LanguagePlugin from "./plugins/LanguagePlugin";
 import {TranslationLoaderService} from "./services/TranslationLoaderService";
 import {WebhookService} from "./services/WebhookService";
 import {pluginLog} from "./plugins/logging";
+import { FormRoutesPlugin } from "./plugins/engine/FormRoutesPlugin";
 
 const Sentry = require('@sentry/node');
 
@@ -202,7 +202,7 @@ async function createServer(routeConfig: RouteConfig) {
     // @ts-ignore
     await server.register(ViewLoaderPlugin);
     // @ts-ignore
-    await server.register(ConfigureFormsPlugin(formFileName, formFilePath, options));
+    await server.register(FormRoutesPlugin);
     await server.register(pluginApplicationStatus);
     await server.register(publicRouterPlugin);
     await server.register(errorHandlerPlugin);
