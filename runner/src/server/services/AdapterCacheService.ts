@@ -15,8 +15,7 @@ import Crypto from 'crypto';
 import {HapiRequest, HapiServer} from "../types";
 import {AdapterFormModel} from "../plugins/engine/models";
 import Boom from "boom";
-import {FormConfiguration} from "@xgovformbuilder/model";
-import {AdapterSchema} from "@communitiesuk/model";
+import { PreAwardApiService, PublishedFormResponse } from "./PreAwardApiService";
 
 const partition = "cache";
 const LOGGER_DATA = {
@@ -36,64 +35,10 @@ if (process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI) {
     redisUri = process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI;
 }
 
-export const FORMS_KEY_PREFIX = "forms:cache:"
+export const FORMS_KEY_PREFIX = "forms"
 
 enum ADDITIONAL_IDENTIFIER {
     Confirmation = ":confirmation",
-}
-
-// Storage adapter interface
-interface StorageAdapter {
-    get(key: string): Promise<string | null>;
-    set(key: string, value: string, options?: any): Promise<void>;
-    getKeys(pattern: string): Promise<string[]>;
-}
-
-// Redis storage adapter implementation
-class RedisStorageAdapter implements StorageAdapter {
-    constructor(private redis: Redis) {}
-    
-    async get(key: string): Promise<string | null> {
-        return this.redis.get(key);
-    }
-    
-    async set(key: string, value: string): Promise<void> {
-        await this.redis.set(key, value);
-    }
-    
-    async getKeys(pattern: string): Promise<string[]> {
-        return this.redis.keys(pattern);
-    }
-}
-
-// In-memory storage adapter implementation
-class InMemoryStorageAdapter implements StorageAdapter {
-    private formKeys: Set<string> = new Set();
-    
-    constructor(private cache: any) {}
-    
-    async get(key: string): Promise<string | null> {
-        return this.cache.get(key);
-    }
-    
-    async set(key: string, value: string, options?: any): Promise<void> {
-        // Track form keys for listing purposes
-        if (key.startsWith(FORMS_KEY_PREFIX)) {
-            this.formKeys.add(key);
-        }
-        
-        // Default to no expiration for form configs
-        const cacheOptions = options || {expiresIn: 0};
-        await this.cache.set(key, value, cacheOptions);
-    }
-    
-    async getKeys(pattern: string): Promise<string[]> {
-        // For in-memory, return tracked form keys that match the pattern
-        if (pattern === `${FORMS_KEY_PREFIX}*`) {
-            return Array.from(this.formKeys);
-        }
-        return [];
-    }
 }
 
 const createRedisClient = (): Redis | null => {
@@ -113,33 +58,33 @@ const createRedisClient = (): Redis | null => {
 };
 
 export class AdapterCacheService extends CacheService {
-    private storageAdapter: StorageAdapter;
+    private logger: any;
+    private apiService: PreAwardApiService;
+    private formStorage: Redis | any;
 
     constructor(server: HapiServer) {
         //@ts-ignore
         super(server);
+        this.logger = server.logger;
+        this.apiService = server.services([]).preAwardApiService;
         const redisClient = this.getRedisClient();
         if (redisClient) {
-            //@ts-ignore
-            server.app.redis = redisClient;
-            this.storageAdapter = new RedisStorageAdapter(redisClient);
+            this.formStorage = redisClient;
         } else {
             // Starting up the in memory cache
             this.cache.client.start();
-            //@ts-ignore
-            server.app.inMemoryFormKeys = [];
-            this.storageAdapter = new InMemoryStorageAdapter(this.cache);
+            this.formStorage = this.cache;
         }
     }
 
     async activateSession(jwt, request): Promise<{ redirectPath: string }> {
-        request.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
+        this.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
         const initialisedSession = await this.cache.get(this.JWTKey(jwt));
-        request.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
+        this.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
         const {decoded} = Jwt.token.decode(jwt);
         const {payload}: { payload: DecodedSessionToken } = decoded;
         const userSessionKey = {segment: partition, id: `${request.yar.id}:${payload.group}`};
-        request.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
+        this.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
         const {redirectPath} = await super.activateSession(jwt, request);
         let redirectPathNew = redirectPath
         const form_session_identifier = initialisedSession.metadata?.form_session_identifier;
@@ -148,7 +93,7 @@ export class AdapterCacheService extends CacheService {
             redirectPathNew = `${redirectPathNew}?form_session_identifier=${form_session_identifier}`;
         }
         if (config.overwriteInitialisedSession) {
-            request.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
+            this.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
             this.cache.set(userSessionKey, initialisedSession, sessionTimeout);
         } else {
             const currentSession = await this.cache.get(userSessionKey);
@@ -156,12 +101,12 @@ export class AdapterCacheService extends CacheService {
                 ...currentSession,
                 ...initialisedSession,
             };
-            request.logger.info("[ACTIVATE-SESSION] Merging user session with initialisedSession");
+            this.logger.info("[ACTIVATE-SESSION] Merging user session with initialisedSession");
             this.cache.set(userSessionKey, mergedSession, sessionTimeout);
         }
-        request.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
+        this.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
         const key = this.JWTKey(jwt);
-        request.logger.info(`[ACTIVATE-SESSION] drop key ${JSON.stringify(key)}`);
+        this.logger.info(`[ACTIVATE-SESSION] drop key ${JSON.stringify(key)}`);
         await this.cache.drop(key);
         return {
             redirectPath: redirectPathNew,
@@ -182,96 +127,10 @@ export class AdapterCacheService extends CacheService {
         if (request.query.form_session_identifier) {
             id = `${id}:${request.query.form_session_identifier}`;
         }
-        request.logger.info(`[ACTIVATE-SESSION] session key ${id} and segment is ${partition}`);
         return {
             segment: partition,
             id: `${id}${additionalIdentifier ?? ""}`,
         };
-    }
-
-    /**
-     * handling form configuration's in a redis cache to easily distribute them among instance
-     * * If given fom id is not available, it will generate a hash based on the configuration, And it will be saved in redis cache
-     * * If hash is change then updating the redis
-     * @param formId form id
-     * @param configuration form definition configurations
-     * @param server server object
-     */
-    async setFormConfiguration(formId: string, configuration: any): Promise<void> {
-        if (!formId || !configuration) return;
-        const hashValue = Crypto.createHash('sha256')
-            .update(JSON.stringify(configuration))
-            .digest('hex');
-        const key = `${FORMS_KEY_PREFIX}${formId}`;
-        try {
-            const existingConfigString = await this.storageAdapter.get(key);
-            
-            if (existingConfigString === null) {
-                // Adding new config with the hash value
-                const stringConfig = JSON.stringify({
-                    ...configuration,
-                    id: configuration.id,
-                    hash: hashValue
-                });
-                await this.storageAdapter.set(key, stringConfig);
-            } else {
-                // Check if hash has changed
-                const existingConfig = JSON.parse(existingConfigString);
-                if (existingConfig?.hash !== hashValue) {
-                    // Hash has changed, update the configuration
-                    const stringConfig = JSON.stringify({
-                        ...configuration,
-                        id: configuration.id,
-                        hash: hashValue
-                    });
-                    await this.storageAdapter.set(key, stringConfig);
-                }
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    async getFormAdapterModel(formId: string, request: HapiRequest): Promise<AdapterFormModel> {
-        const {translationLoaderService} = request.services([]);
-        const translations = translationLoaderService.getTranslations();
-        const jsonDataString = await this.storageAdapter.get(`${FORMS_KEY_PREFIX}${formId}`);
-        if (jsonDataString !== null) {
-            const configObj = JSON.parse(jsonDataString);
-            return new AdapterFormModel(configObj.configuration, {
-                basePath: configObj.id ? configObj.id : formId,
-                hash: configObj.hash,
-                previewMode: true,
-                translationEn: translations.en,
-                translationCy: translations.cy
-            });
-        }
-        request.logger.error({
-            ...LOGGER_DATA,
-            message: `[FORM-CACHE] Cannot find the form ${formId}`
-        });
-        throw Boom.notFound("Cannot find the given form");
-    }
-
-    async getFormConfigurations(): Promise<FormConfiguration[]> {
-        const keys = await this.storageAdapter.getKeys(`${FORMS_KEY_PREFIX}*`);
-        const configs: FormConfiguration[] = [];
-        for (const key of keys) {
-            const configString = await this.storageAdapter.get(key);
-            if (configString) {
-                const configObj = JSON.parse(configString);
-                const result = AdapterSchema.validate(configObj.configuration, {abortEarly: false});
-                configs.push(
-                    new FormConfiguration(
-                        key.replace(FORMS_KEY_PREFIX, ""),
-                        result.value.name,
-                        undefined,
-                        result.value.feedback?.feedbackForm
-                    )
-                );
-            }
-        }
-        return configs;
     }
 
     private getRedisClient(): Redis | null {
@@ -284,6 +143,109 @@ export class AdapterCacheService extends CacheService {
        }
        return client;
    }
+
+    /**
+     * Validates cached form against Pre-Award API.
+     */
+    private async validateCachedForm(formId: string, cachedHash: string, request: HapiRequest): Promise<boolean> {
+        try {
+            const currentHash = await this.apiService.getFormHash(formId, request);
+            return currentHash === cachedHash;
+        } catch (error) {
+            // If we can't validate, assume cache is valid
+            this.logger.warn({
+                ...LOGGER_DATA,
+                message: `Could not validate cache for form ${formId}, using cached version`
+            });
+            return true;
+        }
+    }
+
+    /**
+     * Fetches form from Pre-Award API and caches it.
+     */
+    private async fetchAndCacheForm(formId: string, request: HapiRequest): Promise<PublishedFormResponse | null> {
+        try {
+            const apiResponse = await this.apiService.getPublishedForm(formId, request);
+            if (!apiResponse) return null;
+            const formsCacheKey = `${FORMS_KEY_PREFIX}:${formId}`;
+            await this.formStorage.set(formsCacheKey, JSON.stringify(apiResponse));
+            this.logger.info({
+                ...LOGGER_DATA,
+                message: `Cached form ${formId} from Pre-Award API`
+            });
+            return apiResponse as PublishedFormResponse;
+        } catch (error) {
+            this.logger.error({
+                ...LOGGER_DATA,
+                message: `Failed to fetch form ${formId}`,
+                error: error
+            });
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves form configuration, either from cache or Pre-Award API.
+     */
+    async getFormAdapterModel(formId: string, request: HapiRequest): Promise<AdapterFormModel> {
+        const {translationLoaderService} = request.services([]);
+        const translations = translationLoaderService.getTranslations();
+        const formCacheKey = `${FORMS_KEY_PREFIX}:${formId}`;
+        const formSessionIdentifier = request.query.form_session_identifier;
+        const formSessionCacheKey = formSessionIdentifier ? `${formCacheKey}:${formSessionIdentifier}` : null;
+        const jsonDataString = await this.formStorage.get(formCacheKey);
+        let configObj = null;
+        if (jsonDataString !== null) {
+            // Cache hit
+            configObj = JSON.parse(jsonDataString);
+            const sessionValidated = formSessionCacheKey ? await this.formStorage.get(formSessionCacheKey) : false;
+            if (!sessionValidated) {
+                // Validate cached form on first access in session
+                this.logger.debug({
+                    ...LOGGER_DATA,
+                    message: `First access of form ${formId} in session ${request.yar.id}, validating cache`
+                });
+                const isValid = await this.validateCachedForm(formId, configObj.hash, request);
+                if (!isValid) {
+                    this.logger.debug({
+                        ...LOGGER_DATA,
+                        message: `Cache stale for form ${formId}, fetching fresh version`
+                    });
+                    const freshConfig = await this.fetchAndCacheForm(formId, request);
+                    if (freshConfig) {
+                        configObj = freshConfig;
+                    }
+                } else {
+                    this.logger.debug({
+                        ...LOGGER_DATA,
+                        message: `Cache valid for form ${formId}`
+                    });
+                }
+            }
+        } else {
+            // Cache miss - fetch from Pre-Award API
+            this.logger.info({
+                ...LOGGER_DATA,
+                message: `Cache miss for form ${formId}, fetching from Pre-Award API`
+            });
+            configObj = await this.fetchAndCacheForm(formId, request);
+            if (!configObj) {
+                throw Boom.notFound(`Form '${formId}' not found`);
+            }
+        }
+        if (formSessionCacheKey) {
+            // Mark form as validated in this session
+            await this.formStorage.setex(formSessionCacheKey, sessionTimeout / 1000, true);
+        }
+        return new AdapterFormModel(configObj.configuration, {
+            basePath: formId,
+            hash: configObj.hash,
+            previewMode: true,
+            translationEn: translations.en,
+            translationCy: translations.cy
+        });
+    }
 }
 
 export const catboxProvider = () => {
