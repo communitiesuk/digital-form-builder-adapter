@@ -60,11 +60,13 @@ const createRedisClient = (): Redis | null => {
 export class AdapterCacheService extends CacheService {
     private apiService: PreAwardApiService;
     private formStorage: Redis | any;
+    private logger: any;
 
     constructor(server: HapiServer) {
         //@ts-ignore
         super(server);
         this.apiService = server.services([]).preAwardApiService;
+        this.logger = server.logger;
         const redisClient = this.getRedisClient();
         if (redisClient) {
             this.formStorage = redisClient;
@@ -80,13 +82,13 @@ export class AdapterCacheService extends CacheService {
     }
 
     async activateSession(jwt, request): Promise<{ redirectPath: string }> {
-        request.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
+        this.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
         const initialisedSession = await this.cache.get(this.JWTKey(jwt));
-        request.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
+        this.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
         const {decoded} = Jwt.token.decode(jwt);
         const {payload}: { payload: DecodedSessionToken } = decoded;
         const userSessionKey = {segment: partition, id: `${request.yar.id}:${payload.group}`};
-        request.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
+        this.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
         const {redirectPath} = await super.activateSession(jwt, request);
         let redirectPathNew = redirectPath
         const form_session_identifier = initialisedSession.metadata?.form_session_identifier;
@@ -95,7 +97,7 @@ export class AdapterCacheService extends CacheService {
             redirectPathNew = `${redirectPathNew}?form_session_identifier=${form_session_identifier}`;
         }
         if (config.overwriteInitialisedSession) {
-            request.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
+            this.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
             this.cache.set(userSessionKey, initialisedSession, sessionTimeout);
         } else {
             const currentSession = await this.cache.get(userSessionKey);
@@ -103,12 +105,12 @@ export class AdapterCacheService extends CacheService {
                 ...currentSession,
                 ...initialisedSession,
             };
-            request.logger.info("[ACTIVATE-SESSION] Merging user session with initialisedSession");
+            this.logger.info("[ACTIVATE-SESSION] Merging user session with initialisedSession");
             this.cache.set(userSessionKey, mergedSession, sessionTimeout);
         }
-        request.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
+        this.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
         const key = this.JWTKey(jwt);
-        request.logger.info(`[ACTIVATE-SESSION] drop key ${JSON.stringify(key)}`);
+        this.logger.info(`[ACTIVATE-SESSION] drop key ${JSON.stringify(key)}`);
         await this.cache.drop(key);
         return {
             redirectPath: redirectPathNew,
@@ -129,7 +131,7 @@ export class AdapterCacheService extends CacheService {
         if (request.query.form_session_identifier) {
             id = `${id}:${request.query.form_session_identifier}`;
         }
-        request.logger.info(`[ACTIVATE-SESSION] session key ${id} and segment is ${partition}`);
+        this.logger.info(`[ACTIVATE-SESSION] session key ${id} and segment is ${partition}`);
         return {
             segment: partition,
             id: `${id}${additionalIdentifier ?? ""}`,
@@ -139,13 +141,13 @@ export class AdapterCacheService extends CacheService {
     /**
      * Validates cached form against Pre-Award API.
      */
-    private async validateCachedForm(formId: string, cachedHash: string, request: HapiRequest): Promise<boolean> {
+    private async validateCachedForm(formId: string, cachedHash: string): Promise<boolean> {
         try {
             const currentHash = await this.apiService.getFormHash(formId);
             return currentHash === cachedHash;
         } catch (error) {
             // If we can't validate, assume cache is valid
-            request.logger.warn({
+            this.logger.warn({
                 ...LOGGER_DATA,
                 message: `Could not validate cache for form ${formId}, using cached version`
             });
@@ -156,19 +158,19 @@ export class AdapterCacheService extends CacheService {
     /**
      * Fetches form from Pre-Award API and caches it.
      */
-    private async fetchAndCacheForm(formId: string, request: HapiRequest): Promise<PublishedFormResponse | null> {
+    private async fetchAndCacheForm(formId: string): Promise<PublishedFormResponse | null> {
         try {
             const apiResponse = await this.apiService.getPublishedForm(formId);
             if (!apiResponse) return null;
             const formsCacheKey = `${FORMS_KEY_PREFIX}:${formId}`;
             await this.formStorage.set(formsCacheKey, JSON.stringify(apiResponse));
-            request.logger.info({
+            this.logger.info({
                 ...LOGGER_DATA,
                 message: `Cached form ${formId} from Pre-Award API`
             });
             return apiResponse as PublishedFormResponse;
         } catch (error) {
-            request.logger.error({
+            this.logger.error({
                 ...LOGGER_DATA,
                 message: `Failed to fetch form ${formId}`,
                 error: error
@@ -229,53 +231,53 @@ export class AdapterCacheService extends CacheService {
         let configObj = null;
         if (jsonDataString !== null) {
             // Cache hit
-            request.logger.debug({
+            this.logger.debug({
                 ...LOGGER_DATA,
                 message: `Cache hit for form ${formId}`
             });
             configObj = JSON.parse(jsonDataString);
             if (!sessionValidated) {
                 // Validate cached form once per session
-                request.logger.debug({
+                this.logger.debug({
                     ...LOGGER_DATA,
                     message: `First access of form ${formId} in yar session ${request.yar.id}, validating cache`
                 });
-                const isValid = await this.validateCachedForm(formId, configObj.hash, request);
+                const isValid = await this.validateCachedForm(formId, configObj.hash);
                 if (!isValid) {
-                    request.logger.info({
+                    this.logger.info({
                         ...LOGGER_DATA,
                         message: `Cache stale for form ${formId}, fetching fresh version`
                     });
-                    const freshConfig = await this.fetchAndCacheForm(formId, request);
+                    const freshConfig = await this.fetchAndCacheForm(formId);
                     if (freshConfig) {
                         configObj = freshConfig;
                     }
                 } else {
-                    request.logger.debug({
+                    this.logger.debug({
                         ...LOGGER_DATA,
                         message: `Cache valid for form ${formId}`
                     });
                 }
             } else {
-                request.logger.debug({
+                this.logger.debug({
                     ...LOGGER_DATA,
                     message: `Form ${formId} already validated in yar session ${request.yar.id}`
                 });
             }
         } else {
             // Cache miss - fetch from Pre-Award API
-            request.logger.info({
+            this.logger.info({
                 ...LOGGER_DATA,
                 message: `Cache miss for form ${formId}, fetching from Pre-Award API`
             });
-            configObj = await this.fetchAndCacheForm(formId, request);
+            configObj = await this.fetchAndCacheForm(formId);
             if (!configObj) {
                 throw Boom.notFound(`Form '${formId}' not found`);
             }
         }
         if (!sessionValidated) {
             // Mark form as validated in this session
-            request.logger.debug({
+            this.logger.debug({
                 ...LOGGER_DATA,
                 message: `Marking form ${formId} as validated in yar session ${request.yar.id}`
             });
