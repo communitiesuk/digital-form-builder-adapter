@@ -253,54 +253,6 @@ export class AdapterCacheService extends CacheService {
         throw Boom.notFound("Cannot find the given form");
     }
 
-    async getFormConfigurations(request: HapiRequest) {
-        //@ts-ignore
-        if (request.server.app.redis) {
-            return await this.getFormDisplayConfigurationsFromRedisCache(request);
-        } else {
-            return await this.getFormConfigurationsFromInMemoryCache(request);
-        }
-
-    }
-
-    private async getFormConfigurationsFromInMemoryCache(request: HapiRequest) {
-        const configs: FormConfiguration[] = []
-        //@ts-ignore
-        for (const key of request.server.app.inMemoryFormKeys) {
-            const configObj = JSON.parse(await this.cache.get(`${key}`));
-            const result = AdapterSchema.validate(configObj.configuration, {abortEarly: false});
-            configs.push(
-                new FormConfiguration(
-                    key.replace(FORMS_KEY_PREFIX, ""),
-                    result.value.name,
-                    undefined,
-                    result.value.feedback?.feedbackForm
-                )
-            )
-        }
-        return configs;
-    }
-
-    private async getFormDisplayConfigurationsFromRedisCache(request: HapiRequest) {
-        //@ts-ignore
-        const redisClient: Redis = request.server.app.redis;
-        const keys = await redisClient.keys(`${FORMS_KEY_PREFIX}*`);
-        const configs: FormConfiguration[] = []
-        for (const key of keys) {
-            const configObj = JSON.parse(await redisClient.get(`${key}`));
-            const result = AdapterSchema.validate(configObj.configuration, {abortEarly: false});
-            configs.push(
-                new FormConfiguration(
-                    key.replace(FORMS_KEY_PREFIX, ""),
-                    result.value.name,
-                    undefined,
-                    result.value.feedback?.feedbackForm
-                )
-            )
-        }
-        return configs;
-    }
-
     private getRedisClient() {
         if (redisHost || redisUri) {
             const redisOptions: {
