@@ -15,6 +15,7 @@ import Crypto from 'crypto';
 import {HapiRequest, HapiServer} from "../types";
 import {AdapterFormModel} from "../plugins/engine/models";
 import Boom from "boom";
+import { PreAwardApiService, PublishedFormResponse } from "./PreAwardApiService";
 
 const partition = "cache";
 const LOGGER_DATA = {
@@ -34,7 +35,7 @@ if (process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI) {
     redisUri = process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI;
 }
 
-export const FORMS_KEY_PREFIX = "forms:cache:"
+export const FORMS_KEY_PREFIX = "forms"
 
 enum ADDITIONAL_IDENTIFIER {
     Confirmation = ":confirmation",
@@ -57,11 +58,13 @@ const createRedisClient = (): Redis | null => {
 };
 
 export class AdapterCacheService extends CacheService {
+    private apiService: PreAwardApiService;
     private formStorage: Redis | any;
 
     constructor(server: HapiServer) {
         //@ts-ignore
         super(server);
+        this.apiService = server.services([]).preAwardApiService;
         const redisClient = this.getRedisClient();
         if (redisClient) {
             this.formStorage = redisClient;
@@ -134,19 +137,55 @@ export class AdapterCacheService extends CacheService {
     }
 
     /**
-     * handling form configuration's in a redis cache to easily distribute them among instance
-     * * If given fom id is not available, it will generate a hash based on the configuration, And it will be saved in redis cache
-     * * If hash is change then updating the redis
-     * @param formId form id
-     * @param configuration form definition configurations
-     * @param server server object
+     * Validates cached form against Pre-Award API.
+     */
+    private async validateCachedForm(formId: string, cachedHash: string, request: HapiRequest): Promise<boolean> {
+        try {
+            const currentHash = await this.apiService.getFormHash(formId);
+            return currentHash === cachedHash;
+        } catch (error) {
+            // If we can't validate, assume cache is valid
+            request.logger.warn({
+                ...LOGGER_DATA,
+                message: `Could not validate cache for form ${formId}, using cached version`
+            });
+            return true;
+        }
+    }
+
+    /**
+     * Fetches form from Pre-Award API and caches it.
+     */
+    private async fetchAndCacheForm(formId: string, request: HapiRequest): Promise<PublishedFormResponse | null> {
+        try {
+            const apiResponse = await this.apiService.getPublishedForm(formId);
+            if (!apiResponse) return null;
+            const formsCacheKey = `${FORMS_KEY_PREFIX}:${formId}`;
+            await this.formStorage.set(formsCacheKey, JSON.stringify(apiResponse));
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `Cached form ${formId} from Pre-Award API`
+            });
+            return apiResponse as PublishedFormResponse;
+        } catch (error) {
+            request.logger.error({
+                ...LOGGER_DATA,
+                message: `Failed to fetch form ${formId}`,
+                error: error
+            });
+            return null;
+        }
+    }
+
+    /**
+     * This is used to ensure unit tests can populate the cache
      */
     async setFormConfiguration(formId: string, configuration: any): Promise<void> {
         if (!formId || !configuration) return;
         const hashValue = Crypto.createHash('sha256')
             .update(JSON.stringify(configuration))
             .digest('hex');
-        const key = `${FORMS_KEY_PREFIX}${formId}`;
+        const key = `${FORMS_KEY_PREFIX}:${formId}`;
         try {
             const existingConfigString = await this.formStorage.get(key);
             if (existingConfigString === null) {
@@ -175,25 +214,80 @@ export class AdapterCacheService extends CacheService {
         }
     }
 
+    /**
+     * Retrieves form configuration, either from cache or Pre-Award API.
+     */
     async getFormAdapterModel(formId: string, request: HapiRequest): Promise<AdapterFormModel> {
         const {translationLoaderService} = request.services([]);
         const translations = translationLoaderService.getTranslations();
-        const jsonDataString = await this.formStorage.get(`${FORMS_KEY_PREFIX}${formId}`);
+        const formCacheKey = `${FORMS_KEY_PREFIX}:${formId}`;
+        const jsonDataString = await this.formStorage.get(formCacheKey);
+        // We use a separate key to track if we've validated that this form is up-to-date in this session
+        // We use yar.id instead of form_session_identifier as form_session_identifier is not present in the first request
+        const formSessionCacheKey = `${formCacheKey}:${request.yar.id}`;
+        const sessionValidated = await this.formStorage.get(formSessionCacheKey);
+        let configObj = null;
         if (jsonDataString !== null) {
-            const configObj = JSON.parse(jsonDataString);
-            return new AdapterFormModel(configObj.configuration, {
-                basePath: configObj.id ? configObj.id : formId,
-                hash: configObj.hash,
-                previewMode: true,
-                translationEn: translations.en,
-                translationCy: translations.cy
+            // Cache hit
+            request.logger.debug({
+                ...LOGGER_DATA,
+                message: `Cache hit for form ${formId}`
             });
+            configObj = JSON.parse(jsonDataString);
+            if (!sessionValidated) {
+                // Validate cached form once per session
+                request.logger.debug({
+                    ...LOGGER_DATA,
+                    message: `First access of form ${formId} in yar session ${request.yar.id}, validating cache`
+                });
+                const isValid = await this.validateCachedForm(formId, configObj.hash, request);
+                if (!isValid) {
+                    request.logger.info({
+                        ...LOGGER_DATA,
+                        message: `Cache stale for form ${formId}, fetching fresh version`
+                    });
+                    const freshConfig = await this.fetchAndCacheForm(formId, request);
+                    if (freshConfig) {
+                        configObj = freshConfig;
+                    }
+                } else {
+                    request.logger.debug({
+                        ...LOGGER_DATA,
+                        message: `Cache valid for form ${formId}`
+                    });
+                }
+            } else {
+                request.logger.debug({
+                    ...LOGGER_DATA,
+                    message: `Form ${formId} already validated in yar session ${request.yar.id}`
+                });
+            }
+        } else {
+            // Cache miss - fetch from Pre-Award API
+            request.logger.info({
+                ...LOGGER_DATA,
+                message: `Cache miss for form ${formId}, fetching from Pre-Award API`
+            });
+            configObj = await this.fetchAndCacheForm(formId, request);
+            if (!configObj) {
+                throw Boom.notFound(`Form '${formId}' not found`);
+            }
         }
-        request.logger.error({
-            ...LOGGER_DATA,
-            message: `[FORM-CACHE] Cannot find the form ${formId}`
+        if (!sessionValidated) {
+            // Mark form as validated in this session
+            request.logger.debug({
+                ...LOGGER_DATA,
+                message: `Marking form ${formId} as validated in yar session ${request.yar.id}`
+            });
+            await this.formStorage.setex(formSessionCacheKey, sessionTimeout / 1000, true);
+        }
+        return new AdapterFormModel(configObj.configuration, {
+            basePath: formId,
+            hash: configObj.hash,
+            previewMode: true,
+            translationEn: translations.en,
+            translationCy: translations.cy
         });
-        throw Boom.notFound("Cannot find the given form");
     }
 
     private getRedisClient(): Redis | null {
