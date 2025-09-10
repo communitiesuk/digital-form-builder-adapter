@@ -17,9 +17,6 @@ import {AdapterFormModel} from "../plugins/engine/models";
 import Boom from "boom";
 
 const partition = "cache";
-const LOGGER_DATA = {
-    class: "AdapterCacheService",
-}
 const {
     redisHost,
     redisPort,
@@ -75,10 +72,12 @@ const createRedisClient = (): Redis | null => {
 
 export class AdapterCacheService extends CacheService {
     private formStorage: Redis | any;
+    private logger: any;
 
     constructor(server: HapiServer) {
         //@ts-ignore
         super(server);
+        this.logger = server.logger;
         const redisClient = createRedisClient();
         if (redisClient) {
             this.formStorage = redisClient;
@@ -94,13 +93,13 @@ export class AdapterCacheService extends CacheService {
     }
 
     async activateSession(jwt, request): Promise<{ redirectPath: string }> {
-        request.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
+        this.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
         const initialisedSession = await this.cache.get(this.JWTKey(jwt));
-        request.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
+        this.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
         const {decoded} = Jwt.token.decode(jwt);
         const {payload}: { payload: DecodedSessionToken } = decoded;
         const userSessionKey = {segment: partition, id: `${request.yar.id}:${payload.group}`};
-        request.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
+        this.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
         const {redirectPath} = await super.activateSession(jwt, request);
         let redirectPathNew = redirectPath
         const form_session_identifier = initialisedSession.metadata?.form_session_identifier;
@@ -109,7 +108,7 @@ export class AdapterCacheService extends CacheService {
             redirectPathNew = `${redirectPathNew}?form_session_identifier=${form_session_identifier}`;
         }
         if (config.overwriteInitialisedSession) {
-            request.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
+            this.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
             this.cache.set(userSessionKey, initialisedSession, sessionTimeout);
         } else {
             const currentSession = await this.cache.get(userSessionKey);
@@ -117,12 +116,12 @@ export class AdapterCacheService extends CacheService {
                 ...currentSession,
                 ...initialisedSession,
             };
-            request.logger.info("[ACTIVATE-SESSION] Merging user session with initialisedSession");
+            this.logger.info("[ACTIVATE-SESSION] Merging user session with initialisedSession");
             this.cache.set(userSessionKey, mergedSession, sessionTimeout);
         }
-        request.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
+        this.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
         const key = this.JWTKey(jwt);
-        request.logger.info(`[ACTIVATE-SESSION] drop key ${JSON.stringify(key)}`);
+        this.logger.info(`[ACTIVATE-SESSION] drop key ${JSON.stringify(key)}`);
         await this.cache.drop(key);
         return {
             redirectPath: redirectPathNew,
@@ -143,7 +142,7 @@ export class AdapterCacheService extends CacheService {
         if (request.query.form_session_identifier) {
             id = `${id}:${request.query.form_session_identifier}`;
         }
-        request.logger.info(`[ACTIVATE-SESSION] session key ${id} and segment is ${partition}`);
+        this.logger.info(`[ACTIVATE-SESSION] session key ${id} and segment is ${partition}`);
         return {
             segment: partition,
             id: `${id}${additionalIdentifier ?? ""}`,
@@ -221,10 +220,7 @@ export class AdapterCacheService extends CacheService {
                 translationCy: translations.cy
             });
         }
-        request.logger.error({
-            ...LOGGER_DATA,
-            message: `[FORM-CACHE] Cannot find the form ${formId} in ${namespace} namespace`
-        });
+        this.logger.error(`[FORM-CACHE] Cannot find the form ${formId} in ${namespace} namespace`);
         throw Boom.notFound("Cannot find the given form");
     }
 }
