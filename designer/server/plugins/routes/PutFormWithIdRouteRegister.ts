@@ -33,12 +33,11 @@ export const putFormWithIdRouteRegister: ServerRoute = {
                     `${id}`,
                     JSON.stringify(value)
                 );
-                if (config.usePreAwardApi) {
-                    const formWithName = { ...value, name: id};
-                    await preAwardApiClient.createOrUpdateForm(id, formWithName);
-                } else {
-                    await publish(id, value);
-                }
+                // Save to Pre-Award API
+                const formWithName = { ...value, name: id};
+                await preAwardApiClient.createOrUpdateForm(id, formWithName);
+                // Publish to runner for preview
+                await publish(id, value);
                 return h.response({ok: true}).code(204);
             } catch (err) {
                 //@ts-ignore

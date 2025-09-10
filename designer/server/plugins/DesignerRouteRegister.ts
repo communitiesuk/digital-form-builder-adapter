@@ -120,7 +120,7 @@ export const designerPlugin = {
                             store: envStore(process.env),
                             definitions: {
                                 featureEditPageDuplicateButton: {default: false},
-                                usePreAwardApi: {default: config.usePreAwardApi},
+
                             },
                         });
 

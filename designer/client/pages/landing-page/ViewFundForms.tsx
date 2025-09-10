@@ -13,7 +13,7 @@ type Props = {
 type State = {
     configs: { Key: string; DisplayName: string }[];
     loading?: boolean;
-    usePreAwardApi?: boolean;
+
 };
 
 export class ViewFundForms extends Component<Props, State> {
@@ -28,17 +28,10 @@ export class ViewFundForms extends Component<Props, State> {
 
     async componentDidMount() {
         try {
-            // Check if Pre-Award API is enabled
-            const featureResponse = await window.fetch("/feature-toggles");
-            const features = await featureResponse.json();
-            const usePreAwardApi = features.usePreAwardApi || false;
-
             const configs = await formConfigurationApi.loadConfigurations();
-            
             this.setState({
                 loading: false,
                 configs,
-                usePreAwardApi,
             });
         } catch (error) {
             logger.error("ViewFundForms componentDidMount", error);
@@ -48,25 +41,8 @@ export class ViewFundForms extends Component<Props, State> {
 
     selectForm = async (form) => {
         try {
-            if (this.state.usePreAwardApi) {
-                // With Pre-Award API, go directly to edit the draft
-                this.props.history.push(`/designer/${form}`);
-            } else {
-                // Original behavior - clone the form
-                const response = await window.fetch("/api/new", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        selected: {Key: form},
-                        name: "",
-                    }),
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                    },
-                });
-                const responseJson = await response.json();
-                this.props.history.push(`/designer/${responseJson.id}`);
-            }
+            // Always go directly to edit the form from Pre-Award API
+            this.props.history.push(`/designer/${form}`);
         } catch (e) {
             logger.error("ChooseExisting", e);
         }

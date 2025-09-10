@@ -12,51 +12,31 @@ export const registerNewFormWithRunner: ServerRoute = {
   options: {
     ...originalNewConfig.registerNewFormWithRunner.options,
     handler: async (request: HapiRequest, h) => {
-      if (config.usePreAwardApi) {
-        const { persistenceService } = request.services([]);
-        const { selected, name } = request.payload as any;
-
-        if (name && name !== "" && !name.match(/^[a-zA-Z0-9 _-]+$/)) {
-          return h
-            .response("Form name should not contain special characters")
-            .type("application/json")
-            .code(400);
-        }
-
-        const newName = name === "" ? nanoid(10) : name;
-
-        try {
-          if (selected.Key === "New") {
-            if (config.persistentBackend !== "preview") {
-              await persistenceService.uploadConfiguration(
-                `${newName}.json`,
-                JSON.stringify(newFormJson)
-              );
-            }
-            const formWithName = { ...newFormJson, name: newName };
-            await preAwardApiClient.createOrUpdateForm(newName, formWithName);
-          } else {
-            const existingForm = await preAwardApiClient.getFormDraft(selected.Key);
-            const formWithNewName = { ...existingForm, name: newName };
-            await preAwardApiClient.createOrUpdateForm(newName, formWithNewName);
-          }
-
-          const response = JSON.stringify({
-            id: `${newName}`,
-            previewUrl: config.previewUrl,
-          });
-          return h.response(response).type("application/json").code(200);
-        } catch (e) {
-          request.logger.error(e);
-          return h
-            .response("Designer could not connect to runner instance.")
-            .type("text/plain")
-            .code(401);
-        }
+      const { selected, name } = request.payload as any;
+      
+      if (name && name !== "" && !name.match(/^[a-zA-Z0-9 _-]+$/)) {
+        return h
+          .response("Form name should not contain special characters")
+          .type("application/json")
+          .code(400);
       }
-      // Fall back to original handler
-      // @ts-ignore
-      return originalNewConfig.registerNewFormWithRunner.options.handler(request, h);
+      
+      const newName = name === "" ? nanoid(10) : name;
+      
+      if (selected.Key === "New") {
+        const formWithName = { ...newFormJson, name: newName };
+        await preAwardApiClient.createOrUpdateForm(newName, formWithName);
+      } else {
+        const existingForm = await preAwardApiClient.getFormDraft(selected.Key);
+        const formWithNewName = { ...existingForm, name: newName };
+        await preAwardApiClient.createOrUpdateForm(newName, formWithNewName);
+      }
+      
+      const response = JSON.stringify({
+        id: `${newName}`,
+        previewUrl: config.previewUrl,
+      });
+      return h.response(response).type("application/json").code(200);
     },
   },
 };
