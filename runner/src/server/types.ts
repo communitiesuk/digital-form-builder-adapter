@@ -17,6 +17,7 @@ import {AdapterCacheService, S3UploadService} from "./services";
 import {AdapterStatusService} from "./services";
 import {WebhookService} from "./services/WebhookService";
 import {TranslationLoaderService} from "./services/TranslationLoaderService";
+import { PreAwardApiService } from "./services/PreAwardApiService";
 
 
 export type ChangeRequest = {
@@ -32,6 +33,7 @@ export type Services = (services: string[]) => {
     webhookService: WebhookService;
     adapterStatusService: AdapterStatusService;
     translationLoaderService: TranslationLoaderService;
+    preAwardApiService: PreAwardApiService;
 };
 
 export type RouteConfig = {
