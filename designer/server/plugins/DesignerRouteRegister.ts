@@ -1,6 +1,8 @@
-import {newConfig, api, app} from "../../../digital-form-builder/designer/server/plugins/routes";
+import {app} from "../../../digital-form-builder/designer/server/plugins/routes";
 import {envStore, flagg} from "flagg";
 import {putFormWithIdRouteRegister} from "./routes/PutFormWithIdRouteRegister";
+import {registerNewFormWithRunner} from "./routes/newConfig";
+import {getFormWithId, getAllPersistedConfigurations, log} from "./routes/api";
 import config from "../config";
 import {jwtAuthStrategyName} from "./AuthPlugin";
 
@@ -83,15 +85,15 @@ export const designerPlugin = {
                 // @ts-ignore
                 app.redirectOldUrlToDesigner.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                newConfig.registerNewFormWithRunner.options.auth = jwtAuthStrategyName
+                registerNewFormWithRunner.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                api.getFormWithId.options.auth = jwtAuthStrategyName
+                getFormWithId.options.auth = jwtAuthStrategyName
                 // @ts-ignore
                 putFormWithIdRouteRegister.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                api.getAllPersistedConfigurations.options.auth = jwtAuthStrategyName
+                getAllPersistedConfigurations.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                api.log.options.auth = jwtAuthStrategyName
+                log.options.auth = jwtAuthStrategyName
             }
 
             server.route(startRoute);
@@ -118,6 +120,7 @@ export const designerPlugin = {
                             store: envStore(process.env),
                             definitions: {
                                 featureEditPageDuplicateButton: {default: false},
+                                usePreAwardApi: {default: config.usePreAwardApi},
                             },
                         });
 
@@ -128,11 +131,11 @@ export const designerPlugin = {
                 },
             });
 
-            server.route(newConfig.registerNewFormWithRunner);
-            server.route(api.getFormWithId);
+            server.route(registerNewFormWithRunner);
+            server.route(getFormWithId);
             server.route(putFormWithIdRouteRegister);
-            server.route(api.getAllPersistedConfigurations);
-            server.route(api.log);
+            server.route(getAllPersistedConfigurations);
+            server.route(log);
         },
     },
 };

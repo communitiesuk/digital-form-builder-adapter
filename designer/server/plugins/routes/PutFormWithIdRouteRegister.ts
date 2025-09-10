@@ -1,6 +1,8 @@
 import {ServerRoute} from "@hapi/hapi";
 import {AdapterSchema} from "@communitiesuk/model";
 import {publish} from "../../../../digital-form-builder/designer/server/lib/publish";
+import {preAwardApiClient} from "../../lib/preAwardApiClient";
+import config from "../../config";
 
 
 export const putFormWithIdRouteRegister: ServerRoute = {
@@ -31,7 +33,12 @@ export const putFormWithIdRouteRegister: ServerRoute = {
                     `${id}`,
                     JSON.stringify(value)
                 );
-                await publish(id, value);
+                if (config.usePreAwardApi) {
+                    const formWithName = { ...value, name: id};
+                    await preAwardApiClient.createOrUpdateForm(id, formWithName);
+                } else {
+                    await publish(id, value);
+                }
                 return h.response({ok: true}).code(204);
             } catch (err) {
                 //@ts-ignore

@@ -31,6 +31,8 @@ export interface Config {
     authCookieName: string,
     sslKey: string,
     sslCert: string,
+    usePreAwardApi: boolean,
+    preAwardApiUrl: string,
 }
 
 // server-side storage expiration - defaults to 20 minutes
@@ -65,6 +67,8 @@ const schema = joi.object({
     authCookieName: joi.string().optional(),
     sslKey: joi.string().optional(),
     sslCert: joi.string().optional(),
+    usePreAwardApi: joi.boolean().default(false),
+    preAwardApiUrl: joi.string().default("https://api.communities.gov.localhost:4004"),
 });
 
 // Build config
@@ -90,6 +94,8 @@ const config = {
     authCookieName: process.env.AUTH_COOKIE_NAME,
     sslKey: process.env.SSL_KEY,
     sslCert: process.env.SSL_CERT,
+    usePreAwardApi: process.env.USE_PRE_AWARD_API,
+    preAwardApiUrl: process.env.PRE_AWARD_API_URL || "https://api.communities.gov.localhost:4004",
 };
 
 // Validate config
