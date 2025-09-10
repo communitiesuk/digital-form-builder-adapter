@@ -8,8 +8,15 @@ export interface FormHashResponse {
 }
 
 export interface PublishedFormResponse {
-    configuration: any;
+    created_at: string;
+    display_name: string;
     hash: string;
+    id: string;
+    is_published: boolean;
+    published_at: string;
+    published_json: any;
+    updated_at: string;
+    url_path: string;
 }
 
 const LOGGER_DATA = {
