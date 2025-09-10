@@ -114,4 +114,6 @@ module.exports = {
   copilotEnv: "",
 
   enableVirusScan: false,
+
+  preAwardApiUrl: "https://api.communities.gov.localhost:4004/forms"
 };

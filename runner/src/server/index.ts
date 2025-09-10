@@ -39,6 +39,7 @@ import LanguagePlugin from "./plugins/LanguagePlugin";
 import {TranslationLoaderService} from "./services/TranslationLoaderService";
 import {WebhookService} from "./services/WebhookService";
 import {pluginLog} from "./plugins/logging";
+import { PreAwardApiService } from "./services/PreAwardApiService";
 import { FormRoutesPlugin } from "./plugins/engine/FormRoutesPlugin";
 
 const Sentry = require('@sentry/node');
@@ -133,6 +134,7 @@ async function createServer(routeConfig: RouteConfig) {
     await server.register(pluginAuth);
     await server.register(LanguagePlugin);
 
+    server.registerService([PreAwardApiService]);
     server.registerService([AdapterCacheService, NotifyService, PayService, WebhookService, AddressService, TranslationLoaderService]);
     if (config.isE2EModeEnabled && config.isE2EModeEnabled == "true") {
         console.log("E2E Mode enabled")
