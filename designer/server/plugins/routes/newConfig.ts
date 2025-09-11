@@ -1,16 +1,19 @@
+import { newConfig as originalNewConfig } from "../../../../digital-form-builder/designer/server/plugins/routes";
+import { preAwardApiClient } from "../../lib/preAwardApiClient";
 import config from "../../config";
-import newFormJson from "../../../../digital-form-builder/designer/new-form.json";
-import { nanoid } from "nanoid";
-import { publish } from "../../lib/publish";
 import { ServerRoute } from "@hapi/hapi";
+import { HapiRequest } from "../../../../digital-form-builder/designer/server/types";
+import { nanoid } from "nanoid";
+import newFormJson from "../../../../digital-form-builder/designer/new-form.json";
+import {publish} from "../../lib/publish";
 
+// Extend the original registerNewFormWithRunner with Pre-Award API support
 export const registerNewFormWithRunner: ServerRoute = {
-  method: "post",
-  path: "/api/new",
+  ...originalNewConfig.registerNewFormWithRunner,
   options: {
-    handler: async (request, h) => {
-      const { persistenceService } = request.services([]);
-      const { selected, name } = request.payload;
+    ...originalNewConfig.registerNewFormWithRunner.options,
+    handler: async (request: HapiRequest, h) => {
+      const { selected, name } = request.payload as any;
 
       if (name && name !== "" && !name.match(/^[a-zA-Z0-9 _-]+$/)) {
         return h
@@ -21,27 +24,10 @@ export const registerNewFormWithRunner: ServerRoute = {
 
       const newName = name === "" ? nanoid(10) : name;
 
-      try {
-        if (selected.Key === "New") {
-          if (config.persistentBackend !== "preview") {
-            await persistenceService.uploadConfiguration(
-              `${newName}.json`,
-              JSON.stringify(newFormJson)
-            );
-          }
-          await publish(newName, newFormJson, request);
-        } else {
-          await persistenceService.copyConfiguration(
-            `${selected.Key}`,
-            newName
-          );
-        }
-      } catch (e) {
-        request.logger.error(e);
-        return h
-          .response("Designer could not connect to runner instance.")
-          .type("text/plain")
-          .code(401);
+      if (selected.Key === "New") {
+        const formData = { name: newName, form_json: newFormJson };
+        await preAwardApiClient.createOrUpdateForm(formData);
+        await publish(newName, newFormJson, request);
       }
 
       const response = JSON.stringify({
