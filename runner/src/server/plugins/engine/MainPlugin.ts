@@ -18,7 +18,7 @@ export const plugin = {
         let countError = 0;
         for (const config of configs) {
             try {
-                await adapterCacheService.setFormConfiguration(config.id, config, server);
+                await adapterCacheService.setFormConfiguration(config.id, config);
                 countOk++;
             } catch (e) {
                 countError++;

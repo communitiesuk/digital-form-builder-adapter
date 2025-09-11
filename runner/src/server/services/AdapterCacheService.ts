@@ -15,8 +15,6 @@ import Crypto from 'crypto';
 import {HapiRequest, HapiServer} from "../types";
 import {AdapterFormModel} from "../plugins/engine/models";
 import Boom from "boom";
-import {FormConfiguration} from "@xgovformbuilder/model";
-import {AdapterSchema} from "@communitiesuk/model";
 
 const partition = "cache";
 const LOGGER_DATA = {
@@ -59,22 +57,26 @@ const createRedisClient = (): Redis | null => {
 };
 
 export class AdapterCacheService extends CacheService {
+    private formStorage: Redis | any;
 
     constructor(server: HapiServer) {
         //@ts-ignore
         super(server);
-        //@ts-ignore
-        server.app.redis = this.getRedisClient()
-        //@ts-ignore
-        if (!server.app.redis) {
-            // starting up the in memory cache
+        const redisClient = this.getRedisClient();
+        if (redisClient) {
+            this.formStorage = redisClient;
+        } else {
+            // Starting up the in memory cache
             this.cache.client.start();
-            //@ts-ignore
-            server.app.inMemoryFormKeys = []
+            this.formStorage = {
+                get: (key) => this.cache.get(key),
+                set: (key, value) => this.cache.set(key, value, {expiresIn: 0}),
+                setex: (key, ttl, value) => this.cache.set(key, value, {expiresIn: ttl}),
+            }
         }
     }
 
-    async activateSession(jwt, request) {
+    async activateSession(jwt, request): Promise<{ redirectPath: string }> {
         request.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
         const initialisedSession = await this.cache.get(this.JWTKey(jwt));
         request.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
@@ -83,14 +85,12 @@ export class AdapterCacheService extends CacheService {
         const userSessionKey = {segment: partition, id: `${request.yar.id}:${payload.group}`};
         request.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
         const {redirectPath} = await super.activateSession(jwt, request);
-
         let redirectPathNew = redirectPath
         const form_session_identifier = initialisedSession.metadata?.form_session_identifier;
         if (form_session_identifier) {
             userSessionKey.id = `${userSessionKey.id}:${form_session_identifier}`;
             redirectPathNew = `${redirectPathNew}?form_session_identifier=${form_session_identifier}`;
         }
-
         if (config.overwriteInitialisedSession) {
             request.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
             this.cache.set(userSessionKey, initialisedSession, sessionTimeout);
@@ -120,7 +120,7 @@ export class AdapterCacheService extends CacheService {
      * @param additionalIdentifier - appended to the id
      */
     //@ts-ignore
-    Key(request: HapiRequest, additionalIdentifier?: ADDITIONAL_IDENTIFIER) {
+    Key(request: HapiRequest, additionalIdentifier?: ADDITIONAL_IDENTIFIER): { segment: string; id: string } {
         let id = `${request.yar.id}:${request.params.id}`;
 
         if (request.query.form_session_identifier) {
@@ -141,43 +141,33 @@ export class AdapterCacheService extends CacheService {
      * @param configuration form definition configurations
      * @param server server object
      */
-    async setFormConfiguration(formId: string, configuration: any, server: HapiServer) {
-        if (formId && configuration) {
-            //@ts-ignore
-            if (server.app.redis) {
-                await this.addConfigurationsToRedisCache(server, configuration, formId);
-            } else {
-                await this.addConfigurationIntoInMemoryCache(configuration, formId, server);
-            }
-        }
-    }
-
-    private async addConfigurationIntoInMemoryCache(configuration: any, formId: string, server: HapiServer) {
-        const hashValue = Crypto.createHash('sha256').update(JSON.stringify(configuration)).digest('hex')
+    async setFormConfiguration(formId: string, configuration: any): Promise<void> {
+        if (!formId || !configuration) return;
+        const hashValue = Crypto.createHash('sha256')
+            .update(JSON.stringify(configuration))
+            .digest('hex');
+        const key = `${FORMS_KEY_PREFIX}${formId}`;
         try {
-            const jsonDataString = await this.cache.get(`${FORMS_KEY_PREFIX}${formId}`);
-            if (jsonDataString === null) {
-                // Adding new config into redis cache service with the hash value
+            const existingConfigString = await this.formStorage.get(key);
+            if (existingConfigString === null) {
+                // Adding new config with the hash value
                 const stringConfig = JSON.stringify({
                     ...configuration,
                     id: configuration.id,
                     hash: hashValue
                 });
-                //@ts-ignore
-                server.app.inMemoryFormKeys.push(`${FORMS_KEY_PREFIX}${formId}`)
-                // Adding data into redis cache
-                await this.cache.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig, {expiresIn: 0});
+                await this.formStorage.set(key, stringConfig);
             } else {
-                // Redis has the data and gets current data set to check hash
-                const configObj = JSON.parse(jsonDataString);
-                if (configObj && configObj.hash && hashValue !== configObj.hash) {
-                    // if hash function is change then updating the configuration
+                // Check if hash has changed
+                const existingConfig = JSON.parse(existingConfigString);
+                if (existingConfig?.hash !== hashValue) {
+                    // Hash has changed, update the configuration
                     const stringConfig = JSON.stringify({
                         ...configuration,
                         id: configuration.id,
                         hash: hashValue
                     });
-                    await this.cache.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig, {expiresIn: 0});
+                    await this.formStorage.set(key, stringConfig);
                 }
             }
         } catch (error) {
@@ -185,50 +175,10 @@ export class AdapterCacheService extends CacheService {
         }
     }
 
-    private async addConfigurationsToRedisCache(server: HapiServer, configuration: any, formId: string) {
-        //@ts-ignore
-        const redisClient: Redis = server.app.redis
-        const hashValue = Crypto.createHash('sha256').update(JSON.stringify(configuration)).digest('hex')
-        if (redisClient) {
-            const jsonDataString = await redisClient.get(`${FORMS_KEY_PREFIX}${formId}`);
-            if (jsonDataString === null) {
-                // Adding new config into redis cache service with the hash value
-                const stringConfig = JSON.stringify({
-                    ...configuration,
-                    id: configuration.id,
-                    hash: hashValue
-                });
-                // Adding data into redis cache
-                await redisClient.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig);
-            } else {
-                // Redis has the data and gets current data set to check hash
-                const configObj = JSON.parse(jsonDataString);
-                if (configObj && configObj.hash && hashValue !== configObj.hash) {
-                    // if hash function is change then updating the configuration
-                    const stringConfig = JSON.stringify({
-                        ...configuration,
-                        id: configuration.id,
-                        hash: hashValue
-                    });
-                    await redisClient.set(`${FORMS_KEY_PREFIX}${formId}`, stringConfig);
-                }
-            }
-        }
-    }
-
-    async getFormAdapterModel(formId: string, request: HapiRequest) {
-        //@ts-ignore
-        if (request.server.app.redis) {
-            return await this.getConfigurationFromRedisCache(request, formId);
-        } else {
-            return await this.getConfigurationFromInMemoryCache(request, formId);
-        }
-    }
-
-    private async getConfigurationFromInMemoryCache(request: HapiRequest, formId: string) {
+    async getFormAdapterModel(formId: string, request: HapiRequest): Promise<AdapterFormModel> {
         const {translationLoaderService} = request.services([]);
         const translations = translationLoaderService.getTranslations();
-        const jsonDataString = await this.cache.get(`${FORMS_KEY_PREFIX}${formId}`);
+        const jsonDataString = await this.formStorage.get(`${FORMS_KEY_PREFIX}${formId}`);
         if (jsonDataString !== null) {
             const configObj = JSON.parse(jsonDataString);
             return new AdapterFormModel(configObj.configuration, {
@@ -237,30 +187,7 @@ export class AdapterCacheService extends CacheService {
                 previewMode: true,
                 translationEn: translations.en,
                 translationCy: translations.cy
-            })
-        }
-        request.logger.error({
-            ...LOGGER_DATA,
-            message: `[FORM-CACHE] Cannot find the form ${formId}`
-        });
-        throw Boom.notFound("Cannot find the given form");
-    }
-
-    private async getConfigurationFromRedisCache(request: HapiRequest, formId: string) {
-        //@ts-ignore
-        const redisClient: Redis = request.server.app.redis
-        const {translationLoaderService} = request.services([]);
-        const translations = translationLoaderService.getTranslations();
-        const jsonDataString = await redisClient.get(`${FORMS_KEY_PREFIX}${formId}`);
-        if (jsonDataString !== null) {
-            const configObj = JSON.parse(jsonDataString);
-            return new AdapterFormModel(configObj.configuration, {
-                basePath: configObj.id ? configObj.id : formId,
-                hash: configObj.hash,
-                previewMode: true,
-                translationEn: translations.en,
-                translationCy: translations.cy
-            })
+            });
         }
         request.logger.error({
             ...LOGGER_DATA,
