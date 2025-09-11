@@ -19,13 +19,7 @@ export const plugin = {
         let countError = 0;
         for (const config of configs) {
             try {
-                // Explicitly load startup forms into permanent namespace
-                await adapterCacheService.setFormConfiguration(
-                    config.id, 
-                    config, 
-                    server,
-                    FormNamespace.Permanent
-                );
+                await adapterCacheService.setFormConfiguration(config.id, config, FormNamespace.Permanent);
                 countOk++;
             } catch (e) {
                 countError++;
