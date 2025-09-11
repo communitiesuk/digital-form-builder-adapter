@@ -15,8 +15,6 @@ import Crypto from 'crypto';
 import {HapiRequest, HapiServer} from "../types";
 import {AdapterFormModel} from "../plugins/engine/models";
 import Boom from "boom";
-import {FormConfiguration} from "@xgovformbuilder/model";
-import {AdapterSchema} from "@communitiesuk/model";
 
 const partition = "cache";
 const LOGGER_DATA = {
@@ -59,13 +57,29 @@ export function getNamespaceFromRequest(request: HapiRequest): FormNamespace {
         : FormNamespace.Permanent;
 }
 
+const createRedisClient = (): Redis | null => {
+   if (redisHost || redisUri) {
+       const redisOptions: {password?: string; tls?: {};} = {};
+       if (redisPassword) redisOptions.password = redisPassword;
+       if (redisTls) redisOptions.tls = {};
+
+       return isSingleRedis
+           ? new Redis(redisUri ?? {host: redisHost, port: redisPort, password: redisPassword})
+           : new Redis.Cluster(
+               [{host: redisHost, port: redisPort}],
+               {dnsLookup: (address, callback) => callback(null, address, 4), redisOptions}
+           );
+   }
+   return null;
+};
+
 export class AdapterCacheService extends CacheService {
 
     constructor(server: HapiServer) {
         //@ts-ignore
         super(server);
         //@ts-ignore
-        server.app.redis = this.getRedisClient()
+        server.app.redis = createRedisClient()
         //@ts-ignore
         if (!server.app.redis) {
             // starting up the in memory cache
@@ -345,50 +359,6 @@ export class AdapterCacheService extends CacheService {
         });
         throw Boom.notFound("Cannot find the given form");
     }
-
-    private getRedisClient() {
-        if (redisHost || redisUri) {
-            const redisOptions: {
-                password?: string;
-                tls?: {};
-            } = {};
-
-            if (redisPassword) {
-                redisOptions.password = redisPassword;
-            }
-
-            if (redisTls) {
-                redisOptions.tls = {};
-            }
-
-            const client = isSingleRedis
-                ? new Redis(
-                    redisUri ?? {
-                        host: redisHost,
-                        port: redisPort,
-                        password: redisPassword,
-                    }
-                )
-                : new Redis.Cluster(
-                    [
-                        {
-                            host: redisHost,
-                            port: redisPort,
-                        },
-                    ],
-                    {
-                        dnsLookup: (address, callback) => callback(null, address, 4),
-                        redisOptions,
-                    }
-                );
-            return client;
-        } else {
-            console.log({
-                ...LOGGER_DATA,
-                message: `[FORM-CACHE] using memory caching`,
-            })
-        }
-    }
 }
 
 export const catboxProvider = () => {
@@ -398,49 +368,16 @@ export const catboxProvider = () => {
      */
     const provider = {
         constructor: redisHost || redisUri ? CatboxRedis.Engine : CatboxMemory.Engine,
-        options: {},
+        options: {partition},
     };
 
     if (redisHost || redisUri) {
-        console.log("Starting redis session management")
-        const redisOptions: {
-            password?: string;
-            tls?: {};
-        } = {};
-
-        if (redisPassword) {
-            redisOptions.password = redisPassword;
-        }
-
-        if (redisTls) {
-            redisOptions.tls = {};
-        }
-
-        const client = isSingleRedis
-            ? new Redis(
-                redisUri ?? {
-                    host: redisHost,
-                    port: redisPort,
-                    password: redisPassword,
-                }
-            )
-            : new Redis.Cluster(
-                [
-                    {
-                        host: redisHost,
-                        port: redisPort,
-                    },
-                ],
-                {
-                    dnsLookup: (address, callback) => callback(null, address, 4),
-                    redisOptions,
-                }
-            );
-        provider.options = {client, partition};
-        console.log(`Redis Url : ${redisUri} session management`);
+       console.log("Starting redis session management");
+       const client = createRedisClient();
+       provider.options = {client, partition};
+       console.log(`Redis Url : ${redisUri} session management`);
     } else {
-        console.log("Starting in memory session management")
-        provider.options = {partition};
+        console.log("Starting in memory session management");
     }
 
     return provider;
