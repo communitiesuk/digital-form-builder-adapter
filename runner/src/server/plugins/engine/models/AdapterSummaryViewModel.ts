@@ -1,5 +1,6 @@
 import {AdapterViewModel} from "./AdapterViewModel";
 import {AdapterFormModel} from "./AdapterFormModel";
+import { buildWindowTitle } from "../util/windowTitle";  
 import {FormSubmissionState} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 import {HapiRequest} from "../../../../../../digital-form-builder/runner/src/server/types";
 import {AdapterInitialiseSessionOptions} from "../../initialize-session/types";
@@ -10,6 +11,7 @@ export class AdapterSummaryViewModel extends AdapterViewModel {
     markAsCompleteComponent: boolean | undefined;
     markAsCompleteError: any;
     callback?: AdapterInitialiseSessionOptions;
+    windowTitle: string;
 
     constructor(
         pageTitle: string,
@@ -23,6 +25,9 @@ export class AdapterSummaryViewModel extends AdapterViewModel {
         super(pageTitle, model, state, request, page, isSavePerPageMode, validateStateTillGivenPath);
         this.markAsCompleteComponent = state.callback?.markAsCompleteComponent;
         this.markAsComplete = state.markAsComplete;
+
+        const serviceName = model.name || "";
+        this.windowTitle = buildWindowTitle(pageTitle, serviceName);
     }
 
 
