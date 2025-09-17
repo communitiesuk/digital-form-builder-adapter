@@ -1,6 +1,7 @@
 import {merge, reach} from "@hapi/hoek";
 import * as querystring from "querystring";
 
+import { buildWindowTitle } from "../util/windowTitle";  
 import {
     feedbackReturnInfoKey
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
@@ -148,6 +149,7 @@ export class PageControllerBase {
         name: string;
         pageTitle: string;
         sectionTitle: string;
+        windowTitle: string;
         showTitle: boolean;
         components: ComponentCollectionViewModel;
         errors: FormSubmissionErrors;
@@ -161,6 +163,9 @@ export class PageControllerBase {
     } {
         let showTitle = true;
         let pageTitle = this.title;
+        const serviceName = this.name;
+        let windowTitle = buildWindowTitle(pageTitle, serviceName);
+
         if (config.allowUserTemplates) {
             pageTitle = nunjucks.renderString(pageTitle, {
                 ...formData,
@@ -203,6 +208,7 @@ export class PageControllerBase {
             name: this.name,
             pageTitle,
             sectionTitle,
+            windowTitle,
             showTitle,
             components,
             errors,
