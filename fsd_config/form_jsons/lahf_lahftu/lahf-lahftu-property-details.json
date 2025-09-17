@@ -1,0 +1,165 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "fhLQqW",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>the full address of the property</li>\n<li>the number of rooms and floors in the property</li>\n<li>the current status of the property</li>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-address-of-the-property"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/what-is-the-address-of-the-property",
+            "title": "What is the address of the property?",
+            "components": [
+                {
+                    "name": "qnaoFo",
+                    "options": {},
+                    "type": "UkAddressField",
+                    "title": "Address line 1",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-many-of-the-following-types-of-rooms-are-there-in-the-property"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "How many of the following types of rooms are there in the property?",
+            "path": "/how-many-of-the-following-types-of-rooms-are-there-in-the-property",
+            "components": [
+                {
+                    "name": "ZoWdNb",
+                    "options": {},
+                    "type": "NumberField",
+                    "title": "Number of bedrooms",
+                    "schema": {}
+                },
+                {
+                    "name": "XRMMJp",
+                    "options": {},
+                    "type": "NumberField",
+                    "title": "Number of bathrooms",
+                    "schema": {}
+                },
+                {
+                    "name": "YlnYVH",
+                    "options": {},
+                    "type": "NumberField",
+                    "title": "Number of other rooms",
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/how-many-floors-are-there-in-the-property"
+                }
+            ]
+        },
+        {
+            "path": "/what-is-the-current-status-of-the-property",
+            "title": "What is the current status of the property?",
+            "components": [
+                {
+                    "name": "upqiVf",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "RadiosField",
+                    "title": "What is the current status of the property?",
+                    "list": "ezOotS",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        },
+        {
+            "path": "/how-many-floors-are-there-in-the-property",
+            "title": "How many floors are there in the property?",
+            "components": [
+                {
+                    "name": "SpbeNL",
+                    "options": {},
+                    "type": "NumberField",
+                    "title": "Number of floors"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-current-status-of-the-property"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "title": "What is the current status of the property?",
+            "name": "ezOotS",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Property identified",
+                    "value": "Property identified"
+                },
+                {
+                    "text": "Purchase in progress",
+                    "value": "Purchase in progress"
+                },
+                {
+                    "text": "Property purchased",
+                    "value": "Property purchased"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

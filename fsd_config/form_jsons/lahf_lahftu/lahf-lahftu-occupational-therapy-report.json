@@ -1,0 +1,96 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "hjFfLa",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask you to:\n<ul>\n<li>upload your occupational therapy report</li> \n<li>provide the date that the assessment was completed</li>\n</ul>"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-your-occupational-therapy-report"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/upload-your-occupational-therapy-report",
+            "title": "Upload your occupational therapy report",
+            "components": [
+                {
+                    "name": "ZDLjys",
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 1,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": ",image/jpeg,application/pdf,image/png,text/plain,application/msword,application/vnd.oasis.opendocument.text,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,text/csv,application/vnd.oasis.opendocument.spreadsheet,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 0,
+                        "hideTitle": false
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "hint": "Any personal details must be redacted",
+                    "title": "Upload your occupational therapy report"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-date-was-the-occupational-therapy-assessment-completed"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "What date was the occupational therapy assessment completed? ",
+            "path": "/what-date-was-the-occupational-therapy-assessment-completed",
+            "components": [
+                {
+                    "name": "CesJKe",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "title": "What date was the occupational therapy assessment completed? "
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ]
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {},
+    "markAsComplete": false
+}
