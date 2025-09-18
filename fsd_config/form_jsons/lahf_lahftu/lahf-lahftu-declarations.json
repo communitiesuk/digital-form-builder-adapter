@@ -1,0 +1,118 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "yaIZTK",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask you to confirm and agree with the declarations."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/confirm-that-you-have-read-and-agree-with-the-following-declarations"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/confirm-that-you-have-read-and-agree-with-the-following-declarations",
+            "title": "Confirm that you have read and agree with the following declarations.",
+            "components": [
+                {
+                    "name": "MumnzN",
+                    "options": {},
+                    "type": "List",
+                    "hint": "",
+                    "title": "Confirm that you have read and agree with the following declarations.",
+                    "list": "VlGMLJ",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "name": "CzMnku",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "I confirm that I have read and agree with the declarations",
+                    "list": "egBQqa"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Check your answers",
+            "path": "/check-your-answers",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        }
+    ],
+    "lists": [
+        {
+            "title": "Declarations",
+            "name": "VlGMLJ",
+            "type": "string",
+            "items": [
+                {
+                    "text": "I am content that the household understands the commitment and importance",
+                    "value": "I am content that the household understands the commitment and importance"
+                },
+                {
+                    "text": "I agree to maintain regular and ongoing communication with the household as their property progresses",
+                    "value": "I agree to maintain regular and ongoing communication with the household as their property progresses"
+                },
+                {
+                    "text": "I have not and will not make any applications to alternative funding schemes for these adaptations that could be considered duplicate funding (for example, the Exceptional Costs Fund or Disabled Facilities Grant)",
+                    "value": "I have not and will not make any applications to alternative funding schemes for these adaptations that could be considered duplicate funding (for example, the Exceptional Costs Fund or Disabled Facilities Grant)"
+                },
+                {
+                    "text": "No personal or identifiable information is included in the application",
+                    "value": "No personal or identifiable information is included in the application"
+                },
+                {
+                    "text": "Our section 151 officer has read the guidance for the grant and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household",
+                    "value": "Our section 151 officer has read the guidance for the grant and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household"
+                }
+            ]
+        },
+        {
+            "title": "Declarations agreements",
+            "name": "egBQqa",
+            "type": "string",
+            "items": [
+                {
+                    "text": "I confirm that I have read and agree with the declarations",
+                    "value": "I confirm that I have read and agree with the declarations"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {},
+    "markAsComplete": false
+}

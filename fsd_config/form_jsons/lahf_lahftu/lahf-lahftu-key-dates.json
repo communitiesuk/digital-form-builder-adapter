@@ -1,0 +1,102 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "ImgzkG",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about:\n\n<ul>\n<li>the target date for commencement and completion of works</li>\n<li>the estimated date for when the household will move into the property</li>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-are-the-target-dates-for-when-the-works-will-commence-and-complete"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-are-the-target-dates-for-when-the-works-will-commence-and-complete",
+            "title": "What are the target dates for when the works will commence and complete?",
+            "components": [
+                {
+                    "name": "LQoFlz",
+                    "options": {},
+                    "type": "DatePartsField",
+                    "hint": "For example, 27 4 2025",
+                    "title": "Target commencement date",
+                    "schema": {}
+                },
+                {
+                    "name": "QXDTBI",
+                    "options": {},
+                    "type": "DatePartsField",
+                    "hint": "For example, 27 4 2025",
+                    "title": "Target completion date",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-estimated-date-for-the-household-to-move-into-the-property"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "What is the estimated date for the household to move into the property?",
+            "path": "/what-is-the-estimated-date-for-the-household-to-move-into-the-property",
+            "components": [
+                {
+                    "name": "JIuDIp",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DatePartsField",
+                    "hint": "For example, 27 4 2025",
+                    "title": "Estimated move-in date",
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ]
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

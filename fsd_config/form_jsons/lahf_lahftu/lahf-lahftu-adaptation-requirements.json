@@ -1,0 +1,359 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "riddpR",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>the adaptations that are required on the property</li>\n<li>the amount of funding you are applying for </li>\n<li>a breakdown of the costs, including itemised quotes</li>\n<li>whether you are seeking funding to cover void rent costs and, if so, evidence of any forgone rent </li>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-what-adaptations-are-required-on-the-property"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-what-adaptations-are-required-on-the-property",
+            "title": "Tell us what adaptations are required on the property.",
+            "components": [
+                {
+                    "name": "rXDwuw",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Do not include any personal details that could make a person identifiable.",
+                    "schema": {}
+                },
+                {
+                    "name": "uvAgKD",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "Tell us what adaptations are required on the property.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-much-funding-are-you-applying-for-in-total"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "How much funding are you applying for in total?",
+            "path": "/how-much-funding-are-you-applying-for-in-total",
+            "components": [
+                {
+                    "name": "DdMauS",
+                    "options": {
+                        "prefix": "\u00a3",
+                        "hideTitle": true
+                    },
+                    "type": "NumberField",
+                    "title": "How much funding are you applying for in total?",
+                    "schema": {
+                        "min": 1
+                    }
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/give-a-detailed-breakdown-of-the-costs-for-which-funding-is-being-requested"
+                }
+            ]
+        },
+        {
+            "path": "/give-a-detailed-breakdown-of-the-costs-for-which-funding-is-being-requested",
+            "title": "Give a detailed breakdown of the costs for which funding is being requested.",
+            "components": [
+                {
+                    "name": "rdPWLS",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Add a cost then 'Save and add another' to add more as necessary",
+                    "schema": {}
+                },
+                {
+                    "name": "vSyica",
+                    "type": "MultiInputField",
+                    "title": "Give a detailed breakdown of the costs for which funding is being requested.",
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "jEhzec",
+                            "options": {
+                                "hideTitle": false
+                            },
+                            "title": "Brief description",
+                            "hint": "",
+                            "schema": {
+                                "hideTitle": false
+                            }
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "MUtVpb",
+                            "options": {
+                                "prefix": "\u00a3"
+                            },
+                            "title": "Amount of funding requested",
+                            "hint": "",
+                            "schema": {
+                                "min": 1
+                            }
+                        }
+                    ],
+                    "schema": {
+                        "hideTitle": false
+                    },
+                    "options": {
+                        "hideTitle": false,
+                        "columnTitles": [
+                            "Brief description",
+                            "Amount of funding requested"
+                        ]
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-itemised-quotes-listing-the-costs-and-installation-fees-associated-with-the-adaptations"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Breakdown of costs ",
+                    "samePageTableItemName": "cost"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/upload-itemised-quotes-listing-the-costs-and-installation-fees-associated-with-the-adaptations",
+            "title": "Upload itemised quotes listing the costs and installation fees associated with the adaptations.",
+            "components": [
+                {
+                    "name": "LbqcYE",
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 10,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": ",image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.oasis.opendocument.spreadsheet"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 1,
+                        "hideTitle": false
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload itemised quotes listing the costs and installation fees associated with the adaptations.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/void-rent-costs"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        },
+        {
+            "path": "/void-rent-costs",
+            "title": "Void rent costs",
+            "components": [
+                {
+                    "name": "DqeGZe",
+                    "options": {},
+                    "type": "Para",
+                    "content": "56 days\u2019 void rent costs are already built into the Afghan Resettlement Programme's integration tariff.<br><br> \n\nIf the required adaptations to the property are estimated to take longer, you may request up to an additional 56 days\u2019 void rent costs.",
+                    "schema": {}
+                },
+                {
+                    "name": "VkaoCa",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\n Are you requesting funding to cover void rent costs?</legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "dIadTN",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Are you requesting funding to cover void rent costs?",
+                    "values": {
+                        "type": "listRef"
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers",
+                    "condition": "BJFZzu"
+                },
+                {
+                    "path": "/upload-evidence-of-rent-forgone-including-the-relevant-time-period",
+                    "condition": "NHwDtf"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/upload-evidence-of-rent-forgone-including-the-relevant-time-period",
+            "title": "Upload evidence of rent forgone, including the relevant time period.",
+            "components": [
+                {
+                    "name": "MOJQrC",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Evidence should include:\n<ul>\n<li>confirmation of rent foregone, for example proof of the applicable rent rate for the property such as the social rent rate or affordable rent rate</li>\n<li>proof of the expected time period for works to complete the adaptations required</li>\n</ul>\n\n",
+                    "schema": {}
+                },
+                {
+                    "name": "VAfjzF",
+                    "options": {},
+                    "type": "Para",
+                    "content": "You must review all information and redact any details that could identify a property prior to submission. "
+                },
+                {
+                    "name": "CuwIiM",
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 10,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": ",image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.oasis.opendocument.spreadsheet,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 1,
+                        "hideTitle": true
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload evidence of rent forgone, including the relevant time period.",
+                    "schema": {}
+                },
+                {
+                    "name": "NibzHN",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m\">\nAny additional information about the evidence uploaded (optional)</legend>",
+                    "schema": {}
+                },
+                {
+                    "name": "Czqzcm",
+                    "options": {
+                        "hideTitle": true,
+                        "required": false,
+                        "optionalText": false
+                    },
+                    "type": "FreeTextField",
+                    "title": "Any additional information about the evidence uploaded (optional)",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "If void rent costs",
+            "name": "NHwDtf",
+            "value": {
+                "name": "If void rent costs",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.dIadTN",
+                            "type": "YesNoField",
+                            "display": "Are you requesting funding to cover void rent costs?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If no void rent costs",
+            "name": "BJFZzu",
+            "value": {
+                "name": "If no void rent costs",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.dIadTN",
+                            "type": "YesNoField",
+                            "display": "Are you requesting funding to cover void rent costs?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false,
+    "name": "Adaptation requirements",
+    "feedback": {
+        "feedbackForm": false,
+        "url": "/bfdbd"
+    },
+    "phaseBanner": {}
+}
