@@ -70,5 +70,7 @@
   "sentryDsn": "SENTRY_DSN",
   "sentryTracesSampleRate": "SENTRY_TRACES_SAMPLE_RATE",
   "copilotEnv": "COPILOT_ENV",
-  "enableVirusScan": "ENABLE_VIRUS_SCAN"
+  "enableVirusScan": "ENABLE_VIRUS_SCAN",
+  "preAwardApiUrl": "PRE_AWARD_API_URL",
+  "apiHost": "API_HOST"
 }
