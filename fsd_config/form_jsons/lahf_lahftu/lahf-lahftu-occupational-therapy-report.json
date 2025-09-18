@@ -34,7 +34,7 @@
                             "acceptedFiles": ",image/jpeg,application/pdf,image/png,text/plain,application/msword,application/vnd.oasis.opendocument.text,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,text/csv,application/vnd.oasis.opendocument.spreadsheet,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                         },
                         "showNoScriptWarning": false,
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "hideTitle": false
                     },
                     "type": "ClientSideFileUploadField",
@@ -59,6 +59,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
+                    "hint": "For example, 27 4 2025",
                     "title": "What date was the occupational therapy assessment completed? "
                 }
             ],

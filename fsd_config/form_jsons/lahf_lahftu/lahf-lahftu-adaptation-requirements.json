@@ -61,7 +61,9 @@
                     },
                     "type": "NumberField",
                     "title": "How much funding are you applying for in total?",
-                    "schema": {}
+                    "schema": {
+                        "min": 1
+                    }
                 }
             ],
             "section": "FabDefault",
@@ -107,7 +109,9 @@
                             },
                             "title": "Amount of funding requested",
                             "hint": "",
-                            "schema": {}
+                            "schema": {
+                                "min": 1
+                            }
                         }
                     ],
                     "schema": {
@@ -155,7 +159,7 @@
                             "acceptedFiles": ",image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.oasis.opendocument.spreadsheet"
                         },
                         "showNoScriptWarning": false,
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "hideTitle": false
                     },
                     "type": "ClientSideFileUploadField",
@@ -248,7 +252,7 @@
                             "acceptedFiles": ",image/jpeg,image/png,application/pdf,text/plain,application/msword,application/vndopenxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/csv,application/vnd.ms-excel,application/vnd.oasis.opendocument.spreadsheet,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                         },
                         "showNoScriptWarning": false,
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "hideTitle": true
                     },
                     "type": "ClientSideFileUploadField",
