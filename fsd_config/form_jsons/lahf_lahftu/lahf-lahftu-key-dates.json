@@ -29,6 +29,7 @@
                     "name": "LQoFlz",
                     "options": {},
                     "type": "DatePartsField",
+                    "hint": "For example, 27 4 2025",
                     "title": "Target commencement date",
                     "schema": {}
                 },
@@ -36,6 +37,7 @@
                     "name": "QXDTBI",
                     "options": {},
                     "type": "DatePartsField",
+                    "hint": "For example, 27 4 2025",
                     "title": "Target completion date",
                     "schema": {}
                 }
@@ -57,6 +59,7 @@
                         "hideTitle": true
                     },
                     "type": "DatePartsField",
+                    "hint": "For example, 27 4 2025",
                     "title": "Estimated move-in date",
                     "schema": {}
                 }
