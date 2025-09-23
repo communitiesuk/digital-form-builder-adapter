@@ -10,35 +10,7 @@
                     "name": "riddpR",
                     "options": {},
                     "type": "Para",
-                    "content": "In this section, we'll ask about:\n<ul>\n<li>the adaptations that are required on the property</li>\n<li>the amount of funding you are applying for </li>\n<li>a breakdown of the costs, including itemised quotes</li>\n<li>whether you are seeking funding to cover void rent costs and, if so, evidence of any forgone rent </li>\n</ul>",
-                    "schema": {}
-                }
-            ],
-            "next": [
-                {
-                    "path": "/tell-us-what-adaptations-are-required-on-the-property"
-                }
-            ],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/tell-us-what-adaptations-are-required-on-the-property",
-            "title": "Tell us what adaptations are required on the property.",
-            "components": [
-                {
-                    "name": "rXDwuw",
-                    "options": {},
-                    "type": "Para",
-                    "content": "Do not include any personal details that could make a person identifiable.",
-                    "schema": {}
-                },
-                {
-                    "name": "uvAgKD",
-                    "options": {
-                        "hideTitle": true
-                    },
-                    "type": "FreeTextField",
-                    "title": "Tell us what adaptations are required on the property.",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>the amount of funding you are applying for </li>\n<li>a breakdown of the costs, including supporting evidence</li>\n<li>whether you are seeking funding to cover void rent costs and, if so, the amount of funding, time period and evidence of any forgone rent </li>\n</ul>",
                     "schema": {}
                 }
             ],
@@ -56,13 +28,13 @@
                 {
                     "name": "DdMauS",
                     "options": {
-                        "prefix": "\u00a3",
+                        "prefix": "£",
                         "hideTitle": true
                     },
                     "type": "NumberField",
                     "title": "How much funding are you applying for in total?",
                     "schema": {
-                        "min": 1
+                      "min": 1
                     }
                 }
             ],
@@ -82,7 +54,9 @@
                     "options": {},
                     "type": "Para",
                     "content": "Add a cost then 'Save and add another' to add more as necessary",
-                    "schema": {}
+                    "schema": {
+                      "min": 1
+                    }
                 },
                 {
                     "name": "vSyica",
@@ -105,13 +79,11 @@
                             "type": "NumberField",
                             "name": "MUtVpb",
                             "options": {
-                                "prefix": "\u00a3"
+                                "prefix": "£"
                             },
                             "title": "Amount of funding requested",
                             "hint": "",
-                            "schema": {
-                                "min": 1
-                            }
+                            "schema": {}
                         }
                     ],
                     "schema": {
@@ -128,7 +100,7 @@
             ],
             "next": [
                 {
-                    "path": "/upload-itemised-quotes-listing-the-costs-and-installation-fees-associated-with-the-adaptations"
+                    "path": "/upload-evidence-to-support-the-funding-you-are-applying-for"
                 }
             ],
             "section": "FabDefault",
@@ -146,9 +118,15 @@
             "controller": "RepeatingFieldPageController"
         },
         {
-            "path": "/upload-itemised-quotes-listing-the-costs-and-installation-fees-associated-with-the-adaptations",
-            "title": "Upload itemised quotes listing the costs and installation fees associated with the adaptations.",
+            "path": "/upload-evidence-to-support-the-funding-you-are-applying-for",
+            "title": "Upload evidence to support the funding you are applying for.",
             "components": [
+                {
+                    "name": "qcPBDT",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<ul>\n<li>Upload itemised invoice or quotes listing the costs and installation fees associated with the adaptations</li>\n<li>Or upload evidence of how the property features meet the household's medical/mobility requirements (as set out in an OT report) as well as a detailed costs breakdown and justification for how the funding will be used</li>\n</ul>"
+                },
                 {
                     "name": "LbqcYE",
                     "options": {
@@ -160,10 +138,10 @@
                         },
                         "showNoScriptWarning": false,
                         "minimumRequiredFiles": 1,
-                        "hideTitle": false
+                        "hideTitle": true
                     },
                     "type": "ClientSideFileUploadField",
-                    "title": "Upload itemised quotes listing the costs and installation fees associated with the adaptations.",
+                    "title": "Upload evidence to support the funding you are applying for.",
                     "schema": {}
                 }
             ],
@@ -190,7 +168,7 @@
                     "name": "DqeGZe",
                     "options": {},
                     "type": "Para",
-                    "content": "56 days\u2019 void rent costs are already built into the Afghan Resettlement Programme's integration tariff.<br><br> \n\nIf the required adaptations to the property are estimated to take longer, you may request up to an additional 56 days\u2019 void rent costs.",
+                    "content": "56 days’ void rent costs are already built into the Afghan Resettlement Programme's integration tariff.<br><br> \n\nIf the required adaptations to the property are estimated to take longer, you may request up to an additional 56 days’ void rent costs.",
                     "schema": {}
                 },
                 {
@@ -219,7 +197,7 @@
                     "condition": "BJFZzu"
                 },
                 {
-                    "path": "/upload-evidence-of-rent-forgone-including-the-relevant-time-period",
+                    "path": "/how-much-funding-in-total-are-you-requesting-to-cover-void-costs",
                     "condition": "NHwDtf"
                 }
             ],
@@ -240,7 +218,8 @@
                     "name": "VAfjzF",
                     "options": {},
                     "type": "Para",
-                    "content": "You must review all information and redact any details that could identify a property prior to submission. "
+                    "content": "You must review all information and redact any details that could identify a property prior to submission. ",
+                    "schema": {}
                 },
                 {
                     "name": "CuwIiM",
@@ -281,6 +260,52 @@
             "next": [
                 {
                     "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/how-much-funding-in-total-are-you-requesting-to-cover-void-costs",
+            "title": "How much funding in total are you requesting to cover void costs?",
+            "components": [
+                {
+                    "name": "ySXgFg",
+                    "options": {
+                        "prefix": "£"
+                    },
+                    "type": "NumberField",
+                    "title": "How much funding in total are you requesting to cover void costs?"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-the-start-and-end-dates-for-the-period-you-need-funding-to-cover-void-rent-costs"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-the-start-and-end-dates-for-the-period-you-need-funding-to-cover-void-rent-costs",
+            "title": "Tell us the start and end dates for the period you need funding to cover void rent costs.",
+            "components": [
+                {
+                    "name": "wDWTMQ",
+                    "options": {},
+                    "type": "DatePartsField",
+                    "title": "Start date",
+                    "hint": "For example, 27 4 2025"
+                },
+                {
+                    "name": "qsulAz",
+                    "options": {},
+                    "type": "DatePartsField",
+                    "title": "End date",
+                    "hint": "For example, 27 4 2025"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-evidence-of-rent-forgone-including-the-relevant-time-period"
                 }
             ],
             "section": "FabDefault"
@@ -350,7 +375,7 @@
         "showPaymentSkippedWarningPage": false
     },
     "markAsComplete": false,
-    "name": "Adaptation requirements",
+    "name": "LAHF - Funding requests",
     "feedback": {
         "feedbackForm": false,
         "url": "/bfdbd"

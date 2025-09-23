@@ -10,7 +10,7 @@
                     "name": "iamGaN",
                     "options": {},
                     "type": "Para",
-                    "content": "We need to ask some questions to check you can apply for this funding.\n\nWe'll check that:\n<ul>\n<li>the household and property match have been confirmed by the Home Office</li>\n<li>an occupational therapy assessment has been completed - we will ask for details of your report in the application form</li>\n<li>the property has been assessed and is suitable for the required adaptations</li>\n<li>the household has accepted the offer</li>\n</ul>"
+                    "content": "We need to ask some questions to check you can apply for this funding.\n\nWe'll check that:\n<ul>\n<li>the household and property match have been confirmed by the Home Office</li>\n<li>an occupational therapy assessment has been completed - we will ask for details of your report in the application form</li>\n<li>the property has been assessed and is suitable for the identified household</li>\n<li>the household has accepted the offer</li>\n</ul>"
                 }
             ],
             "next": [
@@ -91,21 +91,21 @@
                     "condition": "HthBMj"
                 },
                 {
-                    "path": "/has-the-property-been-assessed-and-selected-as-suitable-for-the-required-adaptations",
+                    "path": "/has-the-property-been-assessed-and-selected-as-suitable-for-the-identified-household-subject-to-any-required-adaptations-being-made",
                     "condition": "MIzATk"
                 }
             ],
             "section": "FabDefault"
         },
         {
-            "path": "/has-the-property-been-assessed-and-selected-as-suitable-for-the-required-adaptations",
-            "title": "Has the property been assessed and selected as suitable for the required adaptations?",
+            "path": "/has-the-property-been-assessed-and-selected-as-suitable-for-the-identified-household-subject-to-any-required-adaptations-being-made",
+            "title": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?",
             "components": [
                 {
                     "name": "rGIvUB",
                     "options": {},
                     "type": "YesNoField",
-                    "title": "Has the property been assessed and selected as suitable for the required adaptations?"
+                    "title": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?"
                 }
             ],
             "next": [
@@ -429,7 +429,7 @@
                         "field": {
                             "name": "FabDefault.rGIvUB",
                             "type": "YesNoField",
-                            "display": "Has the property been assessed and selected as suitable for the required adaptations?"
+                            "display": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?"
                         },
                         "operator": "is",
                         "value": {
@@ -451,7 +451,7 @@
                         "field": {
                             "name": "FabDefault.rGIvUB",
                             "type": "YesNoField",
-                            "display": "Has the property been assessed and selected as suitable for the required adaptations?"
+                            "display": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?"
                         },
                         "operator": "is",
                         "value": {
