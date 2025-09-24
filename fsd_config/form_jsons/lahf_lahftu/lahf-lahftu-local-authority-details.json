@@ -30,7 +30,7 @@
                     "name": "svIchm",
                     "options": {},
                     "type": "AutocompleteField",
-                    "title": "What is the name of your local authority?",
+                    "title": "What is the name of your local authority",
                     "list": "IeRnkL",
                     "values": {
                         "type": "listRef"
@@ -46,7 +46,7 @@
             "section": "FabDefault"
         },
         {
-            "title": "Who is the primary contact in your local authority?",
+            "title": "Who is the primary contact in your local authority",
             "path": "/who-is-the-primary-contact-in-your-local-authority",
             "components": [
                 {

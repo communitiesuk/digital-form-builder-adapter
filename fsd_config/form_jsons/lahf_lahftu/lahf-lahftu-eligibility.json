@@ -28,7 +28,7 @@
                     "name": "TbMjem",
                     "options": {},
                     "type": "YesNoField",
-                    "title": "Has the household and property match been confirmed by the Home Office?"
+                    "title": "Has the household and property match been confirmed by the Home Office"
                 }
             ],
             "next": [
@@ -51,7 +51,7 @@
                     "name": "ZoFGsb",
                     "options": {},
                     "type": "YesNoField",
-                    "title": "Have one or more members of the household been assessed by an occupational therapist?",
+                    "title": "Have one or more members of the household been assessed by an occupational therapist",
                     "values": {
                         "type": "listRef"
                     }
@@ -77,7 +77,7 @@
                     "name": "ACMmZR",
                     "options": {},
                     "type": "RadiosField",
-                    "title": "Do you have an occupational therapy report?",
+                    "title": "Do you have an occupational therapy report",
                     "list": "DMysbD"
                 }
             ],
@@ -105,7 +105,7 @@
                     "name": "rGIvUB",
                     "options": {},
                     "type": "YesNoField",
-                    "title": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?"
+                    "title": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made"
                 }
             ],
             "next": [
@@ -128,7 +128,7 @@
                     "name": "ddksXF",
                     "options": {},
                     "type": "YesNoField",
-                    "title": "Has the household accepted the offer?"
+                    "title": "Has the household accepted the offer"
                 }
             ],
             "next": [
@@ -201,7 +201,7 @@
                     "name": "BwHwPn",
                     "options": {},
                     "type": "Para",
-                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nThe property must have been assessed and selected as suitable for the required adaptations to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>"
+                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nThe property must have been assessed and selected as suitable for the identified household to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>"
                 }
             ],
             "next": [],

@@ -10,7 +10,7 @@
                     "name": "yaIZTK",
                     "options": {},
                     "type": "Para",
-                    "content": "In this section, we'll ask you to confirm and agree with the declarations.",
+                    "content": "In this section, we'll ask you to confirm and agree with the declarations",
                     "schema": {}
                 }
             ],
@@ -23,13 +23,13 @@
         },
         {
             "path": "/confirm-that-you-have-read-and-agree-with-the-following-declarations",
-            "title": "Confirm that you have read and agree with the following declarations.",
+            "title": "Confirm that you have read and agree with the following declarations",
             "components": [
                 {
                     "name": "hdcNtS",
                     "options": {},
                     "type": "Para",
-                    "content": "<ul>\n<li>I am content that the household understands the commitment and importance\n<li>I agree to maintain regular and ongoing communication with the household as their property progresses\n<li>I have not and will not make any applications to alternative funding schemes for these adaptations that could be considered duplicate funding (for example, the Exceptional Costs Fund or Disabled Facilities Grant)\n<li>No personal or identifiable information is included in the application\n<li>Our section 151 officer has read the <a href='https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf' target='_blank' class='govuk-link'>LAHF top-up guidance (opens in new tab)</a> and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household\n<li>The property will be used for the intended purpose\n<li>The property is one of the following:</li>\n<ul>\n     <li>located in England and is a Local Authority Housing Fund (LAHF) property</li>\n     <li>located in Scotland or Wales and meets the property requirements set out in the <a href='https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf' target='_blank' class='govuk-link'>LAHF top-up guidance (opens in new tab)</a></li>\n</ul>\n</ul>"
+                    "content": "<ul>\n<li>I am content that the household understands the commitment and importance\n<li>I agree to maintain regular and ongoing communication with the household as their property progresses\n<li>I have not and will not make any applications to alternative funding schemes for these adaptations that could be considered duplicate funding (for example, the Exceptional Costs Fund or Disabled Facilities Grant)\n<li>No personal or identifiable information is included in the application\n<li>Our section 151 officer has read the guidance for the grant and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household\n<li>The property will be used for the intended purpose\n<li>The property is one of the following:</li>\n<ul>\n     <li>located in England and is a Local Authority Housing Fund (LAHF) property</li>\n     <li>located in Scotland or Wales and meets the property requirements set out in the <a href='https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf' target='_blank' class='govuk-link'>LAHF top-up guidance (opens in new tab)</a></li>\n</ul>\n</ul>"
                 },
                 {
                     "name": "MRbDfT",
@@ -80,8 +80,8 @@
                     "value": "No personal or identifiable information is included in the application"
                 },
                 {
-                    "text": "Our section 151 officer has read the <a href='https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf' target='_blank' class='govuk-link'>LAHF top-up guidance (opens in new tab)</a> and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household",
-                    "value": "Our section 151 officer has read the LAHF top-up guidance and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household"
+                    "text": "Our section 151 officer has read the guidance for the grant and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household",
+                    "value": "Our section 151 officer has read the guidance for the grant and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household"
                 },
                 {
                     "text": "The property will be used for the intended purpose",

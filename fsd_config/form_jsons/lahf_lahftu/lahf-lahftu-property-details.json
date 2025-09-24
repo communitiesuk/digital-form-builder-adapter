@@ -10,7 +10,7 @@
                     "name": "fhLQqW",
                     "options": {},
                     "type": "Para",
-                    "content": "In this section, we'll ask about:\n<ul>\n<li>the full address of the property</li>\n<li>the number of rooms in the property</li>\n<li>the current status of the property</li>\n<li>how the property would meet the household's adaptation or accessibility requirements</li>\n</ul>",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>the full address of the property</li>\n<li>the number of bedrooms, bathrooms and floors in the property</li>\n<li>the current status of the property</li>\n<li>how the property would meet the household's adaptation or accessibility requirements</li>\n</ul>",
                     "schema": {}
                 }
             ],
@@ -63,7 +63,7 @@
             "section": "FabDefault",
             "next": [
                 {
-                    "path": "/what-is-the-current-status-of-the-property"
+                    "path": "/how-many-floors-are-there-in-the-property"
                 }
             ]
         },
@@ -77,7 +77,7 @@
                         "hideTitle": true
                     },
                     "type": "RadiosField",
-                    "title": "What is the current status of the property?",
+                    "title": "What is the current status of the property",
                     "list": "ezOotS",
                     "schema": {},
                     "values": {
@@ -108,7 +108,7 @@
                     "name": "vPZrwb",
                     "options": {},
                     "type": "Para",
-                    "content": "Set out details of any adaptations required. Do not include any personal details that could make a person identifiable."
+                    "content": "Set out details of any adaptations required. Do not include any personal details that could make a person identifiable"
                 },
                 {
                     "name": "NXsAYk",
@@ -116,7 +116,7 @@
                         "hideTitle": true
                     },
                     "type": "FreeTextField",
-                    "title": "Tell us how the property would meet the household's adaptation or accessibility requirements. ",
+                    "title": "Tell us how the property would meet the household's adaptation or accessibility requirements",
                     "hint": ""
                 }
             ],
@@ -125,12 +125,30 @@
                     "path": "/check-your-answers"
                 }
             ],
+            "section": "FabDefault"Ï
+        },
+        {
+            "path": "/how-many-floors-are-there-in-the-property",
+            "title": "How many floors are there in the property?",
+            "components": [
+                {
+                    "name": "xRdqbq",
+                    "options": {},
+                    "type": "NumberField",
+                    "title": "How many floors are there in the property"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-current-status-of-the-property"
+                }
+            ],
             "section": "FabDefault"
         }
     ],
     "lists": [
         {
-            "title": "What is the current status of the property?",
+            "title": "What is the current status of the property",
             "name": "ezOotS",
             "type": "string",
             "items": [

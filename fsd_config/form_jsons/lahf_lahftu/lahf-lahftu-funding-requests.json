@@ -32,7 +32,7 @@
                         "hideTitle": true
                     },
                     "type": "NumberField",
-                    "title": "How much funding are you applying for in total?",
+                    "title": "How much funding are you applying for in total",
                     "schema": {
                       "min": 1
                     }
@@ -125,7 +125,7 @@
                     "name": "qcPBDT",
                     "options": {},
                     "type": "Para",
-                    "content": "<ul>\n<li>Upload itemised invoice or quotes listing the costs and installation fees associated with the adaptations</li>\n<li>Or upload evidence of how the property features meet the household's medical/mobility requirements (as set out in an OT report) as well as a detailed costs breakdown and justification for how the funding will be used</li>\n</ul>"
+                    "content": "If you are applying for funding for new adaptations to the property, upload itemised quotes listing the costs and installation fees associated with the adaptations.<br><br>\n\nIf the property is already adapted or accessible, upload evidence to show how the property meets the household's requirements (as set out in the occupational therapy report)."
                 },
                 {
                     "name": "LbqcYE",
@@ -141,7 +141,7 @@
                         "hideTitle": true
                     },
                     "type": "ClientSideFileUploadField",
-                    "title": "Upload evidence to support the funding you are applying for.",
+                    "title": "Upload evidence to support the funding you are applying for",
                     "schema": {}
                 }
             ],
@@ -184,7 +184,7 @@
                         "hideTitle": true
                     },
                     "type": "YesNoField",
-                    "title": "Are you requesting funding to cover void rent costs?",
+                    "title": "Are you requesting funding to cover void rent costs",
                     "values": {
                         "type": "listRef"
                     },
@@ -235,7 +235,7 @@
                         "hideTitle": true
                     },
                     "type": "ClientSideFileUploadField",
-                    "title": "Upload evidence of rent forgone, including the relevant time period.",
+                    "title": "Upload evidence of rent forgone, including the relevant time period",
                     "schema": {}
                 },
                 {
@@ -274,7 +274,7 @@
                         "prefix": "£"
                     },
                     "type": "NumberField",
-                    "title": "How much funding in total are you requesting to cover void costs?"
+                    "title": "How much funding in total are you requesting to cover void costs"
                 }
             ],
             "next": [
