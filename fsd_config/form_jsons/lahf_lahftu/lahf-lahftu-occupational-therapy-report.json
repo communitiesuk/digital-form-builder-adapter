@@ -22,7 +22,7 @@
         },
         {
             "path": "/upload-your-occupational-therapy-report",
-            "title": "Upload your occupational therapy report?",
+            "title": "Upload your occupational therapy report",
             "components": [
                 {
                     "name": "ZDLjys",

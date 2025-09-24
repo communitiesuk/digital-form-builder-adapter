@@ -102,7 +102,7 @@
         },
         {
             "path": "/tell-us-how-the-property-would-meet-the-households-adaptation-or-accessibility-requirements",
-            "title": "Tell us how the property would meet the household's adaptation or accessibility requirements.",
+            "title": "Tell us how the property would meet the household's adaptation or accessibility requirements",
             "components": [
                 {
                     "name": "vPZrwb",
@@ -125,7 +125,7 @@
                     "path": "/check-your-answers"
                 }
             ],
-            "section": "FabDefault"Ï
+            "section": "FabDefault"
         },
         {
             "path": "/how-many-floors-are-there-in-the-property",
