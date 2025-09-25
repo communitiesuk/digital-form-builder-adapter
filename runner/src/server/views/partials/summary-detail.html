@@ -2,7 +2,7 @@
 
 {% macro summaryDetail(data, isReadOnlySummary=false) %}
     {%  set isRepeatableSection = (data.items[0] | isArray) %}
-    {% if not isRepeatableSection %}
+    {% if not isRepeatableSection and not data.hideTitle %}
         <h2 class="govuk-heading-m">{{data.title}}</h2>
     {% endif %}
   <dl class="govuk-summary-list">
