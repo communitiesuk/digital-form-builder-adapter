@@ -10,7 +10,7 @@
                     "name": "fhLQqW",
                     "options": {},
                     "type": "Para",
-                    "content": "In this section, we'll ask about:\n<ul>\n<li>the full address of the property</li>\n<li>the number of rooms and floors in the property</li>\n<li>the current status of the property</li>\n</ul>",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>the full address of the property</li>\n<li>the number of bedrooms, bathrooms and floors in the property</li>\n<li>the current status of the property</li>\n<li>how the property would meet the household's adaptation or accessibility requirements</li>\n</ul>",
                     "schema": {}
                 }
             ],
@@ -49,21 +49,14 @@
                     "name": "ZoWdNb",
                     "options": {},
                     "type": "NumberField",
-                    "title": "Number of bedrooms",
+                    "title": "Bedrooms",
                     "schema": {}
                 },
                 {
                     "name": "XRMMJp",
                     "options": {},
                     "type": "NumberField",
-                    "title": "Number of bathrooms",
-                    "schema": {}
-                },
-                {
-                    "name": "YlnYVH",
-                    "options": {},
-                    "type": "NumberField",
-                    "title": "Number of other rooms",
+                    "title": "Bathrooms",
                     "schema": {}
                 }
             ],
@@ -84,14 +77,17 @@
                         "hideTitle": true
                     },
                     "type": "RadiosField",
-                    "title": "What is the current status of the property?",
+                    "title": "What is the current status of the property",
                     "list": "ezOotS",
-                    "schema": {}
+                    "schema": {},
+                    "values": {
+                        "type": "listRef"
+                    }
                 }
             ],
             "next": [
                 {
-                    "path": "/check-your-answers"
+                    "path": "/tell-us-how-the-property-would-meet-the-households-adaptation-or-accessibility-requirements"
                 }
             ],
             "section": "FabDefault"
@@ -105,14 +101,41 @@
             "section": "FabDefault"
         },
         {
+            "path": "/tell-us-how-the-property-would-meet-the-households-adaptation-or-accessibility-requirements",
+            "title": "Tell us how the property would meet the household's adaptation or accessibility requirements",
+            "components": [
+                {
+                    "name": "vPZrwb",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Set out details of any adaptations required. Do not include any personal details that could make a person identifiable"
+                },
+                {
+                    "name": "NXsAYk",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "Tell us how the property would meet the household's adaptation or accessibility requirements",
+                    "hint": ""
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
             "path": "/how-many-floors-are-there-in-the-property",
             "title": "How many floors are there in the property?",
             "components": [
                 {
-                    "name": "SpbeNL",
+                    "name": "xRdqbq",
                     "options": {},
                     "type": "NumberField",
-                    "title": "Number of floors"
+                    "title": "How many floors are there in the property"
                 }
             ],
             "next": [
@@ -125,10 +148,14 @@
     ],
     "lists": [
         {
-            "title": "What is the current status of the property?",
+            "title": "What is the current status of the property",
             "name": "ezOotS",
             "type": "string",
             "items": [
+                {
+                    "text": "Existing stock",
+                    "value": "Existing stock"
+                },
                 {
                     "text": "Property identified",
                     "value": "Property identified"

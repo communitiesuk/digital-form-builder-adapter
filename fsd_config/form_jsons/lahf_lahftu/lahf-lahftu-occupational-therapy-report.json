@@ -60,7 +60,7 @@
                     },
                     "type": "DatePartsField",
                     "hint": "For example, 27 4 2025",
-                    "title": "What date was the occupational therapy assessment completed? "
+                    "title": "What date was the occupational therapy assessment completed"
                 }
             ],
             "section": "FabDefault",

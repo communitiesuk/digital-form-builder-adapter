@@ -195,6 +195,11 @@
         $(document).ready(function () {
             GOVUKFrontend.initAll()
 
+            // Hide privacy link for LAHF forms
+            if (window.location.pathname.toLowerCase().includes('lahf')) {
+                $('.govuk-footer a[href*="privacy"]').closest('li').hide();
+            }
+
             {% if not skipTimeoutWarning %}
             GOVUKFrontend.modalDialog.containerSelector = '#main-content'
             GOVUKFrontend.modalDialog.idleMinutesBeforeTimeOut = Number('{{ (sessionTimeout / 60000) - 1 }}')
@@ -214,29 +219,28 @@
     {% set footerItems = [] %}
     {% if footer %}
         {% for footerItem in footer %}
-            {% set _ = footerItems.push({
-                href: footerItem.href,
-                text: footerItem.text
-            }) %}
+            {% set _ = footerItems.push({ href: footerItem.href, text: footerItem.text }) %}
         {% endfor %}
     {% else %}
-        {% set footerItems = [{
-            href: privacyPolicyUrl,
-            text: i18nGetTranslation("footer.privacy")
-        }, {
+        {% set footerItems = [] %}
+        {% if privacyPolicyUrl %}
+            {% set _ = footerItems.push({
+                href: privacyPolicyUrl,
+                text: i18nGetTranslation("footer.privacy")
+            }) %}
+        {% endif %}
+        {% set _ = footerItems.push({
             href: cookiePolicyUrl,
             text: i18nGetTranslation("footer.cookies")
-        }, {
+        }) %}
+        {% set _ = footerItems.push({
             href: accessibilityStatementUrl,
             text: i18nGetTranslation("footer.accessibilityStatement")
-        }, {
+        }) %}
+        {% set _ = footerItems.push({
             href: contactUsUrl,
             text: i18nGetTranslation("footer.contactUs")
-        }] %}
+        }) %}
     {% endif %}
-    {{ govukFooter({
-        meta: {
-            items: footerItems
-        }
-    }) }}
+    {{ govukFooter({ meta: { items: footerItems } }) }}
 {% endblock %}

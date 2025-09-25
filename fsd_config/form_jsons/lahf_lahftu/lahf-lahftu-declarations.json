@@ -10,7 +10,8 @@
                     "name": "yaIZTK",
                     "options": {},
                     "type": "Para",
-                    "content": "In this section, we'll ask you to confirm and agree with the declarations."
+                    "content": "In this section, we'll ask you to confirm and agree with the declarations",
+                    "schema": {}
                 }
             ],
             "next": [
@@ -22,21 +23,16 @@
         },
         {
             "path": "/confirm-that-you-have-read-and-agree-with-the-following-declarations",
-            "title": "Confirm that you have read and agree with the following declarations.",
+            "title": "Confirm that you have read and agree with the following declarations",
             "components": [
                 {
-                    "name": "MumnzN",
+                    "name": "hdcNtS",
                     "options": {},
-                    "type": "List",
-                    "hint": "",
-                    "title": "Confirm that you have read and agree with the following declarations.",
-                    "list": "VlGMLJ",
-                    "values": {
-                        "type": "listRef"
-                    }
+                    "type": "Para",
+                    "content": "<ul>\n<li>I am content that the household understands the commitment and importance\n<li>I agree to maintain regular and ongoing communication with the household as their property progresses\n<li>I have not and will not make any applications to alternative funding schemes for these adaptations that could be considered duplicate funding (for example, the Exceptional Costs Fund or Disabled Facilities Grant)\n<li>No personal or identifiable information is included in the application\n<li>Our section 151 officer has read the guidance for the grant and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household\n<li>The property will be used for the intended purpose\n<li>The property is one of the following:</li>\n<ul>\n     <li>located in England and is a Local Authority Housing Fund (LAHF) property</li>\n     <li>located in Scotland or Wales and meets the property requirements set out in the <a href='https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf' target='_blank' class='govuk-link'>LAHF top-up guidance (opens in new tab)</a></li>\n</ul>\n</ul>"
                 },
                 {
-                    "name": "CzMnku",
+                    "name": "MRbDfT",
                     "options": {
                         "hideTitle": true
                     },
@@ -86,6 +82,14 @@
                 {
                     "text": "Our section 151 officer has read the guidance for the grant and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household",
                     "value": "Our section 151 officer has read the guidance for the grant and confirmed that the application is accurate, represents value for money, and that proposed adaptations are necessary to meet the needs of the household"
+                },
+                {
+                    "text": "The property will be used for the intended purpose",
+                    "value": "The property will be used for the intended purpose"
+                },
+                {
+                    "text": "The property is one of the following: located in England and is a Local Authority Housing Fund (LAHF) property, or located in Scotland or Wales and meets the property requirements set out in the <a href='https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf' target='_blank' class='govuk-link'>LAHF top-up guidance (opens in new tab)</a>",
+                    "value": "The property is one of the following: located in England and is a Local Authority Housing Fund (LAHF) property, or located in Scotland or Wales and meets the property requirements set out in the LAHF top-up guidance"
                 }
             ]
         },
@@ -113,6 +117,10 @@
     "outputs": [],
     "version": 2,
     "skipSummary": false,
-    "feeOptions": {},
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
     "markAsComplete": false
 }
