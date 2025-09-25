@@ -83,7 +83,9 @@
                             },
                             "title": "Amount of funding requested",
                             "hint": "",
-                            "schema": {}
+                            "schema": {
+                              "min": 1
+                            }
                         }
                     ],
                     "schema": {
