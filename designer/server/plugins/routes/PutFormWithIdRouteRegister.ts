@@ -2,7 +2,6 @@ import {ServerRoute} from "@hapi/hapi";
 import {AdapterSchema} from "@communitiesuk/model";
 import {publish} from "../../../../digital-form-builder/designer/server/lib/publish";
 import {preAwardApiClient} from "../../lib/preAwardApiClient";
-import config from "../../config";
 
 
 export const putFormWithIdRouteRegister: ServerRoute = {
