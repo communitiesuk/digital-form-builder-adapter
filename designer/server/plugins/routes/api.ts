@@ -22,12 +22,7 @@ export const getAllPersistedConfigurations: ServerRoute = {
     ...originalApi.getAllPersistedConfigurations.options || {},
     handler: async (request, h): Promise<ResponseObject | undefined> => {
       const forms = await preAwardApiClient.getAllForms();
-      const response = forms.map(form => ({
-        Key: form.name,
-        DisplayName: form.name,
-        LastModified: form.updated_at
-      }));
-      return h.response(response).type("application/json");
+      return h.response(forms).type("application/json");
     },
   },
 };
