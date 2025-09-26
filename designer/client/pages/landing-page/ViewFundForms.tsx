@@ -13,6 +13,7 @@ type Props = {
 type State = {
     configs: { Key: string; DisplayName: string }[];
     loading?: boolean;
+
 };
 
 export class ViewFundForms extends Component<Props, State> {
@@ -25,30 +26,23 @@ export class ViewFundForms extends Component<Props, State> {
         };
     }
 
-    componentDidMount() {
-        formConfigurationApi.loadConfigurations().then((configs) => {
+    async componentDidMount() {
+        try {
+            const configs = await formConfigurationApi.loadConfigurations();
             this.setState({
                 loading: false,
                 configs,
             });
-        });
+        } catch (error) {
+            logger.error("ViewFundForms componentDidMount", error);
+            this.setState({ loading: false });
+        }
     }
 
     selectForm = async (form) => {
         try {
-            const response = await window.fetch("/api/new", {
-                method: "POST",
-                body: JSON.stringify({
-                    selected: {Key: form},
-                    name: "",
-                }),
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            const responseJson = await response.json();
-            this.props.history.push(`/designer/${responseJson.id}`);
+            // Always go directly to edit the form from Pre-Award API
+            this.props.history.push(`/designer/${form}`);
         } catch (e) {
             logger.error("ChooseExisting", e);
         }

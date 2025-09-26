@@ -10,7 +10,9 @@
     "static-content:dist-push": "cp -r ../designer/public/static/images dist/client/assets && cp -r ../designer/public/static/css dist/client/assets",
     "build": "NODE_ENV=production && NODE_OPTIONS=--openssl-legacy-provider && webpack && yarn run static-content:dist-push",
     "start:server": "node dist/server.js",
-    "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only server/index.ts"
+    "start:local": "NODE_ENV=development PERSISTENT_BACKEND=preview ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only server/index.ts",
+    "test": "lab test/cases/server/plugins/*.test.ts -T test/.transform.js -v",
+    "unit-test": "lab test/cases/server/plugins/*.test.ts -T test/.transform.js -v -S -r console -o stdout -r html -o unit-test.html -I version -l"
   },
   "author": "Communities UK",
   "license": "SEE LICENSE IN LICENSE",
