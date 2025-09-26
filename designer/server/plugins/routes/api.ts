@@ -1,6 +1,5 @@
 import { api as originalApi } from "../../../../digital-form-builder/designer/server/plugins/routes";
 import { preAwardApiClient } from "../../lib/preAwardApiClient";
-import config from "../../config";
 import { ServerRoute, ResponseObject } from "@hapi/hapi";
 
 // Extend the original getFormWithId with Pre-Award API support
@@ -16,29 +15,6 @@ export const getFormWithId: ServerRoute = {
   },
 };
 
-// Extend the original putFormWithId with Pre-Award API support
-export const putFormWithId: ServerRoute = {
-  ...originalApi.putFormWithId,
-  options: {
-    ...originalApi.putFormWithId.options || {},
-    handler: async (request, h) => {
-      const { id } = request.params;
-      const { Schema } = await import("../../../../digital-form-builder/model/src");
-      const { value, error } = Schema.validate(request.payload, {
-        abortEarly: false,
-      });
-
-      if (error) {
-        throw new Error("Schema validation failed, reason: " + error.message);
-      }
-      const formData = { name: id, form_json: value };
-      await preAwardApiClient.createOrUpdateForm(formData);
-      
-      return h.response({ ok: true }).code(204);
-    },
-  },
-};
-
 // Extend the original getAllPersistedConfigurations with Pre-Award API support
 export const getAllPersistedConfigurations: ServerRoute = {
   ...originalApi.getAllPersistedConfigurations,
@@ -46,12 +22,7 @@ export const getAllPersistedConfigurations: ServerRoute = {
     ...originalApi.getAllPersistedConfigurations.options || {},
     handler: async (request, h): Promise<ResponseObject | undefined> => {
       const forms = await preAwardApiClient.getAllForms();
-      const response = forms.map(form => ({
-        Key: form.name,
-        DisplayName: form.name,
-        LastModified: form.updated_at
-      }));
-      return h.response(response).type("application/json");
+      return h.response(forms).type("application/json");
     },
   },
 };
