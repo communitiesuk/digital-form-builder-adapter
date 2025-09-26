@@ -45,7 +45,6 @@
   "authClientAuthUrl": "AUTH_CLIENT_AUTH_URL",
   "authClientTokenUrl": "AUTH_CLIENT_TOKEN_URL",
   "authClientProfileUrl": "AUTH_CLIENT_PROFILE_URL",
-  "previewMode": "PREVIEW_MODE",
   "enforceCsrf": "ENFORCE_CSRF",
   "savePerPage": "SAVE_PER_PAGE",
   "awsBucketName": "AWS_BUCKET_NAME",
@@ -70,5 +69,6 @@
   "sentryDsn": "SENTRY_DSN",
   "sentryTracesSampleRate": "SENTRY_TRACES_SAMPLE_RATE",
   "copilotEnv": "COPILOT_ENV",
-  "enableVirusScan": "ENABLE_VIRUS_SCAN"
+  "enableVirusScan": "ENABLE_VIRUS_SCAN",
+  "formStoreApiHost": "FORM_STORE_API_HOST"
 }

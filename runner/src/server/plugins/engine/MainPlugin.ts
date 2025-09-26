@@ -1,6 +1,6 @@
 import {Options} from "./types/PluginOptions";
 import {HapiServer} from "../../types";
-import {RegisterFormPublishApi} from "./api";
+import {RegisterFormsApi} from "./api";
 
 
 const LOGGER_DATA = {
@@ -18,7 +18,7 @@ export const plugin = {
         let countError = 0;
         for (const config of configs) {
             try {
-                await adapterCacheService.setFormConfiguration(config.id, config, server);
+                await adapterCacheService.setFormConfiguration(config.id, config);
                 countOk++;
             } catch (e) {
                 countError++;
@@ -32,6 +32,6 @@ export const plugin = {
             ...LOGGER_DATA,
             message: `[FORM-CACHE] number of forms loaded into cache ok[${countOk}] error[${countError}]`
         })
-        new RegisterFormPublishApi().register(server, options);
+        new RegisterFormsApi().register(server);
     }
 };
