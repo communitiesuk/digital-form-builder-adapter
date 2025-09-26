@@ -25,7 +25,7 @@ export const registerNewFormWithRunner: ServerRoute = {
       const newName = name === "" ? nanoid(10) : name;
 
       if (selected.Key === "New") {
-        const formData = { name: newName, form_json: newFormJson };
+        const formData = { url_path: newName, display_name: newName, form_json: newFormJson };
         await preAwardApiClient.createOrUpdateForm(formData);
         await publish(newName, newFormJson, request);
       }
