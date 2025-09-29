@@ -62,6 +62,14 @@ export class PreAwardApiClient {
         return parsedData as FormDraftResponse;
     }
 
+    async getFormPublished(name: string): Promise<Record<string, any>>{
+        const { payload: responseData } = await this.wreck.get(
+            `${this.baseUrl}/${name}/published`
+        );
+        const parsedData = JSON.parse((responseData as Buffer).toString());
+        return parsedData as Record<string, any>;
+    }
+
     async publishForm(urlPath: string): Promise<FormResponse> {
         const { payload: responseData } = await this.wreck.put(
             `${this.baseUrl}/${urlPath}/publish`

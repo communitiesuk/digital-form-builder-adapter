@@ -68,6 +68,40 @@ export class ViewFundForms extends Component<Props, State> {
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     };
 
+    previewDraft = async (formKey: string) => {
+        try {
+            const response = await fetch(`/api/${formKey}/preview-draft`, {
+                method: 'POST',
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                window.open(data.url, "_blank", "noopener,noreferrer");
+            } else {
+                console.error('Failed to preview draft form');
+            }
+        } catch (error) {
+            console.error("Error previewing draft form:", error);
+        }
+    };
+
+    previewPublished = async (formKey: string) => {
+        try {
+            const response = await fetch(`/api/${formKey}/preview-published`, {
+                method: 'POST',
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                window.open(data.url, "_blank", "noopener,noreferrer");
+            } else {
+                console.error('Failed to preview published form');
+            }
+        } catch (error) {
+            console.error("Error previewing published form:", error);
+        }
+    };
+
     publishForm = async (formKey: string) => {
         try {
             const response = await fetch(`/api/${formKey}/publish`, {
@@ -122,6 +156,18 @@ export class ViewFundForms extends Component<Props, State> {
                         href="#"
                         onClick={(e) => {
                             e.preventDefault();
+                            this.previewDraft(form.Key);
+                        }}
+                    >
+                        Preview
+                    </a>
+                </td>
+                <td className="govuk-table__cell">
+                    <a
+                        className="govuk-link"
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
                             this.publishForm(form.Key);
                         }}
                     >
@@ -133,6 +179,18 @@ export class ViewFundForms extends Component<Props, State> {
                 </td>
                 <td className="govuk-table__cell">
                     {this.formatDateTime(form.LastPublished)}
+                </td>
+                <td className="govuk-table__cell">
+                    <a
+                        className="govuk-link"
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            this.previewPublished(form.Key);
+                        }}
+                    >
+                        Preview
+                    </a>
                 </td>
             </tr>
         ));
@@ -163,6 +221,9 @@ export class ViewFundForms extends Component<Props, State> {
                                         Edit draft
                                     </th>
                                     <th scope="col" className="govuk-table__header">
+                                        Preview draft
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
                                         Publish draft
                                     </th>
                                     <th scope="col" className="govuk-table__header">
@@ -171,6 +232,9 @@ export class ViewFundForms extends Component<Props, State> {
                                     <th scope="col" className="govuk-table__header">
                                         Last published
                                     </th>
+                                    <th scope="col" className="govuk-table__header">
+                                        Preview published
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody className="govuk-table__body">
@@ -178,7 +242,7 @@ export class ViewFundForms extends Component<Props, State> {
                                     <>{formTable}</>
                                 ) : (
                                     <tr className="govuk-table__row">
-                                        <td className="govuk-table__cell table__cell__noborder" colSpan={6}>
+                                        <td className="govuk-table__cell table__cell__noborder" colSpan={8}>
                                             {i18n("landingPage.existing.noforms")}
                                         </td>
                                     </tr>
