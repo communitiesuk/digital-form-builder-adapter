@@ -11,7 +11,7 @@ type Props = {
 };
 
 type State = {
-    configs: { Key: string; DisplayName: string; LastModified: string }[];
+    configs: { Key: string; DisplayName: string; LastModified: string; LastPublished: string }[];
     loading?: boolean;
 
 };
@@ -68,6 +68,27 @@ export class ViewFundForms extends Component<Props, State> {
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     };
 
+    publishForm = async (formKey: string) => {
+        try {
+            const response = await fetch(`/api/${formKey}/publish`, {
+                method: 'PUT',
+            });
+
+            if (response.ok) {
+                // Refresh the forms list to show updated publish status
+                const configs = await formConfigurationApi.loadConfigurations();
+                const sortedConfigs = configs.sort((a, b) =>
+                    new Date(b.LastModified).getTime() - new Date(a.LastModified).getTime()
+                );
+                this.setState({ configs: sortedConfigs });
+            } else {
+                console.error('Failed to publish form');
+            }
+        } catch (error) {
+            console.error("Error publishing form:", error);
+        }
+    };
+
     render() {
         const configs = this.state.configs || [];
         const hasEditableForms = configs.length > 0;
@@ -96,7 +117,22 @@ export class ViewFundForms extends Component<Props, State> {
                     </a>
                 </td>
                 <td className="govuk-table__cell">
+                    <a
+                        className="govuk-link"
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            this.publishForm(form.Key);
+                        }}
+                    >
+                        Publish
+                    </a>
+                </td>
+                <td className="govuk-table__cell">
                     {this.formatDateTime(form.LastModified)}
+                </td>
+                <td className="govuk-table__cell">
+                    {this.formatDateTime(form.LastPublished)}
                 </td>
             </tr>
         ));
@@ -127,7 +163,13 @@ export class ViewFundForms extends Component<Props, State> {
                                         Edit draft
                                     </th>
                                     <th scope="col" className="govuk-table__header">
-                                        Last modified (UTC)
+                                        Publish draft
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
+                                        Last updated (UTC)
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
+                                        Last published (UTC)
                                     </th>
                                 </tr>
                                 </thead>
@@ -136,7 +178,7 @@ export class ViewFundForms extends Component<Props, State> {
                                     <>{formTable}</>
                                 ) : (
                                     <tr className="govuk-table__row">
-                                        <td className="govuk-table__cell table__cell__noborder" colSpan={4}>
+                                        <td className="govuk-table__cell table__cell__noborder" colSpan={6}>
                                             {i18n("landingPage.existing.noforms")}
                                         </td>
                                     </tr>
