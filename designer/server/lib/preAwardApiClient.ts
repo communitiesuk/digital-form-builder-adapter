@@ -3,13 +3,14 @@ import wreck from "@hapi/wreck";
 
 export interface FormData {
     url_path: string;
-    display_name?: string;
+    display_name: string;
     form_json: Record<string, any>;
 }
 
 export interface FormResponse {
     id: string;
-    name: string;
+    url_path: string;
+    display_name: string;
     created_at: string;
     updated_at: string;
     published_at: string | null;
