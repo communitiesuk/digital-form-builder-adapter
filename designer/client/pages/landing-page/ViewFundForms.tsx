@@ -11,7 +11,7 @@ type Props = {
 };
 
 type State = {
-    configs: { Key: string; DisplayName: string }[];
+    configs: { Key: string; DisplayName: string; LastModified: string }[];
     loading?: boolean;
 
 };
@@ -29,9 +29,13 @@ export class ViewFundForms extends Component<Props, State> {
     async componentDidMount() {
         try {
             const configs = await formConfigurationApi.loadConfigurations();
+            // Sort by last modified date, most recent first
+            const sortedConfigs = configs.sort((a, b) =>
+                new Date(b.LastModified).getTime() - new Date(a.LastModified).getTime()
+            );
             this.setState({
                 loading: false,
-                configs,
+                configs: sortedConfigs,
             });
         } catch (error) {
             logger.error("ViewFundForms componentDidMount", error);
@@ -51,6 +55,17 @@ export class ViewFundForms extends Component<Props, State> {
     goBack = (event) => {
         event.preventDefault();
         this.props.history.goBack();
+    };
+
+    formatDateTime = (dateString: string): string => {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     };
 
     render() {
@@ -77,6 +92,9 @@ export class ViewFundForms extends Component<Props, State> {
                 <td className="govuk-table__cell">
                     {form.Key}
                 </td>
+                <td className="govuk-table__cell">
+                    {this.formatDateTime(form.LastModified)}
+                </td>
             </tr>
         ));
 
@@ -92,15 +110,18 @@ export class ViewFundForms extends Component<Props, State> {
                     </h1>
 
                     <div className="govuk-grid-row form-grid">
-                        <div className="govuk-grid-column-two-thirds">
+                        <div className="govuk-grid-column-full">
                             <table className="govuk-table">
                                 <thead className="govuk-table__head">
                                 <tr className="govuk-table__row">
                                     <th scope="col" className="govuk-table__header">
-                                        Form name
+                                        Display name
                                     </th>
                                     <th scope="col" className="govuk-table__header">
-                                        File name
+                                        URL path
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
+                                        Last modified
                                     </th>
                                 </tr>
                                 </thead>
@@ -109,7 +130,7 @@ export class ViewFundForms extends Component<Props, State> {
                                     <>{formTable}</>
                                 ) : (
                                     <tr className="govuk-table__row">
-                                        <td className="govuk-table__cell table__cell__noborder">
+                                        <td className="govuk-table__cell table__cell__noborder" colSpan={3}>
                                             {i18n("landingPage.existing.noforms")}
                                         </td>
                                     </tr>
