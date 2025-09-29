@@ -25,9 +25,27 @@ export const getAllPersistedConfigurations: ServerRoute = {
       const response = forms.map(form => ({
         Key: form.url_path,
         DisplayName: form.display_name,
-        LastModified: form.updated_at
+        LastModified: form.updated_at,
+        LastPublished: form.published_at
       }));
       return h.response(response).type("application/json");
+    },
+  },
+};
+
+export const publishForm: ServerRoute = {
+  method: "PUT",
+  path: "/api/{id}/publish",
+  options: {
+    handler: async (request, h) => {
+      const { id } = request.params;
+      try {
+        await preAwardApiClient.publishForm(id);
+        return h.response({ ok: true }).code(200);
+      } catch (error) {
+        request.logger.error("Error publishing form:", error);
+        return h.response({ ok: false, error: "Failed to publish form" }).code(500);
+      }
     },
   },
 };
