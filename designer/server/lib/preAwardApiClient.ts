@@ -14,9 +14,6 @@ export interface FormResponse {
     updated_at: string;
     published_at: string | null;
     is_published: boolean;
-    Key: string;
-    DisplayName: string;
-    LastModified: string;
 }
 
 export class PreAwardApiClient {
@@ -49,13 +46,7 @@ export class PreAwardApiClient {
             `${this.baseUrl}`
         );
         const parsedData = JSON.parse((responseData as Buffer).toString());
-        // Transform Pre-Award API response to form-designer expected format
-        return parsedData.map(form => ({
-            Key: form.url_path,
-            DisplayName: form.display_name,
-            LastModified: form.updated_at,
-            ...form
-        }));
+        return parsedData as FormResponse[];
     }
 
     async getFormDraft(name: string): Promise<Record<string, any>>{
