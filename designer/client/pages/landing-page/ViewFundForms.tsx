@@ -78,6 +78,12 @@ export class ViewFundForms extends Component<Props, State> {
         const formTable = configs.map((form) => (
             <tr className="govuk-table__row" key={form.Key}>
                 <td className="govuk-table__cell">
+                    {form.DisplayName}
+                </td>
+                <td className="govuk-table__cell">
+                    {form.Key}
+                </td>
+                <td className="govuk-table__cell">
                     <a
                         className="govuk-link"
                         href="#"
@@ -86,11 +92,8 @@ export class ViewFundForms extends Component<Props, State> {
                             this.selectForm(form.Key);
                         }}
                     >
-                        {form.DisplayName}
+                        Edit
                     </a>
-                </td>
-                <td className="govuk-table__cell">
-                    {form.Key}
                 </td>
                 <td className="govuk-table__cell">
                     {this.formatDateTime(form.LastModified)}
@@ -121,6 +124,9 @@ export class ViewFundForms extends Component<Props, State> {
                                         URL path
                                     </th>
                                     <th scope="col" className="govuk-table__header">
+                                        Edit draft
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
                                         Last modified (UTC)
                                     </th>
                                 </tr>
@@ -130,7 +136,7 @@ export class ViewFundForms extends Component<Props, State> {
                                     <>{formTable}</>
                                 ) : (
                                     <tr className="govuk-table__row">
-                                        <td className="govuk-table__cell table__cell__noborder" colSpan={3}>
+                                        <td className="govuk-table__cell table__cell__noborder" colSpan={4}>
                                             {i18n("landingPage.existing.noforms")}
                                         </td>
                                     </tr>
