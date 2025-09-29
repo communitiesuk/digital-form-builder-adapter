@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {NewConfig} from "../../digital-form-builder/designer/client/pages/LandingPage";
 import {SaveError} from "../../digital-form-builder/designer/client/pages/ErrorPages";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import {ViewFundForms} from "./pages/landing-page";
 import AdapterDesigner from "./AdapterDesigner";
 import {adapterInitI18n} from "./i18n";
 import LandingChoice from "./pages/landing-page/ChoiceLanding";
+import AdapterNewConfig from "./pages/landing-page/AdapterNewConfig";
 
 adapterInitI18n();
 
@@ -25,7 +25,7 @@ export class CustomApp extends React.Component {
                             <LandingChoice/>
                         </Route>
                         <Route path="/new" exact>
-                            <NewConfig/>
+                            <AdapterNewConfig/>
                         </Route>
                         <Route path="/choose-existing" exact>
                             <ViewFundForms/>
