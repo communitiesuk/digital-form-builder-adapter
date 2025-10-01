@@ -22,13 +22,14 @@ interface State {
     error?: string; // not using as of now
     newConfig?: boolean; // TODO - is this required?
     data?: AdapterFormDefinition;
+    displayName?: string;
     page?: any;
     updatedAt?: any;
     downloadedAt?: any;
 }
 
 export default class AdapterDesigner extends Component<Props, State> {
-    state = {loading: true, flyoutCount: 0};
+    state: State = {loading: true, flyoutCount: 0};
 
     designerApi = new DesignerApi();
 
@@ -54,12 +55,25 @@ export default class AdapterDesigner extends Component<Props, State> {
         this.setState({flyoutCount: --currentCount}, callback());
     };
 
-    save = async (toUpdate, callback = () => {
+    save = async (toUpdate, displayName?: string, callback = () => {
     }) => {
         try {
-            await this.designerApi.save(this.id, toUpdate);
-            // @ts-ignore
-            this.setState({data: toUpdate, updatedAt: new Date().toLocaleTimeString(), error: undefined,}, callback());
+            const displayNameToUse = displayName || this.state.displayName;
+            
+            const payload = {
+                ...toUpdate,
+                name: displayNameToUse
+            };
+            
+            await this.designerApi.save(this.id, payload);
+            
+            this.setState({
+                data: toUpdate,
+                displayName: displayNameToUse,
+                updatedAt: new Date().toLocaleTimeString(),
+                error: undefined,
+            }, callback());
+            
             return toUpdate;
         } catch (e) {
             //@ts-ignore
@@ -78,14 +92,18 @@ export default class AdapterDesigner extends Component<Props, State> {
     componentDidMount() {
         const id = this.props.match?.params?.id;
         this.setState({id});
-        this.designerApi.fetchData(id).then((data) => {
-            this.setState({loading: false, data});
+        this.designerApi.fetchData(id).then((response) => {
+            this.setState({
+                loading: false, 
+                data: response.draft_json,
+                displayName: response.display_name
+            });
         });
     }
 
     render() {
         //@ts-ignore
-        const {flyoutCount, data, loading, error} = this.state;
+        const {flyoutCount, data, loading, error, displayName} = this.state;
         //@ts-ignore
         const {previewUrl} = window;
         if (loading) {
@@ -98,9 +116,10 @@ export default class AdapterDesigner extends Component<Props, State> {
             decrement: this.decrementFlyoutCounter,
         };
         const dataContextProviderValue = {data, save: this.save};
+        const adapterDataContextProviderValue = {data, save: this.save, displayName};
         return (
             <FeatureFlagProvider>
-                <AdapterDataContext.Provider value={dataContextProviderValue}>
+                <AdapterDataContext.Provider value={adapterDataContextProviderValue}>
                     <DataContext.Provider value={dataContextProviderValue}>
                         <FlyoutContext.Provider value={flyoutContextProviderValue}>
                             <div id="designer">
