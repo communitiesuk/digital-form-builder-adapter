@@ -17,6 +17,10 @@ export interface FormResponse {
     is_published: boolean;
 }
 
+export interface FormDraftResponse extends FormResponse {
+    draft_json: Record<string, any>;
+}
+
 export class PreAwardApiClient {
     private baseUrl: string;
     private wreck: any;
@@ -30,7 +34,7 @@ export class PreAwardApiClient {
         });
     }
 
-    async createOrUpdateForm(formData: FormData): Promise<FormResponse>{
+    async createOrUpdateForm(formData: FormData): Promise<FormDraftResponse>{
         const payload = formData;
         const { payload: responseData  } = await this.wreck.post(
             `${this.baseUrl}`,
@@ -39,7 +43,7 @@ export class PreAwardApiClient {
             }
         );
         const parsedData = JSON.parse((responseData as Buffer).toString());
-        return parsedData as FormResponse;
+        return parsedData as FormDraftResponse;
     }
 
     async getAllForms(): Promise<FormResponse[]> {
@@ -50,12 +54,12 @@ export class PreAwardApiClient {
         return parsedData as FormResponse[];
     }
 
-    async getFormDraft(name: string): Promise<Record<string, any>>{
+    async getFormDraft(name: string): Promise<FormDraftResponse>{
         const { payload: responseData } = await this.wreck.get(
             `${this.baseUrl}/${name}/draft`
         );
         const parsedData = JSON.parse((responseData as Buffer).toString());
-        return parsedData as Record<string, any>;
+        return parsedData as FormDraftResponse;
     }
 }
 
