@@ -2,7 +2,7 @@ import {app} from "../../../digital-form-builder/designer/server/plugins/routes"
 import {envStore, flagg} from "flagg";
 import {putFormWithIdRouteRegister} from "./routes/PutFormWithIdRouteRegister";
 import {registerNewFormWithRunner} from "./routes/newConfig";
-import {getFormWithId, getAllPersistedConfigurations, log} from "./routes/api";
+import {getFormWithId, getAllPersistedConfigurations, log, previewDraft, previewPublished, publishForm} from "./routes/api";
 import config from "../config";
 import {jwtAuthStrategyName} from "./AuthPlugin";
 
@@ -94,6 +94,12 @@ export const designerPlugin = {
                 getAllPersistedConfigurations.options.auth = jwtAuthStrategyName
                 // @ts-ignore
                 log.options.auth = jwtAuthStrategyName
+                // @ts-ignore
+                previewDraft.options.auth = jwtAuthStrategyName
+                // @ts-ignore
+                previewPublished.options.auth = jwtAuthStrategyName
+                // @ts-ignore
+                publishForm.options.auth = jwtAuthStrategyName
             }
 
             server.route(startRoute);
@@ -136,6 +142,9 @@ export const designerPlugin = {
             server.route(putFormWithIdRouteRegister);
             server.route(getAllPersistedConfigurations);
             server.route(log);
+            server.route(previewDraft);
+            server.route(previewPublished);
+            server.route(publishForm);
         },
     },
 };
