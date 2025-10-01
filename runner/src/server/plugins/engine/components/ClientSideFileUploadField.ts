@@ -33,8 +33,8 @@ export class ClientSideFileUploadField extends AdapterFormComponent {
                 const {s3UploadService, adapterCacheService} = request.services([]);
                 //@ts-ignore
                 const state = await adapterCacheService.getState(request);
-                const form_session_identifier =
-                    state.metadata?.form_session_identifier ?? "";
+                let form_session_identifier = state.metadata?.form_session_identifier ?? request.query.form_session_identifier ?? "";
+
                 const clientSideUploadComponent = viewModel.components.find(
                     (c) => c.type === "ClientSideFileUploadField"
                 );
