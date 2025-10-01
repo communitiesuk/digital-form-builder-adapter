@@ -10,7 +10,7 @@ export const getFormWithId: ServerRoute = {
     handler: async (request, h) => {
       const { id } = request.params;
       const formDraftResponse = await preAwardApiClient.getFormDraft(id);
-      return h.response(formDraftResponse.draft_json).type("application/json");
+      return h.response(formDraftResponse).type("application/json");
     },
   },
 };
