@@ -14,11 +14,16 @@ export const putFormWithIdRouteRegister: ServerRoute = {
         },
         handler: async (request, h) => {
             const {id} = request.params;
+            const payload = request.payload as any;
             //@ts-ignore
             const {persistenceService} = request.services([]);
 
             try {
-                const {value, error} = AdapterSchema.validate(request.payload, {
+                const displayName = payload.name || id;
+                const cleanPayload = { ...payload };
+                delete cleanPayload.name;
+
+                const {value, error} = AdapterSchema.validate(cleanPayload, {
                     abortEarly: false,
                 });
 
@@ -33,7 +38,7 @@ export const putFormWithIdRouteRegister: ServerRoute = {
                     JSON.stringify(value)
                 );
                 // Save to Pre-Award API
-                const formData = { url_path: id, display_name: id, form_json: value };
+                const formData = { url_path: id, display_name: displayName, form_json: value };
                 await preAwardApiClient.createOrUpdateForm(formData);
                 // Publish to runner for preview
                 await publish(id, value);
