@@ -130,7 +130,7 @@ export const renderFieldEdit = (
                         }}
                     />
                 </div>
-                {!isContentField && type != "MultiInputField" && (
+                {!isContentField && type != "MultiInputField" && type != "ClientSideFileUploadField" && (
                     <div className="govuk-checkboxes govuk-form-group">
                         <div className="govuk-checkboxes__item">
                             <input
