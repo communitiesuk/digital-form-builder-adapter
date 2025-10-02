@@ -31,6 +31,7 @@ export interface Config {
     authCookieName: string,
     sslKey: string,
     sslCert: string,
+    preAwardApiUrl: string,
 }
 
 // server-side storage expiration - defaults to 20 minutes
@@ -65,6 +66,7 @@ const schema = joi.object({
     authCookieName: joi.string().optional(),
     sslKey: joi.string().optional(),
     sslCert: joi.string().optional(),
+    preAwardApiUrl: joi.string().default("https://api.communities.gov.localhost:4004/forms"),
 });
 
 // Build config
@@ -90,6 +92,7 @@ const config = {
     authCookieName: process.env.AUTH_COOKIE_NAME,
     sslKey: process.env.SSL_KEY,
     sslCert: process.env.SSL_CERT,
+    preAwardApiUrl: process.env.FORM_STORE_API_HOST || "https://api.communities.gov.localhost:4004/forms",
 };
 
 // Validate config
