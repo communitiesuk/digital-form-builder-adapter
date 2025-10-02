@@ -234,7 +234,7 @@ export class RepeatingFieldPageController extends PageController {
             rows = this.summary.buildRows(this.getPartialState(state), response, request);
             response.source.context.details = {
                 //@ts-ignore
-                headings: this.inputComponent.options.columnTitles,
+                headings: [...(this.inputComponent.options.columnTitles || []), ""],
                 rows,
             };
             
