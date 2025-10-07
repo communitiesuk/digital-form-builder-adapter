@@ -185,7 +185,7 @@ export class PageControllerBase {
         const singleFormComponentIsFirst =
             singleFormComponent && singleFormComponent === components[0];
 
-        if (singleFormComponent && singleFormComponentIsFirst) {
+        if (singleFormComponent && singleFormComponentIsFirst && singleFormComponent.type !== "MultiInputField") {
             const label: any = singleFormComponent.model.label;
 
             if (pageTitle) {
