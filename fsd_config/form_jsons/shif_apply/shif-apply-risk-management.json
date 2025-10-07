@@ -1,0 +1,69 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "JyuIbZ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about the risks you have identified and how you will manage and mitigate these risks."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-risks-have-you-identified-and-how-will-you-manage-and-mitigate-these-risks"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/what-risks-have-you-identified-and-how-will-you-manage-and-mitigate-these-risks",
+            "title": "What risks have you identified, and how will you manage and mitigate these risks?",
+            "components": [
+                {
+                    "name": "WkOXbJ",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "200"
+                    },
+                    "type": "FreeTextField",
+                    "title": "What risks have you identified, and how will you manage and mitigate these risks"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Check your answers",
+            "path": "/check-your-answers",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {},
+    "markAsComplete": false
+}

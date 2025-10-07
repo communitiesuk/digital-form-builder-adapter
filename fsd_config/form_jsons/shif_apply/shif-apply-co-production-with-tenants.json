@@ -1,0 +1,74 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "KiyZMG",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about how, and to what extent, tenants have been involved in co-producing your proposal."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-and-to-what-extent-have-tenants-been-involved-in-co-producing-your-proposal"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/how-and-to-what-extent-have-tenants-been-involved-in-co-producing-your-proposal",
+            "title": "How, and to what extent, have tenants been involved in co-producing your proposal?",
+            "components": [
+                {
+                    "name": "Eykmpw",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Include details on how will they be involved in:\n<ul>\n<li>the design and delivery of the project</li>\n<li>monitoring the outcomes of the project</li>\n</ul>\n<p>\nApplicants will score higher if they can demonstrate projects are tenant-led, or a high level of tenant involvement at all stages of the design and delivery of the project.</p>"
+                },
+                {
+                    "name": "CjawNO",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "350"
+                    },
+                    "type": "FreeTextField",
+                    "title": "How, and to what extent, have tenants been involved in co-producing your proposal"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Check your answers",
+            "path": "/check-your-answers",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {},
+    "markAsComplete": false
+}
