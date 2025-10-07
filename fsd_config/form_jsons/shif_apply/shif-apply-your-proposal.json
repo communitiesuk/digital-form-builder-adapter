@@ -1,0 +1,195 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "VRmRxW",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask:\n<ul>\n<li>what the name of your project is</li>\n<li>what challenges you are trying to address</li>\n<li>how the proposal will address the challenges set out in your problem statement</li>\n<li>for your project plan (optional)</li>\n<li>who will be involved in implementing the proposal</li>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-name-of-your-project"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-challenges-are-you-trying-to-address",
+            "title": "What challenges are you trying to address?",
+            "components": [
+                {
+                    "name": "mRLSJE",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This is your problem statement. Provide any supporting evidence you may have, including evidence from tenants.",
+                    "schema": {}
+                },
+                {
+                    "name": "lTFJnY",
+                    "options": {
+                        "maxWords": "300",
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "What challenges are you trying to address",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-the-proposal-address-the-challenges-specified-in-your-problem-statement"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "How will the proposal address the challenges specified in your problem statement?",
+            "path": "/how-will-the-proposal-address-the-challenges-specified-in-your-problem-statement",
+            "components": [
+                {
+                    "name": "DbzHYV",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Include:\n<ul>\n<li>the objectives of your project and they align with the grant's objectives as set out in the prospectus</li>\n<li>planned activities and how they will benefit tenants</li>\n<li>key milestones and timescales (more detail can be set out in a separate project plan)</li>\n</ul>\n<p>\nFor consortium bids, clearly outline each partner's role in delivering the projects.</p>",
+                    "schema": {}
+                },
+                {
+                    "name": "FFNuZw",
+                    "options": {
+                        "maxWords": "700",
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "How will the proposal address the challenges specified in your problem statement",
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/upload-your-project-plan-optional"
+                }
+            ]
+        },
+        {
+            "path": "/upload-your-project-plan-optional",
+            "title": "Upload your project plan (optional)",
+            "components": [
+                {
+                    "name": "AgRvQq",
+                    "options": {},
+                    "type": "Para",
+                    "content": "The document must be no more than 3 pages.",
+                    "schema": {}
+                },
+                {
+                    "name": "PdxtmT",
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 1,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": ",application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 0,
+                        "required": false,
+                        "hideTitle": true
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload your project plan",
+                    "hint": "PDF or Excel files only, maximum 10MB",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-will-be-involved-in-implementing-the-proposal"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/who-will-be-involved-in-implementing-the-proposal",
+            "title": "Who will be involved in implementing the proposal?",
+            "components": [
+                {
+                    "name": "wGqmpQ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This can include consortium members, tenant representatives, public sector partners, voluntary and community sector organisations (VCSOs) and technology companies. ",
+                    "schema": {}
+                },
+                {
+                    "name": "Fxpsiw",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "300"
+                    },
+                    "type": "FreeTextField",
+                    "title": "Who will be involved in implementing the proposal",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-name-of-your-project",
+            "title": "What is the name of your project?",
+            "components": [
+                {
+                    "name": "RlFFTW",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "What is the name of your project"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-challenges-are-you-trying-to-address"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}

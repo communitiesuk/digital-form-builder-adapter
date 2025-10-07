@@ -1,0 +1,87 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "QJcnKX",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask you to confirm that you have read and agree with the declarations for the Social Innovation Housing Fund. "
+                }
+            ],
+            "next": [
+                {
+                    "path": "/confirm-that-you-have-read-and-agree-with-the-following-declarations"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/confirm-that-you-have-read-and-agree-with-the-following-declarations",
+            "title": "Confirm that you have read and agree with the following declarations",
+            "components": [
+                {
+                    "name": "WTxgJZ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "<ul>\n<li>My organisation will not make a profit from activities supported by grant funding</li>\n<li>Any awarded funding will not be used to undertake political activity nor support ideological or extremist causes ('extremism' is defined in the <a href=\"https://www.gov.uk/government/publications/prevent-strategy-2011\"target=\"_blank\">2011 Prevent strategy (opens in new tab)</a> as vocal or active opposition to fundamental British values, including democracy, the rule of law, individual liberty and mutual respect and tolerance of different faiths and beliefs)</li>\n<li>The information provided in this application is accurate to the best of my knowledge on the date of submission</li>\n</ul>"
+                },
+                {
+                    "name": "Ydztii",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "CheckboxesField",
+                    "title": "I confirm that I have read and agree with the declarations",
+                    "list": "lVrwcV"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Summary",
+            "path": "/summary",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        }
+    ],
+    "lists": [
+        {
+            "title": "Declarations",
+            "name": "lVrwcV",
+            "type": "string",
+            "items": [
+                {
+                    "text": "I confirm that I have read and agree with the declarations",
+                    "value": "I confirm that I have read and agree with the declarations"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {},
+    "markAsComplete": false
+}

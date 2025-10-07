@@ -1,0 +1,466 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "dCbstc",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>your organisation name</li>\n<li>the lead contact in your organisation</li>\n<li>whether your organisation has any alternative names and, if so, what the alternative names are</li>\n<li>whether your organisation is controlled by another entity and, if so, the name of that entity</li>\n<li>whether you are submitting a consortium bid for funding with one or more organisations and, if so, details of all the other organisations involved in the consortium bid</li>"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-organisations-name"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-organisations-name",
+            "title": "What is your organisation's name?",
+            "components": [
+                {
+                    "name": "oEoIjK",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "What is your organisation's name",
+                    "hint": "If the organisation is known by more than one name, this should be the official name registered with Companies House or the Charity Commission"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-lead-contact-in-your-organisation"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Who is the lead contact in your organisation? ",
+            "path": "/who-is-the-lead-contact-in-your-organisation",
+            "components": [
+                {
+                    "name": "EIelEi",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This will be the main point of contact for any queries we may have about your application."
+                },
+                {
+                    "name": "WdapOj",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Full name"
+                },
+                {
+                    "name": "qOyurP",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Organisation"
+                },
+                {
+                    "name": "SAcHge",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Role"
+                },
+                {
+                    "name": "YaGHMI",
+                    "options": {},
+                    "type": "EmailAddressField",
+                    "title": "Email address"
+                },
+                {
+                    "name": "HZkwbv",
+                    "options": {},
+                    "type": "TelephoneNumberField",
+                    "title": "Contact number"
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/does-your-organisation-have-alternative-names"
+                }
+            ]
+        },
+        {
+            "path": "/does-your-organisation-have-alternative-names",
+            "title": "Does your organisation have alternative names?",
+            "components": [
+                {
+                    "name": "Hdpmjk",
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Does your organisation have alternative names"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-your-organisation-controlled-by-another-entity",
+                    "condition": "fTJugn"
+                },
+                {
+                    "path": "/tell-us-any-alternative-names-for-your-organisation-tbiLtS",
+                    "condition": "eutqbD"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/is-your-organisation-controlled-by-another-entity",
+            "title": "Is your organisation controlled by another entity?",
+            "components": [
+                {
+                    "name": "RIIeoh",
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Is your organisation controlled by another entity"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-name-of-the-entity-that-controls-your-organisation",
+                    "condition": "LCVToy"
+                },
+                {
+                    "path": "/are-you-submitting-a-consortium-bid-for-funding-with-one-or-more-organisations",
+                    "condition": "QDELYH"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-name-of-the-entity-that-controls-your-organisation",
+            "title": "What is the name of the entity that controls your organisation?",
+            "components": [
+                {
+                    "name": "oDIZBr",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "What is the name of the entity that controls your organisation"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/are-you-submitting-a-consortium-bid-for-funding-with-one-or-more-organisations"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-any-alternative-names-for-your-organisation-tbiLtS",
+            "title": "Tell us any alternative names for your organisation",
+            "components": [
+                {
+                    "name": "BYlNmu",
+                    "options": {
+                        "columnTitles": [
+                            "Alternative organisation names"
+                        ],
+                        "hideTitle": false
+                    },
+                    "type": "MultiInputField",
+                    "schema": {},
+                    "title": "Tell us any alternative names for your organisation",
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "UWIOHw",
+                            "options": {},
+                            "title": "Alternative organisation name",
+                            "hint": "",
+                            "schema": {}
+                        }
+                    ]
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-your-organisation-controlled-by-another-entity"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Alternative organisation names",
+                    "samePageTableItemName": "alternative organisation name"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/are-you-submitting-a-consortium-bid-for-funding-with-one-or-more-organisations",
+            "title": "Are you submitting a consortium bid for funding with one or more organisations?",
+            "components": [
+                {
+                    "name": "AoXseh",
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Are you submitting a consortium bid for funding with one or more organisations"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-the-details-of-all-the-other-organisations-involved-in-the-consortium-bid-or-partnership-VgMftD",
+                    "condition": "kJlxXB"
+                },
+                {
+                    "path": "/check-your-answers",
+                    "condition": "MGKxis"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/tell-us-the-details-of-all-the-other-organisations-involved-in-the-consortium-bid-or-partnership-VgMftD",
+            "title": "Tell us the details of all the other organisations involved in the consortium bid or partnership",
+            "components": [
+                {
+                    "name": "dkmJFS",
+                    "options": {
+                        "columnTitles": [
+                            "Organisation name",
+                            "Alternative name (optional)",
+                            "Organisation address",
+                            "Parent organisation or holding company name (if applicable)"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "schema": {},
+                    "title": "Tell us the details of all the other organisations involved in the consortium bid or partnership",
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "aVcweG",
+                            "options": {},
+                            "title": "Organisation name",
+                            "hint": "",
+                            "schema": {}
+                        },
+                        {
+                            "type": "TextField",
+                            "name": "TQCUbc",
+                            "options": {
+                                "required": false,
+                                "optionalText": false
+                            },
+                            "title": "Alternative name (optional)",
+                            "hint": "",
+                            "schema": {
+                                "required": false,
+                                "optionalText": false
+                            }
+                        },
+                        {
+                            "type": "UkAddressField",
+                            "name": "sJkxaS",
+                            "options": {},
+                            "title": "Organisation address",
+                            "hint": "",
+                            "schema": ""
+                        },
+                        {
+                            "type": "TextField",
+                            "name": "HLqXjr",
+                            "options": {
+                                "required": false,
+                                "optionalText": false
+                            },
+                            "title": "Parent organisation or holding company name (if applicable)",
+                            "hint": "",
+                            "schema": {
+                                "required": false,
+                                "optionalText": false
+                            }
+                        }
+                    ]
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Consortium bid organisations",
+                    "samePageTableItemName": "consortium bid organisation"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "If alternative names",
+            "name": "eutqbD",
+            "value": {
+                "name": "If alternative names",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.Hdpmjk",
+                            "type": "YesNoField",
+                            "display": "Does your organisation have alternative names"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If no alternative names",
+            "name": "fTJugn",
+            "value": {
+                "name": "If no alternative names",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.Hdpmjk",
+                            "type": "YesNoField",
+                            "display": "Does your organisation have alternative names"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If controlled by another entity",
+            "name": "LCVToy",
+            "value": {
+                "name": "If controlled by another entity",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.RIIeoh",
+                            "type": "YesNoField",
+                            "display": "Is your organisation controlled by another entity"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If not controlled by another entity",
+            "name": "QDELYH",
+            "value": {
+                "name": "If not controlled by another entity",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.RIIeoh",
+                            "type": "YesNoField",
+                            "display": "Is your organisation controlled by another entity"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If consortium bid",
+            "name": "kJlxXB",
+            "value": {
+                "name": "If consortium bid",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.AoXseh",
+                            "type": "YesNoField",
+                            "display": "Are you submitting a consortium bid for funding with one or more organisations"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If not consortium bid",
+            "name": "MGKxis",
+            "value": {
+                "name": "If not consortium bid",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.AoXseh",
+                            "type": "YesNoField",
+                            "display": "Are you submitting a consortium bid for funding with one or more organisations"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {},
+    "markAsComplete": false
+}

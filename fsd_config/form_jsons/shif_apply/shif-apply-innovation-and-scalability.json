@@ -1,0 +1,102 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "hekEyM",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>how your proposed project is innovative</li>\n<li>how the project has the potential to be scaled up or replicated on a wider scale</li>\n</ul>"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-is-the-proposed-project-innovative"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/how-is-the-proposed-project-innovative",
+            "title": "How is the proposed project innovative?",
+            "components": [
+                {
+                    "name": "sUnJxQ",
+                    "options": {},
+                    "type": "Para",
+                    "content": "To be deemed 'innovative', the project must:\n<ul>\n<li>introduce new or significantly improved approaches, technologies or partnerships to enhance tenant outcomes and improve overall resident experience</li>\n<li>challenge conventional practices across the sector more widely and respond creatively to tenant needs</li>\n</ul>\n<p>\nThe grant can be used to expand or build upon an existing project, but cannot be used to fund business as usual activities.\n</p>"
+                },
+                {
+                    "name": "WJTBzi",
+                    "options": {
+                        "maxWords": "500",
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "How is the proposed project innovative"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-does-this-project-have-the-potential-to-be-scaled-up-or-replicated-on-a-wider-scale"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "Summary",
+            "path": "/summary",
+            "controller": "./pages/summary.js",
+            "components": [],
+            "section": "FabDefault",
+            "next": []
+        },
+        {
+            "path": "/how-does-this-project-have-the-potential-to-be-scaled-up-or-replicated-on-a-wider-scale",
+            "title": "How does this project have the potential to be scaled up or replicated on a wider scale?",
+            "components": [
+                {
+                    "name": "MqUCdE",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Describe how the learnings from this project could have benefits for social housing tenants more broadly across the country."
+                },
+                {
+                    "name": "czkAFo",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "300"
+                    },
+                    "type": "FreeTextField",
+                    "title": "How does this project have the potential to be scaled up or replicated on a wider scale"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {},
+    "markAsComplete": false
+}
