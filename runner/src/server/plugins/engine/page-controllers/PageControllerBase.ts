@@ -454,12 +454,29 @@ export class PageControllerBase {
                 const name = err.path
                     .map((name: string, index: number) => index > 0 ? `__${name}` : name)
                     .join("");
+                
+                // Get the correct label to use in the error message (to avoid incorrect casing of error messages)
+                // If the label in Joi error context is different from the actual label, replace it
+                const fieldDef = this.pageDef.components?.find(c => c.name === err.path[0]);
+                const correctLabel = fieldDef?.title || fieldDef?.label || err.context?.label;
+                let errorMessage = err.message;
 
+                if (err.context?.label && correctLabel && err.context.label !== correctLabel) {
+                    const escapedLabel = err.context.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    errorMessage = errorMessage.replace(
+                        new RegExp(`(["'])?${escapedLabel}\\1?`),
+                        (match, quote) => {
+                            if (quote) {
+                                return `${quote}${correctLabel}${quote}`;
+                            }
+                            return correctLabel;
+                        }
+                    );
+                }
 
-                let errorMessage = err.message
-                    .replace(isoRegex, (text) => {
+                errorMessage = errorMessage.replace(isoRegex, (text) => {
                         return format(parseISO(text), "d MMMM yyyy");
-                    })
+                    });
                 errorMessage = errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1);
 
                 return {
