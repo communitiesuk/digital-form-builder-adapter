@@ -29,7 +29,6 @@
       <env name="LOG_LEVEL" value="debug" />
       <env name="LOGOUT_URL" value="https://authenticator.communities.gov.localhost:3004/sessions/sign-out" />
       <env name="MULTIFUND_URL" value="https://frontend.communities.gov.localhost:3008/account" />
-      <env name="PREVIEW_MODE" value="true" />
       <env name="PRIVACY_POLICY_URL" value="https://frontend.communities.gov.localhost:3008/privacy" />
       <env name="RSA256_PUBLIC_KEY_BASE64" value="TUlHZk1BMEdDU3FHU0liM0RRRUJBUVVBQTRHTkFEQ0JpUUtCZ1FDdUZBL2xrczcwM2JEeDZYN0duUVIwVlVSOAp6eW8yUEJ6L2E2MVd0TjJCUitYWlV5cjlGaHc4K3E4YVRsbzZ0K2VJa3hENjE4eWpaQkx0cGhZVjUwcTAvOW1OCkk0QStPSURhQ1J0aWd0NDJ4ZUlrbmpydWZ5a280Q0xjV3BFc1dzSkZWSnJnR2xQTHZrMzJHMVJ5WFErOGY1dWsKVmlKbjBKbGlzbWo4bGtzc2pRSURBUUFC" />
       <env name="SERVICE_START_PAGE" value="https://frontend.communities.gov.localhost:3008/account" />

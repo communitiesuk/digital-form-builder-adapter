@@ -25,7 +25,6 @@ services:
       - "3009:3009"
     environment:
       - CHOKIDAR_USEPOLLING=true
-      - PREVIEW_MODE=true
       - LAST_COMMIT
       - LAST_TAG
       - ACCESSIBILITY_STATEMENT_URL=http://localhost:3008/accessibility_statement
@@ -43,7 +42,6 @@ services:
       - SERVICE_START_PAGE=http://localhost:3008/account
       - SINGLE_REDIS=true
       - FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI=redis://redis-data:6379
-      - PREVIEW_MODE=true
       - ENABLE_VIRUS_SCAN=true
     command: yarn runner start:test
     logging:

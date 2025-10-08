@@ -21,7 +21,6 @@ module.exports = {
    */
   port: 3009,
   env: "development",
-  previewMode: false,
   enforceCsrf: true,
   singleRedis: false,
   isE2EModeEnabled: false,
@@ -115,4 +114,6 @@ module.exports = {
   copilotEnv: "",
 
   enableVirusScan: false,
+
+  formStoreApiHost: "https://api.communities.gov.localhost:4004/forms"
 };
