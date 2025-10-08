@@ -210,7 +210,7 @@
       "title": "Check your answers",
       "components": [],
       "next": [],
-      "controller": "./pages/summary.js",
+      "controller": "./pages/confirm.js",
       "section": "FabDefault"
     },
     {
@@ -522,7 +522,7 @@
   "fees": [],
   "outputs": [],
   "version": 2,
-  "skipSummary": false,
+  "skipSummary": true,
   "feeOptions": {
     "allowSubmissionWithoutPayment": true,
     "maxAttempts": 3,
