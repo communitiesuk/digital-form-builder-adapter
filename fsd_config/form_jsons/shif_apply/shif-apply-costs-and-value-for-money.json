@@ -66,7 +66,9 @@
                     },
                     "type": "NumberField",
                     "title": "Total funding requested",
-                    "schema": {}
+                    "schema": {
+                        "min": 1
+                    }
                 },
                 {
                     "name": "vltUZa",
@@ -95,7 +97,7 @@
                         "maxWords": "250"
                     },
                     "type": "FreeTextField",
-                    "title": "How will you fund the outstanding costs of the project?",
+                    "title": "How will you fund the outstanding costs of the project",
                     "schema": {}
                 }
             ],

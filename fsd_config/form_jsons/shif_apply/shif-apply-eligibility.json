@@ -109,7 +109,9 @@
           "type": "NumberField",
           "title": "How much funding are you applying for",
           "hint": "",
-          "schema": {}
+          "schema": {
+            "min": 1
+          }
         }
       ],
       "next": [
@@ -221,7 +223,7 @@
           "name": "kpeyOo",
           "options": {},
           "type": "Para",
-          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour organisation must be one of the legal statuses listed.<br><br>\n\nCheck who can apply in the [Social housing innovation fund prospectus]."
+          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour organisation must match one of the legal statuses listed.<br><br>\n\nCheck who can apply in the [Social housing innovation fund prospectus]."
         }
       ],
       "next": [],
