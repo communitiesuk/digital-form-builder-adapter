@@ -29,14 +29,14 @@ interface State {
 }
 
 export class AdapterFormDetails extends Component<Props, State> {
-  static contextType = AdapterDataContext;
+  public static readonly contextType = AdapterDataContext;
   context!: ContextType<typeof AdapterDataContext>;
   isUnmounting = false;
 
-  constructor(props, context) {
-    super(props, context);
-    const { data, displayName } = context;
-    const selectedFeedbackForm = data.feedback?.url?.substr(1) ?? "";
+  constructor(props) {
+    super(props);
+    const { data, displayName } = this.context;
+    const selectedFeedbackForm = data.feedback?.url?.substring(1) ?? "";
     this.state = {
       title: displayName || "",
       feedbackForm: data.feedback?.feedbackForm ?? false,

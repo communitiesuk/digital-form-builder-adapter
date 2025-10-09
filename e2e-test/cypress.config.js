@@ -97,6 +97,7 @@ module.exports = defineConfig({
      */
     DESIGNER_URL: "http://localhost:3000",
     RUNNER_URL: "http://localhost:3009",
+    FORM_STORE_API_HOST: "http://host.docker.internal:8081/forms",
     TAGS: "not @wip"
   },
 });

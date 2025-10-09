@@ -3,9 +3,9 @@ Feature: Multi Input Field Edit
   I want to add, delete and edit multi input field
 
   Background: Create a list
-    Given I am on the new configuration page
-    And I enter the form name "smoke-tests-list-components"
-    When I submit the form with the button title "Next"
+    Given I am on the new mhclg configuration page
+    And I enter the form name "smoke-tests-list-components" in new UI
+    When I submit the form with the button title "Create"
     When I open "Lists"
     And I open the link "Add a new list"
     * I enter "Types of egg" for "List title"

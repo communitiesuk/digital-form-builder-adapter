@@ -287,10 +287,14 @@ jobs:
           cd digital-form-builder
           yarn
 
+      - name: Install mock-preaward dependencies
+        run: cd mock-preaward && npm install
+
       - name: Injecting image into docker compose e2e
         run: |
           yq -i '.services.designer.image = "ghcr.io/communitiesuk/funding-service-design-form-designer-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
           yq -i '.services.runner.image = "ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}"'  docker-compose.e2e.yml
+
 
       - name: Start containers
         run: docker compose -f docker-compose.e2e.yml up -d
@@ -311,6 +315,8 @@ jobs:
         id: e2e
         run: yarn e2e-test cypress run --spec $(node e2e-test/cypress-parallel.js ${{ matrix.containers }} 5) --reporter junit --reporter-options "mochaFile=./cypress/screenshots/results/test-output-[hash].xml,overwrite=false"
         continue-on-error: true
+        env:
+          FORM_STORE_API_HOST: http://localhost:8081/forms
 
       - name: Upload E2E Test Report Application
         if: success() || failure()
