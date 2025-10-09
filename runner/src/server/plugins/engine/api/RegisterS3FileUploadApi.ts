@@ -2,6 +2,7 @@ import {RegisterApi} from "./RegisterApi";
 import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
 import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
+import {getNamespaceFromRequest} from "../../../services/AdapterCacheService";
 
 const GUARD_DUTY_MALWARE_SCAN_STATUS = 'GuardDutyMalwareScanStatus';
 const THREATS_FOUND = 'THREATS_FOUND';
@@ -21,8 +22,11 @@ export class RegisterS3FileUploadApi implements RegisterApi {
                 //@ts-ignore
                 const {filename} = request.payload;
                 request.logger.info(`[RegisterS3FileUploadApi] uploading the file ${filename}`);
+                
+                // Determine namespace - preview users and applicants both need to upload files
+                const namespace = getNamespaceFromRequest(request);
                 //@ts-ignore
-                const form = await adapterCacheService.getFormAdapterModel(id, request);
+                const form = await adapterCacheService.getFormAdapterModel(id, request, namespace);
                 const page = form?.pages.find(
                     (p) =>
                         s3UploadService.normalisePath(p.path) ===

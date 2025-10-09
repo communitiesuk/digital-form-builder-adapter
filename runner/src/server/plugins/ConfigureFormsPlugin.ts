@@ -9,7 +9,6 @@ import {
 
 import {EngineOptions} from "./engine/types/EngineOptions";
 import {ConfigureEnginePluginType} from "./engine/types/ConfigureEnginePluginType";
-import {config} from "./utils/AdapterConfigurationSchema";
 
 const relativeTo = __dirname;
 
@@ -29,12 +28,11 @@ export const ConfigureFormsPlugin: ConfigureEnginePluginType = (
     }
 
     const modelOptions = {
-        relativeTo,
-        previewMode: options?.previewMode ?? config.previewMode
+        relativeTo
     };
 
     return {
         plugin,
-        options: {modelOptions, configs, previewMode: config.previewMode}
+        options: {modelOptions, configs}
     };
 };

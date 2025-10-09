@@ -21,7 +21,6 @@ module.exports = {
    */
   port: 3009,
   env: "development",
-  previewMode: false,
   enforceCsrf: true,
   singleRedis: false,
   isE2EModeEnabled: false,

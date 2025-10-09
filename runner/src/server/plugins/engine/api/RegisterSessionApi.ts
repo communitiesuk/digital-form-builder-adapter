@@ -14,6 +14,7 @@ import {
 } from "../../../../../../digital-form-builder/runner/src/server/plugins/initialiseSession/types";
 import {WebhookSchema} from "../../../../../../digital-form-builder/runner/src/server/schemas/types";
 import {Request} from "@hapi/hapi";
+import {getNamespaceFromRequest} from "../../../services/AdapterCacheService";
 
 type ConfirmationPage = SpecialPages["confirmationPage"];
 
@@ -76,8 +77,9 @@ export class RegisterSessionApi implements RegisterApi {
                 const {options, metadata = {}, ...webhookData} = payload;
                 const {callbackUrl} = options;
 
+                const namespace = getNamespaceFromRequest(request);
                 //@ts-ignore
-                const isExistingForm = await adapterCacheService.getFormAdapterModel(formId, request) ?? false;
+                const isExistingForm = await adapterCacheService.getFormAdapterModel(formId, request, namespace) ?? false;
                 const {error: callbackSafeListError} = callbackValidation(pluginOptions.safelist).validate(callbackUrl, {abortEarly: false,});
 
                 if (!isExistingForm) {
