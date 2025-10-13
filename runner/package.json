@@ -15,6 +15,7 @@
     "start:server": "node dist/digital-form-builder-adapter/runner/index.js",
     "production": "NODE_ENV=development npm run start:server",
     "start:test": "NODE_ENV=development npm run start:server",
+    "migrate:redis": "node scripts/migrate-redis-keys.js",
     "test-cov": "yarn run unit-test-cov",
     "test:dev": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test --coverage-exclude",
     "unit-test": "lab -T test/.transform.js -P (test|src)/**/*.test.* -v test -S -v -r console -o stdout -r html -o unit-test.html -I version -l",
