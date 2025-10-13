@@ -246,11 +246,47 @@ export class AdapterCacheService extends CacheService {
         request: HapiRequest,
         namespace: FormNamespace = FormNamespace.Permanent
     ) {
-        //@ts-ignore
-        if (request.server.app.redis) {
-            return await this.getConfigurationFromRedisCache(request, formId, namespace);
-        } else {
-            return await this.getConfigurationFromInMemoryCache(request, formId, namespace);
+        const tryGetForm = async (ns: FormNamespace) => {
+            //@ts-ignore
+            if (request.server.app.redis) {
+                return await this.getConfigurationFromRedisCache(request, formId, ns);
+            } else {
+                return await this.getConfigurationFromInMemoryCache(request, formId, ns);
+            }
+        };
+
+        try {
+            // Try primary namespace
+            return await tryGetForm(namespace);
+        } catch (error) {
+            // In E2E mode, fall back to the other namespace
+            // This allows E2E tests to publish to preview and access without form_session_identifier
+            const isProduction = config.copilotEnv === "production" || config.copilotEnv === "prod";
+            if (!isProduction) {
+                const fallbackNamespace = namespace === FormNamespace.Permanent
+                    ? FormNamespace.Preview
+                    : FormNamespace.Permanent;
+
+                request.logger.info({
+                    ...LOGGER_DATA,
+                    message: `[E2E-FALLBACK] Form ${formId} not found in ${namespace} namespace, trying ${fallbackNamespace}`
+                });
+
+                try {
+                    return await tryGetForm(fallbackNamespace);
+                } catch (fallbackError) {
+                    // Both namespaces failed, log fallback error and throw original error
+                    request.logger.error({
+                        ...LOGGER_DATA,
+                        message: `[E2E-FALLBACK] Form ${formId} also not found in fallback namespace ${fallbackNamespace}`,
+                        error: fallbackError
+                    });
+                    throw error;
+                }
+            }
+
+            // Production mode - no fallback, throw immediately
+            throw error;
         }
     }
 
