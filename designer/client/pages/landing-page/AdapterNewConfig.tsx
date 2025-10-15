@@ -74,7 +74,7 @@ export class AdapterNewConfig extends Component<Props, State> {
         children: i18n("URL path is required"),
       };
       hasErrors = true;
-    } else if (urlPath.match(/[^a-zA-Z0-9_-]/)) {
+    } else if (!urlPath.match(/^[a-zA-Z0-9_-]+$/)) { //NOSONAR
       errors.urlPath = {
         href: "#urlPath",
         children: i18n("URL path should only contain letters, numbers, hyphens and underscores"),
