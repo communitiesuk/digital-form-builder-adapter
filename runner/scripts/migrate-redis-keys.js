@@ -1,4 +1,4 @@
-const Redis = require('ioredis');
+import Redis from 'ioredis';
 
 // Extract Redis client creation to reduce complexity
 function createRedisClient() {
