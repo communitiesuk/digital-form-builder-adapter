@@ -11,38 +11,22 @@ import {
 import {PluginSpecificConfiguration} from "@hapi/hapi";
 import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
+import {FormNamespace, getNamespaceFromRequest} from "../../../services/AdapterCacheService";
 
 export class RegisterFormPublishApi implements RegisterApi {
 
-    /**
-     * The following publish endpoints (/publish, /published/{id}, /published)
-     * are used from the designer for operating in 'preview' mode.
-     * I.E. Designs saved in the designer can be accessed in the runner for viewing.
-     * The designer also uses these endpoints as a persistence mechanism for storing and retrieving data
-     * for its own purposes so if you're changing these endpoints you likely need to go and amend
-     * the designer too!
-     */
     register(server: HapiServer, options: Options) {
-        const {previewMode} = options;
-        const disabledRouteDetailString =
-            "A request was made however previewing is disabled. See environment variable details in runner/README.md if this error is not expected.";
 
         server.route({
             method: "post",
             path: "/publish",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                // Require JWT authentication for publishing
+                auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
-                // @ts-ignore
-                if (!previewMode || previewMode==="false") {
-                    request.logger.error(
-                        [`POST /publish`, "previewModeError"],
-                        disabledRouteDetailString
-                    );
-                    throw Boom.forbidden("Publishing is disabled");
-                }
                 const payload = request.payload as FormPayload;
                 const {id, configuration} = payload;
 
@@ -50,10 +34,22 @@ export class RegisterFormPublishApi implements RegisterApi {
                     typeof configuration === "string"
                         ? JSON.parse(configuration)
                         : configuration;
+                
+                // Always publish to preview namespace
                 if (parsedConfiguration.configuration) {
-                    await adapterCacheService.setFormConfiguration(id, parsedConfiguration, request.server)
+                    await adapterCacheService.setFormConfiguration(
+                        id, 
+                        parsedConfiguration, 
+                        request.server,
+                        FormNamespace.Preview
+                    )
                 } else {
-                    await adapterCacheService.setFormConfiguration(id, {configuration: parsedConfiguration}, request.server)
+                    await adapterCacheService.setFormConfiguration(
+                        id, 
+                        {configuration: parsedConfiguration}, 
+                        request.server,
+                        FormNamespace.Preview
+                    )
                 }
                 return h.response({}).code(204);
             }
@@ -64,23 +60,25 @@ export class RegisterFormPublishApi implements RegisterApi {
             path: "/published/{id}",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                // Require JWT authentication
+                auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
-                // @ts-ignore
-                if (!previewMode || previewMode==="false") {
-                    request.logger.error(
-                        [`GET /published/${id}`, "previewModeError"],
-                        disabledRouteDetailString
-                    );
-                    throw Boom.unauthorized("publishing is disabled");
-                }
                 const {adapterCacheService} = request.services([]);
-                const form = await adapterCacheService.getFormAdapterModel(id, request);
+                
+                // This endpoint is used by Form Designer to retrieve preview forms
+                const form = await adapterCacheService.getFormAdapterModel(
+                    id, 
+                    request, 
+                    FormNamespace.Preview
+                );
+                
                 if (!form) {
                     return h.response({}).code(204);
                 }
-                const {values} = await adapterCacheService.getFormAdapterModel(id, request);
+                
+                const {values} = form;
                 return h.response(JSON.stringify({id, values})).code(200);
             }
         });
@@ -90,19 +88,17 @@ export class RegisterFormPublishApi implements RegisterApi {
             path: "/published",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                // Require JWT authentication
+                auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
-                // @ts-ignore
-                if (!previewMode || previewMode==="false") {
-                    request.logger.error(
-                        [`GET /published`, "previewModeError"],
-                        disabledRouteDetailString
-                    );
-                    throw Boom.unauthorized("publishing is disabled.");
-                }
+                
+                // Form Designer uses this to list available forms, so retrieve from preview namespace
                 return h
-                    .response(JSON.stringify(await adapterCacheService.getFormConfigurations(request)))
+                    .response(JSON.stringify(
+                        await adapterCacheService.getFormConfigurations(request, FormNamespace.Preview)
+                    ))
                     .code(200);
             }
         });
@@ -115,7 +111,12 @@ export class RegisterFormPublishApi implements RegisterApi {
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
-                const model = await adapterCacheService.getFormAdapterModel("components", request);
+                // Default route - always use permanent namespace for the "components" form
+                const model = await adapterCacheService.getFormAdapterModel(
+                    "components", 
+                    request, 
+                    FormNamespace.Permanent
+                );
                 if (model) {
                     return PluginUtil.getStartPageRedirect(request, h, "components", model);
                 }
@@ -133,7 +134,9 @@ export class RegisterFormPublishApi implements RegisterApi {
             const {query} = request;
             const {id} = request.params;
             const {adapterCacheService} = request.services([]);
-            const model = await adapterCacheService.getFormAdapterModel(id, request);
+            // Determine namespace - applicants vs preview users
+            const namespace = getNamespaceFromRequest(request);
+            const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
             if (!model) {
                 throw Boom.notFound("No form found for id");
             }
@@ -162,9 +165,8 @@ export class RegisterFormPublishApi implements RegisterApi {
 
         /**
          * Middleware to check if the user session is still valid.
-         *
-         * Changes behaviour only when previewMode is FALSE, meaning PRODUCTION
-         * If the session is dropped, it will throw a client timeout error
+         * In production environments, validates that a session callback exists.
+         * If the session is dropped, it will throw a client timeout error.
          */
         const checkUserSession = async (
             request: HapiRequest,
@@ -175,13 +177,12 @@ export class RegisterFormPublishApi implements RegisterApi {
             // @ts-ignore
             const state = await adapterCacheService.getState(request);
 
-            // @ts-ignore isNotPreview is always false on production
-            const isNotPreview = !previewMode || previewMode==="false"
+            // Only enforce session validation in production environments
+            const isProduction = config.copilotEnv === "production" || config.copilotEnv === "prod";
 
-            if (isNotPreview && !state.callback) {
+            if (isProduction && !state.callback) {
                 // if you are here the session likely dropped
                 request.logger.error(["checkUserSession"], `Session expired ${request.yar.id}`);
-
                 throw Boom.clientTimeout("Session expired");
             }
 
@@ -205,7 +206,9 @@ export class RegisterFormPublishApi implements RegisterApi {
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
                 const {adapterCacheService} = request.services([]);
-                const model = await adapterCacheService.getFormAdapterModel(id, request);
+                // Determine namespace - applicants use permanent, previews use preview
+                const namespace = getNamespaceFromRequest(request);
+                const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
                 if (model) {
                     return PluginUtil.getStartPageRedirect(request, h, id, model);
                 }
@@ -230,7 +233,9 @@ export class RegisterFormPublishApi implements RegisterApi {
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {path, id} = request.params;
                 const {adapterCacheService} = request.services([]);
-                const model = await adapterCacheService.getFormAdapterModel(id, request);
+                // Determine namespace - applicants use permanent, previews use preview
+                const namespace = getNamespaceFromRequest(request);
+                const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
                 const page = model?.pages.find(
                     (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
                 );
@@ -257,7 +262,9 @@ export class RegisterFormPublishApi implements RegisterApi {
         const handleFiles = async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {path, id} = request.params;
             const {adapterCacheService} = request.services([]);
-            const model = await adapterCacheService.getFormAdapterModel(id, request);
+            // Determine namespace - applicants use permanent, previews use preview
+            const namespace = getNamespaceFromRequest(request);
+            const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
             const page = model?.pages.find(
                 (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
             );
@@ -271,7 +278,9 @@ export class RegisterFormPublishApi implements RegisterApi {
         ) => {
             const {path, id} = request.params;
             const {adapterCacheService} = request.services([]);
-            const model = await adapterCacheService.getFormAdapterModel(id, request);
+            // Determine namespace - applicants use permanent, previews use preview
+            const namespace = getNamespaceFromRequest(request);
+            const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
 
             if (model) {
                 const page = model.pages.find(

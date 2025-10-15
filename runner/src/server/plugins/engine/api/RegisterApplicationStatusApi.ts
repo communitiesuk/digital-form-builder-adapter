@@ -5,6 +5,7 @@ import {retryPay} from "../application-status/RetryPay";
 import {handleUserWithConfirmationViewModel} from "../application-status/HandleUserWithConfirmationViewModel";
 import {checkUserCompletedSummary} from "../application-status/CheckUserCompletedSummary";
 import {config} from "../../utils/AdapterConfigurationSchema";
+import {getNamespaceFromRequest} from "../../../services/AdapterCacheService";
 
 export class RegisterApplicationStatusApi implements RegisterApi {
 
@@ -24,8 +25,9 @@ export class RegisterApplicationStatusApi implements RegisterApi {
                 handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                     const {adapterStatusService, adapterCacheService} = request.services([]);
                     const {params} = request;
+                    const namespace = getNamespaceFromRequest(request);
                     //@ts-ignore
-                    const form = await adapterCacheService.getFormAdapterModel(params.id, request);
+                    const form = await adapterCacheService.getFormAdapterModel(params.id, request, namespace);
                     //@ts-ignore
                     const state = await adapterCacheService.getState(request);
                     //@ts-ignore

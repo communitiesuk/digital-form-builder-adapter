@@ -1,6 +1,7 @@
 import {Options} from "./types/PluginOptions";
 import {HapiServer} from "../../types";
 import {RegisterFormPublishApi} from "./api";
+import {FormNamespace} from "../../services/AdapterCacheService";
 
 
 const LOGGER_DATA = {
@@ -18,7 +19,13 @@ export const plugin = {
         let countError = 0;
         for (const config of configs) {
             try {
-                await adapterCacheService.setFormConfiguration(config.id, config, server);
+                // Explicitly load startup forms into permanent namespace
+                await adapterCacheService.setFormConfiguration(
+                    config.id, 
+                    config, 
+                    server,
+                    FormNamespace.Permanent
+                );
                 countOk++;
             } catch (e) {
                 countError++;
