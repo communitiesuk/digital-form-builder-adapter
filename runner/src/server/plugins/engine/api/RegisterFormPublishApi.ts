@@ -180,7 +180,11 @@ export class RegisterFormPublishApi implements RegisterApi {
             // Only enforce session validation in production environments
             const isProduction = config.copilotEnv === "production" || config.copilotEnv === "prod";
 
-            if (isProduction && !state.callback) {
+            // Don't enforce callback check for preview sessions (FAB previews, Form Designer)
+            const formSessionId = request.query.form_session_identifier as string;
+            const isPreview = formSessionId?.startsWith("preview");
+
+            if (isProduction && !isPreview && !state.callback) {
                 // if you are here the session likely dropped
                 request.logger.error(["checkUserSession"], `Session expired ${request.yar.id}`);
                 throw Boom.clientTimeout("Session expired");
