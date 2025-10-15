@@ -76,3 +76,19 @@ environments:
   uat:
     count:
       spot: 2
+  prod:
+    http:
+      alias: "form-designer.access-funding.communities.gov.uk"
+    variables:
+      PREVIEW_URL: "https://application-questions.access-funding.communities.gov.uk"
+      AUTH_SERVICE_URL: "https://account.access-funding.communities.gov.uk"
+    count:
+      range: 2-4
+      cooldown:
+        in: 60s
+        out: 30s
+      cpu_percentage:
+        value: 70
+      memory_percentage:
+        value: 80
+      requests: 30
