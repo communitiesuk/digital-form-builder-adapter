@@ -1,6 +1,6 @@
 import {ServerRoute} from "@hapi/hapi";
 import {AdapterSchema} from "@communitiesuk/model";
-import {publish} from "../../../../digital-form-builder/designer/server/lib/publish";
+import {publish} from "../../lib/publish";
 
 
 export const putFormWithIdRouteRegister: ServerRoute = {
@@ -31,7 +31,7 @@ export const putFormWithIdRouteRegister: ServerRoute = {
                     `${id}`,
                     JSON.stringify(value)
                 );
-                await publish(id, value);
+                await publish(id, value, request);
                 return h.response({ok: true}).code(204);
             } catch (err) {
                 //@ts-ignore

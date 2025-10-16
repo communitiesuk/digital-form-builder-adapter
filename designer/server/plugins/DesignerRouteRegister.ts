@@ -1,8 +1,9 @@
-import {newConfig, api, app} from "../../../digital-form-builder/designer/server/plugins/routes";
+import {api, app} from "../../../digital-form-builder/designer/server/plugins/routes";
 import {envStore, flagg} from "flagg";
 import {putFormWithIdRouteRegister} from "./routes/PutFormWithIdRouteRegister";
 import config from "../config";
 import {jwtAuthStrategyName} from "./AuthPlugin";
+import {registerNewFormWithRunner} from "./routes/newConfig";
 
 export const designerPlugin = {
     plugin: {
@@ -83,7 +84,7 @@ export const designerPlugin = {
                 // @ts-ignore
                 app.redirectOldUrlToDesigner.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                newConfig.registerNewFormWithRunner.options.auth = jwtAuthStrategyName
+                registerNewFormWithRunner.options.auth = jwtAuthStrategyName
                 // @ts-ignore
                 api.getFormWithId.options.auth = jwtAuthStrategyName
                 // @ts-ignore
@@ -128,7 +129,7 @@ export const designerPlugin = {
                 },
             });
 
-            server.route(newConfig.registerNewFormWithRunner);
+            server.route(registerNewFormWithRunner);
             server.route(api.getFormWithId);
             server.route(putFormWithIdRouteRegister);
             server.route(api.getAllPersistedConfigurations);
