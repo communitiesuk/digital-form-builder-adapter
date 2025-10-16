@@ -213,6 +213,15 @@ async function createServer(routeConfig: RouteConfig) {
         encoding: "base64json",
     });
 
+    server.state(config.jwtAuthCookieName, {
+        isHttpOnly: true,
+        isSecure: false, // Set based on environment
+        isSameSite: 'Lax',
+        encoding: 'none', // Don't encode the JWT
+        clearInvalid: false,
+        strictHeader: false, // Important for server-to-server requests
+    });
+
     // Sentry error monitoring
     await Sentry.setupHapiErrorHandler(server);
     return server;
