@@ -26,6 +26,51 @@ export class RegisterFormPublishApi implements RegisterApi {
                 auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                // ============ DIAGNOSTIC LOGGING START ============
+                console.log("\n========== POST /publish HANDLER ==========");
+                console.log("Timestamp:", new Date().toISOString());
+                console.log("JWT Auth Enabled:", config.jwtAuthEnabled);
+                console.log("JWT Auth Strategy:", config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : "disabled");
+                console.log("Request headers:", JSON.stringify({
+                    "content-type": request.headers["content-type"],
+                    "cookie": request.headers["cookie"] ? "present" : "missing",
+                    "authorization": request.headers["authorization"] ? "present" : "missing",
+                }, null, 2));
+                
+                // Log raw cookies
+                if (request.headers.cookie) {
+                    console.log("Raw Cookie header:", request.headers.cookie);
+                    const cookies = request.headers.cookie.split(';').map(c => c.trim());
+                    console.log("Parsed cookies:", cookies);
+                    
+                    // Check for our specific JWT cookie
+                    const jwtCookie = cookies.find(c => c.startsWith(`${config.jwtAuthCookieName}=`));
+                    console.log(`JWT cookie (${config.jwtAuthCookieName}):`, jwtCookie ? "present" : "MISSING");
+                    
+                    if (jwtCookie) {
+                        const tokenValue = jwtCookie.split('=')[1];
+                        console.log(`Token length: ${tokenValue.length}`);
+                        console.log(`Token preview: ${tokenValue.substring(0, 30)}...`);
+                    }
+                } else {
+                    console.warn("⚠️ NO COOKIES IN REQUEST AT ALL");
+                }
+                
+                // Log auth credentials if authenticated
+                if (request.auth.isAuthenticated) {
+                    console.log("✅ Request IS authenticated");
+                    console.log("Auth credentials:", JSON.stringify(request.auth.credentials, null, 2));
+                } else {
+                    console.warn("⚠️ Request NOT authenticated");
+                    console.log("Auth error:", request.auth.error);
+                }
+                
+                console.log("Request payload preview:", {
+                    id: (request.payload as any)?.id,
+                    configPresent: !!(request.payload as any)?.configuration,
+                });
+                // ============ DIAGNOSTIC LOGGING END ============
+                
                 const {adapterCacheService} = request.services([]);
                 const payload = request.payload as FormPayload;
                 const {id, configuration} = payload;
@@ -51,6 +96,12 @@ export class RegisterFormPublishApi implements RegisterApi {
                         FormNamespace.Preview
                     )
                 }
+                
+                // ============ SUCCESS LOGGING ============
+                console.log("✅ Form published successfully");
+                console.log("========== END POST /publish ==========\n");
+                // ============ SUCCESS LOGGING END ============
+                
                 return h.response({}).code(204);
             }
         });

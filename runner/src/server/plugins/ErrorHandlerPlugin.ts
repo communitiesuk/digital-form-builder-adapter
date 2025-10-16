@@ -28,6 +28,87 @@ export default {
                         // In the event of 401
                         // redirect to authentication url
                         if (statusCode === 401 || statusCode === 403) {
+                            // ============ COMPREHENSIVE AUTH ERROR LOGGING ============
+                            console.error("\n========== 401/403 AUTH ERROR ==========");
+                            console.error("Timestamp:", new Date().toISOString());
+                            console.error("Status Code:", statusCode);
+                            console.error("Path:", request.path);
+                            console.error("Method:", request.method.toUpperCase());
+                            console.error("Error message:", response.message);
+                            
+                            // Log error details
+                            if (response.output.payload) {
+                                console.error("Error payload:", JSON.stringify(response.output.payload, null, 2));
+                            }
+                            
+                            // Log auth state
+                            console.error("Auth state:", JSON.stringify({
+                                isAuthenticated: request.auth.isAuthenticated,
+                                error: request.auth.error?.message || null,
+                                strategy: request.auth.strategy || null,
+                                mode: request.auth.mode || null,
+                            }, null, 2));
+                            
+                            // Log credentials if available
+                            if (request.auth.credentials) {
+                                console.error("Auth credentials present:", Object.keys(request.auth.credentials));
+                                console.error("Auth credentials:", JSON.stringify(request.auth.credentials, null, 2));
+                            } else {
+                                console.error("⚠️ NO AUTH CREDENTIALS");
+                            }
+                            
+                            // Log headers
+                            console.error("Request headers:", JSON.stringify({
+                                "content-type": request.headers["content-type"] || "none",
+                                "cookie": request.headers["cookie"] ? "present" : "MISSING",
+                                "authorization": request.headers["authorization"] ? "present" : "none",
+                                "user-agent": request.headers["user-agent"] || "none",
+                            }, null, 2));
+                            
+                            // Parse and log cookies if present
+                            if (request.headers.cookie) {
+                                console.error("Raw Cookie header:", request.headers.cookie);
+                                const cookies = request.headers.cookie.split(';').map(c => c.trim());
+                                console.error("All cookies:", cookies);
+                                
+                                // Check for JWT cookie specifically
+                                const jwtCookie = cookies.find(c => c.startsWith(`${config.jwtAuthCookieName}=`));
+                                if (jwtCookie) {
+                                    const tokenValue = jwtCookie.split('=')[1];
+                                    console.error(`✓ JWT cookie (${config.jwtAuthCookieName}) present`);
+                                    console.error(`  Token length: ${tokenValue.length}`);
+                                    console.error(`  Token preview: ${tokenValue.substring(0, 30)}...`);
+                                } else {
+                                    console.error(`✗ JWT cookie (${config.jwtAuthCookieName}) MISSING`);
+                                    console.error(`  Expected cookie name: ${config.jwtAuthCookieName}`);
+                                }
+                            } else {
+                                console.error("⚠️ NO COOKIES IN REQUEST");
+                            }
+                            
+                            // Log JWT config
+                            console.error("JWT Config:", JSON.stringify({
+                                jwtAuthEnabled: config.jwtAuthEnabled,
+                                jwtAuthCookieName: config.jwtAuthCookieName,
+                                jwtRedirectUrl: config.jwtRedirectToAuthenticationUrl,
+                                rsa256KeyConfigured: !!config.rsa256PublicKeyBase64,
+                                rsa256KeyLength: config.rsa256PublicKeyBase64?.length || 0,
+                            }, null, 2));
+                            
+                            // If we have auth artifacts from hapi-auth-jwt2
+                            if (request.plugins && request.plugins["hapi-auth-jwt2"]) {
+                                console.error("JWT Plugin artifacts:", JSON.stringify(request.plugins["hapi-auth-jwt2"], null, 2));
+                            }
+                            
+                            // Log full error stack
+                            if (response.stack) {
+                                console.error("Error stack:", response.stack);
+                            }
+                            
+                            console.error("Redirecting to:", config.jwtRedirectToAuthenticationUrl + "?referrer=" + request.url);
+                            console.error("========== END 401/403 ERROR ==========\n");
+                            // ============ END COMPREHENSIVE AUTH ERROR LOGGING ============
+                            
                             console.log(`Getting an authentication error code: ${statusCode} and message: ${errorMessage}`);
                             return h.redirect(
                                 config.jwtRedirectToAuthenticationUrl +
