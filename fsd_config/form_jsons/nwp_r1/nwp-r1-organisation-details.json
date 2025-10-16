@@ -1,0 +1,710 @@
+{
+    "metadata": {},
+    "startPage": "/organisation-details",
+    "pages": [
+        {
+            "title": "Organisation details",
+            "path": "/organisation-details",
+            "components": [
+                {
+                    "name": "kNRSpb",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about your organisation's:\n<ul>\n<li>name and address</li>\n<li>purpose</li>\n<li>date created</li>\n<li>VAT and insurance details</li>\n<li>website and social media</li>\n<li>professional associations</li>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-name-of-your-organisation"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "path": "/what-is-the-name-of-your-organisation",
+            "title": "What is the name of your organisation?",
+            "components": [
+                {
+                    "name": "GtoolQ",
+                    "options": {},
+                    "type": "TextField",
+                    "title": "Give the official name registered with companies house or trading standards. ",
+                    "schema": {}
+                },
+                {
+                    "name": "JwFyrI",
+                    "options": {
+                        "required": false
+                    },
+                    "type": "TextField",
+                    "title": "Give any alternative names that your organisation is known by. ",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-organisations-address"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "title": "What is your organisation's address?",
+            "path": "/what-is-your-organisations-address",
+            "components": [
+                {
+                    "name": "rmuxRd",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "UkAddressField",
+                    "title": "What is your organisation's address?",
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/what-is-your-organisations-main-purpose"
+                }
+            ]
+        },
+        {
+            "path": "/what-is-your-organisations-main-purpose",
+            "title": "What is your organisation's main purpose?",
+            "components": [
+                {
+                    "name": "wdsvxz",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "org main purpose",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/when-was-your-organisation-created"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/when-was-your-organisation-created",
+            "title": "When was your organisation created?",
+            "components": [
+                {
+                    "name": "qYVxnz",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "DateField",
+                    "title": "When was your organisation created?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-vat-registration-number"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-vat-registration-number",
+            "title": "What is your VAT registration number?",
+            "components": [
+                {
+                    "name": "obNwIa",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "NumberField",
+                    "title": "What is your VAT registration number?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-are-your-insurance-details"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-are-your-insurance-details",
+            "title": "What are your insurance details?",
+            "components": [
+                {
+                    "name": "bBrfun",
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 1,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": ",application/pdf"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 0
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "Upload a copy of your insurance details. ",
+                    "hint": "The file must be a PDF."
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-organisations-website"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-organisations-website",
+            "title": "What is your organisation's website?",
+            "components": [
+                {
+                    "name": "JiaoiU",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "WebsiteField",
+                    "title": "What is your organisation's website?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-are-your-organisations-social-media-accounts"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-are-your-organisations-social-media-accounts",
+            "title": "What are your organisation's social media accounts?",
+            "components": [
+                {
+                    "name": "uPoAaU",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "What are your organisation's social media accounts?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-professional-associations-is-your-organisation-a-member-of"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-professional-associations-is-your-organisation-a-member-of",
+            "title": "What professional associations is your organisation a member of?",
+            "components": [
+                {
+                    "name": "fFNPbo",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "What professional associations is your organisation a member of?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/provide-a-summary-or-mission-statement-for-your-organisation"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/provide-a-summary-or-mission-statement-for-your-organisation",
+            "title": "Provide a summary or mission statement for your organisation.",
+            "components": [
+                {
+                    "name": "UstMrg",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "Provide a summary or mission statement for your organisation.",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-organisation-type"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-organisation-type",
+            "title": "What is your organisation type?",
+            "components": [
+                {
+                    "type": "RadiosField",
+                    "title": "What is your organisation type?",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "list": "rCyihg",
+                    "name": "org",
+                    "nameHasError": false,
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-have-a-charity-number",
+                    "condition": "FWnbji"
+                },
+                {
+                    "path": "/do-you-have-a-company-registration-number",
+                    "condition": "lLXsLv"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/do-you-have-a-charity-number",
+            "title": "Do you have a charity number?",
+            "components": [
+                {
+                    "name": "RlaAvC",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Do you have a charity number?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-charity-number",
+                    "condition": "QRiEjQ"
+                },
+                {
+                    "path": "/what-are-the-names-of-your-trustees",
+                    "condition": "iSUhoL"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-charity-number",
+            "title": "What is your charity number?",
+            "components": [
+                {
+                    "name": "ZIIeJF",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "NumberField",
+                    "title": "What is your charity number?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-there-a-parent-or-holding-organisation"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-are-the-names-of-your-trustees",
+            "title": "What are the names of your trustees?",
+            "components": [
+                {
+                    "name": "dJqsly",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "What are the names of your trustees?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-there-a-parent-or-holding-organisation"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/do-you-have-a-company-registration-number",
+            "title": "Do you have a company registration number?",
+            "components": [
+                {
+                    "name": "WuTLHg",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Do you have a company registration number?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-company-registration-number-frHkes",
+                    "condition": "KOkaxJ"
+                },
+                {
+                    "path": "/what-are-the-names-of-your-directors",
+                    "condition": "sIwvUz"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-company-registration-number-frHkes",
+            "title": "What is your company registration number?",
+            "components": [
+                {
+                    "name": "yzcfRk",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "NumberField",
+                    "title": "What is your company registration number?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-there-a-parent-or-holding-organisation"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-are-the-names-of-your-directors",
+            "title": "What are the names of your directors?",
+            "components": [
+                {
+                    "name": "EXdHkT",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "MultilineTextField",
+                    "title": "What are the names of your directors?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-there-a-parent-or-holding-organisation"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/is-there-a-parent-or-holding-organisation",
+            "title": "Is there a parent or holding organisation?",
+            "components": [
+                {
+                    "name": "RInsJl",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "title": "Is there a parent or holding organisation?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-name-of-the-parent-or-holding-organisation",
+                    "condition": "srMmuL"
+                },
+                {
+                    "path": "/what-is-the-structure-of-your-organisation"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-name-of-the-parent-or-holding-organisation",
+            "title": "What is the name of the parent or holding organisation?",
+            "components": [
+                {
+                    "name": "MKIpgA",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "What is the name of the parent or holding organisation?",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-the-structure-of-your-organisation"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-structure-of-your-organisation",
+            "title": "What is the structure of your organisation?",
+            "components": [
+                {
+                    "name": "YmiBVh",
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 1,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": ",application/pdf"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 0,
+                        "hideTitle": true
+                    },
+                    "type": "ClientSideFileUploadField",
+                    "title": "What is the structure of your organisation?",
+                    "hint": "Upload a PDF document that shows the structure of the company, such as an organogram. ",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [
+        {
+            "title": "org types",
+            "name": "rCyihg",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Charity",
+                    "value": "Charity"
+                },
+                {
+                    "text": "Limited company",
+                    "value": "Limited company"
+                }
+            ]
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [
+        {
+            "displayName": "has charity number",
+            "name": "QRiEjQ",
+            "value": {
+                "name": "has charity number",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.RlaAvC",
+                            "type": "YesNoField",
+                            "display": "Do you have a charity number?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "no charity number",
+            "name": "iSUhoL",
+            "value": {
+                "name": "no charity number",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.RlaAvC",
+                            "type": "YesNoField",
+                            "display": "Do you have a charity number?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "is charity",
+            "name": "FWnbji",
+            "value": {
+                "name": "is charity",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.org",
+                            "type": "RadiosField",
+                            "display": "What is your organisation type?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Charity",
+                            "display": "Charity"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "is Limited company",
+            "name": "lLXsLv",
+            "value": {
+                "name": "is Limited company",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.org",
+                            "type": "RadiosField",
+                            "display": "What is your organisation type?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Limited company",
+                            "display": "Limited company"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "has company number",
+            "name": "KOkaxJ",
+            "value": {
+                "name": "has company number",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WuTLHg",
+                            "type": "YesNoField",
+                            "display": "Do you have a company registration number?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "no company number",
+            "name": "sIwvUz",
+            "value": {
+                "name": "no company number",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.WuTLHg",
+                            "type": "YesNoField",
+                            "display": "Do you have a company registration number?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "holding org yes",
+            "name": "Mwjlyd",
+            "value": {
+                "name": "holding org yes",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.qsDYJh",
+                            "type": "YesNoField",
+                            "display": "Is there a parent or holding organisation?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "is holding org",
+            "name": "srMmuL",
+            "value": {
+                "name": "is holding org",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.RInsJl",
+                            "type": "YesNoField",
+                            "display": "Is there a parent or holding organisation?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}
