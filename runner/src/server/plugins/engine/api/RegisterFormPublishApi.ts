@@ -60,8 +60,6 @@ export class RegisterFormPublishApi implements RegisterApi {
             path: "/published/{id}",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-                // Require JWT authentication
-                auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
@@ -88,8 +86,6 @@ export class RegisterFormPublishApi implements RegisterApi {
             path: "/published",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-                // Require JWT authentication
-                auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);

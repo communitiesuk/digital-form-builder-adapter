@@ -82,8 +82,6 @@ secrets:
 # You can override any of the values defined above by environment.
 environments:
   dev:
-    variables:
-      JWT_AUTH_ENABLED: false
     count:
       spot: 2
     sidecars:
@@ -104,8 +102,6 @@ environments:
         port: 3009
 
   test:
-    variables:
-      JWT_AUTH_ENABLED: false
     count:
       spot: 2
     sidecars:
@@ -126,8 +122,6 @@ environments:
         port: 3009
 
   uat:
-    variables:
-      JWT_AUTH_ENABLED: false
     count:
       range: 2-4
       cooldown:
