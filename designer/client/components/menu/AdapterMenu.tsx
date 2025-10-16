@@ -4,7 +4,7 @@ import {useMenuItem} from "../../../../digital-form-builder/designer/client/comp
 import {Tabs, useTabs} from "../../../../digital-form-builder/designer/client/components/Menu/useTabs";
 import {i18n} from "../../i18n";
 import {Flyout} from "../../../../digital-form-builder/designer/client/components/Flyout";
-import {FormDetails} from "../../../../digital-form-builder/designer/client/components/FormDetails";
+import {AdapterFormDetails} from "../FormDetails/AdapterFormDetails";
 import {AdapterPageCreate} from "../../AdapterPageCreate";
 import {AdapterLinkCreate} from "../component-create/links/AdapterLinkCreate";
 import SectionsEdit from "../../../../digital-form-builder/designer/client/section/sections-edit";
@@ -83,8 +83,8 @@ export default function AdapterMenu({updateDownloadedAt, id}: Props) {
             </div>
             {formDetails.isVisible && (
                 //@ts-ignore
-                <Flyout title="Form Details" onHide={formDetails.hide}><FormDetails
-                    onCreate={() => formDetails.hide()}/>
+                <Flyout title="Form Details" onHide={formDetails.hide}><AdapterFormDetails
+                    onCreate={() => formDetails.hide()} />
                 </Flyout>
             )}
 

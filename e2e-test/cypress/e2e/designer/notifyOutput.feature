@@ -4,7 +4,7 @@ Feature: Notify output allows lists
   So that I can send emails to customers using values from the form submission
 
   Background:
-    Given the form "notifyOutput" exists
+    Given the form "notifyOutput" exists in new UI
     When I am viewing the designer at "/app/designer/notifyOutput"
     Then The list "New list" should exist
 
