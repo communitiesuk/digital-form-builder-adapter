@@ -6,7 +6,7 @@ import * as sinon from "sinon";
 import {AdapterFormModel} from "src/server/plugins/engine/models";
 //@ts-ignore
 import createServer from "src/server";
-import cheerio from "cheerio";
+const cheerio = require("cheerio");
 //@ts-ignore
 import {DefaultPageController} from "src/server/plugins/engine/page-controllers";
 //@ts-ignore

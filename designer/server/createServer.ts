@@ -57,6 +57,7 @@ const serverOptions = () => {
 };
 
 export async function createServer() {
+    console.log("*** SERVER CREATING WITH PLUGINS ***")
     //@ts-ignore
     const server = hapi.server(serverOptions());
     await server.register(errorHandlerPlugin);
