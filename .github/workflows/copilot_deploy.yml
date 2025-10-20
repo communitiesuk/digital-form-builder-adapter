@@ -520,7 +520,7 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    uses: communitiesuk/funding-service-design-workflows/.github/workflows/standard-deploy.yml@main
+    uses: ./.github/workflows/deploy.yml
     secrets:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -528,9 +528,5 @@ jobs:
       SLACK_DEPLOYMENTS_CHANNEL_ID: ${{ secrets.SLACK_DEPLOYMENTS_CHANNEL_ID }}
     with:
       environment: prod
-      app_name: form-runner-adapter
-      run_db_migrations: false
-      image_location: ghcr.io/communitiesuk/funding-service-design-form-runner-adapter:sha-${{ github.sha }}
-      notify_slack: true
+      alert_slack_on_failure: true
       notify_slack_on_deployment: true
-
