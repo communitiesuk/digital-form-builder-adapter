@@ -22,8 +22,8 @@ export interface FormDraftResponse extends FormResponse {
 }
 
 export class PreAwardApiClient {
-    private baseUrl: string;
-    private wreck: any;
+    private readonly baseUrl: string;
+    private readonly wreck: any;
 
     constructor() {
         this.baseUrl = config.preAwardApiUrl;

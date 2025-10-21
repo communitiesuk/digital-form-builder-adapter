@@ -8,7 +8,7 @@ Feature: Back link fallback
   so that I can return to the previous page or service.
 
   Scenario: Back link is displayed when there is no history
-    Given the form "backLinkFallback" exists
+    Given the form "backLinkFallback" exists in new UI
     When I navigate to the "backLinkFallback" form
     Then The back link href is selected is "/help/cookies"
 

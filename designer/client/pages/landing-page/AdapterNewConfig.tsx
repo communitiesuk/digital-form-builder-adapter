@@ -22,10 +22,11 @@ type State = {
 };
 
 const parseUrlPath = (name: string) => {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+  let slug = name.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-');
+  // Trim leading and trailing hyphens without regex
+  while (slug.startsWith('-')) slug = slug.slice(1);
+  while (slug.endsWith('-')) slug = slug.slice(0, -1);
+  return slug;
 };
 
 export class AdapterNewConfig extends Component<Props, State> {
@@ -73,7 +74,7 @@ export class AdapterNewConfig extends Component<Props, State> {
         children: i18n("URL path is required"),
       };
       hasErrors = true;
-    } else if (!urlPath.match(/^[a-zA-Z0-9_-]+$/)) {
+    } else if (!urlPath.match(/^[a-zA-Z0-9_-]+$/)) { //NOSONAR
       errors.urlPath = {
         href: "#urlPath",
         children: i18n("URL path should only contain letters, numbers, hyphens and underscores"),
@@ -130,18 +131,18 @@ export class AdapterNewConfig extends Component<Props, State> {
       this.handleErrors({});
     }
 
-    const newResponse = await window
+    const newResponse = await globalThis
       .fetch("/api/new", {
-        method: "POST",
-        body: JSON.stringify({
-          selected: { Key: "New" },
-          displayName: displayName.trim(),
-          urlPath: urlPath.trim(),
-        }),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+      method: "POST",
+      body: JSON.stringify({
+        selected: { Key: "New" },
+        displayName: displayName.trim(),
+        urlPath: urlPath.trim(),
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
       })
       .then((res) => this.handleResponse(res));
     

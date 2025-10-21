@@ -4,9 +4,9 @@ Feature: Page links
   So that I can decide the path users take in my form
 
   Background:
-    Given I am on the new configuration page
-    And I enter the form name "editing-links"
-    When I submit the form with the button title "Next"
+    Given I am on the new mhclg configuration page
+    And I enter the form name "editing-links" in new UI
+    When I submit the form with the button title "Create"
 
   Scenario: Editing links
     Then the link panels are correct

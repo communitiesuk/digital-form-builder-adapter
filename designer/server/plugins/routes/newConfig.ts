@@ -13,7 +13,6 @@ export const registerNewFormWithRunner: ServerRoute = {
     ...originalNewConfig.registerNewFormWithRunner.options,
     handler: async (request: HapiRequest, h) => {
       const { selected, displayName, urlPath } = request.payload as any;
-
       // Validate display name
       if (!displayName || displayName.trim() === "") {
         return h
