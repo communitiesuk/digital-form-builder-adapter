@@ -1,0 +1,111 @@
+{
+    "metadata": {},
+    "startPage": "/what-we-need-to-know",
+    "pages": [
+        {
+            "title": "What we need to know",
+            "path": "/what-we-need-to-know",
+            "components": [
+                {
+                    "name": "mzOSrX",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>the positive impacts you expect from your project</li>\n<li>the key performance indicators (KPIs) you will use to monitor the success of your project</li>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/describe-the-positive-impacts-your-project-is-expected-to-have"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "./pages/start.js"
+        },
+        {
+            "title": "Describe the positive impacts your project is expected to have",
+            "path": "/describe-the-positive-impacts-your-project-is-expected-to-have",
+            "components": [
+                {
+                    "name": "PeBIix",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This should include:\n<ul>\n<li>who and how many people will benefit</li>\n<li>when you expect to see these benefits</li>\n<li>how will the project improve tenants\u2019 experience of social housing</li>\n</ul>",
+                    "schema": {}
+                },
+                {
+                    "name": "PHcUVY",
+                    "options": {
+                        "maxWords": "500",
+                        "hideTitle": true
+                    },
+                    "type": "FreeTextField",
+                    "title": "Describe the positive impacts your project is expected to have",
+                    "schema": {}
+                }
+            ],
+            "section": "FabDefault",
+            "next": [
+                {
+                    "path": "/what-key-performance-indicators-kpis-you-will-use-to-monitor-the-success-of-your-project"
+                }
+            ]
+        },
+        {
+            "path": "/what-key-performance-indicators-kpis-you-will-use-to-monitor-the-success-of-your-project",
+            "title": "What key performance indicators (KPIs) you will use to monitor the success of your project?",
+            "components": [
+                {
+                    "name": "KXrCSt",
+                    "options": {},
+                    "type": "Para",
+                    "content": "Describe how you will use both quantitative and qualitative data to measure success. Finalised KPIs and targets must be agreed with MHCLG if your application is successful.",
+                    "schema": {}
+                },
+                {
+                    "name": "oRkpsw",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "type": "FreeTextField",
+                    "title": "What key performance indicators (KPIs) you will use to monitor the success of your project",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}
