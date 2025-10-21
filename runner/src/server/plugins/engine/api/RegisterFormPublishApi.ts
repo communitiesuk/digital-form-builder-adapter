@@ -57,50 +57,6 @@ export class RegisterFormPublishApi implements RegisterApi {
 
         server.route({
             method: "get",
-            path: "/published/{id}",
-            options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-            },
-            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {id} = request.params;
-                const {adapterCacheService} = request.services([]);
-                
-                // This endpoint is used by Form Designer to retrieve preview forms
-                const form = await adapterCacheService.getFormAdapterModel(
-                    id, 
-                    request, 
-                    FormNamespace.Preview
-                );
-                
-                if (!form) {
-                    return h.response({}).code(204);
-                }
-                
-                const {values} = form;
-                return h.response(JSON.stringify({id, values})).code(200);
-            }
-        });
-
-        server.route({
-            method: "get",
-            path: "/published",
-            options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-            },
-            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {adapterCacheService} = request.services([]);
-                
-                // Form Designer uses this to list available forms, so retrieve from preview namespace
-                return h
-                    .response(JSON.stringify(
-                        await adapterCacheService.getFormConfigurations(request, FormNamespace.Preview)
-                    ))
-                    .code(200);
-            }
-        });
-
-        server.route({
-            method: "get",
             path: "/",
             options: {
                 description: "See API-README.md file in the runner/src/server/plugins/engine/api",
