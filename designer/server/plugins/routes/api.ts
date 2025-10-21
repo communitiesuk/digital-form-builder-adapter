@@ -6,7 +6,7 @@ import { ServerRoute, ResponseObject } from "@hapi/hapi";
 export const getFormWithId: ServerRoute = {
   ...originalApi.getFormWithId,
   options: {
-    ...originalApi.getFormWithId.options || {},
+    ...originalApi.getFormWithId.options,
     handler: async (request, h) => {
       const { id } = request.params;
       const formDraftResponse = await preAwardApiClient.getFormDraft(id);
@@ -19,7 +19,7 @@ export const getFormWithId: ServerRoute = {
 export const getAllPersistedConfigurations: ServerRoute = {
   ...originalApi.getAllPersistedConfigurations,
   options: {
-    ...originalApi.getAllPersistedConfigurations.options || {},
+    ...originalApi.getAllPersistedConfigurations.options,
     handler: async (request, h): Promise<ResponseObject | undefined> => {
       const forms = await preAwardApiClient.getAllForms();
       const response = forms.map(form => ({

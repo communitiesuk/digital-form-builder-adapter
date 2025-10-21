@@ -14,7 +14,7 @@ export const putFormWithIdRouteRegister: ServerRoute = {
         },
         handler: async (request, h) => {
             const {id} = request.params;
-            const payload = request.payload as any;
+            const payload = request.payload;
             //@ts-ignore
             const {persistenceService} = request.services([]);
 
