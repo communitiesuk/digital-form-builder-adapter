@@ -156,7 +156,7 @@
           "name": "vKVvTB",
           "options": {},
           "type": "Para",
-          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYou must be applying from one of the types of organisations listed.<br><br>\n\nCheck who can apply in the [Social housing innovation fund prospectus].",
+          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYou must be applying from one of the types of organisations listed.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>",
           "schema": {}
         }
       ],
@@ -171,7 +171,7 @@
           "name": "dDKGEQ",
           "options": {},
           "type": "Para",
-          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour proposal must have been co-produced with social housing tenants.<br><br>\n\nCheck who can apply in the [Social housing innovation fund prospectus].",
+          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour proposal must have been co-produced with social housing tenants.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>",
           "schema": {}
         }
       ],
@@ -186,7 +186,7 @@
           "name": "ZERrud",
           "options": { "condition": "" },
           "type": "Para",
-          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nThe total amount of funding you are applying for must not exceed £100,000.<br><br>\n\nCheck who can apply in the [Social housing innovation fund prospectus].",
+          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nThe total amount of funding you are applying for must not exceed £100,000.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>",
           "schema": {}
         }
       ],
@@ -201,7 +201,7 @@
           "name": "mbjiJe",
           "options": {},
           "type": "Para",
-          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYou must be able to compile a case study following the delivery of your project, and make this publicly available. <br><br>\n\nCheck who can apply in the [Social housing innovation fund prospectus]."
+          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYou must be able to compile a case study following the delivery of your project, and make this publicly available. <br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>"
         }
       ],
       "next": [],
@@ -223,7 +223,7 @@
           "name": "kpeyOo",
           "options": {},
           "type": "Para",
-          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour organisation must match one of the legal statuses listed.<br><br>\n\nCheck who can apply in the [Social housing innovation fund prospectus]."
+          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour organisation must match one of the legal statuses listed.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>"
         }
       ],
       "next": [],
