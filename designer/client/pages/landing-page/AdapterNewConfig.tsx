@@ -145,7 +145,7 @@ export class AdapterNewConfig extends Component<Props, State> {
       })
       .then((res) => this.handleResponse(res));
     
-    this.props.history.push(`designer/${newResponse.id}`);
+    this.props.history.push(`designer/${newResponse.urlPath}`);
   };
 
   onDisplayNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
