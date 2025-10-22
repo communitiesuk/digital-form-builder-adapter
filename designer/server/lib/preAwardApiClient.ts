@@ -17,8 +17,16 @@ export interface FormResponse {
     is_published: boolean;
 }
 
+export interface FormPublishResponse extends FormResponse {
+    published_json: Record<string, any>;
+}
+
 export interface FormDraftResponse extends FormResponse {
     draft_json: Record<string, any>;
+}
+
+export interface FormPublishedResponse extends FormPublishResponse {
+    hash: string;
 }
 
 export class PreAwardApiClient {
@@ -60,6 +68,22 @@ export class PreAwardApiClient {
         );
         const parsedData = JSON.parse((responseData as Buffer).toString());
         return parsedData as FormDraftResponse;
+    }
+
+    async getFormPublished(name: string): Promise<FormPublishedResponse>{
+        const { payload: responseData } = await this.wreck.get(
+            `${this.baseUrl}/${name}/published`
+        );
+        const parsedData = JSON.parse((responseData as Buffer).toString());
+        return parsedData as FormPublishedResponse;
+    }
+
+    async publishForm(urlPath: string): Promise<FormPublishResponse> {
+        const { payload: responseData } = await this.wreck.put(
+            `${this.baseUrl}/${urlPath}/publish`
+        );
+        const parsedData = JSON.parse((responseData as Buffer).toString());
+        return parsedData as FormPublishResponse;
     }
 }
 

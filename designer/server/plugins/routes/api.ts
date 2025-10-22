@@ -1,6 +1,9 @@
 import { api as originalApi } from "../../../../digital-form-builder/designer/server/plugins/routes";
 import { preAwardApiClient } from "../../lib/preAwardApiClient";
+import { publish } from "../../lib/publish";
 import { ServerRoute, ResponseObject } from "@hapi/hapi";
+import config from "../../config";
+import {v4 as uuidv4} from 'uuid';
 
 // Extend the original getFormWithId with Pre-Award API support
 export const getFormWithId: ServerRoute = {
@@ -25,9 +28,66 @@ export const getAllPersistedConfigurations: ServerRoute = {
       const response = forms.map(form => ({
         Key: form.url_path,
         DisplayName: form.display_name,
-        LastModified: form.updated_at
+        LastModified: form.updated_at,
+        LastPublished: form.published_at
       }));
       return h.response(response).type("application/json");
+    },
+  },
+};
+
+export const previewDraft: ServerRoute = {
+  method: "POST",
+  path: "/api/{id}/preview-draft",
+  options: {
+    handler: async (request, h) => {
+      const { id } = request.params;
+      try {
+        const formDraftResponse = await preAwardApiClient.getFormDraft(id);
+        await publish(id, formDraftResponse.draft_json, request);
+        const previewUrl = `${config.previewUrl}/${id}?form_session_identifier=preview/${uuidv4()}`;
+        return h.response({ ok: true, url: previewUrl }).code(200);
+      } catch (error) {
+        request.logger.error("Error previewing draft form:", error);
+        return h.response({ ok: false, error: "Failed to preview draft" }).code(500);
+      }
+    },
+  },
+};
+
+export const previewPublished: ServerRoute = {
+  method: "POST",
+  path: "/api/{id}/preview-published",
+  options: {
+    handler: async (request, h) => {
+      const { id } = request.params;
+      try {
+        const formPublishedResponse = await preAwardApiClient.getFormPublished(id);
+        await publish(id, formPublishedResponse.published_json, request);
+        const previewUrl = `${config.previewUrl}/${id}?form_session_identifier=preview/${uuidv4()}`;
+        return h.response({ ok: true, url: previewUrl }).code(200);
+      } catch (error) {
+        request.logger.error("Error previewing published form:", error);
+        return h.response({ ok: false, error: "Failed to preview published" }).code(500);
+      }
+    },
+  },
+};
+
+
+export const publishForm: ServerRoute = {
+  method: "PUT",
+  path: "/api/{id}/publish",
+  options: {
+    handler: async (request, h) => {
+      const { id } = request.params;
+      try {
+        await preAwardApiClient.publishForm(id);
+        return h.response({ ok: true }).code(200);
+      } catch (error) {
+        request.logger.error("Error publishing form:", error);
+        return h.response({ ok: false, error: "Failed to publish form" }).code(500);
+      }
     },
   },
 };

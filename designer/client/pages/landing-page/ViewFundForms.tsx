@@ -11,7 +11,7 @@ type Props = {
 };
 
 type State = {
-    configs: { Key: string; DisplayName: string; LastModified: string }[];
+    configs: { Key: string; DisplayName: string; LastModified: string; LastPublished: string }[];
     loading?: boolean;
 
 };
@@ -68,6 +68,61 @@ export class ViewFundForms extends Component<Props, State> {
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     };
 
+    previewDraft = async (formKey: string) => {
+        try {
+            const response = await fetch(`/api/${formKey}/preview-draft`, {
+                method: 'POST',
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                window.open(data.url, "_blank", "noopener,noreferrer");
+            } else {
+                console.error('Failed to preview draft form');
+            }
+        } catch (error) {
+            console.error("Error previewing draft form:", error);
+        }
+    };
+
+    previewPublished = async (formKey: string) => {
+        try {
+            const response = await fetch(`/api/${formKey}/preview-published`, {
+                method: 'POST',
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                window.open(data.url, "_blank", "noopener,noreferrer");
+            } else {
+                console.error('Failed to preview published form');
+            }
+        } catch (error) {
+            console.error("Error previewing published form:", error);
+        }
+    };
+
+    publishForm = async (formKey: string) => {
+        try {
+            const response = await fetch(`/api/${formKey}/publish`, {
+                method: 'PUT',
+            });
+
+            if (response.ok) {
+                // Refresh the forms list to show updated publish status
+                const configs = await formConfigurationApi.loadConfigurations();
+                const sortedConfigs = configs.sort((a, b) =>
+                    new Date(b.LastModified).getTime() - new Date(a.LastModified).getTime()
+                );
+                this.setState({ configs: sortedConfigs });
+            } else {
+                console.error('Failed to publish form');
+            }
+        } catch (error) {
+            console.error("Error publishing form:", error);
+        }
+    };
+
     render() {
         const configs = this.state.configs || [];
         const hasEditableForms = configs.length > 0;
@@ -78,6 +133,12 @@ export class ViewFundForms extends Component<Props, State> {
         const formTable = configs.map((form) => (
             <tr className="govuk-table__row" key={form.Key}>
                 <td className="govuk-table__cell">
+                    {form.DisplayName}
+                </td>
+                <td className="govuk-table__cell">
+                    {form.Key}
+                </td>
+                <td className="govuk-table__cell">
                     <a
                         className="govuk-link"
                         href="#"
@@ -86,14 +147,50 @@ export class ViewFundForms extends Component<Props, State> {
                             this.selectForm(form.Key);
                         }}
                     >
-                        {form.DisplayName}
+                        Edit
                     </a>
                 </td>
                 <td className="govuk-table__cell">
-                    {form.Key}
+                    <a
+                        className="govuk-link"
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            this.previewDraft(form.Key);
+                        }}
+                    >
+                        Preview
+                    </a>
+                </td>
+                <td className="govuk-table__cell">
+                    <a
+                        className="govuk-link"
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            this.publishForm(form.Key);
+                        }}
+                    >
+                        Publish
+                    </a>
                 </td>
                 <td className="govuk-table__cell">
                     {this.formatDateTime(form.LastModified)}
+                </td>
+                <td className="govuk-table__cell">
+                    {this.formatDateTime(form.LastPublished)}  // This should be "-" if never published
+                </td>
+                <td className="govuk-table__cell">
+                    <a  // This should be disabled if never published
+                        className="govuk-link"
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            this.previewPublished(form.Key);
+                        }}
+                    >
+                        Preview
+                    </a>
                 </td>
             </tr>
         ));
@@ -121,7 +218,22 @@ export class ViewFundForms extends Component<Props, State> {
                                         URL path
                                     </th>
                                     <th scope="col" className="govuk-table__header">
-                                        Last modified (UTC)
+                                        Edit draft
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
+                                        Preview draft
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
+                                        Publish draft
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
+                                        Last updated (UTC)
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
+                                        Last published (UTC)
+                                    </th>
+                                    <th scope="col" className="govuk-table__header">
+                                        Preview published
                                     </th>
                                 </tr>
                                 </thead>
@@ -130,7 +242,7 @@ export class ViewFundForms extends Component<Props, State> {
                                     <>{formTable}</>
                                 ) : (
                                     <tr className="govuk-table__row">
-                                        <td className="govuk-table__cell table__cell__noborder" colSpan={3}>
+                                        <td className="govuk-table__cell table__cell__noborder" colSpan={8}>
                                             {i18n("landingPage.existing.noforms")}
                                         </td>
                                     </tr>
