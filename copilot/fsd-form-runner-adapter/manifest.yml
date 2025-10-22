@@ -36,7 +36,7 @@ count: 1
 exec: true
 
 network:
-  connect: true # Enable Service Connect for intra-environment traffic between services.
+  connect: false # Enable Service Connect for intra-environment traffic between services.
 
   # Override the network configuration with the public/private/data subnets built using terraform
   # notification should be private (internal)
