@@ -183,7 +183,7 @@ export class AdapterNewConfig extends Component<Props, State> {
     return (
       <div className="new-config">
         <div>
-          <BackLink onClick={this.goBack}>
+          <BackLink onClick={this.goBack} href="#">
             {i18n("Back to previous page")}
           </BackLink>
 
@@ -206,7 +206,7 @@ export class AdapterNewConfig extends Component<Props, State> {
               children: [i18n("Display name")],
             }}
             hint={{
-              children: [i18n("Enter the display name for your form, for example 'Applying for visitors pass'")],
+              children: [i18n("Enter the display name for your form")],
             }}
             value={displayName || ""}
             onChange={this.onDisplayNameChange}
@@ -223,7 +223,7 @@ export class AdapterNewConfig extends Component<Props, State> {
               children: [i18n("URL path")],
             }}
             hint={{
-              children: [i18n("Enter the URL path for your form, for example 'visitor-pass-application'. This will be used in the form's URL.")],
+              children: [i18n("Enter the URL path for your form")],
             }}
             value={urlPath || ""}
             onChange={this.onUrlPathChange}
