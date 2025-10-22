@@ -107,7 +107,16 @@ environments:
     variables:
       JWT_AUTH_ENABLED: false
     count:
-      spot: 2
+      range: 2-4
+      cooldown:
+        in: 60s
+        out: 30s
+      cpu_percentage:
+        value: 70
+      memory_percentage:
+        value: 80
+      requests: 30
+      response_time: 2s
     sidecars:
       nginx:
         port: 8087
