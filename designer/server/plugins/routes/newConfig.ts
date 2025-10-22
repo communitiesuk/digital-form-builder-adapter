@@ -65,11 +65,7 @@ export const registerNewFormWithRunner: ServerRoute = {
         };
         await preAwardApiClient.createOrUpdateForm(formData);
         await publish(trimmedUrlPath, newFormJson, request);
-        const response = JSON.stringify({
-          id: trimmedUrlPath,
-          previewUrl: config.previewUrl,
-        });
-        return h.response(response).type("application/json").code(200);
+        return h.response({ urlPath: trimmedUrlPath }).type("application/json").code(200);
       } catch (error) {
         request.logger.error("Error creating/updating form:", error);
         return h
