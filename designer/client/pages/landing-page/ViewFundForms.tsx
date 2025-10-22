@@ -178,10 +178,10 @@ export class ViewFundForms extends Component<Props, State> {
                     {this.formatDateTime(form.LastModified)}
                 </td>
                 <td className="govuk-table__cell">
-                    {this.formatDateTime(form.LastPublished)}
+                    {this.formatDateTime(form.LastPublished)}  // This should be "-" if never published
                 </td>
                 <td className="govuk-table__cell">
-                    <a
+                    <a  // This should be disabled if never published
                         className="govuk-link"
                         href="#"
                         onClick={(e) => {
