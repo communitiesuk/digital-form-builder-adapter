@@ -135,7 +135,6 @@ export class AdapterNewConfig extends Component<Props, State> {
       .fetch("/api/new", {
       method: "POST",
       body: JSON.stringify({
-        selected: { Key: "New" },
         displayName: displayName.trim(),
         urlPath: urlPath.trim(),
       }),

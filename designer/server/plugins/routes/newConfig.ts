@@ -58,16 +58,13 @@ export const registerNewFormWithRunner: ServerRoute = {
       const trimmedUrlPath = urlPath.trim();
 
       try {
-        if (selected.Key === "New") {
-          const formData = {
-            url_path: trimmedUrlPath,
-            display_name: trimmedDisplayName,
-            form_json: newFormJson
-          };
-          await preAwardApiClient.createOrUpdateForm(formData);
-          await publish(trimmedUrlPath, newFormJson, request);
-        }
-
+        const formData = {
+          url_path: trimmedUrlPath,
+          display_name: trimmedDisplayName,
+          form_json: newFormJson
+        };
+        await preAwardApiClient.createOrUpdateForm(formData);
+        await publish(trimmedUrlPath, newFormJson, request);
         const response = JSON.stringify({
           id: trimmedUrlPath,
           previewUrl: config.previewUrl,
