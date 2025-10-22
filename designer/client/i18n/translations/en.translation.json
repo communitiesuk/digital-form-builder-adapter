@@ -6,8 +6,8 @@
   "Display name": "Display name",
   "Display name is required": "Display name is required",
   "Edit page": "Edit page",
-  "Enter the display name for your form, for example 'Applying for visitors pass'": "Enter the display name for your form, for example 'Applying for visitors pass'",
-  "Enter the URL path for your form, for example 'visitor-pass-application'. This will be used in the form's URL.": "Enter the URL path for your form, for example 'visitor-pass-application'. This will be used in the form's URL.",
+  "Enter the display name for your form": "Enter the display name for your form, for example \"Applying for visitors pass\"",
+  "Enter the URL path for your form": "Enter the URL path for your form, for example \"applying-for-visitors-pass\"",
   "Enter form name": "Enter form name",
   "Enter the name for your form, for example Applying for visitors pass": "Enter the name for your form, for example Applying for visitors pass",
   "Persona": "Persona",
@@ -257,7 +257,7 @@
       "existing": "Open an existing form",
       "heading": "Design and prototype forms",
       "hint": "Select an option",
-      "intro": "Use the form designer to easily create,edit forms and test ideas",
+      "intro": "Use the Form Designer to easily create, edit and preview forms",
       "newform": "Create a new form"
     },
     "existing": {

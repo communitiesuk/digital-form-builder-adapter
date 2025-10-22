@@ -101,7 +101,7 @@ export class ViewFundForms extends Component<Props, State> {
         return (
             <div className="new-config">
                 <div>
-                    <BackLink onClick={this.goBack}>
+                    <BackLink onClick={this.goBack} href="#">
                         {i18n("Back to previous page")}
                     </BackLink>
 
@@ -121,7 +121,7 @@ export class ViewFundForms extends Component<Props, State> {
                                         URL path
                                     </th>
                                     <th scope="col" className="govuk-table__header">
-                                        Last modified
+                                        Last modified (UTC)
                                     </th>
                                 </tr>
                                 </thead>

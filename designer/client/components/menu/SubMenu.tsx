@@ -71,7 +71,7 @@ export function SubMenu({id, updateDownloadedAt}: Props) {
             <button
                 type="button"
                 className="govuk-body govuk-link submenu__link"
-                onClick={() => { window.location.href = "/app"; }}
+                onClick={() => { window.location.href = "/app/new"; }}
             >
                 Create new form
             </button>
