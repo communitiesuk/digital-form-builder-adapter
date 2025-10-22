@@ -139,7 +139,7 @@
             "title": "What are your insurance details?",
             "components": [
                 {
-                    "name": "bBrfun",
+                    "name": "zJJSsR",
                     "options": {
                         "dropzoneConfig": {
                             "maxFiles": 1,
@@ -148,11 +148,12 @@
                             "acceptedFiles": ",application/pdf"
                         },
                         "showNoScriptWarning": false,
-                        "minimumRequiredFiles": 0
+                        "minimumRequiredFiles": 1
                     },
                     "type": "ClientSideFileUploadField",
-                    "title": "Upload a copy of your insurance details. ",
-                    "hint": "The file must be a PDF."
+                    "title": "Upload your current insurance certificate.",
+                    "hint": "The file must be a PDF.",
+                    "schema": {}
                 }
             ],
             "next": [
@@ -470,7 +471,7 @@
                             "acceptedFiles": ",application/pdf"
                         },
                         "showNoScriptWarning": false,
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "hideTitle": true
                     },
                     "type": "ClientSideFileUploadField",

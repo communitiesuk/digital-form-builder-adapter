@@ -101,7 +101,7 @@
                     "name": "QxyRhj",
                     "options": {
                         "hideTitle": true,
-                        "maxWords": "250"
+                        "maxWords": "500"
                     },
                     "type": "MultilineTextField",
                     "title": "Tell us about your proposal for Pillar 1 - Foundations. ",
@@ -289,7 +289,8 @@
                 {
                     "name": "PKRcjw",
                     "options": {
-                        "hideTitle": true
+                        "hideTitle": true,
+                        "maxWords": "500"
                     },
                     "type": "MultilineTextField",
                     "title": "Tell us about your proposal for Pillar 2 - Training. ",
@@ -501,7 +502,8 @@
                     "title": "Tell us about your proposal for Pillar 3 - Advice. ",
                     "hint": "Give a brief summary of what you hope to achieve.  Refer to the prospectus for guidance.",
                     "options": {
-                        "hideTitle": true
+                        "hideTitle": true,
+                        "maxWords": "500"
                     },
                     "name": "ghg",
                     "nameHasError": false,
@@ -634,7 +636,8 @@
                 {
                     "name": "krHYYI",
                     "options": {
-                        "hideTitle": true
+                        "hideTitle": true,
+                        "maxWords": "500"
                     },
                     "type": "MultilineTextField",
                     "title": "Tell us about your proposal for Pillar 3 - Advice. ",
@@ -1206,7 +1209,8 @@
                     },
                     "type": "NumberField",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     },
                     "title": "How much Pillar 1 funding are you applying for?"
                 }
@@ -1237,7 +1241,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1248,7 +1253,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1259,7 +1265,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1289,7 +1296,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1300,7 +1308,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1311,7 +1320,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1341,7 +1351,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1352,7 +1363,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1363,7 +1375,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1427,7 +1440,8 @@
                     "type": "NumberField",
                     "title": "How much Pillar 2 funding are you applying for?",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1457,7 +1471,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1468,7 +1483,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1479,7 +1495,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1509,7 +1526,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1520,7 +1538,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1531,7 +1550,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1595,7 +1615,8 @@
                     "type": "NumberField",
                     "title": "How much Pillar 3 funding are you applying for?",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1625,7 +1646,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1636,7 +1658,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1647,7 +1670,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1677,7 +1701,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1688,7 +1713,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1699,7 +1725,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1763,7 +1790,8 @@
                     "type": "NumberField",
                     "title": "How much Pillar 4 funding are you applying for?",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1793,7 +1821,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1803,7 +1832,10 @@
                     },
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
-                    "schema": {}
+                    "schema": {
+                        "min": "0",
+                        "precision": "2"
+                    }
                 },
                 {
                     "name": "ZKnUiI",
@@ -1813,7 +1845,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1843,7 +1876,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1854,7 +1888,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1865,7 +1900,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1894,7 +1930,9 @@
                     },
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
-                    "schema": {}
+                    "schema": {
+                        "min": "0"
+                    }
                 },
                 {
                     "name": "QmdnUZ",
@@ -1904,7 +1942,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1915,7 +1954,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1945,7 +1985,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1956,7 +1997,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -1967,7 +2009,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -1997,7 +2040,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -2008,7 +2052,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -2019,7 +2064,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],
@@ -2049,7 +2095,8 @@
                     "type": "NumberField",
                     "title": "Year 1 (April 2026 to March 2027)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -2060,7 +2107,8 @@
                     "type": "NumberField",
                     "title": "Year 2 (April 2027 to March 2028)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 },
                 {
@@ -2071,7 +2119,8 @@
                     "type": "NumberField",
                     "title": "Year 3 (April 2028 to March 2029)",
                     "schema": {
-                        "precision": "2"
+                        "precision": "2",
+                        "min": "0"
                     }
                 }
             ],

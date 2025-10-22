@@ -10,7 +10,7 @@
           "name": "hxCnHT",
           "options": {},
           "type": "Para",
-          "content": "We need to ask some questions to check you can apply for this funding.",
+          "content": "We need to ask some questions to check you can apply for this funding.\n\nWe'll check that your organisation is eligible for this funding.",
           "schema": {}
         }
       ],
@@ -45,15 +45,12 @@
           "type": "RadiosField",
           "title": "What is the legal status of your organisation?",
           "list": "hPifFP",
-          "schema": {}
+          "schema": {},
+          "values": { "type": "listRef" }
         }
       ],
       "section": "FabDefault",
       "next": [
-        {
-          "path": "/does-your-unincorporated-community-group-meet-the-following-criteria",
-          "condition": "NOHmhf"
-        },
         {
           "path": "/you-cannot-apply-for-this-funding-StexyP",
           "condition": "fgDkkM"
@@ -69,39 +66,11 @@
           "name": "htwsos",
           "options": {},
           "type": "Para",
-          "content": "Based on your answer, you are not eligible to apply for National Workforce Programme funding.\n</br>\nThe organisation must be based in England.\n",
+          "content": "Based on your answer, you're not eligible to apply for National Workforce Programme funding.\n\nThe organisation must be based in England.\n",
           "schema": {}
         }
       ],
       "next": [],
-      "section": "FabDefault"
-    },
-    {
-      "path": "/does-your-unincorporated-community-group-meet-the-following-criteria",
-      "title": "Does your unincorporated community group meet the following criteria?",
-      "components": [
-        {
-          "name": "wEcEMx",
-          "options": {},
-          "type": "Para",
-          "content": "Does your unincorporated community group fit all the following criteria:\n<ul>\n\n<li>was established for charitable, benevolent or philanthropic purposes</li>\n<li>has a governing body with at least three members</li>\n<li>has an inclusive Membership policy</li>\n<li>has a governing document</li>\n<li>can provide accounts for the last two financial years</li>\n<li>has a UK based business bank account in the name of the organisation </li> \n<li>can hold land either by itself or via Trustees</li>\n</ul>",
-          "schema": {}
-        },
-        {
-          "name": "XANeey",
-          "options": { "hideTitle": true },
-          "type": "YesNoField",
-          "title": "Does your unincorporated community group meet the following criteria?",
-          "schema": {}
-        }
-      ],
-      "next": [
-        { "path": "/you-can-apply-for-national-workforce-programme-funding" },
-        {
-          "path": "/you-cannot-apply-for-this-funding-xRxFdw",
-          "condition": "sGhVFh"
-        }
-      ],
       "section": "FabDefault"
     },
     {
@@ -112,7 +81,7 @@
           "name": "YzwEba",
           "options": {},
           "type": "Para",
-          "content": "Based on your answer, you are not eligible to apply for National Workforce Programme funding.\n</br>\nThe organisation must have one of the legal statuses listed.",
+          "content": "Based on your answer, you're not eligible to apply for National Workforce Programme funding.\n\nThe organisation must have one of the legal statuses listed.",
           "schema": {}
         }
       ],
@@ -125,21 +94,6 @@
       "components": [],
       "next": [],
       "controller": "./pages/confirm.js",
-      "section": "FabDefault"
-    },
-    {
-      "path": "/you-cannot-apply-for-this-funding-xRxFdw",
-      "title": "You cannot apply for this funding",
-      "components": [
-        {
-          "name": "ehODJF",
-          "options": {},
-          "type": "Para",
-          "content": "Based on your answer, you are not eligible to apply for National Workforce Programme funding.\n</br>\nYour unincorporated community group must meet the listed criteria.",
-          "schema": {}
-        }
-      ],
-      "next": [],
       "section": "FabDefault"
     }
   ],
@@ -176,10 +130,6 @@
         {
           "text": "An Industrial and Providence Society (IPS)",
           "value": "An Industrial and Providence Society (IPS)"
-        },
-        {
-          "text": "An unincorporated community group",
-          "value": "An unincorporated community group"
         },
         { "text": "Other", "value": "Other" }
       ]
