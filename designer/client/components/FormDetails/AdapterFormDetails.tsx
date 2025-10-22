@@ -35,16 +35,25 @@ export class AdapterFormDetails extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    const { data, displayName } = this.context;
-    const selectedFeedbackForm = data.feedback?.url?.substring(1) ?? "";
     this.state = {
-      title: displayName || "",
-      feedbackForm: data.feedback?.feedbackForm ?? false,
+      title: "",
+      feedbackForm: false,
       formConfigurations: [],
-      selectedFeedbackForm,
-      phase: data.phaseBanner?.phase,
+      selectedFeedbackForm: "",
+      phase: undefined,
       errors: {},
     };
+  }
+
+  componentDidMount() {
+    const { data, displayName } = this.context;
+    const selectedFeedbackForm = data.feedback?.url?.substring(1) ?? "";
+    this.setState({
+      title: displayName || "",
+      feedbackForm: data.feedback?.feedbackForm ?? false,
+      selectedFeedbackForm,
+      phase: data.phaseBanner?.phase,
+    });
   }
 
   onSubmit = async (event: FormEvent<HTMLFormElement>) => {
