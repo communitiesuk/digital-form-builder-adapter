@@ -4,9 +4,9 @@ Feature: Form pages
   So that I can design a form for my users
 
   Background: Create new config
-    Given I am on the new configuration page
-    And I enter the form name "form-pages"
-    When I submit the form with the button title "Next"
+    Given I am on the new mhclg configuration page
+    And I enter the form name "form-pages" in new UI
+    When I submit the form with the button title "Create"
 
   Scenario: Edit a page title
     When I edit the page "First page"

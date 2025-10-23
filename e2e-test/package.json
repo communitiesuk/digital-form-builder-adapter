@@ -22,7 +22,11 @@
       "../digital-form-builder/e2e/cypress/e2e/[filepath].{js,ts}",
       "../digital-form-builder/e2e/cypress/e2e/[filepart].{js,ts}",
       "../digital-form-builder/e2e/cypress/support/step_definitions/**/*.{js,ts}",
-      "cypress/support/step_definitions/**/*.{js,ts}"
+      "cypress/support/step_definitions/**/*.{js,ts}",
+      "cypress/e2e/[filepath]/**/*.{js,ts}",
+      "cypress/e2e/[filepart]/**/*.{js,ts}",
+      "cypress/e2e/[filepath].{js,ts}",
+      "cypress/e2e/[filepart].{js,ts}"
     ]
   }
 }

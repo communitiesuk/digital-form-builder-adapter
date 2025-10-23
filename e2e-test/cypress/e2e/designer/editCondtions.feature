@@ -5,9 +5,9 @@ Feature: Edit Conditions
   So that components behave correctly
 
   Scenario: Create a condition using Edit Conditions
-    Given I am on the new configuration page
-    And I enter the form name "smoke-tests-edit-conditions"
-    When I submit the form with the button title "Next"
+    Given I am on the new mhclg configuration page
+    And I enter the form name "smoke-tests-edit-conditions" in new UI
+    When I submit the form with the button title "Create"
     * I create a component
       | page       | component  | title            | name | hideTitle | optional | additional |
       | First page | Date parts | Date of purchase |      |           |          |            |
@@ -25,9 +25,9 @@ Feature: Edit Conditions
 
 
   Scenario: Create a condition using Edit Conditions
-    Given I am on the new configuration page
-    When I enter the form name "smoke-tests-edit-conditions"
-    And I submit the form with the button title "Next"
+    Given I am on the new mhclg configuration page
+    When I enter the form name "smoke-tests-edit-conditions" in new UI
+    And I submit the form with the button title "Create"
     * I create a component
       | page       | component | title                  | name | hideTitle | optional | additional |
       | First page | YesNo     | Do you have a receipt? |      |           |          |            |

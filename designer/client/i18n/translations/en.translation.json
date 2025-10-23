@@ -1,8 +1,13 @@
 {
   "A form with this name already exists": "A form with this name already exists",
+  "A form with this URL path already exists": "A form with this URL path already exists",
   "Create a new form": "Create a new form",
   "Create a new form or edit an existing form": "Create a new form or edit an existing form",
+  "Display name": "Display name",
+  "Display name is required": "Display name is required",
   "Edit page": "Edit page",
+  "Enter the display name for your form": "Enter the display name for your form, for example \"Applying for visitors pass\"",
+  "Enter the URL path for your form": "Enter the URL path for your form, for example \"applying-for-visitors-pass\"",
   "Enter form name": "Enter form name",
   "Enter the name for your form, for example Applying for visitors pass": "Enter the name for your form, for example Applying for visitors pass",
   "Persona": "Persona",
@@ -12,6 +17,9 @@
   "Start": "Start",
   "Test": "For testing purpose, do not delete it",
   "There is a problem": "There is a problem",
+  "URL path": "URL path",
+  "URL path is required": "URL path is required",
+  "URL path should only contain letters, numbers, hyphens and underscores": "URL path should only contain letters, numbers, hyphens and underscores",
   "add": "Add",
   "addLink": {
     "hint1": "You can add links between different pages and set conditions for links to control the page that loads next. For example, a question page with a component for yes and no options could have link conditions based on which option a user selects.",
@@ -249,7 +257,7 @@
       "existing": "Open an existing form",
       "heading": "Design and prototype forms",
       "hint": "Select an option",
-      "intro": "Use the form designer to easily create,edit forms and test ideas",
+      "intro": "Use the Form Designer to easily create, edit and preview forms",
       "newform": "Create a new form"
     },
     "existing": {

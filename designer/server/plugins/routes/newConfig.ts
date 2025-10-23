@@ -1,54 +1,78 @@
+import { newConfig as originalNewConfig } from "../../../../digital-form-builder/designer/server/plugins/routes";
+import { preAwardApiClient } from "../../lib/preAwardApiClient";
 import config from "../../config";
-import newFormJson from "../../../../digital-form-builder/designer/new-form.json";
-import { nanoid } from "nanoid";
-import { publish } from "../../lib/publish";
 import { ServerRoute } from "@hapi/hapi";
+import { HapiRequest } from "../../../../digital-form-builder/designer/server/types";
+import newFormJson from "../../../../digital-form-builder/designer/new-form.json";
+import {publish} from "../../lib/publish";
 
+// Extend the original registerNewFormWithRunner with Pre-Award API support
 export const registerNewFormWithRunner: ServerRoute = {
-  method: "post",
-  path: "/api/new",
+  ...originalNewConfig.registerNewFormWithRunner,
   options: {
-    handler: async (request, h) => {
-      const { persistenceService } = request.services([]);
-      const { selected, name } = request.payload;
-
-      if (name && name !== "" && !name.match(/^[a-zA-Z0-9 _-]+$/)) {
+    ...originalNewConfig.registerNewFormWithRunner.options,
+    handler: async (request: HapiRequest, h) => {
+      const { selected, displayName, urlPath } = request.payload as any;
+      // Validate display name
+      if (!displayName || displayName.trim() === "") {
         return h
-          .response("Form name should not contain special characters")
+          .response("Display name is required")
           .type("application/json")
           .code(400);
       }
 
-      const newName = name === "" ? nanoid(10) : name;
-
-      try {
-        if (selected.Key === "New") {
-          if (config.persistentBackend !== "preview") {
-            await persistenceService.uploadConfiguration(
-              `${newName}.json`,
-              JSON.stringify(newFormJson)
-            );
-          }
-          await publish(newName, newFormJson, request);
-        } else {
-          await persistenceService.copyConfiguration(
-            `${selected.Key}`,
-            newName
-          );
-        }
-      } catch (e) {
-        request.logger.error(e);
+      // Validate URL path
+      if (!urlPath || urlPath.trim() === "") {
         return h
-          .response("Designer could not connect to runner instance.")
-          .type("text/plain")
-          .code(401);
+          .response("URL path is required")
+          .type("application/json")
+          .code(400);
       }
 
-      const response = JSON.stringify({
-        id: `${newName}`,
-        previewUrl: config.previewUrl,
-      });
-      return h.response(response).type("application/json").code(200);
+      if (!urlPath.match(/^[a-zA-Z0-9_-]+$/)) {
+        return h
+          .response("URL path should only contain letters, numbers, hyphens and underscores")
+          .type("application/json")
+          .code(400);
+      }
+
+      // Check if URL path already exists
+      try {
+        const existingForms = await preAwardApiClient.getAllForms();
+        const urlPathExists = existingForms.some(
+          form => form.url_path.toLowerCase() === urlPath.toLowerCase()
+        );
+
+        if (urlPathExists) {
+          return h
+            .response("A form with this URL path already exists")
+            .type("application/json")
+            .code(400);
+        }
+      } catch (error) {
+        request.logger.error("Error checking existing forms:", error);
+        // Continue anyway - better to allow creation than block on error
+      }
+
+      const trimmedDisplayName = displayName.trim();
+      const trimmedUrlPath = urlPath.trim();
+
+      try {
+        const formData = {
+          url_path: trimmedUrlPath,
+          display_name: trimmedDisplayName,
+          form_json: newFormJson
+        };
+        await preAwardApiClient.createOrUpdateForm(formData);
+        await publish(trimmedUrlPath, newFormJson, request);
+        return h.response({ urlPath: trimmedUrlPath }).type("application/json").code(200);
+      } catch (error) {
+        request.logger.error("Error creating/updating form:", error);
+        return h
+          .response("An error occurred while creating the form. Please try again.")
+          .type("application/json")
+          .code(500);
+      }
     },
   },
 };

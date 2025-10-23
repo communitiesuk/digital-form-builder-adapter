@@ -1,9 +1,10 @@
-import {api, app} from "../../../digital-form-builder/designer/server/plugins/routes";
+import {app} from "../../../digital-form-builder/designer/server/plugins/routes";
 import {envStore, flagg} from "flagg";
 import {putFormWithIdRouteRegister} from "./routes/PutFormWithIdRouteRegister";
+import {registerNewFormWithRunner} from "./routes/newConfig";
+import {getFormWithId, getAllPersistedConfigurations, log} from "./routes/api";
 import config from "../config";
 import {jwtAuthStrategyName} from "./AuthPlugin";
-import {registerNewFormWithRunner} from "./routes/newConfig";
 
 export const designerPlugin = {
     plugin: {
@@ -86,13 +87,13 @@ export const designerPlugin = {
                 // @ts-ignore
                 registerNewFormWithRunner.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                api.getFormWithId.options.auth = jwtAuthStrategyName
+                getFormWithId.options.auth = jwtAuthStrategyName
                 // @ts-ignore
                 putFormWithIdRouteRegister.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                api.getAllPersistedConfigurations.options.auth = jwtAuthStrategyName
+                getAllPersistedConfigurations.options.auth = jwtAuthStrategyName
                 // @ts-ignore
-                api.log.options.auth = jwtAuthStrategyName
+                log.options.auth = jwtAuthStrategyName
             }
 
             server.route(startRoute);
@@ -119,6 +120,7 @@ export const designerPlugin = {
                             store: envStore(process.env),
                             definitions: {
                                 featureEditPageDuplicateButton: {default: false},
+
                             },
                         });
 
@@ -130,10 +132,10 @@ export const designerPlugin = {
             });
 
             server.route(registerNewFormWithRunner);
-            server.route(api.getFormWithId);
+            server.route(getFormWithId);
             server.route(putFormWithIdRouteRegister);
-            server.route(api.getAllPersistedConfigurations);
-            server.route(api.log);
+            server.route(getAllPersistedConfigurations);
+            server.route(log);
         },
     },
 };

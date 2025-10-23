@@ -3,9 +3,9 @@ Feature: Form creation through designer and usage in runner
   I wanted to create a form using the designer and need to check the functionality in runner
 
   Scenario: Test form creation through designer and check the functionality in runner
-    Given I am on the new configuration page
-    And I enter the form name "risk-form"
-    * I submit the form with the button title "Next"
+    Given I am on the new mhclg configuration page
+    And I enter the form name "risk-form" in new UI
+    * I submit the form with the button title "Create"
     When I open "Lists"
     And I open the link "Add a new list"
     * I enter "Risk categories" for "List title"
