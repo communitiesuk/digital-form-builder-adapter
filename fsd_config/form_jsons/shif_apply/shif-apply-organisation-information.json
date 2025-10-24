@@ -10,7 +10,8 @@
                     "name": "dCbstc",
                     "options": {},
                     "type": "Para",
-                    "content": "In this section, we'll ask about:\n<ul>\n<li>your organisation name</li>\n<li>the lead contact in your organisation</li>\n<li>whether your organisation has any alternative names and, if so, what the alternative names are</li>\n<li>whether your organisation is controlled by another entity and, if so, the name of that entity</li>\n<li>whether you are submitting a consortium bid for funding with one or more organisations and, if so, details of all the other organisations involved in the consortium bid</li>"
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>your organisation name</li>\n<li>your organisation's lead contact</li>\n<li>your organisation address</li>\n<li>the registered charity number for your organisation (if applicable)</li>\n<li>the Companies House number for your organisation (if applicable)\n<li>whether your organisation is controlled by another entity and, if so, the name of that entity</li>\n<li>whether you are submitting a consortium bid for funding with one or more organisations and, if so, details of all the other organisations involved in the consortium bid</li>",
+                    "schema": {}
                 }
             ],
             "next": [
@@ -31,7 +32,8 @@
                     },
                     "type": "TextField",
                     "title": "What is your organisation's name",
-                    "hint": "If the organisation is known by more than one name, this should be the official name registered with Companies House or the Charity Commission"
+                    "hint": "If the organisation is known by more than one name, this should be the official name registered with Companies House or the Charity Commission",
+                    "schema": {}
                 }
             ],
             "next": [
@@ -49,43 +51,42 @@
                     "name": "EIelEi",
                     "options": {},
                     "type": "Para",
-                    "content": "This will be the main point of contact for any queries we may have about your application."
+                    "content": "This will be the main point of contact for any queries we may have about your application.",
+                    "schema": {}
                 },
                 {
                     "name": "WdapOj",
                     "options": {},
                     "type": "TextField",
-                    "title": "Full name"
-                },
-                {
-                    "name": "qOyurP",
-                    "options": {},
-                    "type": "TextField",
-                    "title": "Organisation"
+                    "title": "Full name",
+                    "schema": {}
                 },
                 {
                     "name": "SAcHge",
                     "options": {},
                     "type": "TextField",
-                    "title": "Role"
+                    "title": "Role",
+                    "schema": {}
                 },
                 {
                     "name": "YaGHMI",
                     "options": {},
                     "type": "EmailAddressField",
-                    "title": "Email address"
+                    "title": "Email address",
+                    "schema": {}
                 },
                 {
                     "name": "HZkwbv",
                     "options": {},
                     "type": "TelephoneNumberField",
-                    "title": "Contact number"
+                    "title": "Contact number",
+                    "schema": {}
                 }
             ],
             "section": "FabDefault",
             "next": [
                 {
-                    "path": "/does-your-organisation-have-alternative-names"
+                    "path": "/what-is-your-organisation-address"
                 }
             ]
         },
@@ -97,17 +98,18 @@
                     "name": "Hdpmjk",
                     "options": {},
                     "type": "YesNoField",
-                    "title": "Does your organisation have alternative names"
+                    "title": "Does your organisation have alternative names",
+                    "schema": {}
                 }
             ],
             "next": [
                 {
-                    "path": "/is-your-organisation-controlled-by-another-entity",
-                    "condition": "fTJugn"
-                },
-                {
                     "path": "/tell-us-any-alternative-names-for-your-organisation-tbiLtS",
                     "condition": "eutqbD"
+                },
+                {
+                    "path": "/what-is-the-legal-status-of-your-organisation",
+                    "condition": "fTJugn"
                 }
             ],
             "section": "FabDefault"
@@ -120,7 +122,8 @@
                     "name": "RIIeoh",
                     "options": {},
                     "type": "YesNoField",
-                    "title": "Is your organisation controlled by another entity"
+                    "title": "Is your organisation controlled by another entity",
+                    "schema": {}
                 }
             ],
             "next": [
@@ -143,7 +146,8 @@
                     "name": "oDIZBr",
                     "options": {},
                     "type": "TextField",
-                    "title": "What is the name of the entity that controls your organisation"
+                    "title": "What is the name of the entity that controls your organisation",
+                    "schema": {}
                 }
             ],
             "next": [
@@ -182,7 +186,7 @@
             ],
             "next": [
                 {
-                    "path": "/is-your-organisation-controlled-by-another-entity"
+                    "path": "/what-is-the-legal-status-of-your-organisation"
                 }
             ],
             "section": "FabDefault",
@@ -207,7 +211,8 @@
                     "name": "AoXseh",
                     "options": {},
                     "type": "YesNoField",
-                    "title": "Are you submitting a consortium bid for funding with one or more organisations"
+                    "title": "Are you submitting a consortium bid for funding with one or more organisations",
+                    "schema": {}
                 }
             ],
             "next": [
@@ -313,9 +318,303 @@
             "next": [],
             "controller": "./pages/summary.js",
             "section": "FabDefault"
+        },
+        {
+            "path": "/is-your-organisation-a-charity-wLgBLR",
+            "title": "Is your organisation a charity?",
+            "components": [
+                {
+                    "name": "FAxOez",
+                    "options": {},
+                    "type": "YesNoField",
+                    "title": "Is your organisation a charity",
+                    "values": {
+                        "type": "listRef"
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/where-is-the-charity-registered",
+                    "condition": "ZjTURS"
+                },
+                {
+                    "path": "/do-you-have-a-company-registration-number",
+                    "condition": "YpAOiA"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/where-is-the-charity-registered",
+            "title": "Where is the charity registered?",
+            "components": [
+                {
+                    "name": "jWNmMa",
+                    "options": {},
+                    "type": "RadiosField",
+                    "title": "Where is the charity registered?",
+                    "list": "vCeNvM",
+                    "values": {
+                        "type": "listRef"
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-charity-number",
+                    "condition": "ffALHM"
+                },
+                {
+                    "path": "/what-is-your-charity-number-TirQrm",
+                    "condition": "zEomwM"
+                },
+                {
+                    "path": "/what-is-your-charity-number-DnPQdy",
+                    "condition": "iGeQMX"
+                },
+                {
+                    "path": "/do-you-have-a-company-registration-number",
+                    "condition": "NBTqBt"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-charity-number",
+            "title": "What is your charity number?",
+            "components": [
+                {
+                    "name": "jfiYwd",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This is the number registered with the <a href=\"https://www.gov.uk/find-charity-information\" target=\"_blank\">Charity Commission for England and Wales (opens in new tab)</a>. ",
+                    "schema": {}
+                },
+                {
+                    "name": "fidvDS",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "What is your charity number",
+                    "hint": "For example, 1004005\n",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-have-a-company-registration-number"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-charity-number-TirQrm",
+            "title": "What is your charity number?",
+            "components": [
+                {
+                    "name": "bFrrwt",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This is the number registered with the <a href=\"https://www.oscr.org.uk/\" target=\"_blank\">Scottish Charity Regulator (opens in new tab)</a>. ",
+                    "schema": {}
+                },
+                {
+                    "name": "gMLuMj",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "What is your charity number",
+                    "hint": "For example, SC000022",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-have-a-company-registration-number"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-charity-number-DnPQdy",
+            "title": "What is your charity number?",
+            "components": [
+                {
+                    "name": "sCYuWn",
+                    "options": {},
+                    "type": "Para",
+                    "content": "This is the number registered with the <a href=\"https://www.charitycommissionni.org.uk/start-up-a-charity/register-of-charities/\" target=\"_blank\">Charity Commission for Northern Ireland (opens in new tab)</a>. ",
+                    "schema": {}
+                },
+                {
+                    "name": "mcUfjF",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "hint": "For example, NIC00002",
+                    "title": "What is your charity number",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/do-you-have-a-company-registration-number"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/do-you-have-a-company-registration-number",
+            "title": "Do you have a company registration number?",
+            "components": [
+                {
+                    "name": "XutYBr",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "YesNoField",
+                    "hint": "Companies House may have sent this to you when you registered with them",
+                    "title": "Do you have a company registration number",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-company-registration-number",
+                    "condition": "vQlYkS"
+                },
+                {
+                    "path": "/is-your-organisation-controlled-by-another-entity",
+                    "condition": "eUOlGR"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-company-registration-number",
+            "title": "What is your company registration number?",
+            "components": [
+                {
+                    "name": "KeloGH",
+                    "options": {},
+                    "type": "Para",
+                    "content": "You can <a href=\"https://www.gov.uk/get-information-about-a-company\" target=\"_blank\">search Companies House for your company registration number (opens in new tab)</a>."
+                },
+                {
+                    "name": "siMJHb",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "type": "TextField",
+                    "title": "What is your company registration number",
+                    "hint": "It is 8 characters, for example 01234567 or AC012345"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-your-organisation-controlled-by-another-entity"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-the-legal-status-of-your-organisation",
+            "title": "What is the legal status of your organisation?",
+            "components": [
+                {
+                    "name": "xCuiwp",
+                    "options": {},
+                    "type": "RadiosField",
+                    "title": "What is the legal status of your organisation",
+                    "list": "QJOpQF"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-your-organisation-a-charity-wLgBLR"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/what-is-your-organisation-address",
+            "title": "What is your organisation address?",
+            "components": [
+                {
+                    "name": "wzawYs",
+                    "options": {},
+                    "type": "UkAddressField",
+                    "title": "What is your organisation address"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/does-your-organisation-have-alternative-names"
+                }
+            ],
+            "section": "FabDefault"
         }
     ],
-    "lists": [],
+    "lists": [
+        {
+            "title": "Charity location",
+            "name": "vCeNvM",
+            "type": "string",
+            "items": [
+                {
+                    "text": "England",
+                    "value": "England"
+                },
+                {
+                    "text": "Scotland",
+                    "value": "Scotland"
+                },
+                {
+                    "text": "Wales",
+                    "value": "Wales"
+                },
+                {
+                    "text": "Northern Ireland",
+                    "value": "Northern Ireland"
+                },
+                {
+                    "text": "My organisation is an exempt charity",
+                    "value": "My organisation is an exempt charity"
+                }
+            ]
+        },
+        {
+            "title": "Legal status",
+            "name": "QJOpQF",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Charitable incorporated organisation",
+                    "value": "Charitable incorporated organisation"
+                },
+                {
+                    "text": "Community benefit society",
+                    "value": "Community benefit society"
+                },
+                {
+                    "text": "Community interest company and/or company limited by guarantee",
+                    "value": "Community interest company and/or company limited by guarantee"
+                },
+                {
+                    "text": "Local authority",
+                    "value": "Local authority"
+                }
+            ]
+        }
+    ],
     "sections": [
         {
             "name": "FabDefault",
@@ -455,12 +754,206 @@
                     }
                 ]
             }
+        },
+        {
+            "displayName": "If charity England/Wales",
+            "name": "ffALHM",
+            "value": {
+                "name": "If charity England/Wales",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.jWNmMa",
+                            "type": "RadiosField",
+                            "display": "Where is the charity registered?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "England",
+                            "display": "England"
+                        }
+                    },
+                    {
+                        "coordinator": "or",
+                        "field": {
+                            "name": "FabDefault.jWNmMa",
+                            "type": "RadiosField",
+                            "display": "Where is the charity registered?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Wales",
+                            "display": "Wales"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Charity Scotland",
+            "name": "zEomwM",
+            "value": {
+                "name": "If Charity Scotland",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.jWNmMa",
+                            "type": "RadiosField",
+                            "display": "Where is the charity registered?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Scotland",
+                            "display": "Scotland"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If Charity Northern Ireland",
+            "name": "iGeQMX",
+            "value": {
+                "name": "If Charity Northern Ireland",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.jWNmMa",
+                            "type": "RadiosField",
+                            "display": "Where is the charity registered?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "Northern Ireland",
+                            "display": "Northern Ireland"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If org is charity",
+            "name": "ZjTURS",
+            "value": {
+                "name": "If org is charity",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.FAxOez",
+                            "type": "YesNoField",
+                            "display": "Is your organisation a charity"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If org is not charity",
+            "name": "YpAOiA",
+            "value": {
+                "name": "If org is not charity",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.FAxOez",
+                            "type": "YesNoField",
+                            "display": "Is your organisation a charity"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If exempt charity",
+            "name": "NBTqBt",
+            "value": {
+                "name": "If exempt charity",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.jWNmMa",
+                            "type": "RadiosField",
+                            "display": "Where is the charity registered?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "My organisation is an exempt charity",
+                            "display": "My organisation is an exempt charity"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If company registration number",
+            "name": "vQlYkS",
+            "value": {
+                "name": "If company registration number",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.XutYBr",
+                            "type": "YesNoField",
+                            "display": "Do you have a company registration number"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "displayName": "If no company registration number",
+            "name": "eUOlGR",
+            "value": {
+                "name": "If no company registration number",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.XutYBr",
+                            "type": "YesNoField",
+                            "display": "Do you have a company registration number"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
         }
     ],
     "fees": [],
     "outputs": [],
     "version": 2,
     "skipSummary": false,
-    "feeOptions": {},
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
     "markAsComplete": false
 }

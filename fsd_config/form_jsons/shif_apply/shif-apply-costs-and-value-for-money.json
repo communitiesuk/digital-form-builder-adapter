@@ -99,7 +99,7 @@
                         "maxWords": "250"
                     },
                     "type": "FreeTextField",
-                    "title": "How will you fund the outstanding costs of the project",
+                    "title": "How will you fund the outstanding costs of the project?",
                     "schema": {}
                 }
             ],
@@ -139,14 +139,14 @@
                     "type": "Para",
                     "content": "Does this include non-recoverable VAT costs?",
                     "schema": {}
-                    },
+                },
                 {
                     "name": "eeNMwb",
                     "options": {
                         "hideTitle": true
                     },
                     "type": "YesNoField",
-                    "title": "Does this include non-recoverable VAT costs",
+                    "title": "Does this include non-recoverable VAT costs?",
                     "values": {
                         "type": "listRef"
                     },

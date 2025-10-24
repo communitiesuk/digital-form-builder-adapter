@@ -10,7 +10,7 @@
           "name": "FTpnir",
           "options": {},
           "type": "Para",
-          "content": "We need to ask some questions to check you can apply for this funding.\n\nWe'll check:\n<ul>\n<li>the type of organisation you are applying from</li>\n<li>the legal status of your organisation</li>\n<li>that your proposal has been co-produced with social housing tenants</li>\n<li>the amount of funding you are applying for</li>\n<li>that you would be willing to compile a case study after delivering your project (which will be shared publicly)</li>\n</ul>",
+          "content": "We need to ask some questions to check you can apply for this funding.\n\nWe'll check:\n<ul>\n<li>the type of organisation you are applying from</li>\n<li>the legal status of your organisation (if applicable)</li>\n<li>that your proposal has been co-produced with social housing tenants</li>\n<li>the amount of funding you are applying for</li>\n<li>that you would be willing to compile a case study after delivering your project (which will be shared publicly)</li>\n</ul>",
           "schema": {}
         }
       ],
@@ -35,9 +35,13 @@
       "next": [
         {
           "path": "/what-is-the-legal-status-of-your-organisation",
-          "condition": "ngCRtD"
+          "condition": "uHftqt"
         },
-        { "path": "/you-cannot-apply-for-this-funding", "condition": "yNmImu" }
+        { "path": "/you-cannot-apply-for-this-funding", "condition": "yNmImu" },
+        {
+          "path": "/has-your-proposal-been-co-produced-in-collaboration-with-social-housing-tenants",
+          "condition": "WYcXBn"
+        }
       ],
       "section": "FabDefault"
     },
@@ -156,7 +160,7 @@
           "name": "vKVvTB",
           "options": {},
           "type": "Para",
-          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYou must be applying from one of the types of organisations listed.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>",
+          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYou must be applying from one of the types of organisations listed.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" target=\"_blank\">Social Housing Innovation Fund prospectus (opens in new tab)</a>.",
           "schema": {}
         }
       ],
@@ -171,7 +175,7 @@
           "name": "dDKGEQ",
           "options": {},
           "type": "Para",
-          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour proposal must have been co-produced with social housing tenants.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>",
+          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour proposal must have been co-produced with social housing tenants.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" target=\"_blank\">Social Housing Innovation Fund prospectus (opens in new tab)</a>.",
           "schema": {}
         }
       ],
@@ -186,7 +190,7 @@
           "name": "ZERrud",
           "options": { "condition": "" },
           "type": "Para",
-          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nThe total amount of funding you are applying for must not exceed £100,000.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>",
+          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nThe total amount of funding you are applying for must not exceed £100,000.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" target=\"_blank\">Social Housing Innovation Fund prospectus (opens in new tab)</a>.",
           "schema": {}
         }
       ],
@@ -201,7 +205,7 @@
           "name": "mbjiJe",
           "options": {},
           "type": "Para",
-          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYou must be able to compile a case study following the delivery of your project, and make this publicly available. <br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>"
+          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYou must be able to compile a case study following the delivery of your project, and make this publicly available. <br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" target=\"_blank\">Social Housing Innovation Fund prospectus (opens in new tab)</a>."
         }
       ],
       "next": [],
@@ -223,7 +227,7 @@
           "name": "kpeyOo",
           "options": {},
           "type": "Para",
-          "content": "<p class=\"govuk-body govuk-!\">Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour organisation must match one of the legal statuses listed.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" class=\"govuk-link\">Social Housing Innovation Fund prospectus</a>.\n</p>"
+          "content": "Based on your answer, you're not eligible to apply for funding to improve social housing quality and strengthen tenants' voices.<br><br>\n\nYour organisation must be one of the legal statuses listed.<br><br>\n\nCheck who can apply in the <a href=\"https://www.gov.uk/government/publications/social-housing-innovation-fund-prospectus\" target=\"_blank\">Social Housing Innovation Fund prospectus (opens in new tab)</a>."
         }
       ],
       "next": [],
@@ -409,28 +413,6 @@
       }
     },
     {
-      "displayName": "If all other orgs",
-      "name": "ngCRtD",
-      "value": {
-        "name": "If all other orgs",
-        "conditions": [
-          {
-            "field": {
-              "name": "FabDefault.GNHjqt",
-              "type": "RadiosField",
-              "display": "What type of organisation are you applying from"
-            },
-            "operator": "is not",
-            "value": {
-              "type": "Value",
-              "value": "None of the above",
-              "display": "None of the above"
-            }
-          }
-        ]
-      }
-    },
-    {
       "displayName": "If none of the above (legal status)",
       "name": "HUDSSH",
       "value": {
@@ -516,6 +498,64 @@
             },
             "operator": "is",
             "value": { "type": "Value", "value": "100000", "display": "100000" }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "If Group representing the interests of social housing tenants",
+      "name": "uHftqt",
+      "value": {
+        "name": "If Group representing the interests of social housing tenants",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.GNHjqt",
+              "type": "RadiosField",
+              "display": "What type of organisation are you applying from"
+            },
+            "operator": "is",
+            "value": {
+              "type": "Value",
+              "value": "Group representing the interests of social housing tenants",
+              "display": "Group representing the interests of social housing tenants"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "displayName": "If all other orgs",
+      "name": "WYcXBn",
+      "value": {
+        "name": "If all other orgs",
+        "conditions": [
+          {
+            "field": {
+              "name": "FabDefault.GNHjqt",
+              "type": "RadiosField",
+              "display": "What type of organisation are you applying from"
+            },
+            "operator": "is not",
+            "value": {
+              "type": "Value",
+              "value": "Group representing the interests of social housing tenants",
+              "display": "Group representing the interests of social housing tenants"
+            }
+          },
+          {
+            "coordinator": "and",
+            "field": {
+              "name": "FabDefault.GNHjqt",
+              "type": "RadiosField",
+              "display": "What type of organisation are you applying from"
+            },
+            "operator": "is not",
+            "value": {
+              "type": "Value",
+              "value": "None of the above",
+              "display": "None of the above"
+            }
           }
         ]
       }
