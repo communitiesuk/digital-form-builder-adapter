@@ -1,0 +1,108 @@
+{
+    "metadata": {},
+    "startPage": "/risks",
+    "pages": [
+        {
+            "title": "Risks",
+            "path": "/risks",
+            "components": [
+                {
+                    "name": "MTwpMD",
+                    "options": {},
+                    "type": "Para",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>risks</li>\n<li>mitigations</li>\n</ul>",
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/risks-NSPgMc"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/risks-NSPgMc",
+            "title": "Risks",
+            "components": [
+                {
+                    "name": "WTDdef",
+                    "options": {
+                        "hideTitle": true,
+                        "columnTitles": [
+                            "Risk",
+                            "Mitigation"
+                        ]
+                    },
+                    "type": "MultiInputField",
+                    "schema": {},
+                    "title": "Tell us about any risks to the proposal and how you plan to mitigate them.",
+                    "hint": "Tell us about any risks to the proposal and how you plan to mitigate them.",
+                    "children": [
+                        {
+                            "type": "MultilineTextField",
+                            "name": "YBPRlE",
+                            "options": {},
+                            "title": "Describe the risk",
+                            "hint": "For example, recruitment timeframes, staffing capacity, public health emergency planning.",
+                            "schema": ""
+                        },
+                        {
+                            "type": "MultilineTextField",
+                            "name": "xOCujb",
+                            "options": {},
+                            "title": "How you plan to mitigate the risk?",
+                            "hint": "",
+                            "schema": ""
+                        }
+                    ]
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Risks",
+                    "samePageTableItemName": "risk"
+                }
+            },
+            "controller": "RepeatingFieldPageController"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "controller": "./pages/summary.js",
+            "section": "FabDefault"
+        }
+    ],
+    "lists": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "conditions": [],
+    "fees": [],
+    "outputs": [],
+    "version": 2,
+    "skipSummary": false,
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "markAsComplete": false
+}
