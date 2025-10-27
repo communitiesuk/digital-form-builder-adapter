@@ -180,8 +180,8 @@ export class ViewFundForms extends Component<Props, State> {
                 <td className="govuk-table__cell">
                     {form.LastPublished ? this.formatDateTime(form.LastPublished) : "-"}
                 </td>
-                {form.LastPublished ? (
-                    <td className="govuk-table__cell">
+                <td className="govuk-table__cell">
+                    {form.LastPublished ? (
                         <a
                             className="govuk-link"
                             href="#"
@@ -192,10 +192,10 @@ export class ViewFundForms extends Component<Props, State> {
                         >
                             Preview
                         </a>
-                    </td>
-                ) : (
-                    <td className="govuk-table__cell">-</td>
-                )}
+                    ) : (
+                        "-"
+                    )}
+                </td>
             </tr>
         ));
 
