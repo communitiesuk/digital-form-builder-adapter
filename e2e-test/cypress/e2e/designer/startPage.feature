@@ -34,4 +34,4 @@ Feature: Start Page
     When I choose "Open an existing form"
     And I submit the form with the button title "Next"
     And I force open the link "test" in new UI
-    Then I see the h3 heading "First"
+    Then I see the heading "First page"
