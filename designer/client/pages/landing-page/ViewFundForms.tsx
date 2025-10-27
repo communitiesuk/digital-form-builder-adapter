@@ -178,20 +178,24 @@ export class ViewFundForms extends Component<Props, State> {
                     {this.formatDateTime(form.LastModified)}
                 </td>
                 <td className="govuk-table__cell">
-                    {this.formatDateTime(form.LastPublished)}  // This should be "-" if never published
+                    {form.LastPublished ? this.formatDateTime(form.LastPublished) : "-"}
                 </td>
-                <td className="govuk-table__cell">
-                    <a  // This should be disabled if never published
-                        className="govuk-link"
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            this.previewPublished(form.Key);
-                        }}
-                    >
-                        Preview
-                    </a>
-                </td>
+                {form.LastPublished ? (
+                    <td className="govuk-table__cell">
+                        <a
+                            className="govuk-link"
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                this.previewPublished(form.Key);
+                            }}
+                        >
+                            Preview
+                        </a>
+                    </td>
+                ) : (
+                    <td className="govuk-table__cell">-</td>
+                )}
             </tr>
         ));
 
