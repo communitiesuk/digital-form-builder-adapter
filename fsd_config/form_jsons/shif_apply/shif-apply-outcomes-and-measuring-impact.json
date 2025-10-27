@@ -47,13 +47,13 @@
             "section": "FabDefault",
             "next": [
                 {
-                    "path": "/what-key-performance-indicators-kpis-you-will-use-to-monitor-the-success-of-your-project"
+                    "path": "/what-key-performance-indicators-kpis-will-you-use-to-monitor-the-success-of-your-project"
                 }
             ]
         },
         {
-            "path": "/what-key-performance-indicators-kpis-you-will-use-to-monitor-the-success-of-your-project",
-            "title": "What key performance indicators (KPIs) you will use to monitor the success of your project?",
+            "path": "/what-key-performance-indicators-kpis-will-you-use-to-monitor-the-success-of-your-project",
+            "title": "What key performance indicators (KPIs) will you use to monitor the success of your project?",
             "components": [
                 {
                     "name": "KXrCSt",
@@ -69,7 +69,7 @@
                         "maxWords": "250"
                     },
                     "type": "FreeTextField",
-                    "title": "What key performance indicators (KPIs) you will use to monitor the success of your project",
+                    "title": "What key performance indicators (KPIs) will you use to monitor the success of your project?",
                     "schema": {}
                 }
             ],
