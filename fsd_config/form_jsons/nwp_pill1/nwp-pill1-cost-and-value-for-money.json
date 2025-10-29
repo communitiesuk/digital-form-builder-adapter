@@ -1,0 +1,515 @@
+{
+    "conditions": [
+        {
+            "displayName": "multiple pillars",
+            "name": "dTicGU",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for multiple pillars?",
+                            "name": "FabDefault.nxfZNl",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "multiple pillars"
+            }
+        },
+        {
+            "displayName": "pillar 1",
+            "name": "uzhKSN",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 1 - Foundations funding?",
+                            "name": "FabDefault.OZXhAU",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 1"
+            }
+        },
+        {
+            "displayName": "pillar 2",
+            "name": "cuxrPt",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 2 - Training funding?",
+                            "name": "FabDefault.nfADFq",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 2"
+            }
+        },
+        {
+            "displayName": "Pillar 3",
+            "name": "KhIAjT",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 3 - Advice funding?",
+                            "name": "FabDefault.AnonGA",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "Pillar 3"
+            }
+        },
+        {
+            "displayName": "pillar 4 ",
+            "name": "cihYKT",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 4 - Community funding?",
+                            "name": "FabDefault.poFycJ",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 4 "
+            }
+        },
+        {
+            "displayName": "not pillar 1 ",
+            "name": "vdtSVk",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 1 - Foundations funding?",
+                            "name": "FabDefault.OZXhAU",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 1 "
+            }
+        },
+        {
+            "displayName": "not pillar 2",
+            "name": "gsjRwi",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 2 - Training funding?",
+                            "name": "FabDefault.nfADFq",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 2"
+            }
+        },
+        {
+            "displayName": "not pillar 3",
+            "name": "JmxEjo",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 3 - Advice funding?",
+                            "name": "FabDefault.AnonGA",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 3"
+            }
+        },
+        {
+            "displayName": "not pillar 4",
+            "name": "ByiqGj",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 4 - Community funding?",
+                            "name": "FabDefault.poFycJ",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 4"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "fees": [],
+    "lists": [
+        {
+            "items": [
+                {
+                    "text": "Pillar 1 - Foundations",
+                    "value": "Pillar 1 - Foundations"
+                },
+                {
+                    "text": "Pillar 2 - Training",
+                    "value": "Pillar 2 - Training"
+                },
+                {
+                    "text": "Pillar 3 - Advice",
+                    "value": "Pillar 3 - Advice"
+                },
+                {
+                    "text": "Pillar 4 - Community",
+                    "value": "Pillar 4 - Community"
+                }
+            ],
+            "name": "QAafpQ",
+            "title": "pillars",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section we will ask about:\n<ul>\n<li>how much you are applying for</li>\n<li>planned spending</li>\n</ul>",
+                    "name": "qDrWQi",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "controller": "./pages/start.js",
+            "next": [
+                {
+                    "path": "/how-much-pillar-1-funding-are-you-applying-for"
+                }
+            ],
+            "path": "/cost-and-value-for-money",
+            "section": "FabDefault",
+            "title": "Cost and value for money"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "name": "fZBaXW",
+                    "options": {
+                        "hideTitle": true,
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "How much Pillar 1 funding are you applying for?",
+                    "type": "NumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-much-do-you-plan-to-spend-on-output-1---workforce-data-GbUXgS"
+                }
+            ],
+            "path": "/how-much-pillar-1-funding-are-you-applying-for",
+            "section": "FabDefault",
+            "title": "How much Pillar 1 funding are you applying for?"
+        },
+        {
+            "components": [
+                {
+                    "name": "joKkSM",
+                    "options": {},
+                    "schema": {},
+                    "title": "Description of spending",
+                    "type": "MultilineTextField"
+                },
+                {
+                    "name": "Acuyca",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 1 (April 2026 to March 2027)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "JnVuAX",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 2 (April 2027 to March 2028)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "IfCmcn",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 3 (April 2028 to March 2029)",
+                    "type": "NumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-much-do-you-plan-to-spend-on-output-2---national-homelessness-skills-framework-FZqpkr"
+                }
+            ],
+            "path": "/how-much-do-you-plan-to-spend-on-output-1---workforce-data-GbUXgS",
+            "section": "FabDefault",
+            "title": "How much do you plan to spend on output 1 - workforce data?"
+        },
+        {
+            "components": [
+                {
+                    "name": "tKdUFO",
+                    "options": {},
+                    "schema": {},
+                    "title": "Description of spending",
+                    "type": "MultilineTextField"
+                },
+                {
+                    "name": "TkUFQK",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 1 (April 2026 to March 2027)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "VXxMFH",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 2 (April 2027 to March 2028)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "cpnyNn",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 3 (April 2028 to March 2029)",
+                    "type": "NumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-much-do-you-plan-to-spend-on-output-3---qualification-development-hGnhQK"
+                }
+            ],
+            "path": "/how-much-do-you-plan-to-spend-on-output-2---national-homelessness-skills-framework-FZqpkr",
+            "section": "FabDefault",
+            "title": "How much do you plan to spend on output 2 - National Homelessness Skills Framework?"
+        },
+        {
+            "components": [
+                {
+                    "name": "jAzNkc",
+                    "options": {},
+                    "schema": {},
+                    "title": "Description of spending",
+                    "type": "MultilineTextField"
+                },
+                {
+                    "name": "MEqbLo",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 1 (April 2026 to March 2027)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "mRYjOy",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 2 (April 2027 to March 2028)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "vWzKcy",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 3 (April 2028 to March 2029)",
+                    "type": "NumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-much-do-you-plan-to-spend-on-output-4---recruitment"
+                }
+            ],
+            "path": "/how-much-do-you-plan-to-spend-on-output-3---qualification-development-hGnhQK",
+            "section": "FabDefault",
+            "title": "How much do you plan to spend on output 3 - qualification development?"
+        },
+        {
+            "components": [
+                {
+                    "name": "lHvCPi",
+                    "options": {},
+                    "schema": {},
+                    "title": "Description of spending",
+                    "type": "MultilineTextField"
+                },
+                {
+                    "name": "UubSFk",
+                    "options": {},
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 1 (April 2026 to March 2027)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "IwjRIm",
+                    "options": {},
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 2 (April 2027 to March 2028)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "SgLeEX",
+                    "options": {},
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 3 (April 2028 to March 2029)",
+                    "type": "NumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/how-much-do-you-plan-to-spend-on-output-4---recruitment",
+            "section": "FabDefault",
+            "title": "How much do you plan to spend on output 4 - recruitment?"
+        }
+    ],
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/cost-and-value-for-money",
+    "version": 2
+}

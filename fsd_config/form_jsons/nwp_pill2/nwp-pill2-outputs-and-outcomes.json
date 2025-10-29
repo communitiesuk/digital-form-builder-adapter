@@ -1,0 +1,329 @@
+{
+    "conditions": [],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "fees": [],
+    "lists": [],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section we will ask about:\n<ul>\n<li>key performance indicators (KPIs) </li>\n<li>outputs </li>\n<li>outcomes</li>\n</ul>",
+                    "name": "JCdqHp",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/key-performance-indicators-kpis-for-national-funded-training-package"
+                }
+            ],
+            "path": "/outputs-and-outcomes",
+            "section": "FabDefault",
+            "title": "Outputs and outcomes"
+        },
+        {
+            "components": [
+                {
+                    "content": "Tell us your proposed annual target for the following KPIs. \nSee the prospectus for help to answer this section.",
+                    "name": "XVebQd",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Training sessions</h2>",
+                    "name": "BqnJdw",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "EODlmu",
+                    "options": {},
+                    "schema": {},
+                    "title": "Total number of online and pre-recorded training sessions (Target: 930)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "eDrKop",
+                    "options": {},
+                    "schema": {},
+                    "title": "Stand-alone e-learning courses (Target: 24)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "VaSKsb",
+                    "options": {},
+                    "schema": {},
+                    "title": "Number of learners live online (Target: 16,000)",
+                    "type": "TextField"
+                },
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Online training content</h2>",
+                    "name": "ckhZvu",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "CHhjbf",
+                    "options": {},
+                    "schema": {},
+                    "title": "Number of page views (Target: 16,400)",
+                    "type": "TextField"
+                },
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Learner feedback</h2>",
+                    "name": "ZIIovt",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "xNoJnV",
+                    "options": {},
+                    "schema": {},
+                    "title": "Learner feedback on training: Quality rating of excellent, very good or good (Target: 95%)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "SMUmDe",
+                    "options": {},
+                    "schema": {},
+                    "title": "Learner feedback on training: Able to apply the knowledge gained in their role (Target: 75%)",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/key-performance-indicators-kpis-for-sector-practice-support"
+                }
+            ],
+            "path": "/key-performance-indicators-kpis-for-national-funded-training-package",
+            "section": "FabDefault",
+            "title": "Key performance indicators (KPIs) for national funded training package"
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "zsMNAi",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": {
+                                "required": false
+                            },
+                            "title": "Output",
+                            "type": "TextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "gHHdfb",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": "",
+                            "title": "Describe this KPI",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "hokqGm",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": "",
+                            "title": "Benefit of this KPI",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "FZmQOV",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": {
+                                "required": false
+                            },
+                            "title": "Proposed annual target",
+                            "type": "TextField"
+                        }
+                    ],
+                    "hint": "If you want to list additional annual KPIs, list them here. \nYou can add more KPIs on the next step.",
+                    "name": "pvQfsB",
+                    "options": {
+                        "columnTitles": [
+                            "Output",
+                            "Description",
+                            "Benefit",
+                            "Target"
+                        ]
+                    },
+                    "schema": {},
+                    "title": "Additional KPIs",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/what-outputs-will-you-achieve"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Additional KPIs",
+                    "samePageTableItemName": "KPI"
+                }
+            },
+            "path": "/additional-kpis",
+            "section": "FabDefault",
+            "title": "Additional KPIs"
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "ZQYyxG",
+                            "options": {},
+                            "schema": "",
+                            "title": "Output description",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "rLKqzi",
+                            "options": {},
+                            "schema": "",
+                            "title": "Anticipated outcome",
+                            "type": "MultilineTextField"
+                        }
+                    ],
+                    "hint": "Provide details of your outcomes and outputs.\nYou can add more outputs on the next step.",
+                    "name": "uffYpC",
+                    "options": {
+                        "columnTitles": [
+                            "Output",
+                            "Outcome"
+                        ],
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Outputs and outcomes",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Outputs and outcomes",
+                    "samePageTableItemName": "output"
+                }
+            },
+            "path": "/what-outputs-will-you-achieve",
+            "section": "FabDefault",
+            "title": "What outputs will you achieve?"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "content": "Tell us your proposed annual target for the following KPIs. \nSee the prospectus for help to answer this section. ",
+                    "name": "FaFsEx",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Resources, publications and good practice support</h2>",
+                    "name": "bzLBMc",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "HSvzPg",
+                    "options": {},
+                    "schema": {},
+                    "title": "Information published or revised (Target: 32)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "yASiJm",
+                    "options": {},
+                    "schema": {},
+                    "title": "Information sessions, for example meetings, conferences and visits. Include both internal and with other National Workforce Programme grantees (Target: 20)",
+                    "type": "TextField"
+                },
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Convening the sector</h2>",
+                    "name": "MnZOfc",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "tREfFP",
+                    "options": {},
+                    "schema": {},
+                    "title": "Total number of groups convened to develop resources and co-design training, content and sector insight reports (Target: 32)",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/additional-kpis"
+                }
+            ],
+            "path": "/key-performance-indicators-kpis-for-sector-practice-support",
+            "section": "FabDefault",
+            "title": "Key performance indicators (KPIs) for sector practice support"
+        }
+    ],
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/outputs-and-outcomes",
+    "version": 2
+}

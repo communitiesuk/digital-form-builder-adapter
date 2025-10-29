@@ -1,0 +1,441 @@
+{
+    "conditions": [
+        {
+            "displayName": "new contact",
+            "name": "InOIZL",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Is the primary contact the same as the accountable officer or the lead officer?",
+                            "name": "FabDefault.rsiytx",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "No",
+                            "type": "Value",
+                            "value": "No"
+                        }
+                    }
+                ],
+                "name": "new contact"
+            }
+        },
+        {
+            "displayName": "is consortium",
+            "name": "gggADu",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Is this application on behalf of a consortium?",
+                            "name": "FabDefault.gXiZBO",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "is consortium"
+            }
+        },
+        {
+            "displayName": "not consortium",
+            "name": "oHTqIg",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Is this application on behalf of a consortium?",
+                            "name": "FabDefault.gXiZBO",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not consortium"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "fees": [],
+    "lists": [
+        {
+            "items": [
+                {
+                    "text": "Accountable officer",
+                    "value": "Accountable officer"
+                },
+                {
+                    "text": "Lead officer",
+                    "value": "Lead officer"
+                },
+                {
+                    "text": "No",
+                    "value": "No"
+                }
+            ],
+            "name": "hQdbFU",
+            "title": "contact",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>your organisation's accountable officer</li>\n<li>your primary contacts</li>\n<li>if you are applying as a consortium</li>\n</ul>",
+                    "name": "TxZJQq",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-accountable-officer-for-your-organisation"
+                }
+            ],
+            "path": "/applicant-information",
+            "section": "FabDefault",
+            "title": "Applicant information"
+        },
+        {
+            "components": [
+                {
+                    "content": "They must be senior to the lead officer, for example a finance director.",
+                    "name": "hRJXjV",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "HqzHaG",
+                    "options": {},
+                    "schema": {},
+                    "title": "Full name",
+                    "type": "TextField"
+                },
+                {
+                    "name": "Role",
+                    "nameHasError": false,
+                    "options": {},
+                    "schema": {},
+                    "title": "Role",
+                    "type": "TextField"
+                },
+                {
+                    "name": "cKnBaI",
+                    "options": {},
+                    "schema": {},
+                    "title": "Email address",
+                    "type": "EmailAddressField"
+                },
+                {
+                    "name": "Telephonenumber",
+                    "nameHasError": false,
+                    "options": {},
+                    "schema": {},
+                    "title": "Telephone number",
+                    "type": "TelephoneNumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-lead-officer-for-your-organisation"
+                }
+            ],
+            "path": "/who-is-the-accountable-officer-for-your-organisation",
+            "section": "FabDefault",
+            "title": "Who is the accountable officer for your organisation?"
+        },
+        {
+            "components": [
+                {
+                    "name": "VPYbgU",
+                    "options": {},
+                    "schema": {},
+                    "title": "Full name",
+                    "type": "TextField"
+                },
+                {
+                    "name": "zQeJlv",
+                    "options": {},
+                    "schema": {},
+                    "title": "Role",
+                    "type": "TextField"
+                },
+                {
+                    "name": "ZjafAo",
+                    "options": {},
+                    "schema": {},
+                    "title": "Email address",
+                    "type": "EmailAddressField"
+                },
+                {
+                    "name": "cmzQzX",
+                    "options": {},
+                    "schema": {},
+                    "title": "Telephone number",
+                    "type": "TelephoneNumberField"
+                },
+                {
+                    "name": "NuvvyU",
+                    "options": {},
+                    "schema": {},
+                    "title": "A summary of the lead officer's experience and qualifications.",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-the-primary-contact-the-same-as-the-accountable-officer-or-the-lead-officer"
+                }
+            ],
+            "path": "/who-is-the-lead-officer-for-your-organisation",
+            "section": "FabDefault",
+            "title": "Who is the lead officer for your organisation?"
+        },
+        {
+            "components": [
+                {
+                    "list": "hQdbFU",
+                    "name": "rsiytx",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Is the primary contact the same as the accountable officer or the lead officer?",
+                    "type": "RadiosField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "InOIZL",
+                    "path": "/who-is-the-primary-contact"
+                },
+                {
+                    "path": "/consortium-information"
+                }
+            ],
+            "path": "/is-the-primary-contact-the-same-as-the-accountable-officer-or-the-lead-officer",
+            "section": "FabDefault",
+            "title": "Is the primary contact the same as the accountable officer or the lead officer?"
+        },
+        {
+            "components": [
+                {
+                    "name": "GEyQSq",
+                    "options": {},
+                    "schema": {},
+                    "title": "Full name",
+                    "type": "TextField"
+                },
+                {
+                    "name": "Owsgne",
+                    "options": {},
+                    "schema": {},
+                    "title": "Role",
+                    "type": "TextField"
+                },
+                {
+                    "name": "WOWWfM",
+                    "options": {},
+                    "schema": {},
+                    "title": "Email address",
+                    "type": "EmailAddressField"
+                },
+                {
+                    "name": "oExeYu",
+                    "options": {},
+                    "schema": {},
+                    "title": "Telephone number",
+                    "type": "TelephoneNumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/consortium-information"
+                }
+            ],
+            "path": "/who-is-the-primary-contact",
+            "section": "FabDefault",
+            "title": "Who is the primary contact?"
+        },
+        {
+            "components": [
+                {
+                    "content": "In this section, we'll ask about \n<ul>\n<li>consortium members</li>\n<li>efficiencies from the consortium</li>\n</ul>",
+                    "name": "SyTJfg",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "controller": "./pages/start.js",
+            "next": [
+                {
+                    "path": "/is-this-application-on-behalf-of-a-consortium"
+                }
+            ],
+            "path": "/consortium-information",
+            "section": "FabDefault",
+            "title": "Consortium information"
+        },
+        {
+            "components": [
+                {
+                    "name": "gXiZBO",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Is this application on behalf of a consortium?",
+                    "type": "YesNoField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "gggADu",
+                    "path": "/consortium-members"
+                },
+                {
+                    "condition": "oHTqIg",
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/is-this-application-on-behalf-of-a-consortium",
+            "section": "FabDefault",
+            "title": "Is this application on behalf of a consortium?"
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "kmYykb",
+                            "options": {},
+                            "schema": {},
+                            "title": "Consortium organisation name",
+                            "type": "TextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "GoeFfx",
+                            "options": {},
+                            "schema": "",
+                            "title": "Tell us about this organisation's work",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "EDVRRq",
+                            "options": {},
+                            "schema": "",
+                            "title": "What are this organisation's roles and responsibilities?",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "IUOJJs",
+                            "options": {},
+                            "schema": "",
+                            "title": "Is this organisation the lead organisation?",
+                            "type": "YesNoField"
+                        }
+                    ],
+                    "name": "ZyAQSl",
+                    "options": {
+                        "columnTitles": [
+                            "Name",
+                            "Work",
+                            "Roles and responsibilities",
+                            "Lead"
+                        ]
+                    },
+                    "schema": {},
+                    "title": "Consortium members",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "condition": "gggADu",
+                    "path": "/how-will-this-consortium-generate-efficiencies"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Consortium members",
+                    "samePageTableItemName": "consortium member"
+                }
+            },
+            "path": "/consortium-members",
+            "section": "FabDefault",
+            "title": "Consortium members"
+        },
+        {
+            "components": [
+                {
+                    "name": "lBebsG",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "How will this consortium generate efficiencies?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/how-will-this-consortium-generate-efficiencies",
+            "section": "FabDefault",
+            "title": "How will this consortium generate efficiencies?"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        }
+    ],
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/applicant-information",
+    "version": 2
+}

@@ -1,0 +1,509 @@
+{
+    "conditions": [
+        {
+            "displayName": "multiple pillars",
+            "name": "dTicGU",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for multiple pillars?",
+                            "name": "FabDefault.nxfZNl",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "multiple pillars"
+            }
+        },
+        {
+            "displayName": "pillar 1",
+            "name": "uzhKSN",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 1 - Foundations funding?",
+                            "name": "FabDefault.OZXhAU",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 1"
+            }
+        },
+        {
+            "displayName": "pillar 2",
+            "name": "cuxrPt",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 2 - Training funding?",
+                            "name": "FabDefault.nfADFq",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 2"
+            }
+        },
+        {
+            "displayName": "Pillar 3",
+            "name": "KhIAjT",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 3 - Advice funding?",
+                            "name": "FabDefault.AnonGA",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "Pillar 3"
+            }
+        },
+        {
+            "displayName": "pillar 4 ",
+            "name": "cihYKT",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 4 - Community funding?",
+                            "name": "FabDefault.poFycJ",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 4 "
+            }
+        },
+        {
+            "displayName": "not pillar 1 ",
+            "name": "vdtSVk",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 1 - Foundations funding?",
+                            "name": "FabDefault.OZXhAU",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 1 "
+            }
+        },
+        {
+            "displayName": "not pillar 2",
+            "name": "gsjRwi",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 2 - Training funding?",
+                            "name": "FabDefault.nfADFq",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 2"
+            }
+        },
+        {
+            "displayName": "not pillar 3",
+            "name": "JmxEjo",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 3 - Advice funding?",
+                            "name": "FabDefault.AnonGA",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 3"
+            }
+        },
+        {
+            "displayName": "not pillar 4",
+            "name": "ByiqGj",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 4 - Community funding?",
+                            "name": "FabDefault.poFycJ",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 4"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "fees": [],
+    "lists": [
+        {
+            "items": [
+                {
+                    "text": "Pillar 1 - Foundations",
+                    "value": "Pillar 1 - Foundations"
+                },
+                {
+                    "text": "Pillar 2 - Training",
+                    "value": "Pillar 2 - Training"
+                },
+                {
+                    "text": "Pillar 3 - Advice",
+                    "value": "Pillar 3 - Advice"
+                },
+                {
+                    "text": "Pillar 4 - Community",
+                    "value": "Pillar 4 - Community"
+                }
+            ],
+            "name": "QAafpQ",
+            "title": "pillars",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section we will ask about:\n<ul>\n<li>your proposal</li>\n<li>objectives</li>\n<li>milestones</li>\n<li>if you are applying for multiple pillars</li>\n<li>changing demands</li>\n<li>use of technology</li>\n</ul>",
+                    "name": "qDrWQi",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "controller": "./pages/start.js",
+            "next": [
+                {
+                    "path": "/tell-us-about-your-proposal"
+                }
+            ],
+            "path": "/proposal",
+            "section": "FabDefault",
+            "title": "Proposal"
+        },
+        {
+            "components": [
+                {
+                    "name": "nxfZNl",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Are you applying for multiple pillars?",
+                    "type": "YesNoField",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "condition": "dTicGU",
+                    "path": "/how-will-multiple-pillars-improve-your-delivery-efficiency-and-effectiveness"
+                },
+                {
+                    "path": "/how-will-you-adapt-your-service-to-meet-changing-demands"
+                }
+            ],
+            "path": "/are-you-applying-for-multiple-pillars",
+            "section": "FabDefault",
+            "title": "Are you applying for multiple pillars?"
+        },
+        {
+            "components": [
+                {
+                    "name": "CDDxlF",
+                    "options": {},
+                    "schema": {},
+                    "title": "How will multiple pillars improve your delivery, efficiency and effectiveness?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-adapt-your-service-to-meet-changing-demands"
+                }
+            ],
+            "path": "/how-will-multiple-pillars-improve-your-delivery-efficiency-and-effectiveness",
+            "section": "FabDefault",
+            "title": "How will multiple pillars improve your delivery, efficiency and effectiveness?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Give a brief summary of what you hope to achieve. \nRefer to the prospectus for guidance.",
+                    "name": "QxyRhj",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "schema": {},
+                    "title": "Tell us about your proposal for Pillar 1 - Foundations. ",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "",
+                    "path": "/what-are-your-objectives"
+                }
+            ],
+            "path": "/tell-us-about-your-proposal",
+            "section": "FabDefault",
+            "title": "Tell us about your proposal."
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "gSXzbC",
+                            "options": {},
+                            "schema": {},
+                            "title": "Objective",
+                            "type": "TextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "wTzZTB",
+                            "options": {},
+                            "schema": "",
+                            "title": "Activities that will help achieve this objective",
+                            "type": "MultilineTextField"
+                        }
+                    ],
+                    "name": "TxulKg",
+                    "options": {
+                        "columnTitles": [
+                            "Objective",
+                            "Activities"
+                        ],
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What are your objectives for Pillar 1 - Foundations?",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "condition": "",
+                    "path": "/what-are-your-milestones"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Objectives",
+                    "samePageTableItemName": "objective"
+                }
+            },
+            "path": "/what-are-your-objectives",
+            "section": "FabDefault",
+            "title": "What are your objectives?"
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "KKiCcE",
+                            "options": {},
+                            "schema": {},
+                            "title": "Milestone",
+                            "type": "TextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "GRSXLZ",
+                            "options": {},
+                            "schema": {},
+                            "title": "When will you reach this milestone?",
+                            "type": "DatePartsField"
+                        }
+                    ],
+                    "name": "iYAEgj",
+                    "options": {
+                        "columnTitles": [
+                            "Milestone",
+                            "Date"
+                        ],
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What are your milestones for Pillar 1 - Foundations?",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/are-you-applying-for-multiple-pillars"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Milestones",
+                    "samePageTableItemName": "milestone"
+                }
+            },
+            "path": "/what-are-your-milestones",
+            "section": "FabDefault",
+            "title": "What are your milestones?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Tell us how you will will work with MHCLG and other stakeholders to provide a flexible service that adapts to homelessness and rough sleeping changes.",
+                    "name": "changingdemands",
+                    "nameHasError": false,
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "schema": {},
+                    "title": "How will you adapt your service to meet changing demands?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-use-technology-to-improve-and-expand-your-service"
+                }
+            ],
+            "path": "/how-will-you-adapt-your-service-to-meet-changing-demands",
+            "section": "FabDefault",
+            "title": "How will you adapt your service to meet changing demands?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Tell us about online, digital and other technologies.",
+                    "name": "vjKUYK",
+                    "options": {
+                        "maxWords": "250"
+                    },
+                    "schema": {},
+                    "title": "How will you use technology to improve and expand your service?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/how-will-you-use-technology-to-improve-and-expand-your-service",
+            "section": "FabDefault",
+            "title": "How will you use technology to improve and expand your service?"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        }
+    ],
+    "phaseBanner": {},
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/proposal",
+    "version": 2
+}
