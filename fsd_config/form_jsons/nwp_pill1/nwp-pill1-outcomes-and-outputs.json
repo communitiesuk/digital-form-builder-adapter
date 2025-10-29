@@ -1,0 +1,306 @@
+{
+    "conditions": [],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "fees": [],
+    "lists": [],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section we will ask about:\n<ul>\n<li>key performance indicators (KPIs) </li>\n<li>outputs </li>\n<li>outcomes</li>\n</ul>",
+                    "name": "JCdqHp",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/key-performance-indicators-kpis-for-workforce-data"
+                }
+            ],
+            "path": "/outputs-and-outcomes",
+            "section": "FabDefault",
+            "title": "Outputs and outcomes"
+        },
+        {
+            "components": [
+                {
+                    "content": "Tell us your proposed annual target for the following KPIs. \nSee the prospectus for help to answer this section.",
+                    "name": "XVebQd",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "EODlmu",
+                    "options": {},
+                    "schema": {},
+                    "title": "Annual qualitative and quantitative data set (Target: 1)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "eDrKop",
+                    "options": {},
+                    "schema": {},
+                    "title": "Response rate to annual workforce survey (Target: 50%)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "VaSKsb",
+                    "options": {},
+                    "schema": {},
+                    "title": "Annual analysis report (Target: 1)",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/key-performance-indicators-kpis-for-the-national-homelessness-skills-framework"
+                }
+            ],
+            "path": "/key-performance-indicators-kpis-for-workforce-data",
+            "section": "FabDefault",
+            "title": "Key performance indicators (KPIs) for workforce data "
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "zsMNAi",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": {
+                                "required": false
+                            },
+                            "title": "Output",
+                            "type": "TextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "gHHdfb",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": "",
+                            "title": "Describe this KPI",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "hokqGm",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": "",
+                            "title": "Benefit of this KPI",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "FZmQOV",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": {
+                                "required": false
+                            },
+                            "title": "Proposed annual target",
+                            "type": "TextField"
+                        }
+                    ],
+                    "hint": "If you want to list additional annual KPIs, list them here. \nYou can add more KPIs on the next step.",
+                    "name": "pvQfsB",
+                    "options": {
+                        "columnTitles": [
+                            "Output",
+                            "Description",
+                            "Benefit",
+                            "Target"
+                        ]
+                    },
+                    "schema": {},
+                    "title": "Additional KPIs",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/what-outputs-will-you-achieve"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Additional KPIs",
+                    "samePageTableItemName": "KPI"
+                }
+            },
+            "path": "/additional-kpis",
+            "section": "FabDefault",
+            "title": "Additional KPIs"
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "ZQYyxG",
+                            "options": {},
+                            "schema": "",
+                            "title": "Output description",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "rLKqzi",
+                            "options": {},
+                            "schema": "",
+                            "title": "Anticipated outcome",
+                            "type": "MultilineTextField"
+                        }
+                    ],
+                    "hint": "Provide details of your outcomes and outputs.\nYou can add more outputs on the next step.",
+                    "name": "uffYpC",
+                    "options": {
+                        "columnTitles": [
+                            "Output",
+                            "Outcome"
+                        ],
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Outputs and outcomes",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Outputs and outcomes",
+                    "samePageTableItemName": "output"
+                }
+            },
+            "path": "/what-outputs-will-you-achieve",
+            "section": "FabDefault",
+            "title": "What outputs will you achieve?"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "content": "Tell us your proposed annual target for the following KPIs. \nSee the prospectus for help to answer this section. ",
+                    "name": "FaFsEx",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "HSvzPg",
+                    "options": {},
+                    "schema": {},
+                    "title": "Consultation focus groups to develop content and design (Target: 4)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "yASiJm",
+                    "options": {},
+                    "schema": {},
+                    "title": "Page views",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/key-performance-indicators-kpis-for-qualification-development"
+                }
+            ],
+            "path": "/key-performance-indicators-kpis-for-the-national-homelessness-skills-framework",
+            "section": "FabDefault",
+            "title": "Key performance indicators (KPIs) for the national homelessness skills framework"
+        },
+        {
+            "components": [
+                {
+                    "content": "Tell us your proposed annual target for the following KPIs. \nSee the prospectus for help to answer this section.",
+                    "name": "Obhocz",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "DsTqYd",
+                    "options": {},
+                    "schema": {},
+                    "title": "Number of new accredited courses developed",
+                    "type": "TextField"
+                },
+                {
+                    "name": "tPjeJX",
+                    "options": {},
+                    "schema": {},
+                    "title": "Number of students enrolled on new accredited courses",
+                    "type": "TextField"
+                },
+                {
+                    "name": "dghTBn",
+                    "options": {},
+                    "schema": {},
+                    "title": "Learner feedback quality rating of excellent or good for level 3, 4 and 7 courses (Target: 95%)",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/additional-kpis"
+                }
+            ],
+            "path": "/key-performance-indicators-kpis-for-qualification-development",
+            "section": "FabDefault",
+            "title": "Key performance indicators (KPIs) for qualification development"
+        }
+    ],
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/outputs-and-outcomes",
+    "version": 2
+}

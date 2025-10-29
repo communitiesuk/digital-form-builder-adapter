@@ -1,0 +1,520 @@
+{
+    "conditions": [
+        {
+            "displayName": "multiple pillars",
+            "name": "dTicGU",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for multiple pillars?",
+                            "name": "FabDefault.nxfZNl",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "multiple pillars"
+            }
+        },
+        {
+            "displayName": "pillar 1",
+            "name": "uzhKSN",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 1 - Foundations funding?",
+                            "name": "FabDefault.OZXhAU",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 1"
+            }
+        },
+        {
+            "displayName": "pillar 2",
+            "name": "cuxrPt",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 2 - Training funding?",
+                            "name": "FabDefault.nfADFq",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 2"
+            }
+        },
+        {
+            "displayName": "Pillar 3",
+            "name": "KhIAjT",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 3 - Advice funding?",
+                            "name": "FabDefault.AnonGA",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "Pillar 3"
+            }
+        },
+        {
+            "displayName": "pillar 4 ",
+            "name": "cihYKT",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 4 - Community funding?",
+                            "name": "FabDefault.poFycJ",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 4 "
+            }
+        },
+        {
+            "displayName": "not pillar 1 ",
+            "name": "vdtSVk",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 1 - Foundations funding?",
+                            "name": "FabDefault.OZXhAU",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 1 "
+            }
+        },
+        {
+            "displayName": "not pillar 2",
+            "name": "gsjRwi",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 2 - Training funding?",
+                            "name": "FabDefault.nfADFq",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 2"
+            }
+        },
+        {
+            "displayName": "not pillar 3",
+            "name": "JmxEjo",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 3 - Advice funding?",
+                            "name": "FabDefault.AnonGA",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 3"
+            }
+        },
+        {
+            "displayName": "not pillar 4",
+            "name": "ByiqGj",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 4 - Community funding?",
+                            "name": "FabDefault.poFycJ",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 4"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "fees": [],
+    "lists": [
+        {
+            "items": [
+                {
+                    "text": "Pillar 1 - Foundations",
+                    "value": "Pillar 1 - Foundations"
+                },
+                {
+                    "text": "Pillar 2 - Training",
+                    "value": "Pillar 2 - Training"
+                },
+                {
+                    "text": "Pillar 3 - Advice",
+                    "value": "Pillar 3 - Advice"
+                },
+                {
+                    "text": "Pillar 4 - Community",
+                    "value": "Pillar 4 - Community"
+                }
+            ],
+            "name": "QAafpQ",
+            "title": "pillars",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section we will ask about:\n<ul>\n<li>key performance indicators (KPIs) </li>\n<li>outputs </li>\n<li>outcomes (KPIs) </li>\n</ul>",
+                    "name": "qDrWQi",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "controller": "./pages/start.js",
+            "next": [
+                {
+                    "path": "/key-performance-indicators-kpis-for-training-and-support"
+                }
+            ],
+            "path": "/outputs-and-outcomes",
+            "section": "FabDefault",
+            "title": "Outputs and outcomes"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "content": "Tell us your proposed annual target for the following KPIs. \nSee the prospectus for help to answer this section. ",
+                    "name": "OygeHl",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Training</h2>",
+                    "name": "rRXtKD",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "aSCUsd",
+                    "options": {},
+                    "schema": {},
+                    "title": "Total number of training sessions (Target: 20)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "XAvujV",
+                    "options": {},
+                    "schema": {},
+                    "title": "Total number of regional network sessions/events (Target: 6)",
+                    "type": "TextField"
+                },
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Resources</h2>",
+                    "name": "CfOqHF",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "Gqozui",
+                    "options": {},
+                    "schema": {},
+                    "title": "Total number of best practice resources (Target: 6)",
+                    "type": "TextField"
+                },
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Accreditation scheme</h2>",
+                    "name": "WjPCQV",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "jomUqh",
+                    "options": {},
+                    "schema": {},
+                    "title": "Number of projects engaging in the accreditation scheme (Target: 18)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "YGLRVO",
+                    "options": {},
+                    "schema": {},
+                    "title": "Number of projects successfully completed the accreditation scheme (Target: 9)",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/key-performance-indicators-kpis-for-community-recovery"
+                }
+            ],
+            "path": "/key-performance-indicators-kpis-for-training-and-support",
+            "section": "FabDefault",
+            "title": "Key performance indicators (KPIs) for training and support"
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "HrGkQZ",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": {
+                                "required": false
+                            },
+                            "title": "Output",
+                            "type": "TextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "BVlNYQ",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": "",
+                            "title": "Description",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "CEaYcI",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": "",
+                            "title": "Benefit",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "NXQStw",
+                            "options": {
+                                "required": false
+                            },
+                            "schema": {
+                                "required": false
+                            },
+                            "title": "Proposed annual target",
+                            "type": "TextField"
+                        }
+                    ],
+                    "name": "bUmxnK",
+                    "options": {},
+                    "schema": {},
+                    "title": "Additional KPIs",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/what-outputs-will-you-achieve"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Additional KPIs",
+                    "samePageTableItemName": "KPI"
+                }
+            },
+            "path": "/list-any-additional-kpis-for-pillar-4---communities",
+            "section": "FabDefault",
+            "title": "List any additional KPIs for Pillar 4 - Communities"
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "VKssGv",
+                            "options": {},
+                            "schema": "",
+                            "title": "Output description",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "JdyLKb",
+                            "options": {},
+                            "schema": "",
+                            "title": "Anticipated outcome",
+                            "type": "MultilineTextField"
+                        }
+                    ],
+                    "hint": "Provide details of your outcomes and outputs.",
+                    "name": "eJkJXy",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What outputs will you achieve?",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Outputs",
+                    "samePageTableItemName": "output"
+                }
+            },
+            "path": "/what-outputs-will-you-achieve",
+            "section": "FabDefault",
+            "title": "What outputs will you achieve?"
+        },
+        {
+            "components": [
+                {
+                    "content": "Tell us your proposed annual target for the following KPIs. \nSee the prospectus for help to answer this section. ",
+                    "name": "iDWxNt",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "Jkovbh",
+                    "options": {},
+                    "schema": {},
+                    "title": "Delivery of a toolkit for new providers of community re-integration (Target: 1)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "jSQBPv",
+                    "options": {},
+                    "schema": {},
+                    "title": "Total number of projects worked with (Target: 20)",
+                    "type": "TextField"
+                },
+                {
+                    "name": "iYwmoF",
+                    "options": {},
+                    "schema": {},
+                    "title": " Total number of Local Authority areas (Target: 20)",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/list-any-additional-kpis-for-pillar-4---communities"
+                }
+            ],
+            "path": "/key-performance-indicators-kpis-for-community-recovery",
+            "section": "FabDefault",
+            "title": "Key performance indicators (KPIs) for community recovery"
+        }
+    ],
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/outputs-and-outcomes",
+    "version": 2
+}

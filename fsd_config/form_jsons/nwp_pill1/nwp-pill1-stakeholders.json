@@ -1,0 +1,365 @@
+{
+    "conditions": [
+        {
+            "displayName": "multiple pillars",
+            "name": "dTicGU",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for multiple pillars?",
+                            "name": "FabDefault.nxfZNl",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "multiple pillars"
+            }
+        },
+        {
+            "displayName": "pillar 1",
+            "name": "uzhKSN",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 1 - Foundations funding?",
+                            "name": "FabDefault.OZXhAU",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 1"
+            }
+        },
+        {
+            "displayName": "pillar 2",
+            "name": "cuxrPt",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 2 - Training funding?",
+                            "name": "FabDefault.nfADFq",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 2"
+            }
+        },
+        {
+            "displayName": "Pillar 3",
+            "name": "KhIAjT",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 3 - Advice funding?",
+                            "name": "FabDefault.AnonGA",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "Pillar 3"
+            }
+        },
+        {
+            "displayName": "pillar 4 ",
+            "name": "cihYKT",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 4 - Community funding?",
+                            "name": "FabDefault.poFycJ",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "pillar 4 "
+            }
+        },
+        {
+            "displayName": "not pillar 1 ",
+            "name": "vdtSVk",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 1 - Foundations funding?",
+                            "name": "FabDefault.OZXhAU",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 1 "
+            }
+        },
+        {
+            "displayName": "not pillar 2",
+            "name": "gsjRwi",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 2 - Training funding?",
+                            "name": "FabDefault.nfADFq",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 2"
+            }
+        },
+        {
+            "displayName": "not pillar 3",
+            "name": "JmxEjo",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 3 - Advice funding?",
+                            "name": "FabDefault.AnonGA",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 3"
+            }
+        },
+        {
+            "displayName": "not pillar 4",
+            "name": "ByiqGj",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you applying for Pillar 4 - Community funding?",
+                            "name": "FabDefault.poFycJ",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "not pillar 4"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "fees": [],
+    "lists": [
+        {
+            "items": [
+                {
+                    "text": "Pillar 1 - Foundations",
+                    "value": "Pillar 1 - Foundations"
+                },
+                {
+                    "text": "Pillar 2 - Training",
+                    "value": "Pillar 2 - Training"
+                },
+                {
+                    "text": "Pillar 3 - Advice",
+                    "value": "Pillar 3 - Advice"
+                },
+                {
+                    "text": "Pillar 4 - Community",
+                    "value": "Pillar 4 - Community"
+                }
+            ],
+            "name": "QAafpQ",
+            "title": "pillars",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section we will ask about:\n<ul>\n<li>who your stakeholders are</li>\n<li>what they will contribute to the project</li>\n<li>how you will engage with them</li>\n<li>what outcomes you expect</li>\n</ul>",
+                    "name": "qDrWQi",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "controller": "./pages/start.js",
+            "next": [
+                {
+                    "path": "/who-are-your-main-stakeholders"
+                }
+            ],
+            "path": "/stakeholders",
+            "section": "FabDefault",
+            "title": "Stakeholders"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "name": "ZAcTIF",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Who are your main stakeholders?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-are-you-expecting-stakeholders-to-contribute-to-this-project"
+                }
+            ],
+            "path": "/who-are-your-main-stakeholders",
+            "section": "FabDefault",
+            "title": "Who are your main stakeholders?"
+        },
+        {
+            "components": [
+                {
+                    "name": "vkQCZO",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What are you expecting stakeholders to contribute to this project?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-engage-with-stakeholders"
+                }
+            ],
+            "path": "/what-are-you-expecting-stakeholders-to-contribute-to-this-project",
+            "section": "FabDefault",
+            "title": "What are you expecting stakeholders to contribute to this project?"
+        },
+        {
+            "components": [
+                {
+                    "name": "OUbunU",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "How will you engage with stakeholders?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-outcomes-are-you-expecting"
+                }
+            ],
+            "path": "/how-will-you-engage-with-stakeholders",
+            "section": "FabDefault",
+            "title": "How will you engage with stakeholders?"
+        },
+        {
+            "components": [
+                {
+                    "name": "SVGlsX",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What outcomes are you expecting?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/what-outcomes-are-you-expecting",
+            "section": "FabDefault",
+            "title": "What outcomes are you expecting?"
+        }
+    ],
+    "phaseBanner": {},
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/stakeholders",
+    "version": 2
+}
