@@ -458,7 +458,17 @@ export class PageControllerBase {
                 // Get the correct label to use in the error message (to avoid incorrect casing of error messages)
                 // If the label in Joi error context is different from the actual label, replace it
                 const fieldDef = this.pageDef.components?.find(c => c.name === err.path[0]);
-                const correctLabel = fieldDef?.title || fieldDef?.label || err.context?.label;
+                const rawLabel = fieldDef?.title || fieldDef?.label || err.context?.label;
+                let correctLabel = rawLabel;
+                if (correctLabel) {
+                    while (
+                        correctLabel.endsWith(" ") ||
+                        correctLabel.endsWith("?") ||
+                        correctLabel.endsWith(".")
+                    ) {
+                        correctLabel = correctLabel.slice(0, -1);
+                    }
+                }
                 let errorMessage = err.message;
 
                 if (err.context?.label && correctLabel && err.context.label !== correctLabel) {
