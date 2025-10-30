@@ -234,7 +234,7 @@
                     "name": "GtoolQ",
                     "options": {},
                     "schema": {},
-                    "title": "Give the official name registered with companies house or trading standards. ",
+                    "title": "Give the official name registered with Companies House or Trading Standards. ",
                     "type": "TextField"
                 },
                 {
@@ -284,30 +284,11 @@
                     "options": {
                         "hideTitle": true
                     },
-                    "schema": {},
-                    "title": "org main purpose",
-                    "type": "MultilineTextField"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/when-was-your-organisation-created"
-                }
-            ],
-            "path": "/what-is-your-organisations-main-purpose",
-            "section": "FabDefault",
-            "title": "What is your organisation's main purpose?"
-        },
-        {
-            "components": [
-                {
-                    "name": "qYVxnz",
-                    "options": {
-                        "hideTitle": true
+                    "schema": {
+                        "max": 150
                     },
-                    "schema": {},
-                    "title": "When was your organisation created?",
-                    "type": "DateField"
+                    "title": "What is your organisation's main purpose?",
+                    "type": "MultilineTextField"
                 }
             ],
             "next": [
@@ -315,9 +296,9 @@
                     "path": "/what-is-your-vat-registration-number"
                 }
             ],
-            "path": "/when-was-your-organisation-created",
+            "path": "/what-is-your-organisations-main-purpose",
             "section": "FabDefault",
-            "title": "When was your organisation created?"
+            "title": "What is your organisation's main purpose?"
         },
         {
             "components": [
@@ -343,7 +324,7 @@
         {
             "components": [
                 {
-                    "hint": "The file must be a PDF.",
+                    "hint": "Upload a copy of your current insurance certificate. The file must be a PDF.",
                     "name": "zJJSsR",
                     "options": {
                         "dropzoneConfig": {
@@ -352,7 +333,7 @@
                             "maxFilesize": 10,
                             "parallelUploads": 1
                         },
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "showNoScriptWarning": false
                     },
                     "schema": {},
@@ -437,7 +418,8 @@
                 {
                     "name": "UstMrg",
                     "options": {
-                        "hideTitle": true
+                        "hideTitle": true,
+                        "maxWords": "250"
                     },
                     "schema": {},
                     "title": "Provide a summary or mission statement for your organisation.",
@@ -666,7 +648,7 @@
         {
             "components": [
                 {
-                    "hint": "Upload a PDF document that shows the structure of the company, such as an organogram. ",
+                    "hint": "Upload a PDF document that shows the structure of the organisation, such as an organogram. ",
                     "name": "YmiBVh",
                     "options": {
                         "dropzoneConfig": {
@@ -676,7 +658,7 @@
                             "parallelUploads": 1
                         },
                         "hideTitle": false,
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "showNoScriptWarning": false
                     },
                     "schema": {},
