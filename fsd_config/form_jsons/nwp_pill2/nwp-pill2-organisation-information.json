@@ -211,7 +211,7 @@
         {
             "components": [
                 {
-                    "content": "In this section, we'll ask about your organisation's:\n<ul>\n<li>name and address</li>\n<li>purpose</li>\n<li>date created</li>\n<li>VAT and insurance details</li>\n<li>website and social media</li>\n<li>professional associations</li>",
+                    "content": "In this section, we'll ask about your organisation's:\n<ul>\n<li>name and address</li>\n<li>purpose</li>\n<li>VAT and insurance details</li>\n<li>website and social media</li>\n<li>professional associations</li>",
                     "name": "kNRSpb",
                     "options": {},
                     "schema": {},
