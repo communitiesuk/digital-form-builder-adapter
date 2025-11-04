@@ -315,7 +315,7 @@
                         "maxWords": "500"
                     },
                     "schema": {},
-                    "title": "Tell us about your proposal for Pillar 1 - Foundations. ",
+                    "title": "Tell us about your proposal",
                     "type": "MultilineTextField"
                 }
             ],
@@ -359,7 +359,7 @@
                         "hideTitle": true
                     },
                     "schema": {},
-                    "title": "What are your objectives for Pillar 1 - Foundations?",
+                    "title": "What are your objectives?",
                     "type": "MultiInputField"
                 }
             ],
@@ -415,7 +415,7 @@
                         "hideTitle": true
                     },
                     "schema": {},
-                    "title": "What are your milestones for Pillar 1 - Foundations?",
+                    "title": "What are your milestones?",
                     "type": "MultiInputField"
                 }
             ],
