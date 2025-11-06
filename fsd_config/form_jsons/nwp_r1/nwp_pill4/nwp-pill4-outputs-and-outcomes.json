@@ -237,7 +237,7 @@
         {
             "components": [
                 {
-                    "content": "In this section we will ask about:\n<ul>\n<li>key performance indicators (KPIs) </li>\n<li>outputs </li>\n<li>outcomes (KPIs) </li>\n</ul>",
+                    "content": "In this section we will ask about:\n<ul>\n<li>key performance indicators (KPIs) </li>\n<li>outputs </li>\n<li>outcomes</li>\n</ul>",
                     "name": "qDrWQi",
                     "options": {},
                     "schema": {},

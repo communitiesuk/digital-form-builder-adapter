@@ -40,7 +40,7 @@
                         "maxWords": "500"
                     },
                     "schema": {},
-                    "title": "Tell us about your recent contract experience in similar areas of work. ",
+                    "title": "Tell us about your recent contract experience in similar areas of work",
                     "type": "MultilineTextField"
                 }
             ],
@@ -51,7 +51,7 @@
             ],
             "path": "/tell-us-about-your-recent-contract-experience-in-similar-areas-of-work",
             "section": "FabDefault",
-            "title": "Tell us about your recent contract experience in similar areas of work. "
+            "title": "Tell us about your recent contract experience in similar areas of work"
         },
         {
             "components": [
