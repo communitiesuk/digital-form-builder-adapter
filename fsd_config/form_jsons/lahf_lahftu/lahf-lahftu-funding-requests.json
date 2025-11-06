@@ -241,7 +241,7 @@
                             "parallelUploads": 1
                         },
                         "hideTitle": true,
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "showNoScriptWarning": false
                     },
                     "schema": {},
@@ -335,7 +335,7 @@
                             "parallelUploads": 1
                         },
                         "hideTitle": true,
-                        "minimumRequiredFiles": 0,
+                        "minimumRequiredFiles": 1,
                         "showNoScriptWarning": false
                     },
                     "schema": {},
