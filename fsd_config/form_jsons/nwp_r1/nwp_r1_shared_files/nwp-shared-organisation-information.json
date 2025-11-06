@@ -383,13 +383,13 @@
         {
             "components": [
                 {
-                    "name": "JiaoiU",
+                    "name": "UJPZaz",
                     "options": {
                         "hideTitle": true
                     },
                     "schema": {},
                     "title": "What is your organisation's website?",
-                    "type": "WebsiteField"
+                    "type": "TextField"
                 }
             ],
             "next": [
