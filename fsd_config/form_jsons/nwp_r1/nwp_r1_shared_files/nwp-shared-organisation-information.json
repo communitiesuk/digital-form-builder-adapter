@@ -175,6 +175,28 @@
                 ],
                 "name": "is holding org"
             }
+        },
+        {
+            "displayName": "Other org type",
+            "name": "OPlCOC",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is your organisation type?",
+                            "name": "FabDefault.org",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Other",
+                            "type": "Value",
+                            "value": "Other"
+                        }
+                    }
+                ],
+                "name": "Other org type"
+            }
         }
     ],
     "feeOptions": {
@@ -197,6 +219,10 @@
                 {
                     "text": "Limited company",
                     "value": "Limited company"
+                },
+                {
+                    "text": "Other",
+                    "value": "other"
                 }
             ],
             "name": "rCyihg",
@@ -231,19 +257,23 @@
         {
             "components": [
                 {
+                    "hint": "Give the official name registered with Companies House or Trading Standards. ",
                     "name": "GtoolQ",
-                    "options": {},
+                    "options": {
+                        "hideTitle": true
+                    },
                     "schema": {},
-                    "title": "Give the official name registered with Companies House or Trading Standards. ",
+                    "title": "What is the name of your organisation?",
                     "type": "TextField"
                 },
                 {
+                    "hint": "Give any alternative names that your organisation is known by. ",
                     "name": "JwFyrI",
                     "options": {
                         "required": false
                     },
                     "schema": {},
-                    "title": "Give any alternative names that your organisation is known by. ",
+                    "title": "Does your organisation have any other names?",
                     "type": "TextField"
                 }
             ],
@@ -314,7 +344,7 @@
             ],
             "next": [
                 {
-                    "path": "/what-are-your-insurance-details"
+                    "path": "/what-are-your-relevant-insurance-details"
                 }
             ],
             "path": "/what-is-your-vat-registration-number",
@@ -324,12 +354,12 @@
         {
             "components": [
                 {
-                    "hint": "Upload a copy of your current insurance certificate. The file must be a PDF.",
+                    "hint": "Upload a copy of relevant insurance documentation. For example, professional indemnity insurance. The file must be a PDF.",
                     "name": "zJJSsR",
                     "options": {
                         "dropzoneConfig": {
                             "acceptedFiles": ",application/pdf",
-                            "maxFiles": 1,
+                            "maxFiles": 3,
                             "maxFilesize": 10,
                             "parallelUploads": 1
                         },
@@ -337,7 +367,7 @@
                         "showNoScriptWarning": false
                     },
                     "schema": {},
-                    "title": "Upload your current insurance certificate.",
+                    "title": "Upload your current insurance documentation.",
                     "type": "ClientSideFileUploadField"
                 }
             ],
@@ -346,9 +376,9 @@
                     "path": "/what-is-your-organisations-website"
                 }
             ],
-            "path": "/what-are-your-insurance-details",
+            "path": "/what-are-your-relevant-insurance-details",
             "section": "FabDefault",
-            "title": "What are your insurance details?"
+            "title": "What are your relevant insurance details?"
         },
         {
             "components": [
@@ -457,6 +487,9 @@
                 {
                     "condition": "lLXsLv",
                     "path": "/do-you-have-a-company-registration-number"
+                },
+                {
+                    "path": "/is-there-a-parent-or-holding-organisation"
                 }
             ],
             "path": "/what-is-your-organisation-type",

@@ -197,12 +197,38 @@
                 ],
                 "name": "not pillar 4"
             }
+        },
+        {
+            "displayName": "additional kpis",
+            "name": "dCGwfK",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Do you have any additional KPIs?",
+                            "name": "FabDefault.zDAQdq",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "additional kpis"
+            }
         }
     ],
     "feeOptions": {
         "allowSubmissionWithoutPayment": true,
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
     },
     "fees": [],
     "lists": [
@@ -237,7 +263,7 @@
         {
             "components": [
                 {
-                    "content": "In this section we will ask about:\n<ul>\n<li>key performance indicators (KPIs) </li>\n<li>outputs </li>\n<li>outcomes</li>\n</ul>",
+                    "content": "In this section we will ask about:\n<ul>\n<li>key performance indicators (KPIs) </li>\n<li>outputs </li>\n<li>outcomes </li>\n</ul>",
                     "name": "qDrWQi",
                     "options": {},
                     "schema": {},
@@ -388,6 +414,17 @@
                     ],
                     "name": "bUmxnK",
                     "options": {},
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "KPI",
+                            "samePageTitle": "Additional KPIs"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
                     "schema": {},
                     "title": "Additional KPIs",
                     "type": "MultiInputField"
@@ -400,19 +437,19 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Additional KPIs",
-                    "samePageTableItemName": "KPI"
+                    "samePageTableItemName": "KPI",
+                    "samePageTitle": "Additional KPIs"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
-            "path": "/list-any-additional-kpis-for-pillar-4---communities",
+            "path": "/additional-kpis",
             "section": "FabDefault",
-            "title": "List any additional KPIs for Pillar 4 - Communities"
+            "title": "Additional KPIs"
         },
         {
             "components": [
@@ -440,6 +477,17 @@
                     "options": {
                         "hideTitle": true
                     },
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "output",
+                            "samePageTitle": "Outputs"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
                     "schema": {},
                     "title": "What outputs will you achieve?",
                     "type": "MultiInputField"
@@ -452,14 +500,14 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Outputs",
-                    "samePageTableItemName": "output"
+                    "samePageTableItemName": "output",
+                    "samePageTitle": "Outputs"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
             "path": "/what-outputs-will-you-achieve",
@@ -499,14 +547,40 @@
             ],
             "next": [
                 {
-                    "path": "/list-any-additional-kpis-for-pillar-4---communities"
+                    "path": "/do-you-have-any-additional-kpis"
                 }
             ],
             "path": "/key-performance-indicators-kpis-for-community-recovery",
             "section": "FabDefault",
             "title": "Key performance indicators (KPIs) for community recovery"
+        },
+        {
+            "components": [
+                {
+                    "name": "zDAQdq",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Do you have any additional KPIs?",
+                    "type": "YesNoField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "dCGwfK",
+                    "path": "/additional-kpis"
+                },
+                {
+                    "path": "/what-outputs-will-you-achieve"
+                }
+            ],
+            "path": "/do-you-have-any-additional-kpis",
+            "section": "FabDefault",
+            "title": "Do you have any additional KPIs?"
         }
     ],
+    "phaseBanner": {},
     "sections": [
         {
             "hideTitle": true,

@@ -197,12 +197,38 @@
                 ],
                 "name": "not pillar 4"
             }
+        },
+        {
+            "displayName": "additional KPIs",
+            "name": "JsdAPk",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Do you have any additional KPIs?",
+                            "name": "FabDefault.jyKXTW",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "additional KPIs"
+            }
         }
     ],
     "feeOptions": {
         "allowSubmissionWithoutPayment": true,
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
     },
     "fees": [],
     "lists": [
@@ -237,7 +263,7 @@
         {
             "components": [
                 {
-                    "content": "In this section we will ask about:\n<ul>\n<li>key performance indicators (KPIs) </li>\n<li>outputs </li>\n<li>outcomes</li>\n</ul>",
+                    "content": "In this section we will ask about:\n<ul>\n<li>key performance indicators (KPIs) </li>\n<li>outputs </li>\n<li>outcomes </li>\n</ul>",
                     "name": "qDrWQi",
                     "options": {},
                     "schema": {},
@@ -330,7 +356,7 @@
             ],
             "next": [
                 {
-                    "path": "/list-any-additional-kpis"
+                    "path": "/do-you-have-any-additional-kpis"
                 }
             ],
             "path": "/key-performance-indicators-kpis-for-a-specialist-advice-service",
@@ -404,6 +430,17 @@
                         ],
                         "hideTitle": true
                     },
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "KPI",
+                            "samePageTitle": "Additional KPIs"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
                     "schema": {},
                     "title": "Additional KPIs",
                     "type": "MultiInputField"
@@ -416,14 +453,14 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Additional KPIs",
-                    "samePageTableItemName": "KPI"
+                    "samePageTableItemName": "KPI",
+                    "samePageTitle": "Additional KPIs"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
             "path": "/list-any-additional-kpis",
@@ -454,7 +491,22 @@
                     "hint": "Provide details of your outcomes and outputs.",
                     "name": "eJkJXy",
                     "options": {
+                        "columnTitles": [
+                            "Output description",
+                            "Anticipated outcome"
+                        ],
                         "hideTitle": true
+                    },
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "output",
+                            "samePageTitle": "Outputs"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
                     },
                     "schema": {},
                     "title": "What outputs will you achieve?",
@@ -468,21 +520,47 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Outputs",
-                    "samePageTableItemName": "output"
+                    "samePageTableItemName": "output",
+                    "samePageTitle": "Outputs"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
             "path": "/what-outputs-will-you-achieve",
             "section": "FabDefault",
             "title": "What outputs will you achieve?"
+        },
+        {
+            "components": [
+                {
+                    "name": "jyKXTW",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Do you have any additional KPIs?",
+                    "type": "YesNoField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "JsdAPk",
+                    "path": "/list-any-additional-kpis"
+                },
+                {
+                    "path": "/what-outputs-will-you-achieve"
+                }
+            ],
+            "path": "/do-you-have-any-additional-kpis",
+            "section": "FabDefault",
+            "title": "Do you have any additional KPIs?"
         }
     ],
+    "phaseBanner": {},
     "sections": [
         {
             "hideTitle": true,

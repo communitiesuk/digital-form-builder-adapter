@@ -1,9 +1,58 @@
 {
-    "conditions": [],
+    "conditions": [
+        {
+            "displayName": "additional KPIs",
+            "name": "gcHGMR",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Do you have any additional KPIs?",
+                            "name": "FabDefault.hHefdp",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "additional KPIs"
+            }
+        },
+        {
+            "displayName": "no additional KPIs",
+            "name": "eDmqGL",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Do you have any additional KPIs?",
+                            "name": "FabDefault.hHefdp",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "no additional KPIs"
+            }
+        }
+    ],
     "feeOptions": {
         "allowSubmissionWithoutPayment": true,
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
     },
     "fees": [],
     "lists": [],
@@ -171,6 +220,17 @@
                             "Target"
                         ]
                     },
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "KPI",
+                            "samePageTitle": "Additional KPIs"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
                     "schema": {},
                     "title": "Additional KPIs",
                     "type": "MultiInputField"
@@ -183,14 +243,14 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Additional KPIs",
-                    "samePageTableItemName": "KPI"
+                    "samePageTableItemName": "KPI",
+                    "samePageTitle": "Additional KPIs"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
             "path": "/additional-kpis",
@@ -227,6 +287,17 @@
                         ],
                         "hideTitle": true
                     },
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "output",
+                            "samePageTitle": "Outputs and outcomes"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
                     "schema": {},
                     "title": "Outputs and outcomes",
                     "type": "MultiInputField"
@@ -239,14 +310,14 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Outputs and outcomes",
-                    "samePageTableItemName": "output"
+                    "samePageTableItemName": "output",
+                    "samePageTitle": "Outputs and outcomes"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
             "path": "/what-outputs-will-you-achieve",
@@ -308,14 +379,41 @@
             ],
             "next": [
                 {
-                    "path": "/additional-kpis"
+                    "path": "/do-you-have-any-additional-kpis"
                 }
             ],
             "path": "/key-performance-indicators-kpis-for-sector-practice-support",
             "section": "FabDefault",
             "title": "Key performance indicators (KPIs) for sector practice support"
+        },
+        {
+            "components": [
+                {
+                    "name": "hHefdp",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Do you have any additional KPIs?",
+                    "type": "YesNoField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "gcHGMR",
+                    "path": "/additional-kpis"
+                },
+                {
+                    "condition": "eDmqGL",
+                    "path": "/what-outputs-will-you-achieve"
+                }
+            ],
+            "path": "/do-you-have-any-additional-kpis",
+            "section": "FabDefault",
+            "title": "Do you have any additional KPIs?"
         }
     ],
+    "phaseBanner": {},
     "sections": [
         {
             "hideTitle": true,
