@@ -1,0 +1,229 @@
+{
+  "conditions": [
+    {
+      "displayName": "Is not based in England",
+      "name": "lRLKUV",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "Is your organisation based in England?",
+              "name": "FabDefault.lqNzFM",
+              "type": "YesNoField"
+            },
+            "operator": "is",
+            "value": { "display": "false", "type": "Value", "value": "false" }
+          }
+        ],
+        "name": "Is not based in England"
+      }
+    },
+    {
+      "displayName": "Is unincorporated community group",
+      "name": "NOHmhf",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "What is the legal status of your organisation?",
+              "name": "FabDefault.jhTJVo",
+              "type": "RadiosField"
+            },
+            "operator": "is",
+            "value": {
+              "display": "An unincorporated community group",
+              "type": "Value",
+              "value": "An unincorporated community group"
+            }
+          }
+        ],
+        "name": "Is unincorporated community group"
+      }
+    },
+    {
+      "displayName": "Does not meet unincorp criteria",
+      "name": "sGhVFh",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "Does your unincorporated community group meet the following criteria?",
+              "name": "FabDefault.XANeey",
+              "type": "YesNoField"
+            },
+            "operator": "is",
+            "value": { "display": "false", "type": "Value", "value": "false" }
+          }
+        ],
+        "name": "Does not meet unincorp criteria"
+      }
+    },
+    {
+      "displayName": "Not valid org",
+      "name": "fgDkkM",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "What is the legal status of your organisation?",
+              "name": "FabDefault.jhTJVo",
+              "type": "RadiosField"
+            },
+            "operator": "is",
+            "value": { "display": "Other", "type": "Value", "value": "Other" }
+          }
+        ],
+        "name": "Not valid org"
+      }
+    }
+  ],
+  "feeOptions": {
+    "allowSubmissionWithoutPayment": true,
+    "maxAttempts": 3,
+    "showPaymentSkippedWarningPage": false
+  },
+  "fees": [],
+  "lists": [
+    {
+      "items": [
+        {
+          "text": "a charity registered with the Charity Commission for England and Wales",
+          "value": "A charity registered with the Charity Commission for England and Wales"
+        },
+        {
+          "text": "a society registered under the Co-operative and Community Benefit Societies Act 2014",
+          "value": "A society registered under the Co-operative and Community Benefit Societies Act 2014"
+        },
+        {
+          "text": "a Community Interest Company registered with Companies House or with an asset lock",
+          "value": "a Community Interest Company registered with Companies House or with an asset lock"
+        },
+        {
+          "text": "a Charitable Incorporated Organisation registered with the Charity Commission for England and Wales",
+          "value": "a Charitable Incorporated Organisation registered with the Charity Commission for England and Wales"
+        },
+        {
+          "text": "a Company Limited by Guarantee registered with Companies House",
+          "value": "A Company Limited by Guarantee registered with Companies House"
+        },
+        {
+          "text": "a Cooperative and Community benefit society",
+          "value": "A Cooperative and Community benefit society"
+        },
+        {
+          "text": "an Industrial and Providence Society (IPS)",
+          "value": "An Industrial and Providence Society (IPS)"
+        },
+        { "text": "other", "value": "Other" }
+      ],
+      "name": "hPifFP",
+      "title": "Org types",
+      "type": "string"
+    }
+  ],
+  "markAsComplete": false,
+  "metadata": {},
+  "outputs": [],
+  "pages": [
+    {
+      "components": [
+        {
+          "content": "We need to ask some questions to check you can apply for this funding.",
+          "name": "hxCnHT",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [{ "path": "/is-your-organisation-based-in-england" }],
+      "path": "/before-you-start",
+      "section": "FabDefault",
+      "title": "Before you start"
+    },
+    {
+      "components": [
+        {
+          "name": "lqNzFM",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "Is your organisation based in England?",
+          "type": "YesNoField"
+        }
+      ],
+      "next": [
+        { "path": "/what-is-the-legal-status-of-your-organisation" },
+        { "condition": "lRLKUV", "path": "/you-cannot-apply-for-this-funding" }
+      ],
+      "path": "/is-your-organisation-based-in-england",
+      "section": "FabDefault",
+      "title": "Is your organisation based in England?"
+    },
+    {
+      "components": [
+        {
+          "list": "hPifFP",
+          "name": "jhTJVo",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "What is the legal status of your organisation?",
+          "type": "RadiosField",
+          "values": { "type": "listRef" }
+        }
+      ],
+      "next": [
+        {
+          "condition": "fgDkkM",
+          "path": "/you-cannot-apply-for-this-funding-StexyP"
+        },
+        { "path": "/you-can-apply-for-national-workforce-programme-funding" }
+      ],
+      "path": "/what-is-the-legal-status-of-your-organisation",
+      "section": "FabDefault",
+      "title": "What is the legal status of your organisation?"
+    },
+    {
+      "components": [
+        {
+          "content": "Based on your answer, you are not eligible to apply for National Workforce Programme funding.\n</br>\nThe organisation must be based in England.\n",
+          "name": "htwsos",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [],
+      "path": "/you-cannot-apply-for-this-funding",
+      "section": "FabDefault",
+      "title": "You cannot apply for this funding."
+    },
+    {
+      "components": [
+        {
+          "content": "Based on your answer, you are not eligible to apply for National Workforce Programme funding.\n</br>\nThe organisation must have one of the legal statuses listed.",
+          "name": "YzwEba",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [],
+      "path": "/you-cannot-apply-for-this-funding-StexyP",
+      "section": "FabDefault",
+      "title": "You cannot apply for this funding"
+    },
+    {
+      "components": [],
+      "controller": "./pages/confirm.js",
+      "next": [],
+      "path": "/you-can-apply-for-national-workforce-programme-funding",
+      "section": "FabDefault",
+      "title": "You can apply for National Workforce Programme funding"
+    }
+  ],
+  "sections": [
+    { "hideTitle": true, "name": "FabDefault", "title": "Default Section" }
+  ],
+  "skipSummary": true,
+  "startPage": "/before-you-start",
+  "version": 2
+}
