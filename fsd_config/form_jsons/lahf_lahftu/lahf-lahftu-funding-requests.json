@@ -126,7 +126,7 @@
         {
             "components": [
                 {
-                    "content": "Include all adaptation, void and interim accomodation costs",
+                    "content": "Include all adaptation, void and interim accommodation costs",
                     "name": "XAkojn",
                     "options": {},
                     "schema": {},
@@ -136,7 +136,7 @@
                     "name": "DdMauS",
                     "options": {
                         "hideTitle": true,
-                        "prefix": "£"
+                        "prefix": "\u00a3"
                     },
                     "schema": {},
                     "title": "How much funding are you applying for in total?",
@@ -179,7 +179,7 @@
                             "hint": "",
                             "name": "MUtVpb",
                             "options": {
-                                "prefix": "£"
+                                "prefix": "\u00a3"
                             },
                             "schema": {},
                             "title": "Amount of funding requested",
@@ -193,6 +193,17 @@
                             "Amount of funding requested"
                         ],
                         "hideTitle": false
+                    },
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "cost",
+                            "samePageTitle": "Breakdown of costs "
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
                     },
                     "schema": {
                         "hideTitle": false
@@ -208,14 +219,14 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Breakdown of costs ",
-                    "samePageTableItemName": "cost"
+                    "samePageTableItemName": "cost",
+                    "samePageTitle": "Breakdown of costs "
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
             "path": "/give-a-detailed-breakdown-of-the-adaptation-costs-for-which-funding-is-being-requested",
@@ -269,7 +280,7 @@
         {
             "components": [
                 {
-                    "content": "56 days’ void rent costs are already built into the Afghan Resettlement Programme's integration tariff.<br><br> \n\nIf the required adaptations to the property are estimated to take longer, you may request up to an additional 56 days’ void rent costs.",
+                    "content": "56 days\u2019 void rent costs are already built into the Afghan Resettlement Programme's integration tariff.<br><br> \n\nIf the required adaptations to the property are estimated to take longer, you may request up to an additional 56 days\u2019 void rent costs.",
                     "name": "DqeGZe",
                     "options": {},
                     "schema": {},
@@ -375,7 +386,7 @@
                 {
                     "name": "ySXgFg",
                     "options": {
-                        "prefix": "£"
+                        "prefix": "\u00a3"
                     },
                     "schema": {},
                     "title": "How much funding in total are you requesting to cover void costs?",
@@ -489,7 +500,7 @@
                     "name": "PUkGpw",
                     "options": {
                         "hideTitle": true,
-                        "prefix": "£",
+                        "prefix": "\u00a3",
                         "suffix": ""
                     },
                     "schema": {},
@@ -512,7 +523,7 @@
                     "name": "qfJhMi",
                     "options": {
                         "hideTitle": true,
-                        "prefix": "£"
+                        "prefix": "\u00a3"
                     },
                     "schema": {},
                     "title": "Total costs",
