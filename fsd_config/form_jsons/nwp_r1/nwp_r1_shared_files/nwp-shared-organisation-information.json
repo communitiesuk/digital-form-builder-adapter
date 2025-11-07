@@ -482,7 +482,7 @@
             "next": [
                 {
                     "condition": "FWnbji",
-                    "path": "/do-you-have-a-charity-number"
+                    "path": "/do-you-have-a-charity-commission-number"
                 },
                 {
                     "condition": "lLXsLv",
@@ -504,23 +504,26 @@
                         "hideTitle": true
                     },
                     "schema": {},
-                    "title": "Do you have a charity number?",
-                    "type": "YesNoField"
+                    "title": "Do you have a charity commission number?",
+                    "type": "YesNoField",
+                    "values": {
+                        "type": "listRef"
+                    }
                 }
             ],
             "next": [
                 {
                     "condition": "QRiEjQ",
-                    "path": "/what-is-your-charity-number"
+                    "path": "/what-is-your-charity-commission-number"
                 },
                 {
                     "condition": "iSUhoL",
                     "path": "/what-are-the-names-of-your-trustees"
                 }
             ],
-            "path": "/do-you-have-a-charity-number",
+            "path": "/do-you-have-a-charity-commission-number",
             "section": "FabDefault",
-            "title": "Do you have a charity number?"
+            "title": "Do you have a charity commission number?"
         },
         {
             "components": [
@@ -530,7 +533,7 @@
                         "hideTitle": true
                     },
                     "schema": {},
-                    "title": "What is your charity number?",
+                    "title": "What is your charity commission number?",
                     "type": "TextField"
                 }
             ],
@@ -539,9 +542,9 @@
                     "path": "/is-there-a-parent-or-holding-organisation"
                 }
             ],
-            "path": "/what-is-your-charity-number",
+            "path": "/what-is-your-charity-commission-number",
             "section": "FabDefault",
-            "title": "What is your charity number?"
+            "title": "What is your charity commission number?"
         },
         {
             "components": [
