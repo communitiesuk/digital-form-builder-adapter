@@ -72,6 +72,10 @@
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
     },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
     "fees": [],
     "lists": [
         {
@@ -195,13 +199,6 @@
                     "schema": {},
                     "title": "Telephone number",
                     "type": "TelephoneNumberField"
-                },
-                {
-                    "name": "NuvvyU",
-                    "options": {},
-                    "schema": {},
-                    "title": "A summary of the lead officer's experience and qualifications.",
-                    "type": "MultilineTextField"
                 }
             ],
             "next": [
@@ -374,6 +371,17 @@
                             "Lead"
                         ]
                     },
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "consortium member",
+                            "samePageTitle": "Consortium members"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
                     "schema": {},
                     "title": "Consortium members",
                     "type": "MultiInputField"
@@ -387,14 +395,14 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Consortium members",
-                    "samePageTableItemName": "consortium member"
+                    "samePageTableItemName": "consortium member",
+                    "samePageTitle": "Consortium members"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
             "path": "/consortium-members",
@@ -432,6 +440,7 @@
             "title": "Check your answers"
         }
     ],
+    "phaseBanner": {},
     "sections": [
         {
             "hideTitle": true,

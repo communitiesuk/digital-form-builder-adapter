@@ -358,6 +358,17 @@
                         ],
                         "hideTitle": true
                     },
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "objective",
+                            "samePageTitle": "Objectives"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
                     "schema": {},
                     "title": "What are your objectives?",
                     "type": "MultiInputField"
@@ -371,14 +382,14 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Objectives",
-                    "samePageTableItemName": "objective"
+                    "samePageTableItemName": "objective",
+                    "samePageTitle": "Objectives"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
             "path": "/what-are-your-objectives",
@@ -400,19 +411,26 @@
                         {
                             "hint": "",
                             "name": "GRSXLZ",
-                            "options": {},
+                            "options": {
+                                "maxDaysInPast": "0"
+                            },
                             "schema": {},
                             "title": "When will you reach this milestone?",
                             "type": "DatePartsField"
                         }
                     ],
                     "name": "iYAEgj",
-                    "options": {
-                        "columnTitles": [
-                            "Milestone",
-                            "Date"
-                        ],
-                        "hideTitle": true
+                    "options": {},
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "milestone",
+                            "samePageTitle": "Milestones"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
                     },
                     "schema": {},
                     "title": "What are your milestones?",
@@ -426,14 +444,14 @@
                 }
             ],
             "options": {
-                "summaryDisplayMode": {
-                    "samePage": true,
-                    "separatePage": false,
-                    "hideRowTitles": false
-                },
                 "customText": {
-                    "samePageTitle": "Milestones",
-                    "samePageTableItemName": "milestone"
+                    "samePageTableItemName": "milestone",
+                    "samePageTitle": "Milestones"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
                 }
             },
             "path": "/what-are-your-milestones",
@@ -443,7 +461,7 @@
         {
             "components": [
                 {
-                    "hint": "Tell us how you will will work with MHCLG and other stakeholders to provide a flexible service that adapts to homelessness and rough sleeping changes.",
+                    "hint": "Tell us how you will work with MHCLG and other stakeholders to provide a flexible service that adapts to homelessness and rough sleeping changes.",
                     "name": "changingdemands",
                     "nameHasError": false,
                     "options": {

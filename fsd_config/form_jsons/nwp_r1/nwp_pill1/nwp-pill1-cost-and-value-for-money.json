@@ -204,6 +204,10 @@
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
     },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
     "fees": [],
     "lists": [
         {
@@ -335,7 +339,7 @@
             ],
             "next": [
                 {
-                    "path": "/how-much-do-you-plan-to-spend-on-output-2---national-homelessness-skills-framework-FZqpkr"
+                    "path": "/how-much-do-you-plan-to-spend-on-output-2---national-homelessness-skills-framework"
                 }
             ],
             "path": "/how-much-do-you-plan-to-spend-on-output-1---workforce-data-GbUXgS",
@@ -393,9 +397,9 @@
                     "path": "/how-much-do-you-plan-to-spend-on-output-3---qualification-development-hGnhQK"
                 }
             ],
-            "path": "/how-much-do-you-plan-to-spend-on-output-2---national-homelessness-skills-framework-FZqpkr",
+            "path": "/how-much-do-you-plan-to-spend-on-output-2---national-homelessness-skills-framework",
             "section": "FabDefault",
-            "title": "How much do you plan to spend on output 2 - National Homelessness Skills Framework?"
+            "title": "How much do you plan to spend on output 2 - national homelessness skills framework?"
         },
         {
             "components": [
@@ -500,14 +504,70 @@
             ],
             "next": [
                 {
-                    "path": "/check-your-answers"
+                    "path": "/how-much-do-you-plan-to-spend-on-output-5---national-homelessness-database"
                 }
             ],
             "path": "/how-much-do-you-plan-to-spend-on-output-4---recruitment",
             "section": "FabDefault",
             "title": "How much do you plan to spend on output 4 - recruitment?"
+        },
+        {
+            "components": [
+                {
+                    "name": "uoulSv",
+                    "options": {},
+                    "schema": {},
+                    "title": "Description of spending",
+                    "type": "MultilineTextField"
+                },
+                {
+                    "name": "sNNZJx",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 1 (April 2026 to March 2027)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "LJtkcP",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 2 (April 2027 to March 2028)",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "nqQYXx",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 3 (April 2028 to March 2029)",
+                    "type": "NumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/how-much-do-you-plan-to-spend-on-output-5---national-homelessness-database",
+            "section": "FabDefault",
+            "title": "How much do you plan to spend on output 5 - national homelessness database?"
         }
     ],
+    "phaseBanner": {},
     "sections": [
         {
             "hideTitle": true,

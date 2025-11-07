@@ -204,6 +204,10 @@
         "maxAttempts": 3,
         "showPaymentSkippedWarningPage": false
     },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
     "fees": [],
     "lists": [
         {
@@ -280,7 +284,7 @@
             ],
             "next": [
                 {
-                    "path": "/how-much-do-you-plan-to-spend-on-output-1---specialist-housing-and-homelessness-advice-service"
+                    "path": "/how-much-do-you-plan-to-spend-on-output-1---specialist-advice-service"
                 }
             ],
             "path": "/how-much-pillar-3-funding-are-you-applying-for",
@@ -338,11 +342,12 @@
                     "path": "/check-your-answers"
                 }
             ],
-            "path": "/how-much-do-you-plan-to-spend-on-output-1---specialist-housing-and-homelessness-advice-service",
+            "path": "/how-much-do-you-plan-to-spend-on-output-1---specialist-advice-service",
             "section": "FabDefault",
-            "title": "How much do you plan to spend on output 1 - specialist housing and homelessness advice service?"
+            "title": "How much do you plan to spend on output 1 - specialist advice service?"
         }
     ],
+    "phaseBanner": {},
     "sections": [
         {
             "hideTitle": true,

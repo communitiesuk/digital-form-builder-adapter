@@ -241,7 +241,7 @@
         {
             "components": [
                 {
-                    "content": "In this section we will ask about:\n<ul>\n<li>who your stakeholders are</li>\n<li>what they will contribute to the project</li>\n<li>how you will engage with them</li>\n<li>what outcomes you expect</li>\n</ul>",
+                    "content": "In this section we will ask about:\n<ul>\n<li>who your stakeholders are</li>\n<li>what they will contribute to the project</li>\n<li>how you will engage with them</li>\n<li>how you will involve those with lived experience</li>\n<li>how you will involve those in the homelessness and rough sleeping workforce</li>\n<li>what outcomes you expect</li>\n</ul>",
                     "name": "qDrWQi",
                     "options": {},
                     "schema": {},
@@ -251,7 +251,7 @@
             "controller": "./pages/start.js",
             "next": [
                 {
-                    "path": "/who-are-your-main-stakeholders"
+                    "path": "/who-will-your-main-stakeholders-be"
                 }
             ],
             "path": "/stakeholders",
@@ -274,7 +274,7 @@
                         "hideTitle": true
                     },
                     "schema": {},
-                    "title": "Who are your main stakeholders?",
+                    "title": "Who will your main stakeholders be?",
                     "type": "MultilineTextField"
                 }
             ],
@@ -283,9 +283,9 @@
                     "path": "/what-are-you-expecting-stakeholders-to-contribute-to-this-project"
                 }
             ],
-            "path": "/who-are-your-main-stakeholders",
+            "path": "/who-will-your-main-stakeholders-be",
             "section": "FabDefault",
-            "title": "Who are your main stakeholders?"
+            "title": "Who will your main stakeholders be?"
         },
         {
             "components": [
@@ -322,7 +322,7 @@
             ],
             "next": [
                 {
-                    "path": "/what-outcomes-are-you-expecting"
+                    "path": "/how-will-you-involve-those-with-a-lived-experience-of-homelessness-and-rough-sleeping-throughout-the-grant-HgRUKn"
                 }
             ],
             "path": "/how-will-you-engage-with-stakeholders",
@@ -349,6 +349,48 @@
             "path": "/what-outcomes-are-you-expecting",
             "section": "FabDefault",
             "title": "What outcomes are you expecting?"
+        },
+        {
+            "components": [
+                {
+                    "name": "ijqUSn",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "How will you involve those with a lived experience of homelessness and rough sleeping throughout the grant?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-you-involve-those-working-within-the-homelessness-and-rough-sleeping-workforce-throughout-the-grant"
+                }
+            ],
+            "path": "/how-will-you-involve-those-with-a-lived-experience-of-homelessness-and-rough-sleeping-throughout-the-grant-HgRUKn",
+            "section": "FabDefault",
+            "title": "How will you involve those with a lived experience of homelessness and rough sleeping throughout the grant?"
+        },
+        {
+            "components": [
+                {
+                    "name": "APcEQP",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "How will you involve those working within the homelessness and rough sleeping workforce throughout the grant?",
+                    "type": "MultilineTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-outcomes-are-you-expecting"
+                }
+            ],
+            "path": "/how-will-you-involve-those-working-within-the-homelessness-and-rough-sleeping-workforce-throughout-the-grant",
+            "section": "FabDefault",
+            "title": "How will you involve those working within the homelessness and rough sleeping workforce throughout the grant?"
         }
     ],
     "phaseBanner": {},

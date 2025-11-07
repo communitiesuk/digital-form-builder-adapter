@@ -175,6 +175,28 @@
                 ],
                 "name": "is holding org"
             }
+        },
+        {
+            "displayName": "Other org type",
+            "name": "OPlCOC",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is your organisation type?",
+                            "name": "FabDefault.org",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Other",
+                            "type": "Value",
+                            "value": "Other"
+                        }
+                    }
+                ],
+                "name": "Other org type"
+            }
         }
     ],
     "feeOptions": {
@@ -197,6 +219,10 @@
                 {
                     "text": "Limited company",
                     "value": "Limited company"
+                },
+                {
+                    "text": "Other",
+                    "value": "other"
                 }
             ],
             "name": "rCyihg",
@@ -231,19 +257,23 @@
         {
             "components": [
                 {
+                    "hint": "Give the official name registered with Companies House or Trading Standards. ",
                     "name": "GtoolQ",
-                    "options": {},
+                    "options": {
+                        "hideTitle": true
+                    },
                     "schema": {},
-                    "title": "Give the official name registered with Companies House or Trading Standards. ",
+                    "title": "What is the name of your organisation?",
                     "type": "TextField"
                 },
                 {
+                    "hint": "Give any alternative names that your organisation is known by. ",
                     "name": "JwFyrI",
                     "options": {
                         "required": false
                     },
                     "schema": {},
-                    "title": "Give any alternative names that your organisation is known by. ",
+                    "title": "Does your organisation have any other names?",
                     "type": "TextField"
                 }
             ],
@@ -314,7 +344,7 @@
             ],
             "next": [
                 {
-                    "path": "/what-are-your-insurance-details"
+                    "path": "/what-are-your-relevant-insurance-details"
                 }
             ],
             "path": "/what-is-your-vat-registration-number",
@@ -324,12 +354,12 @@
         {
             "components": [
                 {
-                    "hint": "Upload a copy of your current insurance certificate. The file must be a PDF.",
+                    "hint": "Upload a copy of relevant insurance documentation. For example, professional indemnity insurance. The file must be a PDF.",
                     "name": "zJJSsR",
                     "options": {
                         "dropzoneConfig": {
                             "acceptedFiles": ",application/pdf",
-                            "maxFiles": 1,
+                            "maxFiles": 3,
                             "maxFilesize": 10,
                             "parallelUploads": 1
                         },
@@ -337,7 +367,7 @@
                         "showNoScriptWarning": false
                     },
                     "schema": {},
-                    "title": "Upload your current insurance certificate.",
+                    "title": "Upload your current insurance documentation.",
                     "type": "ClientSideFileUploadField"
                 }
             ],
@@ -346,20 +376,20 @@
                     "path": "/what-is-your-organisations-website"
                 }
             ],
-            "path": "/what-are-your-insurance-details",
+            "path": "/what-are-your-relevant-insurance-details",
             "section": "FabDefault",
-            "title": "What are your insurance details?"
+            "title": "What are your relevant insurance details?"
         },
         {
             "components": [
                 {
-                    "name": "JiaoiU",
+                    "name": "UJPZaz",
                     "options": {
                         "hideTitle": true
                     },
                     "schema": {},
                     "title": "What is your organisation's website?",
-                    "type": "WebsiteField"
+                    "type": "TextField"
                 }
             ],
             "next": [
@@ -452,11 +482,14 @@
             "next": [
                 {
                     "condition": "FWnbji",
-                    "path": "/do-you-have-a-charity-number"
+                    "path": "/do-you-have-a-charity-commission-number"
                 },
                 {
                     "condition": "lLXsLv",
                     "path": "/do-you-have-a-company-registration-number"
+                },
+                {
+                    "path": "/is-there-a-parent-or-holding-organisation"
                 }
             ],
             "path": "/what-is-your-organisation-type",
@@ -471,34 +504,37 @@
                         "hideTitle": true
                     },
                     "schema": {},
-                    "title": "Do you have a charity number?",
-                    "type": "YesNoField"
+                    "title": "Do you have a charity commission number?",
+                    "type": "YesNoField",
+                    "values": {
+                        "type": "listRef"
+                    }
                 }
             ],
             "next": [
                 {
                     "condition": "QRiEjQ",
-                    "path": "/what-is-your-charity-number"
+                    "path": "/what-is-your-charity-commission-number"
                 },
                 {
                     "condition": "iSUhoL",
                     "path": "/what-are-the-names-of-your-trustees"
                 }
             ],
-            "path": "/do-you-have-a-charity-number",
+            "path": "/do-you-have-a-charity-commission-number",
             "section": "FabDefault",
-            "title": "Do you have a charity number?"
+            "title": "Do you have a charity commission number?"
         },
         {
             "components": [
                 {
-                    "name": "ZIIeJF",
+                    "name": "EXzwff",
                     "options": {
                         "hideTitle": true
                     },
                     "schema": {},
-                    "title": "What is your charity number?",
-                    "type": "NumberField"
+                    "title": "What is your charity commission number?",
+                    "type": "TextField"
                 }
             ],
             "next": [
@@ -506,9 +542,9 @@
                     "path": "/is-there-a-parent-or-holding-organisation"
                 }
             ],
-            "path": "/what-is-your-charity-number",
+            "path": "/what-is-your-charity-commission-number",
             "section": "FabDefault",
-            "title": "What is your charity number?"
+            "title": "What is your charity commission number?"
         },
         {
             "components": [
@@ -560,13 +596,13 @@
         {
             "components": [
                 {
-                    "name": "yzcfRk",
+                    "name": "JniYtl",
                     "options": {
                         "hideTitle": true
                     },
                     "schema": {},
                     "title": "What is your company registration number?",
-                    "type": "NumberField"
+                    "type": "TextField"
                 }
             ],
             "next": [
