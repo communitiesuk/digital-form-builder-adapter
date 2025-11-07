@@ -525,13 +525,13 @@
         {
             "components": [
                 {
-                    "name": "ZIIeJF",
+                    "name": "EXzwff",
                     "options": {
                         "hideTitle": true
                     },
                     "schema": {},
                     "title": "What is your charity number?",
-                    "type": "NumberField"
+                    "type": "TextField"
                 }
             ],
             "next": [
@@ -593,13 +593,13 @@
         {
             "components": [
                 {
-                    "name": "yzcfRk",
+                    "name": "JniYtl",
                     "options": {
                         "hideTitle": true
                     },
                     "schema": {},
                     "title": "What is your company registration number?",
-                    "type": "NumberField"
+                    "type": "TextField"
                 }
             ],
             "next": [
