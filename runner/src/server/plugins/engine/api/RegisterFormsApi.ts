@@ -183,29 +183,6 @@ export class RegisterFormsApi implements RegisterApi {
             return s3UploadService.handleUploadRequest(request, h, page.pageDef);
         };
 
-        const postHandler = async (
-            request: HapiRequest,
-            h: HapiResponseToolkit
-        ) => {
-            const {path, id} = request.params;
-            const {adapterCacheService} = request.services([]);
-            // Determine namespace - applicants use permanent, previews use preview
-            const namespace = getNamespaceFromRequest(request);
-            const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
-
-            if (model) {
-                const page = model.pages.find(
-                    (page) => page.path.replace(/^\//, "") === path.replace(/^\//, "")
-                );
-
-                if (page) {
-                    return page.makePostRouteHandler()(request, h);
-                }
-            }
-
-            throw Boom.notFound("No form of path found");
-        };
-
         server.route({
             method: "post",
             path: "/{id}/{path*}",
@@ -229,7 +206,25 @@ export class RegisterFormsApi implements RegisterApi {
                 },
                 pre: [{method: handleFiles}],
                 auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
-                handler: postHandler,
+                handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                    const {path, id} = request.params;
+                    const {adapterCacheService} = request.services([]);
+                    // Determine namespace - applicants use permanent, previews use preview
+                    const namespace = getNamespaceFromRequest(request);
+                    const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
+
+                    if (model) {
+                        const page = model.pages.find(
+                            (page) => page.path.replace(/^\//, "") === path.replace(/^\//, "")
+                        );
+
+                        if (page) {
+                            return page.makePostRouteHandler()(request, h);
+                        }
+                    }
+
+                    throw Boom.notFound("No form of path found");
+                }
             }
         });
 
