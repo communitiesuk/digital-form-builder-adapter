@@ -134,7 +134,7 @@ export class RegisterFormsApi implements RegisterApi {
             }
         });
 
-        const getOptions: any = {
+        server.route({
             method: "get",
             path: "/{id}/{path*}",
             options: {
@@ -147,6 +147,7 @@ export class RegisterFormsApi implements RegisterApi {
                         method: checkUserSession
                     }
                 ],
+                auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {path, id} = request.params;
@@ -165,15 +166,7 @@ export class RegisterFormsApi implements RegisterApi {
                 }
                 throw Boom.notFound("No form or page found");
             }
-        }
-
-        // TODO: Stop being naughty! Conditionally disabling auth for pre-prod envs is a temporary measure for getting
-        // FAB into production
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
-            getOptions.options.auth = jwtAuthStrategyName
-        }
-
-        server.route(getOptions);
+        });
 
         const {s3UploadService} = server.services([]);
 
