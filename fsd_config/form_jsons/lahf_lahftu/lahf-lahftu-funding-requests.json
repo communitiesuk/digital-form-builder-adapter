@@ -447,7 +447,7 @@
                         "hideTitle": true
                     },
                     "schema": {},
-                    "title": "Are you requesting funding to cover temporary accommodation costs?",
+                    "title": "Are you requesting funding to cover interim accommodation costs?",
                     "type": "YesNoField"
                 }
             ],
