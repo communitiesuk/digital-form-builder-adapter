@@ -206,7 +206,7 @@ export class RegisterFormsApi implements RegisterApi {
             throw Boom.notFound("No form of path found");
         };
 
-        let postConfig: any = {
+        server.route({
             method: "post",
             path: "/{id}/{path*}",
             options: {
@@ -228,13 +228,10 @@ export class RegisterFormsApi implements RegisterApi {
                     }
                 },
                 pre: [{method: handleFiles}],
+                auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false,
                 handler: postHandler,
             }
-        }
-        if (config.jwtAuthEnabled && config.jwtAuthEnabled === "true") {
-            postConfig.options.auth = jwtAuthStrategyName
-        }
-        server.route(postConfig);
+        });
 
     }
 
