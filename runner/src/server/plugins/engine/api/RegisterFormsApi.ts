@@ -1,7 +1,5 @@
 import {RegisterApi} from "./RegisterApi";
 import {HapiRequest, HapiResponseToolkit, HapiServer} from "../../../types";
-import {Options} from "../types/PluginOptions";
-import {FormPayload} from "../../../../../../digital-form-builder/runner/src/server/plugins/engine/types";
 // @ts-ignore
 import Boom from "boom";
 import {PluginUtil} from "../util/PluginUtil";
@@ -14,10 +12,10 @@ import {config} from "../../utils/AdapterConfigurationSchema";
 import {FormNamespace, getNamespaceFromRequest} from "../../../services/AdapterCacheService";
 
 export class RegisterFormsApi implements RegisterApi {
-
-    register(server: HapiServer, options: Options) {
+    register(server: HapiServer) {
         const {s3UploadService} = server.services([]);
 
+        // Middleware to prepopulate fields from query parameters
         const queryParamPreHandler = async (
             request: HapiRequest,
             h: HapiResponseToolkit
@@ -31,7 +29,6 @@ export class RegisterFormsApi implements RegisterApi {
             if (!model) {
                 throw Boom.notFound("No form found for id");
             }
-
             const prePopFields = model.fieldsForPrePopulation;
             if (
                 Object.keys(query).length === 0 ||
@@ -54,36 +51,28 @@ export class RegisterFormsApi implements RegisterApi {
             return h.continue;
         };
 
-        /**
-         * Middleware to check if the user session is still valid.
-         * In production environments, validates that a session callback exists.
-         * If the session is dropped, it will throw a client timeout error.
-         */
+        // Middleware to check if the user session is still valid
         const checkUserSession = async (
             request: HapiRequest,
             h: HapiResponseToolkit
         ) => {
             const {adapterCacheService} = request.services([]);
-
             // @ts-ignore
             const state = await adapterCacheService.getState(request);
-
             // Only enforce session validation in production environments
             const isProduction = config.copilotEnv === "production" || config.copilotEnv === "prod";
-
             // Don't enforce callback check for preview sessions (FAB previews, Form Designer)
             const formSessionId = request.query.form_session_identifier as string;
             const isPreview = formSessionId?.startsWith("preview");
-
             if (isProduction && !isPreview && !state.callback) {
                 // if you are here the session likely dropped
                 request.logger.error(["checkUserSession"], `Session expired ${request.yar.id}`);
                 throw Boom.clientTimeout("Session expired");
             }
-
             return h.continue;
         }
 
+        // Middleware to handle file uploads
         const handleFiles = async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {path, id} = request.params;
             const {adapterCacheService} = request.services([]);
@@ -101,7 +90,7 @@ export class RegisterFormsApi implements RegisterApi {
             method: "get",
             path: "/",
             options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                description: "Default route - redirects to a default form if configured",
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {adapterCacheService} = request.services([]);
@@ -125,15 +114,8 @@ export class RegisterFormsApi implements RegisterApi {
             method: "get",
             path: "/{id}",
             options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-                pre: [
-                    {
-                        method: queryParamPreHandler
-                    },
-                    {
-                        method: checkUserSession
-                    }
-                ]
+                description: "Form start page",
+                pre: [{method: queryParamPreHandler}, {method: checkUserSession}]
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
@@ -152,15 +134,8 @@ export class RegisterFormsApi implements RegisterApi {
             method: "get",
             path: "/{id}/{path*}",
             options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-                pre: [
-                    {
-                        method: queryParamPreHandler
-                    },
-                    {
-                        method: checkUserSession
-                    }
-                ],
+                description: "Form page",
+                pre: [{method: queryParamPreHandler}, {method: checkUserSession}],
                 auth: config.jwtAuthEnabled && config.jwtAuthEnabled === "true" ? jwtAuthStrategyName : false
             },
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
@@ -186,7 +161,7 @@ export class RegisterFormsApi implements RegisterApi {
             method: "post",
             path: "/{id}/{path*}",
             options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+                description: "Form page submission",
                 plugins: <PluginSpecificConfiguration>{
                     "hapi-rate-limit": {
                         userPathLimit: 10
@@ -226,8 +201,5 @@ export class RegisterFormsApi implements RegisterApi {
                 }
             }
         });
-
     }
-
-
 }
