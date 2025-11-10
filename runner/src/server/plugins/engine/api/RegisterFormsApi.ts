@@ -16,30 +16,7 @@ import {FormNamespace, getNamespaceFromRequest} from "../../../services/AdapterC
 export class RegisterFormsApi implements RegisterApi {
 
     register(server: HapiServer, options: Options) {
-
-        server.route({
-            method: "get",
-            path: "/",
-            options: {
-                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
-            },
-            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {adapterCacheService} = request.services([]);
-                // Default route - always use permanent namespace for the "components" form
-                const model = await adapterCacheService.getFormAdapterModel(
-                    "components", 
-                    request, 
-                    FormNamespace.Permanent
-                );
-                if (model) {
-                    return PluginUtil.getStartPageRedirect(request, h, "components", model);
-                }
-                if (config.serviceStartPage) {
-                    return h.redirect(config.serviceStartPage);
-                }
-                throw Boom.notFound("No default form found");
-            }
-        });
+        const {s3UploadService} = server.services([]);
 
         const queryParamPreHandler = async (
             request: HapiRequest,
@@ -107,6 +84,43 @@ export class RegisterFormsApi implements RegisterApi {
             return h.continue;
         }
 
+        const handleFiles = async (request: HapiRequest, h: HapiResponseToolkit) => {
+            const {path, id} = request.params;
+            const {adapterCacheService} = request.services([]);
+            // Determine namespace - applicants use permanent, previews use preview
+            const namespace = getNamespaceFromRequest(request);
+            const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
+            const page = model?.pages.find(
+                (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
+            );
+            // @ts-ignore
+            return s3UploadService.handleUploadRequest(request, h, page.pageDef);
+        };
+
+        server.route({
+            method: "get",
+            path: "/",
+            options: {
+                description: "See API-README.md file in the runner/src/server/plugins/engine/api",
+            },
+            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
+                const {adapterCacheService} = request.services([]);
+                // Default route - always use permanent namespace for the "components" form
+                const model = await adapterCacheService.getFormAdapterModel(
+                    "components",
+                    request,
+                    FormNamespace.Permanent
+                );
+                if (model) {
+                    return PluginUtil.getStartPageRedirect(request, h, "components", model);
+                }
+                if (config.serviceStartPage) {
+                    return h.redirect(config.serviceStartPage);
+                }
+                throw Boom.notFound("No default form found");
+            }
+        });
+
         server.route({
             method: "get",
             path: "/{id}",
@@ -167,21 +181,6 @@ export class RegisterFormsApi implements RegisterApi {
                 throw Boom.notFound("No form or page found");
             }
         });
-
-        const {s3UploadService} = server.services([]);
-
-        const handleFiles = async (request: HapiRequest, h: HapiResponseToolkit) => {
-            const {path, id} = request.params;
-            const {adapterCacheService} = request.services([]);
-            // Determine namespace - applicants use permanent, previews use preview
-            const namespace = getNamespaceFromRequest(request);
-            const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
-            const page = model?.pages.find(
-                (page) => PluginUtil.normalisePath(page.path) === PluginUtil.normalisePath(path)
-            );
-            // @ts-ignore
-            return s3UploadService.handleUploadRequest(request, h, page.pageDef);
-        };
 
         server.route({
             method: "post",
