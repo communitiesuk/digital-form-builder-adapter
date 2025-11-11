@@ -39,20 +39,18 @@ enum ADDITIONAL_IDENTIFIER {
 }
 
 export enum FormNamespace {
-    Permanent = 'permanent',
-    Preview = 'preview'
+    Draft = 'draft',
+    Published = 'published'
 }
 
 /**
  * Determines which namespace to use based on the request context.
- * If form_session_identifier starts with "preview", use preview namespace.
- * Otherwise, use permanent namespace.
+ * If 'preview=draft' is present in the query parameters, Draft namespace is used.
+ * Otherwise, Published namespace is used.
  */
 export function getNamespaceFromRequest(request: HapiRequest): FormNamespace {
-    const formSessionId = request.query.form_session_identifier as string;
-    return formSessionId?.startsWith('preview')
-        ? FormNamespace.Preview 
-        : FormNamespace.Permanent;
+    const previewParam = request.query.preview as string;
+    return previewParam === 'draft' ? FormNamespace.Draft : FormNamespace.Published;
 }
 
 const createRedisClient = (): Redis | null => {
@@ -155,9 +153,15 @@ export class AdapterCacheService extends CacheService {
     /**
      * Validates cached form against Pre-Award API.
      */
-    private async validateCachedForm(formId: string, cachedHash: string): Promise<boolean> {
+    private async validateCachedForm(
+        formId: string,
+        cachedHash: string,
+        namespace: FormNamespace = FormNamespace.Published
+    ): Promise<boolean> {
         try {
-            const currentHash = await this.apiService.getFormHash(formId);
+            const currentHash = namespace === FormNamespace.Draft
+                ? await this.apiService.getDraftFormHash(formId)
+                : await this.apiService.getPublishedFormHash(formId);
             return currentHash === cachedHash;
         } catch (error) {
             // If we can't validate, assume cache is valid
@@ -169,12 +173,22 @@ export class AdapterCacheService extends CacheService {
     /**
      * Fetches form from Pre-Award API and caches it.
      */
-    private async fetchAndCacheForm(formId: string): Promise<{ configuration: any; hash: string } | null> {
+    private async fetchAndCacheForm(
+        formId: string,
+        namespace: FormNamespace = FormNamespace.Published
+    ): Promise<{ configuration: any; hash: string } | null> {
         try {
-            const apiResponse = await this.apiService.getPublishedForm(formId);
+            let apiResponse, configuration;
+            if (namespace === FormNamespace.Draft) {
+                apiResponse = await this.apiService.getDraftForm(formId);
+                configuration = apiResponse?.draft_json;
+            } else {
+                apiResponse = await this.apiService.getPublishedForm(formId);
+                configuration = apiResponse?.published_json;
+            }
             if (!apiResponse) return null;
             const configToCache = {
-                configuration: apiResponse.published_json,
+                configuration: configuration,
                 hash: apiResponse.hash,
             }
             const formsCacheKey = `${FORMS_KEY_PREFIX}:${formId}`;
@@ -193,7 +207,7 @@ export class AdapterCacheService extends CacheService {
     async setFormConfiguration(
         formId: string,
         configuration: any,
-        namespace: FormNamespace = FormNamespace.Permanent
+        namespace: FormNamespace = FormNamespace.Published
     ): Promise<void> {
         if (!formId || !configuration) return;
         const hashValue = Crypto.createHash('sha256')
@@ -234,7 +248,7 @@ export class AdapterCacheService extends CacheService {
     async getFormAdapterModel(
         formId: string,
         request: HapiRequest,
-        namespace: FormNamespace = FormNamespace.Permanent
+        namespace: FormNamespace = FormNamespace.Published
     ) : Promise<AdapterFormModel> {
         const {translationLoaderService} = request.services([]);
         const translations = translationLoaderService.getTranslations();
@@ -252,10 +266,10 @@ export class AdapterCacheService extends CacheService {
             if (!cacheValidatedInSession) {
                 // Validate cached form once per session
                 this.logger.debug(`[FORM-CACHE] First access of form ${formId} in yar session ${request.yar.id}, validating cache`);
-                const isValid = await this.validateCachedForm(formId, configObj.hash);
+                const isValid = await this.validateCachedForm(formId, configObj.hash, namespace);
                 if (!isValid) {
                     this.logger.info(`[FORM-CACHE] Cache stale for form ${formId}, fetching fresh version`);
-                    const freshConfig = await this.fetchAndCacheForm(formId);
+                    const freshConfig = await this.fetchAndCacheForm(formId, namespace);
                     if (freshConfig) {
                         configObj = freshConfig;
                     }
@@ -268,7 +282,7 @@ export class AdapterCacheService extends CacheService {
         } else {
             // Cache miss - fetch from Pre-Award API
             this.logger.info(`[FORM-CACHE] Cache miss for form ${formId}, fetching from Pre-Award API`);
-            configObj = await this.fetchAndCacheForm(formId);
+            configObj = await this.fetchAndCacheForm(formId, namespace);
             if (!configObj) {
                 throw Boom.notFound(`Form '${formId}' not found`);
             }

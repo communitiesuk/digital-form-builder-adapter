@@ -9,7 +9,7 @@ import {
 import {PluginSpecificConfiguration} from "@hapi/hapi";
 import {jwtAuthStrategyName} from "../Auth";
 import {config} from "../../utils/AdapterConfigurationSchema";
-import {FormNamespace, getNamespaceFromRequest} from "../../../services/AdapterCacheService";
+import {getNamespaceFromRequest} from "../../../services/AdapterCacheService";
 
 export class RegisterFormsApi implements RegisterApi {
     register(server: HapiServer) {
@@ -23,7 +23,7 @@ export class RegisterFormsApi implements RegisterApi {
             const {query} = request;
             const {id} = request.params;
             const {adapterCacheService} = request.services([]);
-            // Determine namespace - applicants vs preview users
+            // Determine namespace - draft or published
             const namespace = getNamespaceFromRequest(request);
             const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
             if (!model) {
@@ -76,7 +76,7 @@ export class RegisterFormsApi implements RegisterApi {
         const handleFiles = async (request: HapiRequest, h: HapiResponseToolkit) => {
             const {path, id} = request.params;
             const {adapterCacheService} = request.services([]);
-            // Determine namespace - applicants use permanent, previews use preview
+            // Determine namespace - draft or published
             const namespace = getNamespaceFromRequest(request);
             const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
             const page = model?.pages.find(
@@ -88,30 +88,6 @@ export class RegisterFormsApi implements RegisterApi {
 
         server.route({
             method: "get",
-            path: "/",
-            options: {
-                description: "Default route - redirects to a default form if configured",
-            },
-            handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
-                const {adapterCacheService} = request.services([]);
-                // Default route - always use permanent namespace for the "components" form
-                const model = await adapterCacheService.getFormAdapterModel(
-                    "components",
-                    request,
-                    FormNamespace.Permanent
-                );
-                if (model) {
-                    return PluginUtil.getStartPageRedirect(request, h, "components", model);
-                }
-                if (config.serviceStartPage) {
-                    return h.redirect(config.serviceStartPage);
-                }
-                throw Boom.notFound("No default form found");
-            }
-        });
-
-        server.route({
-            method: "get",
             path: "/{id}",
             options: {
                 description: "Form start page",
@@ -120,7 +96,7 @@ export class RegisterFormsApi implements RegisterApi {
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {id} = request.params;
                 const {adapterCacheService} = request.services([]);
-                // Determine namespace - applicants use permanent, previews use preview
+                // Determine namespace - draft or published
                 const namespace = getNamespaceFromRequest(request);
                 const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
                 if (model) {
@@ -141,7 +117,7 @@ export class RegisterFormsApi implements RegisterApi {
             handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                 const {path, id} = request.params;
                 const {adapterCacheService} = request.services([]);
-                // Determine namespace - applicants use permanent, previews use preview
+                // Determine namespace - draft or published
                 const namespace = getNamespaceFromRequest(request);
                 const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
                 const page = model?.pages.find(
@@ -183,7 +159,7 @@ export class RegisterFormsApi implements RegisterApi {
                 handler: async (request: HapiRequest, h: HapiResponseToolkit) => {
                     const {path, id} = request.params;
                     const {adapterCacheService} = request.services([]);
-                    // Determine namespace - applicants use permanent, previews use preview
+                    // Determine namespace - draft or published
                     const namespace = getNamespaceFromRequest(request);
                     const model = await adapterCacheService.getFormAdapterModel(id, request, namespace);
 
