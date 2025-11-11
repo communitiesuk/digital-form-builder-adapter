@@ -4,7 +4,6 @@ import config from "../../config";
 import { ServerRoute } from "@hapi/hapi";
 import { HapiRequest } from "../../../../digital-form-builder/designer/server/types";
 import newFormJson from "../../../../digital-form-builder/designer/new-form.json";
-import {publish} from "../../lib/publish";
 
 // Extend the original registerNewFormWithRunner with Pre-Award API support
 export const registerNewFormWithRunner: ServerRoute = {
@@ -64,7 +63,6 @@ export const registerNewFormWithRunner: ServerRoute = {
           form_json: newFormJson
         };
         await preAwardApiClient.createOrUpdateForm(formData);
-        await publish(trimmedUrlPath, newFormJson, request);
         return h.response({ urlPath: trimmedUrlPath }).type("application/json").code(200);
       } catch (error) {
         request.logger.error("Error creating/updating form:", error);

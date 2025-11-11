@@ -27,6 +27,10 @@ export const redirectTo = (request: HapiRequest, h: HapiResponseToolkit, targetU
         // @ts-ignore
         params.form_session_identifier = request.query.form_session_identifier;
     }
+    if (request.query.preview) {
+        // @ts-ignore
+        params.preview = request.query.preview;
+    }
     const url = redirectUrl(request, targetUrl, params);
     return h.redirect(url);
 }
