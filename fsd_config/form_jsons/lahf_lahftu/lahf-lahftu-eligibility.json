@@ -1,246 +1,256 @@
 {
-    "metadata": {},
-    "startPage": "/before-you-start",
-    "pages": [
+    "conditions": [
         {
-            "title": "Before you start",
-            "path": "/before-you-start",
-            "components": [
-                {
-                    "name": "iamGaN",
-                    "options": {},
-                    "type": "Para",
-                    "content": "We need to ask some questions to check you can apply for this funding.\n\nWe'll check that:\n<ul>\n<li>the household and property match have been confirmed by the Home Office</li>\n<li>an occupational therapy assessment has been completed - we will ask for details of your report in the application form</li>\n<li>the property has been assessed and is suitable for the identified household</li>\n<li>the household has accepted the offer</li>\n</ul>"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/has-the-household-and-property-match-been-confirmed-by-the-home-office"
-                }
-            ],
-            "section": "FabDefault"
-        },
-        {
-            "path": "/has-the-household-and-property-match-been-confirmed-by-the-home-office",
-            "title": "Has the household and property match been confirmed by the Home Office?",
-            "components": [
-                {
-                    "name": "TbMjem",
-                    "options": {},
-                    "type": "YesNoField",
-                    "title": "Has the household and property match been confirmed by the Home Office"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/have-one-or-more-members-of-the-household-been-assessed-by-an-occupational-therapist",
-                    "condition": "ZmSPHU"
-                },
-                {
-                    "path": "/you-cannot-apply-for-this-funding",
-                    "condition": "bIzFtb"
-                }
-            ],
-            "section": "FabDefault"
-        },
-        {
-            "title": "Have one or more members of the household been assessed by an occupational therapist?",
-            "path": "/have-one-or-more-members-of-the-household-been-assessed-by-an-occupational-therapist",
-            "components": [
-                {
-                    "name": "ZoFGsb",
-                    "options": {},
-                    "type": "YesNoField",
-                    "title": "Have one or more members of the household been assessed by an occupational therapist",
-                    "values": {
-                        "type": "listRef"
+            "displayName": "If household assessed",
+            "name": "fXaYvh",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Have one or more members of the household been assessed by an occupational therapist?",
+                            "name": "FabDefault.ZoFGsb",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
                     }
-                }
-            ],
-            "section": "FabDefault",
-            "next": [
-                {
-                    "path": "/do-you-have-an-occupational-therapy-report",
-                    "condition": "fXaYvh"
-                },
-                {
-                    "path": "/you-cannot-apply-for-this-funding-IEsffD",
-                    "condition": "FLkFBg"
-                }
-            ]
+                ],
+                "name": "If household assessed"
+            }
         },
         {
-            "path": "/do-you-have-an-occupational-therapy-report",
-            "title": "Do you have an occupational therapy report?",
-            "components": [
-                {
-                    "name": "ACMmZR",
-                    "options": {},
-                    "type": "RadiosField",
-                    "title": "Do you have an occupational therapy report",
-                    "list": "DMysbD"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/you-cannot-apply-for-this-funding-DuoDDS",
-                    "condition": "IlEYVC"
-                },
-                {
-                    "path": "/you-cannot-apply-for-this-funding-EwzZwQ",
-                    "condition": "HthBMj"
-                },
-                {
-                    "path": "/has-the-property-been-assessed-and-selected-as-suitable-for-the-identified-household-subject-to-any-required-adaptations-being-made",
-                    "condition": "MIzATk"
-                }
-            ],
-            "section": "FabDefault"
+            "displayName": "If household not assessed",
+            "name": "FLkFBg",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Have one or more members of the household been assessed by an occupational therapist?",
+                            "name": "FabDefault.ZoFGsb",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "If household not assessed"
+            }
         },
         {
-            "path": "/has-the-property-been-assessed-and-selected-as-suitable-for-the-identified-household-subject-to-any-required-adaptations-being-made",
-            "title": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?",
-            "components": [
-                {
-                    "name": "rGIvUB",
-                    "options": {},
-                    "type": "YesNoField",
-                    "title": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/has-the-household-accepted-the-offer",
-                    "condition": "hCJNiL"
-                },
-                {
-                    "path": "/you-cannot-apply-for-this-funding-HKNfTd",
-                    "condition": "klDeaN"
-                }
-            ],
-            "section": "FabDefault"
+            "displayName": "If no report available",
+            "name": "IlEYVC",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Do you have an occupational therapy report?",
+                            "name": "FabDefault.ACMmZR",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "No",
+                            "type": "Value",
+                            "value": "No"
+                        }
+                    }
+                ],
+                "name": "If no report available"
+            }
         },
         {
-            "path": "/has-the-household-accepted-the-offer",
-            "title": "Has the household accepted the offer?",
-            "components": [
-                {
-                    "name": "ddksXF",
-                    "options": {},
-                    "type": "YesNoField",
-                    "title": "Has the household accepted the offer"
-                }
-            ],
-            "next": [
-                {
-                    "path": "/check-your-answers",
-                    "condition": "rxIoMN"
-                },
-                {
-                    "path": "/you-cannot-apply-for-this-funding-tkocqm",
-                    "condition": "ECpMDI"
-                }
-            ],
-            "section": "FabDefault"
+            "displayName": "If report is available",
+            "name": "MIzATk",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Do you have an occupational therapy report?",
+                            "name": "FabDefault.ACMmZR",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Yes",
+                            "type": "Value",
+                            "value": "Yes"
+                        }
+                    }
+                ],
+                "name": "If report is available"
+            }
         },
         {
-            "path": "/check-your-answers",
-            "title": "Check your answers",
-            "components": [],
-            "next": [],
-            "controller": "./pages/confirm.js",
-            "section": "FabDefault"
+            "displayName": "If report is pending",
+            "name": "HthBMj",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Do you have an occupational therapy report?",
+                            "name": "FabDefault.ACMmZR",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "No - we are awaiting receipt of the report",
+                            "type": "Value",
+                            "value": "No - we are awaiting receipt of the report"
+                        }
+                    }
+                ],
+                "name": "If report is pending"
+            }
         },
         {
-            "path": "/you-cannot-apply-for-this-funding",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "IMDqts",
-                    "options": {},
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nThe household and property must have been confirmed by the Home Office to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>"
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
+            "displayName": "Property has been assessed",
+            "name": "hCJNiL",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?",
+                            "name": "FabDefault.rGIvUB",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "Property has been assessed"
+            }
         },
         {
-            "path": "/you-cannot-apply-for-this-funding-IEsffD",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "SHtBQo",
-                    "options": {},
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nOne or more members of the household must have completed an occupational therapy assessment to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>"
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
+            "displayName": "Property has not been assessed",
+            "name": "klDeaN",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?",
+                            "name": "FabDefault.rGIvUB",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "Property has not been assessed"
+            }
         },
         {
-            "path": "/you-cannot-apply-for-this-funding-DuoDDS",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "TuYUeH",
-                    "options": {},
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nYou must have an occupational therapy report to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>"
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
+            "displayName": "Household accepted offer",
+            "name": "rxIoMN",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Has the household accepted the offer?",
+                            "name": "FabDefault.ddksXF",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "Household accepted offer"
+            }
         },
         {
-            "path": "/you-cannot-apply-for-this-funding-HKNfTd",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "BwHwPn",
-                    "options": {},
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nThe property must have been assessed and selected as suitable for the identified household to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>"
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
+            "displayName": "Household has not accepted offer",
+            "name": "ECpMDI",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Has the household accepted the offer?",
+                            "name": "FabDefault.ddksXF",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "Household has not accepted offer"
+            }
         },
         {
-            "path": "/you-cannot-apply-for-this-funding-tkocqm",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "TqgROE",
-                    "options": {},
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nThe household must have accepted the offer to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>"
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
+            "displayName": "If household confirmed",
+            "name": "TEwXEZ",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Has the household and property match been confirmed",
+                            "name": "FabDefault.TbMjem",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "If household confirmed"
+            }
         },
         {
-            "path": "/you-cannot-apply-for-this-funding-EwzZwQ",
-            "title": "You cannot apply for this funding",
-            "components": [
-                {
-                    "name": "UqOmaF",
-                    "options": {},
-                    "type": "Para",
-                    "content": "<p class=\"govuk-body\">To discuss the case in principle, email the Local Authority Housing Fund Top-up team:\n<a href=\"mailto:LAHFResettlementTopUps@communities.gov.uk\" class=\"govuk-link govuk-link--no-visited-state\">LAHFResettlementTopUps@communities.gov.uk</a>.</p>"
-                }
-            ],
-            "next": [],
-            "section": "FabDefault"
+            "displayName": "If household is not confirmed",
+            "name": "wFEQug",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Has the household and property match been confirmed",
+                            "name": "FabDefault.TbMjem",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "If household is not confirmed"
+            }
         }
     ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "fees": [],
     "lists": [
         {
-            "title": "Do you have an occupational therapy report?",
-            "name": "DMysbD",
-            "type": "string",
             "items": [
                 {
                     "text": "Yes",
@@ -254,264 +264,276 @@
                     "text": "No - we are awaiting receipt of the report",
                     "value": "No - we are awaiting receipt of the report"
                 }
-            ]
+            ],
+            "name": "DMysbD",
+            "title": "Do you have an occupational therapy report?",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "We need to ask some questions to check you can apply for this funding.\n\nWe'll check that:\n<ul>\n<li>the household and property match have been confirmed</li>\n<li>an occupational therapy assessment has been completed - we will ask for details of your report in the application form</li>\n<li>the property has been assessed and is suitable for the identified household</li>\n<li>the household has accepted the offer</li>\n</ul>",
+                    "name": "iamGaN",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/has-the-household-and-property-match-been-confirmed"
+                }
+            ],
+            "path": "/before-you-start",
+            "section": "FabDefault",
+            "title": "Before you start"
+        },
+        {
+            "components": [
+                {
+                    "hint": "This should be confirmed by the Home Office. However, it can be agreed locally if the household is homeless as a result of their transitional accommodation ending.",
+                    "name": "TbMjem",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Has the household and property match been confirmed",
+                    "type": "YesNoField",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "condition": "wFEQug",
+                    "path": "/you-cannot-apply-for-this-funding"
+                },
+                {
+                    "condition": "TEwXEZ",
+                    "path": "/have-one-or-more-members-of-the-household-been-assessed-by-an-occupational-therapist"
+                }
+            ],
+            "path": "/has-the-household-and-property-match-been-confirmed",
+            "section": "FabDefault",
+            "title": "Has the household and property match been confirmed?"
+        },
+        {
+            "components": [
+                {
+                    "name": "ZoFGsb",
+                    "options": {},
+                    "schema": {},
+                    "title": "Have one or more members of the household been assessed by an occupational therapist",
+                    "type": "YesNoField",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "condition": "fXaYvh",
+                    "path": "/do-you-have-an-occupational-therapy-report"
+                },
+                {
+                    "condition": "FLkFBg",
+                    "path": "/you-cannot-apply-for-this-funding-IEsffD"
+                }
+            ],
+            "path": "/have-one-or-more-members-of-the-household-been-assessed-by-an-occupational-therapist",
+            "section": "FabDefault",
+            "title": "Have one or more members of the household been assessed by an occupational therapist?"
+        },
+        {
+            "components": [
+                {
+                    "list": "DMysbD",
+                    "name": "ACMmZR",
+                    "options": {},
+                    "schema": {},
+                    "title": "Do you have an occupational therapy report",
+                    "type": "RadiosField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "IlEYVC",
+                    "path": "/you-cannot-apply-for-this-funding-DuoDDS"
+                },
+                {
+                    "condition": "HthBMj",
+                    "path": "/you-cannot-apply-for-this-funding-EwzZwQ"
+                },
+                {
+                    "condition": "MIzATk",
+                    "path": "/has-the-property-been-assessed-and-selected-as-suitable-for-the-identified-household-subject-to-any-required-adaptations-being-made"
+                }
+            ],
+            "path": "/do-you-have-an-occupational-therapy-report",
+            "section": "FabDefault",
+            "title": "Do you have an occupational therapy report?"
+        },
+        {
+            "components": [
+                {
+                    "name": "rGIvUB",
+                    "options": {},
+                    "schema": {},
+                    "title": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made",
+                    "type": "YesNoField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "hCJNiL",
+                    "path": "/has-the-household-accepted-the-offer"
+                },
+                {
+                    "condition": "klDeaN",
+                    "path": "/you-cannot-apply-for-this-funding-HKNfTd"
+                }
+            ],
+            "path": "/has-the-property-been-assessed-and-selected-as-suitable-for-the-identified-household-subject-to-any-required-adaptations-being-made",
+            "section": "FabDefault",
+            "title": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?"
+        },
+        {
+            "components": [
+                {
+                    "name": "ddksXF",
+                    "options": {},
+                    "schema": {},
+                    "title": "Has the household accepted the offer",
+                    "type": "YesNoField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "rxIoMN",
+                    "path": "/check-your-answers"
+                },
+                {
+                    "condition": "ECpMDI",
+                    "path": "/you-cannot-apply-for-this-funding-tkocqm"
+                }
+            ],
+            "path": "/has-the-household-accepted-the-offer",
+            "section": "FabDefault",
+            "title": "Has the household accepted the offer?"
+        },
+        {
+            "components": [],
+            "controller": "./pages/confirm.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nThe household and property must have been confirmed to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>",
+                    "name": "IMDqts",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [],
+            "path": "/you-cannot-apply-for-this-funding",
+            "section": "FabDefault",
+            "title": "You cannot apply for this funding"
+        },
+        {
+            "components": [
+                {
+                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nOne or more members of the household must have completed an occupational therapy assessment to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>",
+                    "name": "SHtBQo",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [],
+            "path": "/you-cannot-apply-for-this-funding-IEsffD",
+            "section": "FabDefault",
+            "title": "You cannot apply for this funding"
+        },
+        {
+            "components": [
+                {
+                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nYou must have an occupational therapy report to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>",
+                    "name": "TuYUeH",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [],
+            "path": "/you-cannot-apply-for-this-funding-DuoDDS",
+            "section": "FabDefault",
+            "title": "You cannot apply for this funding"
+        },
+        {
+            "components": [
+                {
+                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nThe property must have been assessed and selected as suitable for the identified household to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>",
+                    "name": "BwHwPn",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [],
+            "path": "/you-cannot-apply-for-this-funding-HKNfTd",
+            "section": "FabDefault",
+            "title": "You cannot apply for this funding"
+        },
+        {
+            "components": [
+                {
+                    "content": "<p class=\"govuk-body\">Based on your answer, you're not eligible to apply for funding to deliver adapted and accessible homes.\n<br><br>\nThe household must have accepted the offer to apply for this funding.<br><br>\nCheck who can apply in the <a href=\"https://apply.access-funding.uat.communities.gov.uk/assets/documents/lahf/LAHF-Top-Ups-Fund-Guidance.pdf\" target=\"_blank\" class=\"govuk-link\">Local Authority Housing Fund top-up guidance (opens in new tab)</a>.</p>",
+                    "name": "TqgROE",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [],
+            "path": "/you-cannot-apply-for-this-funding-tkocqm",
+            "section": "FabDefault",
+            "title": "You cannot apply for this funding"
+        },
+        {
+            "components": [
+                {
+                    "content": "<p class=\"govuk-body\">To discuss the case in principle, email the Local Authority Housing Fund Top-up team:\n<a href=\"mailto:LAHFResettlementTopUps@communities.gov.uk\" class=\"govuk-link govuk-link--no-visited-state\">LAHFResettlementTopUps@communities.gov.uk</a>.</p>",
+                    "name": "UqOmaF",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [],
+            "path": "/you-cannot-apply-for-this-funding-EwzZwQ",
+            "section": "FabDefault",
+            "title": "You cannot apply for this funding"
         }
     ],
     "sections": [
         {
+            "hideTitle": true,
             "name": "FabDefault",
-            "title": "Default Section",
-            "hideTitle": true
+            "title": "Default Section"
         }
     ],
-    "conditions": [
-        {
-            "displayName": "If not confirmed by HO",
-            "name": "bIzFtb",
-            "value": {
-                "name": "If not confirmed by HO",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.TbMjem",
-                            "type": "YesNoField",
-                            "display": "Has the household and property match been confirmed by the Home Office?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "If confirmed by HO",
-            "name": "ZmSPHU",
-            "value": {
-                "name": "If confirmed by HO",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.TbMjem",
-                            "type": "YesNoField",
-                            "display": "Has the household and property match been confirmed by the Home Office?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "If household assessed",
-            "name": "fXaYvh",
-            "value": {
-                "name": "If household assessed",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.ZoFGsb",
-                            "type": "YesNoField",
-                            "display": "Have one or more members of the household been assessed by an occupational therapist?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "If household not assessed",
-            "name": "FLkFBg",
-            "value": {
-                "name": "If household not assessed",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.ZoFGsb",
-                            "type": "YesNoField",
-                            "display": "Have one or more members of the household been assessed by an occupational therapist?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "If no report available",
-            "name": "IlEYVC",
-            "value": {
-                "name": "If no report available",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.ACMmZR",
-                            "type": "RadiosField",
-                            "display": "Do you have an occupational therapy report?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "No",
-                            "display": "No"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "If report is available",
-            "name": "MIzATk",
-            "value": {
-                "name": "If report is available",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.ACMmZR",
-                            "type": "RadiosField",
-                            "display": "Do you have an occupational therapy report?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "Yes",
-                            "display": "Yes"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "If report is pending",
-            "name": "HthBMj",
-            "value": {
-                "name": "If report is pending",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.ACMmZR",
-                            "type": "RadiosField",
-                            "display": "Do you have an occupational therapy report?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "No - we are awaiting receipt of the report",
-                            "display": "No - we are awaiting receipt of the report"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Property has been assessed",
-            "name": "hCJNiL",
-            "value": {
-                "name": "Property has been assessed",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.rGIvUB",
-                            "type": "YesNoField",
-                            "display": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Property has not been assessed",
-            "name": "klDeaN",
-            "value": {
-                "name": "Property has not been assessed",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.rGIvUB",
-                            "type": "YesNoField",
-                            "display": "Has the property been assessed and selected as suitable for the identified household subject to any required adaptations being made?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Household accepted offer",
-            "name": "rxIoMN",
-            "value": {
-                "name": "Household accepted offer",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.ddksXF",
-                            "type": "YesNoField",
-                            "display": "Has the household accepted the offer?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "Household has not accepted offer",
-            "name": "ECpMDI",
-            "value": {
-                "name": "Household has not accepted offer",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.ddksXF",
-                            "type": "YesNoField",
-                            "display": "Has the household accepted the offer?"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        }
-    ],
-    "fees": [],
-    "outputs": [],
-    "version": 2,
     "skipSummary": true,
-    "feeOptions": {},
-    "markAsComplete": false
+    "startPage": "/before-you-start",
+    "version": 2
 }
