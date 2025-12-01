@@ -1,0 +1,12 @@
+.git
+.gitmodules
+**/node_modules
+**/.next
+**/dist
+**/build
+**/coverage
+**/.DS_Store
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.pnp.*
