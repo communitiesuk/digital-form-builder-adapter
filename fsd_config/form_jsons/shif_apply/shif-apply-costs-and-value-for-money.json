@@ -1,106 +1,158 @@
 {
+    "conditions": [
+        {
+            "displayName": "If seeking funding for total project cost",
+            "name": "mVdaMq",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you seeking funding to cover the total cost of the project",
+                            "name": "FabDefault.BwHiiN",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "If seeking funding for total project cost"
+            }
+        },
+        {
+            "displayName": "If not seeking funding for total project cost",
+            "name": "KyoZQz",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Are you seeking funding to cover the total cost of the project",
+                            "name": "FabDefault.BwHiiN",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "If not seeking funding for total project cost"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "fees": [],
+    "lists": [],
+    "markAsComplete": false,
     "metadata": {},
-    "startPage": "/what-we-need-to-know",
+    "outputs": [],
     "pages": [
         {
-            "title": "What we need to know",
-            "path": "/what-we-need-to-know",
             "components": [
                 {
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>whether you are seeking funding to cover the total cost of the project and, if not:</li>\n<ul>\n<li>how much funding you're seeking</li>\n<li>the total cost of your project </li>\n<li>how you will fund the outstanding costs</li>\n</ul>\n<li>how much funding you are seeking for your project</li>\n<li>your project budget and assumptions</li>\n<li>your project budget with a breakdown of the key costs of your project</li>\n<li>how your project will deliver value for money</li>\n</ul>",
                     "name": "CacuEn",
                     "options": {},
-                    "type": "Para",
-                    "content": "In this section, we'll ask about:\n<ul>\n<li>whether you are seeking funding to cover the total cost of the project and, if not:</li>\n<ul>\n<li>how much funding you're seeking</li>\n<li>the total cost of your project </li>\n<li>how you will fund the outstanding costs</li>\n</ul>\n<li>how much funding you are seeking for your project</li>\n<li>your project budget and assumptions</li>\n<li>your project budget with a breakdown of the key costs of your project</li>\n<li>how your project will deliver value for money</li>\n</ul>",
-                    "schema": {}
+                    "schema": {},
+                    "type": "Para"
                 }
             ],
+            "controller": "./pages/start.js",
             "next": [
                 {
                     "path": "/are-you-seeking-funding-to-cover-the-total-cost-of-the-project"
                 }
             ],
+            "path": "/what-we-need-to-know",
             "section": "FabDefault",
-            "controller": "./pages/start.js"
+            "title": "What we need to know"
         },
         {
-            "path": "/are-you-seeking-funding-to-cover-the-total-cost-of-the-project",
-            "title": "Are you seeking funding to cover the total cost of the project?",
             "components": [
                 {
                     "name": "BwHiiN",
                     "options": {
                         "hideTitle": false
                     },
-                    "type": "YesNoField",
+                    "schema": {},
                     "title": "Are you seeking funding to cover the total cost of the project",
-                    "schema": {}
+                    "type": "YesNoField"
                 }
             ],
             "next": [
                 {
-                    "path": "/how-much-funding-are-you-seeking-and-what-is-the-total-cost-of-your-project",
-                    "condition": "KyoZQz"
+                    "condition": "KyoZQz",
+                    "path": "/how-much-funding-are-you-seeking-and-what-is-the-total-cost-of-your-project"
                 },
                 {
-                    "path": "/how-much-funding-are-you-seeking-for-your-project",
-                    "condition": "mVdaMq"
+                    "condition": "mVdaMq",
+                    "path": "/how-much-funding-are-you-seeking-for-your-project"
                 }
             ],
-            "section": "FabDefault"
+            "path": "/are-you-seeking-funding-to-cover-the-total-cost-of-the-project",
+            "section": "FabDefault",
+            "title": "Are you seeking funding to cover the total cost of the project?"
         },
         {
-            "title": "How much funding are you seeking and what is the total cost of your project?",
-            "path": "/how-much-funding-are-you-seeking-and-what-is-the-total-cost-of-your-project",
             "components": [
                 {
+                    "content": "This is the total amount of funding you are applying for from the Social Housing Innovation Fund. Include any non-recoverable VAT within your project total cost.",
                     "name": "mnUzGp",
                     "options": {},
-                    "type": "Para",
-                    "content": "This is the total amount of funding you are applying for from the Social Housing Innovation Fund. Include any non-recoverable VAT within your project total cost.",
-                    "schema": {}
+                    "schema": {},
+                    "type": "Para"
                 },
                 {
                     "name": "UoneMB",
                     "options": {
                         "prefix": "\u00a3"
                     },
-                    "type": "NumberField",
-                    "title": "Total funding requested",
                     "schema": {
                         "min": 1
-                    }
+                    },
+                    "title": "Total funding requested",
+                    "type": "NumberField"
                 },
                 {
                     "name": "vltUZa",
                     "options": {
                         "prefix": "\u00a3"
                     },
-                    "type": "NumberField",
-                    "title": "Total cost of project",
                     "schema": {
                         "min": 1
-                    }
+                    },
+                    "title": "Total cost of project",
+                    "type": "NumberField"
                 }
             ],
-            "section": "FabDefault",
             "next": [
                 {
                     "path": "/how-will-you-fund-the-outstanding-costs-of-the-project"
                 }
-            ]
+            ],
+            "path": "/how-much-funding-are-you-seeking-and-what-is-the-total-cost-of-your-project",
+            "section": "FabDefault",
+            "title": "How much funding are you seeking and what is the total cost of your project?"
         },
         {
-            "path": "/how-will-you-fund-the-outstanding-costs-of-the-project",
-            "title": "How will you fund the outstanding costs of the project?",
             "components": [
                 {
                     "name": "LBPcsu",
                     "options": {
                         "maxWords": "250"
                     },
-                    "type": "FreeTextField",
-                    "title": "How will you fund the outstanding costs of the project?",
-                    "schema": {}
+                    "schema": {},
+                    "title": "How will you fund the outstanding costs of the project",
+                    "type": "FreeTextField"
                 }
             ],
             "next": [
@@ -108,49 +160,50 @@
                     "path": "/describe-your-project-budget-and-assumptions"
                 }
             ],
-            "section": "FabDefault"
+            "path": "/how-will-you-fund-the-outstanding-costs-of-the-project",
+            "section": "FabDefault",
+            "title": "How will you fund the outstanding costs of the project?"
         },
         {
-            "path": "/how-much-funding-are-you-seeking-for-your-project",
-            "title": "How much funding are you seeking for your project?",
             "components": [
                 {
+                    "content": "This is the total amount of funding you are applying for from the Social Housing Innovation Fund.<br><br> The indicative range of funding per project will be \u00a360,000 to \u00a3120,000, with the latter being the maximum amount awarded. Bids under \u00a360,000 will still be considered.<br><br>Include any non-recoverable VAT within your project total cost. ",
                     "name": "zVAwrq",
                     "options": {},
-                    "type": "Para",
-                    "content": "This is the total amount of funding you are applying for from the Social Housing Innovation Fund.<br><br> The indicative range of funding per project will be \u00a360,000 to \u00a3100,000, with the latter being the maximum amount awarded. Bids under \u00a360,000 will still be considered.<br><br>Include any non-recoverable VAT within your project total cost. ",
-                    "schema": {}
+                    "schema": {},
+                    "type": "Para"
                 },
                 {
                     "name": "OdMILX",
                     "options": {
-                        "prefix": "\u00a3",
-                        "hideTitle": true
+                        "hideTitle": true,
+                        "prefix": "\u00a3"
                     },
-                    "type": "NumberField",
-                    "title": "How much funding are you seeking for your project",
                     "schema": {
-                        "min": 1,
-                        "max": 100000
-                    }
+                        "max": 120000,
+                        "min": 1
+                    },
+                    "title": "How much funding are you seeking for your project",
+                    "type": "NumberField"
                 },
                 {
-                    "name": "vatPara",
-                    "type": "Para",
                     "content": "Does this include non-recoverable VAT costs?",
-                    "schema": {}
+                    "name": "vatPara",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
                 },
                 {
                     "name": "eeNMwb",
                     "options": {
                         "hideTitle": true
                     },
+                    "schema": {},
+                    "title": "Does this include non-recoverable VAT costs",
                     "type": "YesNoField",
-                    "title": "Does this include non-recoverable VAT costs?",
                     "values": {
                         "type": "listRef"
-                    },
-                    "schema": {}
+                    }
                 }
             ],
             "next": [
@@ -158,28 +211,28 @@
                     "path": "/describe-your-project-budget-and-assumptions"
                 }
             ],
-            "section": "FabDefault"
+            "path": "/how-much-funding-are-you-seeking-for-your-project",
+            "section": "FabDefault",
+            "title": "How much funding are you seeking for your project?"
         },
         {
-            "path": "/describe-your-project-budget-and-assumptions",
-            "title": "Describe your project budget and assumptions",
             "components": [
                 {
+                    "content": "This should include:\n<ul>\n<li>the key costs for your project</li>\n<li>your assumptions</li>\n<li>how you have assessed budget lines of expenditure</li>\n</ul>\n<p>\nFor example, if you are setting out staffing costs, provide a breakdown of each staff member and their role. If you are setting out supply costs, set out how you have estimated these costs.</p>",
                     "name": "bZnjQM",
                     "options": {},
-                    "type": "Para",
-                    "content": "This should include:\n<ul>\n<li>the key costs for your project</li>\n<li>your assumptions</li>\n<li>how you have assessed budget lines of expenditure</li>\n</ul>\n<p>\nFor example, if you are setting out staffing costs, provide a breakdown of each staff member and their role. If you are setting out supply costs, set out how you have estimated these costs.</p>",
-                    "schema": {}
+                    "schema": {},
+                    "type": "Para"
                 },
                 {
                     "name": "bKXFmG",
                     "options": {
-                        "maxWords": "300",
-                        "hideTitle": true
+                        "hideTitle": true,
+                        "maxWords": "300"
                     },
-                    "type": "FreeTextField",
+                    "schema": {},
                     "title": "Describe your project budget and assumptions",
-                    "schema": {}
+                    "type": "FreeTextField"
                 }
             ],
             "next": [
@@ -187,36 +240,36 @@
                     "path": "/upload-your-project-budget-with-a-breakdown-of-the-key-costs-of-your-project"
                 }
             ],
-            "section": "FabDefault"
+            "path": "/describe-your-project-budget-and-assumptions",
+            "section": "FabDefault",
+            "title": "Describe your project budget and assumptions"
         },
         {
-            "path": "/upload-your-project-budget-with-a-breakdown-of-the-key-costs-of-your-project",
-            "title": "Upload your project budget with a breakdown of the key costs of your project",
             "components": [
                 {
+                    "content": "The document must be no more than 3 pages.",
                     "name": "HTTHDV",
                     "options": {},
-                    "type": "Para",
-                    "content": "The document must be no more than 3 pages.",
-                    "schema": {}
+                    "schema": {},
+                    "type": "Para"
                 },
                 {
+                    "hint": "PDF or Excel files only, maximum 10MB",
                     "name": "KVZvBK",
                     "options": {
                         "dropzoneConfig": {
+                            "acceptedFiles": ",application/pdf,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet",
                             "maxFiles": 1,
-                            "parallelUploads": 1,
                             "maxFilesize": 10,
-                            "acceptedFiles": ",application/pdf,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
+                            "parallelUploads": 1
                         },
-                        "showNoScriptWarning": false,
+                        "hideTitle": true,
                         "minimumRequiredFiles": 1,
-                        "hideTitle": true
+                        "showNoScriptWarning": false
                     },
-                    "type": "ClientSideFileUploadField",
+                    "schema": {},
                     "title": "Upload your project budget with a breakdown of the key costs of your project",
-                    "hint": "PDF or Excel files only, maximum 10MB",
-                    "schema": {}
+                    "type": "ClientSideFileUploadField"
                 }
             ],
             "next": [
@@ -224,11 +277,11 @@
                     "path": "/how-will-your-project-deliver-value-for-money"
                 }
             ],
-            "section": "FabDefault"
+            "path": "/upload-your-project-budget-with-a-breakdown-of-the-key-costs-of-your-project",
+            "section": "FabDefault",
+            "title": "Upload your project budget with a breakdown of the key costs of your project"
         },
         {
-            "path": "/how-will-your-project-deliver-value-for-money",
-            "title": "How will your project deliver value for money?",
             "components": [
                 {
                     "name": "gRddtf",
@@ -236,9 +289,9 @@
                         "hideTitle": true,
                         "maxWords": "200"
                     },
-                    "type": "FreeTextField",
+                    "schema": {},
                     "title": "How will your project deliver value for money",
-                    "schema": {}
+                    "type": "FreeTextField"
                 }
             ],
             "next": [
@@ -246,79 +299,27 @@
                     "path": "/check-your-answers"
                 }
             ],
-            "section": "FabDefault"
+            "path": "/how-will-your-project-deliver-value-for-money",
+            "section": "FabDefault",
+            "title": "How will your project deliver value for money?"
         },
         {
-            "path": "/check-your-answers",
-            "title": "Check your answers",
             "components": [],
-            "next": [],
             "controller": "./pages/summary.js",
-            "section": "FabDefault"
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
         }
     ],
-    "lists": [],
     "sections": [
         {
+            "hideTitle": true,
             "name": "FabDefault",
-            "title": "Default Section",
-            "hideTitle": true
+            "title": "Default Section"
         }
     ],
-    "conditions": [
-        {
-            "displayName": "If seeking funding for total project cost",
-            "name": "mVdaMq",
-            "value": {
-                "name": "If seeking funding for total project cost",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.BwHiiN",
-                            "type": "YesNoField",
-                            "display": "Are you seeking funding to cover the total cost of the project"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "true",
-                            "display": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "displayName": "If not seeking funding for total project cost",
-            "name": "KyoZQz",
-            "value": {
-                "name": "If not seeking funding for total project cost",
-                "conditions": [
-                    {
-                        "field": {
-                            "name": "FabDefault.BwHiiN",
-                            "type": "YesNoField",
-                            "display": "Are you seeking funding to cover the total cost of the project"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "type": "Value",
-                            "value": "false",
-                            "display": "false"
-                        }
-                    }
-                ]
-            }
-        }
-    ],
-    "fees": [],
-    "outputs": [],
-    "version": 2,
     "skipSummary": false,
-    "feeOptions": {
-        "allowSubmissionWithoutPayment": true,
-        "maxAttempts": 3,
-        "showPaymentSkippedWarningPage": false
-    },
-    "markAsComplete": false
+    "startPage": "/what-we-need-to-know",
+    "version": 2
 }
