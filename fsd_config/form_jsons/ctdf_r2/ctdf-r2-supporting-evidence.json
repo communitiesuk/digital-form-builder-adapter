@@ -1,0 +1,404 @@
+{
+    "startPage": "/supporting-evidence",
+    "pages": [
+        {
+            "path": "/supporting-evidence",
+            "title": "Supporting evidence",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>community engagement and support</li>\n<li>risk management</li>\n<li>supporting documents</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "evidenceIntro"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/community-engagement"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/community-engagement",
+            "title": "Community engagement",
+            "components": [
+                {
+                    "type": "RadiosField",
+                    "name": "communityEngagement",
+                    "title": "How have you engaged with the community about this project?",
+                    "hint": "Community engagement helps demonstrate local need and support for your project.",
+                    "options": {},
+                    "schema": {},
+                    "list": "engagementLevelList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/engagement-details",
+                    "condition": "hasExtensiveEngagement"
+                },
+                {
+                    "path": "/engagement-details",
+                    "condition": "hasSomeEngagement"
+                },
+                {
+                    "path": "/no-engagement-reason",
+                    "condition": "noEngagement"
+                },
+                {
+                    "path": "/risk-management"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/engagement-details",
+            "title": "Community engagement details",
+            "components": [
+                {
+                    "type": "FreeTextField",
+                    "name": "engagementDescription",
+                    "title": "Describe your community engagement activities",
+                    "hint": "Include what methods you used (for example, surveys, public meetings, focus groups), when you carried them out, and approximately how many people were involved.",
+                    "options": {
+                        "maxWords": "300"
+                    },
+                    "schema": {}
+                },
+                {
+                    "type": "FreeTextField",
+                    "name": "engagementFindings",
+                    "title": "What did you learn from your community engagement?",
+                    "hint": "Summarise the key findings and how they've influenced your project plans.",
+                    "options": {
+                        "maxWords": "300"
+                    },
+                    "schema": {}
+                },
+                {
+                    "type": "YesNoField",
+                    "name": "hasLettersOfSupport",
+                    "title": "Do you have letters of support from community members or organisations?",
+                    "hint": "",
+                    "options": {},
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/risk-management"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/no-engagement-reason",
+            "title": "Why haven't you engaged with the community?",
+            "components": [
+                {
+                    "type": "FreeTextField",
+                    "name": "noEngagementReason",
+                    "title": "Explain why you haven't carried out community engagement",
+                    "hint": "Tell us about any barriers and whether you plan to engage with the community in future.",
+                    "options": {
+                        "maxWords": "200"
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/risk-management"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/risk-management",
+            "title": "Risk management",
+            "components": [
+                {
+                    "type": "YesNoField",
+                    "name": "hasRiskRegister",
+                    "title": "Have you identified the main risks to your project?",
+                    "hint": "Risks might include delays, cost increases, staff changes, or external factors.",
+                    "options": {},
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/risk-details",
+                    "condition": "hasRiskRegisterYes"
+                },
+                {
+                    "path": "/upload-documents"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/risk-details",
+            "title": "Project risks",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Tell us about your main project risks and how you'll manage them. Add at least one risk.",
+                    "options": {},
+                    "schema": {},
+                    "name": "riskIntro"
+                },
+                {
+                    "type": "MultiInputField",
+                    "name": "projectRisks",
+                    "title": "Project risks",
+                    "hint": "",
+                    "options": {
+                        "columnTitles": ["Risk", "Likelihood", "Mitigation"],
+                        "maxMultiInputFieldRows": 5
+                    },
+                    "schema": {},
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "riskDescription",
+                            "title": "Describe the risk",
+                            "hint": "",
+                            "options": {},
+                            "schema": {}
+                        },
+                        {
+                            "type": "RadiosField",
+                            "name": "riskLikelihood",
+                            "title": "How likely is this risk?",
+                            "hint": "",
+                            "options": {},
+                            "schema": {},
+                            "list": "likelihoodList"
+                        },
+                        {
+                            "type": "TextField",
+                            "name": "riskMitigation",
+                            "title": "How will you manage this risk?",
+                            "hint": "",
+                            "options": {},
+                            "schema": {}
+                        }
+                    ]
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-documents"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "RepeatingFieldPageController",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Risks added",
+                    "samePageTableItemName": "risk"
+                }
+            }
+        },
+        {
+            "path": "/upload-documents",
+            "title": "Upload supporting documents",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Upload any documents that support your application. This might include:\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>project plans or feasibility studies</li>\n<li>quotes or cost estimates</li>\n<li>letters of support</li>\n<li>planning permissions or surveys</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "uploadHint"
+                },
+                {
+                    "type": "ClientSideFileUploadField",
+                    "name": "supportingDocs",
+                    "title": "Upload your supporting documents",
+                    "hint": "You can upload PDF, Word documents, or images. Maximum 5 files, 10MB each.",
+                    "options": {
+                        "dropzoneConfig": {
+                            "maxFiles": 5,
+                            "parallelUploads": 1,
+                            "maxFilesize": 10,
+                            "acceptedFiles": "application/pdf,image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        },
+                        "showNoScriptWarning": false,
+                        "minimumRequiredFiles": 1
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        }
+    ],
+    "lists": [
+        {
+            "name": "engagementLevelList",
+            "title": "Engagement levels",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Extensive engagement - surveys, public meetings, or focus groups with significant participation",
+                    "value": "extensive"
+                },
+                {
+                    "text": "Some engagement - informal conversations or small-scale consultation",
+                    "value": "some"
+                },
+                {
+                    "text": "Planned engagement - we plan to engage but haven't started yet",
+                    "value": "planned"
+                },
+                {
+                    "text": "No engagement - we haven't engaged and don't plan to",
+                    "value": "none"
+                }
+            ]
+        },
+        {
+            "name": "likelihoodList",
+            "title": "Risk likelihood",
+            "type": "string",
+            "items": [
+                {
+                    "text": "High",
+                    "value": "high"
+                },
+                {
+                    "text": "Medium",
+                    "value": "medium"
+                },
+                {
+                    "text": "Low",
+                    "value": "low"
+                }
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "name": "hasExtensiveEngagement",
+            "displayName": "Has extensive engagement",
+            "value": {
+                "name": "Has extensive engagement",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.communityEngagement",
+                            "type": "RadiosField",
+                            "display": "How have you engaged with the community about this project?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "extensive",
+                            "display": "Extensive engagement"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "hasSomeEngagement",
+            "displayName": "Has some engagement",
+            "value": {
+                "name": "Has some engagement",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.communityEngagement",
+                            "type": "RadiosField",
+                            "display": "How have you engaged with the community about this project?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "some",
+                            "display": "Some engagement"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "noEngagement",
+            "displayName": "No engagement",
+            "value": {
+                "name": "No engagement",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.communityEngagement",
+                            "type": "RadiosField",
+                            "display": "How have you engaged with the community about this project?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "none",
+                            "display": "No engagement"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "hasRiskRegisterYes",
+            "displayName": "Has identified risks",
+            "value": {
+                "name": "Has identified risks",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.hasRiskRegister",
+                            "type": "YesNoField",
+                            "display": "Have you identified the main risks to your project?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Crash Test Dummy Fund Round 2 - Supporting Evidence"
+}

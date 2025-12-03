@@ -1,0 +1,158 @@
+{
+    "startPage": "/declarations",
+    "pages": [
+        {
+            "path": "/declarations",
+            "title": "Declarations",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask you to confirm:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>the information you have provided is accurate</li>\n<li>you have the authority to submit this application</li>\n<li>you agree to the terms and conditions</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "declarationsIntro"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/confirm-declarations"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/confirm-declarations",
+            "title": "Confirm your declarations",
+            "components": [
+                {
+                    "type": "CheckboxesField",
+                    "name": "accuracyDeclaration",
+                    "title": "Accuracy of information",
+                    "hint": "",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "list": "accuracyList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "type": "CheckboxesField",
+                    "name": "authorityDeclaration",
+                    "title": "Authority to submit",
+                    "hint": "",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "list": "authorityList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "type": "CheckboxesField",
+                    "name": "termsDeclaration",
+                    "title": "Terms and conditions",
+                    "hint": "",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "list": "termsList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "type": "CheckboxesField",
+                    "name": "dataDeclaration",
+                    "title": "Data protection",
+                    "hint": "",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "list": "dataList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        }
+    ],
+    "lists": [
+        {
+            "name": "accuracyList",
+            "title": "Accuracy declaration",
+            "type": "string",
+            "items": [
+                {
+                    "text": "I confirm the information provided in this application is accurate to the best of my knowledge",
+                    "value": "accuracy-confirmed"
+                }
+            ]
+        },
+        {
+            "name": "authorityList",
+            "title": "Authority declaration",
+            "type": "string",
+            "items": [
+                {
+                    "text": "I confirm I have the authority to submit this application on behalf of my organisation",
+                    "value": "authority-confirmed"
+                }
+            ]
+        },
+        {
+            "name": "termsList",
+            "title": "Terms declaration",
+            "type": "string",
+            "items": [
+                {
+                    "text": "I agree to the fund's terms and conditions",
+                    "value": "terms-confirmed"
+                }
+            ]
+        },
+        {
+            "name": "dataList",
+            "title": "Data declaration",
+            "type": "string",
+            "items": [
+                {
+                    "text": "I understand my data will be processed in accordance with the privacy notice",
+                    "value": "data-confirmed"
+                }
+            ]
+        }
+    ],
+    "conditions": [],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Crash Test Dummy Fund Round 2 - Declarations"
+}

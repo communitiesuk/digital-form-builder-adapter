@@ -1,0 +1,520 @@
+{
+    "startPage": "/organisation-information",
+    "pages": [
+        {
+            "path": "/organisation-information",
+            "title": "Organisation information",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your organisation's name and address</li>\n<li>your organisation type and registration details</li>\n<li>the project team</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "orgInfoIntro"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/organisation-name"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/organisation-name",
+            "title": "Organisation name",
+            "components": [
+                {
+                    "type": "TextField",
+                    "name": "orgName",
+                    "title": "What is the name of your organisation?",
+                    "hint": "This must match your registered legal organisation name.",
+                    "options": {},
+                    "schema": {}
+                },
+                {
+                    "type": "YesNoField",
+                    "name": "hasAltName",
+                    "title": "Does your organisation use any other names?",
+                    "hint": "For example, a trading name or abbreviation that is different from your legal name.",
+                    "options": {},
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/alternative-names",
+                    "condition": "hasAltNameYes"
+                },
+                {
+                    "path": "/organisation-address"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/alternative-names",
+            "title": "Alternative organisation names",
+            "components": [
+                {
+                    "type": "TextField",
+                    "name": "altName1",
+                    "title": "Alternative name 1",
+                    "hint": "",
+                    "options": {},
+                    "schema": {}
+                },
+                {
+                    "type": "TextField",
+                    "name": "altName2",
+                    "title": "Alternative name 2",
+                    "hint": "",
+                    "options": {
+                        "required": false
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/organisation-address"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/organisation-address",
+            "title": "Organisation address",
+            "components": [
+                {
+                    "type": "UkAddressField",
+                    "name": "orgAddress",
+                    "title": "What is your organisation's registered address?",
+                    "hint": "",
+                    "options": {},
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/organisation-type"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/organisation-type",
+            "title": "Organisation type",
+            "components": [
+                {
+                    "type": "RadiosField",
+                    "name": "orgType",
+                    "title": "What type of organisation are you?",
+                    "hint": "",
+                    "options": {},
+                    "schema": {},
+                    "list": "orgTypeList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/charity-details",
+                    "condition": "isCharity"
+                },
+                {
+                    "path": "/cic-details",
+                    "condition": "isCIC"
+                },
+                {
+                    "path": "/local-authority-details",
+                    "condition": "isLocalAuthority"
+                },
+                {
+                    "path": "/other-organisation-details",
+                    "condition": "isOther"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/charity-details",
+            "title": "Charity registration details",
+            "components": [
+                {
+                    "type": "TextField",
+                    "name": "charityNumber",
+                    "title": "What is your registered charity number?",
+                    "hint": "This is the number registered with the Charity Commission. For example, 1234567.",
+                    "options": {},
+                    "schema": {}
+                },
+                {
+                    "type": "DatePartsField",
+                    "name": "charityRegDate",
+                    "title": "When was your charity registered?",
+                    "hint": "For example, 27 3 2007",
+                    "options": {},
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-team"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/cic-details",
+            "title": "Community Interest Company details",
+            "components": [
+                {
+                    "type": "TextField",
+                    "name": "cicNumber",
+                    "title": "What is your CIC registration number?",
+                    "hint": "This is your Companies House number. For example, 12345678.",
+                    "options": {},
+                    "schema": {}
+                },
+                {
+                    "type": "FreeTextField",
+                    "name": "cicAssetLock",
+                    "title": "Describe your community interest statement and asset lock",
+                    "hint": "Explain how your organisation's assets are protected for community benefit.",
+                    "options": {
+                        "maxWords": "150"
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-team"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/local-authority-details",
+            "title": "Local authority details",
+            "components": [
+                {
+                    "type": "TextField",
+                    "name": "laName",
+                    "title": "Which local authority are you?",
+                    "hint": "",
+                    "options": {},
+                    "schema": {}
+                },
+                {
+                    "type": "RadiosField",
+                    "name": "laType",
+                    "title": "What type of local authority are you?",
+                    "hint": "",
+                    "options": {},
+                    "schema": {},
+                    "list": "laTypeList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-team"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/other-organisation-details",
+            "title": "Organisation details",
+            "components": [
+                {
+                    "type": "TextField",
+                    "name": "otherOrgType",
+                    "title": "What type of organisation are you?",
+                    "hint": "For example, unincorporated association, cooperative society.",
+                    "options": {},
+                    "schema": {}
+                },
+                {
+                    "type": "YesNoField",
+                    "name": "hasGoverningDoc",
+                    "title": "Does your organisation have a governing document?",
+                    "hint": "For example, a constitution, memorandum and articles of association, or trust deed.",
+                    "options": {},
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-team"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/project-team",
+            "title": "Project team",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Tell us about the key people who will deliver this project. You must add at least one team member, and can add up to 5.",
+                    "options": {},
+                    "schema": {},
+                    "name": "teamIntro"
+                },
+                {
+                    "type": "MultiInputField",
+                    "name": "projectTeam",
+                    "title": "Project team members",
+                    "hint": "",
+                    "options": {
+                        "columnTitles": ["Name", "Role", "Email"],
+                        "maxMultiInputFieldRows": 5
+                    },
+                    "schema": {},
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "teamMemberName",
+                            "title": "Full name",
+                            "hint": "",
+                            "options": {},
+                            "schema": {}
+                        },
+                        {
+                            "type": "TextField",
+                            "name": "teamMemberRole",
+                            "title": "Role in project",
+                            "hint": "For example, Project Manager, Finance Lead",
+                            "options": {},
+                            "schema": {}
+                        },
+                        {
+                            "type": "EmailAddressField",
+                            "name": "teamMemberEmail",
+                            "title": "Email address",
+                            "hint": "",
+                            "options": {},
+                            "schema": {}
+                        }
+                    ]
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "RepeatingFieldPageController",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Team members added",
+                    "samePageTableItemName": "team member"
+                }
+            }
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        }
+    ],
+    "lists": [
+        {
+            "name": "orgTypeList",
+            "title": "Organisation types",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Registered charity",
+                    "value": "registered-charity"
+                },
+                {
+                    "text": "Community interest company (CIC)",
+                    "value": "cic"
+                },
+                {
+                    "text": "Local authority",
+                    "value": "local-authority"
+                },
+                {
+                    "text": "Other",
+                    "value": "other"
+                }
+            ]
+        },
+        {
+            "name": "laTypeList",
+            "title": "Local authority types",
+            "type": "string",
+            "items": [
+                {
+                    "text": "County council",
+                    "value": "county-council"
+                },
+                {
+                    "text": "District council",
+                    "value": "district-council"
+                },
+                {
+                    "text": "Unitary authority",
+                    "value": "unitary-authority"
+                },
+                {
+                    "text": "Metropolitan borough",
+                    "value": "metropolitan-borough"
+                },
+                {
+                    "text": "London borough",
+                    "value": "london-borough"
+                },
+                {
+                    "text": "Combined authority",
+                    "value": "combined-authority"
+                },
+                {
+                    "text": "Parish or town council",
+                    "value": "parish-town-council"
+                }
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "name": "hasAltNameYes",
+            "displayName": "Has alternative name",
+            "value": {
+                "name": "Has alternative name",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.hasAltName",
+                            "type": "YesNoField",
+                            "display": "Does your organisation use any other names?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "isCharity",
+            "displayName": "Is a registered charity",
+            "value": {
+                "name": "Is a registered charity",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.orgType",
+                            "type": "RadiosField",
+                            "display": "What type of organisation are you?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "registered-charity",
+                            "display": "Registered charity"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "isCIC",
+            "displayName": "Is a CIC",
+            "value": {
+                "name": "Is a CIC",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.orgType",
+                            "type": "RadiosField",
+                            "display": "What type of organisation are you?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "cic",
+                            "display": "Community interest company (CIC)"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "isLocalAuthority",
+            "displayName": "Is a local authority",
+            "value": {
+                "name": "Is a local authority",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.orgType",
+                            "type": "RadiosField",
+                            "display": "What type of organisation are you?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "local-authority",
+                            "display": "Local authority"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "isOther",
+            "displayName": "Is other organisation type",
+            "value": {
+                "name": "Is other organisation type",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.orgType",
+                            "type": "RadiosField",
+                            "display": "What type of organisation are you?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "other",
+                            "display": "Other"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Crash Test Dummy Fund Round 2 - Organisation Information"
+}

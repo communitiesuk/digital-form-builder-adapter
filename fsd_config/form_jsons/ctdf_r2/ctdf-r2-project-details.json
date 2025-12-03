@@ -1,0 +1,652 @@
+{
+    "startPage": "/project-details",
+    "pages": [
+        {
+            "path": "/project-details",
+            "title": "Project details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "<p class=\"govuk-body govuk-!-font-weight-bold\">In this section, we'll ask about:</p>\n<ul class=\"govuk-list govuk-list--bullet\">\n<li>your project name and description</li>\n<li>project type and dates</li>\n<li>project costs and funding</li>\n</ul>",
+                    "options": {},
+                    "schema": {},
+                    "name": "projectIntro"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-name"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "start.js"
+        },
+        {
+            "path": "/project-name",
+            "title": "Project name",
+            "components": [
+                {
+                    "type": "TextField",
+                    "name": "projectName",
+                    "title": "What is the name of your project?",
+                    "hint": "Choose a name that clearly describes what you're trying to achieve.",
+                    "options": {
+                        "classes": "govuk-!-width-full"
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-description"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/project-description",
+            "title": "Project description",
+            "components": [
+                {
+                    "type": "FreeTextField",
+                    "name": "projectDescription",
+                    "title": "Describe your project",
+                    "hint": "Include what you want to do, why it's needed, and who will benefit.",
+                    "options": {
+                        "maxWords": "500"
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-type"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/project-type",
+            "title": "Project type",
+            "components": [
+                {
+                    "type": "RadiosField",
+                    "name": "projectType",
+                    "title": "What type of project is this?",
+                    "hint": "",
+                    "options": {},
+                    "schema": {},
+                    "list": "projectTypeList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/capital-project-details",
+                    "condition": "isCapitalProject"
+                },
+                {
+                    "path": "/revenue-project-details",
+                    "condition": "isRevenueProject"
+                },
+                {
+                    "path": "/project-dates"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/capital-project-details",
+            "title": "Capital project details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Capital projects involve purchasing or improving physical assets like buildings, equipment, or land.",
+                    "options": {},
+                    "schema": {},
+                    "name": "capitalIntro"
+                },
+                {
+                    "type": "RadiosField",
+                    "name": "capitalType",
+                    "title": "What type of capital work is involved?",
+                    "hint": "",
+                    "options": {},
+                    "schema": {},
+                    "list": "capitalTypeList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                },
+                {
+                    "type": "YesNoField",
+                    "name": "hasPlanning",
+                    "title": "Have you secured any planning permissions needed?",
+                    "hint": "Select 'Yes' if planning permission is not required for your project.",
+                    "options": {},
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/planning-details",
+                    "condition": "noPlanningYet"
+                },
+                {
+                    "path": "/project-dates"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/planning-details",
+            "title": "Planning permission status",
+            "components": [
+                {
+                    "type": "FreeTextField",
+                    "name": "planningStatus",
+                    "title": "What is the current status of your planning application?",
+                    "hint": "Tell us what stage you're at and your expected timeline for approval.",
+                    "options": {
+                        "maxWords": "200"
+                    },
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-dates"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/revenue-project-details",
+            "title": "Revenue project details",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Revenue projects fund ongoing activities like staff costs, events, or services.",
+                    "options": {},
+                    "schema": {},
+                    "name": "revenueIntro"
+                },
+                {
+                    "type": "CheckboxesField",
+                    "name": "revenueActivities",
+                    "title": "What activities will you fund?",
+                    "hint": "Select all that apply.",
+                    "options": {},
+                    "schema": {},
+                    "list": "revenueActivitiesList",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/staffing-details",
+                    "condition": "includesStaffing"
+                },
+                {
+                    "path": "/project-dates"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/staffing-details",
+            "title": "Staffing details",
+            "components": [
+                {
+                    "type": "NumberField",
+                    "name": "newPosts",
+                    "title": "How many new posts will this funding create?",
+                    "hint": "Enter 0 if you're only funding existing posts.",
+                    "options": {
+                        "classes": "govuk-input--width-5"
+                    },
+                    "schema": {
+                        "min": 0
+                    }
+                },
+                {
+                    "type": "NumberField",
+                    "name": "existingPosts",
+                    "title": "How many existing posts will this funding support?",
+                    "hint": "Enter 0 if you're only creating new posts.",
+                    "options": {
+                        "classes": "govuk-input--width-5"
+                    },
+                    "schema": {
+                        "min": 0
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-dates"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/project-dates",
+            "title": "Project dates",
+            "components": [
+                {
+                    "type": "DatePartsField",
+                    "name": "projectStartDate",
+                    "title": "When do you expect the project to start?",
+                    "hint": "For example, 27 3 2025",
+                    "options": {},
+                    "schema": {}
+                },
+                {
+                    "type": "DatePartsField",
+                    "name": "projectEndDate",
+                    "title": "When do you expect the project to finish?",
+                    "hint": "For example, 27 3 2026",
+                    "options": {},
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/project-costs"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/project-costs",
+            "title": "Project costs",
+            "components": [
+                {
+                    "type": "Para",
+                    "content": "Provide a breakdown of your project costs. Add each cost item separately. You must add at least one item.",
+                    "options": {},
+                    "schema": {},
+                    "name": "costsIntro"
+                },
+                {
+                    "type": "MultiInputField",
+                    "name": "costBreakdown",
+                    "title": "Cost breakdown",
+                    "hint": "",
+                    "options": {
+                        "columnTitles": ["Cost item", "Amount"],
+                        "maxMultiInputFieldRows": 10
+                    },
+                    "schema": {},
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "costItem",
+                            "title": "What is this cost for?",
+                            "hint": "For example, building renovation, staff salaries, equipment",
+                            "options": {},
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "costAmount",
+                            "title": "How much will this cost?",
+                            "hint": "",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "schema": {
+                                "min": 1
+                            }
+                        }
+                    ]
+                }
+            ],
+            "next": [
+                {
+                    "path": "/funding-request"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "RepeatingFieldPageController",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Costs added",
+                    "samePageTableItemName": "cost item"
+                }
+            }
+        },
+        {
+            "path": "/funding-request",
+            "title": "Funding request",
+            "components": [
+                {
+                    "type": "NumberField",
+                    "name": "fundingRequested",
+                    "title": "How much funding are you requesting from us?",
+                    "hint": "This cannot be more than your total project costs.",
+                    "options": {
+                        "prefix": "£",
+                        "classes": "govuk-input--width-10"
+                    },
+                    "schema": {
+                        "min": 1
+                    }
+                },
+                {
+                    "type": "YesNoField",
+                    "name": "hasOtherFunding",
+                    "title": "Are you receiving funding from any other sources for this project?",
+                    "hint": "",
+                    "options": {},
+                    "schema": {}
+                }
+            ],
+            "next": [
+                {
+                    "path": "/other-funding-details",
+                    "condition": "hasOtherFundingYes"
+                },
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault"
+        },
+        {
+            "path": "/other-funding-details",
+            "title": "Other funding sources",
+            "components": [
+                {
+                    "type": "MultiInputField",
+                    "name": "otherFunding",
+                    "title": "Other funding",
+                    "hint": "Add details of each funding source.",
+                    "options": {
+                        "columnTitles": ["Funder", "Amount", "Status"],
+                        "maxMultiInputFieldRows": 5
+                    },
+                    "schema": {},
+                    "children": [
+                        {
+                            "type": "TextField",
+                            "name": "funderName",
+                            "title": "Who is providing this funding?",
+                            "hint": "",
+                            "options": {},
+                            "schema": {}
+                        },
+                        {
+                            "type": "NumberField",
+                            "name": "funderAmount",
+                            "title": "How much are they providing?",
+                            "hint": "",
+                            "options": {
+                                "prefix": "£"
+                            },
+                            "schema": {
+                                "min": 1
+                            }
+                        },
+                        {
+                            "type": "RadiosField",
+                            "name": "funderStatus",
+                            "title": "What is the status of this funding?",
+                            "hint": "",
+                            "options": {},
+                            "schema": {},
+                            "list": "fundingStatusList"
+                        }
+                    ]
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "section": "FabDefault",
+            "controller": "RepeatingFieldPageController",
+            "options": {
+                "summaryDisplayMode": {
+                    "samePage": true,
+                    "separatePage": false,
+                    "hideRowTitles": false
+                },
+                "customText": {
+                    "samePageTitle": "Funding sources added",
+                    "samePageTableItemName": "funding source"
+                }
+            }
+        },
+        {
+            "path": "/check-your-answers",
+            "title": "Check your answers",
+            "components": [],
+            "next": [],
+            "section": "FabDefault",
+            "controller": "./pages/summary.js"
+        }
+    ],
+    "lists": [
+        {
+            "name": "projectTypeList",
+            "title": "Project types",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Capital - purchasing or improving physical assets",
+                    "value": "capital"
+                },
+                {
+                    "text": "Revenue - funding ongoing activities or services",
+                    "value": "revenue"
+                },
+                {
+                    "text": "Both capital and revenue",
+                    "value": "both"
+                }
+            ]
+        },
+        {
+            "name": "capitalTypeList",
+            "title": "Capital work types",
+            "type": "string",
+            "items": [
+                {
+                    "text": "New build",
+                    "value": "new-build"
+                },
+                {
+                    "text": "Renovation or refurbishment",
+                    "value": "renovation"
+                },
+                {
+                    "text": "Equipment purchase",
+                    "value": "equipment"
+                },
+                {
+                    "text": "Land purchase",
+                    "value": "land"
+                }
+            ]
+        },
+        {
+            "name": "revenueActivitiesList",
+            "title": "Revenue activities",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Staff costs",
+                    "value": "staff-costs"
+                },
+                {
+                    "text": "Training and development",
+                    "value": "training"
+                },
+                {
+                    "text": "Events and activities",
+                    "value": "events"
+                },
+                {
+                    "text": "Marketing and communications",
+                    "value": "marketing"
+                },
+                {
+                    "text": "Other operational costs",
+                    "value": "other-operational"
+                }
+            ]
+        },
+        {
+            "name": "fundingStatusList",
+            "title": "Funding status",
+            "type": "string",
+            "items": [
+                {
+                    "text": "Secured",
+                    "value": "secured"
+                },
+                {
+                    "text": "Applied - awaiting decision",
+                    "value": "applied"
+                },
+                {
+                    "text": "Not yet applied",
+                    "value": "not-applied"
+                }
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "name": "isCapitalProject",
+            "displayName": "Is capital project",
+            "value": {
+                "name": "Is capital project",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.projectType",
+                            "type": "RadiosField",
+                            "display": "What type of project is this?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "capital",
+                            "display": "Capital - purchasing or improving physical assets"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "isRevenueProject",
+            "displayName": "Is revenue project",
+            "value": {
+                "name": "Is revenue project",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.projectType",
+                            "type": "RadiosField",
+                            "display": "What type of project is this?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "revenue",
+                            "display": "Revenue - funding ongoing activities or services"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "noPlanningYet",
+            "displayName": "No planning permission yet",
+            "value": {
+                "name": "No planning permission yet",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.hasPlanning",
+                            "type": "YesNoField",
+                            "display": "Have you secured any planning permissions needed?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "false",
+                            "display": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "includesStaffing",
+            "displayName": "Includes staff costs",
+            "value": {
+                "name": "Includes staff costs",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.revenueActivities",
+                            "type": "CheckboxesField",
+                            "display": "What activities will you fund?"
+                        },
+                        "operator": "contains",
+                        "value": {
+                            "type": "Value",
+                            "value": "staff-costs",
+                            "display": "Staff costs"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "hasOtherFundingYes",
+            "displayName": "Has other funding",
+            "value": {
+                "name": "Has other funding",
+                "conditions": [
+                    {
+                        "field": {
+                            "name": "FabDefault.hasOtherFunding",
+                            "type": "YesNoField",
+                            "display": "Are you receiving funding from any other sources for this project?"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "type": "Value",
+                            "value": "true",
+                            "display": "true"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "sections": [
+        {
+            "name": "FabDefault",
+            "title": "Default Section",
+            "hideTitle": true
+        }
+    ],
+    "outputs": [],
+    "skipSummary": false,
+    "name": "Crash Test Dummy Fund Round 2 - Project Details"
+}
