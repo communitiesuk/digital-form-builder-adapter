@@ -1,0 +1,645 @@
+{
+  "conditions": [
+    {
+      "displayName": "not England",
+      "name": "WXtpxT",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "Does your organisation operate in England?",
+              "name": "FabDefault.sglRrN",
+              "type": "YesNoField"
+            },
+            "operator": "is",
+            "value": { "display": "false", "type": "Value", "value": "false" }
+          }
+        ],
+        "name": "not England"
+      }
+    },
+    {
+      "displayName": "not eligible org",
+      "name": "LHHhxh",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "What is the legal status of your organisation?",
+              "name": "FabDefault.bGDJCz",
+              "type": "RadiosField"
+            },
+            "operator": "is",
+            "value": {
+              "display": "none of the above",
+              "type": "Value",
+              "value": "none of the above"
+            }
+          }
+        ],
+        "name": "not eligible org"
+      }
+    },
+    {
+      "displayName": "a parochial church council",
+      "name": "oShhOE",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "What is the legal status of your organisation?",
+              "name": "FabDefault.bGDJCz",
+              "type": "RadiosField"
+            },
+            "operator": "is",
+            "value": {
+              "display": "a parochial church council",
+              "type": "Value",
+              "value": "a parochial church council"
+            }
+          }
+        ],
+        "name": "a parochial church council"
+      }
+    },
+    {
+      "displayName": "not valid org",
+      "name": "oVhXom",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "What is the legal status of your organisation?",
+              "name": "FabDefault.bGDJCz",
+              "type": "RadiosField"
+            },
+            "operator": "is",
+            "value": {
+              "display": "none of the above",
+              "type": "Value",
+              "value": "none of the above"
+            }
+          }
+        ],
+        "name": "not valid org"
+      }
+    },
+    {
+      "displayName": "no letter of support",
+      "name": "XBjiVB",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "Do you have a letter of support from your local authority?",
+              "name": "FabDefault.KAaClK",
+              "type": "YesNoField"
+            },
+            "operator": "is",
+            "value": { "display": "false", "type": "Value", "value": "false" }
+          }
+        ],
+        "name": "no letter of support"
+      }
+    },
+    {
+      "displayName": "less than 3 years",
+      "name": "mBeziB",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "Have you provided homelessness and rough sleeping services for at least 3 years?",
+              "name": "FabDefault.PXNgOe",
+              "type": "YesNoField"
+            },
+            "operator": "is",
+            "value": { "display": "false", "type": "Value", "value": "false" }
+          }
+        ],
+        "name": "less than 3 years"
+      }
+    },
+    {
+      "displayName": "income more £5m",
+      "name": "RYsHiz",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "Was your income in your last financial year less than £5 million?",
+              "name": "FabDefault.vyKgBl",
+              "type": "YesNoField"
+            },
+            "operator": "is",
+            "value": { "display": "false", "type": "Value", "value": "false" }
+          }
+        ],
+        "name": "income more £5m"
+      }
+    },
+    {
+      "displayName": "a charitable incorporated organisation",
+      "name": "WnCJxY",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "What is the legal status of your organisation?",
+              "name": "FabDefault.bGDJCz",
+              "type": "RadiosField"
+            },
+            "operator": "is",
+            "value": {
+              "display": "a charitable incorporated organisation",
+              "type": "Value",
+              "value": "a charitable incorporated organisation"
+            }
+          }
+        ],
+        "name": "a charitable incorporated organisation"
+      }
+    },
+    {
+      "displayName": "a charitable company limited by guarantee",
+      "name": "oOhWzi",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "What is the legal status of your organisation?",
+              "name": "FabDefault.bGDJCz",
+              "type": "RadiosField"
+            },
+            "operator": "is",
+            "value": {
+              "display": "a charitable company limited by guarantee",
+              "type": "Value",
+              "value": "a charitable company limited by guarantee"
+            }
+          }
+        ],
+        "name": "a charitable company limited by guarantee"
+      }
+    },
+    {
+      "displayName": "a community interest company",
+      "name": "jOyGVW",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "What is the legal status of your organisation?",
+              "name": "FabDefault.bGDJCz",
+              "type": "RadiosField"
+            },
+            "operator": "is",
+            "value": {
+              "display": "a community interest company",
+              "type": "Value",
+              "value": "a community interest company"
+            }
+          }
+        ],
+        "name": "a community interest company"
+      }
+    },
+    {
+      "displayName": "a community benefit society or co-operative society",
+      "name": "OLqZmm",
+      "value": {
+        "conditions": [
+          {
+            "field": {
+              "display": "What is the legal status of your organisation?",
+              "name": "FabDefault.bGDJCz",
+              "type": "RadiosField"
+            },
+            "operator": "is",
+            "value": {
+              "display": "a community benefit society or co-operative society",
+              "type": "Value",
+              "value": "a community benefit society or co-operative society"
+            }
+          }
+        ],
+        "name": "a community benefit society or co-operative society"
+      }
+    }
+  ],
+  "feeOptions": {
+    "allowSubmissionWithoutPayment": true,
+    "maxAttempts": 3,
+    "showPaymentSkippedWarningPage": false
+  },
+  "fees": [],
+  "lists": [
+    {
+      "items": [
+        {
+          "text": "a charitable incorporated organisation",
+          "value": "a charitable incorporated organisation"
+        },
+        {
+          "text": "a charitable company limited by guarantee",
+          "value": "a charitable company limited by guarantee"
+        },
+        {
+          "text": "a community interest company",
+          "value": "a community interest company"
+        },
+        {
+          "text": "a community benefit society or co-operative society",
+          "value": "a community benefit society or co-operative society"
+        },
+        {
+          "text": "a parochial church council",
+          "value": "a parochial church council"
+        },
+        { "text": "none of the above", "value": "none of the above" }
+      ],
+      "name": "sfATcR",
+      "title": "Org types",
+      "type": "string"
+    },
+    {
+      "items": [
+        {
+          "text": "My charity is exempt and does not have a charity number.",
+          "value": "My charity is exempt and does not have a charity number."
+        }
+      ],
+      "name": "LLnLez",
+      "title": "charity exempt",
+      "type": "string"
+    },
+    {
+      "items": [
+        {
+          "text": "My charity is exempt and does not have a charity number ",
+          "value": "My charity is exempt and does not have a charity number "
+        }
+      ],
+      "name": "PdMEHB",
+      "title": "My charity is exempt and does not have a charity number ",
+      "type": "string"
+    }
+  ],
+  "markAsComplete": false,
+  "metadata": {},
+  "outputs": [],
+  "pages": [
+    {
+      "components": [
+        {
+          "content": "We need to ask some questions to check you can apply for this funding.",
+          "name": "qhcZYY",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [{ "path": "/does-your-organisation-operate-in-england" }],
+      "path": "/before-you-start",
+      "section": "FabDefault",
+      "title": "Before you start"
+    },
+    {
+      "components": [
+        {
+          "name": "sglRrN",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "Does your organisation operate in England?",
+          "type": "YesNoField"
+        }
+      ],
+      "next": [
+        { "path": "/what-is-the-legal-status-of-your-organisation" },
+        { "condition": "WXtpxT", "path": "/you-cannot-apply-for-this-fund" }
+      ],
+      "path": "/does-your-organisation-operate-in-england",
+      "section": "FabDefault",
+      "title": "Does your organisation operate in England?"
+    },
+    {
+      "components": [
+        {
+          "list": "sfATcR",
+          "name": "bGDJCz",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "What is the legal status of your organisation?",
+          "type": "RadiosField",
+          "values": { "type": "listRef" }
+        }
+      ],
+      "next": [
+        {
+          "condition": "oVhXom",
+          "path": "/you-cannot-apply-for-this-fund-RvHwfd"
+        },
+        {
+          "condition": "oShhOE",
+          "path": "/do-you-have-a-letter-of-support-from-your-local-authority"
+        },
+        {
+          "condition": "WnCJxY",
+          "path": "/what-is-your-registered-charity-number"
+        },
+        {
+          "condition": "oOhWzi",
+          "path": "/what-is-your-registered-charity-number-DCCwNk"
+        },
+        {
+          "condition": "jOyGVW",
+          "path": "/what-is-your-company-registration-number-ZLtIDE"
+        },
+        {
+          "condition": "OLqZmm",
+          "path": "/what-is-your-financial-conduct-authority-reference-number"
+        }
+      ],
+      "path": "/what-is-the-legal-status-of-your-organisation",
+      "section": "FabDefault",
+      "title": "What is the legal status of your organisation?"
+    },
+    {
+      "components": [
+        {
+          "content": "Based on your answer, you are not eligible to apply for this fund.\n<br>\nThe organisation must operate in England.",
+          "name": "kHReGC",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [],
+      "path": "/you-cannot-apply-for-this-fund",
+      "section": "FabDefault",
+      "title": "You cannot apply for this fund."
+    },
+    {
+      "components": [
+        {
+          "hint": "Use the number registered with the Charity Commission.",
+          "name": "WfWLmg",
+          "options": {
+            "hideTitle": true,
+            "optionalText": false,
+            "required": false
+          },
+          "schema": {},
+          "title": "What is your registered charity number?",
+          "type": "NumberField"
+        },
+        {
+          "list": "PdMEHB",
+          "name": "fgsTnH",
+          "options": {
+            "hideTitle": true,
+            "optionalText": false,
+            "required": false
+          },
+          "schema": {},
+          "title": "My charity is exempt and does not have a charity number ",
+          "type": "CheckboxesField"
+        },
+        {
+          "content": "<h1 class=\"govuk-heading-l\">What is your company registration number?</h1>",
+          "name": "ERGrZk",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        },
+        {
+          "hint": "Use the number registered with Companies House. For example, 10527177",
+          "name": "qyfACz",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "What is your company registration number?",
+          "type": "TextField"
+        }
+      ],
+      "next": [
+        { "path": "/do-you-have-a-letter-of-support-from-your-local-authority" }
+      ],
+      "path": "/what-is-your-registered-charity-number-DCCwNk",
+      "section": "FabDefault",
+      "title": "What is your registered charity number?"
+    },
+    {
+      "components": [
+        {
+          "name": "fONOHY",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "What is your Financial Conduct Authority reference number?",
+          "type": "TextField"
+        }
+      ],
+      "next": [
+        { "path": "/do-you-have-a-letter-of-support-from-your-local-authority" }
+      ],
+      "path": "/what-is-your-financial-conduct-authority-reference-number",
+      "section": "FabDefault",
+      "title": "What is your Financial Conduct Authority reference number?"
+    },
+    {
+      "components": [
+        {
+          "content": "Based on your answer, you're not eligible to apply for this fund.\n<br>\nThe organisation must have one of the legal statuses listed.\n",
+          "name": "qNXvQN",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [],
+      "path": "/you-cannot-apply-for-this-fund-RvHwfd",
+      "section": "FabDefault",
+      "title": "You cannot apply for this fund."
+    },
+    {
+      "components": [
+        {
+          "name": "KAaClK",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "Do you have a letter of support from your local authority?",
+          "type": "YesNoField"
+        },
+        {
+          "content": "It must be from the lead officer with responsibility for homelessness and rough sleeping from the local authority where your services are being delivered.\n<br>\nWe will ask you to upload this letter later in the application.",
+          "name": "CEEzxg",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [
+        {
+          "condition": "XBjiVB",
+          "path": "/you-cannot-apply-for-this-fund-rOJprj"
+        },
+        {
+          "path": "/have-you-provided-homelessness-and-rough-sleeping-services-for-at-least-3-years"
+        }
+      ],
+      "path": "/do-you-have-a-letter-of-support-from-your-local-authority",
+      "section": "FabDefault",
+      "title": "Do you have a letter of support from your local authority?"
+    },
+    {
+      "components": [
+        {
+          "hint": "Use the number registered with Companies House. For example, 10527177",
+          "name": "oIzELz",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "What is your company registration number?",
+          "type": "TextField"
+        }
+      ],
+      "next": [
+        { "path": "/do-you-have-a-letter-of-support-from-your-local-authority" }
+      ],
+      "path": "/what-is-your-company-registration-number-ZLtIDE",
+      "section": "FabDefault",
+      "title": "What is your company registration number?"
+    },
+    {
+      "components": [
+        {
+          "content": "Based on your answer, you're not eligible to apply for this fund.\n<br>\nYou must have a letter of support from your local authority.\n",
+          "name": "VWkFUO",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [],
+      "path": "/you-cannot-apply-for-this-fund-rOJprj",
+      "section": "FabDefault",
+      "title": "You cannot apply for this fund."
+    },
+    {
+      "components": [
+        {
+          "name": "PXNgOe",
+          "options": {},
+          "schema": {},
+          "title": "Have you provided homelessness and rough sleeping services for at least 3 years?",
+          "type": "YesNoField"
+        }
+      ],
+      "next": [
+        {
+          "condition": "mBeziB",
+          "path": "/you-cannot-apply-for-this-fund-opnNmb"
+        },
+        {
+          "path": "/was-your-income-in-your-last-financial-year-less-than-5-million"
+        }
+      ],
+      "path": "/have-you-provided-homelessness-and-rough-sleeping-services-for-at-least-3-years",
+      "section": "FabDefault",
+      "title": "Have you provided homelessness and rough sleeping services for at least 3 years?"
+    },
+    {
+      "components": [
+        {
+          "content": "Based on your answer, you're not eligible to apply for this fund.\n<br>\nYou must have provided homelessness and rough sleeping services for at least 3 years.\n",
+          "name": "ogFgOw",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [],
+      "path": "/you-cannot-apply-for-this-fund-opnNmb",
+      "section": "FabDefault",
+      "title": "You cannot apply for this fund."
+    },
+    {
+      "components": [
+        {
+          "name": "vyKgBl",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "Was your income in your last financial year less than £5 million?",
+          "type": "YesNoField"
+        }
+      ],
+      "next": [
+        {
+          "condition": "RYsHiz",
+          "path": "/you-cannot-apply-for-this-fund-SWCJva"
+        },
+        { "path": "/you-can-apply-for-this-fund" }
+      ],
+      "path": "/was-your-income-in-your-last-financial-year-less-than-5-million",
+      "section": "FabDefault",
+      "title": "Was your income in your last financial year less than £5 million?"
+    },
+    {
+      "components": [
+        {
+          "content": "Based on your answer, you're not eligible to apply for this fund.\n<br>\nYou must have an annual turnover of less than £5 million. ",
+          "name": "ERqSqx",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [],
+      "path": "/you-cannot-apply-for-this-fund-SWCJva",
+      "section": "FabDefault",
+      "title": "You cannot apply for this fund."
+    },
+    {
+      "components": [
+        {
+          "content": "Based on your answers, you can apply for this fund.",
+          "name": "mcmVXe",
+          "options": {},
+          "schema": {},
+          "type": "Para"
+        }
+      ],
+      "next": [],
+      "path": "/you-can-apply-for-this-fund",
+      "section": "FabDefault",
+      "title": "You can apply for this fund",
+      "controller": "./pages/confirm.js"
+    },
+    {
+      "components": [
+        {
+          "hint": "Use the number registered with the Charity Commission.",
+          "name": "pNfxcM",
+          "options": {
+            "hideTitle": true,
+            "optionalText": false,
+            "required": true
+          },
+          "schema": {},
+          "title": "What is your registered charity number?",
+          "type": "TextField"
+        }
+      ],
+      "next": [
+        { "path": "/do-you-have-a-letter-of-support-from-your-local-authority" }
+      ],
+      "path": "/what-is-your-registered-charity-number",
+      "section": "FabDefault",
+      "title": "What is your registered charity number?"
+    }
+  ],
+  "sections": [
+    { "hideTitle": true, "name": "FabDefault", "title": "Default Section" }
+  ],
+  "skipSummary": true,
+  "startPage": "/before-you-start",
+  "version": 2
+}

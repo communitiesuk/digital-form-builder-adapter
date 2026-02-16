@@ -1,0 +1,103 @@
+{
+    "conditions": [],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "fees": [],
+    "lists": [],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>outcomes\n<li>measurable positive impacts\n\n\n",
+                    "name": "zYFkrX",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-this-project-improve-how-partners-work-together-to-respond-to-local-need"
+                }
+            ],
+            "path": "/outcomes-and-measuring-impact",
+            "section": "FabDefault",
+            "title": "Outcomes and measuring impact"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Tell us how the project will improve outcomes for people experiencing or at risk of homelessness and rough sleeping",
+                    "name": "ffVtZC",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "schema": {},
+                    "title": "How will this project improve how partners work together to respond to local need?",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/describe-the-measurable-positive-impacts-your-project-is-expected-to-have"
+                }
+            ],
+            "path": "/how-will-this-project-improve-how-partners-work-together-to-respond-to-local-need",
+            "section": "FabDefault",
+            "title": "How will this project improve how partners work together to respond to local need?"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/summary",
+            "section": "FabDefault",
+            "title": "Summary"
+        },
+        {
+            "components": [
+                {
+                    "hint": "This could include: \n<ul>\n<li>how many unique individuals will be supported each year \n<li>how many will be assisted into accommodation\n<li>how many will be prevented from returning into homelessness\n<li>when you expect to see these benefits",
+                    "name": "WaRxZy",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "500"
+                    },
+                    "schema": {},
+                    "title": "Describe the measurable positive impacts your project is expected to have",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/summary"
+                }
+            ],
+            "path": "/describe-the-measurable-positive-impacts-your-project-is-expected-to-have",
+            "section": "FabDefault",
+            "title": "Describe the measurable positive impacts your project is expected to have"
+        }
+    ],
+    "phaseBanner": {},
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/outcomes-and-measuring-impact",
+    "version": 2
+}

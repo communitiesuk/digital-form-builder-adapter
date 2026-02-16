@@ -1,0 +1,560 @@
+{
+    "conditions": [
+        {
+            "displayName": "auth sig is not primary contact",
+            "name": "MXiYkM",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Is the primary contact also the authorised signatory?",
+                            "name": "FabDefault.LnKSXL",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "auth sig is not primary contact"
+            }
+        },
+        {
+            "displayName": "org type is company",
+            "name": "NqIyVk",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.FuGsSP",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a company limited by guarantee registered with Companies House",
+                            "type": "Value",
+                            "value": "a company limited by guarantee registered with Companies House"
+                        }
+                    }
+                ],
+                "name": "org type is company"
+            }
+        },
+        {
+            "displayName": "org type is charity",
+            "name": "QBdDvo",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.FuGsSP",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a charity \u2013 an organisation registered as a charity with the Charity Commission",
+                            "type": "Value",
+                            "value": "a charity \u2013 an organisation registered as a charity with the Charity Commission"
+                        }
+                    }
+                ],
+                "name": "org type is charity"
+            }
+        },
+        {
+            "displayName": "org type CBS",
+            "name": "KVGDYD",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.FuGsSP",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a community benefit or co-operative society registered by the Financial Conduct Authority",
+                            "type": "Value",
+                            "value": "a community benefit or co-operative society registered by the Financial Conduct Authority"
+                        }
+                    }
+                ],
+                "name": "org type CBS"
+            }
+        },
+        {
+            "displayName": "org type CIO or CIC",
+            "name": "akXQdQ",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.FuGsSP",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a charitable incorporated organisation registered with Companies House and with the Charity Commission",
+                            "type": "Value",
+                            "value": "a charitable incorporated organisation registered with Companies House and with the Charity Commission"
+                        }
+                    },
+                    {
+                        "coordinator": "or",
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.FuGsSP",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a community interest company registered with Companies House",
+                            "type": "Value",
+                            "value": "a community interest company registered with Companies House"
+                        }
+                    }
+                ],
+                "name": "org type CIO or CIC"
+            }
+        },
+        {
+            "displayName": "partnership",
+            "name": "fiSaHC",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Is your application a joint bid in partnership with other organisations?",
+                            "name": "FabDefault.LNYBTt",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "partnership"
+            }
+        },
+        {
+            "displayName": "no partnership",
+            "name": "hKZCQo",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Is your application a joint bid in partnership with other organisations?",
+                            "name": "FabDefault.LNYBTt",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "no partnership"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "fees": [],
+    "lists": [
+        {
+            "items": [
+                {
+                    "text": "a charity \u2013 an organisation registered as a charity with the Charity Commission",
+                    "value": "a charity \u2013 an organisation registered as a charity with the Charity Commission"
+                },
+                {
+                    "text": "a charitable incorporated organisation registered with Companies House and with the Charity Commission",
+                    "value": "a charitable incorporated organisation registered with Companies House and with the Charity Commission"
+                },
+                {
+                    "text": "a company limited by guarantee registered with Companies House",
+                    "value": "a company limited by guarantee registered with Companies House"
+                },
+                {
+                    "text": "a community interest company registered with Companies House",
+                    "value": "a community interest company registered with Companies House"
+                },
+                {
+                    "text": "a community benefit or co-operative society registered by the Financial Conduct Authority",
+                    "value": "a community benefit or co-operative society registered by the Financial Conduct Authority"
+                }
+            ],
+            "name": "XDrfkW",
+            "title": "Organisation types",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section, we'll ask about your organisation's:\n<ul>\n<li>name</li>\n<li>address</li>\n<li>contacts and authorised signatory</li>\n<li>organisation type</li>\n<li>partnership information</li>",
+                    "name": "AiCRBt",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-organisations-name"
+                }
+            ],
+            "path": "/your-organisation",
+            "section": "FabDefault",
+            "title": "Your organisation"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Give the official name registered with Companies House, the Charity Commission or the Financial Conduct Authority if relevant.",
+                    "name": "WwxTJv",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What is your organisation's name?",
+                    "type": "TextField"
+                },
+                {
+                    "hint": "Give any alternative names that your organisation is known by. ",
+                    "name": "wqpbOz",
+                    "options": {
+                        "required": false
+                    },
+                    "schema": {},
+                    "title": "Does your organisation have an alternative name?",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-is-your-organisations-address"
+                }
+            ],
+            "path": "/what-is-your-organisations-name",
+            "section": "FabDefault",
+            "title": "What is your organisation's name?"
+        },
+        {
+            "components": [
+                {
+                    "name": "iXAfvh",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What is your organisation's address?",
+                    "type": "UkAddressField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-primary-contact-for-this-grant"
+                }
+            ],
+            "path": "/what-is-your-organisations-address",
+            "section": "FabDefault",
+            "title": "What is your organisation's address?"
+        },
+        {
+            "components": [
+                {
+                    "name": "LnKSXL",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Is the primary contact also an authorised signatory?",
+                    "type": "YesNoField",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "condition": "MXiYkM",
+                    "path": "/who-is-the-authorised-signatory"
+                },
+                {
+                    "path": "/is-your-application-a-joint-bid-in-partnership-with-other-organisations"
+                }
+            ],
+            "path": "/is-the-primary-contact-also-an-authorised-signatory",
+            "section": "FabDefault",
+            "title": "Is the primary contact also an authorised signatory?"
+        },
+        {
+            "components": [
+                {
+                    "name": "KQDHpr",
+                    "options": {},
+                    "schema": {},
+                    "title": "Full name",
+                    "type": "TextField"
+                },
+                {
+                    "name": "byicLn",
+                    "options": {},
+                    "schema": {},
+                    "title": "Email address",
+                    "type": "TextField"
+                },
+                {
+                    "name": "FVhlFB",
+                    "options": {},
+                    "schema": {},
+                    "title": "Job title",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-your-application-a-joint-bid-in-partnership-with-other-organisations"
+                }
+            ],
+            "path": "/who-is-the-authorised-signatory",
+            "section": "FabDefault",
+            "title": "Who is the authorised signatory?"
+        },
+        {
+            "components": [
+                {
+                    "content": "A partnership means you are expecting to give grant money to another organisation to deliver this project.",
+                    "name": "VgFORR",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "LNYBTt",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Is your application a joint bid in partnership with other organisations?",
+                    "type": "YesNoField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "fiSaHC",
+                    "path": "/who-are-the-partnership-members"
+                },
+                {
+                    "condition": "hKZCQo",
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/is-your-application-a-joint-bid-in-partnership-with-other-organisations",
+            "section": "FabDefault",
+            "title": "Is your application a joint bid in partnership with other organisations?"
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "YprmGA",
+                            "options": {
+                                "columnTitles": [
+                                    "Partnership organisation name",
+                                    "Lead contact name",
+                                    "Role",
+                                    "Lead?"
+                                ]
+                            },
+                            "schema": {},
+                            "title": "Partnership organisation name",
+                            "type": "TextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "wxAieZ",
+                            "options": {},
+                            "schema": {},
+                            "title": "Lead contact name",
+                            "type": "TextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "gJWtrE",
+                            "options": {},
+                            "schema": "",
+                            "title": "What is this organisation's role?",
+                            "type": "MultilineTextField"
+                        }
+                    ],
+                    "name": "aCHAZS",
+                    "options": {},
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "partnership member",
+                            "samePageTitle": "Partnership members"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
+                    "schema": {},
+                    "title": "Who are the partnership members?",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/upload-a-document-that-shows-the-other-partnership-organisations-support-this-bid"
+                }
+            ],
+            "options": {
+                "customText": {
+                    "samePageTableItemName": "partnership member",
+                    "samePageTitle": "Partnership members"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
+                }
+            },
+            "path": "/who-are-the-partnership-members",
+            "section": "FabDefault",
+            "title": "Who are the partnership members?"
+        },
+        {
+            "components": [
+                {
+                    "content": "For example, a letter of confirmation.\n<br>\nThe file must be a PDF.",
+                    "name": "wdydPF",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "hint": "",
+                    "name": "QmzwZy",
+                    "options": {
+                        "dropzoneConfig": {
+                            "acceptedFiles": ",application/pdf",
+                            "maxFiles": 1,
+                            "maxFilesize": 10,
+                            "parallelUploads": 1
+                        },
+                        "hideTitle": true,
+                        "minimumRequiredFiles": 1,
+                        "showNoScriptWarning": false
+                    },
+                    "schema": {},
+                    "title": "Upload a document that shows the other partnership organisations support this bid",
+                    "type": "ClientSideFileUploadField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/upload-a-document-that-shows-the-other-partnership-organisations-support-this-bid",
+            "section": "FabDefault",
+            "title": "Upload a document that shows the other partnership organisations support this bid"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "content": "This will be the main point of contact for any queries we may have.",
+                    "name": "RbjfRD",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "elhXgA",
+                    "options": {},
+                    "schema": {},
+                    "title": "Full name",
+                    "type": "TextField"
+                },
+                {
+                    "name": "sHxRrj",
+                    "options": {},
+                    "schema": {},
+                    "title": "Email address",
+                    "type": "EmailAddressField"
+                },
+                {
+                    "name": "sLHzMy",
+                    "options": {},
+                    "schema": {},
+                    "title": "Telephone number",
+                    "type": "TelephoneNumberField"
+                },
+                {
+                    "name": "hduWVY",
+                    "options": {},
+                    "schema": {},
+                    "title": "Job title",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/is-the-primary-contact-also-an-authorised-signatory"
+                }
+            ],
+            "path": "/who-is-the-primary-contact-for-this-grant",
+            "section": "FabDefault",
+            "title": "Who is the primary contact for this grant?"
+        }
+    ],
+    "phaseBanner": {},
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/your-organisation",
+    "version": 2
+}
