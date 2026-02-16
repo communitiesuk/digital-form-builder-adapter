@@ -1,0 +1,154 @@
+{
+    "conditions": [
+        {
+            "displayName": "has delivered similar projects ",
+            "name": "BJhWDi",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Has your organisation delivered projects like this before?",
+                            "name": "FabDefault.ttLqmN",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "has delivered similar projects "
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "fees": [],
+    "lists": [],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>your organisation's objectives\n<li>key activities\n<li>about the projects you've delivered before\n</ul>",
+                    "name": "eXYZLs",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-are-your-organisations-objectives"
+                }
+            ],
+            "path": "/skills-and-experience",
+            "section": "FabDefault",
+            "title": "Skills and experience"
+        },
+        {
+            "components": [
+                {
+                    "name": "AznHmY",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "schema": {},
+                    "title": "What are your organisation's key activities?",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-about-your-experience-and-skills-delivering-similar-work"
+                }
+            ],
+            "path": "/what-are-your-organisations-key-activities",
+            "section": "FabDefault",
+            "title": "What are your organisation's key activities?"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "hint": "For example, what your organisation exists to do. ",
+                    "name": "uiRSYP",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "schema": {},
+                    "title": "What are your organisation's objectives?",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-are-your-organisations-key-activities"
+                }
+            ],
+            "path": "/what-are-your-organisations-objectives",
+            "section": "FabDefault",
+            "title": "What are your organisation's objectives?"
+        },
+        {
+            "components": [
+                {
+                    "content": "Tell us about:\n<ul>\n<li>the scope of the project (for example, goals, outputs and outcomes)</li>\n<li>the value of the project (for example, cost savings)</li>\n<li>who was involved</li>\n</ul>",
+                    "name": "TfkZWr",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "tTDkMm",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "schema": {},
+                    "title": "Tell us about how your organisation has worked on similar previous projects.",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/tell-us-about-your-experience-and-skills-delivering-similar-work",
+            "section": "FabDefault",
+            "title": "Tell us about your experience and skills delivering similar work "
+        }
+    ],
+    "phaseBanner": {},
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/skills-and-experience",
+    "version": 2
+}

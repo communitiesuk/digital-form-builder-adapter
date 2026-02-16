@@ -1,0 +1,461 @@
+{
+    "conditions": [
+        {
+            "displayName": "Capital only",
+            "name": "jBAGDs",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What type of funding are you applying for? ",
+                            "name": "FabDefault.vwpHzc",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Capital only",
+                            "type": "Value",
+                            "value": "Capital only"
+                        }
+                    }
+                ],
+                "name": "Capital only"
+            }
+        },
+        {
+            "displayName": "Revenue only",
+            "name": "QFoZhN",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What type of funding are you applying for? ",
+                            "name": "FabDefault.vwpHzc",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Revenue only",
+                            "type": "Value",
+                            "value": "Revenue only"
+                        }
+                    }
+                ],
+                "name": "Revenue only"
+            }
+        },
+        {
+            "displayName": "Both revenue and capital",
+            "name": "Isszrw",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What type of funding are you applying for? ",
+                            "name": "FabDefault.vwpHzc",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Both revenue and capital",
+                            "type": "Value",
+                            "value": "Both revenue and capital"
+                        }
+                    }
+                ],
+                "name": "Both revenue and capital"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "fees": [],
+    "lists": [
+        {
+            "items": [
+                {
+                    "text": "Revenue only",
+                    "value": "Revenue only"
+                },
+                {
+                    "text": "Capital only",
+                    "value": "Capital only"
+                },
+                {
+                    "text": "Both revenue and capital",
+                    "value": "Both revenue and capital"
+                }
+            ],
+            "name": "LmfsgA",
+            "title": "Funding types",
+            "type": "string"
+        },
+        {
+            "items": [
+                {
+                    "text": "Year 1",
+                    "value": "Year 1"
+                },
+                {
+                    "text": "Year 2",
+                    "value": "Year 2"
+                },
+                {
+                    "text": "Year 3",
+                    "value": "Year 3"
+                }
+            ],
+            "name": "HnQXVi",
+            "title": "years",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>whether you are applying for capital or revenue funding\n<li>how much funding you are applying for in years 1, 2 and 3\n<li>how you plan to spend the funding, including a budget",
+                    "name": "RNDosP",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "controller": "./pages/start.js",
+            "next": [
+                {
+                    "path": "/how-much-total-funding-are-you-applying-for"
+                }
+            ],
+            "path": "/cost-and-value-for-money",
+            "section": "FabDefault",
+            "title": "Cost and value for money"
+        },
+        {
+            "components": [
+                {
+                    "list": "LmfsgA",
+                    "name": "vwpHzc",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What type of funding are you applying for? ",
+                    "type": "RadiosField",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "condition": "QFoZhN",
+                    "path": "/how-much-revenue-funding-are-you-applying-for"
+                },
+                {
+                    "condition": "jBAGDs",
+                    "path": "/how-much-capital-funding-are-you-applying-for"
+                },
+                {
+                    "condition": "Isszrw",
+                    "path": "/how-much-funding-are-you-applying-for"
+                }
+            ],
+            "path": "/what-type-of-funding-are-you-applying-for",
+            "section": "FabDefault",
+            "title": "What type of funding are you applying for? "
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "content": "For revenue funding include things like staffing, premises, overheads and training.\n<br>\nYou can apply for a minimum of \u00a350,000 and a maximum of \u00a3200,000 per year.\nEnter 0 if you are not applying for revenue funding in that year.",
+                    "name": "QRkUca",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "AltolX",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "max": 200000,
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 1",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "iFjBTZ",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "max": 200000,
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 2",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "hDxhyT",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "max": 200000,
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 3",
+                    "type": "NumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-a-budget-for-your-project-TvdQMR"
+                }
+            ],
+            "path": "/how-much-revenue-funding-are-you-applying-for",
+            "section": "FabDefault",
+            "title": "How much revenue funding are you applying for?"
+        },
+        {
+            "components": [
+                {
+                    "content": "For capital funding include things like costs associated with building works, property acquisition, IT equipment and systems, vehicles and valuable pieces of equipment.\n<br>\nYou can apply for a minimum of \u00a350,000 and a maximum of \u00a3200,000.",
+                    "name": "OESRzp",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "XFFfSR",
+                    "options": {
+                        "hideTitle": true,
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "max": 200000,
+                        "min": 50000,
+                        "precision": "2"
+                    },
+                    "title": "How much capital funding are you applying for?",
+                    "type": "NumberField"
+                },
+                {
+                    "list": "HnQXVi",
+                    "name": "tTYUMj",
+                    "options": {},
+                    "schema": {},
+                    "title": "Which year are you applying for?",
+                    "type": "SelectField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-a-budget-for-your-project-TvdQMR"
+                }
+            ],
+            "path": "/how-much-capital-funding-are-you-applying-for",
+            "section": "FabDefault",
+            "title": "How much capital funding are you applying for?"
+        },
+        {
+            "components": [
+                {
+                    "content": "Upload an Excel budget that includes the total costs of delivering your project across the three years of the programme. \n<br>\nSee <a href=\"https://www.gov.uk/guidance/ending-homelessness-in-communities-fund-prospectus\" class=\"govuk-link\">the prospectus</a> for information on how to complete your budget and to download the budget template. \n<br>\nFor each item, tell us how much you will spend both each year and each quarter. \n<br>\nTell us about capital and revenue spending separately. \n<br>\n<h3 class=\"govuk-heading-s\">Revenue</h3>\n<p class=\"govuk-body\">For revenue funding tell us about things like staffing, premises, overheads and training.</p>\n<br>\n<h3 class=\"govuk-heading-s\">Capital</h3>\n<p class=\"govuk-body\">For capital funding include things like costs associated with building works, property acquisition, IT equipment and systems, vehicles and valuable pieces of equipment.\n<br>\n</p>\n<br>\n<h3 class=\"govuk-heading-s\">Match funding</h3>\n<p class=\"govuk-body\">If your project includes match funding or in\u2011kind contributions, tell us where this funding comes from and whether it is confirmed or expected.</p>\n<br>\n<p>The file must be in Excel format.</p>\n",
+                    "name": "cwlLFp",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "xVmfqS",
+                    "options": {
+                        "dropzoneConfig": {
+                            "acceptedFiles": ",application/vnd.ms-excel,application/vnd.oasis.opendocument.spreadsheet,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            "maxFiles": 1,
+                            "maxFilesize": 10,
+                            "parallelUploads": 1
+                        },
+                        "hideTitle": true,
+                        "minimumRequiredFiles": 1,
+                        "showNoScriptWarning": false
+                    },
+                    "schema": {},
+                    "title": "Upload a budget for your project",
+                    "type": "ClientSideFileUploadField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/upload-a-budget-for-your-project-TvdQMR",
+            "section": "FabDefault",
+            "title": "Upload a budget for your project"
+        },
+        {
+            "components": [
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Revenue</h2>",
+                    "name": "Zkkhvk",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "content": "For revenue funding include things like staffing, premises, overheads and training.\n<br>\nYou can apply for a minimum of \u00a350,000 and a maximum of \u00a3200,000. \nEnter 0 if you are not applying for revenue funding in that year.",
+                    "name": "qBsqfn",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "MqmNSK",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "max": 200000,
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 1",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "ithfkK",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "max": 200000,
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 2",
+                    "type": "NumberField"
+                },
+                {
+                    "name": "UpaXDj",
+                    "options": {
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "max": 200000,
+                        "min": 0,
+                        "precision": "2"
+                    },
+                    "title": "Year 3",
+                    "type": "NumberField"
+                },
+                {
+                    "content": "<h2 class=\"govuk-heading-m\">Capital</h2>",
+                    "name": "YfvizP",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "content": "For capital funding include things like costs associated with building works, property acquisition, IT equipment and systems, vehicles and valuable pieces of equipment.\n<br>\nYou can apply for a minimum of \u00a350,000 and a maximum of \u00a3200,000. ",
+                    "name": "kICtKD",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "ANkbOG",
+                    "options": {
+                        "hideTitle": true,
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "max": 200000,
+                        "min": 50000,
+                        "precision": "2"
+                    },
+                    "title": "How much capital funding are you applying for?",
+                    "type": "NumberField"
+                },
+                {
+                    "list": "HnQXVi",
+                    "name": "ZlklVZ",
+                    "options": {},
+                    "schema": {},
+                    "title": "Which year are you applying for?",
+                    "type": "SelectField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-a-budget-for-your-project-TvdQMR"
+                }
+            ],
+            "path": "/how-much-funding-are-you-applying-for",
+            "section": "FabDefault",
+            "title": "How much funding are you applying for?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Include both revenue and capital funding, for all 3 years",
+                    "name": "ddPcod",
+                    "options": {
+                        "hideTitle": true,
+                        "prefix": "\u00a3"
+                    },
+                    "schema": {
+                        "max": 800000,
+                        "min": 50000,
+                        "precision": "2"
+                    },
+                    "title": "How much total funding are you applying for?",
+                    "type": "NumberField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-type-of-funding-are-you-applying-for"
+                }
+            ],
+            "path": "/how-much-total-funding-are-you-applying-for",
+            "section": "FabDefault",
+            "title": "How much total funding are you applying for?"
+        }
+    ],
+    "phaseBanner": {},
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/cost-and-value-for-money",
+    "version": 2
+}

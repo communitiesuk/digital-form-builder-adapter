@@ -1,0 +1,169 @@
+{
+    "conditions": [],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "fees": [],
+    "lists": [
+        {
+            "items": [
+                {
+                    "text": "My organisation has a UK bank account",
+                    "value": "My organisation has a UK bank account"
+                }
+            ],
+            "name": "DhLDsf",
+            "title": "My organisation has a UK bank account",
+            "type": "string"
+        },
+        {
+            "items": [
+                {
+                    "text": "My organisation agrees to reporting requirements",
+                    "value": "My organisation agrees to reporting requirements"
+                }
+            ],
+            "name": "siCVoo",
+            "title": "My organisation agrees to reporting requirements",
+            "type": "string"
+        },
+        {
+            "items": [
+                {
+                    "text": "I confirm that the information provided is accurate",
+                    "value": "I confirm that the information provided is accurate"
+                }
+            ],
+            "name": "ZutLWB",
+            "title": "I confirm that the information provided is accurate",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section, we'll ask you to:\n<ul>\n<li>upload a letter of support from your local authority\n<li>confirm and agree with the declarations\n",
+                    "name": "hPTxjp",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/upload-your-letter-of-support"
+                }
+            ],
+            "path": "/letter-of-support-and-declaration",
+            "section": "FabDefault",
+            "title": "Letter of support and declaration"
+        },
+        {
+            "components": [
+                {
+                    "content": "Upload a letter of support for your proposed activities. \n<br>\nIt must be from the lead officer with responsibility for homelessness and rough sleeping from the local authority where your services are being delivered.\n<br>\nThe file must be a PDF.",
+                    "name": "EbGRRI",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "PpAmke",
+                    "options": {
+                        "dropzoneConfig": {
+                            "acceptedFiles": ",application/pdf",
+                            "maxFiles": 1,
+                            "maxFilesize": 10,
+                            "parallelUploads": 1
+                        },
+                        "hideTitle": true,
+                        "minimumRequiredFiles": 1,
+                        "showNoScriptWarning": false
+                    },
+                    "schema": {},
+                    "title": "Upload your letter of support",
+                    "type": "ClientSideFileUploadField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/confirm-you-have-read-and-agree-with-the-declarations"
+                }
+            ],
+            "path": "/upload-your-letter-of-support",
+            "section": "FabDefault",
+            "title": "Upload your letter of support"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "list": "DhLDsf",
+                    "name": "JnHBkv",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "My organisation has a UK bank account",
+                    "type": "CheckboxesField"
+                },
+                {
+                    "list": "siCVoo",
+                    "name": "thZbZC",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "My organisation agrees to reporting requirements",
+                    "type": "CheckboxesField"
+                },
+                {
+                    "list": "ZutLWB",
+                    "name": "NVVpQT",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "I confirm that the information provided is accurate",
+                    "type": "CheckboxesField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/confirm-you-have-read-and-agree-with-the-declarations",
+            "section": "FabDefault",
+            "title": "Confirm you have read and agree with the declarations"
+        }
+    ],
+    "phaseBanner": {},
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/letter-of-support-and-declaration",
+    "version": 2
+}
