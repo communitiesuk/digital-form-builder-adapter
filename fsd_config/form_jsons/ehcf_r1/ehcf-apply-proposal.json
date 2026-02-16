@@ -1,0 +1,133 @@
+{
+    "conditions": [
+        {
+            "displayName": "partnership",
+            "name": "MTbESr",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Is your application a joint bid in partnership with other organisations?",
+                            "name": "FabDefault.GvNrJJ",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "partnership"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "fees": [],
+    "lists": [],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>challenges you are trying to address</li>\n<li>more information about your project </li>",
+                    "name": "cRqEUp",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "controller": "./pages/start.js",
+            "next": [
+                {
+                    "path": "/what-challenges-are-you-trying-to-address"
+                }
+            ],
+            "path": "/proposal",
+            "section": "FabDefault",
+            "title": "Proposal"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        },
+        {
+            "components": [
+                {
+                    "hint": "This is your problem statement",
+                    "name": "XCriZS",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "300"
+                    },
+                    "schema": {},
+                    "title": "What challenges are you trying to address?",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/tell-us-about-your-project-LOBKaM"
+                }
+            ],
+            "path": "/what-challenges-are-you-trying-to-address",
+            "section": "FabDefault",
+            "title": "What challenges are you trying to address?"
+        },
+        {
+            "components": [
+                {
+                    "content": "Include:\n<ul>\n<li>the objectives of your project and how they align with the fund's objectives as set out in the prospectus</li>\n<li>planned activities </li>\n<li>any partner's activities</li>\n</ul>",
+                    "name": "FfYTvI",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "MLxEMD",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "700"
+                    },
+                    "schema": {},
+                    "title": "Tell us about your project.",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/tell-us-about-your-project-LOBKaM",
+            "section": "FabDefault",
+            "title": "Tell us about your project"
+        }
+    ],
+    "phaseBanner": {},
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/proposal",
+    "version": 2
+}

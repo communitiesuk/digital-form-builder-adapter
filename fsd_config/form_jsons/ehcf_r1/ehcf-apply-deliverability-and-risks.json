@@ -1,0 +1,628 @@
+{
+    "conditions": [
+        {
+            "displayName": "building works",
+            "name": "zhSQLb",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Does your proposed project include capital renovation?",
+                            "name": "FabDefault.WdZCga",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "true",
+                            "type": "Value",
+                            "value": "true"
+                        }
+                    }
+                ],
+                "name": "building works"
+            }
+        },
+        {
+            "displayName": "Prospective owner",
+            "name": "nuWddU",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the ownership of the property?",
+                            "name": "FabDefault.PsOYFJ",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Prospective owner",
+                            "type": "Value",
+                            "value": "Prospective owner"
+                        }
+                    }
+                ],
+                "name": "Prospective owner"
+            }
+        },
+        {
+            "displayName": "Prospective tenant",
+            "name": "kTFuWz",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the ownership of the property?",
+                            "name": "FabDefault.PsOYFJ",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Prospective tenant",
+                            "type": "Value",
+                            "value": "Prospective tenant"
+                        }
+                    }
+                ],
+                "name": "Prospective tenant"
+            }
+        },
+        {
+            "displayName": "no building works",
+            "name": "xdAbyb",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "Does your proposed project include building works?",
+                            "name": "FabDefault.WdZCga",
+                            "type": "YesNoField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "false",
+                            "type": "Value",
+                            "value": "false"
+                        }
+                    }
+                ],
+                "name": "no building works"
+            }
+        },
+        {
+            "displayName": "Tenant",
+            "name": "QwOWXl",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the ownership of the property?",
+                            "name": "FabDefault.PsOYFJ",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Tenant",
+                            "type": "Value",
+                            "value": "Tenant"
+                        }
+                    }
+                ],
+                "name": "Tenant"
+            }
+        },
+        {
+            "displayName": "Owner",
+            "name": "PKGUka",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the ownership of the property?",
+                            "name": "FabDefault.PsOYFJ",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "Owner",
+                            "type": "Value",
+                            "value": "Owner"
+                        }
+                    }
+                ],
+                "name": "Owner"
+            }
+        }
+    ],
+    "feeOptions": {
+        "allowSubmissionWithoutPayment": true,
+        "maxAttempts": 3,
+        "showPaymentSkippedWarningPage": false
+    },
+    "feedback": {
+        "feedbackForm": false,
+        "url": ""
+    },
+    "fees": [],
+    "lists": [
+        {
+            "items": [
+                {
+                    "text": "currently filled",
+                    "value": "currently filled"
+                },
+                {
+                    "text": "we need to recruit for this role",
+                    "value": "we need to recruit for this role"
+                }
+            ],
+            "name": "TgtrIM",
+            "title": "recruitment",
+            "type": "string"
+        },
+        {
+            "items": [
+                {
+                    "text": "applied",
+                    "value": "applied"
+                },
+                {
+                    "text": "obtained",
+                    "value": "obtained"
+                },
+                {
+                    "text": "not applied",
+                    "value": "not applied"
+                }
+            ],
+            "name": "OCGbmT",
+            "title": "planning permission status",
+            "type": "string"
+        },
+        {
+            "items": [
+                {
+                    "text": "Owner",
+                    "value": "Owner"
+                },
+                {
+                    "text": "Tenant",
+                    "value": "Tenant"
+                },
+                {
+                    "text": "Prospective owner",
+                    "value": "Prospective owner"
+                },
+                {
+                    "text": "Prospective tenant",
+                    "value": "Prospective tenant"
+                }
+            ],
+            "name": "LRVwez",
+            "title": "ownership types",
+            "type": "string"
+        }
+    ],
+    "markAsComplete": false,
+    "metadata": {},
+    "outputs": [],
+    "pages": [
+        {
+            "components": [
+                {
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>milestones\n<li>project plan\n<li>governance\n<li>risks\n<li>building work",
+                    "name": "FUHNVH",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                }
+            ],
+            "controller": "./pages/start.js",
+            "next": [
+                {
+                    "path": "/what-are-your-milestones"
+                }
+            ],
+            "path": "/deliverability-and-risks",
+            "section": "FabDefault",
+            "title": "Deliverability and risks"
+        },
+        {
+            "components": [
+                {
+                    "children": [
+                        {
+                            "hint": "",
+                            "name": "OLCquZ",
+                            "options": {},
+                            "schema": {},
+                            "title": "What will you achieve?",
+                            "type": "TextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "vwkoml",
+                            "options": {
+                                "maxDaysInPast": "0"
+                            },
+                            "schema": {},
+                            "title": "When will you achieve this?",
+                            "type": "DatePartsField"
+                        }
+                    ],
+                    "name": "puuNXQ",
+                    "options": {},
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "milestone",
+                            "samePageTitle": "Milestones"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
+                    "schema": {},
+                    "title": "What are your milestones?",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/upload-your-project-plan-showing-key-milestones"
+                }
+            ],
+            "options": {
+                "customText": {
+                    "samePageTableItemName": "milestone",
+                    "samePageTitle": "Milestones"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
+                }
+            },
+            "path": "/what-are-your-milestones",
+            "section": "FabDefault",
+            "title": "What are your milestones?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Tell us what governance arrangements will be in place for your proposed project.\nInclude who will be responsible for oversight and decision making, and how these decisions will be made and documented.",
+                    "name": "HpgEVW",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "schema": {},
+                    "title": "How will your project be managed?",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/what-risks-are-there-to-delivering-your-proposed-project"
+                }
+            ],
+            "path": "/how-will-your-project-be-managed",
+            "section": "FabDefault",
+            "title": "How will your project be managed?"
+        },
+        {
+            "components": [
+                {
+                    "content": "Tell us about your top five risks",
+                    "name": "FjAAfM",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "children": [
+                        {
+                            "hint": "For example, recruitment timeframes, staffing capacity or delivery timelines",
+                            "name": "iJXHsl",
+                            "options": {},
+                            "schema": "",
+                            "title": "Describe the risk",
+                            "type": "MultilineTextField"
+                        },
+                        {
+                            "hint": "",
+                            "name": "fBmIqk",
+                            "options": {},
+                            "schema": "",
+                            "title": "How do you plan to mitigate the risk?",
+                            "type": "MultilineTextField"
+                        }
+                    ],
+                    "hint": "",
+                    "name": "vEdcYf",
+                    "options": {
+                        "columnTitles": [
+                            "Risk",
+                            "Mitigation"
+                        ],
+                        "hideTitle": true
+                    },
+                    "pageOptions": {
+                        "customText": {
+                            "samePageTableItemName": "risk",
+                            "samePageTitle": "Risks"
+                        },
+                        "summaryDisplayMode": {
+                            "hideRowTitles": false,
+                            "samePage": true,
+                            "separatePage": false
+                        }
+                    },
+                    "schema": {},
+                    "title": "What risks are there to delivering your proposed project?",
+                    "type": "MultiInputField"
+                }
+            ],
+            "controller": "RepeatingFieldPageController",
+            "next": [
+                {
+                    "path": "/does-your-proposed-project-include-building-works"
+                }
+            ],
+            "options": {
+                "customText": {
+                    "samePageTableItemName": "risk",
+                    "samePageTitle": "Risks"
+                },
+                "summaryDisplayMode": {
+                    "hideRowTitles": false,
+                    "samePage": true,
+                    "separatePage": false
+                }
+            },
+            "path": "/what-risks-are-there-to-delivering-your-proposed-project",
+            "section": "FabDefault",
+            "title": "What risks are there to delivering your proposed project?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "This involves using the funding to carry out works to a building so it can be used to help prevent rough sleeping",
+                    "name": "WdZCga",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "Does your proposed project include building works?",
+                    "type": "YesNoField",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "condition": "zhSQLb",
+                    "path": "/what-is-the-ownership-of-the-property"
+                },
+                {
+                    "condition": "xdAbyb",
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/does-your-proposed-project-include-building-works",
+            "section": "FabDefault",
+            "title": "Does your proposed project include building works?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "This could be a Gantt chart. It must not be more than 3 pages. It must be a PDF.",
+                    "name": "YXCLSe",
+                    "options": {
+                        "dropzoneConfig": {
+                            "acceptedFiles": ",application/pdf",
+                            "maxFiles": 1,
+                            "maxFilesize": 10,
+                            "parallelUploads": 1
+                        },
+                        "hideTitle": false,
+                        "minimumRequiredFiles": 1,
+                        "showNoScriptWarning": false
+                    },
+                    "schema": {},
+                    "title": "Upload your project plan showing key milestones",
+                    "type": "ClientSideFileUploadField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/how-will-your-project-be-managed"
+                }
+            ],
+            "path": "/upload-your-project-plan-showing-key-milestones",
+            "section": "FabDefault",
+            "title": "Upload your project plan showing key milestones"
+        },
+        {
+            "components": [
+                {
+                    "list": "LRVwez",
+                    "name": "PsOYFJ",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What is the ownership of the property?",
+                    "type": "RadiosField",
+                    "values": {
+                        "type": "listRef"
+                    }
+                }
+            ],
+            "next": [
+                {
+                    "condition": "QwOWXl",
+                    "path": "/who-is-the-landlord"
+                },
+                {
+                    "condition": "nuWddU",
+                    "path": "/tell-us-about-the-purchase"
+                },
+                {
+                    "condition": "kTFuWz",
+                    "path": "/tell-us-about-the-lease"
+                },
+                {
+                    "condition": "PKGUka",
+                    "path": "/have-you-engaged-professional-advisors-on-this-project"
+                }
+            ],
+            "path": "/what-is-the-ownership-of-the-property",
+            "section": "FabDefault",
+            "title": "What is the ownership of the property?"
+        },
+        {
+            "components": [
+                {
+                    "name": "IRlgaq",
+                    "options": {},
+                    "schema": {},
+                    "title": "Who is the landlord?",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/when-does-the-lease-or-licence-expire"
+                }
+            ],
+            "path": "/who-is-the-landlord",
+            "section": "FabDefault",
+            "title": "Who is the landlord?"
+        },
+        {
+            "components": [
+                {
+                    "name": "UKCuvb",
+                    "options": {
+                        "hideTitle": true,
+                        "maxDaysInPast": "0"
+                    },
+                    "schema": {},
+                    "title": "When does the lease or licence expire?",
+                    "type": "DatePartsField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/have-you-engaged-professional-advisors-on-this-project"
+                }
+            ],
+            "path": "/when-does-the-lease-or-licence-expire",
+            "section": "FabDefault",
+            "title": "When does the lease or licence expire?"
+        },
+        {
+            "components": [
+                {
+                    "content": "For example, tell us if you have agreed a price, when you expect to complete the purchase and any other relevant information.\n",
+                    "name": "bQAazB",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "AbOWfn",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "schema": {},
+                    "title": "Tell us about the purchase",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/have-you-engaged-professional-advisors-on-this-project"
+                }
+            ],
+            "path": "/tell-us-about-the-purchase",
+            "section": "FabDefault",
+            "title": "Tell us about the purchase"
+        },
+        {
+            "components": [
+                {
+                    "content": "For example, tell us who the landlord is, if you have agreed heads of terms, when you expect to take occupation and any other relevant information.",
+                    "name": "DHgEjD",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "name": "PMDKKL",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "schema": {},
+                    "title": "Tell us about the lease",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/have-you-engaged-professional-advisors-on-this-project"
+                }
+            ],
+            "path": "/tell-us-about-the-lease",
+            "section": "FabDefault",
+            "title": "Tell us about the lease"
+        },
+        {
+            "components": [
+                {
+                    "hint": "For example, a quantity surveyor, architect or designer",
+                    "name": "tTuHtk",
+                    "options": {
+                        "hideTitle": true,
+                        "maxWords": "250"
+                    },
+                    "schema": {},
+                    "title": "Have you engaged professional advisors on this project?",
+                    "type": "FreeTextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/check-your-answers"
+                }
+            ],
+            "path": "/have-you-engaged-professional-advisors-on-this-project",
+            "section": "FabDefault",
+            "title": "Have you engaged professional advisors on this project?"
+        },
+        {
+            "components": [],
+            "controller": "./pages/summary.js",
+            "next": [],
+            "path": "/check-your-answers",
+            "section": "FabDefault",
+            "title": "Check your answers"
+        }
+    ],
+    "phaseBanner": {},
+    "sections": [
+        {
+            "hideTitle": true,
+            "name": "FabDefault",
+            "title": "Default Section"
+        }
+    ],
+    "skipSummary": false,
+    "startPage": "/deliverability-and-risks",
+    "version": 2
+}
