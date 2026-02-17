@@ -169,7 +169,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
         updateFirstPage();
     }
 
-    const publishAndDirectToPreview = async (_e) => {
+    const saveAndDirectToPreview = async (_e) => {
         _e.preventDefault();
         if (isMultiInputUpdated) {
             await save(data);
@@ -252,7 +252,7 @@ export const AdapterPage = ({page, previewUrl, id, layout}) => {
                 </button>
                 <a
                     title={i18n("Preview page")}
-                    onClick={(_e) => publishAndDirectToPreview(_e)}
+                    onClick={(_e) => saveAndDirectToPreview(_e)}
                 >
                     {i18n("Preview")}{" "}
                     <span className="govuk-visually-hidden">{pageTitle}</span>

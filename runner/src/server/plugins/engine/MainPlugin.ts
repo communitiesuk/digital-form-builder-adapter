@@ -1,6 +1,6 @@
 import {Options} from "./types/PluginOptions";
 import {HapiServer} from "../../types";
-import {RegisterFormPublishApi} from "./api";
+import {RegisterFormsApi} from "./api";
 import {FormNamespace} from "../../services/AdapterCacheService";
 
 
@@ -19,13 +19,7 @@ export const plugin = {
         let countError = 0;
         for (const config of configs) {
             try {
-                // Explicitly load startup forms into permanent namespace
-                await adapterCacheService.setFormConfiguration(
-                    config.id, 
-                    config, 
-                    server,
-                    FormNamespace.Permanent
-                );
+                await adapterCacheService.setFormConfiguration(config.id, config, FormNamespace.Permanent);
                 countOk++;
             } catch (e) {
                 countError++;
@@ -39,6 +33,6 @@ export const plugin = {
             ...LOGGER_DATA,
             message: `[FORM-CACHE] number of forms loaded into cache ok[${countOk}] error[${countError}]`
         })
-        new RegisterFormPublishApi().register(server, options);
+        new RegisterFormsApi().register(server);
     }
 };
