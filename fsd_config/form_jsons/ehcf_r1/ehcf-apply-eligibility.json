@@ -232,6 +232,7 @@
     "maxAttempts": 3,
     "showPaymentSkippedWarningPage": false
   },
+  "feedback": { "feedbackForm": false, "url": "" },
   "fees": [],
   "lists": [
     {
@@ -340,24 +341,8 @@
           "path": "/you-cannot-apply-for-this-fund-RvHwfd"
         },
         {
-          "condition": "oShhOE",
+          "condition": "",
           "path": "/do-you-have-a-letter-of-support-from-your-local-authority"
-        },
-        {
-          "condition": "WnCJxY",
-          "path": "/what-is-your-registered-charity-number"
-        },
-        {
-          "condition": "oOhWzi",
-          "path": "/what-is-your-registered-charity-number-DCCwNk"
-        },
-        {
-          "condition": "jOyGVW",
-          "path": "/what-is-your-company-registration-number-ZLtIDE"
-        },
-        {
-          "condition": "OLqZmm",
-          "path": "/what-is-your-financial-conduct-authority-reference-number"
         }
       ],
       "path": "/what-is-the-legal-status-of-your-organisation",
@@ -382,72 +367,6 @@
     {
       "components": [
         {
-          "hint": "Use the number registered with the Charity Commission.",
-          "name": "WfWLmg",
-          "options": {
-            "hideTitle": true,
-            "optionalText": false,
-            "required": false
-          },
-          "schema": {},
-          "title": "What is your registered charity number?",
-          "type": "NumberField"
-        },
-        {
-          "list": "PdMEHB",
-          "name": "fgsTnH",
-          "options": {
-            "hideTitle": true,
-            "optionalText": false,
-            "required": false
-          },
-          "schema": {},
-          "title": "My charity is exempt and does not have a charity number ",
-          "type": "CheckboxesField"
-        },
-        {
-          "content": "<h1 class=\"govuk-heading-l\">What is your company registration number?</h1>",
-          "name": "ERGrZk",
-          "options": {},
-          "schema": {},
-          "type": "Para"
-        },
-        {
-          "hint": "Use the number registered with Companies House. For example, 10527177",
-          "name": "qyfACz",
-          "options": { "hideTitle": true },
-          "schema": {},
-          "title": "What is your company registration number?",
-          "type": "TextField"
-        }
-      ],
-      "next": [
-        { "path": "/do-you-have-a-letter-of-support-from-your-local-authority" }
-      ],
-      "path": "/what-is-your-registered-charity-number-DCCwNk",
-      "section": "FabDefault",
-      "title": "What is your registered charity number?"
-    },
-    {
-      "components": [
-        {
-          "name": "fONOHY",
-          "options": { "hideTitle": true },
-          "schema": {},
-          "title": "What is your Financial Conduct Authority reference number?",
-          "type": "TextField"
-        }
-      ],
-      "next": [
-        { "path": "/do-you-have-a-letter-of-support-from-your-local-authority" }
-      ],
-      "path": "/what-is-your-financial-conduct-authority-reference-number",
-      "section": "FabDefault",
-      "title": "What is your Financial Conduct Authority reference number?"
-    },
-    {
-      "components": [
-        {
           "content": "Based on your answer, you're not eligible to apply for this fund.\n<br>\nThe organisation must have one of the legal statuses listed.\n",
           "name": "qNXvQN",
           "options": {},
@@ -463,18 +382,18 @@
     {
       "components": [
         {
-          "name": "KAaClK",
-          "options": { "hideTitle": true },
-          "schema": {},
-          "title": "Do you have a letter of support from your local authority?",
-          "type": "YesNoField"
-        },
-        {
           "content": "It must be from the lead officer with responsibility for homelessness and rough sleeping from the local authority where your services are being delivered.\n<br>\nWe will ask you to upload this letter later in the application.",
           "name": "CEEzxg",
           "options": {},
           "schema": {},
           "type": "Para"
+        },
+        {
+          "name": "KAaClK",
+          "options": { "hideTitle": true },
+          "schema": {},
+          "title": "Do you have a letter of support from your local authority?",
+          "type": "YesNoField"
         }
       ],
       "next": [
@@ -489,24 +408,6 @@
       "path": "/do-you-have-a-letter-of-support-from-your-local-authority",
       "section": "FabDefault",
       "title": "Do you have a letter of support from your local authority?"
-    },
-    {
-      "components": [
-        {
-          "hint": "Use the number registered with Companies House. For example, 10527177",
-          "name": "oIzELz",
-          "options": { "hideTitle": true },
-          "schema": {},
-          "title": "What is your company registration number?",
-          "type": "TextField"
-        }
-      ],
-      "next": [
-        { "path": "/do-you-have-a-letter-of-support-from-your-local-authority" }
-      ],
-      "path": "/what-is-your-company-registration-number-ZLtIDE",
-      "section": "FabDefault",
-      "title": "What is your company registration number?"
     },
     {
       "components": [
@@ -607,35 +508,14 @@
           "type": "Para"
         }
       ],
+      "controller": "./pages/confirm.js",
       "next": [],
       "path": "/you-can-apply-for-this-fund",
       "section": "FabDefault",
-      "title": "You can apply for this fund",
-      "controller": "./pages/confirm.js"
-    },
-    {
-      "components": [
-        {
-          "hint": "Use the number registered with the Charity Commission.",
-          "name": "pNfxcM",
-          "options": {
-            "hideTitle": true,
-            "optionalText": false,
-            "required": true
-          },
-          "schema": {},
-          "title": "What is your registered charity number?",
-          "type": "TextField"
-        }
-      ],
-      "next": [
-        { "path": "/do-you-have-a-letter-of-support-from-your-local-authority" }
-      ],
-      "path": "/what-is-your-registered-charity-number",
-      "section": "FabDefault",
-      "title": "What is your registered charity number?"
+      "title": "You can apply for this fund"
     }
   ],
+  "phaseBanner": {},
   "sections": [
     { "hideTitle": true, "name": "FabDefault", "title": "Default Section" }
   ],
