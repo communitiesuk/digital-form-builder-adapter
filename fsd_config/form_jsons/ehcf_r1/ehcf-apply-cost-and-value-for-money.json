@@ -106,10 +106,6 @@
                 {
                     "text": "Year 2",
                     "value": "Year 2"
-                },
-                {
-                    "text": "Year 3",
-                    "value": "Year 3"
                 }
             ],
             "name": "HnQXVi",
@@ -270,7 +266,10 @@
                     "options": {},
                     "schema": {},
                     "title": "Which year are you applying for?",
-                    "type": "SelectField"
+                    "type": "SelectField",
+                    "values": {
+                        "type": "listRef"
+                    }
                 }
             ],
             "next": [
