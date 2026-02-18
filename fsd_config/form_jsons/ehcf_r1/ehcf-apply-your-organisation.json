@@ -23,108 +23,6 @@
             }
         },
         {
-            "displayName": "org type is company",
-            "name": "NqIyVk",
-            "value": {
-                "conditions": [
-                    {
-                        "field": {
-                            "display": "What is the legal status of your organisation?",
-                            "name": "FabDefault.FuGsSP",
-                            "type": "RadiosField"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "display": "a company limited by guarantee registered with Companies House",
-                            "type": "Value",
-                            "value": "a company limited by guarantee registered with Companies House"
-                        }
-                    }
-                ],
-                "name": "org type is company"
-            }
-        },
-        {
-            "displayName": "org type is charity",
-            "name": "QBdDvo",
-            "value": {
-                "conditions": [
-                    {
-                        "field": {
-                            "display": "What is the legal status of your organisation?",
-                            "name": "FabDefault.FuGsSP",
-                            "type": "RadiosField"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "display": "a charity \u2013 an organisation registered as a charity with the Charity Commission",
-                            "type": "Value",
-                            "value": "a charity \u2013 an organisation registered as a charity with the Charity Commission"
-                        }
-                    }
-                ],
-                "name": "org type is charity"
-            }
-        },
-        {
-            "displayName": "org type CBS",
-            "name": "KVGDYD",
-            "value": {
-                "conditions": [
-                    {
-                        "field": {
-                            "display": "What is the legal status of your organisation?",
-                            "name": "FabDefault.FuGsSP",
-                            "type": "RadiosField"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "display": "a community benefit or co-operative society registered by the Financial Conduct Authority",
-                            "type": "Value",
-                            "value": "a community benefit or co-operative society registered by the Financial Conduct Authority"
-                        }
-                    }
-                ],
-                "name": "org type CBS"
-            }
-        },
-        {
-            "displayName": "org type CIO or CIC",
-            "name": "akXQdQ",
-            "value": {
-                "conditions": [
-                    {
-                        "field": {
-                            "display": "What is the legal status of your organisation?",
-                            "name": "FabDefault.FuGsSP",
-                            "type": "RadiosField"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "display": "a charitable incorporated organisation registered with Companies House and with the Charity Commission",
-                            "type": "Value",
-                            "value": "a charitable incorporated organisation registered with Companies House and with the Charity Commission"
-                        }
-                    },
-                    {
-                        "coordinator": "or",
-                        "field": {
-                            "display": "What is the legal status of your organisation?",
-                            "name": "FabDefault.FuGsSP",
-                            "type": "RadiosField"
-                        },
-                        "operator": "is",
-                        "value": {
-                            "display": "a community interest company registered with Companies House",
-                            "type": "Value",
-                            "value": "a community interest company registered with Companies House"
-                        }
-                    }
-                ],
-                "name": "org type CIO or CIC"
-            }
-        },
-        {
             "displayName": "partnership",
             "name": "fiSaHC",
             "value": {
@@ -167,6 +65,116 @@
                 ],
                 "name": "no partnership"
             }
+        },
+        {
+            "displayName": "a charitable incorporated organisation",
+            "name": "anYrtM",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.DJZuCU",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a charitable incorporated organisation",
+                            "type": "Value",
+                            "value": "a charitable incorporated organisation"
+                        }
+                    }
+                ],
+                "name": "a charitable incorporated organisation"
+            }
+        },
+        {
+            "displayName": "a charitable company limited by guarantee",
+            "name": "gouEqb",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.DJZuCU",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a charitable company limited by guarantee",
+                            "type": "Value",
+                            "value": "a charitable company limited by guarantee"
+                        }
+                    }
+                ],
+                "name": "a charitable company limited by guarantee"
+            }
+        },
+        {
+            "displayName": "a community interest company",
+            "name": "SREXXI",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.DJZuCU",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a community interest company",
+                            "type": "Value",
+                            "value": "a community interest company"
+                        }
+                    }
+                ],
+                "name": "a community interest company"
+            }
+        },
+        {
+            "displayName": "a parochial church council",
+            "name": "sTCiBH",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.DJZuCU",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a parochial church council",
+                            "type": "Value",
+                            "value": "a parochial church council"
+                        }
+                    }
+                ],
+                "name": "a parochial church council"
+            }
+        },
+        {
+            "displayName": "a community benefit society or co-operative society",
+            "name": "HCSEVI",
+            "value": {
+                "conditions": [
+                    {
+                        "field": {
+                            "display": "What is the legal status of your organisation?",
+                            "name": "FabDefault.DJZuCU",
+                            "type": "RadiosField"
+                        },
+                        "operator": "is",
+                        "value": {
+                            "display": "a community benefit society or co-operative society",
+                            "type": "Value",
+                            "value": "a community benefit society or co-operative society"
+                        }
+                    }
+                ],
+                "name": "a community benefit society or co-operative society"
+            }
         }
     ],
     "feeOptions": {
@@ -183,28 +191,39 @@
         {
             "items": [
                 {
-                    "text": "a charity \u2013 an organisation registered as a charity with the Charity Commission",
-                    "value": "a charity \u2013 an organisation registered as a charity with the Charity Commission"
+                    "text": "a charitable incorporated organisation",
+                    "value": "a charitable incorporated organisation"
                 },
                 {
-                    "text": "a charitable incorporated organisation registered with Companies House and with the Charity Commission",
-                    "value": "a charitable incorporated organisation registered with Companies House and with the Charity Commission"
+                    "text": "a charitable company limited by guarantee",
+                    "value": "a charitable company limited by guarantee"
                 },
                 {
-                    "text": "a company limited by guarantee registered with Companies House",
-                    "value": "a company limited by guarantee registered with Companies House"
+                    "text": "a community interest company",
+                    "value": "a community interest company"
                 },
                 {
-                    "text": "a community interest company registered with Companies House",
-                    "value": "a community interest company registered with Companies House"
+                    "text": "a community benefit society or co-operative society",
+                    "value": "a community benefit society or co-operative society"
                 },
                 {
-                    "text": "a community benefit or co-operative society registered by the Financial Conduct Authority",
-                    "value": "a community benefit or co-operative society registered by the Financial Conduct Authority"
+                    "text": "a parochial church council",
+                    "value": "a parochial church council"
                 }
             ],
             "name": "XDrfkW",
             "title": "Organisation types",
+            "type": "string"
+        },
+        {
+            "items": [
+                {
+                    "text": "My charity is exempt and does not have a charity number",
+                    "value": "My charity is exempt and does not have a charity number"
+                }
+            ],
+            "name": "EPwTFw",
+            "title": "My charity is exempt and does not have a charity number",
             "type": "string"
         }
     ],
@@ -215,7 +234,7 @@
         {
             "components": [
                 {
-                    "content": "In this section, we'll ask about your organisation's:\n<ul>\n<li>name</li>\n<li>address</li>\n<li>contacts and authorised signatory</li>\n<li>organisation type</li>\n<li>partnership information</li>",
+                    "content": "In this section, we'll ask about your organisation's:\n<ul>\n<li>name</li>\n<li>address</li>\n<li>registration numbers</li>\n<li>contacts and authorised signatory</li>\n<li>partnership information</li>",
                     "name": "AiCRBt",
                     "options": {},
                     "schema": {},
@@ -277,7 +296,7 @@
             ],
             "next": [
                 {
-                    "path": "/who-is-the-primary-contact-for-this-grant"
+                    "path": "/what-is-the-legal-status-of-your-organisation"
                 }
             ],
             "path": "/what-is-your-organisations-address",
@@ -544,6 +563,163 @@
             "path": "/who-is-the-primary-contact-for-this-grant",
             "section": "FabDefault",
             "title": "Who is the primary contact for this grant?"
+        },
+        {
+            "components": [
+                {
+                    "list": "XDrfkW",
+                    "name": "DJZuCU",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What is the legal status of your organisation?",
+                    "type": "RadiosField"
+                }
+            ],
+            "next": [
+                {
+                    "condition": "sTCiBH",
+                    "path": "/who-is-the-primary-contact-for-this-grant"
+                },
+                {
+                    "condition": "anYrtM",
+                    "path": "/what-is-your-registered-charity-number"
+                },
+                {
+                    "condition": "gouEqb",
+                    "path": "/what-is-your-registered-charity-number-uwprRv"
+                },
+                {
+                    "condition": "SREXXI",
+                    "path": "/what-is-your-company-registration-number"
+                },
+                {
+                    "condition": "HCSEVI",
+                    "path": "/what-is-your-financial-conduct-authority-reference-number"
+                }
+            ],
+            "path": "/what-is-the-legal-status-of-your-organisation",
+            "section": "FabDefault",
+            "title": "What is the legal status of your organisation?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Use the number registered with the Charity Commission.",
+                    "name": "siZmOt",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What is your registered charity number?",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-primary-contact-for-this-grant"
+                }
+            ],
+            "path": "/what-is-your-registered-charity-number",
+            "section": "FabDefault",
+            "title": "What is your registered charity number?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Use the number registered with the Charity Commission.",
+                    "name": "NsTZAN",
+                    "options": {
+                        "hideTitle": true,
+                        "optionalText": false,
+                        "required": false
+                    },
+                    "schema": {},
+                    "title": "What is your registered charity number?",
+                    "type": "TextField"
+                },
+                {
+                    "list": "EPwTFw",
+                    "name": "AAbTDt",
+                    "options": {
+                        "hideTitle": true,
+                        "optionalText": false,
+                        "required": false
+                    },
+                    "schema": {},
+                    "title": "My charity is exempt and does not have a charity number",
+                    "type": "CheckboxesField"
+                },
+                {
+                    "content": "<h1 class=\"govuk-heading-l\">What is your company registration number?</h1>",
+                    "name": "DfcVGI",
+                    "options": {},
+                    "schema": {},
+                    "type": "Para"
+                },
+                {
+                    "hint": "Use the number registered with Companies House. For example, 10527177",
+                    "name": "fCXecZ",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What is your company registration number?",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-primary-contact-for-this-grant"
+                }
+            ],
+            "path": "/what-is-your-registered-charity-number-uwprRv",
+            "section": "FabDefault",
+            "title": "What is your registered charity number?"
+        },
+        {
+            "components": [
+                {
+                    "hint": "Use the number registered with Companies House. For example, 10527177",
+                    "name": "xTJyLj",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What is your company registration number?",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-primary-contact-for-this-grant"
+                }
+            ],
+            "path": "/what-is-your-company-registration-number",
+            "section": "FabDefault",
+            "title": "What is your company registration number?"
+        },
+        {
+            "components": [
+                {
+                    "name": "mtXRXO",
+                    "options": {
+                        "hideTitle": true
+                    },
+                    "schema": {},
+                    "title": "What is your Financial Conduct Authority reference number?",
+                    "type": "TextField"
+                }
+            ],
+            "next": [
+                {
+                    "path": "/who-is-the-primary-contact-for-this-grant"
+                }
+            ],
+            "path": "/what-is-your-financial-conduct-authority-reference-number",
+            "section": "FabDefault",
+            "title": "What is your Financial Conduct Authority reference number?"
         }
     ],
     "phaseBanner": {},

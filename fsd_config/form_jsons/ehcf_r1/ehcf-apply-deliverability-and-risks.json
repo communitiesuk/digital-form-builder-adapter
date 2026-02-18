@@ -209,7 +209,7 @@
         {
             "components": [
                 {
-                    "content": "In this section, we'll ask about:\n<ul>\n<li>milestones\n<li>project plan\n<li>governance\n<li>risks\n<li>building work",
+                    "content": "In this section, we'll ask about:\n<ul>\n<li>milestones\n<li>project plan\n<li>governance\n<li>risks",
                     "name": "FUHNVH",
                     "options": {},
                     "schema": {},
@@ -585,14 +585,14 @@
         {
             "components": [
                 {
-                    "hint": "For example, a quantity surveyor, architect or designer",
+                    "hint": "Please provide details. For example, a quantity surveyor, architect or designer",
                     "name": "tTuHtk",
                     "options": {
                         "hideTitle": true,
                         "maxWords": "250"
                     },
                     "schema": {},
-                    "title": "Have you engaged professional advisors on this project?",
+                    "title": "Have you engaged professional advisors on this project? ",
                     "type": "FreeTextField"
                 }
             ],
