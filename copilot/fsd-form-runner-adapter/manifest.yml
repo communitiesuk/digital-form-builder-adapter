@@ -61,7 +61,7 @@ variables:
   PRIVACY_POLICY_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/privacy"
   SERVICE_START_PAGE: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/account"
   ELIGIBILITY_RESULT_URL: "https://apply.access-funding.${COPILOT_ENVIRONMENT_NAME}.communities.gov.uk/eligibility-result"
-  SENTRY_DSN: "https://6724d8df633d3f4599fbd4cf9c537e3c@o1432034.ingest.us.sentry.io/4508573162864640"
+  SENTRY_DSN: "https://c2e3fe1d06b6f25a81564b62d191b2e7@o4510940714041344.ingest.de.sentry.io/4511038198120528"
   SENTRY_TRACES_SAMPLE_RATE: 0.002
   COPILOT_ENV: ${COPILOT_ENVIRONMENT_NAME}
   AWS_BUCKET_NAME:
