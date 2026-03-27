@@ -15,13 +15,9 @@ import Crypto from 'crypto';
 import {HapiRequest, HapiServer} from "../types";
 import {AdapterFormModel} from "../plugins/engine/models";
 import Boom from "boom";
-import {FormConfiguration} from "@xgovformbuilder/model";
-import {AdapterSchema} from "@communitiesuk/model";
+import { PreAwardApiService, PublishedFormResponse } from "./PreAwardApiService";
 
 const partition = "cache";
-const LOGGER_DATA = {
-    class: "AdapterCacheService",
-}
 const {
     redisHost,
     redisPort,
@@ -36,64 +32,84 @@ if (process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI) {
     redisUri = process.env.FORM_RUNNER_ADAPTER_REDIS_INSTANCE_URI;
 }
 
-export const FORMS_KEY_PREFIX = "forms:cache:"
+export const FORMS_KEY_PREFIX = "forms"
 
 enum ADDITIONAL_IDENTIFIER {
     Confirmation = ":confirmation",
 }
 
 export enum FormNamespace {
-    Permanent = 'permanent',
-    Preview = 'preview'
+    Draft = 'draft',
+    Published = 'published'
 }
 
 /**
  * Determines which namespace to use based on the request context.
- * If form_session_identifier starts with "preview", use preview namespace.
- * Otherwise, use permanent namespace.
+ * If 'preview=draft' is present in the query parameters, Draft namespace is used.
+ * Otherwise, Published namespace is used.
  */
 export function getNamespaceFromRequest(request: HapiRequest): FormNamespace {
-    const formSessionId = request.query.form_session_identifier as string;
-    return formSessionId?.startsWith('preview')
-        ? FormNamespace.Preview 
-        : FormNamespace.Permanent;
+    const previewParam = request.query.preview as string;
+    return previewParam === 'draft' ? FormNamespace.Draft : FormNamespace.Published;
 }
 
+const createRedisClient = (): Redis | null => {
+   if (redisHost || redisUri) {
+       const redisOptions: {password?: string; tls?: {};} = {};
+       if (redisPassword) redisOptions.password = redisPassword;
+       if (redisTls) redisOptions.tls = {};
+
+       return isSingleRedis
+           ? new Redis(redisUri ?? {host: redisHost, port: redisPort, password: redisPassword})
+           : new Redis.Cluster(
+               [{host: redisHost, port: redisPort}],
+               {dnsLookup: (address, callback) => callback(null, address, 4), redisOptions}
+           );
+   }
+   return null;
+};
+
 export class AdapterCacheService extends CacheService {
+    private apiService: PreAwardApiService;
+    private formStorage: Redis | any;
+    private logger: any;
 
     constructor(server: HapiServer) {
         //@ts-ignore
         super(server);
-        //@ts-ignore
-        server.app.redis = this.getRedisClient()
-        //@ts-ignore
-        if (!server.app.redis) {
-            // starting up the in memory cache
+        this.logger = server.logger;
+        this.apiService = server.services([]).preAwardApiService;
+        const redisClient = createRedisClient();
+        if (redisClient) {
+            this.formStorage = redisClient;
+        } else {
+            // Starting up the in memory cache
             this.cache.client.start();
-            //@ts-ignore
-            server.app.inMemoryFormKeys = []
+            this.formStorage = {
+                get: (key) => this.cache.get(key),
+                set: (key, value) => this.cache.set(key, value, {expiresIn: 0}),
+                setex: (key, ttl, value) => this.cache.set(key, value, {expiresIn: ttl}),
+            }
         }
     }
 
-    async activateSession(jwt, request) {
-        request.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
+    async activateSession(jwt, request): Promise<{ redirectPath: string }> {
+        this.logger.info(`[ACTIVATE-SESSION] jwt ${jwt}`);
         const initialisedSession = await this.cache.get(this.JWTKey(jwt));
-        request.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
+        this.logger.info(`[ACTIVATE-SESSION] session details ${initialisedSession}`);
         const {decoded} = Jwt.token.decode(jwt);
         const {payload}: { payload: DecodedSessionToken } = decoded;
         const userSessionKey = {segment: partition, id: `${request.yar.id}:${payload.group}`};
-        request.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
+        this.logger.info(`[ACTIVATE-SESSION] session metadata ${userSessionKey}`);
         const {redirectPath} = await super.activateSession(jwt, request);
-
         let redirectPathNew = redirectPath
         const form_session_identifier = initialisedSession.metadata?.form_session_identifier;
         if (form_session_identifier) {
             userSessionKey.id = `${userSessionKey.id}:${form_session_identifier}`;
             redirectPathNew = `${redirectPathNew}?form_session_identifier=${form_session_identifier}`;
         }
-
         if (config.overwriteInitialisedSession) {
-            request.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
+            this.logger.info("[ACTIVATE-SESSION] Replacing user session with initialisedSession");
             this.cache.set(userSessionKey, initialisedSession, sessionTimeout);
         } else {
             const currentSession = await this.cache.get(userSessionKey);
@@ -101,12 +117,12 @@ export class AdapterCacheService extends CacheService {
                 ...currentSession,
                 ...initialisedSession,
             };
-            request.logger.info("[ACTIVATE-SESSION] Merging user session with initialisedSession");
+            this.logger.info("[ACTIVATE-SESSION] Merging user session with initialisedSession");
             this.cache.set(userSessionKey, mergedSession, sessionTimeout);
         }
-        request.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
+        this.logger.info(`[ACTIVATE-SESSION] redirect ${redirectPathNew}`);
         const key = this.JWTKey(jwt);
-        request.logger.info(`[ACTIVATE-SESSION] drop key ${JSON.stringify(key)}`);
+        this.logger.info(`[ACTIVATE-SESSION] drop key ${JSON.stringify(key)}`);
         await this.cache.drop(key);
         return {
             redirectPath: redirectPathNew,
@@ -121,13 +137,13 @@ export class AdapterCacheService extends CacheService {
      * @param additionalIdentifier - appended to the id
      */
     //@ts-ignore
-    Key(request: HapiRequest, additionalIdentifier?: ADDITIONAL_IDENTIFIER) {
+    Key(request: HapiRequest, additionalIdentifier?: ADDITIONAL_IDENTIFIER): { segment: string; id: string } {
         let id = `${request.yar.id}:${request.params.id}`;
 
         if (request.query.form_session_identifier) {
             id = `${id}:${request.query.form_session_identifier}`;
         }
-        request.logger.info(`[ACTIVATE-SESSION] session key ${id} and segment is ${partition}`);
+        this.logger.info(`[ACTIVATE-SESSION] session key ${id} and segment is ${partition}`);
         return {
             segment: partition,
             id: `${id}${additionalIdentifier ?? ""}`,
@@ -135,62 +151,90 @@ export class AdapterCacheService extends CacheService {
     }
 
     /**
-     * Handles form configuration storage in Redis cache with namespace separation.
-     * Permanent forms are loaded at startup from the forms directory.
-     * Preview forms are published at runtime via the /publish endpoint by Form Designer and FAB.
-     * @param formId form id
-     * @param configuration form definition configurations
-     * @param server server object
-     * @param namespace determines whether form is stored in permanent or preview namespace
+     * Validates cached form against Pre-Award API.
      */
-    async setFormConfiguration(
-        formId: string, 
-        configuration: any, 
-        server: HapiServer,
-        namespace: FormNamespace = FormNamespace.Permanent
-    ) {
-        if (formId && configuration) {
-            //@ts-ignore
-            if (server.app.redis) {
-                await this.addConfigurationsToRedisCache(server, configuration, formId, namespace);
-            } else {
-                await this.addConfigurationIntoInMemoryCache(configuration, formId, server, namespace);
-            }
+    private async validateCachedForm(
+        formId: string,
+        cachedHash: string,
+        namespace: FormNamespace = FormNamespace.Published
+    ): Promise<boolean> {
+        try {
+            const currentHash = namespace === FormNamespace.Draft
+                ? await this.apiService.getDraftFormHash(formId)
+                : await this.apiService.getPublishedFormHash(formId);
+            return currentHash === cachedHash;
+        } catch (error) {
+            // If we can't validate, assume cache is valid
+            this.logger.warn(`[FORM-CACHE] Could not validate cache for form ${formId}, using cached version`);
+            return true;
         }
     }
 
-    private async addConfigurationIntoInMemoryCache(
-        configuration: any, 
-        formId: string, 
-        server: HapiServer,
-        namespace: FormNamespace
-    ) {
-        const hashValue = Crypto.createHash('sha256').update(JSON.stringify(configuration)).digest('hex')
-        const cacheKey = `${FORMS_KEY_PREFIX}${namespace}:${formId}`;
-        
+    /**
+     * Fetches form from Pre-Award API and caches it.
+     */
+    private async fetchAndCacheForm(
+        formId: string,
+        namespace: FormNamespace = FormNamespace.Published
+    ): Promise<{ configuration: any; hash: string } | null> {
         try {
-            const jsonDataString = await this.cache.get(cacheKey);
-            if (jsonDataString === null) {
-                // Adding new config into cache with the hash value
+            let apiResponse, configuration;
+            if (namespace === FormNamespace.Draft) {
+                apiResponse = await this.apiService.getDraftForm(formId);
+                configuration = apiResponse?.draft_json;
+            } else {
+                apiResponse = await this.apiService.getPublishedForm(formId);
+                configuration = apiResponse?.published_json;
+            }
+            if (!apiResponse) return null;
+            const configToCache = {
+                configuration: configuration,
+                hash: apiResponse.hash,
+            }
+            const formsCacheKey = `${FORMS_KEY_PREFIX}:${formId}`;
+            await this.formStorage.set(formsCacheKey, JSON.stringify(configToCache));
+            this.logger.info(`[FORM-CACHE] Cached form ${formId} from Pre-Award API`);
+            return configToCache;
+        } catch (error) {
+            this.logger.error(`[FORM-CACHE] Failed to fetch form ${formId}`, error);
+            return null;
+        }
+    }
+
+    /**
+     * This is used to ensure unit tests can populate the cache
+     */
+    async setFormConfiguration(
+        formId: string,
+        configuration: any,
+        namespace: FormNamespace = FormNamespace.Published
+    ): Promise<void> {
+        if (!formId || !configuration) return;
+        const hashValue = Crypto.createHash('sha256')
+            .update(JSON.stringify(configuration))
+            .digest('hex');
+        const key = `${FORMS_KEY_PREFIX}:${namespace}:${formId}`;
+        try {
+            const existingConfigString = await this.formStorage.get(key);
+            if (existingConfigString === null) {
+                // Adding new config with the hash value
                 const stringConfig = JSON.stringify({
                     ...configuration,
                     id: configuration.id,
                     hash: hashValue
                 });
-                //@ts-ignore
-                server.app.inMemoryFormKeys.push(cacheKey)
-                await this.cache.set(cacheKey, stringConfig, {expiresIn: 0});
+                await this.formStorage.set(key, stringConfig);
             } else {
-                // Cache has the data, check if hash changed
-                const configObj = JSON.parse(jsonDataString);
-                if (configObj && configObj.hash && hashValue !== configObj.hash) {
-                    // Hash changed, update the configuration
+                // Check if hash has changed
+                const existingConfig = JSON.parse(existingConfigString);
+                if (existingConfig?.hash !== hashValue) {
+                    // Hash has changed, update the configuration
                     const stringConfig = JSON.stringify({
                         ...configuration,
                         id: configuration.id,
                         hash: hashValue
                     });
-                    await this.cache.set(cacheKey, stringConfig, {expiresIn: 0});
+                    await this.formStorage.set(key, stringConfig);
                 }
             }
         } catch (error) {
@@ -198,262 +242,63 @@ export class AdapterCacheService extends CacheService {
         }
     }
 
-    private async addConfigurationsToRedisCache(
-        server: HapiServer, 
-        configuration: any, 
-        formId: string,
-        namespace: FormNamespace
-    ) {
-        //@ts-ignore
-        const redisClient: Redis = server.app.redis
-        const hashValue = Crypto.createHash('sha256').update(JSON.stringify(configuration)).digest('hex')
-        const cacheKey = `${FORMS_KEY_PREFIX}${namespace}:${formId}`;
-        
-        if (redisClient) {
-            const jsonDataString = await redisClient.get(cacheKey);
-            if (jsonDataString === null) {
-                // Adding new config into redis cache service with the hash value
-                const stringConfig = JSON.stringify({
-                    ...configuration,
-                    id: configuration.id,
-                    hash: hashValue
-                });
-                await redisClient.set(cacheKey, stringConfig);
-            } else {
-                // Redis has the data, check if hash changed
-                const configObj = JSON.parse(jsonDataString);
-                if (configObj && configObj.hash && hashValue !== configObj.hash) {
-                    // Hash changed, update the configuration
-                    const stringConfig = JSON.stringify({
-                        ...configuration,
-                        id: configuration.id,
-                        hash: hashValue
-                    });
-                    await redisClient.set(cacheKey, stringConfig);
-                }
-            }
-        }
-    }
-
     /**
-     * Retrieves a form model from cache using the specified namespace.
-     * @param formId - the form identifier
-     * @param request - the request object
-     * @param namespace - which namespace to retrieve from (defaults to permanent)
+     * Retrieves form configuration, either from cache or Pre-Award API.
      */
     async getFormAdapterModel(
-        formId: string, 
+        formId: string,
         request: HapiRequest,
-        namespace: FormNamespace = FormNamespace.Permanent
-    ) {
-        const tryGetForm = async (ns: FormNamespace) => {
-            //@ts-ignore
-            if (request.server.app.redis) {
-                return await this.getConfigurationFromRedisCache(request, formId, ns);
-            } else {
-                return await this.getConfigurationFromInMemoryCache(request, formId, ns);
-            }
-        };
-
-        try {
-            // Try primary namespace
-            return await tryGetForm(namespace);
-        } catch (error) {
-            // In E2E mode, fall back to the other namespace
-            // This allows E2E tests to publish to preview and access without form_session_identifier
-            const isProduction = config.copilotEnv === "production" || config.copilotEnv === "prod";
-            if (!isProduction) {
-                const fallbackNamespace = namespace === FormNamespace.Permanent
-                    ? FormNamespace.Preview
-                    : FormNamespace.Permanent;
-
-                request.logger.info({
-                    ...LOGGER_DATA,
-                    message: `[E2E-FALLBACK] Form ${formId} not found in ${namespace} namespace, trying ${fallbackNamespace}`
-                });
-
-                try {
-                    return await tryGetForm(fallbackNamespace);
-                } catch (fallbackError) {
-                    // Both namespaces failed, log fallback error and throw original error
-                    request.logger.error({
-                        ...LOGGER_DATA,
-                        message: `[E2E-FALLBACK] Form ${formId} also not found in fallback namespace ${fallbackNamespace}`,
-                        error: fallbackError
-                    });
-                    throw error;
+        namespace: FormNamespace = FormNamespace.Published
+    ) : Promise<AdapterFormModel> {
+        const {translationLoaderService} = request.services([]);
+        const translations = translationLoaderService.getTranslations();
+        const formCacheKey = `${FORMS_KEY_PREFIX}:${namespace}:${formId}`;
+        const jsonDataString = await this.formStorage.get(formCacheKey);
+        // We use a separate key to track if we've validated that this form is up-to-date in this session
+        // We use yar.id instead of form_session_identifier as form_session_identifier is not present in the first request
+        const formSessionCacheKey = `${formCacheKey}:${request.yar.id}`;
+        const cacheValidatedInSession = await this.formStorage.get(formSessionCacheKey);
+        let configObj = null;
+        if (jsonDataString !== null) {
+            // Cache hit
+            this.logger.debug(`[FORM-CACHE] Cache hit for form ${formId}`);
+            configObj = JSON.parse(jsonDataString);
+            if (!cacheValidatedInSession) {
+                // Validate cached form once per session
+                this.logger.debug(`[FORM-CACHE] First access of form ${formId} in yar session ${request.yar.id}, validating cache`);
+                const isValid = await this.validateCachedForm(formId, configObj.hash, namespace);
+                if (!isValid) {
+                    this.logger.info(`[FORM-CACHE] Cache stale for form ${formId}, fetching fresh version`);
+                    const freshConfig = await this.fetchAndCacheForm(formId, namespace);
+                    if (freshConfig) {
+                        configObj = freshConfig;
+                    }
+                } else {
+                    this.logger.debug(`[FORM-CACHE] Cache valid for form ${formId}`);
                 }
+            } else {
+                this.logger.debug(`[FORM-CACHE] Form ${formId} already validated in yar session ${request.yar.id}`);
             }
-
-            // Production mode - no fallback, throw immediately
-            throw error;
-        }
-    }
-
-    private async getConfigurationFromInMemoryCache(
-        request: HapiRequest, 
-        formId: string,
-        namespace: FormNamespace
-    ) {
-        const {translationLoaderService} = request.services([]);
-        const translations = translationLoaderService.getTranslations();
-        const cacheKey = `${FORMS_KEY_PREFIX}${namespace}:${formId}`;
-        const jsonDataString = await this.cache.get(cacheKey);
-        
-        if (jsonDataString !== null) {
-            const configObj = JSON.parse(jsonDataString);
-            return new AdapterFormModel(configObj.configuration, {
-                basePath: configObj.id ? configObj.id : formId,
-                hash: configObj.hash,
-                previewMode: true,
-                translationEn: translations.en,
-                translationCy: translations.cy
-            })
-        }
-        request.logger.error({
-            ...LOGGER_DATA,
-            message: `[FORM-CACHE] Cannot find the form ${formId} in ${namespace} namespace`
-        });
-        throw Boom.notFound("Cannot find the given form");
-    }
-
-    private async getConfigurationFromRedisCache(
-        request: HapiRequest, 
-        formId: string,
-        namespace: FormNamespace
-    ) {
-        //@ts-ignore
-        const redisClient: Redis = request.server.app.redis
-        const {translationLoaderService} = request.services([]);
-        const translations = translationLoaderService.getTranslations();
-        const cacheKey = `${FORMS_KEY_PREFIX}${namespace}:${formId}`;
-        const jsonDataString = await redisClient.get(cacheKey);
-        
-        if (jsonDataString !== null) {
-            const configObj = JSON.parse(jsonDataString);
-            return new AdapterFormModel(configObj.configuration, {
-                basePath: configObj.id ? configObj.id : formId,
-                hash: configObj.hash,
-                previewMode: true,
-                translationEn: translations.en,
-                translationCy: translations.cy
-            })
-        }
-        request.logger.error({
-            ...LOGGER_DATA,
-            message: `[FORM-CACHE] Cannot find the form ${formId} in ${namespace} namespace`
-        });
-        throw Boom.notFound("Cannot find the given form");
-    }
-
-    /**
-     * Retrieves all form configurations from a specific namespace.
-     * Defaults to preview namespace as this is primarily used by Form Designer.
-     */
-    async getFormConfigurations(request: HapiRequest, namespace: FormNamespace = FormNamespace.Preview) {
-        //@ts-ignore
-        if (request.server.app.redis) {
-            return await this.getFormDisplayConfigurationsFromRedisCache(request, namespace);
         } else {
-            return await this.getFormConfigurationsFromInMemoryCache(request, namespace);
-        }
-    }
-
-    private async getFormConfigurationsFromInMemoryCache(
-        request: HapiRequest,
-        namespace: FormNamespace
-    ) {
-        const configs: FormConfiguration[] = []
-        const namespacePrefix = `${FORMS_KEY_PREFIX}${namespace}:`;
-        
-        //@ts-ignore
-        for (const key of request.server.app.inMemoryFormKeys) {
-            // Only process keys from the specified namespace
-            if (!key.startsWith(namespacePrefix)) {
-                continue;
+            // Cache miss - fetch from Pre-Award API
+            this.logger.info(`[FORM-CACHE] Cache miss for form ${formId}, fetching from Pre-Award API`);
+            configObj = await this.fetchAndCacheForm(formId, namespace);
+            if (!configObj) {
+                throw Boom.notFound(`Form '${formId}' not found`);
             }
-            
-            const configObj = JSON.parse(await this.cache.get(key));
-            const result = AdapterSchema.validate(configObj.configuration, {abortEarly: false});
-            configs.push(
-                new FormConfiguration(
-                    key.replace(namespacePrefix, ""),
-                    result.value.name,
-                    undefined,
-                    result.value.feedback?.feedbackForm
-                )
-            )
         }
-        return configs;
-    }
-
-    private async getFormDisplayConfigurationsFromRedisCache(
-        request: HapiRequest,
-        namespace: FormNamespace
-    ) {
-        //@ts-ignore
-        const redisClient: Redis = request.server.app.redis;
-        const namespacePrefix = `${FORMS_KEY_PREFIX}${namespace}:`;
-        const keys = await redisClient.keys(`${namespacePrefix}*`);
-        const configs: FormConfiguration[] = []
-        
-        for (const key of keys) {
-            const configObj = JSON.parse(await redisClient.get(key));
-            const result = AdapterSchema.validate(configObj.configuration, {abortEarly: false});
-            configs.push(
-                new FormConfiguration(
-                    key.replace(namespacePrefix, ""),
-                    result.value.name,
-                    undefined,
-                    result.value.feedback?.feedbackForm
-                )
-            )
+        if (!cacheValidatedInSession) {
+            // Mark form as validated in this session
+            this.logger.debug(`[FORM-CACHE] Marking form ${formId} as validated in yar session ${request.yar.id}`);
+            await this.formStorage.setex(formSessionCacheKey, sessionTimeout / 1000, true);
         }
-        return configs;
-    }
-
-    private getRedisClient() {
-        if (redisHost || redisUri) {
-            const redisOptions: {
-                password?: string;
-                tls?: {};
-            } = {};
-
-            if (redisPassword) {
-                redisOptions.password = redisPassword;
-            }
-
-            if (redisTls) {
-                redisOptions.tls = {};
-            }
-
-            const client = isSingleRedis
-                ? new Redis(
-                    redisUri ?? {
-                        host: redisHost,
-                        port: redisPort,
-                        password: redisPassword,
-                    }
-                )
-                : new Redis.Cluster(
-                    [
-                        {
-                            host: redisHost,
-                            port: redisPort,
-                        },
-                    ],
-                    {
-                        dnsLookup: (address, callback) => callback(null, address, 4),
-                        redisOptions,
-                    }
-                );
-            return client;
-        } else {
-            console.log({
-                ...LOGGER_DATA,
-                message: `[FORM-CACHE] using memory caching`,
-            })
-        }
+        return new AdapterFormModel(configObj.configuration, {
+            basePath: formId,
+            hash: configObj.hash,
+            previewMode: true,
+            translationEn: translations.en,
+            translationCy: translations.cy
+        });
     }
 }
 
@@ -464,49 +309,16 @@ export const catboxProvider = () => {
      */
     const provider = {
         constructor: redisHost || redisUri ? CatboxRedis.Engine : CatboxMemory.Engine,
-        options: {},
+        options: {partition},
     };
 
     if (redisHost || redisUri) {
-        console.log("Starting redis session management")
-        const redisOptions: {
-            password?: string;
-            tls?: {};
-        } = {};
-
-        if (redisPassword) {
-            redisOptions.password = redisPassword;
-        }
-
-        if (redisTls) {
-            redisOptions.tls = {};
-        }
-
-        const client = isSingleRedis
-            ? new Redis(
-                redisUri ?? {
-                    host: redisHost,
-                    port: redisPort,
-                    password: redisPassword,
-                }
-            )
-            : new Redis.Cluster(
-                [
-                    {
-                        host: redisHost,
-                        port: redisPort,
-                    },
-                ],
-                {
-                    dnsLookup: (address, callback) => callback(null, address, 4),
-                    redisOptions,
-                }
-            );
-        provider.options = {client, partition};
-        console.log(`Redis Url : ${redisUri} session management`);
+       console.log("Starting redis session management");
+       const client = createRedisClient();
+       provider.options = {client, partition};
+       console.log(`Redis Url : ${redisUri} session management`);
     } else {
-        console.log("Starting in memory session management")
-        provider.options = {partition};
+        console.log("Starting in memory session management");
     }
 
     return provider;

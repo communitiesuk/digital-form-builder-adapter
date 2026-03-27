@@ -114,4 +114,6 @@ module.exports = {
   copilotEnv: "",
 
   enableVirusScan: false,
+
+  formStoreApiHost: "https://api.communities.gov.localhost:4004/forms"
 };

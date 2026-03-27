@@ -1,6 +1,5 @@
 import {ServerRoute} from "@hapi/hapi";
 import {AdapterSchema} from "@communitiesuk/model";
-import {publish} from "../../lib/publish";
 import {preAwardApiClient} from "../../lib/preAwardApiClient";
 
 
@@ -15,8 +14,6 @@ export const putFormWithIdRouteRegister: ServerRoute = {
         handler: async (request, h) => {
             const {id} = request.params;
             const payload = request.payload;
-            //@ts-ignore
-            const {persistenceService} = request.services([]);
 
             try {
                 const displayName = payload.name || id;
@@ -33,15 +30,9 @@ export const putFormWithIdRouteRegister: ServerRoute = {
 
                     throw new Error("Schema validation failed, reason: " + error.message);
                 }
-                await persistenceService.uploadConfiguration(
-                    `${id}`,
-                    JSON.stringify(value)
-                );
                 // Save to Pre-Award API
                 const formData = { url_path: id, display_name: displayName, form_json: value };
                 await preAwardApiClient.createOrUpdateForm(formData);
-                // Publish to runner for preview
-                await publish(id, value, request);
                 return h.response({ok: true}).code(204);
             } catch (err) {
                 //@ts-ignore

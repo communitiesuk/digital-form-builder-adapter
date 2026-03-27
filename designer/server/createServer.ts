@@ -5,7 +5,6 @@ import logging from "../../digital-form-builder/designer/server/plugins/logging"
 import router from "../../digital-form-builder/designer/server/plugins/router";
 import {viewPlugin} from "../../digital-form-builder/designer/server/plugins/view";
 import Schmervice from "schmervice";
-import {determinePersistenceService} from "../../digital-form-builder/designer/server/lib/persistence";
 import {configureBlankiePlugin} from "../../digital-form-builder/designer/server/plugins/blankie";
 import {configureYarPlugin} from "../../digital-form-builder/designer/server/plugins/session";
 import {designerPlugin} from "./plugins/DesignerRouteRegister";
@@ -70,12 +69,6 @@ export async function createServer() {
     await server.register(configureYarPlugin());
     await server.register(viewPlugin);
     await server.register(Schmervice);
-    (server as any).registerService([
-        Schmervice.withName(
-            "persistenceService",
-            determinePersistenceService(config.persistentBackend, server)
-        ),
-    ]);
     server.ext('onPreResponse', (request, h) => {
         const response = h.response(request.response);
         response.header('Content-Security-Policy',
