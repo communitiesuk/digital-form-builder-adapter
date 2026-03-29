@@ -3,7 +3,7 @@ import * as Lab from "@hapi/lab";
 import * as path from "path";
 //@ts-ignore
 import createServer from "src/server";
-import cheerio from "cheerio";
+const cheerio = require("cheerio");
 //@ts-ignore
 import {config} from "../../../../../../src/server/plugins/utils/AdapterConfigurationSchema";
 

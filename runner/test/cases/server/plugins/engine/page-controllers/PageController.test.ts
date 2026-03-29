@@ -4,7 +4,7 @@ import * as Lab from "@hapi/lab";
 import {AdapterFormModel} from "src/server/plugins/engine/models";
 //@ts-ignore
 import createServer from "src/server";
-import cheerio from "cheerio";
+const cheerio = require("cheerio");
 import path from "path";
 //@ts-ignore
 import {PageController} from "src/server/plugins/engine/page-controllers";
