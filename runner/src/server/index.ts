@@ -149,14 +149,14 @@ async function createServer(routeConfig: RouteConfig) {
         (request: HapiRequest, h: HapiResponseToolkit) => {
             const {response} = request;
 
-            if ("isBoom" in response && response.isBoom
-                && response?.output?.statusCode >= 500
-                && response?.output?.statusCode < 600) {
-                Sentry.captureException(response);
+            if ("isBoom" in response && response.isBoom) {
+                if (response.output.statusCode >= 500 && response.output.statusCode < 600) {
+                    Sentry.captureException(response);
+                }
                 return h.continue;
             }
 
-            if ("header" in response && response.header) {
+            if ("header" in response && typeof response.header === "function") {
                 response.header("X-Robots-Tag", "noindex, nofollow");
 
                 const existingHeaders = response.headers;
