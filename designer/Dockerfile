@@ -3,13 +3,17 @@
 # Base image contains the node version and app user creation
 # It also configures the non-root user that will be given permission to copied files/folders in every subsequent stages
 FROM node:20-alpine AS base-image
+
+
 RUN mkdir -p /usr/src/app/digital-form-builder-adapter && \
     addgroup -g 1001 appuser && \
     adduser -S -u 1001 -G appuser appuser && \
     chown -R appuser:appuser /usr/src/app/digital-form-builder-adapter && \
     chmod -R +x  /usr/src/app/digital-form-builder-adapter && \
     apk update && \
-    apk add --no-cache bash git
+    apk add --no-cache bash git && \
+    apk add --no-cache libcurl=8.22.0-r0
+    # Fix for CVE-2026-19931
 
 
 # ----------------------------
