@@ -3,11 +3,15 @@ const packagePath = 'digital-form-builder/runner/package.json';
 const packageRunnerPath = 'runner/package.json';
 const packageModelPath = 'digital-form-builder/model/package.json';
 const packageQueueModelPath = 'digital-form-builder/queue-model/package.json';
+const packageAdapterPath = 'package.json';
+const packageBuilderPath = 'digital-form-builder/package.json';
 // Read package.json
 const packageRunnerJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 const packageAdapterRunnerJson = JSON.parse(fs.readFileSync(packageRunnerPath, 'utf8'));
 const packageJsonModel = JSON.parse(fs.readFileSync(packageModelPath, 'utf8'));
 const packageJsonQueueModel = JSON.parse(fs.readFileSync(packageQueueModelPath, 'utf8'));
+const packageAdapterJson = JSON.parse(fs.readFileSync(packageAdapterPath, 'utf8'));
+const packageBuilderJson = JSON.parse(fs.readFileSync(packageBuilderPath, 'utf8'));
 // Modify package.json
 packageRunnerJson.devDependencies = {
   ...packageRunnerJson.devDependencies,
@@ -21,6 +25,13 @@ packageJsonModel.dependencies = {
   'joi': packageAdapterRunnerJson.dependencies.joi
 };
 
+// The submodule is installed as its own yarn project, so the adapter's tar
+// resolution (fix for CVE-2026-59873) does not reach it and has to be copied over
+packageBuilderJson.resolutions = {
+  ...packageBuilderJson.resolutions,
+  'tar': packageAdapterJson.resolutions.tar
+};
+
 packageRunnerJson.installConfig = {}
 
 // Write package.json back to file
@@ -32,3 +43,7 @@ console.log('runner package.json updated successfully model:['
 // Write package.json back to file
 fs.writeFileSync(packageModelPath, JSON.stringify(packageJsonModel, null, 2));
 console.log('model package.json updated successfully joi:[' +  packageAdapterRunnerJson.dependencies.joi + ']');
+
+// Write package.json back to file
+fs.writeFileSync(packageBuilderPath, JSON.stringify(packageBuilderJson, null, 2));
+console.log('digital-form-builder package.json updated successfully tar:[' + packageAdapterJson.resolutions.tar + ']');
