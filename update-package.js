@@ -26,12 +26,13 @@ packageJsonModel.dependencies = {
 };
 
 // The submodule is installed as its own yarn project, so the adapter's tar
-// (fix for CVE-2026-59873) and shell-quote resolutions do not reach it and have
-// to be copied over
+// (fix for CVE-2026-59873), shell-quote and cipher-base resolutions do not reach
+// it and have to be copied over
 packageBuilderJson.resolutions = {
   ...packageBuilderJson.resolutions,
   'tar': packageAdapterJson.resolutions.tar,
-  'shell-quote': packageAdapterJson.resolutions['shell-quote']
+  'shell-quote': packageAdapterJson.resolutions['shell-quote'],
+  'cipher-base': packageAdapterJson.resolutions['cipher-base']
 };
 
 packageRunnerJson.installConfig = {}
@@ -49,4 +50,5 @@ console.log('model package.json updated successfully joi:[' +  packageAdapterRun
 // Write package.json back to file
 fs.writeFileSync(packageBuilderPath, JSON.stringify(packageBuilderJson, null, 2));
 console.log('digital-form-builder package.json updated successfully tar:[' + packageAdapterJson.resolutions.tar
-  + '] shell-quote:[' + packageAdapterJson.resolutions['shell-quote'] + ']');
+  + '] shell-quote:[' + packageAdapterJson.resolutions['shell-quote']
+  + '] cipher-base:[' + packageAdapterJson.resolutions['cipher-base'] + ']');
