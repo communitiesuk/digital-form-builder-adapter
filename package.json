@@ -26,7 +26,8 @@
     "joi": "17.13.3",
     "tar": "7.5.19",
     "shell-quote": "1.8.4",
-    "cipher-base": "1.0.5"
+    "cipher-base": "1.0.5",
+    "loader-utils": "2.0.4"
   },
   "author": "Communities UK",
   "license": "MIT"
