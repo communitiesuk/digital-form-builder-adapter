@@ -33,7 +33,7 @@
     "dropzone": "5.9.3",
     "govuk-frontend": "^5.10.2",
     "hapi-i18n": "3.0.1",
-    "joi": "17.13.3",
+    "joi": "18.2.1",
     "tinymce": "7.3.0"
   },
   "devDependencies": {
