@@ -1,6 +1,5 @@
 import { api as originalApi } from "../../../../digital-form-builder/designer/server/plugins/routes";
 import { preAwardApiClient } from "../../lib/preAwardApiClient";
-import { publish } from "../../lib/publish";
 import { ServerRoute, ResponseObject } from "@hapi/hapi";
 import config from "../../config";
 import {v4 as uuidv4} from 'uuid';
@@ -43,9 +42,8 @@ export const previewDraft: ServerRoute = {
     handler: async (request, h) => {
       const { id } = request.params;
       try {
-        const formDraftResponse = await preAwardApiClient.getFormDraft(id);
-        await publish(id, formDraftResponse.draft_json, request);
-        const previewUrl = `${config.previewUrl}/${id}?form_session_identifier=preview/${uuidv4()}`;
+        await preAwardApiClient.getFormDraft(id);
+        const previewUrl = `${config.previewUrl}/${id}?form_session_identifier=preview/${uuidv4()}&preview=draft`;
         return h.response({ ok: true, url: previewUrl }).code(200);
       } catch (error) {
         request.logger.error("Error previewing draft form:", error);
@@ -62,9 +60,8 @@ export const previewPublished: ServerRoute = {
     handler: async (request, h) => {
       const { id } = request.params;
       try {
-        const formPublishedResponse = await preAwardApiClient.getFormPublished(id);
-        await publish(id, formPublishedResponse.published_json, request);
-        const previewUrl = `${config.previewUrl}/${id}?form_session_identifier=preview/${uuidv4()}`;
+        await preAwardApiClient.getFormPublished(id);
+        const previewUrl = `${config.previewUrl}/${id}?form_session_identifier=preview/${uuidv4()}&preview=published`;
         return h.response({ ok: true, url: previewUrl }).code(200);
       } catch (error) {
         request.logger.error("Error previewing published form:", error);

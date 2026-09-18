@@ -1,7 +1,6 @@
 import path from "path";
 import {plugin} from "./engine/MainPlugin";
 
-import {loadForms} from "./engine/service/ConfigurationFormsService";
 import {idFromFilename} from "../../../../digital-form-builder/runner/src/server/plugins/engine/helpers";
 import {
     FormConfiguration
@@ -14,7 +13,7 @@ const relativeTo = __dirname;
 
 export const ConfigureFormsPlugin: ConfigureEnginePluginType = (
     formFileName, formFilePath, options?: EngineOptions) => {
-    let configs: FormConfiguration[];
+    let configs: FormConfiguration[] = [];
 
     if (formFileName && formFilePath) {
         configs = [
@@ -23,8 +22,6 @@ export const ConfigureFormsPlugin: ConfigureEnginePluginType = (
                 id: idFromFilename(formFileName)
             }
         ];
-    } else {
-        configs = loadForms();
     }
 
     const modelOptions = {
