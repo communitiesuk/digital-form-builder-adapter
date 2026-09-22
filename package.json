@@ -28,7 +28,8 @@
     "shell-quote": "1.8.4",
     "cipher-base": "1.0.5",
     "loader-utils": "2.0.4",
-    "handlebars": "4.7.9"
+    "handlebars": "4.7.9",
+    "fast-xml-parser": "4.5.4"
   },
   "author": "Communities UK",
   "license": "MIT"
