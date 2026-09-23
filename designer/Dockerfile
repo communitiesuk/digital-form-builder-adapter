@@ -55,6 +55,11 @@ COPY --chown=appuser:appuser ../model/package.json ./model/package.json
 FROM digital-form-builder-adapter-pre-build AS digital-form-builder-adapter-install
 WORKDIR /usr/src/app/digital-form-builder-adapter
 USER 1001
+# The e2e workspaces are installed here but cypress is only ever run on the CI
+# host, so skip the binary download. It bundles its own electron/chromium and
+# node_modules (including underscore 1.6.0, CVE-2021-23358) that nothing in this
+# image can use
+ENV CYPRESS_INSTALL_BINARY=0
 RUN --mount=type=cache,target=.yarn/cache,uid=1001,mode=0755,id=digital-form-builder-adapter-install  \
     node update-package.js && yarn setup && yarn install
 
