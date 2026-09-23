@@ -29,7 +29,8 @@
     "cipher-base": "1.0.5",
     "loader-utils": "2.0.4",
     "handlebars": "4.7.9",
-    "fast-xml-parser": "4.5.4"
+    "fast-xml-parser": "4.5.4",
+    "cypress": "13.13.3"
   },
   "author": "Communities UK",
   "license": "MIT"

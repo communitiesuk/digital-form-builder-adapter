@@ -27,10 +27,14 @@ packageJsonModel.dependencies = {
 
 // The submodule is installed as its own yarn project, so the adapter's CVE
 // resolutions do not reach it and have to be copied over
-const copiedResolutions = ['tar', 'shell-quote', 'cipher-base', 'loader-utils', 'handlebars'];
 packageBuilderJson.resolutions = {
   ...packageBuilderJson.resolutions,
-  ...Object.fromEntries(copiedResolutions.map((name) => [name, packageAdapterJson.resolutions[name]]))
+  'tar': packageAdapterJson.resolutions.tar,
+  'shell-quote': packageAdapterJson.resolutions['shell-quote'],
+  'cipher-base': packageAdapterJson.resolutions['cipher-base'],
+  'loader-utils': packageAdapterJson.resolutions['loader-utils'],
+  'handlebars': packageAdapterJson.resolutions['handlebars'],
+  'cypress': packageAdapterJson.resolutions.cypress
 };
 
 packageRunnerJson.installConfig = {}
@@ -47,5 +51,9 @@ console.log('model package.json updated successfully joi:[' +  packageAdapterRun
 
 // Write package.json back to file
 fs.writeFileSync(packageBuilderPath, JSON.stringify(packageBuilderJson, null, 2));
-console.log('digital-form-builder package.json updated successfully '
-  + copiedResolutions.map((name) => name + ':[' + packageAdapterJson.resolutions[name] + ']').join(' '));
+console.log('digital-form-builder package.json updated successfully tar:[' + packageAdapterJson.resolutions.tar
+  + '] shell-quote:[' + packageAdapterJson.resolutions['shell-quote']
+  + '] cipher-base:[' + packageAdapterJson.resolutions['cipher-base']
+  + '] loader-utils:[' + packageAdapterJson.resolutions['loader-utils']
+  + '] handlebars:[' + packageAdapterJson.resolutions['handlebars']
+  + '] cypress:[' + packageAdapterJson.resolutions.cypress + ']');
