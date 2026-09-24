@@ -34,7 +34,11 @@ packageBuilderJson.resolutions = {
   'cipher-base': packageAdapterJson.resolutions['cipher-base'],
   'loader-utils': packageAdapterJson.resolutions['loader-utils'],
   'handlebars': packageAdapterJson.resolutions['handlebars'],
-  'cypress': packageAdapterJson.resolutions.cypress
+  'cypress': packageAdapterJson.resolutions.cypress,
+  'immutable': packageAdapterJson.resolutions.immutable,
+  // CVE-2025-13204: upstream expr-eval has no patched release, so alias it to
+  // the maintained fork that carries the prototype pollution fix
+  'expr-eval': packageAdapterJson.resolutions['expr-eval']
 };
 
 packageRunnerJson.installConfig = {}
@@ -56,4 +60,6 @@ console.log('digital-form-builder package.json updated successfully tar:[' + pac
   + '] cipher-base:[' + packageAdapterJson.resolutions['cipher-base']
   + '] loader-utils:[' + packageAdapterJson.resolutions['loader-utils']
   + '] handlebars:[' + packageAdapterJson.resolutions['handlebars']
-  + '] cypress:[' + packageAdapterJson.resolutions.cypress + ']');
+  + '] cypress:[' + packageAdapterJson.resolutions.cypress
+  + '] immutable:[' + packageAdapterJson.resolutions.immutable
+  + '] expr-eval:[' + packageAdapterJson.resolutions['expr-eval'] + ']');
