@@ -13,6 +13,7 @@ RUN mkdir -p /usr/src/app/digital-form-builder-adapter && \
     apk update && \
     apk add --no-cache bash git && \
     apk add --no-cache libcurl=8.22.0-r0 && \
+    apk add --no-cache libcrypto3=3.5.8-r0 && \
     npm install -g npm@11.19.1 --ignore-scripts
     # Fix for CVE-2026-19931
     # npm upgrade takes its bundled tar from 6.2.1 to 7.5.22, fix for CVE-2026-59873
