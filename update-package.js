@@ -34,7 +34,8 @@ packageBuilderJson.resolutions = {
   'cipher-base': packageAdapterJson.resolutions['cipher-base'],
   'loader-utils': packageAdapterJson.resolutions['loader-utils'],
   'handlebars': packageAdapterJson.resolutions['handlebars'],
-  'cypress': packageAdapterJson.resolutions.cypress
+  'cypress': packageAdapterJson.resolutions.cypress,
+  'immutable': packageAdapterJson.resolutions['immutable']
 };
 
 packageRunnerJson.installConfig = {}
@@ -56,4 +57,5 @@ console.log('digital-form-builder package.json updated successfully tar:[' + pac
   + '] cipher-base:[' + packageAdapterJson.resolutions['cipher-base']
   + '] loader-utils:[' + packageAdapterJson.resolutions['loader-utils']
   + '] handlebars:[' + packageAdapterJson.resolutions['handlebars']
-  + '] cypress:[' + packageAdapterJson.resolutions.cypress + ']');
+  + '] cypress:[' + packageAdapterJson.resolutions.cypress
+  + '] immutable:[' + packageAdapterJson.resolutions['immutable'] + ']');
