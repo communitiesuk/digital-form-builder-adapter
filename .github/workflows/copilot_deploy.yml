@@ -24,11 +24,6 @@ on:
           - test
           - uat
           - prod
-      run_performance_tests:
-        required: false
-        default: false
-        type: boolean
-        description: Run performance tests
       run_e2e_tests:
         required: false
         default: true
@@ -428,7 +423,6 @@ jobs:
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
     with:
-      run_performance_tests: ${{ inputs.run_performance_tests || true }}
       run_e2e_tests: ${{ inputs.run_e2e_tests || true }}
       run_static_security_python: false
       run_zap_scan: true
@@ -472,7 +466,6 @@ jobs:
       SLACK_NOTIFICATION_CHANNEL_ID: ${{ secrets.SLACK_NOTIFICATION_CHANNEL_ID }}
     uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
     with:
-      run_performance_tests: ${{ inputs.run_performance_tests || true }}
       run_e2e_tests: ${{ inputs.run_e2e_tests || true }}
       run_static_security_python: false
       run_zap_scan: true
@@ -515,7 +508,6 @@ jobs:
       SLACK_NOTIFICATION_CHANNEL_ID: ${{ secrets.SLACK_NOTIFICATION_CHANNEL_ID }}
     uses: communitiesuk/funding-service-design-workflows/.github/workflows/post-deploy.yml@main
     with:
-      run_performance_tests: ${{ inputs.run_performance_tests || true }}
       run_e2e_tests: ${{ inputs.run_e2e_tests || true }}
       run_static_security_python: false
       run_zap_scan: true
