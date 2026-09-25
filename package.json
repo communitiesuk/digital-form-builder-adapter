@@ -31,7 +31,7 @@
     "handlebars": "4.7.9",
     "fast-xml-parser": "4.5.4",
     "cypress": "13.13.3",
-    "immutable": "4.3.8"
+    "immutable": "4.3.9"
   },
   "author": "Communities UK",
   "license": "MIT"
