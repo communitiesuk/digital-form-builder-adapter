@@ -90,7 +90,7 @@ environments:
       nginx:
         port: 8087
         image:
-          location: xscys/nginx-sidecar-basic-auth
+          location: ghcr.io/communitiesuk/nginx-basic-auth@sha256:3dcb58e82a66979fca24688f853ac38031366d03706779cb8f1c03838bcf51b5
         variables:
           FORWARD_PORT: 3009
           CLIENT_MAX_BODY_SIZE: 10m
@@ -121,7 +121,7 @@ environments:
       nginx:
         port: 8087
         image:
-          location: xscys/nginx-sidecar-basic-auth
+          location: ghcr.io/communitiesuk/nginx-basic-auth@sha256:3dcb58e82a66979fca24688f853ac38031366d03706779cb8f1c03838bcf51b5
         variables:
           FORWARD_PORT: 3009
           CLIENT_MAX_BODY_SIZE: 10m
@@ -152,7 +152,7 @@ environments:
       nginx:
         port: 8087
         image:
-          location: xscys/nginx-sidecar-basic-auth
+          location: ghcr.io/communitiesuk/nginx-basic-auth@sha256:3dcb58e82a66979fca24688f853ac38031366d03706779cb8f1c03838bcf51b5
         variables:
           FORWARD_PORT: 3009
           CLIENT_MAX_BODY_SIZE: 10m
