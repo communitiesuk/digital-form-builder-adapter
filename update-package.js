@@ -25,10 +25,21 @@ packageJsonModel.dependencies = {
   'joi': packageAdapterRunnerJson.dependencies.joi
 };
 
+// CVE-2026-26996, CVE-2026-27903 and CVE-2026-27904 are ReDoS flaws fixed in
+// every minimatch release line. A single blanket resolution is not an option
+// because minimatch 9 dropped the callable CommonJS export, which eslint,
+// glob@7, nodemon, jake and test-exclude all rely on, so each requested range
+// is pinned to the patched release of its own major instead
+const minimatchResolutions = Object.fromEntries(
+  Object.entries(packageAdapterJson.resolutions)
+    .filter(([name]) => name.startsWith('minimatch@'))
+);
+
 // The submodule is installed as its own yarn project, so the adapter's CVE
 // resolutions do not reach it and have to be copied over
 packageBuilderJson.resolutions = {
   ...packageBuilderJson.resolutions,
+  ...minimatchResolutions,
   'tar': packageAdapterJson.resolutions.tar,
   'shell-quote': packageAdapterJson.resolutions['shell-quote'],
   'cipher-base': packageAdapterJson.resolutions['cipher-base'],
@@ -62,4 +73,6 @@ console.log('digital-form-builder package.json updated successfully tar:[' + pac
   + '] handlebars:[' + packageAdapterJson.resolutions['handlebars']
   + '] cypress:[' + packageAdapterJson.resolutions.cypress
   + '] immutable:[' + packageAdapterJson.resolutions.immutable
-  + '] expr-eval:[' + packageAdapterJson.resolutions['expr-eval'] + ']');
+  + '] expr-eval:[' + packageAdapterJson.resolutions['expr-eval']
+  + '] minimatch:[' + Object.entries(minimatchResolutions)
+    .map(([range, version]) => range + '=>' + version).join(' ') + ']');
