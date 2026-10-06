@@ -14,10 +14,16 @@ RUN mkdir -p /usr/src/app/digital-form-builder-adapter/runner/public/static && \
     chmod -R +x  /usr/src/app/digital-form-builder-adapter && \
     apk update && \
     apk add --no-cache bash git && \
-    apk add --no-cache libcurl=8.22.0-r0 && \
-    apk add --no-cache libcrypto3=3.5.8-r0 && \
+    apk add --no-cache "libcurl>=8.22.0-r0" && \
+    apk add --no-cache "libcrypto3>=3.5.8-r0" && \
     npm install -g npm@11.19.1 --ignore-scripts
+    # The apk constraints above are minimum versions, not exact pins. Alpine
+    # serves only the newest -rN of a package per release branch and the index
+    # is fetched at build time, so an exact "=" pin stops resolving as soon as
+    # the package is rebuilt: libcrypto3=3.5.8-r0 broke the build once openssl
+    # moved to 3.5.9-r0. A ">=" floor still guarantees the fix is present
     # Fix for CVE-2026-19931
+    # libcrypto3 floor is the fix for CVE-2026-63076
     # npm upgrade takes its bundled tar from 6.2.1 to 7.5.22, fix for CVE-2026-59873
 
 RUN if [ "$INSTALL_NODEMON" = "true" ]; then \
