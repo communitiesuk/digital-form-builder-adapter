@@ -49,7 +49,13 @@ packageBuilderJson.resolutions = {
   'immutable': packageAdapterJson.resolutions.immutable,
   // CVE-2025-13204: upstream expr-eval has no patched release, so alias it to
   // the maintained fork that carries the prototype pollution fix
-  'expr-eval': packageAdapterJson.resolutions['expr-eval']
+  'expr-eval': packageAdapterJson.resolutions['expr-eval'],
+  // Only reaches the image as a transitive dep of webpack-dev-server, which
+  // nothing invokes (no devServer config, no script runs it) but which still
+  // gets installed into the designer image and scanned. v7 wants webpack 5
+  // while the designer is on webpack 4; it declares that peer optional, so the
+  // override installs cleanly and the middleware is never loaded either way
+  'webpack-dev-middleware': packageAdapterJson.resolutions['webpack-dev-middleware']
 };
 
 packageRunnerJson.installConfig = {}
@@ -74,5 +80,6 @@ console.log('digital-form-builder package.json updated successfully tar:[' + pac
   + '] cypress:[' + packageAdapterJson.resolutions.cypress
   + '] immutable:[' + packageAdapterJson.resolutions.immutable
   + '] expr-eval:[' + packageAdapterJson.resolutions['expr-eval']
+  + '] webpack-dev-middleware:[' + packageAdapterJson.resolutions['webpack-dev-middleware']
   + '] minimatch:[' + Object.entries(minimatchResolutions)
     .map(([range, version]) => range + '=>' + version).join(' ') + ']');
