@@ -1,3 +1,6 @@
+> [!WARNING]
+> Repository archived as no longer in use
+
 # XGov Digital Form Builder Adapter
 
 ## Setup
